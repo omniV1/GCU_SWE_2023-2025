@@ -1,0 +1,130 @@
+This program will simulate a modified war card game . War is a card game where a deck of cards is split between two players, each player has 26 cards from the deck. 
+Each player turns over one card at a time, the player with the highest ranked card value wins the round. If the cards are equal the next card is turned over until there is a winner. 
+The winner takes all the turned over cards. The goal is to "capture" all 52 cards of the deck.
+
+There will be two simulated players each with an array of 26 integers. 
+The values of these arrays will be initialized as two groups of 1–13. 
+Both arrays will be shuffled. Starting at the top of the array, each player's integer will be selected and compared to the other player.
+
+ The player with the largest number will win that round. The total number of rounds that each player wins will accumulate. After the 26 values have been played out, a deck will be completed. 
+ The simulator will play 10 decks when the process is complete each player's statics will be output. These statics will include total wins for each player, total ties, and total win percentage for each player.
+Program Requirements
+
+
+1.    Two arrays of 26 items, one for each player. Two sets of values in each array from 1–13; shuffle arrays
+2.    Draw top card from each array, us a standard compare function (return values 1, 0, or -1). Note: a match syntax can be used rather than if-else (this is not a requirement).
+3.    Add outcome to proper total accumulator.
+4.    Repeat previous step for a total of ten times.
+5.    Output Statics: total wins for each player, total ties, and total win percentage for each player.
+
+ 
+
+Requirements to submit in a Word Document:
+
+Problem statement in your own words
+Input/Output/Processing diagram of some type
+Pseudocode or Flowchart
+```Text
+DEFINE deck_of_cards as [1 -> 13]
+DEFINE player_1_deck as deck_of_cards + deck_of_cards
+DEFINE player_2_deck as deck_of_cards + deck_of_cards
+DEFINE player_1_round_wins as 0 
+DEFINE player_2_round_wins as 0
+DEFINE player_1_match_wins as 0
+DEFINE player_2_match_wins as 0
+DEFINE total_ties as 0
+DEFINE player_1_win_percentage as 0.0
+DEFINE player_2_win_percentage as 0.0
+
+RANDOM SHUFFLE player_1_deck
+RANDOM SHUFFLE player_2_deck
+
+FOR match IN range(1 -> 10):
+    DEFINE player_1_round_wins as 0  # Reset for each game
+    DEFINE player_2_round_wins as 0  # Reset for each game
+    
+    FOR round IN range(1 -> 26):
+        DEFINE player_1_card EQUALS player_1_deck[round - 1]  # Draw card for this round
+        DEFINE player_2_card EQUALS player_2_deck[round - 1]  # Draw card for this round
+        
+        IF player_1_card GREATER THAN player_2_card:
+            COMPUTE player_1_round_wins as player_1_round_wins + 1
+            PRINT("Player 1 wins round count:", player_1_round_wins)
+        
+        ELIF player_1_card LESS THAN player_2_card:
+            COMPUTE player_2_round_wins as player_2_round_wins + 1
+            PRINT("Player 2 wins round count:", player_2_round_wins)
+        
+        ELSE:
+            COMPUTE total_ties as total_ties + 1
+            PRINT("Tie - no one wins this round")
+    
+    # After 26 rounds, determine game winner
+    IF player_1_round_wins GREATER THAN player_2_round_wins:
+        COMPUTE player_1_match_wins as player_1_match_wins + 1
+        PRINT("Player 1 wins game!")
+    
+    ELIF player_2_round_wins GREATER THAN player_1_round_wins:
+        COMPUTE player_2_match_wins as player_2_match_wins + 1
+        PRINT("Player 2 wins game!")
+    
+    ELSE:
+        COMPUTE total_ties as total_ties + 1
+        PRINT("Game is a tie!")
+
+COMPUTE player_1_win_percentage as (player_1_match_wins / 10) * 100
+COMPUTE player_2_win_percentage as (player_2_match_wins / 10) * 100
+
+PRINT("Final Results:")
+PRINT("Player 1 total wins:", player_1_match_wins)
+PRINT("Player 2 total wins:", player_2_match_wins)
+PRINT("Total ties:", total_ties)
+PRINT("Player 1 win percentage:", player_1_win_percentage, "%")
+PRINT("Player 2 win percentage:", player_2_win_percentage, "%")
+```
+
+## Expected Program Output
+
+```
+Player 1 wins round count: 1
+Player 2 wins round count: 1
+Player 1 wins round count: 2
+Tie - no one wins this round
+Player 2 wins round count: 2
+Player 1 wins round count: 3
+Player 2 wins round count: 3
+Player 1 wins round count: 4
+Player 2 wins round count: 4
+Player 1 wins round count: 5
+Tie - no one wins this round
+Player 2 wins round count: 5
+Player 1 wins round count: 6
+Player 2 wins round count: 6
+Player 1 wins round count: 7
+Player 2 wins round count: 7
+Player 1 wins round count: 8
+Tie - no one wins this round
+Player 2 wins round count: 8
+Player 1 wins round count: 9
+Player 2 wins round count: 9
+Player 1 wins round count: 10
+Player 2 wins round count: 10
+Player 1 wins round count: 11
+Player 2 wins round count: 11
+Player 1 wins round count: 12
+Tie - no one wins this round
+Player 2 wins round count: 12
+Player 1 wins round count: 13
+Player 2 wins round count: 13
+Player 1 wins round count: 14
+Player 1 wins game!
+
+[Game 2-10 would show similar output...]
+
+Final Results:
+Player 1 total wins: 6
+Player 2 total wins: 3
+Total ties: 1
+Player 1 win percentage: 60.0%
+Player 2 win percentage: 30.0%
+```
