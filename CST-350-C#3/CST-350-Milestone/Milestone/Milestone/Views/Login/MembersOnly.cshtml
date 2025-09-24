@@ -1,0 +1,27 @@
+﻿@model Milestone.Models.UserModel
+<div>
+    <h4>Members Only Area</h4>
+    <hr />
+    <p>Welcome, @Model.Username!</p>
+    @{
+        string[] groups = Model.Group.Split(',');
+        bool isAdmin = groups.Contains("Admin");
+        bool isUser = groups.Contains("User");
+    }
+    @if (isAdmin)
+    {
+        <h5>Admin Functions</h5>
+        <ul>
+            <li><a asp-controller="User" asp-action="Index">Search Users by ID</a></li>
+            <li><a asp-controller="User" asp-action="AllUsers">View All Users</a></li>
+        </ul>
+    }
+    @if (isUser)
+    {
+        <p>This is the members-only area. You can access exclusive content here.</p>
+    }
+    @if (!isAdmin && !isUser)
+    {
+        <p>You do not have access to the members-only area.</p>
+    }
+</div>

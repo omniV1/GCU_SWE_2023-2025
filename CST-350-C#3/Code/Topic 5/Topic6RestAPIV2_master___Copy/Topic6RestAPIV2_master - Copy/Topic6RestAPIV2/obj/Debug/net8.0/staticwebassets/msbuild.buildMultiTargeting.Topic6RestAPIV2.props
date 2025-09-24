@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Topic6RestAPIV2.props" />
+</Project>

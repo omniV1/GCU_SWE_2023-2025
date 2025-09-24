@@ -1,0 +1,15 @@
+C:\git\CST-201\Code\TowerOfHanoi\bin\Debug\net8.0\TowerOfHanoi.exe
+C:\git\CST-201\Code\TowerOfHanoi\bin\Debug\net8.0\TowerOfHanoi.deps.json
+C:\git\CST-201\Code\TowerOfHanoi\bin\Debug\net8.0\TowerOfHanoi.runtimeconfig.json
+C:\git\CST-201\Code\TowerOfHanoi\bin\Debug\net8.0\TowerOfHanoi.dll
+C:\git\CST-201\Code\TowerOfHanoi\bin\Debug\net8.0\TowerOfHanoi.pdb
+C:\git\CST-201\Code\TowerOfHanoi\obj\Debug\net8.0\TowerOfHanoi.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\CST-201\Code\TowerOfHanoi\obj\Debug\net8.0\TowerOfHanoi.AssemblyInfoInputs.cache
+C:\git\CST-201\Code\TowerOfHanoi\obj\Debug\net8.0\TowerOfHanoi.AssemblyInfo.cs
+C:\git\CST-201\Code\TowerOfHanoi\obj\Debug\net8.0\TowerOfHanoi.csproj.CoreCompileInputs.cache
+C:\git\CST-201\Code\TowerOfHanoi\obj\Debug\net8.0\TowerOfHanoi.sourcelink.json
+C:\git\CST-201\Code\TowerOfHanoi\obj\Debug\net8.0\TowerOfHanoi.dll
+C:\git\CST-201\Code\TowerOfHanoi\obj\Debug\net8.0\refint\TowerOfHanoi.dll
+C:\git\CST-201\Code\TowerOfHanoi\obj\Debug\net8.0\TowerOfHanoi.pdb
+C:\git\CST-201\Code\TowerOfHanoi\obj\Debug\net8.0\TowerOfHanoi.genruntimeconfig.cache
+C:\git\CST-201\Code\TowerOfHanoi\obj\Debug\net8.0\ref\TowerOfHanoi.dll

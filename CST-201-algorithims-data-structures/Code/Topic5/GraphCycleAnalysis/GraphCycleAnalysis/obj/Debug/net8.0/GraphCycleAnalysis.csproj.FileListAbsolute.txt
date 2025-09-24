@@ -1,0 +1,14 @@
+C:\Users\Owenl\source\repos\GraphCycleAnalysis\GraphCycleAnalysis\bin\Debug\net8.0\GraphCycleAnalysis.exe
+C:\Users\Owenl\source\repos\GraphCycleAnalysis\GraphCycleAnalysis\bin\Debug\net8.0\GraphCycleAnalysis.deps.json
+C:\Users\Owenl\source\repos\GraphCycleAnalysis\GraphCycleAnalysis\bin\Debug\net8.0\GraphCycleAnalysis.runtimeconfig.json
+C:\Users\Owenl\source\repos\GraphCycleAnalysis\GraphCycleAnalysis\bin\Debug\net8.0\GraphCycleAnalysis.dll
+C:\Users\Owenl\source\repos\GraphCycleAnalysis\GraphCycleAnalysis\bin\Debug\net8.0\GraphCycleAnalysis.pdb
+C:\Users\Owenl\source\repos\GraphCycleAnalysis\GraphCycleAnalysis\obj\Debug\net8.0\GraphCycleAnalysis.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Owenl\source\repos\GraphCycleAnalysis\GraphCycleAnalysis\obj\Debug\net8.0\GraphCycleAnalysis.AssemblyInfoInputs.cache
+C:\Users\Owenl\source\repos\GraphCycleAnalysis\GraphCycleAnalysis\obj\Debug\net8.0\GraphCycleAnalysis.AssemblyInfo.cs
+C:\Users\Owenl\source\repos\GraphCycleAnalysis\GraphCycleAnalysis\obj\Debug\net8.0\GraphCycleAnalysis.csproj.CoreCompileInputs.cache
+C:\Users\Owenl\source\repos\GraphCycleAnalysis\GraphCycleAnalysis\obj\Debug\net8.0\GraphCycleAnalysis.dll
+C:\Users\Owenl\source\repos\GraphCycleAnalysis\GraphCycleAnalysis\obj\Debug\net8.0\refint\GraphCycleAnalysis.dll
+C:\Users\Owenl\source\repos\GraphCycleAnalysis\GraphCycleAnalysis\obj\Debug\net8.0\GraphCycleAnalysis.pdb
+C:\Users\Owenl\source\repos\GraphCycleAnalysis\GraphCycleAnalysis\obj\Debug\net8.0\GraphCycleAnalysis.genruntimeconfig.cache
+C:\Users\Owenl\source\repos\GraphCycleAnalysis\GraphCycleAnalysis\obj\Debug\net8.0\ref\GraphCycleAnalysis.dll

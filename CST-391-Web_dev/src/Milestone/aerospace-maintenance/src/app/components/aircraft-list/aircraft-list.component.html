@@ -1,0 +1,137 @@
+<div class="container">
+  <!-- Page title -->
+  <h1>Aircraft Fleet Management</h1>
+<!-- At the top of your aircraft-list.component.html, after the title -->
+<div class="header-actions">
+  <h1>Aircraft Fleet Management</h1>
+  <button mat-raised-button 
+          color="primary" 
+          (click)="openAddAircraftDialog()"
+          class="add-button">
+    <mat-icon>add</mat-icon>
+    Add Aircraft
+  </button>
+</div>
+  <!-- Search/filter input field with icon -->
+  <mat-form-field appearance="outline">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search aircraft..." #input>
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <!-- Material table container with elevation -->
+  <div class="mat-elevation-z8">
+    <!-- Material table with sorting -->
+    <table mat-table [dataSource]="dataSource" matSort>
+      
+      <!-- Model Column -->
+      <ng-container matColumnDef="model">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Model </th>
+        <td mat-cell *matCellDef="let aircraft"> {{aircraft.model}} </td>
+      </ng-container>
+
+      <!-- Serial Number Column -->
+      <ng-container matColumnDef="serialNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Serial Number </th>
+        <td mat-cell *matCellDef="let aircraft"> {{aircraft.serialNumber}} </td>
+      </ng-container>
+
+      <!-- Last Maintenance Date Column with status indicators -->
+      <ng-container matColumnDef="lastMaintenanceDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Maintenance </th>
+          <td mat-cell *matCellDef="let aircraft"> 
+            <!-- Date display with dynamic class and tooltip -->
+            <span [ngClass]="getMaintenanceDateClass(aircraft.lastMaintenanceDate)"
+                  [matTooltip]="getMaintenanceTooltip(aircraft)"
+                  matTooltipPosition="above">
+              {{aircraft.lastMaintenanceDate | date:'shortDate'}} 
+            </span>
+          </td>
+      </ng-container>
+
+      <!-- Maintenance Status Column with icons -->
+      <ng-container matColumnDef="maintenanceStatus">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Maintenance Status</th>
+          <td mat-cell *matCellDef="let aircraft">
+            <div class="maintenance-status">
+              <!-- Status icon with color and tooltip -->
+              <mat-icon [color]="getMaintenanceColor(aircraft.maintenanceStatus)"
+                       [matTooltip]="getMaintenanceStatusTooltip(aircraft)">
+                {{getMaintenanceIcon(aircraft.maintenanceStatus)}}
+              </mat-icon>
+              <!-- Status text display -->
+              <span class="maintenance-text">
+                {{aircraft.maintenanceStatus}}
+              </span>
+            </div>
+          </td>
+      </ng-container>
+
+      <!-- Flight Time Column -->
+      <ng-container matColumnDef="FlightTime">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Flight Time (hrs) </th>
+        <td mat-cell *matCellDef="let aircraft"> {{aircraft.flightTime}} </td>
+      </ng-container>
+
+      <!-- Aircraft Status Column with dynamic styling -->
+      <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+          <td mat-cell *matCellDef="let aircraft">
+            <!-- Status badge with dynamic classes -->
+            <span class="status-badge" [ngClass]="{
+              'status-ready': aircraft.status === AircraftStatus.READY,
+              'status-not-ready': aircraft.status === AircraftStatus.NOT_READY,
+              'status-maintenance': aircraft.status === AircraftStatus.IN_MAINTENANCE
+            }">
+              {{aircraft.status}}
+            </span>
+          </td>
+      </ng-container>
+
+      <!-- Actions Column with icon buttons -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let aircraft">
+          <!-- Performance view button -->
+          <button mat-icon-button color="primary" 
+                  (click)="viewPerformance(aircraft.aircraftID)"
+                  matTooltip="View Performance">
+            <mat-icon>insights</mat-icon>
+          </button>
+          <!-- Maintenance view button -->
+          <button mat-icon-button color="accent"
+                  (click)="viewMaintenance(aircraft.aircraftID)"
+                  matTooltip="View Maintenance">
+            <mat-icon>build</mat-icon>
+          </button>
+          <!-- Edit aircraft button -->
+          <button mat-icon-button color="accent" 
+                  (click)="openEditAircraftDialog(aircraft)"
+                  matTooltip="Edit Aircraft">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <!-- Delete aircraft button -->
+          <button mat-icon-button color="warn"
+                  (click)="deleteAircraft(aircraft)"
+                  matTooltip="Delete Aircraft">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Table header and row definitions -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- No data row template -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="7">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <!-- Table pagination -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"
+                   aria-label="Select page of aircraft">
+    </mat-paginator>
+  </div>
+</div>

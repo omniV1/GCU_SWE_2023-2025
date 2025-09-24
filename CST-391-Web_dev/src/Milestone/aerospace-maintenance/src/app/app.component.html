@@ -1,0 +1,15 @@
+<!-- 
+  This is the main application component template.
+  It contains a <router-outlet> directive which acts as a placeholder for the routed components.
+  Inside the <router-outlet>, there is a <mat-sidenav-container> which is used to create a side navigation layout.
+  You can place your navigation or header content inside the <mat-sidenav-container>.
+  Another <router-outlet> is nested within the <mat-sidenav-container> to handle nested routes.
+  Optionally, you can add footer content within the <mat-sidenav-container> if needed.
+-->
+<router-outlet>
+  <mat-sidenav-container>
+    <!-- Your navigation/header content here -->
+    <router-outlet></router-outlet>
+    <!-- Your footer content here if needed -->
+  </mat-sidenav-container>
+</router-outlet>

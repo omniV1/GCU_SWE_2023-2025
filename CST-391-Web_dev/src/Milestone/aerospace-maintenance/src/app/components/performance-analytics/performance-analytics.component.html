@@ -1,0 +1,98 @@
+
+<div class="analytics-container">
+  <!-- Header Section -->
+  <div class="header-section">
+    <h1>Performance Analytics - Aircraft {{aircraftId}}</h1>
+    <!-- Summary Statistics -->
+    <div class="summary-stats">
+      <div class="stat-card">
+        <span class="label">Total Flight Hours</span>
+        <span class="value">{{getTotalFlightHours() | number:'1.0-1'}}</span>
+      </div>
+      <div class="stat-card">
+        <span class="label">Avg Fuel Efficiency</span>
+        <span class="value">{{getAverageFuelEfficiency() | number:'1.0-2'}} gal/hr</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Grid -->
+  <div class="charts-grid">
+    <div class="chart-row">
+      <!-- Flight Hours Timeline Chart -->
+      <mat-card class="chart-card">
+        <mat-card-header>
+          <mat-card-title>Flight Hours Timeline</mat-card-title>
+          <mat-card-subtitle>
+            Track flight hours over time. View the history of flight durations and identify usage patterns.
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <ngx-charts-area-chart
+            [view]="chartView"
+            [scheme]="timelineColorScheme"
+            [results]="trendData"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="'Record ID'"
+            [yAxisLabel]="'Flight Hours'"
+            [backgroundColor]="backgroundColor"
+            [autoScale]="true">
+          </ngx-charts-area-chart>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Efficiency Analysis Chart -->
+      <mat-card class="chart-card">
+        <mat-card-header>
+          <mat-card-title>Efficiency Analysis</mat-card-title>
+          <mat-card-subtitle>
+            Compare flight duration vs fuel consumption. Each point represents a flight record.
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <ngx-charts-bubble-chart
+            [view]="chartView"
+            [scheme]="efficiencyColorScheme"
+            [results]="efficiencyData"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="'Flight Duration (hours)'"
+            [yAxisLabel]="'Fuel Consumption (gal/hr)'"
+            [backgroundColor]="backgroundColor"
+            [legend]="showLegend">
+          </ngx-charts-bubble-chart>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Fuel Consumption Gauge -->
+    <mat-card class="chart-card gauge-card">
+      <mat-card-header>
+        <mat-card-title>Current Fuel Consumption</mat-card-title>
+        <mat-card-subtitle>Latest recorded fuel consumption rate</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <ngx-charts-gauge
+          [view]="gaugeView"
+          [scheme]="gaugeColorScheme"
+          [results]="gaugeValue"
+          [min]="gaugeMin"
+          [max]="gaugeMax"
+          [angleSpan]="gaugeAngleSpan"
+          [startAngle]="gaugeStartAngle"
+          [showAxis]="gaugeShowAxis"
+          [bigSegments]="gaugeLargeSegments"
+          [smallSegments]="gaugeSmallSegments"
+          [backgroundColor]="backgroundColor"
+          [units]="gaugeUnits">
+        </ngx-charts-gauge>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

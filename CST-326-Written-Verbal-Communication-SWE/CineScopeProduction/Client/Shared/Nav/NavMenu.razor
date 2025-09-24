@@ -1,0 +1,62 @@
+﻿@using MudBlazor
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthStateProvider
+
+<!-- Navigation menu for the application -->
+<MudNavMenu>
+    <!-- Home link -->
+    <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
+
+    <!-- Movies link -->
+    <MudNavLink Href="movies" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Movie">Movies</MudNavLink>
+
+    <!-- Divider between main navigation and authentication -->
+    <MudDivider Class="my-2" />
+
+    <AuthorizeView>
+        <Authorized Context="auth">
+            <!-- User profile link when logged in -->
+            <MudNavLink Href="profile" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Person">My Profile</MudNavLink>
+
+            <!-- Admin dashboard link - only shown for admins -->
+            <AuthorizeView Roles="Admin">
+                <Authorized Context="adminAuth">
+                    <MudNavLink Href="/admin" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.AdminPanelSettings">
+                        Admin Dashboard
+                    </MudNavLink>
+                </Authorized>
+            </AuthorizeView>
+
+            <!-- Logout link -->
+            <MudNavLink Href="logout" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Logout">Logout</MudNavLink>
+
+            <!-- Debug Information -->
+            @if (ShowDebugInfo)
+            {
+                <MudDivider Class="my-2" />
+                <MudText Typo="Typo.caption" Class="px-4">
+                    Logged in as: @auth.User.Identity.Name
+                </MudText>
+                <MudText Typo="Typo.caption" Class="px-4">
+                    Claims:
+                    @foreach (var claim in auth.User.Claims)
+                    {
+                        <div>@claim.Type: @claim.Value</div>
+                    }
+                </MudText>
+            }
+        </Authorized>
+        <NotAuthorized>
+            <!-- Login link -->
+            <MudNavLink Href="login" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Login">Login</MudNavLink>
+
+            <!-- Register link -->
+            <MudNavLink Href="register" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.PersonAdd">Register</MudNavLink>
+        </NotAuthorized>
+    </AuthorizeView>
+</MudNavMenu>
+
+@code {
+    [Parameter]
+    public bool ShowDebugInfo { get; set; } = false;
+}

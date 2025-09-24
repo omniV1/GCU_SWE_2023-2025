@@ -1,0 +1,86 @@
+﻿@inherits LayoutComponentBase
+@using MudBlazor
+@using Microsoft.AspNetCore.Components.Authorization
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+
+<!-- Main layout container for the application -->
+<MudLayout>
+    <!-- Fixed header -->
+    <MudAppBar Elevation="1" Dense="false" Class="px-4">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" Class="mr-3" />
+        <MudLink Href="/" Underline="Underline.None" Class="d-flex align-center">
+            <MudText Typo="Typo.h5" Color="Color.Primary" Class="font-weight-bold">CineScope</MudText>
+        </MudLink>
+        <MudSpacer />
+        <div class="d-flex align-center gap-2">
+            <AuthorizeView>
+                <Authorized>
+                    <MudMenu Icon="@Icons.Material.Filled.AccountCircle" 
+                            Color="Color.Inherit" 
+                            Dense="true"
+                            AnchorOrigin="Origin.BottomRight"
+                            TransformOrigin="Origin.TopRight">
+                        <MudMenuItem Href="/profile">Profile</MudMenuItem>
+                        <MudMenuItem Href="/watchlist">Watchlist</MudMenuItem>
+                        <MudMenuItem Href="/reviews">My Reviews</MudMenuItem>
+                        <MudDivider />
+                        <MudMenuItem OnClick="@(() => NavigationManager.NavigateTo("logout"))">Logout</MudMenuItem>
+                    </MudMenu>
+                </Authorized>
+                <NotAuthorized>
+                    <MudButton Variant="Variant.Text" Color="Color.Primary" Href="/login" Class="ml-2">Login</MudButton>
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="/register" Class="ml-2">Register</MudButton>
+                </NotAuthorized>
+            </AuthorizeView>
+        </div>
+    </MudAppBar>
+
+    <!-- Side Navigation -->
+    <MudDrawer @bind-Open="@_drawerOpen" Elevation="2" ClipMode="DrawerClipMode.Always" Variant="@DrawerVariant.Mini" OpenMiniOnHover="true">
+        <NavMenu />
+    </MudDrawer>
+
+    <!-- Main Content -->
+    <MudMainContent Class="pt-4 px-4">
+        <MudContainer MaxWidth="MaxWidth.False" Class="mt-4">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    /// <summary>
+    /// Tracks whether the navigation drawer is open.
+    /// </summary>
+    private bool _drawerOpen = true;
+    private bool _isSmallScreen = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await CheckScreenSize();
+            await JSRuntime.InvokeVoidAsync("window.addEventListener", "resize", DotNetObjectReference.Create(this));
+        }
+    }
+
+    private async Task CheckScreenSize()
+    {
+        var width = await JSRuntime.InvokeAsync<int>("window.innerWidth");
+        _isSmallScreen = width < 960;
+        _drawerOpen = !_isSmallScreen;
+        StateHasChanged();
+    }
+
+    [JSInvokable]
+    public async Task OnResize()
+    {
+        await CheckScreenSize();
+    }
+
+    private void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+}

@@ -1,0 +1,31 @@
+<!-- Main container wrapping the content, providing margin and padding according to the Bootstrap 'container' class -->
+<div class="container">
+  <!-- Dynamic header displaying a welcome message. The 'title' property is bound with Angular interpolation, showing how data binding works in Angular. -->
+  <h1>Welcome to {{ title }}</h1>
+
+  <!-- Navigation bar section styled with Bootstrap classes for a light-colored theme and responsiveness. -->
+  <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
+      <!-- A div for aligning navigation items centrally on the x-axis -->
+      <div class="d-flex justify-content-center" id="navbarNav">
+          <div style="margin: 0 auto;">
+              <!-- Navigation items are wrapped in a div styled as a navbar. -->
+              <div class="navbar-nav">
+                  <!-- Individual navigation links. Each 'a' tag represents a link in the navbar. -->
+                  <!-- 'My Music' link acts as a brand or home link but doesn't lead anywhere ('#' is a placeholder URL). -->
+                  <a class="submit-button text-center" href="#">My Music</a>
+                  <!-- External link to GCU's homepage, opens in a new tab due to 'target="_blank"'. -->
+                  <a class="submit-button text-center" href="https://www.gcu.edu" target="_blank">GCU Home Page</a>
+                  <!-- Internal link to create a new album, uses Angular's 'routerLink' for navigation without reloading the page. -->
+                  <a class="submit-button text-center" routerLink="/create">Create Album</a>
+                  <!-- Executes the 'displayArtistList()' method when clicked, likely displaying a list of artists. -->
+                  <a class="submit-button text-center" (click)="displayArtistList()">Artist List</a>
+                  <!-- A button that when clicked, executes the 'displayVersion()' method, possibly showing the app version. -->
+                  <button class="submit-button text-center" (click)="displayVersion()">About</button>
+              </div>
+          </div>
+      </div>
+  </nav>
+
+  <!-- Angular Router Outlet that acts as a placeholder for dynamically changing content based on the route. -->
+  <router-outlet></router-outlet>
+</div>

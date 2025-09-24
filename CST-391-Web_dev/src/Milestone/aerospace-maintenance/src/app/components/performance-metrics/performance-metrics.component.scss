@@ -1,0 +1,133 @@
+// Host container styling
+:host {
+  display: block;
+  background-color: #121212;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+// Main container styling
+.performance-metrics-container {
+  // Page title styling
+  h1 {
+    color: #fff;
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  // Header section with actions
+  .header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    // Button container
+    .header-buttons {
+      display: flex;
+      gap: 16px;
+
+      // Add button styling
+      .add-button {
+        background-color: #4caf50;
+        color: white;
+        
+        &:hover {
+          background-color: darken(#4caf50, 5%);
+        }
+      }
+
+      // Analytics button styling
+      .analytics-button {
+        background-color: #00BCD4;
+        color: white;
+        
+        mat-icon {
+          margin-right: 8px;
+        }
+
+        &:hover {
+          background-color: darken(#00BCD4, 5%);
+        }
+      }
+    }
+  }
+
+  // Filter field styling
+  .mat-mdc-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+    
+    ::ng-deep {
+      // Input field background
+      .mat-mdc-text-field-wrapper {
+        background-color: rgba(3, 3, 3, 0.05);
+      }
+      
+      // Label styling
+      .mat-mdc-form-field-label {
+        color: rgba(255, 255, 255, 0.7);
+      }
+  
+      // Input text styling
+      .mat-mdc-input-element {
+        color: white;
+      }
+    }
+  }
+
+  // Table container styling
+  .metrics-table-container {
+    background-color: transparent;
+    overflow: auto;
+
+    table {
+      width: 100%;
+    }
+
+    // Material table overrides
+    ::ng-deep {
+      // Header cell styling
+      .mat-mdc-header-cell {
+        background-color: rgba(236, 219, 219, 0.05);
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 500;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      // Table cell styling
+      .mat-mdc-cell {
+        color: rgba(255, 255, 255, 0.87);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      // Row hover effect
+      .mat-mdc-row:hover {
+        background-color: rgba(255, 255, 255, 0.04);
+      }
+
+      // Action button styling
+      .edit-button {
+        color: #FFC107;
+        
+        &:hover {
+          background-color: rgba(255, 193, 7, 0.1);
+        }
+      }
+
+      .delete-button {
+        color: #f44336;
+        
+        &:hover {
+          background-color: rgba(244, 67, 54, 0.1);
+        }
+      }
+    }
+  }
+
+  // Paginator styling
+  .mat-mdc-paginator {
+    background-color: transparent;
+    color: white;
+  }
+}

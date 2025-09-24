@@ -1,0 +1,22 @@
+<!-- This div only displays if no album has been selected yet. It shows a list of albums. -->
+<div class="list-group" *ngIf="selectedAlbum == null">
+  <!-- Iterates over the albums array and creates a button for each album. 
+       When a button is clicked, it calls onSelectAlbum() with the corresponding album. -->
+  <button class="list-group-item" 
+          *ngFor="let album of albums"
+          (click)="onSelectAlbum(album)">
+    <!-- Album information is displayed in a table format within the button -->
+    <table align="center">
+      <tr>
+        <!-- Album cover image -->
+        <td width="20%"><img src="assets/images/{{ album.Image }}" width="50px" height="50px"/></td>
+        <!-- Album title and year -->
+        <td>{{ album.Title }} from {{ album.Year }}</td>
+      </tr>
+    </table>
+  </button>
+</div>
+
+<!-- If an album has been selected, this component is displayed and passed the selected album.
+     app-display-album is a child component responsible for displaying detailed information about an album. -->
+<app-display-album *ngIf="selectedAlbum" [album]="selectedAlbum"></app-display-album>

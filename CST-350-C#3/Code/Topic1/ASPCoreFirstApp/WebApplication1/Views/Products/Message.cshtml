@@ -1,0 +1,29 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<h1>Important message</h1>
+<p>Thank you for visting our site. We hope you enjoy your stay!</br> The purpose of this page is to demonstrate how a view and controller interact.</p>
+
+@*
+Dynamically generate a response to the values passed from the controller
+*@
+
+@{
+        if(ViewData["Name"] != null)
+    {
+        // Notice how html command can be used inside of razor code
+        <h3>Hello @ViewData["Name"]</h3>
+
+        if (ViewData["Room"] != null && Convert.ToInt32(ViewData["Room"]) > 400)
+        {
+            <h3> You are in the correct classroom :-)</h3>
+        }
+
+        else if (ViewData["Room"] != null && Convert.ToInt32(ViewData["Room"]) < 400)
+        {
+            <h3> You are NOT the correct classroom :-(</h3>
+        }
+    }
+    
+}

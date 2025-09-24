@@ -1,0 +1,94 @@
+
+// Import Angular Material prebuilt theme
+@import "@angular/material/prebuilt-themes/pink-bluegrey.css";
+
+// Global dark theme styles for the application
+// - Sets the background color to dark and text color to white
+// - Applies a global font family
+
+// Material overrides for dark theme
+// - Customizes the appearance of Angular Material components for dark theme
+// - Ensures table, paginator, form fields, and dialog components are styled appropriately
+
+// .mat-mdc-table: Makes the table background transparent
+// .mat-mdc-header-cell: Styles the header cells with white text and a semi-transparent background
+// .mat-mdc-cell: Ensures table cells have white text
+// .mat-mdc-row:hover: Adds a hover effect to table rows
+// .mat-mdc-paginator: Styles the paginator with a transparent background and white text
+// .mat-mdc-form-field: Sets the background color for form fields
+
+// .mat-dialog-container: Ensures dialogs appear above the overlay by setting a high z-index
+// .mat-mdc-dialog-container: Styles the dialog container with a dark background and white text
+// .mat-mdc-form-field: Ensures form fields within dialogs are styled and have appropriate margins
+// .mat-mdc-dialog-content: Ensures dialog content is scrollable if it exceeds the viewport height
+
+// .custom-dialog-container: Custom styles for dialog containers
+// - Sets a dark background, white text, padding, and rounded corners
+
+/* Global dark theme styles */
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #121212;
+  color: white;
+}
+
+/* Material overrides for dark theme */
+.mat-mdc-table {
+  background-color: transparent !important;
+}
+
+.mat-mdc-header-cell {
+  color: white !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.mat-mdc-cell {
+  color: white !important;
+}
+
+.mat-mdc-row:hover {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+.mat-mdc-paginator {
+  background-color: transparent !important;
+  color: white !important;
+}
+
+.mat-mdc-form-field {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+// Add this to ensure dialogs appear above the overlay
+.mat-dialog-container {
+  position: relative;
+  z-index: 1000;
+}
+
+// Add some basic dialog styling
+.mat-mdc-dialog-container {
+  --mdc-dialog-container-color: #2d2d2d;  // Dark theme background
+  color: white;
+}
+
+// Style form fields for dark theme
+.mat-mdc-form-field {
+  width: 100%;
+  margin: 8px 0;
+}
+
+// Ensure dialog content is visible
+.mat-mdc-dialog-content {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.custom-dialog-container {
+  .mat-dialog-container {
+    background: #2d2d2d;
+    color: white;
+    padding: 24px;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+}

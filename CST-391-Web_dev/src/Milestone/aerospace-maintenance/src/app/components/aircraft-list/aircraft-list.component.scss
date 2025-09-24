@@ -1,0 +1,157 @@
+// Host container styling
+:host {
+  display: block;
+  background-color: #121212;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+// Page title styling
+h1 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 24px;
+}
+
+// Filter field styling with Material overrides
+.mat-mdc-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+  
+  ::ng-deep {
+    // Background styling for text field
+    .mat-mdc-text-field-wrapper {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    // Label styling
+    .mat-mdc-form-field-label {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    // Input text styling
+    .mat-mdc-input-element {
+      color: white;
+    }
+  }
+}
+
+// Table container styling
+.mat-elevation-z8 {
+  background-color: transparent;
+}
+
+// Deep styles for Material table components
+::ng-deep {
+  // Header cell styling
+  .mat-mdc-header-cell {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  // Table cell styling
+  .mat-mdc-cell {
+    color: rgba(255, 255, 255, 0.87);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  // Row hover effect
+  .mat-mdc-row:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+  }
+
+  // Paginator styling
+  .mat-mdc-paginator {
+    background-color: transparent;
+    color: white;
+  }
+}
+
+// Status badge styling
+.status-ready {
+  background-color: rgba(76, 175, 80, 0.9);
+  padding: 4px 12px;
+  border-radius: 16px;
+  color: white;
+  font-size: 0.875rem;
+}
+
+.status-not-ready {
+  background-color: rgba(244, 67, 54, 0.9);
+  padding: 4px 12px;
+  border-radius: 16px;
+  color: white;
+  font-size: 0.875rem;
+}
+
+// Maintenance status styling
+.maintenance-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .maintenance-text {
+    font-size: 12px;
+    color: white;
+  }
+}
+
+// Maintenance state indicators
+.maintenance-ok {
+  color: #4CAF50;  // green
+}
+
+.maintenance-due-soon {
+  color: #FFC107;  // amber
+}
+
+.maintenance-overdue {
+  color: #f44336;  // red
+}
+
+// Maintenance status container
+.maintenance-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  .maintenance-text {
+    font-size: 12px;
+    color: white;
+  }
+}
+
+// In-maintenance status styling
+.status-maintenance {
+  background-color: #FFA726;
+  padding: 4px 12px;
+  border-radius: 12px;
+  color: white;
+}
+
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+
+  .add-button {
+    background-color: #4caf50;  // Green color
+    color: white;
+    
+    mat-icon {
+      margin-right: 8px;
+    }
+
+    &:hover {
+      background-color: darken(#4caf50, 5%);
+    }
+  }
+}

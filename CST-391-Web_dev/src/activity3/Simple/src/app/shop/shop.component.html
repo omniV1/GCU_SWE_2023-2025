@@ -1,0 +1,15 @@
+<!-- shop.component.html -->
+<form [formGroup]="appForm" (ngSubmit)="onSubmit(appForm.value)">
+    <div class="form-group">
+      <label for="answer">{{ question }}</label>
+      <input type="text" id="answer" class="form-control" formControlName="answer" placeholder="Enter your name">
+    </div>
+    <button type="submit" class="btn btn-success">Tell Me</button>
+  </form>
+  
+  <!-- This label will display the user's name after submission if it's not 'unknown' -->
+  <label *ngIf="answer !== 'unknown'">Your name is {{ answer }}</label>
+  
+  <!-- This is how you include the InfoComponent and pass the 'answer' from the form to it -->
+  <app-info [name]="answer"></app-info>
+  

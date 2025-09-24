@@ -1,0 +1,106 @@
+<div class="dashboard-container">
+  <!-- Header section with title and description -->
+  <div class="header-section">
+    <h1>
+      <mat-icon>flight_takeoff</mat-icon>
+      Aircraft Maintenance Management System
+    </h1>
+    <p class="subtitle">Monitor your fleet's performance, track maintenance schedules, and manage aircraft records all in one place.</p>
+  </div>
+
+  <!-- Statistics cards grid -->
+  <div class="stats-grid">
+    <!-- Total Aircraft Card -->
+    <mat-card class="stat-card total-aircraft">
+      <mat-card-content>
+        <div class="stat-icon">
+          <mat-icon>flight</mat-icon>
+        </div>
+        <div class="stat-value">{{totalAircraft}}</div>
+        <div class="stat-label">Total Aircraft</div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Maintenance Required Card -->
+    <mat-card class="stat-card maintenance-required">
+      <mat-card-content>
+        <div class="stat-icon">
+          <mat-icon>warning</mat-icon>
+        </div>
+        <div class="stat-value">{{maintenanceRequired}}</div>
+        <div class="stat-label">Maintenance Required</div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Total Flight Hours Card -->
+    <mat-card class="stat-card flight-hours">
+      <mat-card-content>
+        <div class="stat-icon">
+          <mat-icon>schedule</mat-icon>
+        </div>
+        <div class="stat-value">{{totalFlightHours | number:'1.0-0'}}</div>
+        <div class="stat-label">Total Flight Hours</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Quick action cards grid -->
+  <div class="actions-grid">
+    <!-- Aircraft Fleet Management Card -->
+    <mat-card class="action-card fleet">
+      <mat-card-content (click)="navigateToAircraft()">
+        <mat-icon>flight</mat-icon>
+        <h3>Aircraft Fleet</h3>
+        <p>Manage your aircraft inventory and view aircraft details</p>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Maintenance Records Card with Menu -->
+    <mat-card class="action-card maintenance" [matMenuTriggerFor]="maintenanceMenu">
+      <mat-card-content>
+        <mat-icon>build</mat-icon>
+        <h3>Maintenance Records</h3>
+        <p>View and manage maintenance schedules and history</p>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Performance Analytics Card with Menu -->
+    <mat-card class="action-card performance" [matMenuTriggerFor]="performanceMenu">
+      <mat-card-content>
+        <mat-icon>insights</mat-icon>
+        <h3>Performance Analytics</h3>
+        <p>Track and analyze aircraft performance metrics</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Maintenance Aircraft Selection Menu -->
+  <mat-menu #maintenanceMenu="matMenu" class="aircraft-menu">
+    <div class="menu-container">
+      <h3>Select Aircraft</h3>
+      <div class="aircraft-list">
+        <button mat-menu-item *ngFor="let aircraft of aircraftList" 
+                (click)="navigateToMaintenance(aircraft.aircraftID)"
+                class="aircraft-item">
+          <mat-icon>flight</mat-icon>
+          <span>{{aircraft.model}} - {{aircraft.serialNumber}}</span>
+        </button>
+      </div>
+    </div>
+  </mat-menu>
+
+  <!-- Performance Aircraft Selection Menu -->
+  <mat-menu #performanceMenu="matMenu" class="aircraft-menu">
+    <div class="menu-container">
+      <h3>Select Aircraft</h3>
+      <div class="aircraft-list">
+        <button mat-menu-item *ngFor="let aircraft of aircraftList" 
+                (click)="navigateToPerformance(aircraft.aircraftID)"
+                class="aircraft-item">
+          <mat-icon>flight</mat-icon>
+          <span>{{aircraft.model}} - {{aircraft.serialNumber}}</span>
+        </button>
+      </div>
+    </div>
+  </mat-menu>
+</div>

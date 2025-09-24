@@ -1,0 +1,60 @@
+<!-- Dialog title showing aircraft model and ID -->
+<h2 mat-dialog-title>Edit Aircraft - {{data.model}} (ID: {{data.aircraftID}})</h2>
+
+<!-- Dialog content container -->
+<mat-dialog-content>
+  <!-- Reactive form for aircraft details -->
+  <form [formGroup]="aircraftForm" class="edit-form">
+    <!-- Aircraft model input field -->
+    <mat-form-field appearance="fill">
+      <mat-label>Model</mat-label>
+      <input matInput formControlName="model">
+    </mat-form-field>
+
+    <!-- Aircraft serial number input field -->
+    <mat-form-field appearance="fill">
+      <mat-label>Serial Number</mat-label>
+      <input matInput formControlName="serialNumber">
+    </mat-form-field>
+
+    <!-- Date of manufacture datepicker field -->
+    <mat-form-field appearance="fill">
+      <mat-label>Date of Manufacture</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dateOfManufacture">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <!-- Flight time numeric input field -->
+    <mat-form-field appearance="fill">
+      <mat-label>Flight Time (hrs)</mat-label>
+      <input matInput type="number" formControlName="flightTime">
+    </mat-form-field>
+
+    <!-- Engine hours numeric input field -->
+    <mat-form-field appearance="fill">
+      <mat-label>Engine Hours</mat-label>
+      <input matInput type="number" formControlName="engineHours">
+    </mat-form-field>
+
+    <!-- Aircraft status dropdown -->
+    <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let status of aircraftStatus" [value]="status">
+          {{status}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<!-- Dialog action buttons -->
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="primary" 
+          (click)="save()" 
+          [disabled]="!aircraftForm.valid">
+    Save
+  </button>
+</mat-dialog-actions>

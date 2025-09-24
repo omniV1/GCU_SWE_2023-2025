@@ -1,0 +1,101 @@
+// Main container layout
+.nav-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #121212;
+}
+
+// Fixed toolbar styling
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  background-color: #1e1e1e;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+  // Toolbar text color
+  span {
+    color: white;
+  }
+
+  // Menu button spacing
+  button {
+    margin-right: 16px;
+  }
+}
+
+// Flexible spacer for toolbar
+.spacer {
+  flex: 1 1 auto;
+}
+
+// Sidenav container layout
+mat-sidenav-container {
+  flex: 1;
+  margin-top: 64px; // Compensate for fixed toolbar
+}
+
+// Sidenav panel styling
+mat-sidenav {
+  width: 250px;
+  background-color: #1e1e1e;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+// Sidenav content styling
+.app-sidenav {
+  // Navigation list styling
+  .nav-list {
+    padding-top: 16px;
+
+    // Navigation link styling
+    a {
+      color: white;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      text-decoration: none;
+      
+      // Icon styling
+      mat-icon {
+        margin-right: 16px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      // Link text styling
+      span {
+        font-size: 16px;
+      }
+
+      // Active link state
+      &.active {
+        background-color: rgba(255, 255, 255, 0.1);
+        
+        mat-icon {
+          color: #00BCD4;
+        }
+      }
+
+      // Hover state
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+    }
+  }
+}
+
+// Main content area styling
+.content-container {
+  padding: 20px;
+  background-color: #121212;
+  min-height: calc(100vh - 64px);
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  mat-sidenav {
+    width: 200px; // Narrower sidenav on mobile
+  }
+}

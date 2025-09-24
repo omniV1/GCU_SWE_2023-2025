@@ -1,0 +1,9 @@
+﻿{
+  "name": "CineScope",
+  "short_name": "CineScope",
+  "theme_color": "#E50914",
+  "background_color": "#0f0f0f",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}

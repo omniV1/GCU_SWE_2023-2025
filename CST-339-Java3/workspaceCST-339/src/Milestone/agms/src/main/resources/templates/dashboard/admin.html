@@ -1,0 +1,192 @@
+<!-- Enhanced admin.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/MainLayout :: layout(~{::div})}">
+
+<head>
+    <title>Admin Dashboard - AGMS</title>
+</head>
+
+<body>
+    <div th:fragment="content">
+        <!-- Alert Messages -->
+        <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <span th:text="${success}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <span th:text="${error}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <!-- Quick Actions Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <h5 class="card-title mb-0">Administrative Actions</h5>
+                            <div class="btn-group">
+                                <a th:href="@{/admin/users/add}" class="btn btn-primary">
+                                    <i class="fas fa-user-plus me-2"></i>Add User
+                                </a>
+                                <button class="btn btn-outline-primary">
+                                    <i class="fas fa-cog me-2"></i>System Settings
+                                </button>
+                                <button class="btn btn-outline-primary">
+                                    <i class="fas fa-download me-2"></i>Export Logs
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row g-4 mb-4">
+            <!-- User Statistics -->
+            <div class="col-sm-6 col-xl-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start justify-content-between">
+                            <div>
+                                <h6 class="card-subtitle mb-2 text-muted ">Total Users</h6>
+                                <h2 class="card-title mb-0" th:text="${totalUsers}">0</h2>
+                                <small class="text-success">
+                                    <i class="fas fa-arrow-up"></i> Active user count
+                                </small>
+                            </div>
+                            <div class="p-2 rounded" style="background-color: var(btn-light);">
+                                <i class="fas fa-users" style="color: var(--agms-primary);"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Health -->
+            <div class="col-sm-6 col-xl-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start justify-content-between">
+                            <div>
+                                <h6 class="card-subtitle mb-2 text-muted">System Health</h6>
+                                <h2 class="card-title mb-0">98%</h2>
+                                <small class="text-success">
+                                    <i class="fas fa-check"></i> All systems operational
+                                </small>
+                            </div>
+                            <div class="p-2 bg-success bg-opacity-10 rounded">
+                                <i class="fas fa-server text-success fs-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Alerts -->
+            <div class="col-sm-6 col-xl-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start justify-content-between">
+                            <div>
+                                <h6 class="card-subtitle mb-2 text-muted">Active Alerts</h6>
+                                <h2 class="card-title mb-0">3</h2>
+                                <small class="text-warning">
+                                    <i class="fas fa-exclamation-triangle"></i> Requires attention
+                                </small>
+                            </div>
+                            <div class="p-2 bg-warning bg-opacity-10 rounded">
+                                <i class="fas fa-bell text-warning fs-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Management Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">User Management</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="user : ${users}">
+                                        <td th:text="${user.username}">username</td>
+                                        <td th:text="${user.email}">email</td>
+                                        <td th:text="${user.role}">role</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a th:href="@{/admin/users/edit/{id}(id=${user.id})}"
+                                                    class="btn btn-sm btn-outline-primary me-2">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <form th:action="@{/admin/users/delete/{id}(id=${user.id})}"
+                                                    method="post" style="display: inline;"
+                                                    onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Health Details -->
+        <div class="row">
+            <div class="col-12 col-xl-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">System Health</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Database</span>
+                                <span class="text-success">98%</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 98%"></div>
+                            </div>
+                        </div>
+                        <!-- Add more system metrics as needed -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Authorization Code Management</h5>
+            </div>
+            <div class="card-body">
+                <p>Manage authorization codes for administrative roles.</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a href="/admin/auth-codes" class="btn btn-primary">
+                        <i class="fas fa-key me-2"></i>Manage Authorization Codes
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+﻿@model List<BibleVerseApp.Models.BibleBook>
+
+@{
+    ViewData["Title"] = "Bible Books";
+}
+
+<div class="bible-container">
+    <h1 class="page-title">Bible Books</h1>
+
+    <div class="grid-container">
+        @foreach (var testament in Model.GroupBy(b => b.Testament))
+        {
+            <div class="section-container">
+                <h2 class="section-title">@testament.Key Testament</h2>
+                <div class="book-list">
+                    @foreach (var book in testament)
+                    {
+                        <div class="book-card">
+                            <a href="@Url.Action("Chapter", "Bible", new { version = "kjv", book = book.Id, chapter = 1 })"
+                               class="book-link">
+                                <h3 class="book-title">@book.Name</h3>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/bible.js"></script>
+}

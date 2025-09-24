@@ -1,0 +1,173 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\git\\CST-201\\Code\\Topic3\\BattleshipProject\\BattleshipProject\\C#\\BattleShip\\BattleShip\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{18F8DC69-64A0-4338-8977-7A82B4D6ABAC}|BattleShip.Library\\BattleShip.Library.csproj|c:\\git\\cst-201\\code\\topic3\\battleshipproject\\battleshipproject\\c#\\battleship\\battleship\\battleship.library\\battleshipgame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18F8DC69-64A0-4338-8977-7A82B4D6ABAC}|BattleShip.Library\\BattleShip.Library.csproj|solutionrelative:battleship.library\\battleshipgame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45DDCD5B-9FBA-49F9-A700-190D626978B6}|BattleShip.Tests\\BattleShip.Tests.csproj|c:\\git\\cst-201\\code\\topic3\\battleshipproject\\battleshipproject\\c#\\battleship\\battleship\\battleship.tests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45DDCD5B-9FBA-49F9-A700-190D626978B6}|BattleShip.Tests\\BattleShip.Tests.csproj|solutionrelative:battleship.tests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C978CA1-3D09-464E-9F7F-745E2F87D9C1}|BattleShip.Console\\BattleShip.Console.csproj|c:\\git\\cst-201\\code\\topic3\\battleshipproject\\battleshipproject\\c#\\battleship\\battleship\\battleship.console\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C978CA1-3D09-464E-9F7F-745E2F87D9C1}|BattleShip.Console\\BattleShip.Console.csproj|solutionrelative:battleship.console\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18F8DC69-64A0-4338-8977-7A82B4D6ABAC}|BattleShip.Library\\BattleShip.Library.csproj|c:\\git\\cst-201\\code\\topic3\\battleshipproject\\battleshipproject\\c#\\battleship\\battleship\\battleship.library\\cruiser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18F8DC69-64A0-4338-8977-7A82B4D6ABAC}|BattleShip.Library\\BattleShip.Library.csproj|solutionrelative:battleship.library\\cruiser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18F8DC69-64A0-4338-8977-7A82B4D6ABAC}|BattleShip.Library\\BattleShip.Library.csproj|c:\\git\\cst-201\\code\\topic3\\battleshipproject\\battleshipproject\\c#\\battleship\\battleship\\battleship.library\\destroyer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18F8DC69-64A0-4338-8977-7A82B4D6ABAC}|BattleShip.Library\\BattleShip.Library.csproj|solutionrelative:battleship.library\\destroyer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18F8DC69-64A0-4338-8977-7A82B4D6ABAC}|BattleShip.Library\\BattleShip.Library.csproj|c:\\git\\cst-201\\code\\topic3\\battleshipproject\\battleshipproject\\c#\\battleship\\battleship\\battleship.library\\ship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18F8DC69-64A0-4338-8977-7A82B4D6ABAC}|BattleShip.Library\\BattleShip.Library.csproj|solutionrelative:battleship.library\\ship.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18F8DC69-64A0-4338-8977-7A82B4D6ABAC}|BattleShip.Library\\BattleShip.Library.csproj|c:\\git\\cst-201\\code\\topic3\\battleshipproject\\battleshipproject\\c#\\battleship\\battleship\\battleship.library\\submarine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18F8DC69-64A0-4338-8977-7A82B4D6ABAC}|BattleShip.Library\\BattleShip.Library.csproj|solutionrelative:battleship.library\\submarine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 15,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{fbcae063-e2c0-4ab1-a516-996ea3dafb72}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Submarine.cs",
+              "DocumentMoniker": "C:\\git\\CST-201\\Code\\Topic3\\BattleshipProject\\BattleshipProject\\C#\\BattleShip\\BattleShip\\BattleShip.Library\\Submarine.cs",
+              "RelativeDocumentMoniker": "BattleShip.Library\\Submarine.cs",
+              "ToolTip": "C:\\git\\CST-201\\Code\\Topic3\\BattleshipProject\\BattleshipProject\\C#\\BattleShip\\BattleShip\\BattleShip.Library\\Submarine.cs",
+              "RelativeToolTip": "BattleShip.Library\\Submarine.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T16:47:18.689Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Ship.cs",
+              "DocumentMoniker": "C:\\git\\CST-201\\Code\\Topic3\\BattleshipProject\\BattleshipProject\\C#\\BattleShip\\BattleShip\\BattleShip.Library\\Ship.cs",
+              "RelativeDocumentMoniker": "BattleShip.Library\\Ship.cs",
+              "ToolTip": "C:\\git\\CST-201\\Code\\Topic3\\BattleshipProject\\BattleshipProject\\C#\\BattleShip\\BattleShip\\BattleShip.Library\\Ship.cs",
+              "RelativeToolTip": "BattleShip.Library\\Ship.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T16:47:11.117Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Destroyer.cs",
+              "DocumentMoniker": "C:\\git\\CST-201\\Code\\Topic3\\BattleshipProject\\BattleshipProject\\C#\\BattleShip\\BattleShip\\BattleShip.Library\\Destroyer.cs",
+              "RelativeDocumentMoniker": "BattleShip.Library\\Destroyer.cs",
+              "ToolTip": "C:\\git\\CST-201\\Code\\Topic3\\BattleshipProject\\BattleshipProject\\C#\\BattleShip\\BattleShip\\BattleShip.Library\\Destroyer.cs",
+              "RelativeToolTip": "BattleShip.Library\\Destroyer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T16:47:01.388Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Cruiser.cs",
+              "DocumentMoniker": "C:\\git\\CST-201\\Code\\Topic3\\BattleshipProject\\BattleshipProject\\C#\\BattleShip\\BattleShip\\BattleShip.Library\\Cruiser.cs",
+              "RelativeDocumentMoniker": "BattleShip.Library\\Cruiser.cs",
+              "ToolTip": "C:\\git\\CST-201\\Code\\Topic3\\BattleshipProject\\BattleshipProject\\C#\\BattleShip\\BattleShip\\BattleShip.Library\\Cruiser.cs",
+              "RelativeToolTip": "BattleShip.Library\\Cruiser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T16:46:52.668Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\git\\CST-201\\Code\\Topic3\\BattleshipProject\\BattleshipProject\\C#\\BattleShip\\BattleShip\\BattleShip.Console\\Program.cs",
+              "RelativeDocumentMoniker": "BattleShip.Console\\Program.cs",
+              "ToolTip": "C:\\git\\CST-201\\Code\\Topic3\\BattleshipProject\\BattleshipProject\\C#\\BattleShip\\BattleShip\\BattleShip.Console\\Program.cs",
+              "RelativeToolTip": "BattleShip.Console\\Program.cs",
+              "ViewState": "AgIAAJ8AAAAAAAAAAAAAAAQAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T16:46:05.453Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "C:\\git\\CST-201\\Code\\Topic3\\BattleshipProject\\BattleshipProject\\C#\\BattleShip\\BattleShip\\BattleShip.Tests\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "BattleShip.Tests\\UnitTest1.cs",
+              "ToolTip": "C:\\git\\CST-201\\Code\\Topic3\\BattleshipProject\\BattleshipProject\\C#\\BattleShip\\BattleShip\\BattleShip.Tests\\UnitTest1.cs",
+              "RelativeToolTip": "BattleShip.Tests\\UnitTest1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T15:40:32.246Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BattleshipGame.cs",
+              "DocumentMoniker": "C:\\git\\CST-201\\Code\\Topic3\\BattleshipProject\\BattleshipProject\\C#\\BattleShip\\BattleShip\\BattleShip.Library\\BattleshipGame.cs",
+              "RelativeDocumentMoniker": "BattleShip.Library\\BattleshipGame.cs",
+              "ToolTip": "C:\\git\\CST-201\\Code\\Topic3\\BattleshipProject\\BattleshipProject\\C#\\BattleShip\\BattleShip\\BattleShip.Library\\BattleshipGame.cs",
+              "RelativeToolTip": "BattleShip.Library\\BattleshipGame.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAAAIkAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T18:49:19.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\git\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\",
+  "Documents": [
+    {
+<<<<<<< HEAD
+      "AbsoluteMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|c:\\git\\cst-350\\code\\topic2\\registerandloginapp\\services\\dao\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|solutionrelative:services\\dao\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|c:\\git\\cst-350\\code\\topic2\\registerandloginapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|c:\\git\\cst-350\\code\\topic2\\registerandloginapp\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|solutionrelative:controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|c:\\git\\cst-350\\code\\topic2\\registerandloginapp\\services\\buisness\\usercollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+=======
+      "AbsoluteMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|c:\\users\\owenl\\source\\repos\\cst-350\\code\\topic2\\registerandloginapp\\services\\dao\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|solutionrelative:services\\dao\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|c:\\users\\owenl\\source\\repos\\cst-350\\code\\topic2\\registerandloginapp\\views\\user\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|solutionrelative:views\\user\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|c:\\users\\owenl\\source\\repos\\cst-350\\code\\topic2\\registerandloginapp\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|c:\\users\\owenl\\source\\repos\\cst-350\\code\\topic2\\registerandloginapp\\services\\dataaccess\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|solutionrelative:services\\dataaccess\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|c:\\users\\owenl\\source\\repos\\cst-350\\code\\topic2\\registerandloginapp\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|solutionrelative:controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|c:\\users\\owenl\\source\\repos\\cst-350\\code\\topic2\\registerandloginapp\\services\\buisness\\usercollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+>>>>>>> 89c6fd66c0c221db88c9e5141d00e4539e989169
+      "RelativeMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|solutionrelative:services\\buisness\\usercollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|c:\\users\\owenl\\source\\repos\\cst-350\\code\\topic2\\registerandloginapp\\models\\iusermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|solutionrelative:models\\iusermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|c:\\users\\owenl\\source\\repos\\cst-350\\code\\topic2\\registerandloginapp\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|solutionrelative:models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/UserAuth/True/SqlTable/dbo.UserAccount.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|c:\\users\\owenl\\source\\repos\\cst-350\\code\\topic2\\registerandloginapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF713644-797E-4F88-A127-12E83B13B285}|RegisterAndLoginApp.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+<<<<<<< HEAD
+          "SelectedChildIndex": 11,
+=======
+          "SelectedChildIndex": 15,
+>>>>>>> 89c6fd66c0c221db88c9e5141d00e4539e989169
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{fbcae063-e2c0-4ab1-a516-996ea3dafb72}"
+            },
+            {
+              "$type": "Document",
+<<<<<<< HEAD
+              "DocumentIndex": 1,
+=======
+              "DocumentIndex": 6,
+              "Title": "IUserManager.cs",
+              "DocumentMoniker": "C:\\Users\\owenl\\source\\repos\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\Models\\IUserManager.cs",
+              "RelativeDocumentMoniker": "Models\\IUserManager.cs",
+              "ToolTip": "C:\\Users\\owenl\\source\\repos\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\Models\\IUserManager.cs",
+              "RelativeToolTip": "Models\\IUserManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-18T14:56:14.487Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\owenl\\source\\repos\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\Views\\User\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\User\\Index.cshtml",
+              "ToolTip": "C:\\Users\\owenl\\source\\repos\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\Views\\User\\Index.cshtml",
+              "RelativeToolTip": "Views\\User\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-18T14:24:33.267Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\owenl\\source\\repos\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\owenl\\source\\repos\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAAACYAAAB7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-18T14:22:40.674Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserDAO.cs",
+              "DocumentMoniker": "C:\\Users\\owenl\\source\\repos\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\Services\\DataAccess\\UserDAO.cs",
+              "RelativeDocumentMoniker": "Services\\DataAccess\\UserDAO.cs",
+              "ToolTip": "C:\\Users\\owenl\\source\\repos\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\Services\\DataAccess\\UserDAO.cs",
+              "RelativeToolTip": "Services\\DataAccess\\UserDAO.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAAAA8AAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-18T14:01:55.911Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserModel.cs",
+              "DocumentMoniker": "C:\\Users\\owenl\\source\\repos\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\Models\\UserModel.cs",
+              "RelativeDocumentMoniker": "Models\\UserModel.cs",
+              "ToolTip": "C:\\Users\\owenl\\source\\repos\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\Models\\UserModel.cs",
+              "RelativeToolTip": "Models\\UserModel.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAAAAACMAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-18T13:44:20.47Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+>>>>>>> 89c6fd66c0c221db88c9e5141d00e4539e989169
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\git\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "C:\\git\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+<<<<<<< HEAD
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T23:20:01.291Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+=======
+              "ViewState": "AQIAABEAAAAAAAAAAAAowBcAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-12T02:42:07.046Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+>>>>>>> 89c6fd66c0c221db88c9e5141d00e4539e989169
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\git\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "Controllers\\LoginController.cs",
+              "ToolTip": "C:\\git\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "Controllers\\LoginController.cs",
+              "ViewState": "AQIAAE8AAAAAAAAAAAAAACMAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+<<<<<<< HEAD
+              "WhenOpened": "2024-10-11T23:19:27.359Z"
+=======
+              "WhenOpened": "2024-10-12T02:42:07.404Z"
+>>>>>>> 89c6fd66c0c221db88c9e5141d00e4539e989169
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserCollection.cs",
+              "DocumentMoniker": "C:\\git\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\Services\\Buisness\\UserCollection.cs",
+              "RelativeDocumentMoniker": "Services\\Buisness\\UserCollection.cs",
+              "ToolTip": "C:\\git\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\Services\\Buisness\\UserCollection.cs",
+              "RelativeToolTip": "Services\\Buisness\\UserCollection.cs",
+              "ViewState": "AQIAAD0AAAAAAAAAAAAAAEUAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+<<<<<<< HEAD
+              "WhenOpened": "2024-10-11T23:11:56.442Z"
+=======
+              "WhenOpened": "2024-10-12T02:42:07.413Z"
+>>>>>>> 89c6fd66c0c221db88c9e5141d00e4539e989169
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserDAO.cs",
+              "DocumentMoniker": "C:\\git\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\Services\\DAO\\UserDAO.cs",
+              "RelativeDocumentMoniker": "Services\\DAO\\UserDAO.cs",
+              "ToolTip": "C:\\git\\CST-350\\Code\\Topic2\\RegisterAndLoginApp\\Services\\DAO\\UserDAO.cs",
+              "RelativeToolTip": "Services\\DAO\\UserDAO.cs",
+<<<<<<< HEAD
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+=======
+              "ViewState": "AQIAAKYAAAAAAAAAAAAAAO8AAAAgAAAA",
+>>>>>>> 89c6fd66c0c221db88c9e5141d00e4539e989169
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-12T02:42:07.421Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Document",
+<<<<<<< HEAD
+              "DocumentIndex": 4,
+              "Title": "dbo.UserAccount.sql",
+=======
+              "DocumentIndex": 8,
+              "Title": "dbo.UserAccount [Data]",
+>>>>>>> 89c6fd66c0c221db88c9e5141d00e4539e989169
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/UserAuth/True/SqlTable/dbo.UserAccount.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/UserAuth/True/SqlTable/dbo.UserAccount.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-10-11T22:38:02.316Z"
+<<<<<<< HEAD
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+=======
+>>>>>>> 89c6fd66c0c221db88c9e5141d00e4539e989169
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

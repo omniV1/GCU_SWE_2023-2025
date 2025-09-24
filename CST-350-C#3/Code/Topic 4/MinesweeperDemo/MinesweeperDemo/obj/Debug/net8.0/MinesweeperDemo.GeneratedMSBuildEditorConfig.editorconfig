@@ -1,0 +1,63 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = MinesweeperDemo
+build_property.RootNamespace = MinesweeperDemo
+build_property.ProjectDir = C:\git\CST-350\Code\Topic 5\MinesweeperDemo\MinesweeperDemo\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\git\CST-350\Code\Topic 5\MinesweeperDemo\MinesweeperDemo
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/git/CST-350/Code/Topic 5/MinesweeperDemo/MinesweeperDemo/Views/CST350/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1NUMzUwXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/git/CST-350/Code/Topic 5/MinesweeperDemo/MinesweeperDemo/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/git/CST-350/Code/Topic 5/MinesweeperDemo/MinesweeperDemo/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/git/CST-350/Code/Topic 5/MinesweeperDemo/MinesweeperDemo/Views/Minesweeper/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWluZXN3ZWVwZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/git/CST-350/Code/Topic 5/MinesweeperDemo/MinesweeperDemo/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/git/CST-350/Code/Topic 5/MinesweeperDemo/MinesweeperDemo/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/git/CST-350/Code/Topic 5/MinesweeperDemo/MinesweeperDemo/Views/Shared/_ViewCST350.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WaWV3Q1NUMzUwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/git/CST-350/Code/Topic 5/MinesweeperDemo/MinesweeperDemo/Views/Shared/_ViewMinesweeper.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WaWV3TWluZXN3ZWVwZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/git/CST-350/Code/Topic 5/MinesweeperDemo/MinesweeperDemo/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/git/CST-350/Code/Topic 5/MinesweeperDemo/MinesweeperDemo/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/git/CST-350/Code/Topic 5/MinesweeperDemo/MinesweeperDemo/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-02bgm41k6g

@@ -1,0 +1,11 @@
+<div class="list-group" *ngIf="selectedArtist == null">
+    <!-- Display a list of artists -->
+    <button class="list-group-item" active *ngFor="let artist of artists" (click)="onSelectArtist(artist)">
+        {{ artist.artist }}
+    </button>
+</div>
+
+<div *ngIf="selectedArtist">
+    <!-- Display albums for the selected artist -->
+    <app-list-albums [artist]="selectedArtist"></app-list-albums>
+</div>

@@ -1,0 +1,234 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|c:\\git\\cst-350\\code\\topic 5\\minesweeperdemo\\minesweeperdemo\\views\\shared\\_viewminesweeper.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|solutionrelative:minesweeperdemo\\views\\shared\\_viewminesweeper.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|c:\\git\\cst-350\\code\\topic 5\\minesweeperdemo\\minesweeperdemo\\views\\minesweeper\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|solutionrelative:minesweeperdemo\\views\\minesweeper\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|c:\\git\\cst-350\\code\\topic 5\\minesweeperdemo\\minesweeperdemo\\views\\cst350\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|solutionrelative:minesweeperdemo\\views\\cst350\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|c:\\git\\cst-350\\code\\topic 5\\minesweeperdemo\\minesweeperdemo\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|solutionrelative:minesweeperdemo\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|c:\\git\\cst-350\\code\\topic 5\\minesweeperdemo\\minesweeperdemo\\views\\shared\\_viewcst350.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|solutionrelative:minesweeperdemo\\views\\shared\\_viewcst350.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|c:\\git\\cst-350\\code\\topic 5\\minesweeperdemo\\minesweeperdemo\\controllers\\minesweepercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|solutionrelative:minesweeperdemo\\controllers\\minesweepercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|c:\\git\\cst-350\\code\\topic 5\\minesweeperdemo\\minesweeperdemo\\controllers\\cst350controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|solutionrelative:minesweeperdemo\\controllers\\cst350controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|c:\\git\\cst-350\\code\\topic 5\\minesweeperdemo\\minesweeperdemo\\services\\buisnesslogiclayer\\enums\\gamestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|solutionrelative:minesweeperdemo\\services\\buisnesslogiclayer\\enums\\gamestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|c:\\git\\cst-350\\code\\topic 5\\minesweeperdemo\\minesweeperdemo\\services\\buisnesslogiclayer\\gameboardlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|solutionrelative:minesweeperdemo\\services\\buisnesslogiclayer\\gameboardlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|c:\\git\\cst-350\\code\\topic 5\\minesweeperdemo\\minesweeperdemo\\models\\panelmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A3AE357-A2DC-43EF-A1E0-603A74A40F95}|MinesweeperDemo\\MinesweeperDemo.csproj|solutionrelative:minesweeperdemo\\models\\panelmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 12,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{fbcae063-e2c0-4ab1-a516-996ea3dafb72}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_ViewCST350.cshtml",
+              "DocumentMoniker": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Views\\Shared\\_ViewCST350.cshtml",
+              "RelativeDocumentMoniker": "MinesweeperDemo\\Views\\Shared\\_ViewCST350.cshtml",
+              "ToolTip": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Views\\Shared\\_ViewCST350.cshtml",
+              "RelativeToolTip": "MinesweeperDemo\\Views\\Shared\\_ViewCST350.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-19T16:33:37.571Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_ViewMinesweeper.cshtml",
+              "DocumentMoniker": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Views\\Shared\\_ViewMinesweeper.cshtml",
+              "RelativeDocumentMoniker": "MinesweeperDemo\\Views\\Shared\\_ViewMinesweeper.cshtml",
+              "ToolTip": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Views\\Shared\\_ViewMinesweeper.cshtml",
+              "RelativeToolTip": "MinesweeperDemo\\Views\\Shared\\_ViewMinesweeper.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-19T16:33:08.763Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "MinesweeperDemo\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "MinesweeperDemo\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-19T16:31:26.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Views\\Minesweeper\\Index.cshtml",
+              "RelativeDocumentMoniker": "MinesweeperDemo\\Views\\Minesweeper\\Index.cshtml",
+              "ToolTip": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Views\\Minesweeper\\Index.cshtml",
+              "RelativeToolTip": "MinesweeperDemo\\Views\\Minesweeper\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-19T16:28:35.48Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Views\\CST350\\Index.cshtml",
+              "RelativeDocumentMoniker": "MinesweeperDemo\\Views\\CST350\\Index.cshtml",
+              "ToolTip": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Views\\CST350\\Index.cshtml",
+              "RelativeToolTip": "MinesweeperDemo\\Views\\CST350\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-19T16:27:48.476Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "GameBoardLogic.cs",
+              "DocumentMoniker": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Services\\BuisnessLogicLayer\\GameBoardLogic.cs",
+              "RelativeDocumentMoniker": "MinesweeperDemo\\Services\\BuisnessLogicLayer\\GameBoardLogic.cs",
+              "ToolTip": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Services\\BuisnessLogicLayer\\GameBoardLogic.cs",
+              "RelativeToolTip": "MinesweeperDemo\\Services\\BuisnessLogicLayer\\GameBoardLogic.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T16:25:16.701Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GameStatus.cs",
+              "DocumentMoniker": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Services\\BuisnessLogicLayer\\Enums\\GameStatus.cs",
+              "RelativeDocumentMoniker": "MinesweeperDemo\\Services\\BuisnessLogicLayer\\Enums\\GameStatus.cs",
+              "ToolTip": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Services\\BuisnessLogicLayer\\Enums\\GameStatus.cs",
+              "RelativeToolTip": "MinesweeperDemo\\Services\\BuisnessLogicLayer\\Enums\\GameStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T16:24:56.834Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PanelModel.cs",
+              "DocumentMoniker": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Models\\PanelModel.cs",
+              "RelativeDocumentMoniker": "MinesweeperDemo\\Models\\PanelModel.cs",
+              "ToolTip": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Models\\PanelModel.cs",
+              "RelativeToolTip": "MinesweeperDemo\\Models\\PanelModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T16:23:50.901Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MinesweeperController.cs",
+              "DocumentMoniker": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Controllers\\MinesweeperController.cs",
+              "RelativeDocumentMoniker": "MinesweeperDemo\\Controllers\\MinesweeperController.cs",
+              "ToolTip": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Controllers\\MinesweeperController.cs",
+              "RelativeToolTip": "MinesweeperDemo\\Controllers\\MinesweeperController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T16:23:01.692Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CST350Controller.cs",
+              "DocumentMoniker": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Controllers\\CST350Controller.cs",
+              "RelativeDocumentMoniker": "MinesweeperDemo\\Controllers\\CST350Controller.cs",
+              "ToolTip": "C:\\git\\CST-350\\Code\\Topic 5\\MinesweeperDemo\\MinesweeperDemo\\Controllers\\CST350Controller.cs",
+              "RelativeToolTip": "MinesweeperDemo\\Controllers\\CST350Controller.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T16:22:44.873Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

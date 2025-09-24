@@ -1,0 +1,64 @@
+// Host container styling
+:host {
+  display: block;
+  background-color: #2d2d2d;
+  color: white;
+}
+
+// Form layout styling
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 350px;
+}
+
+// Form field styling
+mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+// Dialog actions container
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 16px;
+}
+
+// Material component style overrides
+::ng-deep {
+  // Dialog container padding
+  .mat-mdc-dialog-container {
+      padding: 24px;
+  }
+
+  // Form field styling for dark theme
+  .mat-mdc-form-field {
+      // Form field background
+      .mat-mdc-form-field-flex {
+          background-color: rgba(255, 255, 255, 0.1);
+      }
+      
+      // Wrapper background
+      .mat-mdc-text-field-wrapper {
+          background-color: transparent;
+      }
+
+      // Label color
+      .mat-mdc-form-field-label {
+          color: rgba(255, 255, 255, 0.7);
+      }
+
+      // Input text color
+      .mat-mdc-input-element {
+          color: white;
+      }
+
+      // Error message color
+      .mat-mdc-form-field-error {
+          color: #f44336;
+      }
+  }
+}

@@ -1,0 +1,13 @@
+<!-- Dialog title passed from parent component -->
+<h2 mat-dialog-title>{{ data.title }}</h2>
+
+<!-- Dialog content/message -->
+<div mat-dialog-content>
+  <p>{{ data.message }}</p>
+</div>
+
+<!-- Action buttons aligned to dialog bottom -->
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="warn" (click)="confirm()">Confirm</button>
+</div>

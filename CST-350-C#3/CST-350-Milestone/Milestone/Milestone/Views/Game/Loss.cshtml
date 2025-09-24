@@ -1,0 +1,73 @@
+﻿@model Milestone.Models.GameModels.Board
+@{
+    ViewData["Title"] = "Game Over - Minesweeper";
+
+    // Helper function to convert difficulty float to human-readable string
+    string GetDifficultyName(float difficulty)
+    {
+        return difficulty switch
+        {
+            0.1f => "Easy",
+            0.15f => "Medium",
+            0.2f => "Hard",
+            _ => "Medium" // Default fallback
+        };
+    }
+}
+
+@* Main container for game over screen *@
+<div class="game-over-container">
+    @* Game over header section *@
+    <h1 class="game-over-title">Game Over</h1>
+    <div class="game-over-emoji">💥</div>
+    <p class="game-over-message">Oh no! You hit a mine!</p>
+
+    @* Statistics panel *@
+    <div class="stats-panel">
+        <h2 class="stats-title">Game Statistics</h2>
+        <div class="stats-grid">
+            @* Game ID display *@
+            <div class="stat-item">
+                <span class="stat-label">Game ID:</span>
+                <span class="stat-value">@Model.GameId</span>
+            </div>
+
+            @* Game duration from timer display *@
+            <div class="stat-item">
+                <span class="stat-label">Time:</span>
+                <span class="stat-value">@ViewBag.FinalTime</span>
+            </div>
+
+            @* Board dimensions *@
+            <div class="stat-item">
+                <span class="stat-label">Board Size:</span>
+                <span class="stat-value">@Model.Size x @Model.Size</span>
+            </div>
+
+            @* Game difficulty level *@
+            <div class="stat-item">
+                <span class="stat-label">Difficulty:</span>
+                <span class="stat-value">@GetDifficultyName(Model.Difficulty)</span>
+            </div>
+        </div>
+    </div>
+
+    @* Action buttons container *@
+    <div class="action-buttons">
+        @* Try again form - maintains same difficulty *@
+        <form method="post" asp-controller="Game" asp-action="StartGame">
+            @* Hidden input to persist difficulty setting *@
+            <input type="hidden" name="difficulty"
+                   value="@(Model.Difficulty == 0.1f ? "easy" : Model.Difficulty == 0.15f ? "medium" : "hard")" />
+            <button type="submit" class="btn-try-again">Try Again</button>
+        </form>
+
+        @* Return to main menu link *@
+        <a asp-controller="Game" asp-action="Index" class="btn-main-menu">Return to Main Menu</a>
+    </div>
+</div>
+
+@* Include game over animation script *@
+@section Scripts {
+    <script src="~/js/gameover.js"></script>
+}

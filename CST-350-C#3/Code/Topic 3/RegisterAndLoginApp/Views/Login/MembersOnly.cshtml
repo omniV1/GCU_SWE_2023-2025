@@ -1,0 +1,25 @@
+﻿@using ServiceStack.Text
+@{
+    // Begin Razor code block
+    <h1> Private Club</h1>
+    <p>Welcome to the SD club</p>
+
+    // Retrieve the "User" string from the session storage and store it in the 'user' variable. It could be null if no user is logged in. 
+    string? user = Context.Session.GetString("User");
+
+    // Serialize the 'user' string to JSON format using the ServiceStack.Text.JsonSerializer
+    var userString = ServiceStack.Text.JsonSerializer.SerializeToString(user); 
+
+    // Check if the 'user' variable is null or an empty string
+    if(string.IsNullOrEmpty(user))
+    {
+        <p>You are not logged in...</p>
+    }
+    else
+    {
+        <p> You are logged in as @userString</p>
+
+        // Print Formatted Json
+        <pre>@user</pre>
+    }
+}

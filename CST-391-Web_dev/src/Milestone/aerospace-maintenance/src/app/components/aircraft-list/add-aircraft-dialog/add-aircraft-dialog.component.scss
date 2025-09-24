@@ -1,0 +1,11 @@
+// Override Material Dialog default padding
+::ng-deep .mat-dialog-container {
+  padding: 24px !important;
+}
+
+// Style form layout with flex column and spacing between fields
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

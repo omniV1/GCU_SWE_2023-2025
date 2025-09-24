@@ -1,0 +1,134 @@
+﻿@using CineScope.Client.Services
+@using CineScope.Client.Services.Auth
+@using CineScope.Client.Shared.Profile
+@using CineScope.Shared.DTOs
+
+@inherits LayoutComponentBase
+@inject AuthService AuthService
+@inject ISnackbar Snackbar
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+
+<MudLayout>
+    <!-- App Bar -->
+    <MudAppBar Elevation="1" Dense="true">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
+        <MudText Typo="Typo.h6" Class="ml-4">CineScope</MudText>
+        <MudSpacer />
+    </MudAppBar>
+
+    <!-- Navigation Drawer -->
+    <MudDrawer @bind-Open="_drawerOpen" 
+               ClipMode="DrawerClipMode.Always" 
+               Elevation="2" 
+               Variant="DrawerVariant.Persistent"
+               PreserveOpenState="true">
+        <div class="d-flex flex-column" style="height: 100%">
+            <!-- Main Navigation -->
+            <MudNavMenu Class="flex-grow-1 py-2">
+                <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
+                <MudNavLink Href="movies" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Movie">Movies</MudNavLink>
+                <AuthorizeView>
+                    <Authorized>
+                        <MudDivider Class="my-2" />
+                        <MudNavLink Href="profile" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Person">Profile</MudNavLink>
+                        <MudNavLink Href="my-reviews" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.RateReview">My Reviews</MudNavLink>
+                        <MudNavLink Href="admin" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.AdminPanelSettings">Admin</MudNavLink>
+                    </Authorized>
+                </AuthorizeView>
+            </MudNavMenu>
+
+            <!-- Profile Section at Bottom -->
+            <MudDivider />
+            <div class="pa-4">
+                <AuthorizeView>
+                    <Authorized>
+                        <MudMenu FullWidth="true" 
+                                AnchorOrigin="Origin.TopCenter" 
+                                TransformOrigin="Origin.TopCenter">
+                            <ActivatorContent>
+                                <div style="cursor: pointer;" class="d-flex align-center">
+                                    <ProfilePictureDisplay Url="@GetProfilePictureUrl(context)"
+                                                       Username="@context.User.Identity.Name"
+                                                       Size="Size.Medium"
+                                                       Width="40"
+                                                       Height="40" />
+                                    <div class="ml-3">
+                                        <MudText Typo="Typo.body1">@context.User.Identity?.Name</MudText>
+                                    </div>
+                                    <MudSpacer />
+                                    <MudIcon Icon="@Icons.Material.Filled.MoreVert" />
+                                </div>
+                            </ActivatorContent>
+                            <ChildContent>
+                                <MudMenuItem OnClick="@(() => NavigationManager.NavigateTo("/profile"))">
+                                    <div class="d-flex align-center gap-3">
+                                        <MudIcon Icon="@Icons.Material.Filled.Person" />
+                                        Profile
+                                    </div>
+                                </MudMenuItem>
+                                <MudMenuItem OnClick="Logout">
+                                    <div class="d-flex align-center gap-3">
+                                        <MudIcon Icon="@Icons.Material.Filled.Logout" />
+                                        Logout
+                                    </div>
+                                </MudMenuItem>
+                            </ChildContent>
+                        </MudMenu>
+                    </Authorized>
+                    <NotAuthorized>
+                        <MudButton Href="/login" Variant="Variant.Filled" Color="Color.Primary" FullWidth="true">Login</MudButton>
+                    </NotAuthorized>
+                </AuthorizeView>
+            </div>
+        </div>
+    </MudDrawer>
+
+    <!-- Main Content -->
+    <MudMainContent>
+        <div class="pa-6">
+            @Body
+        </div>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private bool _drawerOpen = true;
+
+    private void ToggleDrawer()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+
+    private async Task Logout()
+    {
+        await AuthService.Logout();
+        Snackbar.Add("You have been logged out", Severity.Success);
+        NavigationManager.NavigateTo("/");
+    }
+
+    private string GetProfilePictureUrl(AuthenticationState context)
+    {
+        try
+        {
+            var profilePictureClaim = context.User.FindFirst("ProfilePictureUrl");
+
+            if (profilePictureClaim != null && !string.IsNullOrWhiteSpace(profilePictureClaim.Value))
+            {
+                return profilePictureClaim.Value;
+            }
+
+            if (context.User.Identity.IsAuthenticated)
+            {
+                return "/profile-pictures/avatar8.svg";
+            }
+
+            return "/profile-pictures/default.svg";
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error getting profile picture: {ex.Message}");
+            return "/profile-pictures/default.svg";
+        }
+    }
+}

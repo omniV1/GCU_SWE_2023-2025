@@ -1,0 +1,83 @@
+<div class="performance-metrics-container">
+  <!-- Header section with title and action buttons -->
+  <div class="header-actions">
+    <h1>Performance Metrics - Aircraft {{aircraftId}}</h1>
+    <div class="header-buttons">
+      <!-- Analytics view button -->
+      <button mat-raised-button class="analytics-button" [routerLink]="['./analytics']">
+        <mat-icon>insights</mat-icon>
+        View Analytics
+      </button>
+      <!-- Add record button -->
+      <button mat-raised-button class="add-button" (click)="openAddDialog()">
+        <mat-icon>add</mat-icon>
+        Add Performance Record
+      </button>
+    </div>
+  </div>
+
+  <!-- Search/filter input field -->
+  <mat-form-field appearance="outline">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search records...">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+  
+  <!-- Table container -->
+  <div class="metrics-table-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- ID Column -->
+      <ng-container matColumnDef="MetricID">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let record">{{record.MetricID}}</td>
+      </ng-container>
+
+      <!-- Flight Time Column -->
+      <ng-container matColumnDef="FlightTime">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Flight Time (hrs) </th>
+        <td mat-cell *matCellDef="let record">{{record.FlightTime}}</td>
+      </ng-container>
+
+      <!-- Oil Consumption Column -->
+      <ng-container matColumnDef="OilConsumption">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Oil Consumption (qts) </th>
+        <td mat-cell *matCellDef="let record">{{record.OilConsumption}}</td>
+      </ng-container>
+
+      <!-- Fuel Consumption Column -->
+      <ng-container matColumnDef="FuelConsumption">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fuel Consumption (gal/hr) </th>
+        <td mat-cell *matCellDef="let record">{{record.FuelConsumption}}</td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let record">
+          <!-- Edit button -->
+          <button mat-icon-button class="edit-button" 
+                  matTooltip="Edit Record"
+                  (click)="openEditDialog(record)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <!-- Delete button -->
+          <button mat-icon-button class="delete-button" 
+                  matTooltip="Delete Record"
+                  (click)="deleteRecord(record)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Table row definitions -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <!-- Pagination controls -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"
+                   [showFirstLastButtons]="true"
+                   aria-label="Select page of performance records">
+    </mat-paginator>
+  </div>
+</div>

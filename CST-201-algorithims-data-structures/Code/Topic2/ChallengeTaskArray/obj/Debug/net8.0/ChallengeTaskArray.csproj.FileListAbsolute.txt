@@ -1,0 +1,15 @@
+C:\git\CST-201\Code\ChallengeTaskArray\bin\Debug\net8.0\ChallengeTaskArray.exe
+C:\git\CST-201\Code\ChallengeTaskArray\bin\Debug\net8.0\ChallengeTaskArray.deps.json
+C:\git\CST-201\Code\ChallengeTaskArray\bin\Debug\net8.0\ChallengeTaskArray.runtimeconfig.json
+C:\git\CST-201\Code\ChallengeTaskArray\bin\Debug\net8.0\ChallengeTaskArray.dll
+C:\git\CST-201\Code\ChallengeTaskArray\bin\Debug\net8.0\ChallengeTaskArray.pdb
+C:\git\CST-201\Code\ChallengeTaskArray\obj\Debug\net8.0\ChallengeTaskArray.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\CST-201\Code\ChallengeTaskArray\obj\Debug\net8.0\ChallengeTaskArray.AssemblyInfoInputs.cache
+C:\git\CST-201\Code\ChallengeTaskArray\obj\Debug\net8.0\ChallengeTaskArray.AssemblyInfo.cs
+C:\git\CST-201\Code\ChallengeTaskArray\obj\Debug\net8.0\ChallengeTaskArray.csproj.CoreCompileInputs.cache
+C:\git\CST-201\Code\ChallengeTaskArray\obj\Debug\net8.0\ChallengeTaskArray.sourcelink.json
+C:\git\CST-201\Code\ChallengeTaskArray\obj\Debug\net8.0\ChallengeTaskArray.dll
+C:\git\CST-201\Code\ChallengeTaskArray\obj\Debug\net8.0\refint\ChallengeTaskArray.dll
+C:\git\CST-201\Code\ChallengeTaskArray\obj\Debug\net8.0\ChallengeTaskArray.pdb
+C:\git\CST-201\Code\ChallengeTaskArray\obj\Debug\net8.0\ChallengeTaskArray.genruntimeconfig.cache
+C:\git\CST-201\Code\ChallengeTaskArray\obj\Debug\net8.0\ref\ChallengeTaskArray.dll

@@ -1,0 +1,15 @@
+C:\git\CST-201\Code\ArrayComparisonPractice\bin\Debug\net8.0\ArrayComparisonPractice.exe
+C:\git\CST-201\Code\ArrayComparisonPractice\bin\Debug\net8.0\ArrayComparisonPractice.deps.json
+C:\git\CST-201\Code\ArrayComparisonPractice\bin\Debug\net8.0\ArrayComparisonPractice.runtimeconfig.json
+C:\git\CST-201\Code\ArrayComparisonPractice\bin\Debug\net8.0\ArrayComparisonPractice.dll
+C:\git\CST-201\Code\ArrayComparisonPractice\bin\Debug\net8.0\ArrayComparisonPractice.pdb
+C:\git\CST-201\Code\ArrayComparisonPractice\obj\Debug\net8.0\ArrayComparisonPractice.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\CST-201\Code\ArrayComparisonPractice\obj\Debug\net8.0\ArrayComparisonPractice.AssemblyInfoInputs.cache
+C:\git\CST-201\Code\ArrayComparisonPractice\obj\Debug\net8.0\ArrayComparisonPractice.AssemblyInfo.cs
+C:\git\CST-201\Code\ArrayComparisonPractice\obj\Debug\net8.0\ArrayComparisonPractice.csproj.CoreCompileInputs.cache
+C:\git\CST-201\Code\ArrayComparisonPractice\obj\Debug\net8.0\ArrayComparisonPractice.sourcelink.json
+C:\git\CST-201\Code\ArrayComparisonPractice\obj\Debug\net8.0\ArrayComparisonPractice.dll
+C:\git\CST-201\Code\ArrayComparisonPractice\obj\Debug\net8.0\refint\ArrayComparisonPractice.dll
+C:\git\CST-201\Code\ArrayComparisonPractice\obj\Debug\net8.0\ArrayComparisonPractice.pdb
+C:\git\CST-201\Code\ArrayComparisonPractice\obj\Debug\net8.0\ArrayComparisonPractice.genruntimeconfig.cache
+C:\git\CST-201\Code\ArrayComparisonPractice\obj\Debug\net8.0\ref\ArrayComparisonPractice.dll

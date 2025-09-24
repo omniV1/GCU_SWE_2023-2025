@@ -1,0 +1,14 @@
+C:\Users\owenl\source\repos\StringMatch\StringMatch\bin\Debug\net8.0\StringMatch.exe
+C:\Users\owenl\source\repos\StringMatch\StringMatch\bin\Debug\net8.0\StringMatch.deps.json
+C:\Users\owenl\source\repos\StringMatch\StringMatch\bin\Debug\net8.0\StringMatch.runtimeconfig.json
+C:\Users\owenl\source\repos\StringMatch\StringMatch\bin\Debug\net8.0\StringMatch.dll
+C:\Users\owenl\source\repos\StringMatch\StringMatch\bin\Debug\net8.0\StringMatch.pdb
+C:\Users\owenl\source\repos\StringMatch\StringMatch\obj\Debug\net8.0\StringMatch.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\owenl\source\repos\StringMatch\StringMatch\obj\Debug\net8.0\StringMatch.AssemblyInfoInputs.cache
+C:\Users\owenl\source\repos\StringMatch\StringMatch\obj\Debug\net8.0\StringMatch.AssemblyInfo.cs
+C:\Users\owenl\source\repos\StringMatch\StringMatch\obj\Debug\net8.0\StringMatch.csproj.CoreCompileInputs.cache
+C:\Users\owenl\source\repos\StringMatch\StringMatch\obj\Debug\net8.0\StringMatch.dll
+C:\Users\owenl\source\repos\StringMatch\StringMatch\obj\Debug\net8.0\refint\StringMatch.dll
+C:\Users\owenl\source\repos\StringMatch\StringMatch\obj\Debug\net8.0\StringMatch.pdb
+C:\Users\owenl\source\repos\StringMatch\StringMatch\obj\Debug\net8.0\StringMatch.genruntimeconfig.cache
+C:\Users\owenl\source\repos\StringMatch\StringMatch\obj\Debug\net8.0\ref\StringMatch.dll

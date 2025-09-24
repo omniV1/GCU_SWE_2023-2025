@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BibleVerseApp</title>
+
+    @*rel is a link with a rel attribute - Specify the relationship between the
+    current document and linked document.
+    href attribute specifies the URL of the page the link goes to.
+    type attribute specifies the media type of the linked document/resources.
+    media attribute specifies what media/device the link doc is optimized for.*@
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/layout.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <script type="text/javascript" src="js/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="js/cufon-yui.js"></script>
+    <script type="text/javascript" src="js/cufon-replace.js"></script>
+    <script type="text/javascript" src="js/Myriad_Pro_400.font.js"></script>
+    <script type="text/javascript" src="js/Myriad_Pro_italic_400.font.js"></script>
+    <script type="text/javascript" src="js/Myriad_Pro_italic_600.font.js"></script>
+</head>
+<!-- -->
+<body id="page1">
+    <div class="body1">
+        <div class="main">
+            <header>
+                <div class="wrapper">
+                    <h1>
+                        @*span tag is a generic inline container for phrasing content.
+                        Used to group elements for styling.
+                        Span tag is used for inline elements where div tab
+                        is use with block-level content.*@
+                        <a href="index.cshtml" id="logo">bible search</a><span id="slogan">find your bible verse</span>
+                    </h1>
+                    <div class="right">
+                        @*nav element represents a section of the page whose purpose
+                        is to provide navigation links.*@
+                        <nav>
+                            <ul id="top_nav">
+                                <li><a href="index.cshtml"><img src="~/images/img1.gif" alt="" /></a></li>
+                                <li><a href="index.cshtml"><img src="~/images/img2.gif" alt="" /></a></li>
+                                <li class="bg_none"><a href="index.cshtml"><img src="~/images/img3.gif" alt="" /></a></li>
+                            </ul>
+                        </nav>
+                        <!-- Main Navigation -->
+                        <nav>
+                            <ul id="menu">
+                                <li id="menu_active"><a href="index.cshtml">Home</a></li>
+                                <li><a href="index.cshtml">Bible App</a></li>
+                                <li><a href="index.cshtml">Search</a></li>
+                                <li><a href="index.cshtml">Contact Us</a></li>
+                                <li><a href="index.cshtml">About Us</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </div>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <div class="body2">
+        <!-- footer -->
+        <footer>
+            &copy: 2024 - Bible Verse App -
+        </footer>
+        <!-- End Footer -->
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript">Cufon.now();</script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @*This means that the main layout has a section scripts.
+    Key -> Only the existence of a RenderSection call make a layout
+    actually have a script section.*@
+    @*The await operator suspends evaluation of the enclosed async method
+    until the asynchronous operation represented by its operand completes.
+    When the asynchronous operation completes, the await operator returns
+    the results of the operation, if anything to return.
+    Basically "I am awaiting your response"....
+    This call references a section named "Scripts" - intended for 
+    page-specific script file references or blocks of JavaScript 
+    code so that they can be located just before the closing </body> tag*@
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,15 @@
+﻿@model ActivityRightClick.Models.ButtonModel
+
+@{
+    // Store image names in an array for more efficient code
+    string[] imageNames = { "blue-button.png", "green-button.png", "purple-button.png", "red-button.png" };
+    bool allMatch = true;
+}
+
+<button class="game-button" type="submit" value="@Model.Id" name="buttonNumber" asp-controller="RightClickShowOneButton">
+    <img class="game-button-image" src="~/img/@imageNames[Model.ButtonState]" />
+    <div class="button-label">
+        @Model.Id,
+        @Model.ButtonState
+    </div>
+</button>

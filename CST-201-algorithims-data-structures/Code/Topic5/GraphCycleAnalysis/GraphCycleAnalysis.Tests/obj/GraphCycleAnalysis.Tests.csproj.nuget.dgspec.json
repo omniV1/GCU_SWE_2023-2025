@@ -1,0 +1,152 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Owenl\\source\\repos\\GraphCycleAnalysis\\GraphCycleAnalysis.Tests\\GraphCycleAnalysis.Tests.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Owenl\\source\\repos\\GraphCycleAnalysis\\GraphCycleAnalysis.Tests\\GraphCycleAnalysis.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Owenl\\source\\repos\\GraphCycleAnalysis\\GraphCycleAnalysis.Tests\\GraphCycleAnalysis.Tests.csproj",
+        "projectName": "GraphCycleAnalysis.Tests",
+        "projectPath": "C:\\Users\\Owenl\\source\\repos\\GraphCycleAnalysis\\GraphCycleAnalysis.Tests\\GraphCycleAnalysis.Tests.csproj",
+        "packagesPath": "C:\\Users\\Owenl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Owenl\\source\\repos\\GraphCycleAnalysis\\GraphCycleAnalysis.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Owenl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\Owenl\\source\\repos\\GraphCycleAnalysis\\GraphCycleAnalysis\\GraphCycleAnalysis.csproj": {
+                "projectPath": "C:\\Users\\Owenl\\source\\repos\\GraphCycleAnalysis\\GraphCycleAnalysis\\GraphCycleAnalysis.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "MSTest.TestAdapter": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.8.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Owenl\\source\\repos\\GraphCycleAnalysis\\GraphCycleAnalysis\\GraphCycleAnalysis.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Owenl\\source\\repos\\GraphCycleAnalysis\\GraphCycleAnalysis\\GraphCycleAnalysis.csproj",
+        "projectName": "GraphCycleAnalysis",
+        "projectPath": "C:\\Users\\Owenl\\source\\repos\\GraphCycleAnalysis\\GraphCycleAnalysis\\GraphCycleAnalysis.csproj",
+        "packagesPath": "C:\\Users\\Owenl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Owenl\\source\\repos\\GraphCycleAnalysis\\GraphCycleAnalysis\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Owenl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

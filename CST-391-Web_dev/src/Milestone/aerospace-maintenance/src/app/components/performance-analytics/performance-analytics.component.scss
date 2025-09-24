@@ -1,0 +1,96 @@
+// Main container styling
+.analytics-container {
+  padding: 24px;
+  background-color: #121212;
+  min-height: 100vh;
+
+  // Header section styling
+  .header-section {
+    margin-bottom: 32px;
+    
+    h1 {
+      color: #ffffff;
+      margin: 0;
+      font-size: 24px;
+    }
+
+    // Summary statistics layout
+    .summary-stats {
+      display: flex;
+      gap: 24px;
+      margin-top: 16px;
+    }
+  }
+
+  // Charts grid layout
+  .charts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    // Chart row layout
+    .chart-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    // Individual chart card styling
+    .chart-card {
+      background: #1e1e1e;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      
+      // Special styling for gauge chart
+      &.gauge-card {
+        max-width: calc(50% - 12px);
+        margin: 0 auto;
+      }
+
+      // Chart card header styling
+      mat-card-header {
+        padding: 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+        mat-card-title {
+          color: #ffffff;
+          margin: 0;
+          font-size: 18px;
+        }
+
+        mat-card-subtitle {
+          color: rgba(255, 255, 255, 0.7);
+          margin: 8px 0 0 0;
+        }
+      }
+
+      // Chart content container
+      mat-card-content {
+        padding: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
+
+// NGX-Charts style overrides
+::ng-deep {
+  .ngx-charts {
+    // Grid line styling
+    .gridline-path {
+      stroke: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    // Chart text styling
+    text {
+      fill: rgba(255, 255, 255, 0.7) !important;
+    }
+
+    // Chart background
+    .background-chart {
+      background-color: #121212 !important;
+    }
+  }
+}

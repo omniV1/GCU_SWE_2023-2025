@@ -1,0 +1,125 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\git\\CST-350\\Code\\Topic 4\\Topic4_AJAX_Example\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{78219601-61DF-4495-8539-637527F2AA1E}|Topic4_AJAX_Example\\Topic4_AJAX_Example.csproj|c:\\git\\cst-350\\code\\topic 4\\topic4_ajax_example\\topic4_ajax_example\\views\\customer\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{78219601-61DF-4495-8539-637527F2AA1E}|Topic4_AJAX_Example\\Topic4_AJAX_Example.csproj|solutionrelative:topic4_ajax_example\\views\\customer\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78219601-61DF-4495-8539-637527F2AA1E}|Topic4_AJAX_Example\\Topic4_AJAX_Example.csproj|c:\\git\\cst-350\\code\\topic 4\\topic4_ajax_example\\topic4_ajax_example\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{78219601-61DF-4495-8539-637527F2AA1E}|Topic4_AJAX_Example\\Topic4_AJAX_Example.csproj|solutionrelative:topic4_ajax_example\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78219601-61DF-4495-8539-637527F2AA1E}|Topic4_AJAX_Example\\Topic4_AJAX_Example.csproj|c:\\git\\cst-350\\code\\topic 4\\topic4_ajax_example\\topic4_ajax_example\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78219601-61DF-4495-8539-637527F2AA1E}|Topic4_AJAX_Example\\Topic4_AJAX_Example.csproj|solutionrelative:topic4_ajax_example\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78219601-61DF-4495-8539-637527F2AA1E}|Topic4_AJAX_Example\\Topic4_AJAX_Example.csproj|c:\\git\\cst-350\\code\\topic 4\\topic4_ajax_example\\topic4_ajax_example\\models\\customermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78219601-61DF-4495-8539-637527F2AA1E}|Topic4_AJAX_Example\\Topic4_AJAX_Example.csproj|solutionrelative:topic4_ajax_example\\models\\customermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{fbcae063-e2c0-4ab1-a516-996ea3dafb72}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\git\\CST-350\\Code\\Topic 4\\Topic4_AJAX_Example\\Topic4_AJAX_Example\\Views\\Customer\\Index.cshtml",
+              "RelativeDocumentMoniker": "Topic4_AJAX_Example\\Views\\Customer\\Index.cshtml",
+              "ToolTip": "C:\\git\\CST-350\\Code\\Topic 4\\Topic4_AJAX_Example\\Topic4_AJAX_Example\\Views\\Customer\\Index.cshtml",
+              "RelativeToolTip": "Topic4_AJAX_Example\\Views\\Customer\\Index.cshtml",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAYwC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-19T16:50:56.7Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\git\\CST-350\\Code\\Topic 4\\Topic4_AJAX_Example\\Topic4_AJAX_Example\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Topic4_AJAX_Example\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\git\\CST-350\\Code\\Topic 4\\Topic4_AJAX_Example\\Topic4_AJAX_Example\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Topic4_AJAX_Example\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAB2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-19T16:49:37.128Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "C:\\git\\CST-350\\Code\\Topic 4\\Topic4_AJAX_Example\\Topic4_AJAX_Example\\Controllers\\CustomerController.cs",
+              "RelativeDocumentMoniker": "Topic4_AJAX_Example\\Controllers\\CustomerController.cs",
+              "ToolTip": "C:\\git\\CST-350\\Code\\Topic 4\\Topic4_AJAX_Example\\Topic4_AJAX_Example\\Controllers\\CustomerController.cs",
+              "RelativeToolTip": "Topic4_AJAX_Example\\Controllers\\CustomerController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T16:43:31.249Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CustomerModel.cs",
+              "DocumentMoniker": "C:\\git\\CST-350\\Code\\Topic 4\\Topic4_AJAX_Example\\Topic4_AJAX_Example\\Models\\CustomerModel.cs",
+              "RelativeDocumentMoniker": "Topic4_AJAX_Example\\Models\\CustomerModel.cs",
+              "ToolTip": "C:\\git\\CST-350\\Code\\Topic 4\\Topic4_AJAX_Example\\Topic4_AJAX_Example\\Models\\CustomerModel.cs",
+              "RelativeToolTip": "Topic4_AJAX_Example\\Models\\CustomerModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T16:40:41.912Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+<!-- 
+
+This HTML file is a Thymeleaf template for the "About" page of the Airport Gate Management System (AGMS) web application. 
+It includes the following sections:
+
+1. Hero Section: A prominent header with the title and a brief description of AGMS.
+2. Overview Section: Provides an overview of AGMS, highlighting its purpose and benefits.
+3. Key Features Section: Describes the main features of AGMS using feature cards.
+4. User Roles Section: Details the different user roles (Airport Administrators and Operations Managers) and their capabilities.
+5. Technology Stack: Lists the technologies used to build AGMS, including Java, Spring Boot, MongoDB, and Bootstrap.
+6. Contact Section: Provides a call-to-action for users to contact support for more information.
+
+The template uses Bootstrap for styling and Font Awesome for icons.
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/MainLayout :: layout(~{::div})}">
+<head>
+    <title>About Us</title>
+</head>
+<body>
+    <div th:fragment="content">
+        <!-- Hero Section -->
+        <div class="bg-primary bg-gradient text-white py-5 mb-5">
+            <div class="container">
+                <h1 class="display-4 fw-bold text-white">About AGMS</h1>
+                <p class="lead">Revolutionizing Airport Gate Management</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Overview Section -->
+            <div class="row mb-5">
+                <div class="col-md-8">
+                    <h2 class="mb-4">Overview</h2>
+                    <p class="lead text-muted">The Airport Gate Management System (AGMS) is a comprehensive web application designed to streamline the process of managing airport gates and flight schedules.</p>
+                    <p>Our system provides real-time flight tracking, gate management, and schedule optimization features to help airport staff efficiently manage gate assignments and handle schedule changes. With an intuitive interface and powerful features, AGMS helps airports operate more efficiently.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    
+                </div>
+            </div>
+
+            <!-- Key Features Section -->
+            <div class="row mb-5">
+                <h2 class="mb-4">Key Features</h2>
+                
+                <!-- Feature Cards -->
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="feature-icon bg-primary bg-gradient text-white rounded-circle mb-3 mx-auto d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                <i class="fas fa-clock fa-2x"></i>
+                            </div>
+                            <h4 class="card-title">Real-Time Updates</h4>
+                            <p class="card-text">Monitor gate status, flight schedules, and assignments in real-time, ensuring everyone has the latest information.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="feature-icon bg-success bg-gradient text-white rounded-circle mb-3 mx-auto d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                <i class="fas fa-tasks fa-2x"></i>
+                            </div>
+                            <h4 class="card-title">Smart Assignment</h4>
+                            <p class="card-text">Intelligent gate assignment system that optimizes resource utilization and prevents scheduling conflicts.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="feature-icon bg-info bg-gradient text-white rounded-circle mb-3 mx-auto d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                <i class="fas fa-chart-line fa-2x"></i>
+                            </div>
+                            <h4 class="card-title">Analytics</h4>
+                            <p class="card-text">Comprehensive reporting and analytics tools to track performance and identify optimization opportunities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Roles Section -->
+            <div class="row mb-5">
+                <h2 class="mb-4">Who Uses AGMS?</h2>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h4><i class="fas fa-user-tie text-primary me-2"></i>Airport Administrators</h4>
+                            <p>Complete system oversight and management capabilities for airport operations.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>System configuration</li>
+                                <li><i class="fas fa-check text-success me-2"></i>User management</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Performance monitoring</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h4><i class="fas fa-users-cog text-primary me-2"></i>Operations Managers</h4>
+                            <p>Daily operational control and resource management.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Gate assignments</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Schedule management</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Resource allocation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technology Stack -->
+            <div class="row mb-5">
+                <h2 class="mb-4">Built with Modern Technology</h2>
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="row text-center">
+                                <div class="col-md-3 mb-3">
+                                    <div class="p-3">
+                                        <i class="fab fa-java fa-3x text-primary mb-3"></i>
+                                        <h5>Java</h5>
+                                        <p class="text-muted">Enterprise-grade backend</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="p-3">
+                                        <i class="fas fa-leaf fa-3x text-success mb-3"></i>
+                                        <h5>Spring Boot</h5>
+                                        <p class="text-muted">Powerful framework</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="p-3">
+                                        <i class="fas fa-database fa-3x text-info mb-3"></i>
+                                        <h5>MongoDB</h5>
+                                        <p class="text-muted">Flexible data storage</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="p-3">
+                                        <i class="fab fa-bootstrap fa-3x text-primary mb-3"></i>
+                                        <h5>Bootstrap</h5>
+                                        <p class="text-muted">Modern UI design</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="mb-4">Need More Information?</h2>
+                    <p class="lead">Contact our support team for detailed information about AGMS</p>
+                    <a href="/contact" class="btn btn-primary btn-lg">
+                        <i class="fas fa-envelope me-2"></i>Contact Support
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+</body>
+</html>

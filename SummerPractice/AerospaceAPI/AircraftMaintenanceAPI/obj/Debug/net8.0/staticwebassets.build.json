@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "OKpVF3bcOd7qbrlidHBwU72oRKu/QqloZwdUPKb7rCo=",
+  "Source": "AircraftMaintenanceAPI",
+  "BasePath": "_content/AircraftMaintenanceAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

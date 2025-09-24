@@ -1,0 +1,235 @@
+﻿/* ==========================================================================
+   Game Board Layout and Structure
+   ========================================================================== */
+
+/* Main game board container */
+.game-board {
+	display: inline-block;
+	background: #bdbdbd;
+	padding: 10px;
+	margin: 20px auto;
+	/* Classic Windows 3D border effect */
+	border: 3px solid;
+	border-color: #7b7b7b #fff #fff #7b7b7b;
+}
+
+/* Row container for cells */
+.board-row {
+	display: flex;
+}
+
+/* Game information container */
+.game-info {
+	margin: 15px 0;
+	padding: 10px;
+	background: #b3b3b3;
+	border: 3px solid;
+	border-color: #7b7b7b #fff #fff #7b7b7b;
+	display: inline-block;
+	border-radius: 2px;
+}
+
+/* ==========================================================================
+   Cell Styling - Base Properties
+   ========================================================================== */
+
+/* Base cell styles */
+.cell {
+	width: 30px;
+	height: 30px;
+	background: #c0c0c0;
+	/* Classic Windows 3D effect for cells */
+	border: 2px solid;
+	border-color: #fff #7b7b7b #7b7b7b #fff;
+	/* Center content alignment */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	cursor: pointer;
+	user-select: none;
+	font-family: Arial, sans-serif;
+	/* Smooth transitions for all animations */
+	transition: all 0.2s ease-in-out;
+}
+
+/* Hover effect for unrevealed cells */
+.cell:not(.revealed):hover {
+	background: #b0b0b0;
+	transition: background 0.2s ease-in-out;
+}
+
+/* ==========================================================================
+   Cell States and Interactions
+   ========================================================================== */
+
+/* Active and temporarily revealed states */
+.cell:active:not(.revealed):not(.flagged),
+.cell.temp-revealed {
+	background: #d5d5d5;
+	border-color: #7b7b7b;
+}
+
+/* Permanently revealed cell state */
+.cell.revealed {
+	border: 1px solid #7b7b7b;
+	background: #d5d5d5;
+}
+
+/* Mine cell state */
+.cell.mine {
+	background: #ff4444;
+}
+
+/* Peek interaction state */
+.cell.peek {
+	background: #d5d5d5 !important;
+	border-color: #7b7b7b !important;
+	transition: all 0.1s ease-in-out;
+	transform: scale(0.95);
+}
+
+/* Pressed cell state during right-click */
+.cell.cell-pressed {
+	background: #a0a0a0 !important;
+	transform: scale(0.95);
+	transition: all 0.1s ease-in-out;
+}
+
+/* Revealed number cells during right-click */
+.cell.revealed.being-peeked {
+	background: #d5d5d5;
+}
+
+/* ==========================================================================
+   Flag and Number Indicators
+   ========================================================================== */
+
+/* Flag icon styling */
+.cell.flagged {
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="red" d="M4 2h2v20H4V2zm4 0h10l-4 4 4 4H8V2z"/></svg>');
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+/* Number colors for neighboring mine indicators */
+.cell[data-neighbors="1"] {
+	color: blue;
+}
+/* 1 mine */
+.cell[data-neighbors="2"] {
+	color: green;
+}
+/* 2 mines */
+.cell[data-neighbors="3"] {
+	color: red;
+}
+/* 3 mines */
+.cell[data-neighbors="4"] {
+	color: darkblue;	}
+/* 4 mines */
+.cell[data-neighbors="5"] {
+	color: darkred;
+}
+/* 5 mines */
+.cell[data-neighbors="6"] {
+	color: teal;
+}
+/* 6 mines */
+.cell[data-neighbors="7"] {
+	color: black;
+}
+/* 7 mines */
+.cell[data-neighbors="8"] {
+	color: gray;
+}
+/* 8 mines */
+
+/* ==========================================================================
+   Display Elements (Timer and Mine Counter)
+   ========================================================================== */
+
+/* Base styles for digital displays */
+#timer, .mine-counter {
+	font-family: 'Digital-7', monospace;
+	font-size: 28px;
+	margin: 10px 15px;
+	padding: 8px 15px;
+	min-width: 85px;
+	/* LED display styling */
+	background: linear-gradient(to bottom, #000000, #111111);
+	color: #00ff00;
+	border-radius: 4px;
+	border: 1px solid #333;
+	/* LED glow effects */
+	box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.2), 0 0 5px rgba(0, 255, 0, 0.1);
+	text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+	position: relative;
+	/* Flicker animation */
+	animation: digit-flicker 0.1s infinite;
+}
+
+	/* Screen glare effect */
+	#timer::before,
+	.mine-counter::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 5%;
+		width: 90%;
+		height: 1px;
+		background: rgba(255, 255, 255, 0.2);
+	}
+
+/* Display container layout */
+.display-container {
+	display: inline-block;
+	margin: 0 10px;
+	text-align: center;
+}
+
+/* Display labels */
+.info-label {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	color: #333;
+	text-transform: uppercase;
+	margin-bottom: 5px;
+	font-weight: bold;
+	display: block;
+	text-align: center;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@keyframes digit-flicker {
+	0% {
+		opacity: 0.97;
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0.97;
+	}
+}
+
+/* ==========================================================================
+   Game State Messages
+   ========================================================================== */
+
+/* Victory message */
+.victory {
+	background-color: #90EE90; /* Light green */
+	color: #006400; /* Dark green */
+}
+
+/* Defeat message */
+.defeat {
+	background-color: #FFB6C1; /* Light red */
+	color: #8B0000; /* Dark red */
+}
