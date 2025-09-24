@@ -1,0 +1,9 @@
+F:\GCU\CST-350\Code\Topic 3\RegisterAndLoginApp\obj\Debug\net8.0\RegisterAndLoginApp.csproj.AssemblyReference.cache
+F:\GCU\CST-350\Code\Topic 3\RegisterAndLoginApp\obj\Debug\net8.0\RegisterAndLoginApp.GeneratedMSBuildEditorConfig.editorconfig
+F:\GCU\CST-350\Code\Topic 3\RegisterAndLoginApp\obj\Debug\net8.0\RegisterAndLoginApp.AssemblyInfoInputs.cache
+F:\GCU\CST-350\Code\Topic 3\RegisterAndLoginApp\obj\Debug\net8.0\RegisterAndLoginApp.AssemblyInfo.cs
+F:\GCU\CST-350\Code\Topic 3\RegisterAndLoginApp\obj\Debug\net8.0\RegisterAndLoginApp.csproj.CoreCompileInputs.cache
+F:\GCU\CST-350\Code\Topic 3\RegisterAndLoginApp\obj\Debug\net8.0\RegisterAndLoginApp.MvcApplicationPartsAssemblyInfo.cache
+F:\GCU\CST-350\Code\Topic 3\RegisterAndLoginApp\obj\Debug\net8.0\RegisterAndLoginApp.RazorAssemblyInfo.cache
+F:\GCU\CST-350\Code\Topic 3\RegisterAndLoginApp\obj\Debug\net8.0\RegisterAndLoginApp.RazorAssemblyInfo.cs
+F:\GCU\CST-350\Code\Topic 3\RegisterAndLoginApp\obj\Debug\net8.0\RegisterAndLoginApp.sourcelink.json

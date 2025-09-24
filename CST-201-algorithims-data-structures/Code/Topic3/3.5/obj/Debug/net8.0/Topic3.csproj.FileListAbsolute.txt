@@ -1,0 +1,15 @@
+C:\git\CST-201\code\Topic3\3.5\bin\Debug\net8.0\Topic3.exe
+C:\git\CST-201\code\Topic3\3.5\bin\Debug\net8.0\Topic3.deps.json
+C:\git\CST-201\code\Topic3\3.5\bin\Debug\net8.0\Topic3.runtimeconfig.json
+C:\git\CST-201\code\Topic3\3.5\bin\Debug\net8.0\Topic3.dll
+C:\git\CST-201\code\Topic3\3.5\bin\Debug\net8.0\Topic3.pdb
+C:\git\CST-201\code\Topic3\3.5\obj\Debug\net8.0\Topic3.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\CST-201\code\Topic3\3.5\obj\Debug\net8.0\Topic3.AssemblyInfoInputs.cache
+C:\git\CST-201\code\Topic3\3.5\obj\Debug\net8.0\Topic3.AssemblyInfo.cs
+C:\git\CST-201\code\Topic3\3.5\obj\Debug\net8.0\Topic3.csproj.CoreCompileInputs.cache
+C:\git\CST-201\code\Topic3\3.5\obj\Debug\net8.0\Topic3.sourcelink.json
+C:\git\CST-201\code\Topic3\3.5\obj\Debug\net8.0\Topic3.dll
+C:\git\CST-201\code\Topic3\3.5\obj\Debug\net8.0\refint\Topic3.dll
+C:\git\CST-201\code\Topic3\3.5\obj\Debug\net8.0\Topic3.pdb
+C:\git\CST-201\code\Topic3\3.5\obj\Debug\net8.0\Topic3.genruntimeconfig.cache
+C:\git\CST-201\code\Topic3\3.5\obj\Debug\net8.0\ref\Topic3.dll

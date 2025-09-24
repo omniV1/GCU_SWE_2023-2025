@@ -1,0 +1,190 @@
+﻿
+/* ==========================================================================
+   Win Page
+   ========================================================================== */
+
+/* Victory-specific styles */
+.victory-title {
+    color: #22c55e; /* Green instead of red */
+}
+
+.btn-play-again {
+    background-color: #22c55e;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    font-weight: 500;
+    border: none;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    transition: background-color 0.2s;
+}
+
+    .btn-play-again:hover {
+        background-color: #16a34a;
+    }
+
+/* Victory animation */
+@keyframes confetti {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+    }
+}
+/* ==========================================================================
+   Game Over Layout and Structure
+   ========================================================================== */
+
+/* Main container for game over screen */
+.game-over-container {
+    max-width: 600px;
+    margin: 3rem auto;
+    text-align: center;
+}
+
+/* Game over title */
+.game-over-title {
+    color: #dc2626;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Large emoji display */
+.game-over-emoji {
+    font-size: 4rem;
+    margin: 1.5rem 0;
+}
+
+/* Game over message text */
+.game-over-message {
+    color: #4b5563;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Main stats container */
+.stats-panel {
+    background-color: #f3f4f6;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Stats section title */
+.stats-title {
+    color: #374151;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+/* Statistics grid layout */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    text-align: left;
+}
+
+/* Individual stat container */
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Stat label styling */
+.stat-label {
+    color: #6b7280;
+    font-weight: 500;
+}
+
+/* Stat value styling */
+.stat-value {
+    color: #111827;
+    font-family: monospace;
+}
+
+/* Button container */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Try again button */
+.btn-try-again {
+    background-color: #dc2626;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    font-weight: 500;
+    border: none;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    transition: background-color 0.2s;
+}
+
+    /* Try again button hover state */
+    .btn-try-again:hover {
+        background-color: #b91c1c;
+    }
+
+/* Main menu button */
+.btn-main-menu {
+    background-color: #6b7280;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    font-weight: 500;
+    border: none;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+    /* Main menu button hover state */
+    .btn-main-menu:hover {
+        background-color: #4b5563;
+        color: white;
+        text-decoration: none;
+    }
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+/* Shake animation for game over effect */
+.shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* Keyframes for shake animation */
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}

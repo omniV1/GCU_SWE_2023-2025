@@ -1,0 +1,389 @@
+{
+  "Files": [
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BibleVerseApp.bundle.scp.css",
+      "PackagePath": "staticwebassets\\BibleVerseApp.bundle.scp.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\css\\bible.css",
+      "PackagePath": "staticwebassets\\css\\bible.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\css\\layout.css",
+      "PackagePath": "staticwebassets\\css\\layout.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\css\\reset.css",
+      "PackagePath": "staticwebassets\\css\\reset.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\css\\site_not_used.css",
+      "PackagePath": "staticwebassets\\css\\site_not_used.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\bg_bot.jpg",
+      "PackagePath": "staticwebassets\\images\\bg_bot.jpg"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\bg_box1.jpg",
+      "PackagePath": "staticwebassets\\images\\bg_box1.jpg"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\bg_imgA.jpg",
+      "PackagePath": "staticwebassets\\images\\bg_imgA.jpg"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\bg_imgB.jpg",
+      "PackagePath": "staticwebassets\\images\\bg_imgB.jpg"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\bg_imgC.jpg",
+      "PackagePath": "staticwebassets\\images\\bg_imgC.jpg"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\bg_imgD.jpg",
+      "PackagePath": "staticwebassets\\images\\bg_imgD.jpg"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\bg_imgE.jpg",
+      "PackagePath": "staticwebassets\\images\\bg_imgE.jpg"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\bg_testimonials.gif",
+      "PackagePath": "staticwebassets\\images\\bg_testimonials.gif"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\bg_top.jpg",
+      "PackagePath": "staticwebassets\\images\\bg_top.jpg"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\button1_bg.gif",
+      "PackagePath": "staticwebassets\\images\\button1_bg.gif"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\button2_bg.gif",
+      "PackagePath": "staticwebassets\\images\\button2_bg.gif"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\button_top.jpg",
+      "PackagePath": "staticwebassets\\images\\button_top.jpg"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\button_top_active.jpg",
+      "PackagePath": "staticwebassets\\images\\button_top_active.jpg"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\img1.gif",
+      "PackagePath": "staticwebassets\\images\\img1.gif"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\img2.gif",
+      "PackagePath": "staticwebassets\\images\\img2.gif"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\img3.gif",
+      "PackagePath": "staticwebassets\\images\\img3.gif"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\line_top.gif",
+      "PackagePath": "staticwebassets\\images\\line_top.gif"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\logo.jpg",
+      "PackagePath": "staticwebassets\\images\\logo.jpg"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\images\\marker_1.gif",
+      "PackagePath": "staticwebassets\\images\\marker_1.gif"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\js\\Myriad_Pro_400.font.js",
+      "PackagePath": "staticwebassets\\js\\Myriad_Pro_400.font.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\js\\Myriad_Pro_italic_400.font.js",
+      "PackagePath": "staticwebassets\\js\\Myriad_Pro_italic_400.font.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\js\\Myriad_Pro_italic_600.font.js",
+      "PackagePath": "staticwebassets\\js\\Myriad_Pro_italic_600.font.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\js\\bible.js",
+      "PackagePath": "staticwebassets\\js\\bible.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\js\\cufon-replace.js",
+      "PackagePath": "staticwebassets\\js\\cufon-replace.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\js\\cufon-yui.js",
+      "PackagePath": "staticwebassets\\js\\cufon-yui.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\js\\html5.js",
+      "PackagePath": "staticwebassets\\js\\html5.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\js\\jquery-1.4.2.js",
+      "PackagePath": "staticwebassets\\js\\jquery-1.4.2.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "F:\\GCU\\CST-350\\Code\\Topic 8\\BibleVerseApp\\BibleVerseApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BibleVerseApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.BibleVerseApp.props",
+      "PackagePath": "build\\BibleVerseApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.BibleVerseApp.props",
+      "PackagePath": "buildMultiTargeting\\BibleVerseApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.BibleVerseApp.props",
+      "PackagePath": "buildTransitive\\BibleVerseApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

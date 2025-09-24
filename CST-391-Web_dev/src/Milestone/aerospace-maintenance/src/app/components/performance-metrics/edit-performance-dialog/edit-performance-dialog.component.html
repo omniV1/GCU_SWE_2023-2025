@@ -1,0 +1,36 @@
+<!-- Dialog title -->
+<h2 mat-dialog-title>Edit Performance Metric</h2>
+
+<!-- Dialog content -->
+<mat-dialog-content>
+  <!-- Performance metrics form -->
+  <form [formGroup]="performanceForm" class="performance-form">
+    <!-- Flight time input field -->
+    <mat-form-field appearance="fill">
+      <mat-label>Flight Time (hours)</mat-label>
+      <input matInput type="number" formControlName="FlightTime">
+    </mat-form-field>
+
+    <!-- Oil consumption input field -->
+    <mat-form-field appearance="fill">
+      <mat-label>Oil Consumption (quarts)</mat-label>
+      <input matInput type="number" formControlName="OilConsumption">
+    </mat-form-field>
+
+    <!-- Fuel consumption input field -->
+    <mat-form-field appearance="fill">
+      <mat-label>Fuel Consumption (gal/hr)</mat-label>
+      <input matInput type="number" formControlName="FuelConsumption">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<!-- Dialog action buttons -->
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="primary" 
+          (click)="save()" 
+          [disabled]="!performanceForm.valid">
+    Save
+  </button>
+</mat-dialog-actions>

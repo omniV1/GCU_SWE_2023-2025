@@ -1,0 +1,41 @@
+
+<!-- Main navigation container -->
+<div class="nav-container">
+  <!-- Top toolbar -->
+  <mat-toolbar color="primary">
+    <!-- Menu toggle button -->
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <!-- Application title -->
+    <span>Aircraft Maintenance System</span>
+    <!-- Flexible spacer -->
+    <span class="spacer"></span>
+  </mat-toolbar>
+
+  <!-- Sidenav container -->
+  <mat-sidenav-container>
+    <!-- Side navigation panel -->
+    <mat-sidenav #sidenav mode="side" opened class="app-sidenav">
+      <!-- Navigation list -->
+      <mat-nav-list class="nav-list">
+        <!-- Dynamic navigation links -->
+        <a mat-list-item 
+           *ngFor="let link of links" 
+           [routerLink]="link.path" 
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: link.exact}">
+          <mat-icon>{{link.icon}}</mat-icon>
+          <span>{{link.label}}</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <!-- Main content area -->
+    <mat-sidenav-content>
+      <div class="content-container">
+        <ng-content></ng-content>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

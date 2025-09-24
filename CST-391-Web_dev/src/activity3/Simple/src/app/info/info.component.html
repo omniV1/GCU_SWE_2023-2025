@@ -1,0 +1,32 @@
+<!-- Form element with an Angular (ngSubmit) event binding to call the onSubmit() method upon form submission. 
+The #infoForm="ngForm" creates a local template variable infoForm which represents the form and allows for form control. -->
+<form (ngSubmit)="onSubmit()" #infoForm="ngForm">
+  
+	<!-- Form group for quantity input -->
+	<div class="form-group">
+	  <label for="quantity">Quantity </label>
+	  <!-- Input for quantity with two-way data binding via [(ngModel)] to the 'quantity' property in the component.
+	  The 'required' attribute enforces that the input must be filled. -->
+	  <input type="text" class="form-control" id="quantity" required 
+			 [(ngModel)]="quantity" name="quantity">
+	  <!-- Displaying a welcome message incorporating the 'name' property from the component. -->
+	  Welcome {{name}}, please place your Order
+	</div>
+  
+	<!-- Form group for selecting a product -->
+	<div class="form-group">
+	  <label for="products">Star Wars Movies</label>
+	  <!-- Dropdown select input with two-way data binding to the 'selectedProduct' property.
+	  The *ngFor directive dynamically generates option elements for each product in the 'products' array. -->
+	  <select class="form-control" id="products" required 
+			  [(ngModel)]="selectedProduct" name="products" #selected="ngModel">
+		<option *ngFor="let product of products" [value]="product">{{product}}</option>
+	  </select>
+	</div>
+  
+	<!-- Submit button for the form -->
+	<button type="submit" class="btn btn-success">Buy</button>
+	<!-- Button to call the newInfo() method from the component, intended to reset the form's state. -->
+	<button type="button" class="btn btn-default" (click)="newInfo()">Reset</button>
+  </form>
+  

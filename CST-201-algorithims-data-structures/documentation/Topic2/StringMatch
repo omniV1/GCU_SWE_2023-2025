@@ -1,0 +1,42 @@
+using System;
+
+public class StringMatcher
+{
+    public static int BruteForceStringMatch(string text, string pattern)
+    {
+        int n = text.Length;
+        int m = pattern.Length;
+
+        for (int i = 0; i <= n - m; i++)
+        {
+            int j = 0;
+            while (j < m && pattern[j] == text[i + j])
+            {
+                j++;
+            }
+            if (j == m)
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public static void Main(string[] args)
+    {
+        string text = "a,b,c,d,e,f,g";
+        string pattern = "c,d,e";
+
+        int result = BruteForceStringMatch(text, pattern);
+
+        if (result != -1)
+        {
+            Console.WriteLine($"Pattern '{pattern}' found in '{text}' at index: {result}");
+        }
+        else
+        {
+            Console.WriteLine($"Pattern '{pattern}' not found in '{text}'");
+        }
+    }
+}

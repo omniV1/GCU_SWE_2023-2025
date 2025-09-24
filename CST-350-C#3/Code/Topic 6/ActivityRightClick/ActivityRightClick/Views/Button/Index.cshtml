@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ActivityRightClick.Models.ButtonModel>
+<style>
+    .game-button {
+        width: 75px;
+    }
+</style>
+
+@{
+    // Store image names in an array for more efficient code
+    string[] imageNames = { "blue-button.png", "green-button.png", "purple-button.png", "red-button.png" };
+    const int lineLength = 5;
+}
+
+@* Surround the entire board with a form that can be submitted *@
+<form>
+
+
+
+    <div class="button-zone">
+      
+        @* Iterate over the buttons and display them *@
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            // Start a new line every 5 elements
+            if (i % lineLength == 0)
+            {
+                // Add an HTML Page break
+                <div class="line-break"></div>
+            }
+
+            @* Create a section around the game board
+        and then make each button active
+        *@
+            <div class="oneButton" id="@i">
+                <button class="game-button" type="submit" value="@Model.ElementAt(i).Id"
+                        name="buttonNumber" asp-controller="Button" asp-action="HandleButtonClick">
+                  
+                        @* Show the proper image according to the button state property *@
+                    <img class="game-button-image" src="~/img/@imageNames[Model.ElementAt(i).ButtonState]" />
+                   
+                    @* Add a label below each button *@
+                    <div class="button-label">
+                        @Model.ElementAt(i).Id, @Model.ElementAt(i).ButtonState
+                    </div>
+                </button>
+            </div>
+          
+            @* Add a label below each button *@
+        }
+    </div>
+    </form>

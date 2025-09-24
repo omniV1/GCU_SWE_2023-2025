@@ -1,0 +1,54 @@
+.post {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .post-header {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .post-content {
+    margin-bottom: 5px;
+  }
+  
+  .delete-button {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: underline;
+    padding: 2px 5px;
+  }
+  
+  .delete-button:hover {
+    color: #333;
+  }
+  
+  .add-post {
+    margin-bottom: 20px;
+    max-width: 600px;
+  }
+  
+  .add-post textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px;
+  }
+  
+  .add-post button {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }

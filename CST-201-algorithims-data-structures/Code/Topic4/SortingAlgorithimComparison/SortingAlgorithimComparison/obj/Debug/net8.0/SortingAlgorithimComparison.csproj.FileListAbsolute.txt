@@ -1,0 +1,15 @@
+C:\git\CST-201\Code\Topic4\SortingAlgorithimComparison\SortingAlgorithimComparison\bin\Debug\net8.0\SortingAlgorithimComparison.exe
+C:\git\CST-201\Code\Topic4\SortingAlgorithimComparison\SortingAlgorithimComparison\bin\Debug\net8.0\SortingAlgorithimComparison.deps.json
+C:\git\CST-201\Code\Topic4\SortingAlgorithimComparison\SortingAlgorithimComparison\bin\Debug\net8.0\SortingAlgorithimComparison.runtimeconfig.json
+C:\git\CST-201\Code\Topic4\SortingAlgorithimComparison\SortingAlgorithimComparison\bin\Debug\net8.0\SortingAlgorithimComparison.dll
+C:\git\CST-201\Code\Topic4\SortingAlgorithimComparison\SortingAlgorithimComparison\bin\Debug\net8.0\SortingAlgorithimComparison.pdb
+C:\git\CST-201\Code\Topic4\SortingAlgorithimComparison\SortingAlgorithimComparison\obj\Debug\net8.0\SortingAlgorithimComparison.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\CST-201\Code\Topic4\SortingAlgorithimComparison\SortingAlgorithimComparison\obj\Debug\net8.0\SortingAlgorithimComparison.AssemblyInfoInputs.cache
+C:\git\CST-201\Code\Topic4\SortingAlgorithimComparison\SortingAlgorithimComparison\obj\Debug\net8.0\SortingAlgorithimComparison.AssemblyInfo.cs
+C:\git\CST-201\Code\Topic4\SortingAlgorithimComparison\SortingAlgorithimComparison\obj\Debug\net8.0\SortingAlgorithimComparison.csproj.CoreCompileInputs.cache
+C:\git\CST-201\Code\Topic4\SortingAlgorithimComparison\SortingAlgorithimComparison\obj\Debug\net8.0\SortingAlgorithimComparison.sourcelink.json
+C:\git\CST-201\Code\Topic4\SortingAlgorithimComparison\SortingAlgorithimComparison\obj\Debug\net8.0\SortingAlgorithimComparison.dll
+C:\git\CST-201\Code\Topic4\SortingAlgorithimComparison\SortingAlgorithimComparison\obj\Debug\net8.0\refint\SortingAlgorithimComparison.dll
+C:\git\CST-201\Code\Topic4\SortingAlgorithimComparison\SortingAlgorithimComparison\obj\Debug\net8.0\SortingAlgorithimComparison.pdb
+C:\git\CST-201\Code\Topic4\SortingAlgorithimComparison\SortingAlgorithimComparison\obj\Debug\net8.0\SortingAlgorithimComparison.genruntimeconfig.cache
+C:\git\CST-201\Code\Topic4\SortingAlgorithimComparison\SortingAlgorithimComparison\obj\Debug\net8.0\ref\SortingAlgorithimComparison.dll

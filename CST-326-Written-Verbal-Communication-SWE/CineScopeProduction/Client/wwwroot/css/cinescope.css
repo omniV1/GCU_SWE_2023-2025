@@ -1,0 +1,128 @@
+﻿/* wwwroot/css/cinescope.css */
+/* Base styles */
+html, body {
+    background-color: #0f0f0f;
+    color: white;
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Layout fixes to remove dead space */
+.mud-container.mud-container-maxwidth-xl,
+.mud-main-content {
+    padding: 16px; /* Increased padding */
+    margin-top: 16px; /* Added margin */
+}
+
+article.pa-4,
+.pa-4 {
+    padding: 16px; /* Increased padding */
+}
+
+.mud-container.mud-container-maxwidth-xl > div:first-child {
+    margin-top: 16px; /* Added margin */
+    padding-top: 16px; /* Added padding */
+}
+
+
+/* Hero section styling */
+.hero-section {
+    position: relative;
+    height: 400px;
+    margin: 0 0 2rem 0; /* Increased bottom margin */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Movie card styling */
+.movie-card {
+    transition: transform 0.15s ease-out;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    overflow: hidden;
+    height: auto; /* Allow height to adjust based on content */
+    border-bottom: 3px solid #E50914;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px; /* Added margin */
+}
+
+/* Spacing adjustments */
+.mud-grid {
+    row-gap: 24px; /* Increased row gap */
+    margin-top: 16px; /* Added margin */
+    padding-top: 16px; /* Added padding */
+}
+
+.mud-card-content {
+    padding: 16px; /* Increased padding */
+}
+
+.mud-item {
+    padding: 12px; /* Increased padding */
+}
+
+.mud-divider {
+    margin: 2rem 0; /* Increased margin */
+}
+
+/* Feature box adjustments */
+.feature-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 250px; /* Increased minimum height */
+    padding: 2rem;
+    background-color: #1a1a1a;
+    border-radius: 4px;
+    height: auto; /* Allow height to adjust based on content */
+}
+
+/* Search filter container */
+.search-filter-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px; /* Increased gap */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .search-filter-container {
+        flex-direction: column;
+        gap: 12px; /* Added gap for better spacing */
+    }
+
+        .search-filter-container > * {
+            margin-left: 0;
+            margin-bottom: 12px; /* Increased bottom margin */
+            width: 100%;
+        }
+}
+
+.movie-card:hover {
+    transform: translateY(-2px) scale(1.01); /* Subtle hover effect */
+}
+
+.main-content {
+    margin-top: 100px; /* Adjust this value based on your navbar height */
+}
+
+.feature-icon {
+    margin-bottom: 1rem;
+    color: #E50914;
+}
+
+.feature-title {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.feature-text {
+    text-align: center;
+}

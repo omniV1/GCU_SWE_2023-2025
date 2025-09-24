@@ -1,0 +1,242 @@
+<!--
+
+This HTML file is a Thymeleaf template for the airline dashboard. It includes the following sections:
+
+1. Quick Actions:
+    - Add Flight
+    - Request Gate Change
+    - View Schedule
+
+2. Flight Status Overview:
+    - Today's Flights: Displays the number of flights completed and scheduled for today.
+    - On-Time Performance: Shows the percentage of flights that are on time.
+    - Gate Changes: Indicates the number of gate changes in the last 24 hours.
+    - Active Alerts: Displays the number of active alerts that require attention.
+
+3. Flight Schedule and Gate Info:
+    - Flight Schedule: A table listing today's flight schedule with details such as flight number, route, gate, departure time, status, and actions.
+    - Gate Information and Alerts: A list of gate alerts and updates, including gate change notices, weather alerts, and updates on gate operations.
+
+The template uses Bootstrap for styling and Font Awesome for icons.
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/MainLayout :: layout(~{::div})}">
+<body>
+    <div th:fragment="content">
+        <!-- Quick Actions -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <h5 class="card-title mb-0">Welcome To PHX International Airport</h5>
+                            <div class="btn-group">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flight Status Overview -->
+        <div class="row g-4 mb-4">
+            <!-- Today's Flights -->
+            <div class="col-md-6 col-xl-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start justify-content-between">
+                            <div>
+                                <h6 class="card-subtitle mb-2 text-muted">Today's Flights</h6>
+                                <h2 class="card-title mb-0 text-primary">24</h2>
+                                <small class="text-primary">8 Completed, 16 Scheduled</small>
+                            </div>
+                            <div class="p-2 rounded" style="background-color: var(--agms-secondary);">
+                                <i class="fas fa-plane" style="color: var(--agms-primary);"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- On-Time Performance -->
+            <div class="col-md-6 col-xl-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start justify-content-between">
+                            <div>
+                                <h6 class="card-subtitle mb-2 text-muted">On-Time Performance</h6>
+                                <h2 class="card-title mb-0 text-success">92%</h2>
+                                <small class="text-success">Above target</small>
+                            </div>
+                            <div class="p-2 bg-success bg-opacity-10 rounded">
+                                <i class="fas fa-check-circle text-success fs-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gate Changes -->
+            <div class="col-md-6 col-xl-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start justify-content-between">
+                            <div>
+                                <h6 class="card-subtitle mb-2 text-muted">Gate Changes</h6>
+                                <h2 class="card-title mb-0 text-warning">3</h2>
+                                <small class="text-warning">Last 24 hours</small>
+                            </div>
+                            <div class="p-2 bg-warning bg-opacity-10 rounded">
+                                <i class="fas fa-random text-warning fs-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alerts -->
+            <div class="col-md-6 col-xl-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-start justify-content-between">
+                            <div>
+                                <h6 class="card-subtitle mb-2 text-muted">Active Alerts</h6>
+                                <h2 class="card-title mb-0 text-danger">2</h2>
+                                <small class="text-danger">Requires attention</small>
+                            </div>
+                            <div class="p-2 bg-danger bg-opacity-10 rounded">
+                                <i class="fas fa-bell text-danger fs-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flight Schedule and Gate Info -->
+        <div class="row">
+            <!-- Flight Schedule -->
+            <div class="col-12 col-xl-8 mb-4">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Today's Flight Schedule</h5>
+                        <div class="btn-group">
+                            <button class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-filter me-1"></i>Filter
+                            </button>
+                            <button class="btn btn-sm btn-primary">View All</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Flight</th>
+                                        <th>Route</th>
+                                        <th>Gate</th>
+                                        <th>Departure</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>AA1234</td>
+                                        <td>PHX → LAX</td>
+                                        <td>B12</td>
+                                        <td>10:30 AM</td>
+                                        <td><span class="badge bg-success">On Time</span></td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <button class="btn btn-outline-primary">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-outline-info">
+                                                    <i class="fas fa-info-circle"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>AA5678</td>
+                                        <td>LAX → SEA</td>
+                                        <td>C15</td>
+                                        <td>11:45 AM</td>
+                                        <td><span class="badge bg-warning">Gate Change</span></td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <button class="btn btn-outline-primary">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-outline-info">
+                                                    <i class="fas fa-info-circle"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>AA9012</td>
+                                        <td>SEA → SFO</td>
+                                        <td>A08</td>
+                                        <td>1:15 PM</td>
+                                        <td><span class="badge bg-danger">Delayed</span></td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <button class="btn btn-outline-primary">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-outline-info">
+                                                    <i class="fas fa-info-circle"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gate Information and Alerts -->
+            <div class="col-12 col-xl-4">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Gate Alerts & Updates</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group">
+                            <div class="list-group-item border-0">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">Gate C15 Change Notice</h6>
+                                    <small class="text-warning">10 mins ago</small>
+                                </div>
+                                <p class="mb-1">Flight AA5678 moved to Gate C17</p>
+                                <small class="text-muted">Maintenance required at C15</small>
+                            </div>
+                            <div class="list-group-item border-0">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">Weather Alert</h6>
+                                    <small class="text-danger">30 mins ago</small>
+                                </div>
+                                <p class="mb-1">Strong crosswinds affecting gates A01-A05</p>
+                                <small class="text-muted">Expect delays for affected flights</small>
+                            </div>
+                            <div class="list-group-item border-0">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">Gate B12 Update</h6>
+                                    <small class="text-success">1 hour ago</small>
+                                </div>
+                                <p class="mb-1">New boarding bridge operations protocol</p>
+                                <small class="text-muted">Review updated procedures</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

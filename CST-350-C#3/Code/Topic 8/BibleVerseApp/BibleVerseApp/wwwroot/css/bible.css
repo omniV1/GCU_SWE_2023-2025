@@ -1,0 +1,115 @@
+﻿/* Layout and Containers */
+.bible-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 2rem 1rem;
+}
+
+.section-container {
+	margin-bottom: 2rem;
+	padding: 1.5rem;
+	background-color: white;
+	border-radius: 0.5rem;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Headers */
+.page-title {
+	font-size: 2rem;
+	font-weight: 700;
+	margin-bottom: 1.5rem;
+	color: #1a202c;
+}
+
+.section-title {
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin-bottom: 1rem;
+	color: #2d3748;
+}
+
+/* Form Elements */
+.select-input {
+	width: 100%;
+	padding: 0.5rem;
+	border: 1px solid #e2e8f0;
+	border-radius: 0.375rem;
+	margin-bottom: 1rem;
+}
+
+	.select-input:focus {
+		outline: none;
+		border-color: #4299e1;
+		box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+	}
+
+/* Bible Content */
+.verse-container {
+	line-height: 1.75;
+	margin-bottom: 1rem;
+}
+
+.verse-number {
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: #4a5568;
+	margin-right: 0.5rem;
+	vertical-align: super;
+}
+
+.verse-text {
+	color: #2d3748;
+}
+
+/* Grid Layouts */
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	gap: 1rem;
+}
+
+@media (min-width: 768px) {
+	.grid-container {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (min-width: 1024px) {
+	.grid-container {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+/* Book List Styles */
+.book-card {
+	padding: 1rem;
+	background-color: white;
+	border-radius: 0.375rem;
+	border: 1px solid #e2e8f0;
+	transition: all 0.2s;
+}
+
+	.book-card:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
+
+/* Cross References */
+.cross-reference {
+	padding: 0.75rem;
+	margin-bottom: 0.5rem;
+	background-color: #f7fafc;
+	border-radius: 0.375rem;
+	cursor: pointer;
+}
+
+	.cross-reference:hover {
+		background-color: #edf2f7;
+	}
+
+/* Info Text */
+.info-text {
+	font-size: 0.875rem;
+	color: #718096;
+	margin-top: 0.5rem;
+}

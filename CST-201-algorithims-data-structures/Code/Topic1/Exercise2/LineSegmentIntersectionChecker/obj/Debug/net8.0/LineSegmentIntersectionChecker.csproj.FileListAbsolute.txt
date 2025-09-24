@@ -1,0 +1,15 @@
+C:\git\CST-201\Code\Exercise2\LineSegmentIntersectionChecker\bin\Debug\net8.0\LineSegmentIntersectionChecker.exe
+C:\git\CST-201\Code\Exercise2\LineSegmentIntersectionChecker\bin\Debug\net8.0\LineSegmentIntersectionChecker.deps.json
+C:\git\CST-201\Code\Exercise2\LineSegmentIntersectionChecker\bin\Debug\net8.0\LineSegmentIntersectionChecker.runtimeconfig.json
+C:\git\CST-201\Code\Exercise2\LineSegmentIntersectionChecker\bin\Debug\net8.0\LineSegmentIntersectionChecker.dll
+C:\git\CST-201\Code\Exercise2\LineSegmentIntersectionChecker\bin\Debug\net8.0\LineSegmentIntersectionChecker.pdb
+C:\git\CST-201\Code\Exercise2\LineSegmentIntersectionChecker\obj\Debug\net8.0\LineSegmentIntersectionChecker.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\CST-201\Code\Exercise2\LineSegmentIntersectionChecker\obj\Debug\net8.0\LineSegmentIntersectionChecker.AssemblyInfoInputs.cache
+C:\git\CST-201\Code\Exercise2\LineSegmentIntersectionChecker\obj\Debug\net8.0\LineSegmentIntersectionChecker.AssemblyInfo.cs
+C:\git\CST-201\Code\Exercise2\LineSegmentIntersectionChecker\obj\Debug\net8.0\LineSegmentIntersectionChecker.csproj.CoreCompileInputs.cache
+C:\git\CST-201\Code\Exercise2\LineSegmentIntersectionChecker\obj\Debug\net8.0\LineSegmentIntersectionChecker.sourcelink.json
+C:\git\CST-201\Code\Exercise2\LineSegmentIntersectionChecker\obj\Debug\net8.0\LineSegmentIntersectionChecker.dll
+C:\git\CST-201\Code\Exercise2\LineSegmentIntersectionChecker\obj\Debug\net8.0\refint\LineSegmentIntersectionChecker.dll
+C:\git\CST-201\Code\Exercise2\LineSegmentIntersectionChecker\obj\Debug\net8.0\LineSegmentIntersectionChecker.pdb
+C:\git\CST-201\Code\Exercise2\LineSegmentIntersectionChecker\obj\Debug\net8.0\LineSegmentIntersectionChecker.genruntimeconfig.cache
+C:\git\CST-201\Code\Exercise2\LineSegmentIntersectionChecker\obj\Debug\net8.0\ref\LineSegmentIntersectionChecker.dll

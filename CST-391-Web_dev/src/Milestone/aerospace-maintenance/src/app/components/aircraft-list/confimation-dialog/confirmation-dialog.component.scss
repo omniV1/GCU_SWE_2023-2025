@@ -1,0 +1,4 @@
+// Override Material Dialog default padding for consistent spacing
+::ng-deep .mat-dialog-container {
+  padding: 24px !important;
+}

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<RegisterAndLoginApp.Models.ButtonModel>
+
+@{
+    // store image names in an array for efficencies
+    string[] imageNames = { "blue-button.png", "green-button.png", "purple-button.png", "red-button.png" };
+    const int LineLength = 5;
+}
+
+
+@*Iterate over the buttons and display them*@
+@* Surround entire board with a form that can be submitted*@
+<form>
+<div class="button-zone">
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        // Start a new line every 5 elements
+        if (i % LineLength == 0)
+        {
+            // Add an html page break
+            <div div class="line-break"></div>
+
+        }
+
+       @*  Create a section around the game board
+           make each button active
+       *@
+
+        <button class="game-button" type="submit" value="@Model.ElementAt(i).Id" name="buttonNumber" asp-controller="Button" asp-action="HandleButtonClick">
+
+            @*Show the image according to the button state property*@
+            <img class="game-button-image" src="~/img/@imageNames[Model.ElementAt(i).ButtonState]" />
+            @* Add a label below each button *@
+            <div class="button-label">
+                @Model.ElementAt(i).Id, @Model.ElementAt(i).ButtonState;
+            </div>
+        </button>
+
+    }
+
+</div>
+</form> 

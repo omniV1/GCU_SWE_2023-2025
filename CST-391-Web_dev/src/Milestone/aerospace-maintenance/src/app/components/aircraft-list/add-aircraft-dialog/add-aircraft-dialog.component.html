@@ -1,0 +1,52 @@
+<!-- Dialog title -->
+<h2 mat-dialog-title>Add Aircraft</h2>
+
+<!-- Form content wrapper -->
+<div mat-dialog-content>
+  <!-- Reactive form with Material form fields -->
+  <form [formGroup]="aircraftForm">
+    <!-- Aircraft model input -->
+    <mat-form-field>
+      <mat-label>Model</mat-label>
+      <input matInput formControlName="model">
+    </mat-form-field>
+
+    <!-- Serial number input -->
+    <mat-form-field>
+      <mat-label>Serial Number</mat-label>
+      <input matInput formControlName="serialNumber">
+    </mat-form-field>
+
+    <!-- Manufacture date input -->
+    <mat-form-field>
+      <mat-label>Date of Manufacture</mat-label>
+      <input matInput type="date" formControlName="dateOfManufacture">
+    </mat-form-field>
+
+    <!-- Flight time input -->
+    <mat-form-field>
+      <mat-label>Flight Time (hrs)</mat-label>
+      <input matInput type="number" formControlName="flightTime">
+    </mat-form-field>
+
+    <!-- Engine hours input -->
+    <mat-form-field>
+      <mat-label>Engine Hours</mat-label>
+      <input matInput type="number" formControlName="engineHours">
+    </mat-form-field>
+
+    <!-- Aircraft status dropdown -->
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let status of aircraftStatus" [value]="status">{{ status }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+
+<!-- Dialog action buttons -->
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="save()">Save</button>
+</div>

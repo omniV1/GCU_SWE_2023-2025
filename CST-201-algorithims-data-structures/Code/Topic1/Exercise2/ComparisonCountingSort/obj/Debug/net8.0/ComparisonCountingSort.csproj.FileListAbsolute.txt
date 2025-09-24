@@ -1,0 +1,15 @@
+C:\git\CST-201\Code\Exercise2\ComparisonCountingSort\bin\Debug\net8.0\ComparisonCountingSort.exe
+C:\git\CST-201\Code\Exercise2\ComparisonCountingSort\bin\Debug\net8.0\ComparisonCountingSort.deps.json
+C:\git\CST-201\Code\Exercise2\ComparisonCountingSort\bin\Debug\net8.0\ComparisonCountingSort.runtimeconfig.json
+C:\git\CST-201\Code\Exercise2\ComparisonCountingSort\bin\Debug\net8.0\ComparisonCountingSort.dll
+C:\git\CST-201\Code\Exercise2\ComparisonCountingSort\bin\Debug\net8.0\ComparisonCountingSort.pdb
+C:\git\CST-201\Code\Exercise2\ComparisonCountingSort\obj\Debug\net8.0\ComparisonCountingSort.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\CST-201\Code\Exercise2\ComparisonCountingSort\obj\Debug\net8.0\ComparisonCountingSort.AssemblyInfoInputs.cache
+C:\git\CST-201\Code\Exercise2\ComparisonCountingSort\obj\Debug\net8.0\ComparisonCountingSort.AssemblyInfo.cs
+C:\git\CST-201\Code\Exercise2\ComparisonCountingSort\obj\Debug\net8.0\ComparisonCountingSort.csproj.CoreCompileInputs.cache
+C:\git\CST-201\Code\Exercise2\ComparisonCountingSort\obj\Debug\net8.0\ComparisonCountingSort.sourcelink.json
+C:\git\CST-201\Code\Exercise2\ComparisonCountingSort\obj\Debug\net8.0\ComparisonCountingSort.dll
+C:\git\CST-201\Code\Exercise2\ComparisonCountingSort\obj\Debug\net8.0\refint\ComparisonCountingSort.dll
+C:\git\CST-201\Code\Exercise2\ComparisonCountingSort\obj\Debug\net8.0\ComparisonCountingSort.pdb
+C:\git\CST-201\Code\Exercise2\ComparisonCountingSort\obj\Debug\net8.0\ComparisonCountingSort.genruntimeconfig.cache
+C:\git\CST-201\Code\Exercise2\ComparisonCountingSort\obj\Debug\net8.0\ref\ComparisonCountingSort.dll

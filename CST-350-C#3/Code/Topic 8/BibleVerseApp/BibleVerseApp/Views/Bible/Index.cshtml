@@ -1,0 +1,56 @@
+﻿@model List<BibleVerseApp.Models.BibleVersion>
+
+@{
+    ViewData["Title"] = "Bible Explorer";
+}
+
+<div class="bible-container">
+    <!-- Version Selection -->
+    <div class="section-container">
+        <h2 class="section-title">Select Bible Version</h2>
+        <select id="bibleVersion" class="select-input">
+            <option value="">Select a version...</option>
+            @foreach (var version in Model)
+            {
+                <option value="@version.Abbreviation">@version.Version - @version.Language</option>
+            }
+        </select>
+        <p class="info-text" id="versionInfo"></p>
+    </div>
+
+    <!-- Book and Chapter Selection -->
+    <div class="grid-container">
+        <div class="section-container">
+            <h2 class="section-title">Select Book</h2>
+            <select id="bibleBook" class="select-input">
+                <option value="">Select a book...</option>
+            </select>
+        </div>
+        <div class="section-container">
+            <h2 class="section-title">Select Chapter</h2>
+            <select id="bibleChapter" class="select-input">
+                <option value="">Select a chapter...</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Verse Display -->
+    <div id="verseContainer" class="section-container">
+        <h3 class="section-title">Scripture</h3>
+        <div id="verses" class="verse-container">
+            <!-- Verses will be populated here -->
+        </div>
+    </div>
+
+    <!-- Cross References Section -->
+    <div id="crossReferences" class="section-container" style="display: none;">
+        <h3 class="section-title">Cross References</h3>
+        <div id="crossReferenceList">
+            <!-- Cross references will be populated here -->
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/bible.js"></script>
+}

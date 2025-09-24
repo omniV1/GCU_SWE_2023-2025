@@ -1,0 +1,31 @@
+[ {
+  "type" : null,
+  "name" : "Sword",
+  "description" : "A sharp blade",
+  "price" : 100.0,
+  "quantity" : 5
+}, {
+  "type" : null,
+  "name" : "Bow",
+  "description" : "Long-ranged weapon",
+  "price" : 80.0,
+  "quantity" : 7
+}, {
+  "type" : null,
+  "name" : "Shield",
+  "description" : "Protects against attacks",
+  "price" : 70.0,
+  "quantity" : 3
+}, {
+  "type" : null,
+  "name" : "Helmet",
+  "description" : "Protects the head",
+  "price" : 40.0,
+  "quantity" : 4
+}, {
+  "type" : null,
+  "name" : "Health Potion",
+  "description" : "Restores health",
+  "price" : 20.0,
+  "quantity" : 10
+} ]

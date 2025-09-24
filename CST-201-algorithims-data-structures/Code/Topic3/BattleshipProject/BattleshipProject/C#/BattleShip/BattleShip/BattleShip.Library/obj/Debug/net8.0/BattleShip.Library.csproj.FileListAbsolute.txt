@@ -1,0 +1,34 @@
+D:\GCU\Classes\CST 201\Labs\junk\BattleshipProject\C#\BattleShip\BattleShip.Library\bin\Debug\net8.0\BattleShip.Library.deps.json
+D:\GCU\Classes\CST 201\Labs\junk\BattleshipProject\C#\BattleShip\BattleShip.Library\bin\Debug\net8.0\BattleShip.Library.dll
+D:\GCU\Classes\CST 201\Labs\junk\BattleshipProject\C#\BattleShip\BattleShip.Library\bin\Debug\net8.0\BattleShip.Library.pdb
+D:\GCU\Classes\CST 201\Labs\junk\BattleshipProject\C#\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.GeneratedMSBuildEditorConfig.editorconfig
+D:\GCU\Classes\CST 201\Labs\junk\BattleshipProject\C#\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.AssemblyInfoInputs.cache
+D:\GCU\Classes\CST 201\Labs\junk\BattleshipProject\C#\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.AssemblyInfo.cs
+D:\GCU\Classes\CST 201\Labs\junk\BattleshipProject\C#\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.csproj.CoreCompileInputs.cache
+D:\GCU\Classes\CST 201\Labs\junk\BattleshipProject\C#\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.dll
+D:\GCU\Classes\CST 201\Labs\junk\BattleshipProject\C#\BattleShip\BattleShip.Library\obj\Debug\net8.0\refint\BattleShip.Library.dll
+D:\GCU\Classes\CST 201\Labs\junk\BattleshipProject\C#\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.pdb
+D:\GCU\Classes\CST 201\Labs\junk\BattleshipProject\C#\BattleShip\BattleShip.Library\obj\Debug\net8.0\ref\BattleShip.Library.dll
+C:\Users\Owenl\OneDrive\Desktop\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip.Library\bin\Debug\net8.0\BattleShip.Library.deps.json
+C:\Users\Owenl\OneDrive\Desktop\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip.Library\bin\Debug\net8.0\BattleShip.Library.dll
+C:\Users\Owenl\OneDrive\Desktop\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip.Library\bin\Debug\net8.0\BattleShip.Library.pdb
+C:\Users\Owenl\OneDrive\Desktop\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Owenl\OneDrive\Desktop\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.AssemblyInfoInputs.cache
+C:\Users\Owenl\OneDrive\Desktop\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.AssemblyInfo.cs
+C:\Users\Owenl\OneDrive\Desktop\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.csproj.CoreCompileInputs.cache
+C:\Users\Owenl\OneDrive\Desktop\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.dll
+C:\Users\Owenl\OneDrive\Desktop\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip.Library\obj\Debug\net8.0\refint\BattleShip.Library.dll
+C:\Users\Owenl\OneDrive\Desktop\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.pdb
+C:\Users\Owenl\OneDrive\Desktop\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip.Library\obj\Debug\net8.0\ref\BattleShip.Library.dll
+C:\git\CST-201\Code\Topic3\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip\BattleShip.Library\bin\Debug\net8.0\BattleShip.Library.deps.json
+C:\git\CST-201\Code\Topic3\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip\BattleShip.Library\bin\Debug\net8.0\BattleShip.Library.dll
+C:\git\CST-201\Code\Topic3\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip\BattleShip.Library\bin\Debug\net8.0\BattleShip.Library.pdb
+C:\git\CST-201\Code\Topic3\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\CST-201\Code\Topic3\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.AssemblyInfoInputs.cache
+C:\git\CST-201\Code\Topic3\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.AssemblyInfo.cs
+C:\git\CST-201\Code\Topic3\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.csproj.CoreCompileInputs.cache
+C:\git\CST-201\Code\Topic3\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.sourcelink.json
+C:\git\CST-201\Code\Topic3\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.dll
+C:\git\CST-201\Code\Topic3\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip\BattleShip.Library\obj\Debug\net8.0\refint\BattleShip.Library.dll
+C:\git\CST-201\Code\Topic3\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip\BattleShip.Library\obj\Debug\net8.0\BattleShip.Library.pdb
+C:\git\CST-201\Code\Topic3\BattleshipProject\BattleshipProject\C#\BattleShip\BattleShip\BattleShip.Library\obj\Debug\net8.0\ref\BattleShip.Library.dll

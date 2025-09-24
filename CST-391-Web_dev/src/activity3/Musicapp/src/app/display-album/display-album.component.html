@@ -1,0 +1,56 @@
+<!-- This container is displayed only if the 'album' object exists -->
+<div align="center" *ngIf="album">
+    <!-- Card container for the album details with a maximum width -->
+    <div class="card mb-6" style="max-width: 500px;">
+        <div class="row no-gutters">
+            <!-- Album image section -->
+            <div class="col-md-4">
+                <div style="height: 150px; width: 150px; overflow: hidden;">
+                    <img src="assets/images/{{ album.Image }}" class="card-img"
+                        alt="{{ album.Title }}" width="150px" height="150px">
+                </div>
+            </div>
+            <!-- Album information section -->
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ album.Title }}</h5>
+                    <p class="card-text">{{ album.Description }}</p>
+                    <p class="card-text">
+                        <small class="text-muted">{{ album.Year }}</small>
+                    </p>
+                    <!-- Action icons for the album (list, edit, delete) -->
+                    <table>
+                        <tr>
+                            <!-- Toggle button for showing the track list -->
+                            <td width="50px" align="center"><a href="#"
+                                data-toggle="collapse" data-target="#collapseTracks"
+                                aria-expanded="false" aria-controls="collapseTracks"><i
+                                    class="fa fa-list"></i></a></td>
+                            <!-- Edit album link -->
+                            <td width="50px" align="center"><a
+                                [routerLink]="['/edit', album.Artist, album.Id]"><i
+                                    class="fa fa-edit"></i></a></td>
+                            <!-- Delete album link -->
+                            <td width="50px" align="center"><a
+                                [routerLink]="['/delete', album.Artist, album.Id]"><i
+                                    class="fa fa-trash"></i></a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Collapsible container for the album's tracks, visible when the list icon is clicked -->
+<div class="collapse" id="collapseTracks"
+    style="margin-left: 50px; margin-right: 50px">
+    <div class="card card-body">
+        <!-- Dynamically generated list of tracks using *ngFor -->
+        <ul class="list-group-flush">
+            <li class="list-group-item" *ngFor="let track of album!.Tracks">
+                {{ track.Number }}. {{ track.Title}}
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<!-- The container for centering the header text on the page -->
+<div style="text-align:center">
+  <!-- The header displaying a welcome message, using Angular interpolation to insert the title -->
+  <h1>Welcome to {{ title }}</h1>
+</div>
+
+<!-- Navigation bar using Bootstrap classes for styling -->
+<div>
+  <!-- Navigation bar that collapses on smaller screens and expands on larger screens -->
+  <nav class="navbar navbar-expand-lg bg-light p-0">
+    <div class="container">
+      <!-- Brand/logo for the application; could be an image or text -->
+      <a class="navbar-brand" href="#">My Music</a>
+      <!-- Button for toggling the navigation bar on small screens -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- Icon for the toggle button -->
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Container for navigation links, which will be toggled by the above button -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <!-- Navigation item for an external link -->
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" href="https://www.gcu.edu" target="_blank">GCU Home Page</a>
+          </li>
+          <!-- Navigation item for creating a new album, using Angular's routerLink directive to navigate within the app -->
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" routerLink="/create">Create Album</a>
+          </li>
+          <!-- Navigation item for displaying the artist list, with an Angular event binding to call the displayArtistList() method when clicked -->
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" (click)="displayArtistList()">Artist List</a>
+          </li>
+          <!-- Navigation item for the About section, with an Angular event binding to call the displayVersion() method when clicked -->
+          <li class="nav-item">
+            <a class="nav-link" href="" (click)="displayVersion()">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- Angular Router Outlet which acts as a placeholder for the components to be rendered based on the active route -->
+<router-outlet></router-outlet>

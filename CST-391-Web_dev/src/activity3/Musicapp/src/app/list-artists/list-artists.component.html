@@ -1,0 +1,16 @@
+<!-- Conditionally display the list of artists only if no artist is currently selected -->
+<div class="artist-list" *ngIf="selectedArtist == null">
+
+   <!-- Iterate over the array of artists and create a button for each one -->
+  <button
+    class="submit-button"
+    *ngFor="let artist of artists" 
+    (click)="onSelectArtist(artist)" 
+  >
+    {{ artist.Name }} <!-- Display the name of the artist on the button -->
+  </button>
+</div>
+<!-- Display the list-albums component and pass the selectedArtist to it if there is a selected artist -->
+<div *ngIf="selectedArtist">
+  <app-list-albums [artist]="selectedArtist"></app-list-albums><!-- Property binding that passes the selected artist to the list-albums component -->
+</div>

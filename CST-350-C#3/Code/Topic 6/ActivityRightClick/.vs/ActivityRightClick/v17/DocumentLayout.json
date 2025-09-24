@@ -1,0 +1,209 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E9B2245D-D44A-4B07-91ED-E83EA4262AAD}|ActivityRightClick\\ActivityRightClick.csproj|f:\\gcu\\cst-350\\code\\topic 6\\activityrightclick\\activityrightclick\\controllers\\buttoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9B2245D-D44A-4B07-91ED-E83EA4262AAD}|ActivityRightClick\\ActivityRightClick.csproj|solutionrelative:activityrightclick\\controllers\\buttoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9B2245D-D44A-4B07-91ED-E83EA4262AAD}|ActivityRightClick\\ActivityRightClick.csproj|f:\\gcu\\cst-350\\code\\topic 6\\activityrightclick\\activityrightclick\\views\\button\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E9B2245D-D44A-4B07-91ED-E83EA4262AAD}|ActivityRightClick\\ActivityRightClick.csproj|solutionrelative:activityrightclick\\views\\button\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9B2245D-D44A-4B07-91ED-E83EA4262AAD}|ActivityRightClick\\ActivityRightClick.csproj|f:\\gcu\\cst-350\\code\\topic 6\\activityrightclick\\activityrightclick\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E9B2245D-D44A-4B07-91ED-E83EA4262AAD}|ActivityRightClick\\ActivityRightClick.csproj|solutionrelative:activityrightclick\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9B2245D-D44A-4B07-91ED-E83EA4262AAD}|ActivityRightClick\\ActivityRightClick.csproj|f:\\gcu\\cst-350\\code\\topic 6\\activityrightclick\\activityrightclick\\models\\buttonmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9B2245D-D44A-4B07-91ED-E83EA4262AAD}|ActivityRightClick\\ActivityRightClick.csproj|solutionrelative:activityrightclick\\models\\buttonmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9B2245D-D44A-4B07-91ED-E83EA4262AAD}|ActivityRightClick\\ActivityRightClick.csproj|f:\\gcu\\cst-350\\code\\topic 6\\activityrightclick\\activityrightclick\\views\\button\\showonebutton.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E9B2245D-D44A-4B07-91ED-E83EA4262AAD}|ActivityRightClick\\ActivityRightClick.csproj|solutionrelative:activityrightclick\\views\\button\\showonebutton.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9B2245D-D44A-4B07-91ED-E83EA4262AAD}|ActivityRightClick\\ActivityRightClick.csproj|f:\\gcu\\cst-350\\code\\topic 6\\activityrightclick\\activityrightclick\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E9B2245D-D44A-4B07-91ED-E83EA4262AAD}|ActivityRightClick\\ActivityRightClick.csproj|solutionrelative:activityrightclick\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9B2245D-D44A-4B07-91ED-E83EA4262AAD}|ActivityRightClick\\ActivityRightClick.csproj|f:\\gcu\\cst-350\\code\\topic 6\\activityrightclick\\activityrightclick\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E9B2245D-D44A-4B07-91ED-E83EA4262AAD}|ActivityRightClick\\ActivityRightClick.csproj|solutionrelative:activityrightclick\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9B2245D-D44A-4B07-91ED-E83EA4262AAD}|ActivityRightClick\\ActivityRightClick.csproj|f:\\gcu\\cst-350\\code\\topic 6\\activityrightclick\\activityrightclick\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{E9B2245D-D44A-4B07-91ED-E83EA4262AAD}|ActivityRightClick\\ActivityRightClick.csproj|solutionrelative:activityrightclick\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9B2245D-D44A-4B07-91ED-E83EA4262AAD}|ActivityRightClick\\ActivityRightClick.csproj|f:\\gcu\\cst-350\\code\\topic 6\\activityrightclick\\activityrightclick\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{E9B2245D-D44A-4B07-91ED-E83EA4262AAD}|ActivityRightClick\\ActivityRightClick.csproj|solutionrelative:activityrightclick\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 16,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{fbcae063-e2c0-4ab1-a516-996ea3dafb72}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\ActivityRightClick\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "ActivityRightClick\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\ActivityRightClick\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "ActivityRightClick\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAB3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-06T18:07:23.916Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\ActivityRightClick\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "ActivityRightClick\\Views\\_ViewImports.cshtml",
+              "ToolTip": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\ActivityRightClick\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "ActivityRightClick\\Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-06T18:07:22.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\ActivityRightClick\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "ActivityRightClick\\Views\\Home\\Index.cshtml",
+              "ToolTip": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\ActivityRightClick\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "ActivityRightClick\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-06T18:07:14.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ShowOneButton.cshtml",
+              "DocumentMoniker": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\ActivityRightClick\\Views\\Button\\ShowOneButton.cshtml",
+              "RelativeDocumentMoniker": "ActivityRightClick\\Views\\Button\\ShowOneButton.cshtml",
+              "ToolTip": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\ActivityRightClick\\Views\\Button\\ShowOneButton.cshtml",
+              "RelativeToolTip": "ActivityRightClick\\Views\\Button\\ShowOneButton.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-06T18:06:57.782Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\ActivityRightClick\\Views\\Button\\Index.cshtml",
+              "RelativeDocumentMoniker": "ActivityRightClick\\Views\\Button\\Index.cshtml",
+              "ToolTip": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\ActivityRightClick\\Views\\Button\\Index.cshtml",
+              "RelativeToolTip": "ActivityRightClick\\Views\\Button\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-06T18:05:01.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "site.js",
+              "DocumentMoniker": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\ActivityRightClick\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "ActivityRightClick\\wwwroot\\js\\site.js",
+              "ToolTip": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\ActivityRightClick\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "ActivityRightClick\\wwwroot\\js\\site.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-12-06T18:01:48.777Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "site.css",
+              "DocumentMoniker": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\ActivityRightClick\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "ActivityRightClick\\wwwroot\\css\\site.css",
+              "ToolTip": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\ActivityRightClick\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "ActivityRightClick\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-12-06T18:00:59.244Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ButtonController.cs",
+              "DocumentMoniker": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\ActivityRightClick\\Controllers\\ButtonController.cs",
+              "RelativeDocumentMoniker": "ActivityRightClick\\Controllers\\ButtonController.cs",
+              "ToolTip": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\ActivityRightClick\\Controllers\\ButtonController.cs",
+              "RelativeToolTip": "ActivityRightClick\\Controllers\\ButtonController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T17:54:22.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ButtonModel.cs",
+              "DocumentMoniker": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\ActivityRightClick\\Models\\ButtonModel.cs",
+              "RelativeDocumentMoniker": "ActivityRightClick\\Models\\ButtonModel.cs",
+              "ToolTip": "F:\\GCU\\CST-350\\Code\\Topic 6\\ActivityRightClick\\ActivityRightClick\\Models\\ButtonModel.cs",
+              "RelativeToolTip": "ActivityRightClick\\Models\\ButtonModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T17:31:59.327Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

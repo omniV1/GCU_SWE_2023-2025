@@ -1,0 +1,31 @@
+﻿@{
+    // Set the page title
+    ViewData["Title"] = "Minesweeper - New Game";
+}
+
+<div class="container">
+    <!-- Center the content horizontally -->
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <!-- Game title -->
+            <h1>Minesweeper</h1>
+
+            <!-- Difficulty selection -->
+            <div class="mt-4">
+                <form asp-action="StartGame" method="post">
+                    <h3>Select Difficulty</h3>
+                    <div class="btn-group mt-3" role="group">
+                        <!-- Easy difficulty button -->
+                        <button type="submit" name="difficulty" value="easy" class="btn btn-success">Easy</button>
+
+                        <!-- Medium difficulty button -->
+                        <button type="submit" name="difficulty" value="medium" class="btn btn-warning">Medium</button>
+
+                        <!-- Hard difficulty button -->
+                        <button type="submit" name="difficulty" value="hard" class="btn btn-danger">Hard</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<!-- This div will be displayed while the delete operation is in progress -->
+<div *ngIf="isDeleting">
+    Deleting album...
+  </div>
+  
+  <!-- This div will be displayed if the delete operation is successful -->
+  <div *ngIf="isDeleted">
+    The album has been successfully deleted.
+  </div>
+  
+  <!-- This div will be displayed if there was an error during the deletion process -->
+  <div *ngIf="deleteError">
+    An error occurred while attempting to delete the album.
+  </div>
+  

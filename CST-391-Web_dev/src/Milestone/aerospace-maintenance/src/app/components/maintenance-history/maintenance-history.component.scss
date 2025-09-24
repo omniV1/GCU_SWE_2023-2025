@@ -1,0 +1,278 @@
+// Base container styles
+:host {
+  display: block;
+  background-color: #121212;  // Dark theme background
+  min-height: 100vh;
+  padding: 20px;
+}
+
+// Main heading styles
+.maintenance-history-container h1 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 24px;
+}
+
+// Header section with title and add button
+.maintenance-history-container .header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+// "Add Maintenance Record" button styling
+.maintenance-history-container .header-actions button {
+  background-color: #3fac2a;  // Material Red
+  color: rgb(255, 253, 253);
+}
+
+.maintenance-history-container .header-actions button:hover {
+  background-color: #7eee7a;  // Darker red on hover
+}
+
+// Filter section containing search and category toggles
+.maintenance-history-container .filters-section {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+// Search field container
+.maintenance-history-container .filters-section .search-field {
+  flex: 1;
+}
+
+// Category filter buttons (ALL, ENGINE, AIRFRAME, AVIONICS)
+.maintenance-history-container .filters-section .category-filter .mat-button-toggle-checked {
+  background-color: #69bfca;  // Amber color for selected category
+  color: black;
+}
+
+// Category filter buttons (ALL, ENGINE, AIRFRAME, AVIONICS)
+.maintenance-history-container .filters-section .category-filter .mat-button-toggle-checked:hover {
+  background-color: #8bd4da;  // Amber color for selected category
+  color: black;
+}
+
+// Maintenance Type chip colors
+.maintenance-history-container ::ng-deep .mat-mdc-chip {
+  &.routine-chip {
+    background-color: rgba(46, 133, 29, 0.904) !important;  // Green for routine
+    color: #4caf50 !important;
+  }
+  
+  &.inspection-chip {
+    background-color: rgb(3, 168, 244) !important;  // Light Blue for inspection
+    color: #03a9f4 !important;
+  }
+  
+  &.repair-chip {
+    background-color: rgba(231, 32, 18, 0.973) !important;  // Red for repairs
+    color: #f44336 !important;
+  }
+  
+  &.overhaul-chip {
+    background-color: rgba(243, 157, 27, 0.945) !important;  // Deep Orange for overhaul
+    color: #ff5722 !important;
+  }
+}
+
+// Category chip colors
+.maintenance-history-container ::ng-deep .mat-mdc-chip {
+  &.engine-chip {
+    background-color: rgb(204, 85, 16) !important;  // Red for engine
+    color: #f44336 !important;
+  }
+  
+  &.airframe-chip {
+    background-color: rgb(22, 155, 141) !important;  // Teal for airframe
+    color: #009688 !important;
+  }
+  
+  &.avionics-chip {
+    background-color: rgba(146, 34, 173, 0.849) !important;  // Amber for avionics
+    color: #ffc107 !important;
+  }
+}
+
+// Search field styling
+.maintenance-history-container .mat-mdc-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+// Search field background and text colors
+.maintenance-history-container .mat-mdc-form-field ::ng-deep {
+  .mat-mdc-text-field-wrapper {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  .mat-mdc-form-field-label {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .mat-mdc-input-element {
+    color: white;
+  }
+}
+// Status colors and icons
+.maintenance-history-container .maintenance-table-container {
+  .status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .mat-icon {
+      &.completed-status {
+        color: #32ee0d;  // Pink/Magenta for completed
+      }
+      
+      &.in-progress-status {
+        color: #f44336;  // Red for in progress
+      }
+      
+      &.scheduled-status {
+        color: #9e9e9e;  // Grey for scheduled
+      }
+      
+      &.deferred-status {
+        color: #ff9800;  // Orange for deferred
+      }
+    }
+
+    span {
+      font-size: 12px;
+      color: white;
+    }
+  }
+}
+
+// Table width
+.maintenance-history-container .maintenance-table-container table {
+  width: 100%;
+}
+
+// Table header styling
+.maintenance-history-container .maintenance-table-container ::ng-deep .mat-mdc-header-cell {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+// Table cell styling
+.maintenance-history-container .maintenance-table-container ::ng-deep .mat-mdc-cell {
+  color: rgba(255, 255, 255, 0.87);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+// Row hover effect
+.maintenance-history-container .maintenance-table-container ::ng-deep .mat-mdc-row:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+// Highlight for IN_PROGRESS status
+.maintenance-history-container .maintenance-table-container ::ng-deep .mat-mdc-row.highlight {
+  background-color: rgba(63, 81, 181, 0.1);  // Indigo color for in-progress
+}
+
+// Status indicator in table
+.maintenance-history-container .maintenance-table-container .maintenance-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+// Status text styling
+.maintenance-history-container .maintenance-table-container .maintenance-status .maintenance-text {
+  font-size: 12px;
+  color: white;
+}
+
+// Details cell with ellipsis
+.maintenance-history-container .maintenance-table-container .details-cell {
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Overdue date styling
+.maintenance-history-container .maintenance-table-container .overdue {
+  color: #f44336;  // Red for overdue dates
+  font-weight: bold;
+}
+
+// Paginator styling
+.maintenance-history-container ::ng-deep .mat-mdc-paginator {
+  background-color: transparent;
+  color: white;
+}
+
+// Action buttons (edit/delete)
+.maintenance-history-container .mat-mdc-icon-button {
+  color: white;
+}
+
+.maintenance-history-container .mat-mdc-icon-button:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+// No data message styling
+.maintenance-history-container .no-data {
+  padding: 48px 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.maintenance-history-container .no-data mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+}
+
+.maintenance-history-container .no-data p {
+  font-size: 16px;
+  margin: 0;
+}
+
+// Category filter toggle button group
+::ng-deep .mat-button-toggle-group {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: none;
+}
+
+::ng-deep .mat-button-toggle-group .mat-button-toggle {
+  color: rgba(255, 255, 255, 0.7);
+  background-color: transparent;
+}
+
+::ng-deep .mat-button-toggle-group .mat-button-toggle-checked {
+  background-color: #ffc107;  // Amber for selected filter
+  color: black;
+}
+
+::ng-deep .mat-button-toggle-group .mat-button-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+ 
+  // Status styles
+  .status-IN_PROGRESS {
+    background-color: rgba(76, 175, 80, 0.9);
+    padding: 4px 12px;
+    border-radius: 16px;
+    color: white;
+    font-size: 0.875rem;
+  }
+  
+  .status-not-ready {
+    background-color: rgba(244, 67, 54, 0.9);
+    padding: 4px 12px;
+    border-radius: 16px;
+    color: white;
+    font-size: 0.875rem;
+  }
