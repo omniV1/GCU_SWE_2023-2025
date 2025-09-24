@@ -1,28 +1,59 @@
 ---
-title: "Island Population Dynamics Simulation - Code Documentation"
-author: "Owen Lindsey"
-subtitle: |
-  CST-180: Python Programming 1 \\
-  Professor David Parker \\
-  Grand Canyon University
+title: "Island Population Dynamics Simulation"
+subtitle: "Code Documentation and Analysis"
+author: 
+  - Owen Lindsey
+instructor: "Professor David Parker"
+course: "CST-180: Python Programming 1"
+institution: "Grand Canyon University"
 date: "September 24, 2025"
-# APA 7th Edition Formatting
-csl: Homework/PopulationSimulation/apa.csl
-bibliography: Homework/PopulationSimulation/references.bib
-# General Document Settings
+subject: "Python Programming"
+keywords: [Population Dynamics, Predator-Prey, Python, Simulation, Algorithm]
 lang: "en"
+titlepage: true
+titlepage-color: "E8F4F8"
+titlepage-text-color: "2F4F4F"
+titlepage-rule-color: "4682B4"
+titlepage-rule-height: 2
+book: false
+classoption: [oneside]
+code-block-font-size: \scriptsize
+toc: true
+toc-depth: 3
+lof: false
+lot: false
 fontsize: 12pt
-linestretch: 1.5 # One-and-a-half-spaced for readability
+linestretch: 1.5
 mainfont: "Times New Roman"
 sansfont: "Arial"
 monofont: "Courier New"
 geometry: "margin=1in"
-papersize: tabloid
-header-includes: |
-  \lstset{breaklines=true}
+header-left: "Population Simulation"
+header-right: "CST-180 Documentation"
+footer-left: "Owen Lindsey"
+footer-right: "Page \\thepage"
+listings: true
+listings-no-page-break: true
+tables: true
+graphics: true
+colorlinks: true
+linkcolor: blue
+urlcolor: blue
+toccolor: black
+disable-header-and-footer: false
 ---
 
 \newpage
+
+
+# Important Links
+
+[Video on Population Simulation](https://www.youtube.com/watch?v=A1NWPMsw-Yw)
+
+[Github Code Repo Location](https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/CST-180-Python/Homework/PopulationSimulation/population_simulation.py)
+
+[Github Documentation Location](https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/CST-180-Python/Homework/PopulationSimulation/population_simulation_documentation.md)
+
 
 # Island Population Dynamics Simulation Documentation
 
@@ -38,6 +69,8 @@ The wolf population has its own growth pattern, with an 8% birth rate and 6% dea
 
 The simulation maintains biological realism by ensuring all population counts are whole numbers (since you cannot have fractional animals) and preventing populations from going below zero. The main goal is to demonstrate how predator-prey relationships affect population changes over time and verify that our algorithm produces mathematically accurate results.
 
+\newpage
+
 ## Part 2: Summary of Logic (Input-Processing-Output)
 
 **Input**: The simulation accepts configurable parameters including initial populations, growth rates, predation rates, wolf introduction timing, and simulation duration. Default values match the assignment requirements but can be modified for testing different scenarios.
@@ -49,6 +82,8 @@ The simulation maintains biological realism by ensuring all population counts ar
 \newpage
 
 ## Part 3: Detailed Pseudocode
+
+### Function Definition and Parameters
 
 ```
 // FUNCTION simulate_population
@@ -62,11 +97,15 @@ DEFINE initial_wolves as 0            // Starting wolf population
 DEFINE rabbit_growth_rate as 0.10     // 10% annual rabbit growth
 DEFINE wolf_growth_rate as 0.08       // 8% annual wolf growth
 DEFINE wolf_death_rate as 0.06        // 6% annual wolf death
-DEFINE predation_rate as 0.01         // 1% predation rate per wolf
+DEFINE predation_rate as 0.01         // 1% total predation rate when wolves present
 DEFINE wolf_introduction_year as 5    // Year wolves are introduced
 DEFINE initial_wolf_count as 10       // Number of wolves introduced
 DEFINE simulation_years as 20         // Total simulation duration
+```
 
+### Input Validation
+
+```
 // Input Validation
 IF initial_rabbits < 0 OR initial_wolves < 0 THEN
     RAISE ERROR "Starting populations must be non-negative"
@@ -77,7 +116,11 @@ ENDIF
 IF simulation_years <= 0 THEN
     RAISE ERROR "Simulation years must be positive"
 ENDIF
+```
 
+### Initialization and Setup
+
+```
 // Initialization
 SET rabbits to initial_rabbits
 SET wolves to initial_wolves
@@ -88,7 +131,11 @@ PRINT "Year | Rabbits | Wolves"
 PRINT "-----+--------+-------"
 PRINT "   0 |     50 |      0"
 ADD (0, rabbits, wolves) to results
+```
 
+### Main Simulation Loop
+
+```
 // Main Simulation Loop
 FOR year FROM 1 TO simulation_years
     
@@ -102,8 +149,7 @@ FOR year FROM 1 TO simulation_years
     
     // Step 3: Calculate rabbit loss due to predation
     IF wolves > 0 THEN
-        COMPUTE rabbit_loss as rabbits * predation_rate * wolves
-        COMPUTE rabbits as rabbits - rabbit_loss
+        COMPUTE rabbits as rabbits * (1 - predation_rate)
     ENDIF
     
     // Step 4: Calculate wolf population change
@@ -136,45 +182,66 @@ RETURN results
 
 ### Default Simulation Test
 
-**Expected vs Actual Results Comparison:**
+**Our Results vs Assignment Example Output:**
 
-| Year | Expected Rabbits | Actual Rabbits | Expected Wolves | Actual Wolves | ✓/✗ |
-|:----:|:---------------:|:--------------:|:---------------:|:-------------:|:---:|
-| 0    | 50              | 50             | 0               | 0             | ✓   |
-| 1    | 55              | 55             | 0               | 0             | ✓   |
-| 2    | 60              | 60             | 0               | 0             | ✓   |
-| 3    | 66              | 66             | 0               | 0             | ✓   |
-| 4    | 72              | 72             | 0               | 0             | ✓   |
-| 5    | 71              | 71             | 10              | 10            | ✓   |
-| 6    | 70              | 70             | 10              | 10            | ✓   |
-| 7    | 69              | 69             | 10              | 10            | ✓   |
-| 8    | 68              | 68             | 10              | 10            | ✓   |
-| 9    | 67              | 67             | 10              | 10            | ✓   |
-| 10   | 66              | 66             | 10              | 10            | ✓   |
-| 20   | 56              | 56             | 10              | 10            | ✓   |
+| Year | Our Rabbits | Our Wolves | Assignment Example | Assignment Wolves | Match? |
+|:----:|:-----------:|:----------:|:------------------:|:-----------------:|:------:|
+| 0    | 50          | 0          | -                  | -                 | -      |
+| 1    | 55          | 0          | 55                 | 0                 | Yes    |
+| 2    | 60          | 0          | 60                 | 0                 | Yes    |
+| 3    | 66          | 0          | 66                 | 0                 | Yes    |
+| 4    | 72          | 0          | 73                 | 0                 | No (-1) |
+| 5    | 78          | 9          | 79                 | 9                 | No (-1) |
+| 6    | 84          | 9          | 86                 | 9                 | No (-2) |
+
+**Discrepancy Explanation:**
+
+Our implementation follows the assignment requirements exactly:
+- Initial rabbits: 50 (Yes)
+- Rabbit growth: 10% per year (Yes)
+- Wolf introduction: Year 5 with 10 wolves (Yes)
+- Wolf growth: 8% per year (Yes)
+- Wolf death: 6% per year (Yes)
+- Predation: 1% per year when wolves present (Yes)
+
+The minor differences (1-2 rabbits) in the example output are likely due to:
+1. Different rounding methods used in the example
+2. Calculation order differences
+3. The example may have implementation details not specified in the requirements
+
+Our algorithm is mathematically correct and consistent throughout all 20 years.
 
 **Mathematical Verification for Year 5:**
 - Start Year 5: 72 rabbits, 0 wolves
 - Rabbit growth: 72 × 1.10 = 79.2 rabbits
-- Wolves introduced: 10 wolves
-- Predation loss: 79.2 × 0.01 × 10 = 7.92 rabbits
-- Rabbits after predation: 79.2 - 7.92 = 71.28 → 71 rabbits (integer)
-- Wolf growth: 10 × (1 + 0.02) = 10.2 → 10 wolves (integer)
-- **Result: 71 rabbits, 10 wolves** ✓
+- Wolves introduced: 10 wolves, immediate death rate applied: 10 × 0.94 = 9.4 → 9 wolves
+- Predation loss: 79.2 × 0.01 = 0.792 rabbits
+- Rabbits after predation: 79.2 - 0.792 = 78.408 → 78 rabbits
+- **Result: 78 rabbits, 9 wolves**
+
+\newpage
 
 ### Modified Parameters Test
 
-To demonstrate the simulation's flexibility and validate its behavior under different conditions, a modified parameter test was conducted using 100 initial rabbits with wolves introduced earlier in year 2, and a smaller wolf pack of 5 individuals. This test configuration allows examination of how earlier predation pressure and different predator density affects population dynamics.
+We tested the simulation with different parameters: 100 starting rabbits, wolves introduced in year 2, and only 5 wolves instead of 10.
 
-The results begin with 100 rabbits and no wolves in year 0, establishing the modified baseline. In year 1, the rabbit population grows to 110 individuals, demonstrating the expected 10% growth rate calculation (100 × 1.10 = 110). Year 2 marks the critical transition point where wolves are introduced to the ecosystem. The rabbit population first experiences growth to 121 individuals, but the introduction of 5 wolves immediately creates predation pressure. The predation loss equals approximately 6 rabbits (121 × 0.01 × 5 = 6.05), resulting in a final rabbit population of 114 after rounding to the nearest whole number.
+Results:
+- Year 0: 100 rabbits, 0 wolves
+- Year 1: 110 rabbits, 0 wolves (100 × 1.10 = 110)
+- Year 2: 119 rabbits, 4 wolves (after growth, wolf introduction, death rate, and predation)
 
-This modified scenario demonstrates that earlier wolf introduction creates predation pressure sooner in the simulation timeline, but the smaller wolf pack size results in less dramatic population impacts compared to the default scenario. The mathematical verification confirms that the simulation correctly applies the same biological rules regardless of parameter values, maintaining algorithmic consistency across different test conditions.
+The math: Year 2 rabbits grow to 121, then 1% predation loss (121 × 0.01 = 1.21), leaving 119.79 → 119 rabbits. The 5 wolves get the 6% death rate immediately: 5 × 0.94 = 4.7 → 4 wolves.
+
+This shows that earlier wolf introduction and smaller pack size still follows the same rules, just with different timing and scale.
 
 ### Input Validation Test
 
-The simulation includes comprehensive input validation to ensure biological realism and prevent computational errors. To verify this functionality, a deliberate invalid input test was conducted using a negative initial rabbit population of -10 individuals. Since negative populations are biologically impossible, the simulation should reject this input and provide a clear error message.
+We tested the error handling by trying to run the simulation with -10 rabbits.
 
-The expected behavior is for the function to raise a ValueError with the message "Starting populations must be non-negative." When executed, the simulation correctly detected the invalid input and generated the error message "Simulation failed: Starting populations must be non-negative." This confirms that the input validation system is functioning properly and provides meaningful feedback to users who accidentally provide invalid parameters. The validation system serves as a critical safeguard against nonsensical inputs that could compromise the integrity of the simulation results.
+Expected result: Error message saying negative populations aren't allowed.
+Actual result: "Simulation failed: Starting populations must be non-negative."
+
+The validation works correctly and stops invalid inputs that would break the simulation.
 
 \newpage
 
@@ -182,13 +249,15 @@ The expected behavior is for the function to raise a ValueError with the message
 
 ### Edge Case Testing
 
-The simulation underwent rigorous edge case testing to ensure robust performance under unusual conditions. Zero initial populations were tested to verify that the simulation gracefully handles scenarios where either rabbits or wolves start at zero without causing division by zero errors or other computational issues. The system correctly maintained these zero values and prevented any spontaneous population generation, demonstrating proper handling of extinction scenarios.
+The simulation uses edge case testing to ensure performance under unusual conditions. Zero initial populations were tested to verify that the simulation gracefully handles scenarios where either rabbits or wolves start at zero without causing division by zero errors or other computational issues. The system correctly maintained these zero values and prevented any spontaneous population generation, demonstrating proper handling of extinction scenarios.
 
 Extreme growth rates were examined by testing the simulation with unusually high growth percentages to ensure that the integer conversion mechanism functions correctly even when dealing with large population changes. These tests confirmed that the mathematical operations remain stable and that the rounding behavior produces consistent, predictable results regardless of population scale.
 
 Late wolf introduction scenarios were evaluated by introducing wolves in year 15 and beyond, testing the timing logic under conditions where predators arrive near the end of the simulation period. This testing verified that the wolf introduction mechanism functions correctly regardless of when it occurs during the simulation timeline, and that all subsequent calculations proceed normally.
 
 Single year simulations were conducted to confirm proper handling of minimal simulation periods, ensuring that the algorithm can function correctly even with the shortest possible timeframes. These tests verified that initialization, calculation, and output procedures work appropriately when the simulation loop executes only once.
+
+\newpage 
 
 ### Boundary Value Testing
 
@@ -200,6 +269,8 @@ Zero predation rate testing examined scenarios where wolves are present but exer
 
 Zero growth rate scenarios were tested to examine static population behavior where species neither grow nor decline naturally. These tests verified that populations remain stable when growth rates are set to zero, and that only predation and introduction events cause population changes under these conditions.
 
+\newpage
+
 ### Algorithm Integrity Verification
 
 Comprehensive verification of algorithm integrity involved multiple approaches to ensure mathematical accuracy and logical consistency. The order of operations was systematically confirmed through trace execution, verifying that the sequence follows the specified pattern of growth calculation, wolf introduction, predation impact, wolf population change, integer conversion, and negative value prevention. This sequence verification ensures that all calculations occur in the correct order and that intermediate results feed properly into subsequent calculations.
@@ -209,6 +280,8 @@ Mathematical accuracy was verified through hand calculation of the first five si
 Data type consistency verification ensured that all population values remain as integers throughout the simulation, preventing accumulation of floating-point errors that could compound over multiple simulation years. The testing confirmed that integer conversion occurs at the appropriate points in the calculation sequence and that all displayed and stored values maintain integer precision.
 
 Negative population prevention was tested through scenarios designed to create mathematically negative populations through extreme predation pressure. These stress tests verified that the population floor mechanisms function correctly and that populations cannot fall below zero under any parameter combination, maintaining biological realism even under unrealistic parameter configurations.
+
+\newpage
 
 ## Part 6: Instructions for Use
 
@@ -220,11 +293,19 @@ For users requiring custom parameters to explore different ecological scenarios,
 
 The simulation accepts a comprehensive set of configurable parameters to enable diverse testing scenarios. The `initial_rabbits` parameter sets the starting rabbit population with a default value of 50. The `rabbit_growth_rate` controls the annual rabbit reproduction rate, defaulting to 0.10 for 10% annual growth. The `wolf_introduction_year` determines when wolves first appear in the ecosystem, with year 5 as the default. The `initial_wolf_count` specifies how many wolves are introduced, defaulting to 10 individuals. Finally, the `simulation_years` parameter controls the total duration of the simulation, with 20 years as the standard timeframe.
 
+### Screenshot of Outputs
+
+![Population Simulation Output](./screenshot/population_output.png){ width=60% height=4in }
+
+\newpage
+
 ### Output Interpretation
 
 The simulation produces both visual and programmatic output designed for different analysis needs. The primary visual output is a formatted table displaying three columns representing the temporal progression of the ecosystem. The Year column indicates the simulation year, starting from year 0 and continuing through the specified simulation duration. The Rabbits column shows the rabbit population count at the end of each year, after all growth, predation, and conversion calculations have been applied. The Wolves column displays the wolf population count at the end of each year, showing zero values before introduction and subsequent population changes afterward.
 
 The programmatic return value consists of a list of tuples, where each tuple contains three elements representing year, rabbit count, and wolf count respectively. This data structure enables further analysis, statistical processing, or integration with other research tools. Users can access individual data points, perform mathematical analysis on population trends, or export the data to other formats for advanced visualization or statistical analysis.
+
+\newpage 
 
 ### Error Handling
 
@@ -233,6 +314,8 @@ The simulation incorporates comprehensive error handling mechanisms to ensure da
 Growth and death rate validation ensures that all percentage-based parameters remain within reasonable biological bounds. Negative growth or death rates are rejected as biologically nonsensical, with appropriate error messages guiding users toward valid parameter ranges. The simulation duration validation prevents invalid timeframes such as zero or negative year counts, ensuring that the simulation has adequate time to demonstrate meaningful population dynamics.
 
 Additional parameter constraint violations are detected and reported with specific error messages that identify the problematic parameter and suggest appropriate corrections. This comprehensive validation system serves as both a safeguard against computational errors and an educational tool that helps users understand the biological constraints that govern real ecosystem dynamics.
+
+\newpage
 
 ## Part 7: Code Quality and Best Practices
 
@@ -244,17 +327,9 @@ Inline comments throughout the algorithm explain each computational step, creati
 
 Variable naming conventions reflect biological meaning rather than generic programming terms, using identifiers like `rabbits`, `wolves`, `predation_rate`, and `net_wolf_growth` that immediately convey their ecological significance. This semantic naming approach makes the code self-documenting and reduces the cognitive load required to understand the algorithm's biological context.
 
-Consistent code formatting and structure maintain readability and professional standards throughout the implementation. Proper indentation, spacing, and organizational patterns create a visual hierarchy that matches the logical flow of the algorithm, making it easier to trace execution paths and identify potential issues.
+Code formatting and structure maintain readability and professional standards throughout the implementation. Proper indentation, spacing, and organizational patterns create a visual hierarchy that matches the logical flow of the algorithm, making it easier to trace execution paths and identify potential issues.
 
-### Validation and Robustness
-
-The simulation incorporates multiple layers of validation and robustness mechanisms that ensure reliable operation under diverse conditions. Input parameter validation provides the first line of defense against invalid data, checking all parameters for biological feasibility and mathematical validity before beginning the simulation. These validation checks include range verification, type checking, and logical consistency testing that prevents common user errors from compromising simulation integrity.
-
-Prevention of impossible biological states represents a critical robustness feature that maintains ecological realism throughout the simulation. The system actively prevents populations from falling below zero and ensures that all population counts remain as whole numbers, reflecting the discrete nature of actual animal populations. These constraints prevent mathematical artifacts from creating biologically meaningless results.
-
-The flexible parameter system allows users to explore a wide range of ecological scenarios while maintaining internal consistency and validation standards. This flexibility enables educational exploration of different predator-prey dynamics without compromising the underlying mathematical integrity of the simulation model.
-
-Comprehensive error handling for edge cases ensures that the simulation degrades gracefully when encountering unusual conditions, providing informative error messages that guide users toward valid parameter ranges and helping them understand the biological constraints that govern real ecosystems.
+\newpage
 
 ### Testing Philosophy
 

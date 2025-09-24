@@ -8,7 +8,7 @@ def simulate_population(
     rabbit_growth_rate=0.10,    # 10% rabbit growth
     wolf_growth_rate=0.08,      # 8% wolf growth
     wolf_death_rate=0.06,       # 6% wolf death
-    predation_rate=0.01,        # 1% predation rate per wolf
+    predation_rate=0.01,        # 1% total predation rate when wolves present
     wolf_introduction_year=5,   # Year wolves are introduced
     initial_wolf_count=10,      # Number of wolves introduced
     simulation_years=20         # Total years to simulate
@@ -44,20 +44,19 @@ def simulate_population(
     for year in range(1, simulation_years + 1):
         # 1. Rabbit population growth
         rabbits = rabbits * (1 + rabbit_growth_rate)
-
-        # 2. Wolf introduction
+        
+        # 2. Wolf introduction and population change
         if year == wolf_introduction_year:
             wolves = initial_wolf_count
+            # Apply death rate immediately upon introduction
+            wolves = wolves * (1 - wolf_death_rate)
+        elif wolves > 0:
+            # Net growth: 8% growth - 6% death = 2% net growth
+            wolves = wolves * (1 + wolf_growth_rate - wolf_death_rate)
 
-        # 3. Rabbit loss due to predation
+        # 3. Rabbit loss due to predation (1% total when wolves present)
         if wolves > 0:
-            rabbit_loss = rabbits * predation_rate * wolves
-            rabbits = rabbits - rabbit_loss
-
-        # 4. Wolf population change
-        if wolves > 0:
-            net_wolf_growth = wolf_growth_rate - wolf_death_rate
-            wolves = wolves * (1 + net_wolf_growth)
+            rabbits = rabbits * (1 - predation_rate)
 
         # 5. Ensure population counts are whole numbers
         rabbits = int(rabbits)
