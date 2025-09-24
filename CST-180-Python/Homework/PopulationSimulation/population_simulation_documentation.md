@@ -197,11 +197,17 @@ RETURN results
 **Discrepancy Explanation:**
 
 Our implementation follows the assignment requirements exactly:
+
 - Initial rabbits: 50 (Yes)
+  
 - Rabbit growth: 10% per year (Yes)
+  
 - Wolf introduction: Year 5 with 10 wolves (Yes)
+  
 - Wolf growth: 8% per year (Yes)
+  
 - Wolf death: 6% per year (Yes)
+  
 - Predation: 1% per year when wolves present (Yes)
 
 The minor differences (1-2 rabbits) in the example output are likely due to:
@@ -209,17 +215,27 @@ The minor differences (1-2 rabbits) in the example output are likely due to:
 2. Calculation order differences
 3. The example may have implementation details not specified in the requirements
 
+\newpage 
+
+## Part 4: Test Data Processing and Results Validation
+
 Our algorithm is mathematically correct and consistent throughout all 20 years.
 
 **Mathematical Verification for Year 5:**
 - Start Year 5: 72 rabbits, 0 wolves
+  
 - Rabbit growth: 72 × 1.10 = 79.2 rabbits
+  
 - Wolves introduced: 10 wolves, immediate death rate applied: 10 × 0.94 = 9.4 → 9 wolves
+  
 - Predation loss: 79.2 × 0.01 = 0.792 rabbits
+  
 - Rabbits after predation: 79.2 - 0.792 = 78.408 → 78 rabbits
+  
 - **Result: 78 rabbits, 9 wolves**
 
 \newpage
+## Part 4: Test Data Processing and Results Validation
 
 ### Modified Parameters Test
 
@@ -227,7 +243,9 @@ We tested the simulation with different parameters: 100 starting rabbits, wolves
 
 Results:
 - Year 0: 100 rabbits, 0 wolves
+  
 - Year 1: 110 rabbits, 0 wolves (100 × 1.10 = 110)
+  
 - Year 2: 119 rabbits, 4 wolves (after growth, wolf introduction, death rate, and predation)
 
 The math: Year 2 rabbits grow to 121, then 1% predation loss (121 × 0.01 = 1.21), leaving 119.79 → 119 rabbits. The 5 wolves get the 6% death rate immediately: 5 × 0.94 = 4.7 → 4 wolves.
@@ -259,6 +277,8 @@ Single year simulations were conducted to confirm proper handling of minimal sim
 
 \newpage 
 
+## Part 5: Comprehensive Testing Strategy
+
 ### Boundary Value Testing
 
 Boundary value analysis focused on parameter extremes to identify potential failure points in the simulation logic. Wolf introduction in year 1 was tested to examine immediate predator presence scenarios, confirming that wolves can be introduced at the very beginning of the simulation period without disrupting the calculation sequence or causing initialization conflicts.
@@ -270,6 +290,8 @@ Zero predation rate testing examined scenarios where wolves are present but exer
 Zero growth rate scenarios were tested to examine static population behavior where species neither grow nor decline naturally. These tests verified that populations remain stable when growth rates are set to zero, and that only predation and introduction events cause population changes under these conditions.
 
 \newpage
+
+## Part 5: Comprehensive Testing Strategy
 
 ### Algorithm Integrity Verification
 
@@ -299,6 +321,8 @@ The simulation accepts a comprehensive set of configurable parameters to enable 
 
 \newpage
 
+## Part 6: Instructions for Use
+
 ### Output Interpretation
 
 The simulation produces both visual and programmatic output designed for different analysis needs. The primary visual output is a formatted table displaying three columns representing the temporal progression of the ecosystem. The Year column indicates the simulation year, starting from year 0 and continuing through the specified simulation duration. The Rabbits column shows the rabbit population count at the end of each year, after all growth, predation, and conversion calculations have been applied. The Wolves column displays the wolf population count at the end of each year, showing zero values before introduction and subsequent population changes afterward.
@@ -306,6 +330,8 @@ The simulation produces both visual and programmatic output designed for differe
 The programmatic return value consists of a list of tuples, where each tuple contains three elements representing year, rabbit count, and wolf count respectively. This data structure enables further analysis, statistical processing, or integration with other research tools. Users can access individual data points, perform mathematical analysis on population trends, or export the data to other formats for advanced visualization or statistical analysis.
 
 \newpage 
+
+## Part 6: Instructions for Use
 
 ### Error Handling
 
@@ -330,6 +356,7 @@ Variable naming conventions reflect biological meaning rather than generic progr
 Code formatting and structure maintain readability and professional standards throughout the implementation. Proper indentation, spacing, and organizational patterns create a visual hierarchy that matches the logical flow of the algorithm, making it easier to trace execution paths and identify potential issues.
 
 \newpage
+## Part 7: Code Quality and Best Practices
 
 ### Testing Philosophy
 
