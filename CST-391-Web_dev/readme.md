@@ -1,11 +1,25 @@
-# CST-391: JavaScript Web Application Development
-### Welcome to the CST-391 repository! 
+# CST-391 — JavaScript Web Application Development
 
-### This repository contains all the materials for the CST-391: JavaScript Web Application Development.
+Full-stack JavaScript development using Node.js/Express backend, Angular frontend, and REST APIs with MySQL/MongoDB databases.
 
-### **docs**: contains all documentation for activities and milestone ( screen shots,  research questions, etc). 
+## What's here
+- `docs/`: Documentation, screenshots, research questions, and milestone artifacts
+- `src/`: Source code for all activities and milestone projects
 
-### **src**: contains all src code for all activites and milestone
+## Major concepts
+- **Node.js/Express**: server setup, middleware, routing, static files
+- **RESTful APIs**: CRUD endpoints, HTTP methods, status codes, Postman testing
+- **Angular**: components, services, routing, forms, HTTP client, data binding
+- **Database integration**: MySQL/MongoDB connections, ORM patterns, schema design
+- **Full-stack architecture**: separation of concerns, API design, frontend/backend communication
+
+## How to run
+- **Backend (Node/Express)**: `cd src/activityX/backend && npm install && npm start`
+- **Frontend (Angular)**: `cd src/activityX/frontend && npm install && ng serve`
+- **Database**: Configure connection strings in backend config files
+
+## Key milestones
+- **Milestone 3**: GameCube store with REST API, Angular + React frontends, complete CRUD operations
 
 
 | Activity                              | Description                                                                                      |

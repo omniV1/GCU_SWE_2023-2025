@@ -76,5 +76,17 @@ Culminating project implementing enterprise-level web applications using all lea
 - MongoDB
 - Git
 
+## Major concepts distilled
+- Dependency Injection and IoC: component wiring via `@Configuration/@Bean` and `@Component/@Service/@Repository`
+- Web MVC: controllers, request mapping, validation, exception handling, view models
+- Persistence: Spring Data repositories (JDBC/MongoDB), query derivation, transactions
+- Security: authentication providers, authorization, CSRF, method security
+- Microservices: service discovery, config, gateway, resilience patterns
+
+## How to run (typical Spring Boot app)
+- From a topic folder under `src/TopicX-*`:
+  - `mvn spring-boot:run` (or import into IDE and run the main `@SpringBootApplication`)
+- Configure application properties via `application.yml` or environment variables
+
 ---
 © 2025 Owen Lindsey - Grand Canyon University

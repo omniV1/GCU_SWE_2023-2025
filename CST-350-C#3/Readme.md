@@ -1,29 +1,29 @@
-### CST-350 Programming in C# III Directory
+# CST-350 — Programming in C# III (ASP.NET Core)
 
-| Directory | Subfolder | File | Description |
-|-----------|-----------|------|-------------|
-| CST-350 | | | Main project directory |
-| | github | | GitHub-related files |
-| | .vs | | Visual Studio configuration folder |
-| | Code | | Main code directory |
-| | Topic1 | | Folder for MVC basics and page creation |
-| | | ASPCoreFirst... | Initial ASP.NET Core project file |
-| | | ASPCoreFirstA... | Extended ASP.NET Core project file |
-| | Topic2 | | Folder for user authentication and session management |
-| | | RegisterAndL... | Login and registration functionality |
-| | | RegisterAndL... | Additional login/registration file |
-| | Documentation | | Documentation directory |
-| | Topic1 | | Folder for MVC architecture and basic routing docs |
-| | | Activity1 | Folder for Activity 1 documentation |
-| | | | CST-350 Acti... | PDF detailing MVC basics and routing |
-| | | | Screenshot 20... | Multiple screenshots of Activity 1 results |
-| | Topic2 | | Folder for authentication and session management docs |
-| | | Activity2 | Folder for Activity 2 documentation |
-| | | | CST-350 Acti... | PDF on login/registration system |
-| | | | CST-350-RS-T... | Additional registration/login notes |
-| | | | Screenshot 20... | Screenshots of login and registration process |
-| | Notes | | Notes directory |
-| | | MVC.md | Notes on MVC architecture concepts |
-| | | MVCDiagram.p... | Visual representation of MVC structure |
-| | README.md | Project overview and setup instructions |
+Web application development using ASP.NET Core MVC, covering controllers, views, models, dependency injection, authentication, and session management.
+
+## What’s here
+- `Code/` by topic:
+  - Topic 1: MVC basics, routing, controllers, views
+  - Topic 2: Authentication, authorization, sessions, cookies
+- `Documentation/`: PDFs and screenshots per activity
+- `Notes/`: MVC notes and diagrams
+- `CST-350-Milestone/`: Course milestone web app
+
+## Major concepts
+- MVC pattern: controllers, strongly-typed views, layouts/partials, tag helpers
+- Routing: conventional vs attribute routing
+- Model binding & validation: data annotations, server-side validation, antiforgery
+- Dependency Injection: registering services, configuration, logging
+- Identity & Auth: cookie auth, ASP.NET Core Identity, roles/policies, session state
+
+## How to run
+- Prereqs: .NET 7 SDK, Visual Studio 2022 or VS Code + C# extension
+- Open the solution or project in `Code/TopicX/...` or `CST-350-Milestone/`
+- Configure user secrets or appsettings for any connection strings
+- Run: `dotnet run` or F5 in Visual Studio
+
+## Highlights
+- Implemented login/registration flows with protected routes
+- Demonstrated session storage and model validation patterns
 
