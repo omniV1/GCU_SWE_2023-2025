@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Class Notes/Password Hashing and Cracking.md",
-                "mode": "source",
+                "file": "Assignments/Activity 5 Spring Security Configuration.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Password Hashing and Cracking"
+              "title": "Activity 5 Spring Security Configuration"
             }
           }
         ],
@@ -175,7 +175,6 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "voice:Voice": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -184,13 +183,23 @@
       "command-palette:Open command palette": false,
       "bases:Create new base": false,
       "audio-recorder:Start/stop recording": false,
-      "markdown-importer:Open format converter": false
+      "markdown-importer:Open format converter": false,
+      "voice:Voice": false
     }
   },
   "active": "67fc3188f03351f8",
   "lastOpenFiles": [
-    "Pasted image 20250918203936.png",
-    "Pasted image 20250918203833.png",
+    "Assignments/Activity 5 Spring Security Configuration.pdf",
+    "imgs/Pasted image 20250929120936.png",
+    "imgs/Pasted image 20250929120840.png",
+    "imgs/Pasted image 20250929120758.png",
+    "imgs/Pasted image 20250929120338.png",
+    "imgs/Pasted image 20250929120243.png",
+    "imgs/Pasted image 20250929120052.png",
+    "imgs/Pasted image 20250929120029.png",
+    "imgs/Pasted image 20250929115909.png",
+    "imgs/Pasted image 20250929115839.png",
+    "imgs/Pasted image 20250929115833.png",
     "Class Notes/blockchaindemo/target/classes/com/block/Block.class",
     "Class Notes/blockchaindemo/src/main/java/com/block/Block.java",
     "Class Notes/blockchaindemo/target/test-classes/com/block/AppTest.class",
@@ -201,15 +210,6 @@
     "Class Notes/blockchaindemo/target/classes/com",
     "Class Notes/blockchaindemo/target/test-classes",
     "Class Notes/blockchaindemo/target/classes",
-    "Pasted image 20250918202205.png",
-    "Pasted image 20250918202131.png",
-    "Pasted image 20250918201515.png",
-    "Pasted image 20250918201308.png",
-    "Pasted image 20250918200131.png",
-    "Pasted image 20250918200054.png",
-    "Pasted image 20250918195746.png",
-    "Pasted image 20250918195617.png",
-    "Pasted image 20250918195609.png",
     "Class Notes/Encryption Turn-in.md",
     "Class Notes/Password Hashing and Cracking.md",
     "().md",
