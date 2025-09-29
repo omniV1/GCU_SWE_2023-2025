@@ -1,0 +1,1404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.3.0</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.shadsluiter</groupId>
+	<artifactId>ordersapp</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>ordersapp</name>
+	<description>Demo project for Spring Boot</description>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	 <dependencies>
+    <!-- Spring Boot Starters -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    
+   <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency> 
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-thymeleaf</artifactId>        
+    </dependency>
+
+    
+    <dependency>
+        <groupId>nz.net.ultraq.thymeleaf</groupId>
+        <artifactId>thymeleaf-layout-dialect</artifactId>
+        <version>3.0.0</version>
+    </dependency>
+
+
+   <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-jdbc</artifactId>
+</dependency>
+
+
+    
+    <!-- MySQL Driver -->
+	<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+<dependency>
+    <groupId>com.mysql</groupId>
+    <artifactId>mysql-connector-j</artifactId>
+    <version>8.4.0</version>
+</dependency>
+
+
+    <!-- Spring Boot DevTools -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+        <scope>runtime</scope>
+        <optional>true</optional>
+    </dependency>
+
+    <!-- Test -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+ 	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+package com.shadsluiter.ordersapp;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class OrdersappApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
+<!-- login.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Search</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <h1>Search Orders</h1>
+        <form th:action="@{/orders/search}" th:object="${orderSearch}" method="post">
+            <label for="query">Search Query:</label>
+            <input type="text" id="searchString" th:field="*{searchString}" required/>
+            <br/>
+            <button type="submit">Search</button>
+        </form>
+        <div th:if="${error}">
+            <p th:text="${error}"></p>
+        </div>
+    </div>
+</body>
+</html>
+<!-- create-order.html -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Create Order</title>
+</head>
+<body>
+    <div layout:fragment="content">
+    <h1>Create Order</h1>
+    <form th:action="@{/orders/create}" th:object="${order}" method="post">
+        
+        <label for="customerid">Customer ID:</label>
+        <input type="text" id="customerid" th:field="*{customerid}"/>
+        <br/>
+        <label for="date">Date:</label>
+        <input type="date" id="date" th:field="*{date}"/>
+        <br/>
+        <label for="notes">Notes:</label>
+        <textarea id="notes" th:field="*{notes}"></textarea>
+        <br/>
+        <button type="submit">Create Order</button>
+    </form>
+</body>
+</html>
+
+<!-- end of file --><!-- home.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <h1>Welcome</h1>
+ 
+    </div>
+</body>
+</html>
+
+<!-- end of file --><!-- Edit Order Form -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Edit Order</title>
+</head>
+<body>
+    <div layout:fragment="content">
+    <h1>Edit Order</h1>
+    <form th:action="@{/orders/edit/{id}(id=${order.id})}" th:object="${order}" method="post">
+        <label for="date">Date:</label>
+        <input type="date" id="date" th:field="*{date}"/>
+        <br/>
+        <label for="customerid">Customer ID:</label>
+        <input type="text" id="customerid" th:field="*{customerid}"/>
+        <br/>
+        <label for="notes">Notes:</label>
+        <textarea id="notes" th:field="*{notes}"></textarea>
+        <br/>
+        <button type="submit">Update Order</button>
+    </form>
+</body>
+</html>
+
+<!-- end of file --><!-- layout.html -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title th:text="${pageTitle}"></title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a th:href="@{/users/}">Home</a></li>
+            <li><a th:href="@{/users/register}">Register</a></li>
+            <li><a th:href="@{/users/loginForm}">Login</a></li>
+            <li><a th:href="@{/users/logout}">Logout</a></li> 
+            <li><a th:href="@{/orders}">Orders</a></li> 
+            <li><a th:href="@{/orders/create}">Create Order</a></li> 
+             
+        </ul>
+    </nav>
+    <div layout:fragment="content">
+        <!-- Content will be inserted here -->
+    </div>
+</body>
+</html>
+<!-- end of file --><!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <h1>Register</h1>
+        <form th:action="@{/users/register}" th:object="${user}" method="post">
+            <label for="userName">Login Name:</label>
+            <input type="text" id="userName" th:field="*{userName}" required/>
+            <br/>
+            <label for="password">Password:</label>
+            <input type="password" id="password" th:field="*{password}" required/>
+            <br/>
+            <button type="submit">Register</button>
+        </form>
+        <div th:if="${error}">
+            <p th:text="${error}"></p>
+        </div>
+    </div>
+</body>
+</html>
+<!-- login.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <h1>Login</h1>
+        <form th:action="@{/users/login}" th:object="${user}" method="post">
+            <label for="userName">Login Name:</label>
+            <input type="text" id="userName" th:field="*{userName}" required/>
+            <br/>
+            <label for="password">Password:</label>
+            <input type="password" id="password" th:field="*{password}" required/>
+            <br/>
+            <button type="submit">Login</button>
+        </form>
+        <div th:if="${error}">
+            <p th:text="${error}"></p>
+        </div>
+    </div>
+</body>
+</html>
+<!-- orders.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Orders</title>
+</head>
+<body>
+    <div layout:fragment="content">
+    <h1>Orders</h1>
+    <h2 th:text="${message}"></h2>
+    <a href="/orders/create">Create New Order</a>
+
+    <a href="/orders/search">Search</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Customer ID</th>
+                <th>Notes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}">1</td> 
+                <td th:text="${#dates.format(order.date, 'dd-MMM-yyyy')}">2024-01-01</td>
+                <td th:text="${order.customerid}">10</td>
+                <td th:text="${order.notes}">Sample note</td>
+                <td>
+                    <a th:href="@{/orders/edit/{id}(id=${order.id})}">Edit</a>
+                    <a th:href="@{/orders/delete/{id}(id=${order.id})}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</body>
+</html>
+package com.shadsluiter.ordersapp.models;
+
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+ 
+// orderentity is used to interact with the database. ordermodel is used in the controller
+
+public class OrderModel {
+
+    private String id;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date date;
+    private String customerid;
+    private String notes;
+
+    public OrderModel() {
+    }
+
+    public OrderModel(String id, Date date, String customerid, String notes) {
+        this.id = id;
+        this.date = date;
+        this.customerid = customerid;
+        this.notes = notes;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date2) {
+        this.date = date2;
+    }
+
+    public String getCustomerid() {
+        return customerid;
+    }
+
+    public void setCustomerid(String id) {
+        this.customerid = id;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+    
+}
+package com.shadsluiter.ordersapp.models;
+
+public class Converters {
+    
+    public static UserEntity userModelToUserEntity(UserModel userModel) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId(Long.parseLong(userModel.getId()));
+        userEntity.setUserName(userModel.getUserName());
+        userEntity.setPassword(userModel.getPassword());
+        return userEntity;
+    }
+
+    public static UserModel userEntityToUserModel(UserEntity userEntity) {
+        UserModel userModel = new UserModel();
+        userModel.setId(String.valueOf(userEntity.getId()));
+        userModel.setUserName(userEntity.getUserName());
+        userModel.setPassword(userEntity.getPassword());
+        return userModel;
+    }
+
+    
+}
+package com.shadsluiter.ordersapp.models;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class UserEntity {
+
+    private Long id;
+    private String userName;
+    private String password;
+    private boolean enabled;
+    private boolean accountNonExpired;
+    private boolean credentialsNonExpired;
+    private boolean accountNonLocked;
+    private Set<String> roles = new HashSet<>(); // Initialize roles
+
+    // Constructor, getters, and setters
+    public UserEntity() {
+    }
+
+    public UserEntity(Long id, String userName, String password) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+        this.roles = new HashSet<>();
+    }
+
+    // Getters and setters...
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String loginName) {
+        this.userName = loginName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean isAccountNonExpired() {
+        return accountNonExpired;
+    }
+
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
+
+    public boolean isCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
+    }
+
+    public boolean isAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
+    public Set<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
+    }
+}
+package com.shadsluiter.ordersapp.models;
+
+public class OrderSearch {
+    private String searchString;
+
+    public OrderSearch() {
+        searchString = "";
+    }
+
+    public OrderSearch(String searchString) {
+        this.searchString = searchString;
+    }
+
+    public String getSearchString() {
+        return searchString;
+    }
+
+    public void setSearchString(String searchString) {
+        this.searchString = searchString;
+    }  
+    
+}
+package com.shadsluiter.ordersapp.models;
+
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+ 
+// orderentity is used to interact with the database. ordermodel is used in the controller
+
+public class OrderEntity {
+
+    private Long id;
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date date;
+    private String customerid;
+    private String notes;
+
+    public OrderEntity() {
+    }
+
+    public OrderEntity(Long id, Date date, String customerid, String notes) {
+        this.id = id;
+        this.date = date;
+        this.customerid = customerid;
+        this.notes = notes;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date2) {
+        this.date = date2;
+    }
+
+    public String getCustomerid() {
+        return customerid;
+    }
+
+    public void setCustomerid(String id) {
+        this.customerid = id;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+    
+}
+package com.shadsluiter.ordersapp.models;
+
+import java.util.Set;
+
+public class UserModel {
+
+    // entity uses Long for id, model uses String. Using String for is allows for MongoDB and MySQL compatibility
+    private String id;
+    private String userName;
+    private String password;
+    private boolean enabled;
+    private boolean accountNonExpired;
+    private boolean credentialsNonExpired;
+    private boolean accountNonLocked;
+    private Set<String> roles;
+
+    public UserModel() {
+    }
+
+    public UserModel(String id, String userName, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Set<String> roles) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+        this.enabled = enabled;
+        this.accountNonExpired = accountNonExpired;
+        this.credentialsNonExpired = credentialsNonExpired;
+        this.accountNonLocked = accountNonLocked;
+        this.roles = roles;
+    }
+
+    // Getters and setters
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean isAccountNonExpired() {
+        return accountNonExpired;
+    }
+
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
+
+    public boolean isCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
+    }
+
+    public boolean isAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
+    public Set<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
+    }
+}
+package com.shadsluiter.ordersapp;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class OrdersappApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(OrdersappApplication.class, args);
+	}
+
+}
+package com.shadsluiter.ordersapp.service;
+
+import com.shadsluiter.ordersapp.data.UserRepository;
+import com.shadsluiter.ordersapp.models.UserEntity;
+import com.shadsluiter.ordersapp.models.UserModel;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+
+    private final UserRepository userRepository; 
+
+    @Autowired
+    public UserService(UserRepository userRepository ) {
+        this.userRepository = userRepository; 
+    }
+ 
+
+    public UserModel save(UserModel userModel) { 
+        UserEntity userEntity = convertToEntity(userModel);
+        UserEntity savedUser = userRepository.save(userEntity);
+        return convertToModel(savedUser);
+    }
+
+    // will be replaced by loadUserByUsername in the UserDetailsService using Spring Security
+    public UserModel findByLoginName(String loginName) {
+
+       UserEntity userEntity = userRepository.findByLoginName(loginName);
+        if (userEntity == null) {
+            return null;
+        }
+       
+        return convertToModel(userEntity);
+    }
+
+    // will be replaced when using Spring Security
+    public boolean verifyPassword(UserModel user) {
+        UserEntity userEntity = userRepository.findByLoginName(user.getUserName());
+        if (userEntity == null) {
+            return false;
+        }
+        return userEntity.getPassword().equals(user.getPassword());
+    }
+
+
+    public UserModel findById(String id) {
+        UserEntity userEntity = userRepository.findById(Long.parseLong(id));
+        return convertToModel(userEntity);
+    }
+
+    public void delete(String id) {
+        userRepository.deleteById(Long.parseLong(id));
+    }
+
+    public List<UserModel> findAll() {
+        List<UserEntity> userEntities = userRepository.findAll();
+        List<UserModel> userModels =  convertToModels(userEntities);
+        return userModels;
+    }  
+
+    private List<UserModel> convertToModels(List<UserEntity> userEntities) {
+        List<UserModel> userModels = new ArrayList<>();
+        for (UserEntity userEntity : userEntities) {
+            userModels.add(convertToModel(userEntity));
+        }
+        return userModels;
+    }
+ 
+    private UserModel convertToModel(UserEntity userEntity) {
+        UserModel userModel = new UserModel();
+        userModel.setId(userEntity.getId().toString());
+        userModel.setUserName(userEntity.getUserName());
+        userModel.setPassword(userEntity.getPassword());
+        userModel.setEnabled(userEntity.isEnabled());
+        userModel.setAccountNonExpired(userEntity.isAccountNonExpired());
+        userModel.setCredentialsNonExpired(userEntity.isCredentialsNonExpired());
+        userModel.setAccountNonLocked(userEntity.isAccountNonLocked());
+        userModel.setRoles(userEntity.getRoles());
+        return userModel;
+    }
+
+    private UserEntity convertToEntity(UserModel userModel) {
+        UserEntity userEntity = new UserEntity();
+        if (userModel.getId() != null) {
+            userEntity.setId(Long.parseLong(userModel.getId()));
+        }
+        userEntity.setUserName(userModel.getUserName());
+        userEntity.setPassword(userModel.getPassword()); 
+          
+        userEntity.setEnabled( userModel.isEnabled());
+        userEntity.setAccountNonExpired(userModel.isAccountNonExpired());
+        userEntity.setCredentialsNonExpired(userModel.isCredentialsNonExpired());
+        userEntity.setAccountNonLocked(userModel.isAccountNonLocked());
+        userEntity.setRoles(userModel.getRoles());
+        return userEntity;
+
+    } 
+   
+}
+package com.shadsluiter.ordersapp.service;
+
+import com.shadsluiter.ordersapp.data.OrderRepository;
+import com.shadsluiter.ordersapp.data.OrderRepositoryInterface;
+import com.shadsluiter.ordersapp.models.OrderEntity;
+import com.shadsluiter.ordersapp.models.OrderModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class OrderService {
+
+    private final OrderRepositoryInterface orderRepository;
+
+    @Autowired
+    public OrderService(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
+
+    public List<OrderModel> findAll() {
+        List<OrderEntity> orderEntities = orderRepository.findAll();
+        return convertToModels(orderEntities);
+
+    }
+
+    public List<OrderModel> findByCustomerid(String customerid) {
+        List<OrderEntity> orderEntities = orderRepository.findByCustomerid(Long.valueOf(customerid));
+        return convertToModels(orderEntities);
+    }
+
+    public List<OrderModel> findByNotes(String searchString) {
+        List<OrderEntity> orderEntities = orderRepository.findByNote(searchString);
+        return convertToModels(orderEntities);
+    }
+
+    public OrderModel save(OrderModel order) {
+        OrderEntity orderEntity = convertToEntity(order);
+        OrderEntity savedOrder = orderRepository.save(orderEntity);
+        return convertToModel(savedOrder);
+    }
+
+    public void delete(String id) {
+        orderRepository.deleteById(Long.valueOf(id));
+    }
+
+    public OrderModel updateOrder(String id, OrderModel order) {
+        order.setId(id);
+        return save(order);
+    }
+
+    public OrderModel findById(String id) {
+        OrderEntity orderEntity = orderRepository.findById(Long.valueOf(id));
+        return convertToModel(orderEntity);
+    }
+
+    private List<OrderModel> convertToModels(List<OrderEntity> orderEntities) {
+        List<OrderModel> orderModels = new ArrayList<>();
+        for (OrderEntity orderEntity : orderEntities) {
+            orderModels.add(convertToModel(orderEntity));
+        }
+        return orderModels;
+    }
+
+    private OrderModel convertToModel(OrderEntity orderEntity) {
+        return new OrderModel(
+                orderEntity.getId().toString(),
+                orderEntity.getDate(),
+                orderEntity.getCustomerid().toString(),
+                orderEntity.getNotes()
+        );
+    }
+
+    private List<OrderEntity> convertToEntities(List<OrderModel> orderModels) {
+        List<OrderEntity> orderEntities = new ArrayList<>();
+        for (OrderModel orderModel : orderModels) {
+            orderEntities.add(convertToEntity(orderModel));
+        }
+        return orderEntities;
+    }
+
+    private OrderEntity convertToEntity(OrderModel orderModel) {
+        OrderEntity orderEntity = new OrderEntity();
+        if (orderModel.getId() != null) {
+            orderEntity.setId(Long.parseLong(orderModel.getId()));
+        }
+        orderEntity.setDate(orderModel.getDate());
+        orderEntity.setCustomerid(orderModel.getCustomerid());
+        orderEntity.setNotes(orderModel.getNotes());
+        return orderEntity;
+    }
+
+
+}
+package com.shadsluiter.ordersapp.controllers; 
+
+    import com.shadsluiter.ordersapp.models.OrderModel;
+import com.shadsluiter.ordersapp.models.OrderSearch;
+import com.shadsluiter.ordersapp.service.OrderService;
+
+import jakarta.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.stereotype.Controller;
+    import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*; 
+
+    import java.util.List;
+    @Controller
+    @RequestMapping("/orders")
+    public class OrdersController {
+    
+        // orderService allows the controller to interact with the database and orders table
+        private final OrderService orderService;
+    
+        // inject the orderService into the controller using constructor injection
+        @Autowired
+        public OrdersController(OrderService orderService) {
+            this.orderService = orderService;
+        }
+    
+       // get all orders from the database and display them in orders.html
+        @GetMapping
+        public String getAllOrders(Model model) {
+            List<OrderModel> orders = orderService.findAll();
+            model.addAttribute("orders", orders);
+            model.addAttribute("message", "Showing all orders");
+            model.addAttribute("pageTitle", "Orders");
+            return "orders";
+        }
+
+        // search form for orders
+        @GetMapping("/search")
+        public String searchForm(Model model) {
+            model.addAttribute("orderSearch", new OrderSearch()); 
+            return "searchForm";
+        }
+
+        // process search
+        @PostMapping("/search")
+        public String search(@ModelAttribute @Valid OrderSearch orderSearch, BindingResult result, Model model) {
+            if (result.hasErrors()) {
+                return "searchForm";
+            }
+            List<OrderModel> orders = orderService.findByNotes(orderSearch.getSearchString());
+            model.addAttribute("message", "Search results for " + orderSearch.getSearchString());
+            model.addAttribute("orders", orders);
+            return "orders";
+        }
+    
+        // show the create order form
+        @GetMapping("/create")
+        public String showCreateOrderForm(Model model) {
+            model.addAttribute("order", new OrderModel());
+            model.addAttribute("pageTitle", "Create Order");
+            return "create-order";
+        }
+    
+        // process the form submission and save the order to the database
+        @PostMapping("/create")
+        public String createOrder(@ModelAttribute @Valid OrderModel order, BindingResult result, Model model) {
+            if (result.hasErrors()) {
+                model.addAttribute("pageTitle", "Create Order");
+                return "create-order";
+            }
+            orderService.save(order);
+            // show all orders after creating a new order
+            return "redirect:/orders";
+        }
+    
+        // get orders by customer id. Display them in orders.html
+        @GetMapping("/customer/{customerid}")
+        public String getOrdersByCustomerId(@PathVariable String customerid, Model model) {
+            List<OrderModel> orders = orderService.findByCustomerid(customerid);
+            model.addAttribute("orders", orders);
+            return "orders";
+        }
+    
+        // show the edit order form
+        @GetMapping("/edit/{id}")
+        public String showEditOrderForm(@PathVariable String id, Model model) {
+            OrderModel order = orderService.findById(id);
+            // fill the form with the order details of order with id
+            model.addAttribute("order", order);
+            return "edit-order";
+        }
+    
+        // process the form submission and update the order in the database
+        @PostMapping("/edit/{id}")
+        public String updateOrder(@PathVariable String id, @ModelAttribute OrderModel order, Model model) {
+            OrderModel updatedOrder = orderService.updateOrder(id, order);
+            model.addAttribute("order", updatedOrder);
+            return "redirect:/orders";
+        }
+    
+        // delete the order from the database
+        @GetMapping("/delete/{id}")
+        public String deleteOrder(@PathVariable String id) {
+            orderService.delete(id);
+            // show all orders after deleting an order
+            return "redirect:/orders";
+        }
+}
+
+package com.shadsluiter.ordersapp.controllers;
+
+import com.shadsluiter.ordersapp.models.UserModel;
+import com.shadsluiter.ordersapp.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+@RequestMapping("/users")
+public class UsersController {
+
+    // userservice allows the controller to interact with the database and users table
+    @Autowired
+    private UserService userService;
+
+   
+    private static final Logger logger = LoggerFactory.getLogger(UsersController.class);
+
+    @GetMapping("/")
+    public String home() {
+        return "home";
+    }
+
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("user", new UserModel());
+        return "register";
+    }
+
+    // response to the form submission. create a new user and save it to the database
+    @PostMapping("/register")
+    public String registerUser(@ModelAttribute UserModel user, Model model) {
+        UserModel existingUser = userService.findByLoginName(user.getUserName());
+        if (existingUser != null) {
+            model.addAttribute("error", "User already exists!");
+            model.addAttribute("user", user);
+            return "register";
+        }
+      
+        setDefaultValues(user);
+        // save the user to the database
+
+        userService.save(user);
+        logger.info("User registered: {}", user.getUserName());
+        model.addAttribute("user", user);
+        return "redirect:/users/loginForm";
+    }
+
+    // if register form does not have these values, set default values here
+    private void setDefaultValues(UserModel user) {
+        // set default values for the user
+        user.setEnabled(true);
+        user.setAccountNonExpired(true);
+        user.setCredentialsNonExpired(true);
+        user.setAccountNonLocked(true);
+    }
+
+    // can use spring security instead of this method to authenticate users
+    @PostMapping("/login")
+    public String login(@ModelAttribute UserModel user, Model model) {
+        UserModel existingUser = userService.findByLoginName(user.getUserName());
+        // first check if the user exists
+        if (existingUser == null) {
+            model.addAttribute("error", "User not found!");
+            model.addAttribute("user", user);
+            return "login";
+        }
+        // user exists, check the password
+        if (!userService.verifyPassword(user) ){
+            model.addAttribute("error", "Invalid password!");
+            model.addAttribute("user", user);
+            return "login";
+        }
+        // user exists and password is correct redirect to the home page
+        return "redirect:/users/";
+    }
+
+    // show the login form.
+    @GetMapping("/loginForm")
+    public String showLoginForm(Model model) {
+        model.addAttribute("user", new UserModel());
+        model.addAttribute("pageTitle", "Login");
+        return "login";
+    }
+ 
+    @GetMapping("/logout")
+    public String logout() {
+        return "redirect:/users/loginForm";
+    }
+}
+package com.shadsluiter.ordersapp.data;
+
+import com.shadsluiter.ordersapp.models.OrderEntity;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+@Repository
+public class OrderRepository implements OrderRepositoryInterface {
+
+    private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public OrderRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Override
+    public List<OrderEntity> findByCustomerid(Long customerid) {
+        String sql = "SELECT * FROM orders WHERE customerid = " + customerid;
+         List<OrderEntity> result =  jdbcTemplate.query(sql, new OrderModelRowMapper());
+            return result;
+    }
+
+    @Override
+    public List<OrderEntity> findAll() {
+        String sql = "SELECT * FROM orders";
+        return jdbcTemplate.query(sql, new OrderModelRowMapper());
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        String sql = "DELETE FROM orders WHERE id = " + id;
+        jdbcTemplate.update(sql);
+    }
+
+    @Override
+    public OrderEntity save(OrderEntity order) {
+        if (order.getId() == null) {
+            String sql = "INSERT INTO orders (date, customerid, notes) " +
+                         "VALUES ('" + order.getDate() + "', " + order.getCustomerid() + ", '" + order.getNotes() + "')";
+            jdbcTemplate.update(sql);
+            Long id = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Long.class);
+            order.setId(id);
+        } else {
+            String sql = "UPDATE orders SET date = '" + order.getDate() + "', customerid = " + order.getCustomerid() + ", notes = '" + order.getNotes() + 
+                         "' WHERE id = " + order.getId();
+            jdbcTemplate.update(sql);
+        }
+        return order;
+    }
+
+    @Override
+    public OrderEntity findById(Long id) {
+        String sql = "SELECT * FROM orders WHERE id = " + id;
+        return jdbcTemplate.queryForObject(sql, new OrderModelRowMapper());
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        String sql = "SELECT COUNT(*) FROM orders WHERE id = " + id;
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
+        return count != null && count > 0;
+    }
+
+    @Override
+    public long count() {
+        String sql = "SELECT COUNT(*) FROM orders";
+        Long result = jdbcTemplate.queryForObject(sql, Long.class);
+        if (result == null) {
+            return 0;
+        }
+        return result;
+    }
+
+    @Override
+    public void delete(OrderEntity order) {
+        deleteById(order.getId());
+    }
+
+    @Override
+    public void deleteAll() {
+        String sql = "DELETE FROM orders";
+        jdbcTemplate.update(sql);
+    }
+
+    @Override
+    public void deleteAll(Iterable<? extends OrderEntity> orders) {
+        for (OrderEntity order : orders) {
+            delete(order);
+        }
+    }
+ 
+
+    @Override
+    public List<OrderEntity> saveAll(Iterable<OrderEntity> orders) {
+        for (OrderEntity order : orders) {
+            save(order);
+        }
+        return (List<OrderEntity>) orders;
+    }
+
+    private static class OrderModelRowMapper implements RowMapper<OrderEntity> {
+        @Override
+        public OrderEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
+            OrderEntity order = new OrderEntity();
+            order.setId(rs.getLong("id"));
+            order.setDate(rs.getDate("date"));
+            order.setCustomerid(rs.getString("customerid"));
+            order.setNotes(rs.getString("notes"));
+            return order;
+        }
+    }
+
+    @Override
+    public List<OrderEntity> findByNote(String name) {
+        String sql = "SELECT * FROM orders WHERE notes LIKE '%" + name + "%'";
+        return jdbcTemplate.query(sql, new OrderModelRowMapper());
+    }
+}
+package com.shadsluiter.ordersapp.data;
+ 
+import java.util.List;
+
+import com.shadsluiter.ordersapp.models.UserEntity;
+
+public interface UserRepositoryInterface {
+    UserEntity findByLoginName(String loginName);
+    List<UserEntity> findAll();
+    void deleteById(Long id);
+    UserEntity save(UserEntity user);
+    UserEntity findById(Long id); 
+    long count();
+    void delete(UserEntity user);
+    void deleteAll();
+    void deleteAll(Iterable<? extends UserEntity> users); 
+    List<UserEntity> saveAll(Iterable<UserEntity> users);
+}
+package com.shadsluiter.ordersapp.data;
+
+import com.shadsluiter.ordersapp.models.OrderEntity;
+
+import java.util.List;
+
+public interface OrderRepositoryInterface {
+
+    List<OrderEntity> findByCustomerid(Long customerid);
+    List<OrderEntity> findAll();
+    void deleteById(Long id);
+    OrderEntity save(OrderEntity order);
+    OrderEntity findById(Long id);
+    boolean existsById(Long id);
+    long count();
+    void delete(OrderEntity order);
+    void deleteAll();
+    void deleteAll(Iterable<? extends OrderEntity> orders); 
+    List<OrderEntity> saveAll(Iterable<OrderEntity> orders);
+    List<OrderEntity> findByNote(String name);
+
+}
+package com.shadsluiter.ordersapp.data;
+
+import com.shadsluiter.ordersapp.models.UserEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.stereotype.Repository;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.*;
+
+@Repository
+public class UserRepository implements UserRepositoryInterface {
+
+    private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public UserRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Override
+    public UserEntity findByLoginName(String loginName) {
+        String sql = "SELECT u.*, r.role FROM users u LEFT JOIN roles r ON u.id = r.user_id WHERE u.login_name = '" + loginName + "'";
+        try {
+            List<UserEntity> users = jdbcTemplate.query(sql, new UserWithRolesExtractor());
+            return users.isEmpty() ? null : users.get(0);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public List<UserEntity> findAll() {
+        String sql = "SELECT u.*, r.role FROM users u LEFT JOIN roles r ON u.id = r.user_id";
+        return jdbcTemplate.query(sql, new UserWithRolesExtractor());
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        String sql = "DELETE FROM users WHERE id = " + id;
+        jdbcTemplate.update(sql);
+    }
+
+    @Override
+    public UserEntity save(UserEntity userEntity) {
+        // new user
+        if (userEntity.getId() == null) {
+
+            // add default user role. default admin role
+            if (userEntity.getRoles() == null) {
+                userEntity.setRoles(new HashSet<>(Arrays.asList("ROLE_USER", "ROLE_ADMIN")));
+            } else {
+                userEntity.getRoles().add("ROLE_USER");
+            }
+
+            String sql = "INSERT INTO users (login_name, password, enabled, account_non_expired, credentials_non_expired, account_non_locked) VALUES ('"
+                    + userEntity.getUserName() + "', '"
+                    + userEntity.getPassword() + "', "
+                    + userEntity.isEnabled() + ", "
+                    + userEntity.isAccountNonExpired() + ", "
+                    + userEntity.isCredentialsNonExpired() + ", "
+                    + userEntity.isAccountNonLocked() + ")";
+            jdbcTemplate.update(sql);
+            Long id = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Long.class);
+            userEntity.setId(id);
+        } else {
+            String sql = "UPDATE users SET login_name = '" + userEntity.getUserName()
+                    + "', password = '" + userEntity.getPassword()
+                    + "', enabled = " + userEntity.isEnabled()
+                    + ", account_non_expired = " + userEntity.isAccountNonExpired()
+                    + ", credentials_non_expired = " + userEntity.isCredentialsNonExpired()
+                    + ", account_non_locked = " + userEntity.isAccountNonLocked()
+                    + " WHERE id = " + userEntity.getId();
+            jdbcTemplate.update(sql);
+        }
+
+        // Save roles
+        deleteRoles(userEntity);
+        saveRoles(userEntity);
+
+        return userEntity;
+    }
+
+    public void saveRoles(UserEntity userEntity) {
+        if (userEntity.getRoles() != null) {
+            for (String role : userEntity.getRoles()) {
+                String sql = "INSERT INTO roles (user_id, role) VALUES (" + userEntity.getId() + ", '" + role + "')";
+                jdbcTemplate.update(sql);
+            }
+        }
+    }
+
+    public void deleteRoles(UserEntity userEntity) {
+        String sql = "DELETE FROM roles WHERE user_id = " + userEntity.getId();
+        jdbcTemplate.update(sql);
+    }
+
+    @Override
+    public UserEntity findById(Long id) {
+        String sql = "SELECT u.*, r.role FROM users u LEFT JOIN roles r ON u.id = r.user_id WHERE u.id = " + id;
+        try {
+            List<UserEntity> users = jdbcTemplate.query(sql, new UserWithRolesExtractor());
+            return users.isEmpty() ? null : users.get(0);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public long count() {
+        String sql = "SELECT COUNT(*) FROM users";
+        Long result = jdbcTemplate.queryForObject(sql, Long.class);
+        return result != null ? result : 0;
+    }
+
+    @Override
+    public void delete(UserEntity user) {
+        deleteById(user.getId());
+    }
+
+    @Override
+    public void deleteAll() {
+        String sql = "DELETE FROM users";
+        jdbcTemplate.update(sql);
+    }
+
+    @Override
+    public void deleteAll(Iterable<? extends UserEntity> users) {
+        for (UserEntity user : users) {
+            delete(user);
+        }
+    }
+
+    @Override
+    public List<UserEntity> saveAll(Iterable<UserEntity> users) {
+        for (UserEntity user : users) {
+            save(user);
+        }
+        return (List<UserEntity>) users;
+    }
+
+    private static class UserWithRolesExtractor implements ResultSetExtractor<List<UserEntity>> {
+        @Override
+        public List<UserEntity> extractData(ResultSet rs) throws SQLException, DataAccessException {
+            Map<Long, UserEntity> userMap = new HashMap<>();
+            while (rs.next()) {
+                Long id = rs.getLong("id");
+                UserEntity user = userMap.get(id);
+                if (user == null) {
+                    user = new UserEntity();
+                    user.setId(id);
+                    user.setUserName(rs.getString("login_name"));
+                    user.setPassword(rs.getString("password"));
+                    user.setEnabled(rs.getBoolean("enabled"));
+                    user.setAccountNonExpired(rs.getBoolean("account_non_expired"));
+                    user.setCredentialsNonExpired(rs.getBoolean("credentials_non_expired"));
+                    user.setAccountNonLocked(rs.getBoolean("account_non_locked"));
+                    user.setRoles(new HashSet<>());
+                    userMap.put(id, user);
+                }
+                String role = rs.getString("role");
+                if (role != null) {
+                    user.getRoles().add(role);
+                }
+            }
+            return new ArrayList<>(userMap.values());
+        }
+    }
+}

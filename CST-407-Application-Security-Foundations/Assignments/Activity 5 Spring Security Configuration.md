@@ -10,7 +10,7 @@
 
 ### **Spring Security Coding activity**
 
-Download the [prepackaged java code utilizing Spring]() initialize the Maven repository, update and clean any package errors or paths. Then add Spring boot starter security. 
+Download the [prepackaged java code utilizing Spring](https://halo.gcu.edu/resource/cb74c27f-f989-440b-83a6-c1b35abb107a) initialize the Maven repository, update and clean any package errors or paths. Then add Spring boot starter security. 
 
 ```json
 <dependency>
