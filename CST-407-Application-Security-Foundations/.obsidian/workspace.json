@@ -183,8 +183,7 @@
       "command-palette:Open command palette": false,
       "bases:Create new base": false,
       "audio-recorder:Start/stop recording": false,
-      "markdown-importer:Open format converter": false,
-      "voice:Voice": false
+      "markdown-importer:Open format converter": false
     }
   },
   "active": "67fc3188f03351f8",

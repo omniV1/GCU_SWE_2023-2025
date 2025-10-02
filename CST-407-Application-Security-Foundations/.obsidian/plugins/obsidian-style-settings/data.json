@@ -1,5 +1,9 @@
 {
   "typomagical-colour@@ss-background-color": "#78786A",
   "typomagical-colour@@background-color-enable": true,
-  "typomagical-colour@@theme-variant": "ficus-ruby"
+  "typomagical-colour@@theme-variant": "ficus-ruby",
+  "retroma-obsidian-theme@@theme-variant": "Groovy",
+  "retroma-obsidian-theme@@interactive-accent@@light": "#D0D1BE",
+  "retroma-obsidian-theme@@rotation-1": 0,
+  "retroma-obsidian-theme@@chroma-folder": 0.095
 }

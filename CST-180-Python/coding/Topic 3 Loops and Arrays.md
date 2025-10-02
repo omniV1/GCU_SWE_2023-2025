@@ -227,3 +227,80 @@ The program checks for `year_considered >= user_year` rather than for `year_c
 A program with an infinite loop may print output excessively, or just seem to stall (if the loop contains no printing). A user can halt a program by pressing Control-C in the command prompt running the Python program. Alternatively, some IDEs have a stop button.
 
 ![[Pasted image 20250929081110.png]]
+
+
+
+## More While Loops 
+
+Greatest Common Divisor
+
+The following is an example of using a loop to compute a mathematical quantity. The program GCD, using Euclid's algorithm.
+
+```text
+If `num_a > num_b`, set `num_a` to `num_a - num_b`, else set `num_b` to `num_b - num_a`. Repeat until `num_a` equals `num_b`, at which point `num_a` and `num_b` both equal the GCD.`
+```
+
+
+### Conversation
+
+Below is a program that has a "conversation" with the user. The program asks the user to type something and then randomly prints one of four possible responses until the user enters "Goodbye". Note that the first few lines of the program represent a <mark style="background: #BBFABBA6;">docstring</mark>: <mark style="background: #FFB8EBA6;">a multi-line string literal delimited at the beginning and end by triple quotes. Use either single (') or double (") quotes.</mark>
+
+Each time through the while loop, the program will check if the user-entered string `user_text` is equal to the string literal "Goodbye". If the two strings are not equal, the while loop body executes. Within the while loop body, the program obtains a random number between 0 and 2 by using the random library. The randint() function provides a new random number each time the function is called. The arguments to randint(), 0 and 2, provide the minimum and maximum values that the function may return. Using the number given by randint(), the program's elif statements branch to a particular response.
+
+### Example: Getting input until a sentinel is seen
+
+Loops are commonly used to process a series of input values. A sentinel value is used to terminate a loop's processing. The example below computes the average of an input list of positive integers, ending with 0. The 0 is not included in the average.
+
+![[Pasted image 20250930072907.png]]
+
+## 3.7 For loops
+
+A common programming task is to access all of the elements in a container. Ex: Printing every item in a list. A for loop statement loops over each element in a container one at a time, assigning a variable with the next element that can then be used in the loop body. The container in the for loop statement is typically a list, tuple, or string. Each iteration of the loop assigns the name given in the for loop statement with the next element in the container.
+
+The for loop above iterates over the list `['Bill', 'Nicole', 'John']`. The first iteration assigns the variable name with 'Bill', the second iteration assigns name with 'Nicole', and the final iteration assigns name with 'John'. For sequence types like lists and tuples, the assignment order follows the position of the elements in the container, starting with position 0 (the leftmost element) and continuing until the last element is reached.
+
+Iterating over a dictionary using a for loop assigns the loop variable with the _keys_ of the dictionary. The values can then be accessed using the key.
+
+![[Pasted image 20250930081004.png]]
+
+A for loop can also iterate over a string. Each iteration assigns the loop variable with the next character of the string. Strings are sequence types just like lists, so the behavior is identical (leftmost character first, then each following character).
+
+![[Pasted image 20250930081248.png]]
+
+### For loop examples
+
+For loops can be used to perform action during each loop iteration. A simple example is printing the value, as above examples demonstrated. The program below uses an additional variable to sum list elements to calculate weekly and average daily revenue.
+
+![[Pasted image 20250930081505.png]]
+
+A for loop may also iterate backward over a sequence, starting at the last element and ending with the first element, by using the reversed() function to reverse the order of the elements.
+
+
+## 3.8 While vs. for loops
+
+### While loop and for loop correspondence
+
+Both while loops and for loops can be used to count a specific number of loop iterations. A for loop combined with range() is generally preferred over while loops, since for loops are less likely to become stuck in an infinite loop situation. A programmer may easily forget to increment a while loop's variable (causing an infinite loop), but for loops iterate over a finite number of elements in a container and are thus guaranteed to complete.
+
+![[Pasted image 20250930085221.png]]
+
+## 3.9 Nested loops
+
+### Nested loops
+
+A nested loop is a loop that appears as part of the body of another loop. The nested loops are commonly referred to as the outer loop and inner loop.
+
+Nested loops have various uses. One use is to generate all combinations of some items. Ex: The following program generates all two-letter .com Internet domain names. Recall that `ord()` converts a one-character string into an integer, and `chr()` converts an integer into a character. Thus, `chr(ord('a') + 1)` results in 'b'.
+
+![[Pasted image 20250930123900.png]]
+
+Modify the program to include two-character .com names where the second character can be a letter or a number, e.g., a2.com. Hint: Add a second while loop nested in the outer loop, but following the first inner loop, that iterates through the numbers 0-9.
+
+![[Pasted image 20250930130109.png]]
+
+Here is a nested loop example that graphically depicts an integer's magnitude by using asterisks, creating what is commonly called a _histogram_.
+
+Run the program below and observe the output. Modify the program to print one asterisk per 5 units. So if the user enters 40, print 8 asterisks.
+
+![[Pasted image 20250930130835.png]]
+
