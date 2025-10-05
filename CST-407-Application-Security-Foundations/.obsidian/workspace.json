@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Assignments/Activity 5 Spring Security Configuration.md",
+                "file": "Assignments/CST-407-RS-T5-Milestone-Eventsapp/eventsapp.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Activity 5 Spring Security Configuration"
+              "title": "eventsapp"
             }
           }
         ],
@@ -175,6 +175,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "voice:Voice": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -188,6 +189,9 @@
   },
   "active": "67fc3188f03351f8",
   "lastOpenFiles": [
+    "Assignments/eventsapp.pdf",
+    "Assignments/CST-407-RS-T5-Milestone-Eventsapp/video_script.md",
+    "Assignments/Activity 5 Spring Security Configuration.md",
     "coding/Spring Security/CST-407-RS-T5-Activity-5-Spring-Security-Starting-Code/spring security starting code/spring security starting code/src/test/java/com/shadsluiter/ordersapp",
     "coding/Spring Security/CST-407-RS-T5-Activity-5-Spring-Security-Starting-Code/spring security starting code/spring security starting code/src/test/java/com/shadsluiter",
     "coding/Spring Security/CST-407-RS-T5-Activity-5-Spring-Security-Starting-Code/spring security starting code/spring security starting code/src/test/java/com",
@@ -199,7 +203,6 @@
     "coding/Spring Security/CST-407-RS-T5-Activity-5-Spring-Security-Starting-Code/spring security starting code/spring security starting code/ordersapproles.sql",
     "coding/Spring Security/CST-407-RS-T5-Activity-5-Spring-Security-Starting-Code/spring security starting code/spring security starting code/HELP.md",
     "coding/Spring Security/CST-407-RS-T5-Activity-5-Spring-Security-Starting-Code/spring security starting code/spring security starting code/pom.xml",
-    "coding/Spring Security/CST-407-RS-T5-Activity-5-Spring-Security-Starting-Code/spring security starting code/spring security starting code/mvnw.cmd",
     "imgs/Pasted image 20250929120936.png",
     "imgs/Pasted image 20250929120840.png",
     "imgs/Pasted image 20250929120758.png",

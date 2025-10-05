@@ -20,8 +20,23 @@
               "icon": "lucide-file",
               "title": "Topic 3 Loops and Arrays"
             }
+          },
+          {
+            "id": "0e5be4c33cf072ac",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "coding/Topic 3 Loops and Arrays.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Topic 3 Loops and Arrays"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -174,19 +189,20 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "dc441d7b0c5e4daa",
+  "active": "0e5be4c33cf072ac",
   "lastOpenFiles": [
-    "Pasted image 20250930130835.png",
-    "Pasted image 20250930130109.png",
-    "Pasted image 20250930123900.png",
-    "Pasted image 20250930085221.png",
-    "Pasted image 20250930081505.png",
-    "Pasted image 20250930081248.png",
-    "Pasted image 20250930081004.png",
-    "Pasted image 20250930072907.png",
-    "Photos/Pasted image 20250929061053.png",
-    "Photos/Pasted image 20250929061206.png",
-    "Photos/Pasted image 20250929065247.png",
+    "Pasted image 20251004194526.png",
+    "Pasted image 20251004194517.png",
+    "Pasted image 20251004191322.png",
+    "Pasted image 20251004191310.png",
+    "Pasted image 20251004185832.png",
+    "Pasted image 20251004185654.png",
+    "Pasted image 20251004185638.png",
+    "Pasted image 20251004185517.png",
+    "Pasted image 20251004185308.png",
+    "Pasted image 20251004185233.png",
+    "Pasted image 20251002131514.png",
+    "coding/Topic 3 Loops and Arrays.md",
     "CST-407/Assignments/Encryption Turn-in.md",
     "CST-407/Assignments/Activity 5 Spring Security Configuration.md",
     "CST-180-Python/class notes/2025-09-08 First Class in Python.md",
@@ -220,7 +236,6 @@
     "Self Reports.md",
     "Self/Templates/Daily Note Template.md",
     "Self/Journal/Daily/What Did I Do Today (WDDT) 2025-09-15.md",
-    "Self/Journal/Daily/What Did I Do Today (WDDT) 2025-09-14.md",
-    "Self/Journal/Daily/What Did I Do Today (WDDT) 2025-09-13.md"
+    "Self/Journal/Daily/What Did I Do Today (WDDT) 2025-09-14.md"
   ]
 }

@@ -304,3 +304,321 @@ Run the program below and observe the output. Modify the program to print one as
 
 ![[Pasted image 20250930130835.png]]
 
+# 3.10 Break and continue
+
+A break statement in a loop causes the loop to exit immediately. A break statement can sometimes yield a loop that is easier to understand.
+
+In the example below, the nested for loops generate possible meal options for the number of empanadas and tacos that can be purchased. The inner loop body calculates the cost of the current meal option. If the meal cost is equal to the user's amount of money, the search is over, so the break statement immediately exits the inner loop. The outer loop body also checks if the meal cost and the user's amount of money are equal, and if so, that break statement exits the outer loop.
+
+The program could be written without break statements, but the loops' condition expressions would be more complex and the program would require additional code, making the program harder to understand.
+
+![[Pasted image 20251002115537.png]]
+
+a = 1 
+b = 1 
+c = 0 
+
+```python
+
+Problem #1 
+a = 1 
+b = 1 
+c = 0 
+
+mult = 0 
+while 1(a) < 10: 
+	mult = 1(b) * 1(a)
+	 if 1(mult) > 0(c): 
+		break
+# it breaks here and the line below do not execute
+	a = 1(a) + 1 
+# z gets set to a = 1
+z = a
+	 
+Problem 2
+a = 4
+b = 5
+c = 20 
+
+mult = 0 
+while 4(a) < 10: 
+	mult = 5(b) * 4(a)
+	 if 20(mult) > 20(c): 
+		break
+	a = 4(a) + 1 
+# z gets set to a = 1
+z = 5
+
+# second run 
+
+mult = 0 
+while 5(a) < 10: 
+	mult = 5(b) * 5(a)
+	 if 25(mult) > 20(c): 
+		break
+# it breaks here and the line below do not execute
+	#a = (a) + 1 
+z = 5
+```
+
+
+### Continue statements
+
+A continue statement in a loop causes an immediate jump to the while or for loop header statement. A continue statement can improve the readability of a loop. The example below extends the previous meal finder program to find meal options for which the total number of items purchased is evenly divisible by the number of diners. In addition, the following program will output all possible meal options, instead of reporting the first meal option found.
+
+The program uses two nested for loops to try all possible combinations of tacos and empanadas. If the total number of tacos and empanadas is not exactly divisible by the number of diners (Ex: `(num_tacos + num_empanadas) % num_diners != 0`), the continue statement will immediately proceed to the next iteration of the for loop.
+
+Break and continue statements can be helpful to avoid excessive indenting/nesting within a loop. However, because someone reading a program could easily overlook a break or continue statement, such statements should be used only when their use is clear to the reader.
+
+![[Pasted image 20251002122725.png]]
+```python
+n = 4
+stop = int(input())
+
+for n in range(1, 6):
+	print(n)
+	
+	if n >= stop: 
+		print('stop')
+		break
+		
+ # thoughts? 
+ # 1 -> 6 run print n and if n is greater than or equal to the input of stop then print stop and exit
+ 
+ #output 
+ # 1
+ # 2
+ # 3
+ # 4
+ # stop
+ 
+ # Problem 2
+ # input of threshold is  = 3
+ n = 0 
+ threshold = int(input())
+  
+ for n in range(0, 5): 
+	 if n >= threshold: 
+		 print('_') 
+		 continue 
+		
+	print(n)
+	
+	# Thoughts? 
+	# n = 0 -> 3 print 0 1 2 on a new line then print _ _  on a new line
+	
+	# Problem 3
+	a = int(input()) = 3
+	b = int(input()) = 27
+	c = int(input()) = 12
+	
+	# while 3 is less than 27 (TRUE) // while 6 is less than 27 (TRUE)
+	# while 9 is less than 27 (TRUE)
+	# while 12 is less than 27 (TRUE)
+	# while 15 is less than 27 (TRUE)
+	while a < b: 
+		print(a) # 3 6 9 12 15
+		# 3 is not greater than 12 // 6 is not greater than 12
+		# 9 is not greater than 12 // 12 is equal to not greater than 12 
+		# 15 greater than 12 BREAK
+		if a > c: 
+			break 
+	a += 3    # a = 6 // 9 // 12  // 15
+	
+	
+	# Problem 4
+	stop = int(input()) = 11 
+	
+	for a in range(4):
+		result = 0
+		
+		for b in range(3):
+			result += b
+			
+		result += a
+			
+		print(result)
+			
+		if result > stop:
+			break
+			
+# `a = 3`: prints `3`, `3 > 12`? No, continues, `a = 6`
+# `a = 6`: prints `6`, `6 > 12`? No, continues, `a = 9`
+# `a = 9`: prints `9`, `9 > 12`? No, continues, `a = 12`
+# `a = 12`: prints `12`, `12 > 12`? No, continues, `a = 15`
+# `a = 15`: prints `15`, `15 > 12`? **Yes, BREAK**
+
+	# Problem 5
+threshold = int(input()) = 2
+
+for a in range(0,4):
+	print(a + 1, end=': ')
+	
+	for b in range(0,1): 
+		if a > threshold:
+			print('_,',end='')
+			continue
+		print(b, end=',')
+	print()
+ 
+# a = 1: prints 1: b = 1 > 1 prints 0,
+# a = 2: prints 2: b = 1 > 1 prints 0,
+# final output = 1:0,
+#                2:_
+```
+
+"Simon Says" is a memory game where "Simon" outputs a sequence of 10 characters (R, G, B, Y) and the user must repeat the sequence. Create a for loop that compares each character of the two strings. For each matching character, add one point to user_score. Upon a mismatch, end the loop.  
+  
+Sample output with inputs: 'RRGBRYYBGY' 'RRGBBRYBGY'
+
+User score: 4
+```python
+user_score = 0
+simon_pattern = input()
+user_pattern  = input()
+
+# Loop through each position (0, 1, 2, ... 9) 
+for i in range(len(simon_pattern)): 
+# Compare the character at position i in both strings 
+	if simon_pattern[i] == user_pattern[i]: 
+		user_score += 1 
+	else: 
+# Mismatch found, stop checking 
+		break
+print(f'User score: {user_score}')
+```
+
+# 3.11 Loop else
+
+A loop may include an else clause that executes only if the loop terminates normally and doesn't use a break statement. Thus, the complete forms of while and for loops are:
+
+![[Pasted image 20251002131427.png]]
+
+The loop else construct executes if the loop completes normally. In the following example, a special message "All names printed" is displayed if the entire list of names is completely iterated through.
+
+![[Pasted image 20251002131514.png]]
+
+The country of Denmark allows parents to pick from around 7,000 names for newborn infants. Names not on the list must receive special approval from the Names Investigation Department of Copenhagen University. (Surprisingly, many countries have naming laws, probably to avoid names like "[Brfxxccxxmnpcccclllmmnprxvclmnckssqlbb11116](https://en.wikipedia.org/wiki/Naming_law_in_Sweden#Brfxxccxxmnpcccclllmmnprxvclmnckssqlbb11116)", pronounced "Albin".)
+
+The program below checks if a user-entered name is an appropriate Danish name. If the name is not found in the list of legal names, then a suggestion is made to a close match. A close match is an acceptable name starting with the same letter. If no close matches are found, the loop else clause informs the user. If there are multiple names with the same letter, the first in the list is used.
+
+Run the program below.
+
+1. Enter the acceptable name "Bjork".
+2. Try the name "Michaal", which is not an acceptable name. The program will suggest a replacement since there is an acceptable name starting with 'M'.
+3. Try the name "Zoidberg", which is not an acceptable name. The list doesn't contain a name starting with 'Z', so the program will print a special message and terminate.
+
+```python
+# A few legal, acceptable Danish names
+legal_names = ['Thor', 'Bjork', 'Bailey', 'Anders', 'Bent', 'Bjarne', 'Bjorn', 
+    'Claus', 'Emil', 'Finn', 'Jakob', 'Karen', 'Julie', 'Johanne', 'Anna', 'Anne', 
+    'Bente', 'Eva', 'Helene', 'Ida', 'Inge', 'Susanne', 'Sofie', 'Rikkie', 'Pia', 
+    'Torben', 'Soren', 'Rune', 'Rasmus', 'Per', 'Michael', 'Mads', 'Hanne', 
+    'Dorte'
+]
+
+user_name = input('Enter desired name:\n')
+if user_name in legal_names:
+    print(f'{user_name} is an acceptable Danish name. Congratulations.')
+else:
+    print(f'{user_name} is not acceptable.')
+    for name in legal_names:
+        if user_name[0] == name[0]:
+            print(f'You might consider: {name},', end=' ')
+            break
+    else:
+        print('No close matches were found.')
+print('Goodbye.')
+```
+
+# 3.12 Counting
+
+### Counting with a while loop
+
+Commonly, a loop should iterate a specific number of times, such as 10 times. The programmer can use a variable to count the number of iterations, called a loop variable. To iterate N times using an integer loop variable i, a loop1 with the following form is used:
+
+![[Pasted image 20251004185233.png]]
+
+A common error is to forget to include the loop variable update (e.g., i = i +1) at the end of the loop, causing an unintended infinite loop.
+
+The following program outputs the amount of money in a savings account each year for the user-entered number of years, with $10000 initial savings and 5% yearly interest:
+
+![[Pasted image 20251004185308.png]]
+![[Pasted image 20251004185517.png]]
+
+### Other forms of counting
+
+Counting down is also common, as in counting from 5 to 1. The loop body executes when i is 5, 4, 3, 2, and 1, but the loop body does not execute when i reaches 0.
+![[Pasted image 20251004185638.png]]
+
+The loop body executes when i is 5, 4, 3, 2, and 1, but the loop body does not execute when i reaches 0.
+
+Counting sometimes occurs by steps greater than 1. Ex: A loop that prints even values from 0 to 100 (i.e., counts from 0 to 100 by 2s) is:
+
+![[Pasted image 20251004185654.png]]
+![[Pasted image 20251004185832.png]]
+
+### Calculate a factorial.
+
+Write a program that lets a user enter N and that outputs N! (N factorial, meaning N*(N-1)*(N-2)*...*2*1). Hint:Use a loop variable i that counts from total-1 down to 1. Compare your output with some of these answers: 1:1, 2:2, 3:6, 4:24, 5:120, 8:40320.
+
+![[Pasted image 20251004191310.png]]
+
+### Shorthand operators
+
+Because assignments such as `i = i + 1` are so common in programs, the programming language provides a shorthand version: `i += 1`. Similar operators include +=, -=, *=, and /=. For example, `num *= x` is shorthand for `num = num * x`. The item on the right can be an expression, so `num *= x + y` is shorthand for `num = num * (x + y)`. Usage of such operators is common in loops.
+
+![[Pasted image 20251004191322.png]]
+
+### 3.13 LAB: Password modifier
+
+Many user-created passwords are simple and easy to guess. Write a program that takes a simple password and makes it stronger by replacing characters using the key below, and by appending "!" to the end of the input string.
+
+- i becomes 1
+- a becomes @
+- m becomes M
+- B becomes 8
+- s becomes $
+
+Ex: If the input is:
+
+```
+mypassword
+```
+
+the output is:
+
+```
+Myp@$$word!
+```
+
+_Hint: Python strings are immutable, but support string concatenation. Store and build the stronger password in the given `password` variable._
+
+# 3.16 List methods
+
+### Common list methods
+
+A list method can perform a useful operation on a list such as adding or removing elements, sorting, reversing, etc.
+
+The table below shows the available list methods. Many of the methods perform in-place modification of the list contents — a programmer should be aware that a method that modifies the list in-place changes the underlying list object, and thus may affect the value of a variable that references the object.
+
+![[Pasted image 20251004194517.png]]
+
+![[Pasted image 20251004194526.png]]
+
+A good practice is to use list methods to add and delete list elements, rather than alternative add/delete approaches. Alternative approaches include syntax such as `my_list[len(my_list):] = [val]` to add to a list, or `del my_list[0]` to remove from a list. Using a list method yields more readable code.
+
+The list.sort() and list.reverse() methods rearrange a list element's ordering, performing in-place modification of the list.
+
+The list.index() and list.count() return information about the list and do not modify the list.
+
+## 3.16.1: In-place modification using list methods.
+
+1. vals is a list containing elements 1, 4, and 16.
+2. The statement vals.append(9) appends element 9 to the end of the list.
+3. The statement vals.insert(2, 18) inserts element 18 into position 2 of the list.
+4. The statement vals.pop() removes the last element, 9, from the list.
+5. The statement vals.remove(4) removes the first instance of element 4 from the list.
+6. The statement vals.remove(55) removes the first instance of element 55 from the list. The list does not contain the element 55 so vals is the same.
+   
+   
