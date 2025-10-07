@@ -1,5 +1,11 @@
 [
   "noteson-publish",
+  "voice",
+  "account-viewer",
+  "obsidian-banners",
+  "obsidian-book-search-plugin",
+  "dataview",
+  "templater-obsidian",
   "obsidian-style-settings",
-  "voice"
+  "highlightr-plugin"
 ]

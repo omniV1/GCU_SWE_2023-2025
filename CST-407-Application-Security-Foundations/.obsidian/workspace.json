@@ -1,28 +1,14 @@
 {
   "main": {
-    "id": "ef0ec86e2864ea6d",
+    "id": "f9cd8a0215139fd4",
     "type": "split",
     "children": [
       {
-        "id": "2216e7622c881a4e",
+        "id": "9f3f007bdd0f0cab",
         "type": "tabs",
         "children": [
           {
-            "id": "b00110bceca33bef",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Elon Musk/Elon Musk.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Elon Musk"
-            }
-          },
-          {
-            "id": "67fc3188f03351f8",
+            "id": "f8018dd00285d6c0",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -31,22 +17,21 @@
               "title": "New tab"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "7cca020dad76908f",
+    "id": "a8bcc7040454f883",
     "type": "split",
     "children": [
       {
-        "id": "4239cece40b1342f",
+        "id": "9a8821d870c4de51",
         "type": "tabs",
         "children": [
           {
-            "id": "9fae593fd47c1bc8",
+            "id": "a247ce460fee605a",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -59,7 +44,7 @@
             }
           },
           {
-            "id": "1bf27dc8974dc208",
+            "id": "3083729f85b16480",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -76,7 +61,7 @@
             }
           },
           {
-            "id": "b36a1a9a077d26cf",
+            "id": "3f6986991728f74c",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -92,20 +77,19 @@
     "width": 300
   },
   "right": {
-    "id": "46ef5db2149f42b6",
+    "id": "2df155f6316713e2",
     "type": "split",
     "children": [
       {
-        "id": "5256769dff11bfed",
+        "id": "2483d4f1cc218ffe",
         "type": "tabs",
         "children": [
           {
-            "id": "bcea27b501b1ed5f",
+            "id": "60d18e783678e70e",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Elon Musk.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,25 +99,24 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Elon Musk"
+              "title": "Backlinks"
             }
           },
           {
-            "id": "a16020032d0265f3",
+            "id": "69344288fd04959d",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Elon Musk.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Elon Musk"
+              "title": "Outgoing links"
             }
           },
           {
-            "id": "be129f504da5df5e",
+            "id": "4bf0b416280cd8d0",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -148,18 +131,17 @@
             }
           },
           {
-            "id": "3a6441a84beb4847",
+            "id": "7fa2e1b95e61c7d4",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Elon Musk.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Elon Musk"
+              "title": "Outline"
             }
           }
         ]
@@ -171,6 +153,8 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "markdown-importer:Open format converter": false,
+      "audio-recorder:Start/stop recording": false,
       "voice:Voice": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
@@ -179,41 +163,13 @@
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
       "bases:Create new base": false,
-      "audio-recorder:Start/stop recording": false,
-      "markdown-importer:Open format converter": false
+      "obsidian-book-search-plugin:Create new book note": false
     }
   },
-  "active": "67fc3188f03351f8",
+  "active": "f8018dd00285d6c0",
   "lastOpenFiles": [
-    "Assignments/eventsapp.pdf",
-    "Assignments/CST-407-RS-T5-Milestone-Eventsapp/video_script.md",
-    "Assignments/Activity 5 Spring Security Configuration.md",
-    "coding/Spring Security/CST-407-RS-T5-Activity-5-Spring-Security-Starting-Code/spring security starting code/spring security starting code/src/test/java/com/shadsluiter/ordersapp",
-    "coding/Spring Security/CST-407-RS-T5-Activity-5-Spring-Security-Starting-Code/spring security starting code/spring security starting code/src/test/java/com/shadsluiter",
-    "coding/Spring Security/CST-407-RS-T5-Activity-5-Spring-Security-Starting-Code/spring security starting code/spring security starting code/src/test/java/com",
-    "coding/Spring Security/CST-407-RS-T5-Activity-5-Spring-Security-Starting-Code/spring security starting code/spring security starting code/src/test/java",
-    "coding/Spring Security/CST-407-RS-T5-Activity-5-Spring-Security-Starting-Code/spring security starting code/spring security starting code/src/test",
-    "coding/Spring Security/CST-407-RS-T5-Activity-5-Spring-Security-Starting-Code/spring security starting code/spring security starting code/src",
-    "coding/Spring Security/CST-407-RS-T5-Activity-5-Spring-Security-Starting-Code/spring security starting code/spring security starting code/concat.txt",
-    "coding/Spring Security/CST-407-RS-T5-Activity-5-Spring-Security-Starting-Code/spring security starting code/spring security starting code/mvnw",
-    "coding/Spring Security/CST-407-RS-T5-Activity-5-Spring-Security-Starting-Code/spring security starting code/spring security starting code/ordersapproles.sql",
-    "coding/Spring Security/CST-407-RS-T5-Activity-5-Spring-Security-Starting-Code/spring security starting code/spring security starting code/HELP.md",
-    "coding/Spring Security/CST-407-RS-T5-Activity-5-Spring-Security-Starting-Code/spring security starting code/spring security starting code/pom.xml",
-    "imgs/Pasted image 20250929120936.png",
-    "imgs/Pasted image 20250929120840.png",
-    "imgs/Pasted image 20250929120758.png",
-    "imgs/Pasted image 20250929120338.png",
-    "imgs/Pasted image 20250929120243.png",
-    "imgs/Pasted image 20250929120052.png",
-    "imgs/Pasted image 20250929120029.png",
-    "imgs/Pasted image 20250929115909.png",
-    "imgs/Pasted image 20250929115839.png",
-    "imgs/Pasted image 20250929115833.png",
-    "Class Notes/Encryption Turn-in.md",
-    "Class Notes/Password Hashing and Cracking.md",
-    "().md",
-    "Elon Musk/Elon Musk Planning and Sourcing.md",
-    "Outsourcer.md",
-    "Welcome.md"
+    "Self/Sleep Template.md",
+    "Self/Mood Dashboard.md",
+    "Templates/Daily Note Template.md"
   ]
 }
