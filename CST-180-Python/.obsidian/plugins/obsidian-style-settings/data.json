@@ -24,21 +24,6 @@
   "kakano-style@@theme-setting-fullWidthStatusBar": true,
   "kakano-style@@theme-setting-lightModeNoteBg": "theme-setting-lightModeNoteBgNearWhite",
   "kakano-style@@theme-setting-wrapTabs": true,
-  "retroma-obsidian-theme@@theme-variant": "theme-variant-2",
-  "retroma-obsidian-theme@@window-border-radius": "0px",
-  "retroma-obsidian-theme@@button-border-radius": "8px",
-  "retroma-obsidian-theme@@interactive-accent@@light": "#7EEF00",
-  "retroma-obsidian-theme@@rotation-1": 193,
-  "retroma-obsidian-theme@@chroma-folder": 0.2,
-  "retroma-obsidian-theme@@chroma": 0.2,
-  "retroma-obsidian-theme@@text-normal@@dark": "#000000",
-  "retroma-obsidian-theme@@bold-color@@dark": "#D2FBC3",
-  "retroma-obsidian-theme@@link-color@@dark": "#10E460",
-  "retroma-obsidian-theme@@link-external-color@@dark": "#41BE11",
-  "retroma-obsidian-theme@@rotation-2": 303,
-  "retroma-obsidian-theme@@interactive-accent@@dark": "#5F525B",
-  "retroma-obsidian-theme@@h2-color@@light": "#D9A3EA",
-  "retroma-obsidian-theme@@h1-color@@light": "#F10A0A",
-  "retroma-obsidian-theme@@h3-color@@light": "#866185",
-  "retroma-obsidian-theme@@bold-color@@light": "#BF0A36"
+  "retroma-obsidian-theme@@interactive-accent@@light": "#306DC0",
+  "retroma-obsidian-theme@@interactive-accent@@dark": "#0273FF"
 }

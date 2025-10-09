@@ -1,37 +1,56 @@
 {
   "main": {
-    "id": "f9cd8a0215139fd4",
+    "id": "2a8a7ec65deaf396",
     "type": "split",
     "children": [
       {
-        "id": "9f3f007bdd0f0cab",
+        "id": "bcf43e96335fdb84",
         "type": "tabs",
         "children": [
           {
-            "id": "f8018dd00285d6c0",
+            "id": "dc441d7b0c5e4daa",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "coding/Topic 3 Loops and Arrays.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Topic 3 Loops and Arrays"
+            }
+          },
+          {
+            "id": "0e5be4c33cf072ac",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "coding/Topic 3 Loops and Arrays.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Topic 3 Loops and Arrays"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "a8bcc7040454f883",
+    "id": "e69f24d43513e7c4",
     "type": "split",
     "children": [
       {
-        "id": "9a8821d870c4de51",
+        "id": "2de5dc347fae77bc",
         "type": "tabs",
         "children": [
           {
-            "id": "a247ce460fee605a",
+            "id": "c7e29a677644ae3d",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -44,7 +63,7 @@
             }
           },
           {
-            "id": "3083729f85b16480",
+            "id": "1d9b68cceab2dc45",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -61,7 +80,7 @@
             }
           },
           {
-            "id": "3f6986991728f74c",
+            "id": "60b139a8392471f1",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -77,19 +96,20 @@
     "width": 300
   },
   "right": {
-    "id": "2df155f6316713e2",
+    "id": "4e54c23aee31f572",
     "type": "split",
     "children": [
       {
-        "id": "2483d4f1cc218ffe",
+        "id": "89d147602e50fbb8",
         "type": "tabs",
         "children": [
           {
-            "id": "60d18e783678e70e",
+            "id": "b270441a75efa673",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
+                "file": "CST-180/2025-22-09.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,24 +119,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for 2025-22-09"
             }
           },
           {
-            "id": "69344288fd04959d",
+            "id": "d195d44b4d8bb812",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "CST-180/2025-22-09.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links"
+              "title": "Outgoing links from 2025-22-09"
             }
           },
           {
-            "id": "4bf0b416280cd8d0",
+            "id": "f726c41d6bb27973",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -131,17 +152,18 @@
             }
           },
           {
-            "id": "7fa2e1b95e61c7d4",
+            "id": "50407e1a620235be",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
+                "file": "CST-180/2025-22-09.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline"
+              "title": "Outline of 2025-22-09"
             }
           }
         ]
@@ -153,24 +175,67 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "voice:Voice": false,
+      "obsidian-book-search-plugin:Create new book note": false,
+      "templater-obsidian:Templater": false,
       "markdown-importer:Open format converter": false,
       "audio-recorder:Start/stop recording": false,
-      "voice:Voice": false,
-      "templater-obsidian:Templater": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false,
-      "obsidian-book-search-plugin:Create new book note": false
+      "bases:Create new base": false
     }
   },
-  "active": "f8018dd00285d6c0",
+  "active": "0e5be4c33cf072ac",
   "lastOpenFiles": [
-    "Self/Sleep Template.md",
-    "Self/Mood Dashboard.md",
-    "Templates/Daily Note Template.md"
+    "Pasted image 20251009150054.png",
+    "Pasted image 20251009145150.png",
+    "Pasted image 20251009144854.png",
+    "Pasted image 20251004194526.png",
+    "Pasted image 20251004194517.png",
+    "Pasted image 20251004191322.png",
+    "Pasted image 20251004191310.png",
+    "Pasted image 20251004185832.png",
+    "Pasted image 20251004185654.png",
+    "Pasted image 20251004185638.png",
+    "Pasted image 20251004185517.png",
+    "coding/Topic 3 Loops and Arrays.md",
+    "CST-407/Assignments/Encryption Turn-in.md",
+    "CST-407/Assignments/Activity 5 Spring Security Configuration.md",
+    "CST-180-Python/class notes/2025-09-08 First Class in Python.md",
+    "CST-180-Python/class notes/2025-22-09.md",
+    "CST-180-Python/class notes/2025-22-09.pdf",
+    "CST-180-Python/class notes/2025-09-08 First Class in Python.pdf",
+    "CST-180-Python/coding/Topic 2 String Methods.md",
+    "CST-180-Python/coding/Topic 3 Loops and Arrays.md",
+    "CST-180-Python/Homework/PopulationSimulation/population_simulation_explanation.md",
+    "CST-180-Python/Homework/PopulationSimulation/population_simulation_explanation.pdf",
+    "CST-180-Python/Homework/TheologicalFoundations/TheologicalFoundations.pdf",
+    "CST-180-Python/Homework/TheologicalFoundations/TheologicalFoundations.md",
+    "CST-407/Assignments/Wireshark Network Packet Capture Demonstration.md",
+    "CST-407/Assignments/Wireshark Network Packet Capture Demonstration.pdf",
+    "CST-407/coding/loginapp/target/classes/keystore.p12",
+    "CST-407/coding/loginapp/src/main/resources/keystore.p12",
+    "CST-407/coding/loginapp/keystore.p12",
+    "CST-407/keystore.p12",
+    "CST-407/Assignments/WireSharkOutput.pcapng~",
+    "CST-407/coding/loginapp/HELP.md",
+    "CST-407/Assignments/Encryption.md",
+    "CST-407/README.md",
+    "CST-407/Assignments/Password Hashing and Cracking.md",
+    "CST-407/Assignments/ABCs.md",
+    "CST-407/Class Notes/2025-09-03 Class notes.md",
+    "Self/Self/Sleep Tracker Dashboard.md",
+    "Self/Self/Sleep Template.md",
+    "Self/Self/Mood Dashboard.md",
+    "Self/I've Read Those Books.md",
+    "Self/Books/Game Library.md",
+    "Self Reports.md",
+    "Self/Templates/Daily Note Template.md",
+    "Self/Journal/Daily/What Did I Do Today (WDDT) 2025-09-15.md",
+    "Self/Journal/Daily/What Did I Do Today (WDDT) 2025-09-14.md"
   ]
 }

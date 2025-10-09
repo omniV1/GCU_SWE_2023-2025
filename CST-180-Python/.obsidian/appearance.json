@@ -1,4 +1,7 @@
 {
   "cssTheme": "Retroma",
-  "theme": "moonstone"
+  "accentColor": "#000000",
+  "theme": "obsidian",
+  "baseFontSizeAction": false,
+  "baseFontSize": 18
 }

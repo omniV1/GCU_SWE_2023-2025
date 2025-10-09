@@ -621,4 +621,31 @@ The list.index() and list.count() return information about the list and do not m
 5. The statement vals.remove(4) removes the first instance of element 4 from the list.
 6. The statement vals.remove(55) removes the first instance of element 55 from the list. The list does not contain the element 55 so vals is the same.
    
-   
+## 3.17 List slicing
+
+A programmer can use slice notation to read multiple elements from a list, creating a new list that contains only the desired elements. The programmer indicates the start and end positions of a range of elements to retrieve, as in `my_list[0:2]`. The 0 is the position of the first element to read, and the 2 indicates the last element. Every element between 0 and 2 from my_list is in the new list. The end position, 2, is _not_ included in the resulting list.
+
+![[Pasted image 20251009144854.png]]
+
+The slice `boston_bruins[0:2]` produces a new list containing the elements in positions 0 and 1: ['Tyler', 'Zdeno']. The end position is _not_ included in the produced list – to include the final element of a list in a slice, specify an end position past the end of the list. Ex: `boston_bruins[1:3]` produces the list ['Zdeno', 'Patrice'].
+
+![[Pasted image 20251009145150.png]]
+
+An optional component of slice notation is the stride, which indicates how many elements are skipped between extracted items in the source list. Ex: The expression my_list[0:5:2] has a stride of 2, thus skipping every other element, and resulting in a slice that contains the elements in positions 0, 2, and 4. The default stride value is 1 (the expressions my_list[0:5:1] and my_list[0:5] being equivalent).
+
+If the reader has studied string slicing, then list slicing should be familiar. In fact, slicing has the same semantics for most sequence-type objects
+
+A table of common list slicing operations is given below. Note that omission of the start or end positions, such as my_list[:2] or my_list[4:], has the same meaning as in string slicing. my_list[:2] includes every element up to position 2. my_list[4:] includes every element following position 4 (including the element at position 4).
+
+## Table 3.17.1: Common list slicing operations.
+
+|Operation|Description|Example code|Example output|
+|---|---|---|---|
+|my_list[start:end]|Get a list from start to end (minus 1).|`my_list = [5, 10, 20]   print(my_list[0:2])`|[5, 10]|
+|my_list[start:end:stride]|Get a list of every stride element from start to end (minus 1).|`my_list = [5, 10, 20, 40, 80]   print(my_list[0:5:3])`|[5, 40]|
+|my_list[start:]|Get a list from start to end of the list.|`my_list = [5, 10, 20, 40, 80]   print(my_list[2:])`|[20, 40, 80]|
+|my_list[:end]|Get a list from beginning of the list to the end (minus 1).|`my_list = [5, 10, 20, 40, 80]   print(my_list[:4])`|[5, 10, 20, 40]|
+|my_list[:]|Get a copy of the list.|`my_list = [5, 10, 20, 40, 80]   print(my_list[:])`|[5, 10, 20, 40, 80]|
+![[Pasted image 20251009150054.png]]
+
+## 3.18 Tuple basics

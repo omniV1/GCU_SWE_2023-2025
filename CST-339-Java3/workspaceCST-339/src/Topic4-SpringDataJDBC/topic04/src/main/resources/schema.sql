@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d113bb392bfac89b1c31ed0b3e31a5b440fee200307a55ca1ed4be691e9639bc
-size 313
+DROP TABLE IF EXISTS `ORDERS`;
+CREATE TABLE `ORDERS` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ORDER_NO` varchar(25) NOT NULL,
+  `PRODUCT_NAME` varchar(128) NOT NULL,
+  `PRICE` float NOT NULL,
+  `QUANTITY` int(11) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
