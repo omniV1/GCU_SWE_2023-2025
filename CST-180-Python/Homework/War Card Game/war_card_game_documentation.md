@@ -17,6 +17,8 @@
 
 # Important Links
 
+[VIEW THIS DOC ON GITHUB - Best for formatting](https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/CST-180-Python/Homework/War%20Card%20Game/war_card_game_documentation.md)
+
 [Video on War Card Game Simulation](https://youtu.be/RHM9Nr_eMjU)
 
 [Github Code Repo Location](https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/CST-180-Python/Homework/War%20Card%20Game/war_card_game.py)
