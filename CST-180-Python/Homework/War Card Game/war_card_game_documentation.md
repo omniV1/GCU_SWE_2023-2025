@@ -28,8 +28,6 @@
 
 [Video on War Card Game Simulation](https://youtu.be/RHM9Nr_eMjU)
 
-[Github Code Repo Location](https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/CST-180-Python/Homework/War%20Card%20Game/war_card_game.py)
-
 [Github Pseudocode Documentation Location](https://github.com/omniV1/GCU_SWE_2023-2025/blob/ba841315f41b538b7fcd4b0956654e5b12bba88f/CST-180-Python/Homework/War%20Card%20Game/war_card_game_simulation.md)
 
 [Github Source Code](https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/CST-180-Python/Homework/War%20Card%20Game/war_card_game.py)
