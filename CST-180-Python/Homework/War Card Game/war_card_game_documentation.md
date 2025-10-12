@@ -11,7 +11,7 @@
 **Instructor:** Professor David Parker  
 **Course:** CST-180: Python Programming 1  
 **Institution:** Grand Canyon University  
-**Date:** September 24, 2025
+**Date:** October 12, 2025
 
 <br>
 <br>

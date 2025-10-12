@@ -1,49 +1,25 @@
----
-title: "Book Analytics Program"
-subtitle: "Pseudocode Documentation"
-author: 
-  - Owen Lindsey
-instructor: "Professor David Parker"
-course: "CST-180: Python Programming 1"
-institution: "Grand Canyon University"
-date: "October 12, 2025"
-subject: "Python Programming"
-keywords: [File I/O, CSV Processing, Data Analytics, Python, Algorithm]
-lang: "en"
-titlepage: true
-titlepage-color: "E8F4F8"
-titlepage-text-color: "2F4F4F"
-titlepage-rule-color: "4682B4"
-titlepage-rule-height: 2
-book: false
-classoption: [oneside]
-code-block-font-size: \scriptsize
-toc: true
-toc-depth: 3
-lof: false
-lot: false
-fontsize: 12pt
-linestretch: 1.5
-mainfont: "Times New Roman"
-sansfont: "Arial"
-monofont: "Courier New"
-geometry: "margin=1in"
-header-left: "Book Analytics"
-header-right: "CST-180 Documentation"
-footer-left: "Owen Lindsey"
-footer-right: "Page \\thepage"
-listings: true
-listings-no-page-break: true
-tables: true
-graphics: true
-colorlinks: true
-linkcolor: blue
-urlcolor: blue
-toccolor: black
-disable-header-and-footer: false
----
+<div style="text-align: center; padding-top: 100px;">
 
-\newpage
+# Book Analytics Program
+
+## Pseudocode Documentation
+
+<br>
+<br>
+
+**Author:** Owen Lindsey  
+**Instructor:** Professor David Parker  
+**Course:** CST-180: Python Programming 1  
+**Institution:** Grand Canyon University  
+**Date:** October 12, 2025
+
+<br>
+<br>
+<br>
+
+</div>
+
+<div style="page-break-after: always;"></div>
 
 ## Problem Statement
 
@@ -59,7 +35,7 @@ The program demonstrates fundamental file input/output operations, data type con
 
 **Output:** The program generates formatted output containing all analytical results: average publication year, average page count, complete information for the book with the most pages, and complete information for the book with the fewest pages. This output is written to both a text file (for permanent storage and further processing) and displayed to the terminal (for immediate user feedback).
 
-\newpage
+<div style="page-break-after: always;"></div>
 
 ## Input/Output/Processing Diagram
 
@@ -97,7 +73,7 @@ OUTPUT:
 - Display same information to terminal
 ```
 
-\newpage
+<div style="page-break-after: always;"></div>
 
 ## Algorithm Pseudocode
 
@@ -136,7 +112,7 @@ SET average_year as 0.0           // Average publication year
 SET average_pages as 0.0          // Average number of pages
 ```
 
-\newpage
+<div style="page-break-after: always;"></div>
 
 ### File Reading and Data Processing
 ```
@@ -174,7 +150,7 @@ FOR EACH line IN input_file
     SET total_pages as total_pages + pages
 ```
 
-\newpage
+<div style="page-break-after: always;"></div>
 
 ### Extrema Tracking (Maximum and Minimum)
 ```
@@ -200,7 +176,7 @@ ENDFOR
 CLOSE input_file
 ```
 
-\newpage
+<div style="page-break-after: always;"></div>
 
 ### Average Calculations
 ```
@@ -222,7 +198,7 @@ ELSE
 ENDIF
 ```
 
-\newpage
+<div style="page-break-after: always;"></div>
 
 ### Output Generation - File Writing
 ```
@@ -264,7 +240,7 @@ WRITE "  Pages:", min_pages TO output_file
 CLOSE output_file
 ```
 
-\newpage
+<div style="page-break-after: always;"></div>
 
 ### Output Generation - Terminal Display
 ```
@@ -299,7 +275,7 @@ PRINT "Results have been saved to", output_file_name
 // END FUNCTION
 ```
 
-\newpage
+<div style="page-break-after: always;"></div>
 
 ## Expected Program Output
 
@@ -318,7 +294,7 @@ Brave New World,Aldous Huxley,1932,311
 The Chronicles of Narnia,C.S. Lewis,1950,767
 ```
 
-\newpage
+<div style="page-break-after: always;"></div>
 
 ### Sample Terminal Output
 
@@ -350,7 +326,7 @@ Results have been saved to book_analysis.txt
 
 The output file will contain identical information to the terminal output, formatted in the same way for consistency and readability.
 
-\newpage
+<div style="page-break-after: always;"></div>
 
 ## Data Processing Breakdown
 
@@ -381,7 +357,7 @@ Using the sample data above, here's how the calculations progress:
 
 *Note: The sample output shows 1942.8 as a representative value; actual values will vary based on input data.*
 
-\newpage
+<div style="page-break-after: always;"></div>
 
 ## Testing and Validation
 
@@ -419,7 +395,7 @@ The algorithm has been designed to handle the following test scenarios:
 - **Validation:** No type errors during arithmetic operations
 - **Verification:** Mathematical accuracy of calculations
 
-\newpage
+<div style="page-break-after: always;"></div>
 
 ### Expected vs. Actual Results Validation
 
@@ -455,7 +431,7 @@ The program output must satisfy the following criteria:
    - File output matches terminal output
    - All required information included in output
 
-\newpage
+<div style="page-break-after: always;"></div>
 
 ### Testing Requirements
 
@@ -489,7 +465,7 @@ Following best practices for file I/O programs:
 - Test with very large page counts (e.g., 2000+ pages)
 - Test with special characters in titles and author names
 
-\newpage
+<div style="page-break-after: always;"></div>
 
 ## Algorithm Complexity Analysis
 
@@ -526,7 +502,7 @@ Potential enhancements to the base program:
    - Support for different CSV delimiters
    - Reading from multiple files
 
-\newpage
+<div style="page-break-after: always;"></div>
 
 ## Resources
 
