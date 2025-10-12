@@ -1,14 +1,21 @@
-<div style="text-align: center;">
+<div style="text-align: center; padding-top: 100px;">
 
 # War Card Game Simulation
 
 ## Code Documentation and Analysis
+
+<br>
+<br>
 
 **Author:** Owen Lindsey  
 **Instructor:** Professor David Parker  
 **Course:** CST-180: Python Programming 1  
 **Institution:** Grand Canyon University  
 **Date:** September 24, 2025
+
+<br>
+<br>
+<br>
 
 </div>
 
@@ -328,6 +335,23 @@ Upon completing all 10 matches, the program displays comprehensive statistics:
 The final statistics provide insight into the overall balance of the simulation. In a truly random and fair game, win percentages should vary across multiple executions but average toward 50% for each player over many runs. Significant deviation from this pattern in a single run is normal due to the random nature of shuffling, but consistent bias across multiple executions would indicate a potential implementation issue.
 
 The total ties count includes both individual round ties and complete match ties. Typically, this value ranges from 15-35 ties per simulation, though higher or lower values can occur due to random variation.
+
+### Sample Output Screenshots
+
+Below are examples of the War Card Game simulation output showing the match progression and final statistics:
+
+**Game Output - Match Progression:**
+
+![War Card Game Output 1](/run/media/omniv1/T7/GCU_SWE_2023-2025/CST-180-Python/Photos/screenshot-2025-10-11_20-11-16.png)
+
+![[screenshot-2025-10-11_20-11-16.png]]
+
+**Game Output - Final Statistics:**
+
+![War Card Game Output 2](/run/media/omniv1/T7/GCU_SWE_2023-2025/CST-180-Python/Photos/image.png)
+![[image.png]]
+
+These screenshots demonstrate the real-time output during game execution, showing how round wins accumulate, match winners are declared, and final statistics are displayed.
 
 ### Modifying the Simulation
 
