@@ -342,14 +342,13 @@ Below are examples of the War Card Game simulation output showing the match prog
 
 **Game Output - Match Progression:**
 
-![War Card Game Output 1](/run/media/omniv1/T7/GCU_SWE_2023-2025/CST-180-Python/Photos/screenshot-2025-10-11_20-11-16.png)
+![War Card Game Output 1](https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/CST-180-Python/Photos/screenshot-2025-10-11_20-11-16.png)
 
-![[screenshot-2025-10-11_20-11-16.png]]
 
 **Game Output - Final Statistics:**
 
-![War Card Game Output 2](/run/media/omniv1/T7/GCU_SWE_2023-2025/CST-180-Python/Photos/image.png)
-![[image.png]]
+![War Card Game Output 2](https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/CST-180-Python/Photos/image.png)
+
 
 These screenshots demonstrate the real-time output during game execution, showing how round wins accumulate, match winners are declared, and final statistics are displayed.
 
