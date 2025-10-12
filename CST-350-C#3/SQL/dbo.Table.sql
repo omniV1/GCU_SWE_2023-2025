@@ -1,9 +1,3 @@
-﻿CREATE TABLE [dbo].[ContactInfo]
-(
-	[Id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY, 
-    [Name] NVARCHAR(50) NULL, 
-    [PhoneNumber] INT NULL, 
-    [Address] NVARCHAR(50) NULL, 
-    [City] NVARCHAR(50) NULL, 
-    [Zip] INT NULL
-)
+version https://git-lfs.github.com/spec/v1
+oid sha256:5887667db05eb3e77c64f669d8570124f3c759bfd5ac96e912cfc9ac89887325
+size 240

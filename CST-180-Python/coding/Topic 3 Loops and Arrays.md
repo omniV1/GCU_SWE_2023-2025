@@ -649,3 +649,4 @@ A table of common list slicing operations is given below. Note that omission of 
 ![[Pasted image 20251009150054.png]]
 
 ## 3.18 Tuple basics
+
