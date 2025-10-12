@@ -363,144 +363,55 @@ Using the sample data above, here's how the calculations progress:
 
 ### Test Data Processing
 
-The algorithm has been designed to handle the following test scenarios:
+The algorithm has been designed to handle a comprehensive range of test scenarios that verify its correctness and robustness. The standard data set test uses a CSV file containing 10 book records similar to the sample data shown earlier in this document. This test verifies that all records are processed successfully, the book count reaches 10, and all average calculations produce mathematically correct results that match hand-calculated values.
 
-**Test Case 1: Standard Data Set**
-- **Input:** CSV file with 10 book records (as shown in sample)
-- **Expected:** All 10 records processed successfully
-- **Validation:** book_count = 10, all averages calculated correctly
-- **Verification:** Output matches hand-calculated values
+Empty file handling represents a critical edge case where the input CSV contains no records at all. In this scenario, the program should display an appropriate warning message stating "Warning: No books found in file" and set all average values to zero rather than attempting division by zero or crashing unexpectedly. This demonstrates graceful error handling even when no data exists to process.
 
-**Test Case 2: Empty File**
-- **Input:** Empty CSV file with no records
-- **Expected:** Warning message, averages set to 0
-- **Validation:** Program handles gracefully without errors
-- **Verification:** "Warning: No books found in file" displayed
+The single book test case examines behavior when only one record exists in the CSV file. Under these conditions, the program should calculate averages that equal that single book's values, and more interestingly, the same book should appear as both the book with the most pages and the book with the fewest pages, since min_pages and max_pages will both equal the page count of that solitary record.
 
-**Test Case 3: Single Book**
-- **Input:** CSV file with only one book record
-- **Expected:** Averages equal that book's values, book is both max and min
-- **Validation:** min_pages = max_pages = pages of single book
-- **Verification:** Same book listed for both most and fewest pages
+When multiple books share identical page counts, the tie-breaking mechanism becomes important. The algorithm handles this situation by storing the first book encountered during processing for both maximum and minimum comparisons when ties occur. This processing-order-based tie-breaking ensures consistent and predictable results across multiple program runs with the same input data.
 
-**Test Case 4: Books with Same Page Count**
-- **Input:** Multiple books with identical page counts
-- **Expected:** First book encountered stored for both max and min
-- **Validation:** Tie-breaking handled by processing order
-- **Verification:** Consistent results across multiple runs
-
-**Test Case 5: Data Type Conversion**
-- **Input:** CSV with string representations of numbers
-- **Expected:** Successful conversion to integers for calculations
-- **Validation:** No type errors during arithmetic operations
-- **Verification:** Mathematical accuracy of calculations
+Data type conversion testing verifies the critical transformation of string data from the CSV file into numeric integers suitable for mathematical operations. The test confirms that year and page strings convert successfully to integers without throwing type errors or exceptions, and that subsequent arithmetic operations produce mathematically accurate results.
 
 <div style="page-break-after: always;"></div>
 
 ### Expected vs. Actual Results Validation
 
-The program output must satisfy the following criteria:
+The program output must satisfy several critical criteria to ensure correctness and completeness. File I/O operations form the foundation of the program's functionality, requiring that the input file opens and reads successfully, the output file creates and writes without errors, and both files close properly after their operations complete. Any failure in these fundamental operations would prevent the program from accomplishing its primary purpose.
 
-1. **File I/O Operations:**
-   - Input file successfully opened and read
-   - Output file successfully created and written
-   - Both files properly closed after operations
+Data parsing accuracy ensures that information flows correctly from the CSV file into the program's processing logic. All four fields must extract correctly from each CSV line, with the comma delimiter handled appropriately to separate book title, author name, year, and page count. The parsing process must preserve all data without loss, ensuring that no information disappears or becomes corrupted during the extraction phase.
 
-2. **Data Parsing:**
-   - All four fields correctly extracted from each CSV line
-   - Comma delimiter properly handled
-   - No data loss during parsing
+Data type conversion represents a critical transformation step where string representations become usable numeric values. Year strings must convert cleanly to integers for mathematical operations, and page count strings must similarly transform into integers without generating conversion errors or exceptions. Successful type conversion enables the subsequent statistical calculations to proceed correctly.
 
-3. **Data Type Conversion:**
-   - Year strings converted to integers
-   - Page strings converted to integers
-   - No conversion errors or exceptions
+Statistical accuracy validates the mathematical correctness of the program's analytical capabilities. The average publication year must equal the sum of all years divided by the number of books, and the average page count must similarly derive from total pages divided by book count. These calculations should maintain accuracy to at least one decimal place, providing meaningful precision in the reported results.
 
-4. **Statistical Accuracy:**
-   - Average year = (sum of all years) / (number of books)
-   - Average pages = (sum of all pages) / (number of books)
-   - Calculations accurate to at least one decimal place
+Extrema identification verifies the program's ability to locate and track books with the most and fewest pages. The maximum page count must be correctly identified from all books processed, the minimum page count must similarly represent the true smallest value encountered, and complete information for both extrema must be stored including title, author, year, and page count. This comprehensive tracking enables the program to report detailed information about these noteworthy books rather than just their page counts.
 
-5. **Extrema Identification:**
-   - Maximum pages correctly identified
-   - Minimum pages correctly identified
-   - Complete book information stored for both extrema
-
-6. **Output Formatting:**
-   - Terminal output properly formatted and readable
-   - File output matches terminal output
-   - All required information included in output
+Output formatting ensures that results present clearly and consistently to users. Terminal output must be properly formatted and easily readable, with clear labels and appropriate spacing. File output must match the terminal output exactly, maintaining consistency across both display methods. All required information must appear in the output, providing users with complete analytical results.
 
 <div style="page-break-after: always;"></div>
 
 ### Testing Requirements
 
-Following best practices for file I/O programs:
+Following best practices for file I/O programs, the testing strategy encompasses several critical categories of verification. Initialization testing confirms that the program begins in a correct and predictable state. All accumulator variables must initialize to appropriate starting values, with max_pages beginning at zero to ensure any book's page count will exceed it, and min_pages starting at a very large number (often represented as INFINITY) to guarantee any actual page count will fall below it. These careful initializations prevent logic errors when processing the first book record.
 
-**Initialization Testing:**
-- Verify all accumulator variables initialized to appropriate values
-- Confirm max_pages starts at 0
-- Confirm min_pages starts at INFINITY (or very large number)
+Loop processing testing validates the fundamental iteration mechanism that reads and processes the input file. The test verifies that each line of the input file is read without skipping records, confirms that the loop executes exactly as many iterations as there are records in the file (no more, no less), and ensures that the loop terminates properly when reaching the end of file marker rather than hanging indefinitely or crashing.
 
-**Loop Processing Testing:**
-- Verify each line of input file is read
-- Confirm loop processes exactly as many iterations as records in file
-- Test that loop terminates properly at end of file
+Decision point testing examines the conditional logic that identifies extrema. The maximum comparison test verifies the IF pages > max_pages condition triggers correctly when encountering a new largest value, while the minimum comparison test similarly validates the IF pages < min_pages condition. An interesting special case occurs with the first record, where both conditions should evaluate to true simultaneously since the first book becomes both the current maximum and minimum.
 
-**Decision Point Testing:**
-- Test maximum comparison: IF pages > max_pages
-- Test minimum comparison: IF pages < min_pages
-- Verify both conditions can be true simultaneously (first record)
+File handling testing addresses the practical reality that file operations can fail for various reasons. The program must function correctly with valid file paths that point to existing, accessible files. It must also handle invalid or missing file paths gracefully by displaying appropriate error messages rather than crashing. Testing should include scenarios where the output file cannot be created due to permission restrictions or read-only directories. In all scenarios, the program must close files properly even when errors occur, preventing resource leaks and file corruption.
 
-**File Handling Testing:**
-- Test with valid file path
-- Test with invalid/missing file path
-- Test with read-only directory for output file
-- Verify proper file closing in all scenarios
-
-**Edge Case Testing:**
-- Test with very old publication years (e.g., 1600s)
-- Test with very recent publication years (e.g., 2024)
-- Test with very small page counts (e.g., 10 pages)
-- Test with very large page counts (e.g., 2000+ pages)
-- Test with special characters in titles and author names
+Edge case testing explores extreme but valid data values that might expose hidden assumptions or limitations. Very old publication years from the 1600s test whether the program handles historical books correctly, while very recent years (such as 2024 and beyond) verify handling of contemporary publications. Very small page counts around 10 pages test for minimum value handling, while very large page counts exceeding 2000 pages verify the program doesn't break with unusually long books. Finally, testing with special characters in titles and author names (such as apostrophes, quotation marks, or accented characters) ensures the CSV parsing and string handling work correctly with real-world data complexity.
 
 <div style="page-break-after: always;"></div>
 
-## Algorithm Complexity Analysis
+## Program Extensions and Future Enhancements
 
-**Time Complexity:** O(n) where n is the number of book records in the input file. The algorithm processes each record exactly once in a single pass through the file.
+The base book analytics program provides a solid foundation for data processing, but several enhancements could expand its capabilities and usefulness. Additional statistical calculations would provide deeper insights into the book collection, including metrics such as the median publication year to identify the central tendency of the dataset, standard deviation of page counts to understand the variability in book lengths, and frequency analysis to determine the most common authors in the collection.
 
-**Space Complexity:** O(1) constant space. The program maintains a fixed number of variables regardless of input size. Only the current record's information is stored in memory at any given time.
+Output enhancements could transform the simple text-based reports into more sophisticated formats. Graphical visualizations could display trends over time, such as how book lengths have changed across decades, or create comparison charts showing the distribution of page counts. HTML-formatted reports would allow for more attractive presentation with styling, hyperlinks, and embedded images, making the results more accessible to non-technical users.
 
-**File I/O Operations:**
-- Input file: Sequential read, one pass
-- Output file: Sequential write, one pass
-- No random access or multiple passes required
 
-## Program Extensions
-
-Potential enhancements to the base program:
-
-1. **Additional Statistics:**
-   - Median publication year
-   - Standard deviation of page counts
-   - Most common author (mode)
-
-2. **Enhanced Output:**
-   - Graphical visualization of data
-   - HTML formatted report
-   - Sorting books by various criteria
-
-3. **Error Handling:**
-   - Validation of CSV format
-   - Handling of malformed records
-   - Graceful recovery from data errors
-
-4. **Input Flexibility:**
-   - Command-line arguments for file paths
-   - Support for different CSV delimiters
-   - Reading from multiple files
 
 <div style="page-break-after: always;"></div>
 
@@ -509,29 +420,4 @@ Potential enhancements to the base program:
 Dalbey, J. (2003). *Pseudocode Standard*. Retrieved from https://users.csc.calpoly.edu/~jdalbey/SWE/pdl_std.html
 
 *This document follows the structured pseudocode conventions outlined in the Pseudocode Standard, utilizing appropriate keywords such as SET, FOR, IF-THEN-ELSE, OPEN, CLOSE, READ, WRITE, ENDFOR, and ENDIF to describe the algorithm logic in a clear, implementation-independent manner.*
-
-## Appendix: Python Implementation Notes
-
-When implementing this pseudocode in Python:
-
-1. **File Operations:**
-   - Use `open()` function with context managers (`with` statement)
-   - Use `csv` module for robust CSV parsing
-   - Handle `FileNotFoundError` and `IOError` exceptions
-
-2. **String Operations:**
-   - Use `.strip()` to remove whitespace from parsed fields
-   - Use `.split(',')` for manual CSV parsing (or `csv.reader()`)
-
-3. **Type Conversion:**
-   - Use `int()` function for year and page conversions
-   - Wrap conversions in try-except for error handling
-
-4. **Infinity Value:**
-   - Use `float('inf')` for min_pages initialization
-   - Or initialize min_pages with first book's page count
-
-5. **Formatted Output:**
-   - Use f-strings or `.format()` for clean output
-   - Use `.2f` format specifier for averages with decimal places
 
