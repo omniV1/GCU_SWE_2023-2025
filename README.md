@@ -1,4 +1,4 @@
-# 🎓 Software Engineering Portfolio | Grand Canyon University (2023–2025)
+#  Software Engineering Portfolio | Grand Canyon University (2023–2025)
 
 <div align="center">
 
@@ -23,11 +23,11 @@
 
 > **A comprehensive collection of software engineering coursework, projects, and milestones showcasing full-stack development, algorithms, systems programming, and secure coding practices.**
 
-## 🚀 Portfolio Overview
+##  Portfolio Overview
 
 This repository represents two years of intensive software engineering education at Grand Canyon University, featuring **13 courses** spanning foundational programming to enterprise-level development. From building desktop applications in C# to deploying microservices with Spring Boot, this portfolio demonstrates mastery across the full technology stack.
 
-### 🎯 Core Competencies Demonstrated
+###  Core Competencies Demonstrated
 - **Full-Stack Web Development** → REST APIs, MVC patterns, database integration
 - **Object-Oriented Programming** → Design patterns, inheritance, polymorphism 
 - **Systems Programming** → Operating systems, concurrency, memory management
@@ -35,7 +35,7 @@ This repository represents two years of intensive software engineering education
 - **Security Engineering** → Secure coding, vulnerability assessment, cryptography
 - **Algorithms & Data Structures** → Recursion, searching/sorting, complexity analysis
 
-### 📊 Portfolio Statistics
+###  Portfolio Statistics
 - **Languages**: C#, Java, Python, JavaScript/TypeScript, C, SQL
 - **Frameworks**: .NET Core, Spring Boot, Angular, React, Express.js
 - **Databases**: SQL Server, MySQL, MongoDB
@@ -100,9 +100,9 @@ This repository represents two years of intensive software engineering education
   - Contents: `AerospaceAPI`, language‑specific practice folders, and notes.
   - Read more: `SummerPractice/README.md`.
 
-## 🏆 Featured Project Highlights
+##  Featured Project Highlights
 
-### 🎮 Minesweeper Suite (CST-250)
+###  Minesweeper Suite (CST-250)
 **Technologies**: C#, WinForms, Recursion Algorithms  
 Complete implementation featuring dynamic bomb placement, flood-fill algorithms, GUI with flagging system, timer, and persistent high scores.  
 📁 `CST-250-C#2/Code/Milestone/src/MinesweeperGui/`
@@ -112,22 +112,22 @@ Complete implementation featuring dynamic bomb placement, flood-fill algorithms,
 Full-stack web application with REST API backend, dual frontend implementations, complete CRUD operations, and comprehensive API documentation.  
 📁 `CST-391-Web_dev/src/Milestone/`
 
-### 🏢 Enterprise Web Application (CST-339)
+### Enterprise Web Application (CST-339)
 **Technologies**: Spring Boot, Spring Security, MongoDB, Maven  
 Microservices architecture with authentication, service discovery, API gateway patterns, and enterprise security practices.  
 📁 `CST-339-Java3/src/Milestone/`
 
-### 🔐 Security Assessment Suite (CST-407)
+### Security Assessment Suite (CST-407)
 **Technologies**: Java, Cryptography, Vulnerability Analysis  
 Hands-on implementation of secure coding practices, threat modeling, and cryptographic protocols with vulnerability assessments.  
 📁 `CST-407-Application-Security-Foundations/`
 
-### 💾 Database Management Systems (CST-345)
+### Database Management Systems (CST-345)
 **Technologies**: SQL Server, MongoDB, .NET, ADO.NET  
 Comprehensive database design projects featuring normalized schemas, complex queries, and NoSQL document modeling.  
 📁 `CST-345-Database-Design/`
 
-## 🛠️ Getting Started
+## Getting Started
 
 ### Quick Start Guide
 ```bash
@@ -170,7 +170,7 @@ Each course folder contains a detailed README with specific setup instructions a
 └── ☀️ SummerPractice/
 ```
 
-## 🎯 Learning Journey Progression
+##  Learning Journey Progression
 
 ```mermaid
 graph LR
@@ -182,7 +182,7 @@ graph LR
     F --> G[Security & Best Practices]
 ```
 
-## 🤝 Connect & Collaborate
+##  Connect & Collaborate
 
 Interested in discussing any of these projects or potential collaboration opportunities? Feel free to explore the codebase and reach out!
 
