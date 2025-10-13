@@ -1,0 +1,6 @@
+Book Analytics Report
+==================================================
+Average Publication Year: 1945.3
+Average Number of Pages: 394.7
+Book with Most Pages: The Lord of the Rings, J.R.R. Tolkien, 1954, 1178
+Book with Fewest Pages: Animal Farm, George Orwell, 1945, 112
