@@ -1,0 +1,725 @@
+Classification
+
+
+
+In the previous chapters, we have introduced many of the main concepts that underpin machine learning
+methods. We have seen how, for a particular model, we can choose parameters and make predictions
+based on observed data. This has been done in three ways – finding the parameters that minimise a loss
+function, finding those that maximise a likelihood function and by treating the parameters as random
+variables. We will meet some of these approaches again in this and subsequent chapters as we tackle the
+main algorithmic families that make up the field of machine learning: classification, clustering and
+projection.
+  In this chapter we will deal with classification. The field of Machine learning can boast of many
+classification algorithms and this set grows on a daily basis. We have chosen to introduce just four
+algorithms here. The four comprise a broad foundation to classification techniques in general and
+knowledge of these will enable the reader to solve a wide range of classification problems and explore
+the rest of the literature.
+  The four algorithms that we cover can be split into two types – those that produce probabilistic
+outputs and those that produce non-probabilistic outputs. Both types have their advantages and the
+choice will always be dataset dependent.
+
+
+5.1 THE GENERAL PROBLEM
+Typically, we will be presented with a set of N training objects, x1, …, xN. Each is a vector with dimension
+D. For each object we are also provided with a label tn that will describe which class object n belongs to.
+This label will typically take an integer value. For example, if there are two classes in our data, tn = {0, 1}
+or tn = {−1, 1}. More generally, if there are C classes, tn = {1, 2, …, C}. Our task is to predict the class tnew
+for an unseen object xnew.
+  It is worthwhile drawing parallels between this setup and the one we saw in Chapters 1 to 3. In those
+chapters, we were provided with a set of objects x1, …, xN and associated real-valued labels. For many
+examples, the objects were Olympic years and the labels (responses) winning times for the men’s 100 m
+sprint. Our aim was to predict the winning time for future Olympic games. The classification setup is very
+similar – it is just that in classification the response variable is an integer indicating a particular class
+rather than a real value. In fact, we have already seen an example of a classifier in Chapter 4. The binary
+response model is a well-known binary classification algorithm known as logistic regression.
+   Classification algorithms have been used successfully in many domains. Two particularly challenging
+examples are automatic disease diagnosis, where we are interested in predicting whether a patient is
+healthy or unhealthy based on medical observations, and text classification, where we are interested in
+classifying documents into topics or as relevant/irrelevant for a particular user. These two examples
+illustrate the diverse applications in which classification techniques can be found. Different domains
+each have their own associated problems. In the first example, how do we handle the uneven cost of
+making errors? In the second, how do we handle complex data objects like text? We will address both of
+these issues in later sections.
+
+
+
+
+                                         2253308 - Taylor and Francis ©
+5.2 PROBABILISTIC CLASSIFIERS
+Probabilistic and non-probabilistic classifiers differ in the type of output they produce. In the probabilistic
+case, the output is the probability of a new object belonging to a particular class. Expressing the training
+data in matrix and vector form (X, t), this probability for class c is As a probability it must satisfy the
+following constraints:
+
+
+                                                          .                                              (5.1)
+
+
+At first glance, obtaining a probability as an output may seem unnecessary.
+
+
+
+
+  After all, we just said that our task was to predict the class Tnew. If we are primarily interested in an
+assignment, then we might choose a non-probabilistic classifier. However, in many applications, the
+probability is useful, as it provides a level of confidence in the output. For example, consider a disease
+diagnosis application with two classes, healthy (0) and diseased (1). Providing the probability P (Tnew =
+1|xnew, X, t) is much more informative than simply stating that tnew = 1. P (Tnew = 1|xnew, X, t) = 0.6 and
+P (Tnew = 1|xnew, X, t) = 0.9 both suggest that xnew should be classified as diseased, but in the former
+case, the model is much less certain. Perhaps more tests are required before a decision can be made.
+
+5.2.1 The Bayes classifier
+Our first probabilistic classifier is known as the Bayes classifier, taking its name from the equation on
+which it is based. Given a set of training points from C classes, our aim is to be able to compute the
+predictive probabilities (Equation 5.1) for each of C potential classes. These probabilities can then form
+the basis of a decision-making process (e.g. assign xnew to the class with the highest probability) or be
+used to compute an expectation.
+  From Bayes’ rule (see Section 2.2.7 and Chapters 3 and 4), we can obtain an expression for the
+predictive probability:
+
+
+
+
+                                        2253308 - Taylor and Francis ©
+FIGURE 5.1 Three-class classification dataset.
+
+The marginal likelihood, p(xnew|X, t) can be expanded to a sum over the C possible classes, resulting in
+the following equation that defines the Bayes classifier:
+
+
+                                                                                                         (5.2)
+
+
+
+
+We are left with the task of defining p(xnew|Tnew = c, X, t) and P (Tnew = c|X, t), the likelihood of xnew
+belonging to the cth class and the prior probability of the cth class. We will now discuss each of these in
+turn.
+
+
+5.2.1.1 Likelihood – class-conditional distributions
+The likelihood term in Section 5.2.1.3.
+
+
+5.2.1.2 Prior class distribution
+The second quantity in Equation 5.2 is P (Tnew = c|X, t). This is the probability that the object belongs to
+class c conditioned on just the training data, X, t. It enables us to specify any prior beliefs in the class of
+xnew before we see it. This allows us to account for uneven class sizes. For example, perhaps there is a
+class c that is extremely rare. Before we see the data, we might like to bias against this class (choose P
+(Tnew = c|X, t) to be very low) so that we will only classify xnew as belonging to it if it has a very high
+likelihood. Alternatively, class c may be very rare but we always want to detect it – it may be crucial not to
+misclassify these rare instances. In this case, we might set P (Tnew = c|X, t) to be high. This will result in
+more potential xnew vectors being classified as class c. Of course, some of them will be incorrect (they
+truly belong to a different class) but we will not miss many that really belong to class c. These issues can
+also be resolved when we make a decision based on the set of predictive probabilities. We will discuss
+these issues at length in Section 5.4.
+  Regardless of our motives, the only technical restriction in the choice of p(Tnew = c|X, t) is that they are
+positive and ∑c P (Tnew = c|X, t) = 1. Two popular choices are
+
+  1. Uniform prior:                              .
+
+
+
+                                          2253308 - Taylor and Francis ©
+  2. Class size prior:                            , where N is the number of objects in the training set and
+     Nc is the number of objects in the training set belonging to class c.
+
+Note that, although we have written the prior as being conditioned on X and t, it is not necessarily
+dependent on them. Neither example above uses X in the prior definition and only the second example
+uses t (through Nc).
+
+
+5.2.1.3 Example – Gaussian class-conditionals
+The data shown in Figure 5.1 has been generated from three classes. Each training object consists of a
+two-dimensional attribute vector xn = [xn1, xn2]T and an associated label tn = {1, 2, 3}. Class 1 is plotted as
+black circles, class 2 as white diamonds and class 3 as grey squares. Given that the attributes are real
+valued, we will use Gaussian class-conditional distributions:
+
+
+                                                                                                         (5.3)
+
+
+
+where µc and Σc need to be chosen based on the training points associated with class c. We will denote
+these points as Xc. This is itself a machine learning task – we have some data (Xc) and wish to infer
+something about the parameters of a model. In this example we will find the parameters µc and Σc that
+maximise the likelihood of the observations Xc. As an alternative, we could use a Bayesian approach. For
+example, defining a prior density for these parameters, p(µc, Σc), we could compute a posterior from
+Bayes’ rule:
+
+
+
+
+and then compute the likelihood of xnew by taking the expectation
+
+
+
+
+Assuming that the choice of prior p(µc, Σc) is conjugate with the Gaussian likelihood, the posterior and
+expectation could both be obtained analytically. Performing this analysis in a Bayesian manner is likely to
+be most useful when there is little data, and hence our estimates of µc and Σc are uncertain. See
+Exercises 5.1 and 5.2.
+  The maximum likelihood estimates for the mean and covariance of a Gaussian given a set of N data
+points can be obtained by differentiating the log-likelihood with respect to each parameter, setting to
+zero and solving (just as we did in Chapter 2 for the linear model). Omitting the details (see Exercise 5.3),
+the maximum likelihood estimates are
+
+                                                                                                         (5.4)
+
+
+
+
+                                                                                                         (5.5)
+
+
+
+
+                                        2253308 - Taylor and Francis ©
+where the summations are only over the data instances from the cth class. The three class-conditional
+distributions are shown (along with the data) in Figure 5.2 (MATLAB script: plotcc.m).
+  We are left with the task of deciding on the prior, P (Tnew = c|X, t). As mentioned earlier, a common
+
+choice is                             , the proportion of training points in class c. In our example, there are
+Nc = 30 in each class and therefore
+
+
+5.2.1.4 Making predictions
+Armed with the class-conditional distributions and the prior, we are able to make predictions. As a
+worked example, we will compute the posterior class probabilities for xnew = [2, 0]T. We summarise the
+various quantities that we need to compute and their values for xnew in Table 5.1. The final column gives
+us the numerator of Equation 5.2. To convert these values into probabilities, we have to divide each
+value by the sum of the three values: 0.0046 + 0.0020 + 0.0001 = 0.0067. The resulting probabilities are
+
+
+
+
+from which we can see that xnew is approximately twice as likely to belong to class 1 (black circles) than
+class 2 (white diamonds) and is very unlikely to belong to class 3 (grey squares).
+  By evaluating the classification probabilities over a grid of many xnew values, we can draw the contours
+of the classification probabilities. These can be seen in Figure 5.3 (MATLAB script: bayesclass.m). For each
+class the model assigns a high probability to the area of the space populated by training points of that
+class. However, there are some odd effects. Take 5.3(a) as an example: It has a high probability, > 0.9, in
+the area around the middle left of the plot where most class 1 (black circles) data is located. However, it
+also has a high probability in the bottom right of the plot where there is no class 1 data (or data from any
+class). Similarly, the contours for class 2 (Figure 5.3(b)) give a high probability in the middle right of the
+plot where there is no data belonging to class 2. These effects can be explained by noticing the steepness
+of the class-conditional contours for class 3 (Figure 5.2) when compared with those for classes 1 and 2.
+Its density decays so much faster than those for classes 1 and 2 that to the right of class 3, the density
+functions for both classes 1 and 2 are higher. This is an unfortunate property – it does not seem sensible
+to label points to the bottom right of the plots as belonging with high probability to either class 1 or 2. It
+would be far better if, as in the binary response model we saw in Chapter 4, the probabilities would
+become less certain as we move away from the vicinity of the data.
+
+TABLE 5.1 Likelihood and priors for xnew = [2, 0]T for the Gaussian class-conditional Bayesian
+classification example.
+c     p(xnew|Tnew = c, μc, ∑c)        P(Tnew = c|X, t)          p(xnew|Tnew = c, μc, ∑c) P(Tnew = c|X, t)
+1              0.0138                                                            0.0046
+
+2              0.0061                                                            0.0020
+3              0.0002                                                            0.0001
+
+
+
+
+                                         2253308 - Taylor and Francis ©
+FIGURE 5.2 Three-class classification dataset with the density contours for the three class-conditional
+distributions fitted using Equations 5.4 and 5.5.
+
+
+5.2.1.5 The naive-Bayes assumption
+In the previous example, we used two-dimensional Gaussians for the class-conditional distributions.
+These distributions were able to capture dependencies between the two attribute variables for each
+class. For example, we can see how the class-conditional distribution for class 3 was able to capture the
+strong dependency that exists between x1 and x2 for the training data in class 3. Fitting a two-
+Dimensional Gaussian involves choosing five parameter values: two for µ and three for Σ (Σ is symmetric
+so the two off-diagonal elements must be equal). This was perfectly feasible given that we had 30
+training points in each class. Problems arise when the number of dimensions starts increasing. In
+general, fitting a D-dimensional Gaussian requires                        parameters (D for the mean and
+
+               for the covariance matrix). For 10 dimensions, it is likely that 30 data points would not be
+sufficient to fit the resulting 65 parameters reliably.
+
+
+
+
+FIGURE 5.3 Contour plots of the classification probabilities for the Bayesian classifier with Gaussian class-
+conditional distributions.
+
+
+
+
+                                         2253308 - Taylor and Francis ©
+FIGURE 5.4 Density contours for Gaussian class-conditionals with the Naive Bayes assumption.
+
+  A common way to partly overcome this problem (lack of data can only be completely solved by getting
+more data) is to make the Naive Bayes assumption: the D-dimensional class-conditional distributions can
+be factorised into a product of D univariate distributions. In other words, conditioned on a particular
+class, the dimensions (e.g. x1 and x2) are independent. A univariate Gaussian requires two parameters –
+µ and σ2. Therefore, fitting D of these requires 2D parameters – 45 fewer in 10 dimensions than a single
+10-dimensional Gaussian. The price we pay for this decrease in number of parameters is a decrease in
+model flexibility. In our Gaussian example, it means that we are restricting the shapes of the class-
+conditional distributions to be aligned with the axis – they cannot model any within-class dependencies.
+This is clear from Figure 5.4, where we see the density contours for the class-conditional distributions
+when we make the Naive Bayes assumption:
+
+
+                                                                               .
+
+
+Comparing this with Figure 5.2, it is clear that the model for class 3 no longer accurately reflects the
+characteristics of the data. Figure 5.5 shows the classification probability contours for the three classes
+(MATLAB script: bayesclass.m). It is interesting to note that, although we know that the class-conditional
+distribution for class 3 is not particularly appropriate, the classification contours are still reasonable
+(notwithstanding the lack of uncertainty as we move away from the data).
+
+
+
+
+FIGURE 5.5 Contour plots of the classification probabilities for the Bayesian classifier with Gaussian class-
+conditional distributions and the Naive Bayes assumption.
+
+
+
+
+                                       2253308 - Taylor and Francis ©
+5.2.1.6 Example – classifying text
+Machine learning is widely used to perform automatic text classification. Learning from data makes a lot
+of sense within this domain – it is not straightforward to manually build a set of rules or models that
+could be used to classify text, but at the same time there is a lot of data with which a classifier could be
+trained.
+  The 20 newsgroups dataset is a popular benchmark dataset on which to evaluate new algorithms. It
+consists of approximately 20,000 documents, each of which is a post to one of 20 newsgroups.
+Considering each of these 20 newsgroups as a different class, we will build a classification system that
+can automatically assign a new document to one of these 20 classes. The groups cover a diverse set of
+topics including sport, computing and religion.
+  The algorithms that we have introduced work with numerical data and we therefore need a way of
+encoding a document as a vector of numerical values. The most common way of doing this is to use the
+bag-of-words model. If the total number of unique words in all documents (the vocabulary) is M, each
+document is represented as an M-dimensional vector. The vector for the nth document, xn, is made up of
+the counts of the number of times each word appears. xnm is therefore the number of times word m
+appears in document n.
+  Given that the vocabulary is likely to be large, we will make the naive-Bayes assumption. Therefore our
+class-conditional distribution can be decomposed into a product over the words in the vocabulary:
+
+
+
+
+This assumption means that the number of parameters we require to define each class-conditional will
+be roughy equal (depending on the choice of distribution function) to the number of words. Adding any
+form of dependency between words would cause an explosion in the number of parameters that we
+would have to fit. For example, if we looked at pair-wise dependencies, we would need of the order of M2
+parameters. Given that a typical vocabulary might include some 50, 000 words, this is already a
+significant challenge.
+  The bag-of-words model also assumes that the ordering of the words is not important. For example, xn
+would be identical for the following two sentences despite the fact that the second is nonsense:
+
+                             1. The quick brown fox jumps over the lazy dog.
+                             2. Dog quick lazy the jumps fox brown the over.
+
+This assumption is not too restrictive: if our classifier is given a document that includes many instances
+of the word ‘baseball’ it is likely that this document is about sport regardless of the particular ordering of
+the words. Note that the bag-of-words model ignores ordering but does not necessarily imply
+independence. We could still define class-conditional distributions that allowed for dependencies
+between the elements of xn.
+ We will use multinomials (introduced in Section 2.3.3) for the class-conditional distributions. The
+multinomial distribution for the vector xn is defined as
+
+
+                                                                                                        (5.6)
+
+
+
+
+                                        2253308 - Taylor and Francis ©
+where                       and q = [q1, …, qM ]T are a set of parameters, each of which is a probability
+              . Note that the multinomial distribution automatically makes the Naive Bayes assumption
+through the product over m.
+  There will be one multinomial (and hence one q) for each class. Therefore, we need to determine the
+value of qc (the vector of probabilities for the cth class) based on the set of training objects – xn –
+corresponding to class c. We can do this with maximum likelihood (see Exercise 5.4), resulting in
+
+
+
+
+where the summations over n just include objects from class C. Defining the prior distribution
+                         , we could make predictions using Equation 5.2. However, before we do that,
+there is a problem that needs to be addressed.
+
+
+5.2.1.7 Smoothing
+It is quite feasible that a particular word (say m) will never appear in documents from one class (say c) –
+not many religious newsgroup posts are likely to mention ‘baseball’. This will result in qcm = 0. Look back
+
+at Equation 5.6 – if any one or more qcm is zero with non-zero xnm, the product                will be zero.
+In other words, if we are trying to compute the classification probability for a new document xnew that
+happens to include word m, the likelihood (p(xnew|Tnew = c, qc)) will equal zero and hence P (Tnew =
+c|xnew, X, t) = 0. A document including a word that doesn’t appear in any of the training documents will
+have probability 0 of belonging to all classes. This is another example of over-fitting to the training data
+and we can overcome this by placing a prior density on q that encodes the belief that all probabilities are
+greater than 0. Once we have defined this prior, we can set q with the MAP estimate (see Chapter 4)
+rather than the maximum likelihood estimate. We could also take expectations with respect to the
+posterior density of q (see Exercises 5.5 and 5.6).
+  A suitable prior density for a vector of probabilities is the Dirichlet density, defined as
+
+
+                                                                                                      (5.7)
+                                                                   .
+
+
+
+  We will simplify this further by assuming that αm = α – i.e. the parameter used to define the Dirichlet is
+the same for each word. The MAP estimate can be obtained by maximising the prior multiplied by the
+multinomial likelihood (or the log of this product). Omitting the details here (see Exercise 5.7), the MAP
+estimate for qcm is
+
+                                                                                                      (5.8)
+                                                               .
+
+
+Once again, summations are only over the training objects from class c. For α > 1, qcm > 0 and the issue
+of zeros is no longer a problem. This technique is often referred to as smoothing – if we keep increasing
+α, each word probability qcm will get closer and closer to     . This could also be considered as another
+example of regularisation (see Section 1.6).
+
+
+
+
+                                       2253308 - Taylor and Francis ©
+  The newsgroup data has been split into training and test sets holding ≈ 11, 000 and ≈ 7, 000
+documents, respectively. Setting α = 2, using Equation 5.8 to determine qc and setting the prior
+classification probability to 1/20 (a uniform prior over the 20 classes), we can compute the classification
+probabilities using Equation 5.2 where p(xnew|tnew = c, X, t) is given by Equation 5.6, with xn substituted
+for xnew.
+  For each of the ≈ 7, 000 xnew vectors, we have a set of 20 probabilities. The simplest way to evaluate
+how well the classifier is working is to assign each xnew to the class for which it has the highest
+probability and compare these assignments to the known labels. If we do this, we find that the classifier
+is correct 78% of the time – not bad given that we have used the simplest possible model and have not
+attempted to optimise it in any way.
+   Figure 5.6 provides a graphical representation of the classification probabilities for the ≈ 7, 000 test
+points (MATLAB script: newspred.m). Each row corresponds to a single test point and the rows are ordered
+by true class. Each column corresponds to a predicted class. For example, the values in column 10 give
+the probabilities of test points being classified as belonging to class 10. The block-like structure present
+tells us that the algorithm is doing reasonably well – the probabilities are high where they ought to be. A
+plot like this also allows us to see whether there is any pattern in the errors being made. For example, it
+seems that a large number of test points belonging to class 19 (the penultimate block) are wrongly
+classified as belonging to class 17. These two classes are from the newsgroups talk.politics.guns and
+talk.politics.misc and so it is not surprising that there might be some confusion here – many popular words
+will be shared by the two classes. Another example is the confusion between classes 20 and 16 for data
+points whose true class is 20. These two are from talk.religion.misc and soc.religion.christian, which are also
+clearly related. An analysis of the types of mistakes being made by classification algorithms will often
+enable us to improve performance. In this example, it may be sensible to consider whether classes 16
+and 20 should be amalgamated into a larger class. If not, it might suggest that we should attempt to
+obtain more data (documents) from these two classes.
+
+
+
+
+FIGURE 5.6 Graphical representation of the predictive probabilities for the Bayesian classifier on the 20
+newsgroups data. Each row corresponds to one test point and the test points are ordered by true class.
+The whiter the colour, the higher the probability.
+
+
+
+
+                                        2253308 - Taylor and Francis ©
+  There are several ways to analyse the results being produced by a classification algorithm. We will look
+at these in more detail later in this chapter (Section 5.4). In the meantime, we will move onto our second
+probabilistic classifier.
+
+
+5.2.2 Logistic regression
+Although we called it a binary response model, Chapter 4 was entirely devoted to a binary classifier
+known as logistic regression. In Chapter 4 we didn’t really discuss it from the viewpoint of classification
+but as a model for which analytical Bayesian inference was not possible. However, everything that one
+would need to use this method is there in Chapter 4 and we will not reproduce it here. There are,
+however, a couple of points that are worth discussing – the motivation for what we called the ‘squashing
+function’ and generalisations to this type of model.
+
+5.2.2.1 Motivation
+In Chapter 4 we motivated the logistic likelihood,
+
+
+
+
+by arguing that we wanted to use our familiar linear model (wTx) but needed to transform it so that the
+output was a probability (0 ≤ P (Tnew = 1|xnew, w) ≤ 1).
+  Whilst there is nothing wrong with this as a motivation, the use of the logistic likelihood is usually more
+formally derived as a result of modelling the log-odds ratio. This is the log of the ratio between P (Tnew =
+1|xnew, w) and P (Tnew = 0|xnew, w):
+
+
+                                                                 .
+
+
+There are no constraints on this value – it can take any real value. If P (Tnew = 1|xnew, w) ≪ P (Tnew =
+0|xnew, w), the log ratio will take on a large negative value, and, if P (Tnew = 1|xnew, w) ≫ P (Tnew =
+0|xnew, w) it will take a large positive one. Therefore, this quantity is a sensible candidate for modelling
+with our familiar linear model:
+
+
+                                                                 .                                     (5.9)
+
+
+
+With a bit of rearranging, and noting that
+
+                                                                                  .
+
+we can obtain an expression for P (Tnew = 1|xnew, w):
+
+
+
+
+                                       2253308 - Taylor and Francis ©
+  By using the logistic likelihood for P (Tnew = 1|xnew, w), we are actually modelling the log-odds ratio
+with a linear model. In the statistics community, approaches like this are known as generalised linear
+models – linear models that are passed through some transformation to model the quantity of interest.
+
+5.2.2.2 Non-linear decision functions
+The decision boundaries for individual w values in Chapter 4 were all straight lines. The probability
+contours obtained with the Laplace approximation and the Metropolis–Hastings algorithm were curved
+as the result of averaging over many straight lines. By expanding xn to include terms like  , we can
+obtain non-linear decision boundaries in logistic regression in a manner similar to the way we obtained
+non-linear regression functions in Chapter 1. For example, the data in Figure 5.7(a) shows a binary
+classification dataset that may require a non-linear decision boundary. Using x1 and x2 to denote the
+individual attributes (x = [x1, x2]T), we could use the following model for the log-odds ratio:
+
+
+                                                                                    .               (5.10)
+
+
+To show that this is able to produce non-linear decision boundaries, we find the MAP estimate     of the
+parameters assuming a Gaussian prior                             (see Section 4.3). We could, of course,
+submit this model to the more Bayesian treatments introduced in Chapter 4 if desired.
+  Plugging    into the logistic likelihood allows us to compute the classification probabilities:
+
+
+
+
+Evaluating this over a grid of xnew values enables us to plot contours of the probability of belonging to
+class 1 over the space of attributes. The non-linear decision boundary can be seen in Figure 5.7(b) (the
+training points have been greyed out a little to make the contours easier to see) (MATLAB script:
+nonlinlogreg.m). This is an appealing property of logistic regression but it is important to remember that
+the problems of over-fitting and poor generalisation we saw when making the linear model more and
+more complex in Chapter 1 are just as troublesome in the classification domain. Remember that this is
+for a single value of w: we obtained non-linear decision boundaries in the Laplace and Metropolis–
+Hastings cases in Chapter 4, but only by averaging over many different straight lines.
+
+
+
+
+                                        2253308 - Taylor and Francis ©
+FIGURE 5.7 Binary data and classification probability contours for the logistic regression model described
+by Equation 5.10.
+
+
+5.2.2.3 Non-parametric models – the Gaussian process
+Throughout this book, we have restricted ourselves to models of the form wTx. This model has a set of
+parameters w in which it is linear. For any particular expansion of x (e.g. adding squared terms), this
+function belongs to a particular family of functions. For example, if we had squared terms, it is a member
+of the quadratic family. The choice of a family places restrictions on the flexibility of the function – if we
+choose w0 + w1x, we can only model things with straight lines. If we choose w0 + w1x + w2x2 + w3x3, we
+can only model things with cubic (third-order) polynomials. Models such as these are known as
+parametric, as they belong to a particular parametric family and the particular function within that family
+is determined by a set of parameters, w.
+
+  It is worth briefly mentioning a very flexible alternative – non-parametric models. Rather than being
+defined as a function of some parameters (e.g. f(x; w)), non-parametric models are defined in a more
+general manner. For example, a popular non-parametric model is the Gaussian process (GP). In
+parametric models, we place a prior distribution on the parameters w which in turn implies a prior
+distribution over the output values of the function. With a GP we place the prior distribution directly onto
+the output values of the function. Note that non-parametric does not mean that the GP does not have
+any parameters, but that it does not assume a parametric form for the function.
+  The GP is characterised by two functions – a mean function µ(x) that describes the average function
+value as a function of the attribute x (x can be a scalar or a vector) and a covariance function c(xn, xm)
+that defines how similar the function output at xn should be to that at xm. In practice, the mean function
+is often assumed to be 0.
+
+  For any finite set of N data points, the Gaussian process essentially becomes an N-dimensional
+Gaussian distribution with mean µ = [µ(x1), …, µ(xN)]T and covariance matrix
+
+
+
+
+                                        2253308 - Taylor and Francis ©
+Sampling a vector from this Gaussian gives a value for the output of the function at each of the N data
+objects.
+  GPs have become increasingly popular within machine learning due to their flexibility – a GP is not
+restricted to a particular parametric family. They can be thought of as a replacement for a parametric
+model in any particular algorithm. For example, we could have used a GP to model the Olympics data, or
+as a replacement for wTxn in the logistic regression algorithm. We discuss GPs more thoroughly in
+Chapter 8.
+
+
+5.3 NON-PROBABILISTIC CLASSIFIERS
+We now turn our attention to non-probabilistic classifiers. Rather than providing a probability of class
+membership, P (Tnew = c|xnew, x, t), their output is an assignment of an object to a class, tnew = c. We will
+look at two different algorithms – K-nearest neighbours and the Support Vector Machine. Both are very
+popular within machine learning due to their excellent empirical performance. The Support Vector
+Machine will also provide us with an introduction to the area of kernel methods.
+
+5.3.1 K-nearest neighbours
+Our first approach, K-nearest neighbours (KNN), is very popular due to simplicity and excellent empirical
+performance. It can handle both binary and multiclass data and makes no assumptions about the
+parametric form of the decision boundary. KNN does not have a training phase and is best described
+through the simple process used to classify new objects, xnew.
+  Consider our normal scenario – we have N training objects, each of which is represented by a set of
+attributes xn and a label tn. To classify xnew with KNN, we first find the K training points that are closest
+to xnew. tnew is then set to be the majority class amongst these neighbours. This is illustrated in Figure
+5.8. The training data consists of data points belonging to one of two classes (grey circles and white
+squares). Two test points are indicated by black diamonds, and in both cases, the dotted circles enclose
+their K = 3 nearest neighbours. The neighbours of test point A include two from the square class and one
+from the circle class, and so it will be classified as belonging to the square class. All of the neighbours of
+test point B belong to the circle class, to which B is therefore assigned.
+
+
+
+
+                                        2253308 - Taylor and Francis ©
+FIGURE 5.8 Cartoon depicting the operation of KNN (K = 3). Circles and squares denote the training points
+and diamonds the test points. Test point A will be assigned to the ‘square’ class and B to the circles.
+
+  One drawback of the K-nearest neighbours approach is the issue of ties – two or more classes having
+an equal number of votes. For example, if K = 8 in Figure 5.8, we will always have four neighbours
+belonging to each class and no majority. One option is to assign the class randomly from the set of tied
+classes. This may not always be sensible, as it means that the same xnew may be assigned to different
+classes if it is tested more than once. For binary classification, a neater solution is to always use an odd
+number of neighbours. More generally, we can weight the votes according to distance such that the
+votes from closer points have greater influence making ties highly unlikely.
+  In Figure 5.8 we have used Euclidean distance to determine which points are neighbours of the test
+point. However, we are free to choose any distance measure we like. KNN is therefore very flexible – it
+can be used for any data type for which we can define a distance between two objects. Examples of
+other data types for which KNN has been used successfully include strings, graphs and images.
+
+5.3.1.1 Choosing K
+Once we have some data and have chosen a suitable distance measure, the only thing that remains is
+the choice of K. If K is too small, our classification can be heavily influenced by noise. This is
+demonstrated in Figure 5.9(a) (MATLAB script: knnexample.m) where we have plotted the decision
+boundary (consisting of points equidistant from a single neighbour in each class) for some binary data
+with K = 1. Whilst the majority of the boundary looks reasonable, there are three ‘islands’ that look like
+the result of over-fitting. Each island guards a large area of input space on what looks like the wrong side
+of the decision boundary. The three points in the centre of the islands are likely to be noise (i.e.
+mislabeled points). This problem is easily rectified by increasing K. Figure 5.9(b) shows the same data
+along with the K = 5 decision boundary. The inclusion of more neighbours has had the effect of
+regularising the boundary, removing the three islands.
+
+
+
+
+                                       2253308 - Taylor and Francis ©
+FIGURE 5.9 Binary classification dataset and decision boundaries for K = 1 and K = 5.
+
+
+
+
+FIGURE 5.10 Second binary classification dataset and decision boundaries for K = 5 and K = 39.
+
+  We have seen that a very small value of K can be dangerous. What happens if K gets too big? As we
+increase K, we are using neighbours from further away from xnew. Up to a point, this is useful. It has a
+regularising effect that reduces the chance of over-fitting. However, if we go too far, we will lose the true
+patterns in the data that we are attempting to model. Consider this extreme example: in some
+hypothetical training data there are N0 = 50 and N1 = 10 points from classes 0 and 1, respectively. Given
+that N1 = 10, no test point can have more than 10 neighbours belonging to class 1. Therefore, if K ≥ 21,
+xnew can never be classified as belonging to class 1 – we have smoothed to such an extent that
+everywhere belongs to class 0! A less extreme example can be seen in Figures 5.10(a) and 5.10(b), where
+we show a dataset that has 50 points in class 0 (white circles) and only 20 points in class 1 (grey squares).
+The K = 5 decision boundary in Figure 5.10(a) looks reasonable whilst the K = 39 boundary in Figure
+5.10(b) is being pushed up into the top right corner as the larger class exerts its influence.
+
+
+
+
+                                       2253308 - Taylor and Francis ©
+FIGURE 5.11 Using cross-validation to find the best value of K. Ten-fold cross-validation was used and the
+reported error is averaged both over the folds and over 100 different partitions of the data into folds.
+
+  Datasets with uneven numbers of objects in each class are known as imbalanced and are common in
+machine learning and something we must be aware of when we undertake any classification analysis. We
+will discuss this particular problem in more detail in Section 5.4.
+  The most popular method for choosing K is cross-validation (see Section 5.2.1.6 – the proportion of
+times the classifier makes a mistake. Figure 5.11(b) shows how the percentage error (0/1 loss) changes as
+K increases for the synthetic data given in Figure 5.11(a) (MATLAB script: knncv.m). Ten-fold cross-
+validation was used and, to remove the effect of any particular partitioning of the data into the ten folds,
+the entire process was repeated 100 times. The errors plotted are therefore an average of 10 × 100 =
+1000 fold errors. As K increases, the classification error drops to a minimum corresponding to K = 5 and
+then starts increasing (with a little bump at K = 17).
+
+
+
+
+FIGURE 5.12 The classification margin γ, defined as the perpendicular distance from the decision
+boundary to the closest points on either side.
+
+
+5.3.2 Support vector machines and other kernel methods
+Our second non-probabilistic classifier is the Support Vector Machine (SVM). SVMs are binary classifiers
+(although multiclass extensions have been proposed) and have been used successfully across a wide
+
+
+
+                                       2253308 - Taylor and Francis ©
+range of machine learning applications. Their success is due to their excellent empirical performance and
+for many applications they are hard to beat. They have been found to be particularly useful in
+applications where the number of attributes is much larger than the number of training objects. This is
+because the number of parameters that must be set for the SVM is related to the number of training
+objects and not the number of attributes.
+  The standard SVM uses a linear decision boundary, given by wTxnew + b, to classify new data objects.
+Objects lying on one side of the line are put into class tnew = 1 and objects on the other side into tnew =
+−1 (note that the class labels are {1, −1} rather than {0, 1}).
+  The SVM decision function for a test point xnew is therefore given as
+
+
+                                                           .                                           (5.11)
+
+
+The learning task involves choosing the values of w and b based on the training data. This is achieved by
+finding the parameters that maximise a quantity called the margin. This is much the same way that we
+minimised the loss in Chapter 1, maximised the likelihood in Chapter 2 and found the MAP solution in
+Chapter 3.
+
+
+5.3.2.1 The margin
+The margin is defined as the perpendicular distance from the decision boundary to the closest points on
+either side. This is illustrated in Figure 5.12, where the margin is denoted by γ.
+
+
+
+
+FIGURE 5.13 Illustrating the steps taken to compute the margin, γ. 2γ is equal to the component of the
+vector x1 − x2 in the direction perpendicular to the boundary.
+
+  The toy examples in Figures 5.12(a) and 5.12(b) demonstrate why the margin is a sensible quantity to
+maximise. Intuitively, the boundary corresponding to the larger margin (Figure 5.12(a)) looks more
+sensible. In particular, the decision boundary in Figure 5.12(b) will classify points towards the top left and
+bottom right as belonging to the white and black classes, respectively whereas common sense would
+suggest the opposite. Notice how in Figure 5.12(b) the margin is computed as the distance between the
+decision boundary and a different set of training points than in Figure 5.12(a). The margin is defined as
+the distance between the boundary and the closest points, the set of which will change as the boundary
+does.
+
+5.3.2.2 Maximising the margin
+
+
+
+
+                                        2253308 - Taylor and Francis ©
+It is easiest to compute the margin using one point from each class. Figure 5.13 shows how this is done.
+x1 and x2 are the closest points from the two classes. 2γ (i.e. double the boundary) is equal to the
+component of the vector joining x1 and x2 in the direction perpendicular to the boundary.
+  The vector joining x1 and x2 is given by x1 − x2 and the direction perpendicular to the decision
+boundary is given by w/||w||. The inner product between these two quantities gives us the quantity
+that we require:
+
+                                                                  .
+
+
+  Our decision function, tnew = sign(wTxnew+b), is invariant to scaling its argument by a positive constant.
+This means that we can multiply wTxnew + b by a positive constant λ and the output of the sign function
+will be unchanged. Therefore, we can decide to fix the scaling of w and b such that wTx + b = ±1 for the
+closest points
+
+
+
+
+                                       2253308 - Taylor and Francis ©
+

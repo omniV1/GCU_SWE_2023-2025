@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0d16ca88464d79ad760c8bd34ff3cfbf39814a1c52d75ba04bc792c4aa13ee81
-size 255
+﻿CREATE TABLE [dbo].[ContactInfo] (
+[Id] INT IDENTITY (1,1) NOT NULL, 
+[Name] NVARCHAR (50) NULL,
+[PhoneNumber] NVARCHAR (50) NULL,
+[Address] NVARCHAR (50) NULL,
+[City] NVARCHAR (50) NULL,
+[Zip] Int (50) NULL,
+PRIMARY KEY CLUSTERED ([Id] ASC)
+);

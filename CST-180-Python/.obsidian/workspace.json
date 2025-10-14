@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "coding/Topic 3 Loops and Arrays.md",
+                "file": "coding/Topic 4 Input and Output.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Topic 3 Loops and Arrays"
+              "title": "Topic 4 Input and Output"
             }
           }
         ],
@@ -191,6 +191,8 @@
   },
   "active": "0e5be4c33cf072ac",
   "lastOpenFiles": [
+    "coding/Topic 3 Loops and Arrays.md",
+    "coding/Topic 4 Input and Output.md",
     "Homework/I/O/book_analytics_pseudocode.md",
     "Homework/I/O/book_analytics_pseudocode.pdf",
     "Homework/War Card Game/war_card_game_documentation.md",
@@ -202,7 +204,6 @@
     "Photos/Pasted image 20250922151039.png",
     "Homework/War Card Game/war_card_game_simulation.md",
     "Homework/War Card Game/war_card_game_documentation.pdf",
-    "coding/Topic 3 Loops and Arrays.md",
     "Pasted image 20251009150054.png",
     "Pasted image 20251009145150.png",
     "Pasted image 20251009144854.png",

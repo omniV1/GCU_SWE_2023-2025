@@ -1,0 +1,555 @@
+  on either side. This restriction allows us to simplify our expression for γ:
+
+                                                                                                        (5.12)
+
+
+
+
+ Comment 5.1 – Constrained optimisation with Lagrange multipliers: At various points in this book
+ we will need to perform constrained optimisations – finding the values of a set of parameters that
+ maximise (or minimise) an objective function but that also satisfy some constraints. This can be done
+ using Lagrange multipliers. In particular, we make a new objective function which includes the original
+ plus an additional term for each constraint. The form of these terms is chosen such that the optimum of
+ the new function is equal to the optimum of the constrained problem.
+
+ For example, suppose we wish to minimise f(w) subject to the constraint g(w) ≤ a:
+
+
+
+
+ The new objective function is produced by adding a Lagrangian term of the form λ(a − g(w)) and
+ optimised over both w and the Lagrange multiplier λ:
+
+
+
+
+ We are not going to go into the details of how this works here. Whenever we perform constrained
+ optimisation, we will state the necessary Lagrangian terms without any further details. For more
+ details, see the suggested reading at the end of this chapter.
+
+To maximise the margin, we must therefore maximize            . There are, however, some constraints. Recall
+
+that we decided that, for the closest points in class 1: wTxn + b = 1. Therefore, w has to be chosen to
+satisfy wTxn + b ≥ 1 for all points in class 1. Similarly, it must satisfy wTxn + b ≤ −1 for those in class −1.
+Defining the labels as as±1 allows us to express these two sets of constraints succinctly as
+
+
+
+
+Therefore, our learning task is to find the largest value of               that satisfies these N constraints
+
+(where N is the number of points in the training set). It will actually be easier to minimise          and so
+we shall do this instead. Formally, our optimisation problem has become
+
+
+
+
+                                        2253308 - Taylor and Francis ©
+  This is the first time we have come across a constrained optimisation problem. To solve it, we need to
+incorporate the constraints into the objective function through a set of Lagrange multipliers. Lagrange
+multipliers add a new term in our objective function for each constraint such that the optimum of the
+new objective function corresponds to the optimum of the original, constrained problem. In our case, we
+need N Lagrangian terms. Each has an associated Lagrange multiplier, which is itself constrained to be
+positive. Without going into any more details of Lagrange multipliers, our new objective function is
+
+
+
+
+where we’ve used the fact that ||w||2 = wTw. At an optimum of this new objective function, the partial
+derivatives of the objective function with respect to w and b must be zero. These derivatives are
+
+
+
+
+Equating these two expression to zero gives us the following two identities that must be satisfied at the
+optimum:
+
+                                                                                                      (5.13)
+
+
+
+
+                                                                                                      (5.14)
+
+
+
+Substituting the first of these identities back into the objective function gives us a new objective function
+which must be maximised with respect to the αn rather than
+
+
+
+
+                                       2253308 - Taylor and Francis ©
+where we used the fact that                         to remove the third term in the penultimate line. This
+expression is known as the dual optimisation problem and has to be maximised subject to the following
+constraints:
+
+
+
+
+the second of which comes from Equation 5.14. Notice that w doesn’t feature at all in this optimisation
+problem.
+  This optimisation problem is a constrained quadratic programming task, quadratic because of the
+αmαn term. There is no analytical solution, but it is reasonably straightforward to solve numerically. For
+example, the MATLAB function quadprog solves problems such as these.
+
+
+5.3.2.3 Making predictions
+Given a set of optimal αn, how do we go about making predictions? Our decision function, tnew =
+sign(wTxnew + b), is based on w and b, not αn. To convert it into a function of αn, we substitute the
+expression for w given in Equation 5.13, resulting in
+
+                                                                                                        (5.15)
+
+
+
+
+To find b, we will use the fact that, for the closest points, tn(wTxn + b) = 1. Substituting Equation 5.13 into
+this expression and rearranging allows us to calculate b (note that 1/tn = tn):
+
+                                                                                                        (5.16)
+
+
+
+where xn is any one of the closest points. This gives us everything we need to be able to classify any xnew.
+
+
+5.3.2.4 Support vectors
+
+
+
+
+                                        2253308 - Taylor and Francis ©
+The set of points closest to the maximum margin decision boundary are known collectively as the
+support vectors. The name comes from the fact that they define, or support, the decision boundary. As
+the decision boundary is found by maximising the margin and as the margin only depends on the closest
+points, we could discard all of the other data and end up with just the same decision boundary. This is
+reflected by the fact that, at the optimum, all of the αn that do not correspond to support vectors will be
+zero. If they were non-zero, they would have an influence on the decision function (see Equation 5.15). In
+many applications, this will lead to a sparse solution – the decision is a function of only a small subset of
+the training examples. For large problems, this can be a very useful feature. Consider classifying a test
+point using KNN when the training set consists of several thousand objects. To find the set of
+neighbours, distances must be computed between the new object and all of the training objects. For an
+SVM trained on the same data, the decision function might just involve a small subset of the training
+data.
+
+
+
+
+FIGURE 5.14 Decision boundary and support vectors for a linear SVM.
+
+  Figure 5.14 shows a binary dataset and the resulting decision boundary (wTx + b = 0, where
+                       ) along with the three support vectors (large grey circles) (MATLAB script:
+svmhard.m). These are the only points for which αn > 0 and hence the only points that need to be used
+
+when classifying new data.
+   Although it could be considered efficient to base our decision on (in this case) only three of the training
+points, it will not always be a good thing. To illustrate why, consider Figure 5.15 (MATLAB script:
+svmhard.m). This is the same data that we saw in Figure 5.14 with one difference – the support vector from
+the class denoted by grey squares has been moved closer to the other class. Moving this single data
+point has had a large effect on the position of the decision boundary. This is another example of over-
+fitting – we are allowing the data to have too much influence. To see why this happens, we need to look
+at our original constraints:
+
+                                                                                                       (5.17)
+
+This means that all training points have to sit on the correct side of the decision boundary. This type of
+SVM is known as a hard margin SVM. It will sometimes be sensible (and lead to better generalisation
+performance) to relax this constraint. Fortunately, this is straightforward using a soft margin.
+
+
+
+
+                                        2253308 - Taylor and Francis ©
+FIGURE 5.15 Decision boundary and support vectors for a linear SVM. The support vector from the grey
+square class appears to be exerting too much influence.
+
+
+5.3.2.5 Soft margins
+To allow points to potentially lie on the wrong side of the boundary, we need to slacken the constraints in
+our original formulation. In particular, we need to adapt Equation 5.17 so that it admits the possibility of
+some points lying closer to (or on the wrong side of) the decision boundary. To achieve this, the
+constraint becomes
+
+                                                                                                     (5.18)
+
+where ξn ≥ 0. If 0 ≤ ξn ≤ 1, the point lies on the correct side of the boundary but within the boundary of
+the margin. If ξn > 1, the point lies on the wrong side of the boundary. Our optimisation task becomes
+
+
+
+
+The new parameter C controls to what extent we are willing to allow points to sit within the margin band
+or on the wrong side of the decision boundary. If we follow the same steps that we took for the hard
+margin class we find that this change in the model has only a very small effect on the maximisation
+problem. Omitting the details (see Exercise 5.8), we now need to find the maximum of the following
+quadratic programming problem:
+
+
+
+
+                                       2253308 - Taylor and Francis ©
+FIGURE 5.16 Decision boundary and support vectors for a linear SVM with a soft margin for two values of
+the margin parameter C. The influence of the stray support vector has been reduced.
+
+The only difference is an upper bound (C) on αn. The influence of each training point in our decision
+function is proportional to αn. We are therefore imposing an upper bound on the influence that any one
+training point can have. For the example in Figure 5.15, the support vector from the grey class had αn =
+5.45. Setting C to 1 would result in a change in the decision boundary (some other αn will have to become
+non-zero from the grey square class), moving it back towards the other objects in the grey square class.
+This is exactly what happens, as we can see from Figure 5.16, where we plot the decision boundary and
+support vectors for C = 1 and C = 0.01 (MATLAB script: svnsoft.m). As C decreases, the maximum potential
+influence of each training point is eroded and so more and more of them become active in the decision
+function.
+  Using a soft margin gives us a free parameter (C) that needs to be fixed. As with K for KNN, we can set
+this using cross-validation. The procedure and error measure are identical to those for KNN and so we
+omit details here. A final practical point is the computation of b. We can no longer use any support vector
+to compute it, as they will not all satisfy tn(wTxn + b) = 1. Support vectors within the margin band (or on
+the wrong side) will have tn(wTxn + b) < 1. To overcome this problem, find the support vector with the
+highest value of wTxn (or                    ) and compute b from Equation 5.16.
+
+
+
+
+FIGURE 5.17 A binary dataset for which a linear decision boundary would not be appropriate.
+
+
+
+
+                                      2253308 - Taylor and Francis ©
+5.3.2.6 Kernels
+Our study of SVMs thus far has been restricted to linear decision boundaries. The soft margin allows
+training points to reside on the wrong side of the decision boundary but this will not help if the data, like
+that shown in Figure 5.17, is more complex. When we wanted a non-linear function from linear
+regression, we added some terms to x and extended w. With SVMs, we take a very different approach.
+The model remains the same (a linear decision boundary) but for data that has been transformed into
+some new space. The transformation is done in such a way as to make the transformed data classifiable
+with a linear decision boundary.
+  To illustrate this idea, consider the data in Figure 5.17. The data cannot be separated by a straight line.
+However, if, instead of representing each data point by xn = [xn1, xn2]T, we represented them by their
+distance from the origin,                   , we could separate them with a straight line: the points in the
+circle class look consistently further from the origin than those in the square class. Using zn instead of xn
+in the SVM, we do not need to modify the algorithm at all. When we have a test point, xnew, we compute
+znew and then classify it in the normal manner. In general, we will use ϕ(xn) to denote a transformation of
+the nth training object.
+  Perhaps the most important characteristic of the SVM framework is that we never actually have to
+perform the transformations. In our objective and decision function, the data xn, xm, xnew appear
+exclusively within inner (or dot) products:                   , etc. We never see an x on its own. After
+applying the transformation, we need to calculate these inner products in the new space, ϕ(xn)Tϕ(xm). We
+could explicitly transform each data point and compute the inner products in the transformed space.
+However, we do not actually need to think in terms of transformations at all. Instead, if we can show that
+some function k(xn, xm) = ϕ(xn)Tϕ(xm) for some transformation ϕ(⋅), we are free to use k(xn, xm) in our
+expression in place of any inner product in the original space. Functions that correspond to inner
+products in some space are known as kernel functions.
+
+
+
+
+FIGURE 5.18 Decision boundary and support vectors for the dataset in Figure 5.17 using a Gaussian
+kernel with the kernel parameter γ = 1 and C = 10.
+
+  Our optimisation and decision function (soft margin version) rewritten to include kernel functions are
+
+
+
+
+                                       2253308 - Taylor and Francis ©
+There are plenty of off-the-shelf kernel functions (each equivalent to an inner product after some
+transformation) that we can use. The following are probably the three most popular:
+
+                                                                                                      (5.19)
+
+
+
+
+  The linear kernel is equivalent to the SVM that we have been using thus far. The Gaussian and
+polynomial kernels are more flexible and both have additional parameters (γ) that must be set by the
+user – normally via cross-validation.
+  The results of using a Gaussian kernel for the data shown in Figure 5.17 can be seen in Figure 5.18 for γ
+= 1 and C = 10 (all αn < C, so this is effectively a hard margin) (MATLAB script: svmgauss.m). The decision
+boundary looks reasonable. For the original SVM, we could compute the decision boundary exactly, as it
+consisted of the values of x that satisfied
+
+
+
+We can no longer compute w as it would be given by ∑n αntnϕ(xn) not necessarily know ϕ(xn) (we only
+know k(xn, xm) = ϕ(xn)Tϕ(xm)). Therefore, to draw this decision boundary, we have had to evaluate ∑n
+αntnk(xn,xnew) over a grid of xnew values and then use the MATLAB contour function to draw the contour
+corresponding to ∑n αntnk(xn,xnew) = 0.
+  What happens if we change γ? Modifying γ changes the (implicit) transformation ϕ(xn), which will in
+turn change the kind of decision boundaries we might expect to see when we view them in the original
+space (remember that they will be linear in the transformed space). For the Gaussian kernel, increasing γ
+has the effect of increasing the complexity of the decision boundaries in the original space. This is clear
+when we compare Figures 5.19(a) and 5.19(b), where we have used γ = 0.01 and γ = 50, respectively
+(MATLAB script: svmgauss.m). In Figure 5.19(a), the decision boundary is too simple – it is not able to curve
+rapidly enough in the original space to surround just the data from the square class. Conversely, when γ
+= 50 (Figure 5.19(b)), the decision boundary has too much flexibility, resulting in a decision boundary that
+looks far too complex. In both cases, it is also worth noticing that the number of support vectors has
+increased dramatically (c.f. Figure 5.18) and the solution can no longer be considered sparse.
+  This model complexity problem is exactly the same as the one we encountered in Chapter 1. There we
+found that increasing the polynomial order beyond a certain point resulted in poor predictions for our
+Olympic 100m model. Here, models that are too simple (Figure 5.19(a)) or too complex (Figure 5.19(b))
+will also produce bad predictions. In the too-simple case, it looks like the model will predict a grey square
+too often and in the too-complex case, the opposite. Just as in Chapter 1, we must be careful to set γ
+such that the complexity is just right using, for example, cross-validation. To make matters worse, the
+parameters C and γ will affect the model in a coupled manner. We cannot optimise one and then
+optimise the other; we must do both at the same time. This is particularly problematic if our training
+
+
+
+                                       2253308 - Taylor and Francis ©
+dataset is large (N is high). The SVM solves an N-dimensional optimisation problem. For large N this might
+be very time consuming, and a cross-validation-based search over two parameters (C, γ) will result in
+performing this optimisation many times.
+  The SVM is not the only algorithm that can be kernelised. Many machine learning algorithms can be
+expressed in such a way that the data only appear inside inner products. This means that, in a large
+number of algorithms, we can solve complex problems (e.g. fit highly non-linear decision boundaries)
+without any additional algorithmic complexity. We will see another example when we look at clustering in
+the next chapter. We can also kernelise our other non-probabilistic classifier, KNN. KNN requires the
+computation of distances between xnew and each xn. This distance can be expressed as
+
+
+
+
+If we multiply this out, we obtain just inner products:
+
+
+
+Replacing this with its kernelised equivalent,
+
+
+
+
+FIGURE 5.19 Decision boundary and support vectors for the dataset in Figure 5.17 using a Gaussian
+kernel with different values of the kernel parameter γ and C = 10.
+
+gives us kernelised KNN.
+
+5.3.3 Summary
+In the previous sections we have described four popular classification algorithms and described how
+each can be used. These four algorithms provide a solid base from which one can experiment with data
+and explore the literature of other classification techniques.
+  Being able to apply a particular algorithm is only part of a classification analysis. It is also crucial to be
+able to reliably assess how well a particular classification is performing and that is the focus of the final
+section in this chapter.
+
+
+5.4 ASSESSING CLASSIFICATION PERFORMANCE
+In the following discussion we shall assume that we are interested in assessing performance based on
+the predictions for some set of N independent test examples, x1, …, xN, with known labels,       , to
+
+
+
+
+                                        2253308 - Taylor and Francis ©
+distinguish them from the labels predicted by the classifier – t1, …, tN. These could be from a completely
+independent dataset or could be the data held out in a particular cross-validation fold.
+
+
+5.4.1 Accuracy – 0/1 loss
+When we have needed to express a measure of performance, we have used raw classification accuracy,
+also known as 0/1 loss. It is given this name, as, for a particular test point, the loss is either 0 or 1,
+depending on whether the prediction is correct (              ) or incorrect (        ). When averaged over
+the N objects in the test set, this quantity gives the proportion of objects for which the classifier is wrong.
+This could be interpreted as an estimate of the probability that some random test point is incorrectly
+classified. Clearly, the lower this value the better. Although widely used, this measure does have some
+drawbacks. In particular, it is not always easy to place this quantity in context – i.e. how good is 0.2?
+Consider two hypothetical binary classification problems: In the first we observe roughly the same
+number of objects from each class and in the second, 80% of the objects we see come from class 1 and
+20% from class 2. In the former case, an average 0/1 loss of 0.2 might represent very good performance.
+In the latter, it does not: we could always classify objects as belonging to class 1 and get an average loss
+of 0.2. We should therefore be very careful using 0/1 loss in applications where the classes are
+imbalanced. We will now introduce an alternative that overcomes this problem.
+
+
+5.4.2 Sensitivity and specificity
+Imagine a binary classification task that involves detecting disease. t = 0 corresponds to a healthy patient
+(x) and t = 1 diseased. If we are attempting to detect a rare disease, 0/1 loss is a bad idea – diagnosing
+everyone as healthy will give us a very low 0/1 loss. Analysing two quantities known as sensitivity and
+specificity is a better idea. To compute sensitivity and specificity we need to extract four summary values
+from our classification results. These are the numbers of
+
+  • True positives (TP) – the number of objects with            that are classified as tn = 1 (diseased people
+    diagnosed as diseased).
+  • True negatives (TN) – the number of objects with             that are classified as tn = 0 (healthy people
+    diagnosed as healthy).
+  • False positives (FP) – the number of objects with            that are classified as tn = 1 (healthy people
+    diagnosed as diseased).
+  • False negatives (FN) – the number of objects with           that are classified as tn = 0 (diseased people
+    diagnosed as healthy).
+
+Given these values, we compute sensitivity as
+
+
+                                                                                                        (5.20)
+
+
+
+and specificity as
+
+
+                                                                                                        (5.21)
+
+
+Both values lie between 0 and 1.
+
+
+
+
+                                        2253308 - Taylor and Francis ©
+   Broadly speaking, these two quantities tell us how good we are at detecting diseased and healthy
+people, respectively. The sensitivity is the proportion of the diseased people (T P + F N) that we correctly
+classify as being diseased (T P). Specificity is the proportion of all of the healthy people (T N + F P) that we
+correctly classify as being healthy (T N).
+   Considering our rare disease example, if we diagnosed everyone as healthy, we would have a
+specificity of 1 (very good – we diagnose all healthy people correctly), but a sensitivity of 0 (we diagnose
+all unhealthy people incorrectly) which is very bad. Ideally we would like Se = Sp = 1 – perfect sensitivity
+and specificity. This is unrealistic in all but the most trivial applications and we need a way to define how
+optimal a pair of sensitivity/specificity values is. For example, is Sp = 0.9, Se = 0.8 better or worse than Sp =
+0.8, Se = 0.9? The answer will be application dependent. In our rare disease diagnosis, we do not want to
+misdiagnose any diseased people but are probably happy to tolerate diagnosing some healthy people as
+diseased (they are likely to be subject to more tests and later discovered to be healthy). As such, we
+might be happy to reduce Sp in order to increase Se. In other applications, we may have completely
+opposite pressures.
+
+
+
+
+FIGURE 5.20 ROC curves for the SVMs shown in Figures 5.19(a) and (b).
+
+  It is often convenient to be able to combine sensitivity and specificity into a single value. This can be
+achieved through evaluating the area under the receiver operating characteristic (ROC) curve.
+
+
+5.4.3 The area under the ROC curve
+In many classification algorithms we are provided with a real-valued output that is then thresholded to
+give a classification. For example, in (binary) Bayesian classification and logistic regression, we are
+provided with P (Tnew = 1|xnew, X, t) – a value between 0 and 1. In the SVM, we are provided with a real
+value that was then thresholded at 0 (passed through a sign function). We could use any threshold we
+liked for any of these algorithms to obtain a hard classification. For example, we may decide that, if P (Tn
+= 1|xn, X, t) > 0.7, then xn should belong to class 1. For the SVM we might decide to threshold at 0.2
+rather than 0, making it slightly less likely that xn will be classified as belonging to class 1.
+  The receiver operating characteristic (ROC) curve lets us examine how the performance varies as we
+change this threshold. The sensitivity and specificity are calculated for a range of threshold values, and
+sensitivity is plotted against the complementary specificity or false positive rate (1 − Sp), giving a curve
+that will typically look like those shown in Figure 5.20 (MATLAB script: svmroc.m). These curves are for the
+too-simple and too-complex models shown in Figures 5.19(a) and (b) evaluated on an independent test
+set of 1000 objects. We know what we want to make Se and Sp as high as possible. Therefore, the closer
+the curve gets to the top left of the plot (Se = 1, 1 − Sp = 0), the better. If the curve hits the top left corner,
+
+
+
+
+                                         2253308 - Taylor and Francis ©
+it tells us that there is a threshold we can choose that will classify the data perfectly. The curve will always
+start at Se = 0, 1 − Sp = 0, corresponding to a threshold that never classifies anything as belonging to class
+1, and finish at Se = 1, 1 − Sp = 1, corresponding to a classifier that never classifies anything as belonging
+to class 0 (−1 in the SVM case). As the classifier gets worse, the curve will get closer to a straight line from
+(0, 0) to (1, 1). This is equivalent to randomly guessing the class.
+
+
+
+
+FIGURE 5.21 ROC curve for the SVM shown in Figure 5.18. The curve is hard to see because either 1 − Sp =
+0 or Se = 1 for most threshold values.
+
+  Based on the plots in Figure 5.20, the SVM with γ = 50 gets closer to the top left corner and so is better
+than the one with γ = 0.01. We can quantify this performance by computing the area under the ROC
+curve (known as the AUC). A classifier that is able to perfectly classify the data will have an AUC of 1 (the
+curve will go straight up the left hand side and then straight across the top), a classifier that is guessing
+randomly will have an AUC of 0.5 (the curve will be approximately a straight line from (0, 0) to (1, 1), as
+mentioned in the previous paragraph). The two curves in Figure 5.20 have AUCs of 0.8348 and 0.9551,
+respectively. In Figure 5.21, we show the ROC curve for γ = 1 (the SVM plotted in Figure 5.18). The AUC in
+this case is 0.9936 – the best of the three, as we would expect.
+  The AUC is, in most applications, a better way of evaluating performance than the 0/1 loss. It takes
+class imbalance into account through its use of sensitivity and specificity. One drawback is that it does
+not generalise to the multiclass setting. One way of using it within a multiclass problem is to analyse the
+results of the classification as several binary problems. For example, if we have three classes, we might
+do three ROC analyses where each one looks at the binary problem created by considering class c
+against the rest. This would provide useful information about each classifier, but it is not clear how the
+three AUC values could be combined. We will now look at one final performance analysis tool that is
+easily generalised to (and very useful for) multiclass classification.
+
+TABLE 5.2 A binary confusion matrix.
+
+                                                                                     True class
+                                                                               1                    0
+Predicted class                                                1               TP                   FP
+                                                               0              FN                    TN
+
+
+5.4.4 Confusion matrices
+
+
+
+
+                                         2253308 - Taylor and Francis ©
+The four quantities (TP, TN, FP, FN) introduced in Section 5.2.1.6. Similarly, a large number of documents
+belonging to class 19 are incorrectly classified as belonging to class 17. This analysis not only lets us
+uncover where the mistakes are being made (details not available if we simply compute the 0/1 loss) but
+they also provide suggestions for how to improve performance. In Section 5.2.1.6 we saw that classes 20
+and 16 were very similar, as were classes 19 and 17. Perhaps it is too difficult to distinguish between
+them. Class 20 appears to be the class that is misclassified most often and so if we wanted to improve
+performance perhaps we should concentrate here – maybe we could collect more data or consider
+combining it with another class.
+
+TABLE 5.3 Confusion matrix for the 20-class newsgroup data.
+
+
+
+
+                                      2253308 - Taylor and Francis ©
+5.5 DISCRIMINATIVE AND GENERATIVE CLASSIFIERS
+
+
+
+                           2253308 - Taylor and Francis ©
+In our discussion, we subdivided classifiers into probabilistic and non-probabilistic approaches. Another
+common way of partitioning classifiers is to split them depending on whether they are generative or
+discriminative. Generative classifiers define a model for each class and then assign new objects to the
+model that suits them best. On the other hand, discriminative classifiers explicitly define a decision
+boundary between classes. The Bayesian classifier (Section 5.2.1) is an example of a generative classifier
+and the SVM (Section 5.3.2) and logistic regression (Section 5.2.2) examples of discriminative classifiers.
+
+
+5.6 CHAPTER SUMMARY
+In this chapter we have introduced four popular classification algorithms – two that provide probabilistic
+outputs and two that provide hard classifications. In the space available to us, it is impossible to do them
+all justice – whole books have been written on SVMs and other kernel methods alone. However, the
+material presented here should be enough for the reader to be able to implement and experiment with
+these algorithms. In addition, it should provide enough background knowledge about the general
+problem of classification and the various types of classification algorithm that the reader can explore
+other algorithms and place them into some kind of context.
+   In addition to describing algorithms, we have also looked at how we might evaluate whether a classifier
+is doing well and some of the problems we might come up against. Again, we have only scraped the
+surface. There are many other performance measures favoured by different application areas and plenty
+of other problems that we might come up against.
+
+
+5.7 EXERCISES
+ 5.1 Assuming Σc = I for all classes, compute the posterior density p(µc|Xc) for the parameter µc of a
+       Bayesian classifier where the set of training objects in class c is given by x1, …, xNc. Assume a
+       Gaussian prior on p(µc).
+ 5.2 Using the posterior computed in the previous exercise, compute the expected likelihood:
+
+
+
+
+ 5.3 Compute the maximum likelihood estimates of µc and Σc for class c of a Bayesian classifier with
+       Gaussian class-conditionals and a set of Nc objects belonging to class c, x1, …, xNc.
+
+ 5.4    Compute the maximum likelihood estimates of qmc for class c of a Bayesian classifier with
+       multinomial class-conditionals and a set of Nc, M-dimensional objects belonging to class c, x1, …,
+       xNc.
+
+ 5.5 For a Bayesian classifier with multinomial class-conditionals with M-dimensional parameters qc,
+       compute the posterior Dirichlet for class c when the prior over qc is a Dirichlet with constant
+       parameter α and the observations belonging to class c are the Nc observations x1, …, xNc.
+
+ 5.6
+
+
+
+
+                                         2253308 - Taylor and Francis ©
+
