@@ -7,5 +7,6 @@
   "dataview",
   "templater-obsidian",
   "obsidian-style-settings",
-  "highlightr-plugin"
+  "highlightr-plugin",
+  "mermaid-tools"
 ]
