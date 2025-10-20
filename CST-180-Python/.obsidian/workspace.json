@@ -160,9 +160,6 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "voice:Voice": false,
-      "obsidian-book-search-plugin:Create new book note": false,
-      "templater-obsidian:Templater": false,
       "markdown-importer:Open format converter": false,
       "audio-recorder:Start/stop recording": false,
       "switcher:Open quick switcher": false,
