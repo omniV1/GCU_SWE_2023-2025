@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "bcf43e96335fdb84",
+        "id": "c36e121dd908f35f",
         "type": "tabs",
         "children": [
           {
-            "id": "dc441d7b0c5e4daa",
+            "id": "efc6e882687c3a79",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Assignments/JWT.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "JWT"
             }
           }
         ]
@@ -156,9 +160,6 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "voice:Voice": false,
-      "obsidian-book-search-plugin:Create new book note": false,
-      "templater-obsidian:Templater": false,
       "markdown-importer:Open format converter": false,
       "audio-recorder:Start/stop recording": false,
       "switcher:Open quick switcher": false,
@@ -167,23 +168,35 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "voice:Voice": false,
+      "obsidian-book-search-plugin:Create new book note": false,
+      "templater-obsidian:Templater": false
     }
   },
-  "active": "dc441d7b0c5e4daa",
+  "active": "efc6e882687c3a79",
   "lastOpenFiles": [
+    "coding/JWT.zip",
+    "coding/JWT/JWT.pdf",
+    "Assignments/JWT.pdf",
+    "Pasted image 20251022124714.png",
+    "coding/JWT/Screenshots/AddingAnOrder.png",
+    "Assignments/JWT.md",
+    "Assignments/Password Hashing and Cracking.md",
+    "coding/JWT/Screenshots/AddAnOrder.png",
+    "coding/JWT/Screenshots/SuccessfullyFindingOrder.png",
+    "coding/JWT/Screenshots/SuccessfulLogin.png",
+    "coding/JWT/Screenshots/SuccessfulDelete.png",
+    "coding/JWT/Screenshots/Successful_Registration.png",
+    "coding/Spring Security/AddingEventToEventPage.png",
+    "coding/Spring Security/CreateEventPage.png",
+    "coding/Spring Security/EventsPage.png",
+    "Assignments/eventsapp.md",
+    "Assignments/eventsapp.pdf",
+    "Assignments/Wireshark Network Packet Capture Demonstration.md",
+    "Assignments/video_script.md",
     "CST-407/Assignments/Encryption Turn-in.md",
     "CST-407/Assignments/Activity 5 Spring Security Configuration.md",
-    "Pasted image 20250929120936.png",
-    "Pasted image 20250929120840.png",
-    "Pasted image 20250929120758.png",
-    "Pasted image 20250929120338.png",
-    "Pasted image 20250929120243.png",
-    "Pasted image 20250929120052.png",
-    "Pasted image 20250929120029.png",
-    "Pasted image 20250929115909.png",
-    "Pasted image 20250929115839.png",
-    "Pasted image 20250929115833.png",
     "CST-180-Python/class notes/2025-09-08 First Class in Python.md",
     "CST-180-Python/class notes/2025-22-09.md",
     "CST-180-Python/class notes/2025-22-09.pdf",
@@ -198,9 +211,6 @@
     "CST-407/Assignments/Wireshark Network Packet Capture Demonstration.pdf",
     "CST-407/coding/loginapp/target/classes/keystore.p12",
     "CST-407/coding/loginapp/src/main/resources/keystore.p12",
-    "CST-407/coding/loginapp/keystore.p12",
-    "CST-407/keystore.p12",
-    "CST-407/Assignments/WireSharkOutput.pcapng~",
     "CST-407/coding/loginapp/HELP.md",
     "CST-407/Assignments/Encryption.md",
     "CST-407/README.md",
@@ -211,11 +221,6 @@
     "Self/Self/Sleep Template.md",
     "Self/Self/Mood Dashboard.md",
     "Self/I've Read Those Books.md",
-    "Self/Books/Game Library.md",
-    "Self Reports.md",
-    "Self/Templates/Daily Note Template.md",
-    "Self/Journal/Daily/What Did I Do Today (WDDT) 2025-09-15.md",
-    "Self/Journal/Daily/What Did I Do Today (WDDT) 2025-09-14.md",
-    "Self/Journal/Daily/What Did I Do Today (WDDT) 2025-09-13.md"
+    "Self/Books/Game Library.md"
   ]
 }
