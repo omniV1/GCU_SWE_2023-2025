@@ -1,4 +1,5 @@
 ## Animal Shelter Simulator – Project 1 Design Document
+<div style="text-align: center; padding-top: 100px;">
 <br>
 <br>
 
@@ -6,20 +7,21 @@
 **Instructor:** Professor David Parker  
 **Course:** CST-180: Python Programming 1  
 **Institution:** Grand Canyon University  
-**Date:** October 12, 2025
+**Date:** October 26, 2025
+<br>
+<br>
+<br>
 
-<br>
-<br>
-<br>
+</div>
 
 <div style="page-break-after: always;"></div>
 
-### Summary (what this project accomplishes)
+### Summary 
 This first project establishes the object model and basic design for an animal shelter simulator without inheritance. It defines three independent animal classes (`Dog`, `Cat`, `Bird`) with required attributes and behaviors, plus a `Kennel` class that contains exactly one animal (a `Dog`, `Cat`, or `Bird`) at a time. The `Kennel` can report the contained animal’s type using the object’s `__class__.__name__` (i.e., the class name string). The deliverables include a UML class diagram, an IPO summary, detailed pseudocode and a flowchart for the program logic, sample data, and corresponding sample output.
 
 ---
 
-### Input / Processing / Output (IPO) – high level
+### Input / Processing / Output 
 - **Inputs**:
   - User or test-provided animal details:
     - `Dog`: Name (str), Age (int), Breed (str)
@@ -152,7 +154,9 @@ BEGIN
 END
 ```
 
-Optional illustrative Python snippet showing expected method shapes (not required by assignment, included for clarity):
+<div style="page-break-after: always;"></div>
+
+Python snippet showing expected method shapes:
 
 ```python
 class Dog:
@@ -189,18 +193,12 @@ class Kennel:
 ```
 
 ---
-
-<div style="page-break-after: always;"></div>
-
 ### Sample Data
 - **Dog**: Name = "Buddy", Age = 3, Breed = "Labrador"
 - **Cat**: Name = "Mittens", Age = 2, Fur Color = "Tabby"
 - **Bird**: Name = "Sky", Age = 1, Wingspan = 0.35
 
 ---
-
-<div style="page-break-after: always;"></div>
-
 ### Sample Output (using the sample data)
 ```
 Kennel(Dog(Name=Buddy, Age=3, Breed=Labrador))
@@ -217,7 +215,6 @@ Notes:
 
 
 <div style="page-break-after: always;"></div>
-
 ## Resources
 
 Dalbey, J. (2003). *Pseudocode Standard*. Retrieved from https://users.csc.calpoly.edu/~jdalbey/SWE/pdl_std.html
