@@ -23,6 +23,13 @@
 
 # Book Analytics Program Documentation
 
+## Important Links
+
+- **Video:** [input output](https://youtu.be/Sy--9sYZEpI)
+- **Github src code:** [src code](https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/CST-180-Python/Homework/input-output/book_analytics.py)
+- **input file:** [books.csv](https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/CST-180-Python/Homework/input-output/books.csv)
+- **output file:** [book analysis text file](https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/CST-180-Python/Homework/input-output/book_analysis.txt)
+
 ## Part 1: Problem Statement
 
 This program reads and analyzes data from a CSV (Comma-Separated Values) file containing information about books. The file contains four fields per record: book title, author name, year published, and number of pages. The program performs statistical analysis on this dataset to identify key metrics including average publication year, average page count, and the books with the maximum and minimum page counts. The results of this analysis are output to both a text file and the terminal display, providing flexible access to the analytical results.
@@ -92,22 +99,22 @@ DEFINE average_pages as 0.0          // Average number of pages
 TRY
     // OPEN the input CSV file for reading
     OPEN input_file FOR READING as file
-    
+
     // Initialize line counter for error reporting
     SET line_number as 0
-    
+
     // PROCESS each line in the file
     FOR EACH line IN file
-        
+
         INCREMENT line_number by 1
-        
+
         // PARSE the CSV line to extract fields
         // Remove leading/trailing whitespace and split by comma delimiter
         SET fields as SPLIT (STRIP line) BY ","
-        
+
         // VALIDATE that line has exactly 4 fields
         IF LENGTH(fields) EQUALS 4 THEN
-            
+
             // Nested error handling for data conversion
             TRY
                 // EXTRACT individual fields from the parsed data
@@ -115,14 +122,14 @@ TRY
                 SET author as fields[1]        // Second field: author name
                 SET year_str as fields[2]      // Third field: year as string
                 SET pages_str as fields[3]     // Fourth field: pages as string
-                
+
                 // CONVERT string fields to appropriate numeric types
                 SET year as INTEGER(year_str)      // Convert year to integer
                 SET pages as INTEGER(pages_str)    // Convert pages to integer
-                
+
                 // INCREMENT book counter
                 INCREMENT book_count by 1
-                
+
                 // ACCUMULATE totals for average calculations
                 SET total_years as total_years + year
                 SET total_pages as total_pages + pages
@@ -142,7 +149,7 @@ TRY
                     SET max_pages_author as author
                     SET max_pages_year as year
                 ENDIF
-                
+
                 // CHECK if current book has fewer pages than current minimum
                 IF pages LESS THAN min_pages THEN
                     SET min_pages as pages
@@ -150,21 +157,21 @@ TRY
                     SET min_pages_author as author
                     SET min_pages_year as year
                 ENDIF
-            
+
             // Handle data conversion errors
             CATCH ValueError as ve
                 PRINT "Warning: Skipping line", line_number, "- Invalid data format:", ve
                 PRINT "  Line content:", STRIP line
             END TRY
-            
+
         ELSE
             // Handle malformed lines with wrong field count
             PRINT "Warning: Skipping line", line_number, "- Expected 4 fields, found", LENGTH(fields)
             PRINT "  Line content:", STRIP line
         ENDIF
-        
+
     ENDFOR  // End of file processing loop
-    
+
     // File automatically closes due to WITH statement
 ```
 
@@ -179,34 +186,34 @@ TRY
     IF book_count EQUALS 0 THEN
         // No valid data - output warning message
         PRINT "Warning: No valid books found in file"
-        
+
         // Write warning to output file
         OPEN output_file FOR WRITING as file
         WRITE "Book Analytics Report" TO file
         WRITE "==================================================" TO file
         WRITE "Warning: No valid books found in file" TO file
         CLOSE file
-        
+
         PRINT "No results to save. Check file", output_file, "for details."
-        
+
     ELSE
         // Valid data exists - calculate averages
         SET average_year as total_years / book_count
         SET average_pages as total_pages / book_count
-        
+
         // OPEN output file for writing results
         OPEN output_file FOR WRITING as file
-        
+
         // WRITE formatted results to file
         WRITE "Book Analytics Report" TO file
         WRITE "==================================================" TO file
         WRITE "Average Publication Year:", FORMAT(average_year, 1 decimal place) TO file
         WRITE "Average Number of Pages:", FORMAT(average_pages, 1 decimal place) TO file
-        WRITE "Book with Most Pages:", max_pages_title, ",", max_pages_author, 
+        WRITE "Book with Most Pages:", max_pages_title, ",", max_pages_author,
               ",", max_pages_year, ",", max_pages TO file
         WRITE "Book with Fewest Pages:", min_pages_title, ",", min_pages_author,
               ",", min_pages_year, ",", min_pages TO file
-        
+
         CLOSE file
 ```
 
@@ -226,7 +233,7 @@ TRY
               ",", max_pages_year, ",", max_pages
         PRINT "Book with Fewest Pages:", min_pages_title, ",", min_pages_author,
               ",", min_pages_year, ",", min_pages
-        
+
         PRINT ""  // Blank line for readability
         PRINT "Results have been saved to", output_file
     ENDIF
@@ -277,6 +284,7 @@ Slaughterhouse-Five,Kurt Vonnegut,1969,275
 ### Expected Program Output
 
 **Terminal Output:**
+
 ```
 Book Analytics Report
 ==================================================
@@ -301,25 +309,26 @@ Using the sample data above, here's how the calculations progress:
 
 **Accumulation Process:**
 
-| Book # | Title | Year | Pages | Total Years | Total Pages | Current Max | Current Min |
-|:------:|:------|:----:|:-----:|:-----------:|:-----------:|:-----------:|:-----------:|
-| 1 | To Kill a Mockingbird | 1960 | 281 | 1960 | 281 | 281 | 281 |
-| 2 | 1984 | 1949 | 328 | 3909 | 609 | 328 | 281 |
-| 3 | The Great Gatsby | 1925 | 180 | 5834 | 789 | 328 | 180 |
-| 4 | Pride and Prejudice | 1813 | 432 | 7647 | 1221 | 432 | 180 |
-| 5 | The Catcher in the Rye | 1951 | 277 | 9598 | 1498 | 432 | 180 |
-| 6 | Harry Potter | 1997 | 309 | 11595 | 1807 | 432 | 180 |
-| 7 | The Hobbit | 1937 | 310 | 13532 | 2117 | 432 | 180 |
-| 8 | The Lord of the Rings | 1954 | 1178 | 15486 | 3295 | 1178 | 180 |
-| 9 | Brave New World | 1932 | 311 | 17418 | 3606 | 1178 | 180 |
-| 10 | The Chronicles of Narnia | 1950 | 767 | 19368 | 4373 | 1178 | 180 |
-| 11 | Dune | 1965 | 688 | 21333 | 5061 | 1178 | 180 |
-| 12 | Hitchhiker's Guide | 1979 | 224 | 23312 | 5285 | 1178 | 180 |
-| 13 | Fahrenheit 451 | 1953 | 249 | 25265 | 5534 | 1178 | 180 |
-| 14 | Animal Farm | 1945 | 112 | 27210 | 5646 | 1178 | 112 |
-| 15 | Slaughterhouse-Five | 1969 | 275 | 29179 | 5921 | 1178 | 112 |
+| Book # | Title                    | Year | Pages | Total Years | Total Pages | Current Max | Current Min |
+| :----: | :----------------------- | :--: | :---: | :---------: | :---------: | :---------: | :---------: |
+|   1    | To Kill a Mockingbird    | 1960 |  281  |    1960     |     281     |     281     |     281     |
+|   2    | 1984                     | 1949 |  328  |    3909     |     609     |     328     |     281     |
+|   3    | The Great Gatsby         | 1925 |  180  |    5834     |     789     |     328     |     180     |
+|   4    | Pride and Prejudice      | 1813 |  432  |    7647     |    1221     |     432     |     180     |
+|   5    | The Catcher in the Rye   | 1951 |  277  |    9598     |    1498     |     432     |     180     |
+|   6    | Harry Potter             | 1997 |  309  |    11595    |    1807     |     432     |     180     |
+|   7    | The Hobbit               | 1937 |  310  |    13532    |    2117     |     432     |     180     |
+|   8    | The Lord of the Rings    | 1954 | 1178  |    15486    |    3295     |    1178     |     180     |
+|   9    | Brave New World          | 1932 |  311  |    17418    |    3606     |    1178     |     180     |
+|   10   | The Chronicles of Narnia | 1950 |  767  |    19368    |    4373     |    1178     |     180     |
+|   11   | Dune                     | 1965 |  688  |    21333    |    5061     |    1178     |     180     |
+|   12   | Hitchhiker's Guide       | 1979 |  224  |    23312    |    5285     |    1178     |     180     |
+|   13   | Fahrenheit 451           | 1953 |  249  |    25265    |    5534     |    1178     |     180     |
+|   14   | Animal Farm              | 1945 |  112  |    27210    |    5646     |    1178     |     112     |
+|   15   | Slaughterhouse-Five      | 1969 |  275  |    29179    |    5921     |    1178     |     112     |
 
 **Final Calculations:**
+
 - Book Count: 15
 - Average Year: 29179 / 15 = 1945.267... â‰ˆ 1945.3 (rounded to 1 decimal)
 - Average Pages: 5921 / 15 = 394.733... â‰ˆ 394.7 (rounded to 1 decimal)
@@ -416,16 +425,18 @@ The program generates informative warning messages when it encounters issues:
 
 **Line Skipping Warnings:**
 When a line has incorrect field count or invalid data format, the program displays a warning message including:
+
 - Line number where the issue occurred
 - Description of the problem (field count mismatch or invalid data format)
 - Content of the problematic line
-These warnings allow users to identify and correct data quality issues without terminating the analysis.
+  These warnings allow users to identify and correct data quality issues without terminating the analysis.
 
 **Empty Dataset Warning:**
 If no valid books are found in the input file, the program displays "Warning: No valid books found in file" and creates an output file containing this warning message. This prevents confusion about why statistical results are absent.
 
 **File Operation Errors:**
 File-related errors produce specific messages:
+
 - "Error: Input file 'books.csv' not found" indicates the CSV file is missing
 - "Error: Permission denied" indicates insufficient file access rights
 - "Unexpected error" catches any other unforeseen issues
@@ -444,6 +455,7 @@ The program expects a CSV file with a specific structure. Each line should conta
 4. **Page Count** (integer): Total number of pages in the book
 
 **Example Valid Lines:**
+
 ```
 To Kill a Mockingbird,Harper Lee,1960,281
 1984,George Orwell,1949,328
@@ -451,6 +463,7 @@ The Great Gatsby,F. Scott Fitzgerald,1925,180
 ```
 
 **Important Formatting Notes:**
+
 - No spaces should appear after commas (unless part of the title/author name)
 - Publication year and page count must be valid integers
 - Title and author names can contain spaces, punctuation, and special characters
@@ -463,6 +476,7 @@ Advanced users can customize various aspects of the program by editing the sourc
 
 **File Paths:**
 Lines 8-9 define the input and output file names. These can be changed to process different CSV files or save results with different names:
+
 ```python
 input_file = "books.csv"    # Change to your CSV filename
 output_file = "book_analysis.txt"  # Change to desired output filename
@@ -474,12 +488,14 @@ output_file = "book_analysis.txt"  # Change to desired output filename
 
 **Output Formatting:**
 The report header and formatting can be modified in the output generation sections (lines 73-88). Users can adjust:
+
 - Header text and separator line style
 - Decimal precision for averages (currently `.1f` for one decimal place)
 - Field ordering and labels in the extrema reports
 
 **Additional Statistics:**
 The program can be extended to calculate additional statistics such as:
+
 - Median publication year
 - Standard deviation of page counts
 - Mode (most common page count)
@@ -491,16 +507,19 @@ These extensions require adding new accumulator variables and calculation logic 
 ### Troubleshooting Common Issues
 
 **"File not found" error:**
+
 - Verify that `books.csv` exists in the same directory as the Python script
 - Check that the filename matches exactly (case-sensitive on some systems)
 - Ensure no extra file extensions (e.g., `books.csv.txt`)
 
 **"Invalid data format" warnings:**
+
 - Check that year and page fields contain only numeric digits
 - Ensure no extra commas appear within title or author names
 - Verify that each line has exactly four fields
 
 **Unexpected results:**
+
 - Verify CSV data accuracy (years, page counts)
 - Check for duplicate or missing records
 - Ensure no header row exists in the CSV file
@@ -515,7 +534,7 @@ The Book Analytics program demonstrates documentation practices that facilitate 
 
 Every major code section includes explanatory comments that describe both what the code does and why particular approaches were chosen. For example, the comment explaining that `min_pages` initializes to infinity ensures readers understand this non-obvious initialization choice. Comments also explain the purpose of nested try-except blocks, clarifying the program's error handling strategy.
 
-Variable naming follows clear semantic conventions that make their purpose immediately apparent. Names like `total_years`, `max_pages_title`, and `line_number` communicate their meaning without requiring reference to comments. 
+Variable naming follows clear semantic conventions that make their purpose immediately apparent. Names like `total_years`, `max_pages_title`, and `line_number` communicate their meaning without requiring reference to comments.
 
 The pseudocode documentation provides a parallel narrative that explains the algorithm at a higher level of abstraction than the Python implementation. This dual representation helps readers understand both the conceptual approach and its practical realization in code.
 
@@ -531,11 +550,12 @@ The use of context managers (`with` statements) for file operations ensures prop
 
 Nested error handling provides graduated responses to different types of errors. File-level errors (FileNotFoundError, PermissionError) terminate processing with informative messages, while line-level errors (ValueError from invalid data) skip problematic records but allow processing to continue. This approach balances robustness with usability.
 
-### Error Handling 
+### Error Handling
 
 The program implements error handling that anticipate and handle common failure scenarios. Rather than assuming perfect input data, the program validates format and type at multiple levels. This validation catches issues early and provides specific feedback about their nature and location.
 
 Error messages follow best practices by including:
+
 - Clear description of what went wrong
 - Specific location of the problem (line numbers for data errors)
 - Guidance on how to resolve the issue
@@ -543,12 +563,12 @@ Error messages follow best practices by including:
 
 The distinction between fatal errors (file not found) and recoverable errors (malformed data line) demonstrates thoughtful error handling design. Fatal errors prevent meaningful results and terminate execution, while recoverable errors generate warnings but allow partial results.
 
-
 <div style="page-break-after: always;"></div>
 
 ## Part 7: Code Quality and Best Practices (Continued)
 
 Memory usage remains minimal and constant throughout execution. The program maintains only:
+
 - Two running totals (integers)
 - Two complete book records (strings and integers for max/min)
 - One counter (integer)
@@ -588,3 +608,4 @@ The program's design priorities clarity and maintainability over cleverness. The
 The statistical calculations correctly implement accumulator patterns and extrema tracking, core programming concepts applicable to many data processing tasks. The program serves as an effective demonstration of how simple algorithms can produce meaningful analytical insights from structured data.
 
 The clear output format, saved to both terminal and file, ensures that analysis results are accessible and usable for further work. The program successfully bridges the gap between raw data and actionable information, demonstrating the practical value of programming skills in data analysis contexts.
+
