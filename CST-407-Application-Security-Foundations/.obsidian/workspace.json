@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Assignments/JWT.md",
+                "file": "Assignments/eventsapp-milestone2.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "JWT"
+              "title": "eventsapp-milestone2"
             }
           }
         ]
@@ -176,12 +176,12 @@
   },
   "active": "efc6e882687c3a79",
   "lastOpenFiles": [
+    "Assignments/JWT.md",
     "coding/JWT.zip",
     "coding/JWT/JWT.pdf",
     "Assignments/JWT.pdf",
     "Pasted image 20251022124714.png",
     "coding/JWT/Screenshots/AddingAnOrder.png",
-    "Assignments/JWT.md",
     "Assignments/Password Hashing and Cracking.md",
     "coding/JWT/Screenshots/AddAnOrder.png",
     "coding/JWT/Screenshots/SuccessfullyFindingOrder.png",
@@ -210,7 +210,6 @@
     "CST-407/Assignments/Wireshark Network Packet Capture Demonstration.md",
     "CST-407/Assignments/Wireshark Network Packet Capture Demonstration.pdf",
     "CST-407/coding/loginapp/target/classes/keystore.p12",
-    "CST-407/coding/loginapp/src/main/resources/keystore.p12",
     "CST-407/coding/loginapp/HELP.md",
     "CST-407/Assignments/Encryption.md",
     "CST-407/README.md",
