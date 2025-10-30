@@ -3,4 +3,5 @@
 *.zip filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
 *.pdf filter=lfs diff=lfs merge=lfs -text
+AIT-104-Data-mining-machine-learning/Data/kitsune+network+attack+dataset/mirai/Mirai_dataset.csv.gz filter=lfs diff=lfs merge=lfs -text
 *.gz filter=lfs diff=lfs merge=lfs -text
