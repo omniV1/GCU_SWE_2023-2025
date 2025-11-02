@@ -13,14 +13,13 @@
 
 This milestone extends the Spring Boot security foundation by delivering a full-featured REST API secured with JSON Web Tokens (JWT). Two controller layers were introduced: `EventsApiController` delivers CRUD endpoints for the `eventsapp` schema, while `UsersApiController` manages registration, authentication, and token inspection. With JWT enforced at the filter chain, the application now supports stateless integration scenarios alongside the existing Thymeleaf experience showcased in Milestone 1.
 
-Key goals achieved:
+Key goals:
 
 - REST endpoints hosted at `/api/events` and `/api/users`, organized with OpenAPI metadata for quick discovery.
 - Secure create/update/delete/event-admin flows accessible only to JWT-authenticated users.
 - Public read/search endpoints enabling anonymous discovery of event content.
 - Documentation-first workflow through Swagger UI (and Postman parity) to accelerate partner onboarding.
 
-<div style="page-break-after: always;"></div>
 
 ## Video Demonstration
 
@@ -42,19 +41,28 @@ Screenshots captured during rehearsal are archived in the `@Photos` album for qu
 ### Events API (`/api/events`)
 
 - `GET /api/events` – Lists all events; open to everyone.
+  ![[../coding/CST-407-RS-T5-Milestone-Eventsapp/Photos/show_all_events.png]]
 - `GET /api/events/{id}` – Retrieves a single record or returns HTTP 404.
+  ![[../coding/CST-407-RS-T5-Milestone-Eventsapp/Photos/Event1_Get.png]]
 - `GET /api/events/search?q=term` – Full text search across event descriptions.
+  ![[../coding/CST-407-RS-T5-Milestone-Eventsapp/Photos/Search_description.png]]
 - `POST /api/events` – Creates a new event; JWT required.
 - `PUT /api/events/{id}` – Updates an existing event; JWT required.
+  ![[../coding/CST-407-RS-T5-Milestone-Eventsapp/Photos/Put_event2.png]]
 - `DELETE /api/events/{id}` – Removes an event; JWT required.
+  ![[../coding/CST-407-RS-T5-Milestone-Eventsapp/Photos/Delete_event.png]]
+
 
 Validation is applied through `@Valid` and `EventModel`, keeping the API consistent with the service layer. Responses return `EventModel` payloads to align with future mobile or SPA consumers.
 
 ### Users API (`/api/users`)
 
 - `POST /api/users/register` – Accepts `RegisterRequest` to create a user backed by BCrypt hashing.
+  ![[../coding/CST-407-RS-T5-Milestone-Eventsapp/Photos/registration_success.png]]
 - `POST /api/users/login` – Authenticates credentials and returns `AuthResponse` (JWT, expiration, user payload).
+  ![[../coding/CST-407-RS-T5-Milestone-Eventsapp/Photos/login_success.png]]
 - `GET /api/users/me` – Returns the authenticated profile; secured by `@PreAuthorize("isAuthenticated()")`.
+  ![[../coding/CST-407-RS-T5-Milestone-Eventsapp/Photos/whoami.png]]
 
 Role assignment defaults to `ROLE_USER`; additional roles can be added without modifying controller logic because Spring Security inspects the JWT claims exposed by `JwtService`.
 
@@ -69,8 +77,6 @@ Role assignment defaults to `ROLE_USER`; additional roles can be added without m
 5. **Stateless Sessions** – `SessionCreationPolicy.STATELESS` ensures scalability for API clients and microservice consumers.
 
 The secret, issuer, and expiration settings live in `application.properties`. Updates to those values invalidate existing tokens, reinforcing controlled access.
-
-<div style="page-break-after: always;"></div>
 
 ## API Tooling & Demonstration Notes
 
@@ -99,18 +105,12 @@ The secret, issuer, and expiration settings live in `application.properties`. Up
   ```
 - **Negative Test** – Duplicate the request without Authorization header to capture the 401 response required by the rubric.
 
-The forthcoming screencast will walk through this collection to satisfy the deliverable.
-
-<div style="page-break-after: always;"></div>
-
 ## Database & Data Seeding
 
 - MariaDB 12.0.2 running locally on Arch Linux (`systemctl enable --now mariadb`).
 - `eventsapp.sql` loaded into `eventsapp` schema with seeded `users`, `roles`, and `events` tables.
 - `AuthenticationManager` relies on `CustomUserDetailsService`, which fetches users from the seeded data (initial admin user: `root` / `root`).
-- Future demos can register new accounts through the API without manual SQL scripts.
 
-<div style="page-break-after: always;"></div>
 
 ## Testing & Verification Checklist
 
@@ -121,14 +121,3 @@ The forthcoming screencast will walk through this collection to satisfy the deli
 5. `GET /api/users/me` – returns authenticated user details when token is present.
 
 Logs (`spring.jpa.show-sql=true` and `spring.jpa.hibernate.ddl-auto=update`) assist in verifying database persistence during the demo.
-
-<div style="page-break-after: always;"></div>
-
-## Next Steps & Submission Notes
-
-- **Video Production** – Record the 5-minute walkthrough covering the flows outlined above, ensuring both successful and unauthorized attempts are shown.
-- **Deliverables Package** – Submit source tree (excluding `target/`), the SQL dump, and the demonstration video link.
-- **Optional Enhancements** – Add role-based authorization (e.g., `ROLE_ADMIN`) or token refresh endpoints if future milestones request extended functionality.
-
-With these additions, the application now satisfies the Milestone 2 objectives by providing JWT-secured REST services, thorough documentation, and reproducible demonstrations via Swagger UI and Postman.
-

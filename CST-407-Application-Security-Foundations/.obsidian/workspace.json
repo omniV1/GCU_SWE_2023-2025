@@ -176,6 +176,8 @@
   },
   "active": "efc6e882687c3a79",
   "lastOpenFiles": [
+    "Assignments/eventsapp-milestone2.pdf",
+    "Assignments/eventsapp-milestone2.md",
     "Assignments/JWT.md",
     "coding/JWT.zip",
     "coding/JWT/JWT.pdf",
@@ -209,7 +211,6 @@
     "CST-180-Python/Homework/TheologicalFoundations/TheologicalFoundations.md",
     "CST-407/Assignments/Wireshark Network Packet Capture Demonstration.md",
     "CST-407/Assignments/Wireshark Network Packet Capture Demonstration.pdf",
-    "CST-407/coding/loginapp/target/classes/keystore.p12",
     "CST-407/coding/loginapp/HELP.md",
     "CST-407/Assignments/Encryption.md",
     "CST-407/README.md",
@@ -219,7 +220,6 @@
     "Self/Self/Sleep Tracker Dashboard.md",
     "Self/Self/Sleep Template.md",
     "Self/Self/Mood Dashboard.md",
-    "Self/I've Read Those Books.md",
-    "Self/Books/Game Library.md"
+    "Self/I've Read Those Books.md"
   ]
 }
