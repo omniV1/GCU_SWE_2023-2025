@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Homework/input-output/books_analytics_documentation.md",
-                "mode": "preview",
+                "file": "Homework/Animal_Shelter/animal_shelter_pt2.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "books_analytics_documentation"
+              "title": "animal_shelter_pt2"
             }
           }
         ]
@@ -85,16 +85,16 @@
     "type": "split",
     "children": [
       {
-        "id": "89d147602e50fbb8",
+        "id": "62f59b8907e66686",
         "type": "tabs",
         "children": [
           {
-            "id": "b270441a75efa673",
+            "id": "7dcb0f2cf0695fcb",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CST-180/2025-22-09.md",
+                "file": "Homework/Animal_Shelter/animal_shelter_pt2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,25 +104,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 2025-22-09"
+              "title": "Backlinks for animal_shelter_pt2"
             }
           },
           {
-            "id": "d195d44b4d8bb812",
+            "id": "b766ae893156ba6c",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CST-180/2025-22-09.md",
+                "file": "Homework/Animal_Shelter/animal_shelter_pt2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from 2025-22-09"
+              "title": "Outgoing links from animal_shelter_pt2"
             }
           },
           {
-            "id": "f726c41d6bb27973",
+            "id": "70434b5b7635aa88",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -137,18 +137,18 @@
             }
           },
           {
-            "id": "50407e1a620235be",
+            "id": "20df60f7f5024bb6",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "CST-180/2025-22-09.md",
+                "file": "Homework/Animal_Shelter/animal_shelter_pt2.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 2025-22-09"
+              "title": "Outline of animal_shelter_pt2"
             }
           }
         ]
@@ -177,19 +177,22 @@
   },
   "active": "28bfc352061eee2b",
   "lastOpenFiles": [
-    "Homework/input-output/book_analytics_video_script.md",
-    "Homework/input-output/book_analytics_pseudocode.pdf",
+    "Homework/Animal_Shelter/animal_shelter_p1.py",
+    "Homework/Animal_Shelter/animal_shelter_pt2.md.tmp.87419.1762452589819",
+    "Homework/Animal_Shelter/animal_shelter_pt2.md.tmp.87419.1762452583846",
+    "Homework/Animal_Shelter/animal_shelter_pt2.md.tmp.87419.1762452577156",
+    "Homework/Animal_Shelter/animal_shelter_pt2.md.tmp.87419.1762452568352",
+    "Homework/Animal_Shelter/animal_shelter_pt2.md.tmp.87419.1762452362281",
+    "Homework/Animal_Shelter/animal_shelter_pt2.md.tmp.87419.1762452345991",
+    "Homework/Animal_Shelter/animal_shelter_pt2.md.tmp.87419.1762452290271",
+    "Homework/Animal_Shelter/animal_shelter_pt2.md.tmp.87419.1762452283108",
+    "Homework/Animal_Shelter/animal_shelter_pt2.md.tmp.87419.1762452273657",
+    "Homework/Animal_Shelter/animal_shelter_pt2.md.tmp.87419.1762452070521",
+    "Pasted image 20251106105418.png",
     "Homework/Animal_Shelter/Animal_Shelter_Pseudocode.md",
+    "Pasted image 20251106094822.png",
     "Homework/input-output/books_analytics_documentation.md",
-    "Homework/Animal_Shelter/Animal_Shelter_Pseudocode.pdf",
-    "Homework/input-output/IO_turnin.zip",
-    "Homework/input-output/IO_turnin/book_analysis.txt",
-    "Homework/input-output/IO_turnin/books.csv",
-    "Homework/input-output/books.csv",
-    "Homework/input-output/IO_turnin/book_analytics.py",
-    "Homework/input-output/IO_turnin/books_analytics_documentation.pdf",
-    "Homework/input-output/IO_turnin",
-    "Homework/input-output/books_analytics_documentation.pdf",
+    "Homework/input-output/book_analytics_video_script.md",
     "Homework/input-output/book_analytics_pseudocode.md",
     "coding/Topic 4 Input and Output.md",
     "Pasted image 20251020145527.png",
@@ -200,8 +203,6 @@
     "Pasted image 20251020144648.png",
     "Pasted image 20251020144542.png",
     "Pasted image 20251020144511.png",
-    "Pasted image 20251020144341.png",
-    "Pasted image 20251020144256.png",
     "coding/Topic 3 Loops and Arrays.md",
     "Homework/I/O/book_analytics_pseudocode.md",
     "Homework/War Card Game/war_card_game_documentation.md",
@@ -221,7 +222,6 @@
     "CST-407/Assignments/Password Hashing and Cracking.md",
     "CST-407/Assignments/ABCs.md",
     "CST-407/Class Notes/2025-09-03 Class notes.md",
-    "Self/Self/Sleep Tracker Dashboard.md",
-    "Self/Self/Sleep Template.md"
+    "Self/Self/Sleep Tracker Dashboard.md"
   ]
 }

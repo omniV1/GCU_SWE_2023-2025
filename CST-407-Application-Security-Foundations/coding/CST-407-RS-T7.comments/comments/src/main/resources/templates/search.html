@@ -1,0 +1,19 @@
+<!-- orders.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Orders</title>
+</head>
+<body>
+    <div layout:fragment="content"> 
+        <h1>Search Comments</h1>
+        <form th:action="@{/searchComment}" th:object="${commentSearchForm}" method="post">
+            <div class="form-group">
+                <label for="searchPhrase">Enter search phrase</label>
+                <input type="text" id="searchPhrase" th:field="*{searchPhrase}" placeholder="Search..." required>
+            </div>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</body>
+</html>

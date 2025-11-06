@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <title>Edit Comment</title>
+</head>
+<body>
+    <div layout:fragment="content"> 
+        <h1>Edit Comment</h1>
+        <form th:action="@{/edit}" th:object="${comment}" method="post">
+            <div class="form-group">
+                <label for="id">Id</label>
+                <input type="text" id="id" th:field="*{id}" placeholder="0" required>
+            </div>
+            <div class="form-group">
+                <label for="author">Author</label>
+                <input type="text" id="author" th:field="*{author}" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="text">Comment</label>
+                <textarea id="text" th:field="*{text}" placeholder="Write your comment here" rows="5" required></textarea>
+            </div>
+            <button type="submit">Update Comment</button>
+        </form>
+    </div>
+</body>
+</html>

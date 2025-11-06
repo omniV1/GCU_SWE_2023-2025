@@ -45,51 +45,7 @@ This first project establishes the object model and basic design for an animal s
 ### UML Class Diagram (no inheritance; containment only)
 Note: The diagram purposely avoids inheritance. `Kennel` has a containment relationship to one of `Dog`, `Cat`, or `Bird`.
 
-```mermaid
-%%{init: { 'theme': 'neutral', 'classDiagram': { 'useMaxWidth': true, 'direction': 'TB' } }}%%
-classDiagram
-    class Dog {
-        - name: str
-        - age: int
-        - breed: str
-        + __init__()
-        + __init__(name: str, age: int, breed: str)
-        + __str__() str
-    }
-
-    class Cat {
-        - name: str
-        - age: int
-        - furColor: str
-        + __init__()
-        + __init__(name: str, age: int, furColor: str)
-        + __str__() str
-    }
-
-    class Bird {
-        - name: str
-        - age: int
-        - wingspan: float
-        + __init__()
-        + __init__(name: str, age: int, wingspan: float)
-        + __str__() str
-    }
-
-    %% Kennel holds a Dog OR Cat OR Bird (one at a time)
-    class Kennel {
-        - animal: object
-        + __init__()
-        + __init__(animal: object)
-        + GetAnimalType() str
-        + __str__() str
-    }
-
-    %% Containment (no inheritance). One Kennel contains zero or one of each kind.
-    Kennel o-- "0..1" Dog
-    Kennel o-- "0..1" Cat
-    Kennel o-- "0..1" Bird
-```
-
+![[Pasted image 20251106094822.png]]
 Textual notes:
 - No inheritance hierarchy is used; each animal is a standalone class.
 - `Kennel` composes/contains exactly one animal at a time (can be empty).
@@ -194,9 +150,9 @@ class Kennel:
 
 ---
 ### Sample Data
-- **Dog**: Name = "Buddy", Age = 3, Breed = "Labrador"
-- **Cat**: Name = "Mittens", Age = 2, Fur Color = "Tabby"
-- **Bird**: Name = "Sky", Age = 1, Wingspan = 0.35
+**Dog**: Name = "Buddy", Age = 3, Breed = "Labrador"
+**Cat**: Name = "Mittens", Age = 2, Fur Color = "Tabby"
+**Bird**: Name = "Sky", Age = 1, Wingspan = 0.35
 
 ---
 ### Sample Output (using the sample data)
@@ -209,9 +165,7 @@ Kennel(Bird(Name=Sky, Age=1, Wingspan=0.35))
 Bird
 ```
 
-Notes:
-- Output format depends on the `__str__` implementations shown above.
-- `GetAnimalType()` returns the class name string of the currently contained animal.
+
 
 
 <div style="page-break-after: always;"></div>
@@ -219,4 +173,3 @@ Notes:
 
 Dalbey, J. (2003). *Pseudocode Standard*. Retrieved from https://users.csc.calpoly.edu/~jdalbey/SWE/pdl_std.html
 
-*This document follows the structured pseudocode conventions outlined in the Pseudocode Standard, utilizing appropriate keywords such as SET, FOR, IF-THEN-ELSE, OPEN, CLOSE, READ, WRITE, ENDFOR, and ENDIF to describe the algorithm logic in a clear, implementation-independent manner.*

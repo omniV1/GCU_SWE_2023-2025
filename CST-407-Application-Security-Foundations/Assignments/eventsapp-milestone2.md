@@ -23,7 +23,7 @@ Key goals:
 
 ## Video Demonstration
 
-**Link to 5-minute demonstration video:** _Pending upload (Milestone 2 recording in progress)._
+**Link to 5-minute demonstration video:** https://youtu.be/qoBsE9jP9jU
 
 The Milestone 2 video will highlight:
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8">
+        <title>My Application</title>
+        <link rel="stylesheet" th:href="@{/css/styles.css}">
+        <!-- Add any additional CSS or JS links here -->
+    </head>
+    <body>
+    
+        <!-- Navbar -->
+        <nav >
+          
+            <div  id="navbarNav">
+                <ul >
+                   <li>
+                        <a  th:href="@{/}">Comments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a   th:href="@{/searchForm}">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a  th:href="@{/add}">Add</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    
+        <!-- Main Content Fragment -->
+        <div  layout:fragment="content">
+            <!-- Content will be inserted here -->
+        </div>
+    
+        <!-- Footer -->
+        <footer >
+            <div  >
+                <span >&copy; My Application</span>
+            </div>
+        </footer> 
+    </body>
+</html>
