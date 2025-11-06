@@ -1,6 +1,6 @@
 # Owen Lindsey
 # CST-180
-# 10/26i/2025
+# 11/09/2025
 # animal_shelter.py
 
 """Animal shelter simulator classes matching the project pseudocode."""
@@ -121,7 +121,9 @@ class Kennel:
     def __str__(self) -> str:
         # IF self.animal IS None THEN RETURN "Kennel(empty)" ELSE RETURN formatted string
         # Format the kennel representation based on whether it contains an animal.
-        return "Kennel(empty)" if self.animal is None else f"Kennel Animal: {self.animal}"
+        return (
+            "Kennel(empty)" if self.animal is None else f"Kennel Animal: {self.animal}"
+        )
 
 
 if __name__ == "__main__":

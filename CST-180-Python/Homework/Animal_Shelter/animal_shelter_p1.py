@@ -1,6 +1,6 @@
 # Owen Lindsey
 # CST-180
-# 10/26i/2025
+# 11/09/2025
 # animal_shelter.py
 
 """Animal shelter simulator classes matching the project pseudocode."""
