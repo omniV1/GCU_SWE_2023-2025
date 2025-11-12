@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.shadsluiter.eventsapp.EventsAppApplicationTests" time="12.248" tests="1" errors="1" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="25"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/run/media/omniv/T7/GCU_SWE_2023-2025/CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/target/test-classes:/run/media/omniv/T7/GCU_SWE_2023-2025/CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/target/classes:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.0/spring-boot-starter-web-3.3.0.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.0/spring-boot-starter-3.3.0.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.0/spring-boot-starter-logging-3.3.0.jar:/home/omniv/.m2/repository/ch/qos/logback/logback-classic/1.5.6/logback-classic-1.5.6.jar:/home/omniv/.m2/repository/ch/qos/logback/logback-core/1.5.6/logback-core-1.5.6.jar:/home/omniv/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar:/home/omniv/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar:/home/omniv/.m2/repository/org/slf4j/jul-to-slf4j/2.0.13/jul-to-slf4j-2.0.13.jar:/home/omniv/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/omniv/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.0/spring-boot-starter-json-3.3.0.jar:/home/omniv/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.1/jackson-datatype-jdk8-2.17.1.jar:/home/omniv/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.1/jackson-datatype-jsr310-2.17.1.jar:/home/omniv/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.1/jackson-module-parameter-names-2.17.1.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.0/spring-boot-starter-tomcat-3.3.0.jar:/home/omniv/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.24/tomcat-embed-core-10.1.24.jar:/home/omniv/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.24/tomcat-embed-websocket-10.1.24.jar:/home/omniv/.m2/repository/org/springframework/spring-web/6.1.8/spring-web-6.1.8.jar:/home/omniv/.m2/repository/org/springframework/spring-beans/6.1.8/spring-beans-6.1.8.jar:/home/omniv/.m2/repository/io/micrometer/micrometer-observation/1.13.0/micrometer-observation-1.13.0.jar:/home/omniv/.m2/repository/io/micrometer/micrometer-commons/1.13.0/micrometer-commons-1.13.0.jar:/home/omniv/.m2/repository/org/springframework/spring-webmvc/6.1.8/spring-webmvc-6.1.8.jar:/home/omniv/.m2/repository/org/springframework/spring-context/6.1.8/spring-context-6.1.8.jar:/home/omniv/.m2/repository/org/springframework/spring-expression/6.1.8/spring-expression-6.1.8.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter-security/3.3.0/spring-boot-starter-security-3.3.0.jar:/home/omniv/.m2/repository/org/springframework/spring-aop/6.1.8/spring-aop-6.1.8.jar:/home/omniv/.m2/repository/org/springframework/security/spring-security-config/6.3.0/spring-security-config-6.3.0.jar:/home/omniv/.m2/repository/org/springframework/security/spring-security-core/6.3.0/spring-security-core-6.3.0.jar:/home/omniv/.m2/repository/org/springframework/security/spring-security-crypto/6.3.0/spring-security-crypto-6.3.0.jar:/home/omniv/.m2/repository/org/springframework/security/spring-security-web/6.3.0/spring-security-web-6.3.0.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter-validation/3.3.0/spring-boot-starter-validation-3.3.0.jar:/home/omniv/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.24/tomcat-embed-el-10.1.24.jar:/home/omniv/.m2/repository/org/hibernate/validator/hibernate-validator/8.0.1.Final/hibernate-validator-8.0.1.Final.jar:/home/omniv/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar:/home/omniv/.m2/repository/org/jboss/logging/jboss-logging/3.5.3.Final/jboss-logging-3.5.3.Final.jar:/home/omniv/.m2/repository/com/fasterxml/classmate/1.7.0/classmate-1.7.0.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter-thymeleaf/3.3.0/spring-boot-starter-thymeleaf-3.3.0.jar:/home/omniv/.m2/repository/org/thymeleaf/thymeleaf-spring6/3.1.2.RELEASE/thymeleaf-spring6-3.1.2.RELEASE.jar:/home/omniv/.m2/repository/org/thymeleaf/extras/thymeleaf-extras-springsecurity6/3.1.2.RELEASE/thymeleaf-extras-springsecurity6-3.1.2.RELEASE.jar:/home/omniv/.m2/repository/org/slf4j/slf4j-api/2.0.13/slf4j-api-2.0.13.jar:/home/omniv/.m2/repository/nz/net/ultraq/thymeleaf/thymeleaf-layout-dialect/3.0.0/thymeleaf-layout-dialect-3.0.0.jar:/home/omniv/.m2/repository/org/codehaus/groovy/groovy/3.0.8/groovy-3.0.8.jar:/home/omniv/.m2/repository/nz/net/ultraq/extensions/groovy-extensions/1.1.0/groovy-extensions-1.1.0.jar:/home/omniv/.m2/repository/nz/net/ultraq/thymeleaf/thymeleaf-expression-processor/3.0.0/thymeleaf-expression-processor-3.0.0.jar:/home/omniv/.m2/repository/org/thymeleaf/thymeleaf/3.1.2.RELEASE/thymeleaf-3.1.2.RELEASE.jar:/home/omniv/.m2/repository/ognl/ognl/3.3.4/ognl-3.3.4.jar:/home/omniv/.m2/repository/org/javassist/javassist/3.29.0-GA/javassist-3.29.0-GA.jar:/home/omniv/.m2/repository/org/attoparser/attoparser/2.0.7.RELEASE/attoparser-2.0.7.RELEASE.jar:/home/omniv/.m2/repository/org/unbescape/unbescape/1.1.6.RELEASE/unbescape-1.1.6.RELEASE.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.3.0/spring-boot-starter-jdbc-3.3.0.jar:/home/omniv/.m2/repository/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar:/home/omniv/.m2/repository/org/springframework/spring-jdbc/6.1.8/spring-jdbc-6.1.8.jar:/home/omniv/.m2/repository/org/springframework/spring-tx/6.1.8/spring-tx-6.1.8.jar:/home/omniv/.m2/repository/com/mysql/mysql-connector-j/8.4.0/mysql-connector-j-8.4.0.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-devtools/3.3.0/spring-boot-devtools-3.3.0.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot/3.3.0/spring-boot-3.3.0.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.0/spring-boot-autoconfigure-3.3.0.jar:/home/omniv/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-ui/2.5.0/springdoc-openapi-starter-webmvc-ui-2.5.0.jar:/home/omniv/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-api/2.5.0/springdoc-openapi-starter-webmvc-api-2.5.0.jar:/home/omniv/.m2/repository/org/springdoc/springdoc-openapi-starter-common/2.5.0/springdoc-openapi-starter-common-2.5.0.jar:/home/omniv/.m2/repository/io/swagger/core/v3/swagger-core-jakarta/2.2.21/swagger-core-jakarta-2.2.21.jar:/home/omniv/.m2/repository/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar:/home/omniv/.m2/repository/io/swagger/core/v3/swagger-annotations-jakarta/2.2.21/swagger-annotations-jakarta-2.2.21.jar:/home/omniv/.m2/repository/io/swagger/core/v3/swagger-models-jakarta/2.2.21/swagger-models-jakarta-2.2.21.jar:/home/omniv/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.17.1/jackson-dataformat-yaml-2.17.1.jar:/home/omniv/.m2/repository/org/webjars/swagger-ui/5.13.0/swagger-ui-5.13.0.jar:/home/omniv/.m2/repository/io/jsonwebtoken/jjwt-api/0.11.5/jjwt-api-0.11.5.jar:/home/omniv/.m2/repository/io/jsonwebtoken/jjwt-impl/0.11.5/jjwt-impl-0.11.5.jar:/home/omniv/.m2/repository/io/jsonwebtoken/jjwt-jackson/0.11.5/jjwt-jackson-0.11.5.jar:/home/omniv/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.1/jackson-databind-2.17.1.jar:/home/omniv/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.1/jackson-annotations-2.17.1.jar:/home/omniv/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.1/jackson-core-2.17.1.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.3.0/spring-boot-starter-test-3.3.0.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-test/3.3.0/spring-boot-test-3.3.0.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.3.0/spring-boot-test-autoconfigure-3.3.0.jar:/home/omniv/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/omniv/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/home/omniv/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/home/omniv/.m2/repository/net/minidev/json-smart/2.5.1/json-smart-2.5.1.jar:/home/omniv/.m2/repository/net/minidev/accessors-smart/2.5.1/accessors-smart-2.5.1.jar:/home/omniv/.m2/repository/org/ow2/asm/asm/9.6/asm-9.6.jar:/home/omniv/.m2/repository/org/assertj/assertj-core/3.25.3/assertj-core-3.25.3.jar:/home/omniv/.m2/repository/net/bytebuddy/byte-buddy/1.14.16/byte-buddy-1.14.16.jar:/home/omniv/.m2/repository/org/awaitility/awaitility/4.2.1/awaitility-4.2.1.jar:/home/omniv/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/home/omniv/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/home/omniv/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/home/omniv/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/omniv/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/home/omniv/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/omniv/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/home/omniv/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/home/omniv/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:/home/omniv/.m2/repository/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar:/home/omniv/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.16/byte-buddy-agent-1.14.16.jar:/home/omniv/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/omniv/.m2/repository/org/mockito/mockito-junit-jupiter/5.11.0/mockito-junit-jupiter-5.11.0.jar:/home/omniv/.m2/repository/org/skyscreamer/jsonassert/1.5.1/jsonassert-1.5.1.jar:/home/omniv/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/omniv/.m2/repository/org/springframework/spring-core/6.1.8/spring-core-6.1.8.jar:/home/omniv/.m2/repository/org/springframework/spring-jcl/6.1.8/spring-jcl-6.1.8.jar:/home/omniv/.m2/repository/org/springframework/spring-test/6.1.8/spring-test-6.1.8.jar:/home/omniv/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:"/>
+    <property name="java.vm.vendor" value="Arch Linux"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://openjdk.org/"/>
+    <property name="user.timezone" value="America/Phoenix"/>
+    <property name="org.jboss.logging.provider" value="slf4j"/>
+    <property name="os.name" value="Linux"/>
+    <property name="java.vm.specification.version" value="25"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-25-openjdk/lib"/>
+    <property name="sun.java.command" value="/run/media/omniv/T7/GCU_SWE_2023-2025/CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/target/surefire/surefirebooter-20251112111306967_3.jar /run/media/omniv/T7/GCU_SWE_2023-2025/CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/target/surefire 2025-11-12T11-13-06_929-jvmRun1 surefire-20251112111306967_1tmp surefire_0-20251112111306967_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/run/media/omniv/T7/GCU_SWE_2023-2025/CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/target/test-classes:/run/media/omniv/T7/GCU_SWE_2023-2025/CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/target/classes:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter-web/3.3.0/spring-boot-starter-web-3.3.0.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter/3.3.0/spring-boot-starter-3.3.0.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter-logging/3.3.0/spring-boot-starter-logging-3.3.0.jar:/home/omniv/.m2/repository/ch/qos/logback/logback-classic/1.5.6/logback-classic-1.5.6.jar:/home/omniv/.m2/repository/ch/qos/logback/logback-core/1.5.6/logback-core-1.5.6.jar:/home/omniv/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.23.1/log4j-to-slf4j-2.23.1.jar:/home/omniv/.m2/repository/org/apache/logging/log4j/log4j-api/2.23.1/log4j-api-2.23.1.jar:/home/omniv/.m2/repository/org/slf4j/jul-to-slf4j/2.0.13/jul-to-slf4j-2.0.13.jar:/home/omniv/.m2/repository/jakarta/annotation/jakarta.annotation-api/2.1.1/jakarta.annotation-api-2.1.1.jar:/home/omniv/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter-json/3.3.0/spring-boot-starter-json-3.3.0.jar:/home/omniv/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.17.1/jackson-datatype-jdk8-2.17.1.jar:/home/omniv/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.17.1/jackson-datatype-jsr310-2.17.1.jar:/home/omniv/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.17.1/jackson-module-parameter-names-2.17.1.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/3.3.0/spring-boot-starter-tomcat-3.3.0.jar:/home/omniv/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.24/tomcat-embed-core-10.1.24.jar:/home/omniv/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.24/tomcat-embed-websocket-10.1.24.jar:/home/omniv/.m2/repository/org/springframework/spring-web/6.1.8/spring-web-6.1.8.jar:/home/omniv/.m2/repository/org/springframework/spring-beans/6.1.8/spring-beans-6.1.8.jar:/home/omniv/.m2/repository/io/micrometer/micrometer-observation/1.13.0/micrometer-observation-1.13.0.jar:/home/omniv/.m2/repository/io/micrometer/micrometer-commons/1.13.0/micrometer-commons-1.13.0.jar:/home/omniv/.m2/repository/org/springframework/spring-webmvc/6.1.8/spring-webmvc-6.1.8.jar:/home/omniv/.m2/repository/org/springframework/spring-context/6.1.8/spring-context-6.1.8.jar:/home/omniv/.m2/repository/org/springframework/spring-expression/6.1.8/spring-expression-6.1.8.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter-security/3.3.0/spring-boot-starter-security-3.3.0.jar:/home/omniv/.m2/repository/org/springframework/spring-aop/6.1.8/spring-aop-6.1.8.jar:/home/omniv/.m2/repository/org/springframework/security/spring-security-config/6.3.0/spring-security-config-6.3.0.jar:/home/omniv/.m2/repository/org/springframework/security/spring-security-core/6.3.0/spring-security-core-6.3.0.jar:/home/omniv/.m2/repository/org/springframework/security/spring-security-crypto/6.3.0/spring-security-crypto-6.3.0.jar:/home/omniv/.m2/repository/org/springframework/security/spring-security-web/6.3.0/spring-security-web-6.3.0.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter-validation/3.3.0/spring-boot-starter-validation-3.3.0.jar:/home/omniv/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/10.1.24/tomcat-embed-el-10.1.24.jar:/home/omniv/.m2/repository/org/hibernate/validator/hibernate-validator/8.0.1.Final/hibernate-validator-8.0.1.Final.jar:/home/omniv/.m2/repository/jakarta/validation/jakarta.validation-api/3.0.2/jakarta.validation-api-3.0.2.jar:/home/omniv/.m2/repository/org/jboss/logging/jboss-logging/3.5.3.Final/jboss-logging-3.5.3.Final.jar:/home/omniv/.m2/repository/com/fasterxml/classmate/1.7.0/classmate-1.7.0.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter-thymeleaf/3.3.0/spring-boot-starter-thymeleaf-3.3.0.jar:/home/omniv/.m2/repository/org/thymeleaf/thymeleaf-spring6/3.1.2.RELEASE/thymeleaf-spring6-3.1.2.RELEASE.jar:/home/omniv/.m2/repository/org/thymeleaf/extras/thymeleaf-extras-springsecurity6/3.1.2.RELEASE/thymeleaf-extras-springsecurity6-3.1.2.RELEASE.jar:/home/omniv/.m2/repository/org/slf4j/slf4j-api/2.0.13/slf4j-api-2.0.13.jar:/home/omniv/.m2/repository/nz/net/ultraq/thymeleaf/thymeleaf-layout-dialect/3.0.0/thymeleaf-layout-dialect-3.0.0.jar:/home/omniv/.m2/repository/org/codehaus/groovy/groovy/3.0.8/groovy-3.0.8.jar:/home/omniv/.m2/repository/nz/net/ultraq/extensions/groovy-extensions/1.1.0/groovy-extensions-1.1.0.jar:/home/omniv/.m2/repository/nz/net/ultraq/thymeleaf/thymeleaf-expression-processor/3.0.0/thymeleaf-expression-processor-3.0.0.jar:/home/omniv/.m2/repository/org/thymeleaf/thymeleaf/3.1.2.RELEASE/thymeleaf-3.1.2.RELEASE.jar:/home/omniv/.m2/repository/ognl/ognl/3.3.4/ognl-3.3.4.jar:/home/omniv/.m2/repository/org/javassist/javassist/3.29.0-GA/javassist-3.29.0-GA.jar:/home/omniv/.m2/repository/org/attoparser/attoparser/2.0.7.RELEASE/attoparser-2.0.7.RELEASE.jar:/home/omniv/.m2/repository/org/unbescape/unbescape/1.1.6.RELEASE/unbescape-1.1.6.RELEASE.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/3.3.0/spring-boot-starter-jdbc-3.3.0.jar:/home/omniv/.m2/repository/com/zaxxer/HikariCP/5.1.0/HikariCP-5.1.0.jar:/home/omniv/.m2/repository/org/springframework/spring-jdbc/6.1.8/spring-jdbc-6.1.8.jar:/home/omniv/.m2/repository/org/springframework/spring-tx/6.1.8/spring-tx-6.1.8.jar:/home/omniv/.m2/repository/com/mysql/mysql-connector-j/8.4.0/mysql-connector-j-8.4.0.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-devtools/3.3.0/spring-boot-devtools-3.3.0.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot/3.3.0/spring-boot-3.3.0.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/3.3.0/spring-boot-autoconfigure-3.3.0.jar:/home/omniv/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-ui/2.5.0/springdoc-openapi-starter-webmvc-ui-2.5.0.jar:/home/omniv/.m2/repository/org/springdoc/springdoc-openapi-starter-webmvc-api/2.5.0/springdoc-openapi-starter-webmvc-api-2.5.0.jar:/home/omniv/.m2/repository/org/springdoc/springdoc-openapi-starter-common/2.5.0/springdoc-openapi-starter-common-2.5.0.jar:/home/omniv/.m2/repository/io/swagger/core/v3/swagger-core-jakarta/2.2.21/swagger-core-jakarta-2.2.21.jar:/home/omniv/.m2/repository/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar:/home/omniv/.m2/repository/io/swagger/core/v3/swagger-annotations-jakarta/2.2.21/swagger-annotations-jakarta-2.2.21.jar:/home/omniv/.m2/repository/io/swagger/core/v3/swagger-models-jakarta/2.2.21/swagger-models-jakarta-2.2.21.jar:/home/omniv/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.17.1/jackson-dataformat-yaml-2.17.1.jar:/home/omniv/.m2/repository/org/webjars/swagger-ui/5.13.0/swagger-ui-5.13.0.jar:/home/omniv/.m2/repository/io/jsonwebtoken/jjwt-api/0.11.5/jjwt-api-0.11.5.jar:/home/omniv/.m2/repository/io/jsonwebtoken/jjwt-impl/0.11.5/jjwt-impl-0.11.5.jar:/home/omniv/.m2/repository/io/jsonwebtoken/jjwt-jackson/0.11.5/jjwt-jackson-0.11.5.jar:/home/omniv/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.1/jackson-databind-2.17.1.jar:/home/omniv/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.1/jackson-annotations-2.17.1.jar:/home/omniv/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.1/jackson-core-2.17.1.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-starter-test/3.3.0/spring-boot-starter-test-3.3.0.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-test/3.3.0/spring-boot-test-3.3.0.jar:/home/omniv/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/3.3.0/spring-boot-test-autoconfigure-3.3.0.jar:/home/omniv/.m2/repository/com/jayway/jsonpath/json-path/2.9.0/json-path-2.9.0.jar:/home/omniv/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.2/jakarta.xml.bind-api-4.0.2.jar:/home/omniv/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.3/jakarta.activation-api-2.1.3.jar:/home/omniv/.m2/repository/net/minidev/json-smart/2.5.1/json-smart-2.5.1.jar:/home/omniv/.m2/repository/net/minidev/accessors-smart/2.5.1/accessors-smart-2.5.1.jar:/home/omniv/.m2/repository/org/ow2/asm/asm/9.6/asm-9.6.jar:/home/omniv/.m2/repository/org/assertj/assertj-core/3.25.3/assertj-core-3.25.3.jar:/home/omniv/.m2/repository/net/bytebuddy/byte-buddy/1.14.16/byte-buddy-1.14.16.jar:/home/omniv/.m2/repository/org/awaitility/awaitility/4.2.1/awaitility-4.2.1.jar:/home/omniv/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/home/omniv/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/home/omniv/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/home/omniv/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/omniv/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/home/omniv/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/omniv/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/home/omniv/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/home/omniv/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:/home/omniv/.m2/repository/org/mockito/mockito-core/5.11.0/mockito-core-5.11.0.jar:/home/omniv/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.16/byte-buddy-agent-1.14.16.jar:/home/omniv/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/omniv/.m2/repository/org/mockito/mockito-junit-jupiter/5.11.0/mockito-junit-jupiter-5.11.0.jar:/home/omniv/.m2/repository/org/skyscreamer/jsonassert/1.5.1/jsonassert-1.5.1.jar:/home/omniv/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/omniv/.m2/repository/org/springframework/spring-core/6.1.8/spring-core-6.1.8.jar:/home/omniv/.m2/repository/org/springframework/spring-jcl/6.1.8/spring-jcl-6.1.8.jar:/home/omniv/.m2/repository/org/springframework/spring-test/6.1.8/spring-test-6.1.8.jar:/home/omniv/.m2/repository/org/xmlunit/xmlunit-core/2.9.1/xmlunit-core-2.9.1.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/home/omniv"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2025-10-21"/>
+    <property name="java.home" value="/usr/lib/jvm/java-25-openjdk"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/run/media/omniv/T7/GCU_SWE_2023-2025/CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="FILE_LOG_CHARSET" value="UTF-8"/>
+    <property name="java.awt.headless" value="true"/>
+    <property name="surefire.real.class.path" value="/run/media/omniv/T7/GCU_SWE_2023-2025/CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/target/surefire/surefirebooter-20251112111306967_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="25.0.1"/>
+    <property name="user.name" value="omniv"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="6.17.5-arch1-1"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="/home/omniv/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="java.version" value="25.0.1"/>
+    <property name="user.dir" value="/run/media/omniv/T7/GCU_SWE_2023-2025/CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="PID" value="28528"/>
+    <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Arch Linux"/>
+    <property name="java.vm.version" value="25.0.1"/>
+    <property name="stdin.encoding" value="UTF-8"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="69.0"/>
+    <property name="LOGGED_APPLICATION_NAME" value="[eventsapp] "/>
+  </properties>
+  <testcase name="contextLoads" classname="com.shadsluiter.eventsapp.EventsAppApplicationTests" time="10.601">
+    <error message="Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)" type="java.lang.IllegalStateException"><![CDATA[java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy108.getHandler(Unknown Source)
+	at org.mockito.internal.util.MockUtil.getMockHandlerOrNull(MockUtil.java:158)
+	at org.mockito.internal.util.MockUtil.isMock(MockUtil.java:147)
+	at org.mockito.internal.util.DefaultMockingDetails.isMock(DefaultMockingDetails.java:32)
+	at org.springframework.boot.test.mock.mockito.MockReset.get(MockReset.java:106)
+	at org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener.resetMocks(ResetMocksTestExecutionListener.java:85)
+	at org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener.resetMocks(ResetMocksTestExecutionListener.java:73)
+	at org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener.beforeTestMethod(ResetMocksTestExecutionListener.java:60)
+	at org.springframework.test.context.TestContextManager.beforeTestMethod(TestContextManager.java:320)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.beforeEach(SpringExtension.java:240)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+		at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+		at jdk.proxy2/jdk.proxy2.$Proxy108.getHandler(Unknown Source)
+		at org.mockito.internal.util.MockUtil.getMockHandlerOrNull(MockUtil.java:158)
+		at org.mockito.internal.util.MockUtil.isMock(MockUtil.java:147)
+		at org.mockito.internal.util.DefaultMockingDetails.isMock(DefaultMockingDetails.java:32)
+		at org.springframework.boot.test.mock.mockito.MockReset.get(MockReset.java:106)
+		at org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener.resetMocks(ResetMocksTestExecutionListener.java:85)
+		at org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener.resetMocks(ResetMocksTestExecutionListener.java:73)
+		at org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener.afterTestMethod(ResetMocksTestExecutionListener.java:67)
+		at org.springframework.test.context.TestContextManager.afterTestMethod(TestContextManager.java:487)
+		at org.springframework.test.context.junit.jupiter.SpringExtension.afterEach(SpringExtension.java:278)
+		... 2 more
+	Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+		at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+		at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+		at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+		at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+		at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+		at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+		at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+		at org.mockito.Mockito.<clinit>(Mockito.java:1683)
+		at org.springframework.boot.test.mock.mockito.MockReset.get(MockReset.java:105)
+		at org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener.resetMocks(ResetMocksTestExecutionListener.java:85)
+		at org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener.resetMocks(ResetMocksTestExecutionListener.java:73)
+		at org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener.beforeTestMethod(ResetMocksTestExecutionListener.java:60)
+		at org.springframework.test.context.TestContextManager.beforeTestMethod(TestContextManager.java:320)
+		at org.springframework.test.context.junit.jupiter.SpringExtension.beforeEach(SpringExtension.java:240)
+		... 2 more
+	Caused by: java.lang.reflect.InvocationTargetException
+		at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+		at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+		at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+		... 15 more
+	Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 25
+JVM vendor name    : Arch Linux
+JVM vendor version : 25.0.1
+JVM name           : OpenJDK 64-Bit Server VM
+JVM version        : 25.0.1
+JVM info           : mixed mode, sharing
+OS name            : Linux
+OS version         : 6.17.5-arch1-1
+
+		at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:260)
+		at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+		... 18 more
+	Caused by: java.lang.IllegalStateException: Could not self-attach to current VM using external process - set a property net.bytebuddy.agent.attacher.dump to dump the process output to a file at the specified location
+		at net.bytebuddy.agent.ByteBuddyAgent.installExternal(ByteBuddyAgent.java:706)
+		at net.bytebuddy.agent.ByteBuddyAgent.install(ByteBuddyAgent.java:636)
+		at net.bytebuddy.agent.ByteBuddyAgent.install(ByteBuddyAgent.java:616)
+		at net.bytebuddy.agent.ByteBuddyAgent.install(ByteBuddyAgent.java:568)
+		at net.bytebuddy.agent.ByteBuddyAgent.install(ByteBuddyAgent.java:545)
+		at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:133)
+		... 19 more
+Caused by: [CIRCULAR REFERENCE: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker]
+]]></error>
+    <system-out><![CDATA[11:13:07.259 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.shadsluiter.eventsapp.EventsAppApplicationTests]: EventsAppApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+11:13:07.309 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.shadsluiter.eventsapp.EventsApplication for test class com.shadsluiter.eventsapp.EventsAppApplicationTests
+11:13:07.382 [main] INFO org.springframework.boot.devtools.restart.RestartApplicationListener -- Restart disabled due to context in which it is running
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.0)
+
+2025-11-12T11:13:07.484-07:00  INFO 28528 --- [eventsapp] [           main] c.s.eventsapp.EventsAppApplicationTests  : Starting EventsAppApplicationTests using Java 25.0.1 with PID 28528 (started by omniv in /run/media/omniv/T7/GCU_SWE_2023-2025/CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp)
+2025-11-12T11:13:07.485-07:00  INFO 28528 --- [eventsapp] [           main] c.s.eventsapp.EventsAppApplicationTests  : No active profile set, falling back to 1 default profile: "default"
+2025-11-12T11:13:08.195-07:00  INFO 28528 --- [eventsapp] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-11-12T11:13:08.532-07:00  INFO 28528 --- [eventsapp] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Or [Mvc [pattern='/api/**']] with [org.springframework.security.web.session.DisableEncodeUrlFilter@7a814310, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4bbf38b8, org.springframework.security.web.context.SecurityContextHolderFilter@56b1e527, org.springframework.security.web.header.HeaderWriterFilter@611c3eae, org.springframework.web.filter.CorsFilter@4e67cfe1, org.springframework.security.web.authentication.logout.LogoutFilter@3b218c74, com.shadsluiter.eventsapp.config.JwtAuthenticationFilter@55bf35e5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7b95bdb0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@350ff014, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@25567581, org.springframework.security.web.session.SessionManagementFilter@727986ad, org.springframework.security.web.access.ExceptionTranslationFilter@4bf4680c, org.springframework.security.web.access.intercept.AuthorizationFilter@2a136383]
+2025-11-12T11:13:08.543-07:00  INFO 28528 --- [eventsapp] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3181d4de, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4f64d9cb, org.springframework.security.web.context.SecurityContextHolderFilter@44dd0d38, org.springframework.security.web.header.HeaderWriterFilter@852ef8d, org.springframework.web.filter.CorsFilter@639c7f9c, org.springframework.security.web.authentication.logout.LogoutFilter@60b616c8, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2bdab835, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7e94e331, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@539fc5d1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@270d5060, org.springframework.security.web.access.ExceptionTranslationFilter@721bf7ad, org.springframework.security.web.access.intercept.AuthorizationFilter@147e0734]
+2025-11-12T11:13:08.833-07:00  INFO 28528 --- [eventsapp] [           main] c.s.eventsapp.EventsAppApplicationTests  : Started EventsAppApplicationTests in 1.46 seconds (process running for 1.839)
+2025-11-12T11:13:19.433-07:00  WARN 28528 --- [eventsapp] [           main] o.s.test.context.TestContextManager      : Caught exception while invoking 'beforeTestMethod' callback on TestExecutionListener [org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener] for test method [void com.shadsluiter.eventsapp.EventsAppApplicationTests.contextLoads()] and test instance [com.shadsluiter.eventsapp.EventsAppApplicationTests@7da77305]
+
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85) ~[mockito-core-5.11.0.jar:na]
+	at jdk.proxy2/jdk.proxy2.$Proxy108.getHandler(Unknown Source) ~[na:na]
+	at org.mockito.internal.util.MockUtil.getMockHandlerOrNull(MockUtil.java:158) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.internal.util.MockUtil.isMock(MockUtil.java:147) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.internal.util.DefaultMockingDetails.isMock(DefaultMockingDetails.java:32) ~[mockito-core-5.11.0.jar:na]
+	at org.springframework.boot.test.mock.mockito.MockReset.get(MockReset.java:106) ~[spring-boot-test-3.3.0.jar:3.3.0]
+	at org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener.resetMocks(ResetMocksTestExecutionListener.java:85) ~[spring-boot-test-3.3.0.jar:3.3.0]
+	at org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener.resetMocks(ResetMocksTestExecutionListener.java:73) ~[spring-boot-test-3.3.0.jar:3.3.0]
+	at org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener.beforeTestMethod(ResetMocksTestExecutionListener.java:60) ~[spring-boot-test-3.3.0.jar:3.3.0]
+	at org.springframework.test.context.TestContextManager.beforeTestMethod(TestContextManager.java:320) ~[spring-test-6.1.8.jar:6.1.8]
+	at org.springframework.test.context.junit.jupiter.SpringExtension.beforeEach(SpringExtension.java:240) ~[spring-test-6.1.8.jar:6.1.8]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeBeforeEachCallbacks$2(TestMethodTestDescriptor.java:167) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeBeforeMethodsOrCallbacksUntilExceptionOccurs$6(TestMethodTestDescriptor.java:203) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeBeforeMethodsOrCallbacksUntilExceptionOccurs(TestMethodTestDescriptor.java:203) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeBeforeEachCallbacks(TestMethodTestDescriptor.java:166) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:133) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) ~[junit-platform-launcher-1.10.2.jar:1.10.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) ~[junit-platform-launcher-1.10.2.jar:1.10.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) ~[junit-platform-launcher-1.10.2.jar:1.10.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.10.2.jar:1.10.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) ~[junit-platform-launcher-1.10.2.jar:1.10.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) ~[junit-platform-launcher-1.10.2.jar:1.10.2]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) ~[junit-platform-launcher-1.10.2.jar:1.10.2]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85) ~[junit-platform-launcher-1.10.2.jar:1.10.2]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47) ~[junit-platform-launcher-1.10.2.jar:1.10.2]
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56) ~[surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184) ~[surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148) ~[surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122) ~[surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) ~[surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) ~[surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) ~[surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) ~[surefire-booter-3.2.5.jar:3.2.5]
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.Mockito.<clinit>(Mockito.java:1683) ~[mockito-core-5.11.0.jar:na]
+	at org.springframework.boot.test.mock.mockito.MockReset.get(MockReset.java:105) ~[spring-boot-test-3.3.0.jar:3.3.0]
+	... 60 common frames omitted
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483) ~[na:na]
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103) ~[mockito-core-5.11.0.jar:na]
+	... 68 common frames omitted
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 25
+JVM vendor name    : Arch Linux
+JVM vendor version : 25.0.1
+JVM name           : OpenJDK 64-Bit Server VM
+JVM version        : 25.0.1
+JVM info           : mixed mode, sharing
+OS name            : Linux
+OS version         : 6.17.5-arch1-1
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:260) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23) ~[mockito-core-5.11.0.jar:na]
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[na:na]
+	... 71 common frames omitted
+Caused by: java.lang.IllegalStateException: Could not self-attach to current VM using external process - set a property net.bytebuddy.agent.attacher.dump to dump the process output to a file at the specified location
+	at net.bytebuddy.agent.ByteBuddyAgent.installExternal(ByteBuddyAgent.java:706) ~[byte-buddy-agent-1.14.16.jar:na]
+	at net.bytebuddy.agent.ByteBuddyAgent.install(ByteBuddyAgent.java:636) ~[byte-buddy-agent-1.14.16.jar:na]
+	at net.bytebuddy.agent.ByteBuddyAgent.install(ByteBuddyAgent.java:616) ~[byte-buddy-agent-1.14.16.jar:na]
+	at net.bytebuddy.agent.ByteBuddyAgent.install(ByteBuddyAgent.java:568) ~[byte-buddy-agent-1.14.16.jar:na]
+	at net.bytebuddy.agent.ByteBuddyAgent.install(ByteBuddyAgent.java:545) ~[byte-buddy-agent-1.14.16.jar:na]
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:133) ~[mockito-core-5.11.0.jar:na]
+	... 73 common frames omitted
+
+2025-11-12T11:13:19.437-07:00  WARN 28528 --- [eventsapp] [           main] o.s.test.context.TestContextManager      : Caught exception while invoking 'afterTestMethod' callback on TestExecutionListener [org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener] for test method [void com.shadsluiter.eventsapp.EventsAppApplicationTests.contextLoads()] and test instance [com.shadsluiter.eventsapp.EventsAppApplicationTests@7da77305]
+
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85) ~[mockito-core-5.11.0.jar:na]
+	at jdk.proxy2/jdk.proxy2.$Proxy108.getHandler(Unknown Source) ~[na:na]
+	at org.mockito.internal.util.MockUtil.getMockHandlerOrNull(MockUtil.java:158) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.internal.util.MockUtil.isMock(MockUtil.java:147) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.internal.util.DefaultMockingDetails.isMock(DefaultMockingDetails.java:32) ~[mockito-core-5.11.0.jar:na]
+	at org.springframework.boot.test.mock.mockito.MockReset.get(MockReset.java:106) ~[spring-boot-test-3.3.0.jar:3.3.0]
+	at org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener.resetMocks(ResetMocksTestExecutionListener.java:85) ~[spring-boot-test-3.3.0.jar:3.3.0]
+	at org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener.resetMocks(ResetMocksTestExecutionListener.java:73) ~[spring-boot-test-3.3.0.jar:3.3.0]
+	at org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener.afterTestMethod(ResetMocksTestExecutionListener.java:67) ~[spring-boot-test-3.3.0.jar:3.3.0]
+	at org.springframework.test.context.TestContextManager.afterTestMethod(TestContextManager.java:487) ~[spring-test-6.1.8.jar:6.1.8]
+	at org.springframework.test.context.junit.jupiter.SpringExtension.afterEach(SpringExtension.java:278) ~[spring-test-6.1.8.jar:6.1.8]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAfterEachCallbacks$12(TestMethodTestDescriptor.java:261) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$13(TestMethodTestDescriptor.java:277) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$14(TestMethodTestDescriptor.java:277) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+	at org.junit.platform.commons.util.CollectionUtils.forEachInReverseOrder(CollectionUtils.java:217) ~[junit-platform-commons-1.10.2.jar:1.10.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAllAfterMethodsOrCallbacks(TestMethodTestDescriptor.java:276) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAfterEachCallbacks(TestMethodTestDescriptor.java:260) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:145) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) ~[junit-platform-launcher-1.10.2.jar:1.10.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) ~[junit-platform-launcher-1.10.2.jar:1.10.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) ~[junit-platform-launcher-1.10.2.jar:1.10.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.10.2.jar:1.10.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) ~[junit-platform-launcher-1.10.2.jar:1.10.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) ~[junit-platform-launcher-1.10.2.jar:1.10.2]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) ~[junit-platform-launcher-1.10.2.jar:1.10.2]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85) ~[junit-platform-launcher-1.10.2.jar:1.10.2]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47) ~[junit-platform-launcher-1.10.2.jar:1.10.2]
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56) ~[surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184) ~[surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148) ~[surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122) ~[surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) ~[surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) ~[surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) ~[surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) ~[surefire-booter-3.2.5.jar:3.2.5]
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.Mockito.<clinit>(Mockito.java:1683) ~[mockito-core-5.11.0.jar:na]
+	at org.springframework.boot.test.mock.mockito.MockReset.get(MockReset.java:105) ~[spring-boot-test-3.3.0.jar:3.3.0]
+	at org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener.resetMocks(ResetMocksTestExecutionListener.java:85) ~[spring-boot-test-3.3.0.jar:3.3.0]
+	at org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener.resetMocks(ResetMocksTestExecutionListener.java:73) ~[spring-boot-test-3.3.0.jar:3.3.0]
+	at org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener.beforeTestMethod(ResetMocksTestExecutionListener.java:60) ~[spring-boot-test-3.3.0.jar:3.3.0]
+	at org.springframework.test.context.TestContextManager.beforeTestMethod(TestContextManager.java:320) ~[spring-test-6.1.8.jar:6.1.8]
+	at org.springframework.test.context.junit.jupiter.SpringExtension.beforeEach(SpringExtension.java:240) ~[spring-test-6.1.8.jar:6.1.8]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeBeforeEachCallbacks$2(TestMethodTestDescriptor.java:167) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeBeforeMethodsOrCallbacksUntilExceptionOccurs$6(TestMethodTestDescriptor.java:203) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.2.jar:1.10.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeBeforeMethodsOrCallbacksUntilExceptionOccurs(TestMethodTestDescriptor.java:203) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeBeforeEachCallbacks(TestMethodTestDescriptor.java:166) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:133) ~[junit-jupiter-engine-5.10.2.jar:5.10.2]
+	... 49 common frames omitted
+Caused by: java.lang.reflect.InvocationTargetException: null
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483) ~[na:na]
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103) ~[mockito-core-5.11.0.jar:na]
+	... 68 common frames omitted
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 25
+JVM vendor name    : Arch Linux
+JVM vendor version : 25.0.1
+JVM name           : OpenJDK 64-Bit Server VM
+JVM version        : 25.0.1
+JVM info           : mixed mode, sharing
+OS name            : Linux
+OS version         : 6.17.5-arch1-1
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:260) ~[mockito-core-5.11.0.jar:na]
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23) ~[mockito-core-5.11.0.jar:na]
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[na:na]
+	... 71 common frames omitted
+Caused by: java.lang.IllegalStateException: Could not self-attach to current VM using external process - set a property net.bytebuddy.agent.attacher.dump to dump the process output to a file at the specified location
+	at net.bytebuddy.agent.ByteBuddyAgent.installExternal(ByteBuddyAgent.java:706) ~[byte-buddy-agent-1.14.16.jar:na]
+	at net.bytebuddy.agent.ByteBuddyAgent.install(ByteBuddyAgent.java:636) ~[byte-buddy-agent-1.14.16.jar:na]
+	at net.bytebuddy.agent.ByteBuddyAgent.install(ByteBuddyAgent.java:616) ~[byte-buddy-agent-1.14.16.jar:na]
+	at net.bytebuddy.agent.ByteBuddyAgent.install(ByteBuddyAgent.java:568) ~[byte-buddy-agent-1.14.16.jar:na]
+	at net.bytebuddy.agent.ByteBuddyAgent.install(ByteBuddyAgent.java:545) ~[byte-buddy-agent-1.14.16.jar:na]
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:133) ~[mockito-core-5.11.0.jar:na]
+	... 73 common frames omitted
+
+]]></system-out>
+  </testcase>
+</testsuite>

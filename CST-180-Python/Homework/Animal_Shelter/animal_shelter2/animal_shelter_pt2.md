@@ -16,20 +16,18 @@
 <br>
 
 </div>
-## Important Links
-#### [Video: ](https://youtu.be/Y9pTq0iNVK4)
-#### [src code: ]()
-#### [Video: ]()
+
 <div style="page-break-after: always;"></div>
+
+## Important Links
+#### [Video: ](https://youtu.be/Y9pTq0iNVK4) <--- Click there
+#### [src code: ](https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/CST-180-Python/Homework/Animal_Shelter/animal_shelter_p1.py) <--- Click there
 
 ## Summary
 
 This project establishes an object-oriented design for an animal shelter simulator utilizing **inheritance principles**. The architecture features a base `Animal` class with common attributes (name, age) and behaviors, from which three specialized classes inherit: `Dog`, `Cat`, and `Bird`. Each specialized class extends the base functionality with unique attributes—breed, fur color, and wingspan respectively.
 
 The design includes a `Kennel` class that demonstrates composition by containing exactly one `Animal` instance at a time. Type identification is achieved through Python's `__class__.__name__` attribute, enabling dynamic animal type reporting.
-
-<div style="page-break-after: always;"></div>
-
 ## System Architecture
 
 ### Data Flow Model
@@ -39,11 +37,11 @@ The system follows a three-stage data flow pattern:
 **Input Stage**
 The system accepts animal details through constructor parameters. Each animal type requires specific attributes as detailed in the table below:
 
-| Animal Type | Required Attributes |
-|-------------|-------------------|
-| Dog | Name (string), Age (integer), Breed (string) |
-| Cat | Name (string), Age (integer), Fur Color (string) |
-| Bird | Name (string), Age (integer), Wingspan (float) |
+| Animal Type | Required Attributes                              |
+| ----------- | ------------------------------------------------ |
+| Dog         | Name (string), Age (integer), Breed (string)     |
+| Cat         | Name (string), Age (integer), Fur Color (string) |
+| Bird        | Name (string), Age (integer), Wingspan (float)   |
 
 Additionally, the system accepts a selection indicating which animal instance to place within a `Kennel` container.
 
@@ -134,11 +132,11 @@ class Kennel:
 
 The following test instances demonstrate the system's capability to handle diverse animal types:
 
-| Instance | Type | Name | Age | Special Attribute | Value |
-|----------|------|------|-----|-------------------|-------|
-| dog1 | Dog | Buddy | 3 | Breed | Labrador |
-| cat1 | Cat | Mittens | 2 | Fur Color | Tabby |
-| bird1 | Bird | Sky | 1 | Wingspan | 0.35m |
+| Instance | Type | Name    | Age | Special Attribute | Value    |
+| -------- | ---- | ------- | --- | ----------------- | -------- |
+| dog1     | Dog  | Buddy   | 3   | Breed             | Labrador |
+| cat1     | Cat  | Mittens | 2   | Fur Color         | Tabby    |
+| bird1    | Bird | Sky     | 1   | Wingspan          | 0.35m    |
 
 ### Expected Output
 
@@ -156,9 +154,22 @@ Bird
 ```
 
 The output validates that each animal object correctly inherits base attributes while maintaining specialized characteristics, and the kennel successfully reports the contained animal type.
+## Application Output: 
+![[Pasted image 20251106145000.png]]
 
 <div style="page-break-after: always;"></div>
 
+## File Output: 
+
+![[images/screenshot-2025-11-06_14-52-05.png]]
+
+<div style="page-break-after: always;"></div>
+
+## Test Output:
+
+![[images/screenshot-2025-11-06_14-53-03.png]]
+
+<div style="page-break-after: always;"></div>
 ## References
 
-Dalbey, J. (2003). *Pseudocode Standard*. California Polytechnic State University. Retrieved from https://users.csc.calpoly.edu/~jdalbey/SWE/pdl_std.html
+Dalbey, J. (2003). _Pseudocode Standard_. California Polytechnic State University. Retrieved from <https://users.csc.calpoly.edu/~jdalbey/SWE/pdl_std.html>

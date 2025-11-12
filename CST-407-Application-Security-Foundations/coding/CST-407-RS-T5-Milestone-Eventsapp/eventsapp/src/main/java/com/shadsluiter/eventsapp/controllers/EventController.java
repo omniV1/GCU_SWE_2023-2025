@@ -11,6 +11,7 @@ import com.shadsluiter.eventsapp.models.EventModel;
 import com.shadsluiter.eventsapp.models.EventSearch;
 import com.shadsluiter.eventsapp.models.UserModel;
 import com.shadsluiter.eventsapp.service.EventService;
+import com.shadsluiter.eventsapp.service.SanitizationService;
 import com.shadsluiter.eventsapp.service.UserService;
 
 import jakarta.validation.Valid;
@@ -31,18 +32,20 @@ public class EventController {
 
     private final EventService eventService;
     private final UserService userService;  // Inject UserService to retrieve users
+    private final SanitizationService sanitizationService;
 
     @Autowired
-    public EventController(EventService eventService, UserService userService) {
+    public EventController(EventService eventService, UserService userService, SanitizationService sanitizationService) {
         this.eventService = eventService;
         this.userService = userService;
+        this.sanitizationService = sanitizationService;
     }
 
     @GetMapping
     public String getAllEvents(Model model) {
         List<EventModel> events = eventService.findAll();
-        model.addAttribute("events", events);
-        model.addAttribute("message", "Showing all events");
+        model.addAttribute("events", sanitizationService.sanitizeForDisplay(events));
+        model.addAttribute("message", sanitizationService.sanitizeText("Showing all events"));
         model.addAttribute("pageTitle", "Events");
         return "events";
     }
@@ -123,9 +126,11 @@ public class EventController {
         if (result.hasErrors()) {
             return "searchForm";
         }
-        List<EventModel> events = eventService.findByDescription(eventSearch.getSearchString());
-        model.addAttribute("message", "Search results for " + eventSearch.getSearchString());
-        model.addAttribute("events", events);
+        String query = eventSearch.getSearchString();
+        List<EventModel> events = eventService.findByDescription(query);
+        String safeQuery = sanitizationService.sanitizeText(query);
+        model.addAttribute("message", "Search results for " + safeQuery);
+        model.addAttribute("events", sanitizationService.sanitizeForDisplay(events));
         return "events";
     }
 }

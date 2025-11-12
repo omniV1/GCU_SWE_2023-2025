@@ -1,4 +1,4 @@
-## Animal Shelter Simulator – Project 1 Design Document
+
 <div style="text-align: center; padding-top: 100px;">
 <br>
 <br>
@@ -7,7 +7,7 @@
 **Instructor:** Professor David Parker  
 **Course:** CST-180: Python Programming 1  
 **Institution:** Grand Canyon University  
-**Date:** October 26, 2025
+**Date:** November 09, 2025
 <br>
 <br>
 <br>
@@ -16,6 +16,10 @@
 
 <div style="page-break-after: always;"></div>
 
+
+## Important Links
+#### [Video: ](https://youtu.be/Y9pTq0iNVK4) <--- Click there
+#### [src code: ](https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/CST-180-Python/Homework/Animal_Shelter/animal_shelter_p1.py) <--- Click there
 ### Summary 
 This first project establishes the object model and basic design for an animal shelter simulator without inheritance. It defines three independent animal classes (`Dog`, `Cat`, `Bird`) with required attributes and behaviors, plus a `Kennel` class that contains exactly one animal (a `Dog`, `Cat`, or `Bird`) at a time. The `Kennel` can report the contained animal’s type using the object’s `__class__.__name__` (i.e., the class name string). The deliverables include a UML class diagram, an IPO summary, detailed pseudocode and a flowchart for the program logic, sample data, and corresponding sample output.
 
@@ -165,10 +169,26 @@ Kennel(Bird(Name=Sky, Age=1, Wingspan=0.35))
 Bird
 ```
 
+## Application Output: 
+![[Pasted image 20251106145000.png]]
+
+<div style="page-break-after: always;"></div>
+
+## File Output: 
+
+![[images/screenshot-2025-11-06_14-52-05.png]]
+
+<div style="page-break-after: always;"></div>
+
+## Test Output:
+
+![[images/screenshot-2025-11-06_14-53-03.png]]
 
 
 
 <div style="page-break-after: always;"></div>
+
+
 ## Resources
 
 Dalbey, J. (2003). *Pseudocode Standard*. Retrieved from https://users.csc.calpoly.edu/~jdalbey/SWE/pdl_std.html
