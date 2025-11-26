@@ -9,7 +9,7 @@
 **Professor David Parker**
 **CST-180: Python Programming 1**
 **Grand Canyon University**
-**November 6, 2025**
+**November 23, 2025**
 
 <br>
 <br>
@@ -21,7 +21,7 @@
 
 ## Important Links
 #### [Video: ](https://youtu.be/Y9pTq0iNVK4) <--- Click there
-#### [src code: ](https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/CST-180-Python/Homework/Animal_Shelter/animal_shelter_p1.py) <--- Click there
+#### [src code: ](https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/CST-180-Python/Homework/Animal_Shelter/animal_shelter2/animal_shelter_pt2.py) <--- Click there
 
 ## Summary
 

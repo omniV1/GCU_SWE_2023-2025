@@ -7,9 +7,10 @@
 **November 16, 2025**
 
 ---
-***[Video Link]()
 
-***[src code]() 
+\*\*\*[Video Link](https://youtu.be/9FRXd0L-lxE)
+
+\*\*\*[src code](https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/CST-180-Python/Homework/Animal_Shelter_3/animal_shelter.py)
 
 ## Summary Statement
 
@@ -19,11 +20,11 @@ This final exercise completes the animal shelter simulator by introducing a full
 
 ## Input / Processing / Output Overview
 
-| Stage      | Description |
-| ---------- | ----------- |
-| **Input**  | Animal details (`name`, `age`, type-specific attribute); shelter capacity; adopter requests specifying an animal type and optional adopter name for the waitlist. |
+| Stage          | Description                                                                                                                                                                                                                                                             |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Input**      | Animal details (`name`, `age`, type-specific attribute); shelter capacity; adopter requests specifying an animal type and optional adopter name for the waitlist.                                                                                                       |
 | **Processing** | Constructors validate data, shelters locate empty kennels, and adoption paths either free kennels or log waitlist entries. Business rules enforce one animal per kennel, automatic kennel creation up to the set capacity, and waitlist tracking for unavailable types. |
-| **Output** | String renderings of animals, kennels, and shelter status; Boolean success/failure for intake; adopted animal objects (or `None` when unavailable); waitlist snapshots for each animal type. |
+| **Output**     | String renderings of animals, kennels, and shelter status; Boolean success/failure for intake; adopted animal objects (or `None` when unavailable); waitlist snapshots for each animal type.                                                                            |
 
 ---
 
@@ -32,6 +33,7 @@ This final exercise completes the animal shelter simulator by introducing a full
 ![[Pasted image 20251117100415.png]]
 
 **Relationships**
+
 - `Dog`, `Cat`, and `Bird` inherit from the base `Animal` class.
 - `Kennel` composes exactly one `Animal` (or `None`).
 - `Shelter` composes multiple `Kennel` instances (bounded by `capacity`) and maintains a waitlist dictionary keyed by animal type.
@@ -41,21 +43,24 @@ This final exercise completes the animal shelter simulator by introducing a full
 ## Design Pseudocode / Flow
 
 ### Shelter.add_animal(animal)
+
 1. FOR each kennel IN kennels:
-    - IF kennel is empty, place animal there and RETURN True.
+   - IF kennel is empty, place animal there and RETURN True.
 2. IF len(kennels) < capacity:
-    - CREATE new kennel with the animal, append to list, RETURN True.
+   - CREATE new kennel with the animal, append to list, RETURN True.
 3. RETURN False (shelter is full and no empty kennel exists).
 
 ### Shelter.adopt_animal(animal_type, adopter_name=None)
+
 1. NORMALIZE requested type to lowercase for comparisons.
 2. FOR each kennel IN kennels:
-    - IF kennel holds that type, store the animal, set kennel empty, RETURN the animal.
+   - IF kennel holds that type, store the animal, set kennel empty, RETURN the animal.
 3. IF adopter_name provided:
-    - APPEND adopter_name to waitlist[animal_type].
+   - APPEND adopter_name to waitlist[animal_type].
 4. RETURN None (no animal of that type is currently available).
 
 ### Shelter.get_waitlist(animal_type)
+
 1. NORMALIZE type.
 2. RETURN a copy of waitlist entry (empty list if not present).
 
@@ -63,12 +68,12 @@ This final exercise completes the animal shelter simulator by introducing a full
 
 ## Sample Data
 
-| Animal | Type | Name    | Age | Attribute    | Value       |
-| ------ | ---- | ------- | --- | ------------ | ----------- |
-| dog1   | Dog  | Buddy   | 3   | Breed        | Labrador    |
-| cat1   | Cat  | Mittens | 2   | Fur Color    | Tabby       |
-| bird1  | Bird | Sky     | 1   | Wingspan (m) | 0.35        |
-| adop1  | Request | Rabbit | -- | Adopter Name | Alice       |
+| Animal | Type    | Name    | Age | Attribute    | Value    |
+| ------ | ------- | ------- | --- | ------------ | -------- |
+| dog1   | Dog     | Buddy   | 3   | Breed        | Labrador |
+| cat1   | Cat     | Mittens | 2   | Fur Color    | Tabby    |
+| bird1  | Bird    | Sky     | 1   | Wingspan (m) | 0.35     |
+| adop1  | Request | Rabbit  | --  | Adopter Name | Alice    |
 
 Shelter capacity used for the scenario: **3 kennels**.
 
@@ -86,6 +91,7 @@ Rabbit waitlist: ['Alice']
 ```
 
 This output shows:
+
 1. Initial shelter status with a dog and cat occupying two kennels.
 2. Successful cat adoption freeing a kennel.
 3. Bird intake reusing the empty kennel.

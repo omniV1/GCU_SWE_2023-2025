@@ -1,0 +1,16 @@
+# macOS system files
+.DS_Store
+
+# VS Code settings
+.vscode/
+
+# Maven build directory
+target/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+
+# Maven repository (optional)
+.mvn/repository/
