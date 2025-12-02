@@ -1,5 +1,6 @@
 /run/media/omniv/T7/GCU_SWE_2023-2025/CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/src/main/java/com/shadsluiter/eventsapp/EventsApplication.java
 /run/media/omniv/T7/GCU_SWE_2023-2025/CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/src/main/java/com/shadsluiter/eventsapp/config/CustomUserDetailsService.java
+/run/media/omniv/T7/GCU_SWE_2023-2025/CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/src/main/java/com/shadsluiter/eventsapp/config/HttpsRedirectConfig.java
 /run/media/omniv/T7/GCU_SWE_2023-2025/CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/src/main/java/com/shadsluiter/eventsapp/config/JwtAuthenticationEntryPoint.java
 /run/media/omniv/T7/GCU_SWE_2023-2025/CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/src/main/java/com/shadsluiter/eventsapp/config/JwtAuthenticationFilter.java
 /run/media/omniv/T7/GCU_SWE_2023-2025/CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/src/main/java/com/shadsluiter/eventsapp/config/OpenApiConfig.java

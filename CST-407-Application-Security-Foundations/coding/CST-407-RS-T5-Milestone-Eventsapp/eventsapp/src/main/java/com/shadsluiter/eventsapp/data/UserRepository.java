@@ -1,16 +1,19 @@
 package com.shadsluiter.eventsapp.data;
 
+import com.shadsluiter.eventsapp.models.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import com.shadsluiter.eventsapp.models.UserEntity;
-
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 
 @Repository
@@ -25,9 +28,9 @@ public class UserRepository implements UserRepositoryInterface {
 
     @Override
     public UserEntity findByLoginName(String loginName) {
-        String sql = "SELECT u.*, r.role FROM users u LEFT JOIN roles r ON u.id = r.user_id WHERE u.login_name = '" + loginName + "'";
+        String sql = "SELECT u.*, r.role FROM users u LEFT JOIN roles r ON u.id = r.user_id WHERE u.login_name = ?";
         try {
-            List<UserEntity> users = jdbcTemplate.query(sql, new UserWithRolesExtractor());
+            List<UserEntity> users = jdbcTemplate.query(sql, new UserWithRolesExtractor(), loginName);
             return users.isEmpty() ? null : users.get(0);
         } catch (EmptyResultDataAccessException e) {
             return null;
@@ -42,8 +45,7 @@ public class UserRepository implements UserRepositoryInterface {
 
     @Override
     public void deleteById(Long id) {
-        String sql = "DELETE FROM users WHERE id = " + id;
-        jdbcTemplate.update(sql);
+        jdbcTemplate.update("DELETE FROM users WHERE id = ?", id);
     }
 
     @Override
@@ -58,25 +60,31 @@ public class UserRepository implements UserRepositoryInterface {
                 userEntity.getRoles().add("ROLE_USER");
             }
 
-            String sql = "INSERT INTO users (login_name, password, enabled, account_non_expired, credentials_non_expired, account_non_locked) VALUES ('"
-                    + userEntity.getUserName() + "', '"
-                    + userEntity.getPassword() + "', "
-                    + userEntity.isEnabled() + ", "
-                    + userEntity.isAccountNonExpired() + ", "
-                    + userEntity.isCredentialsNonExpired() + ", "
-                    + userEntity.isAccountNonLocked() + ")";
-            jdbcTemplate.update(sql);
-            Long id = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Long.class);
-            userEntity.setId(id);
+            String sql = "INSERT INTO users (login_name, password, enabled, account_non_expired, credentials_non_expired, account_non_locked) VALUES (?, ?, ?, ?, ?, ?)";
+            KeyHolder keyHolder = new GeneratedKeyHolder();
+            jdbcTemplate.update(con -> {
+                PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, userEntity.getUserName());
+                ps.setString(2, userEntity.getPassword());
+                ps.setBoolean(3, userEntity.isEnabled());
+                ps.setBoolean(4, userEntity.isAccountNonExpired());
+                ps.setBoolean(5, userEntity.isCredentialsNonExpired());
+                ps.setBoolean(6, userEntity.isAccountNonLocked());
+                return ps;
+            }, keyHolder);
+            if (keyHolder.getKey() != null) {
+                userEntity.setId(keyHolder.getKey().longValue());
+            }
         } else {
-            String sql = "UPDATE users SET login_name = '" + userEntity.getUserName()
-                    + "', password = '" + userEntity.getPassword()
-                    + "', enabled = " + userEntity.isEnabled()
-                    + ", account_non_expired = " + userEntity.isAccountNonExpired()
-                    + ", credentials_non_expired = " + userEntity.isCredentialsNonExpired()
-                    + ", account_non_locked = " + userEntity.isAccountNonLocked()
-                    + " WHERE id = " + userEntity.getId();
-            jdbcTemplate.update(sql);
+            String sql = "UPDATE users SET login_name = ?, password = ?, enabled = ?, account_non_expired = ?, credentials_non_expired = ?, account_non_locked = ? WHERE id = ?";
+            jdbcTemplate.update(sql,
+                    userEntity.getUserName(),
+                    userEntity.getPassword(),
+                    userEntity.isEnabled(),
+                    userEntity.isAccountNonExpired(),
+                    userEntity.isCredentialsNonExpired(),
+                    userEntity.isAccountNonLocked(),
+                    userEntity.getId());
         }
 
         // Save roles
@@ -89,22 +97,20 @@ public class UserRepository implements UserRepositoryInterface {
     public void saveRoles(UserEntity userEntity) {
         if (userEntity.getRoles() != null) {
             for (String role : userEntity.getRoles()) {
-                String sql = "INSERT INTO roles (user_id, role) VALUES (" + userEntity.getId() + ", '" + role + "')";
-                jdbcTemplate.update(sql);
+                jdbcTemplate.update("INSERT INTO roles (user_id, role) VALUES (?, ?)", userEntity.getId(), role);
             }
         }
     }
 
     public void deleteRoles(UserEntity userEntity) {
-        String sql = "DELETE FROM roles WHERE user_id = " + userEntity.getId();
-        jdbcTemplate.update(sql);
+        jdbcTemplate.update("DELETE FROM roles WHERE user_id = ?", userEntity.getId());
     }
 
     @Override
     public UserEntity findById(Long id) {
-        String sql = "SELECT u.*, r.role FROM users u LEFT JOIN roles r ON u.id = r.user_id WHERE u.id = " + id;
+        String sql = "SELECT u.*, r.role FROM users u LEFT JOIN roles r ON u.id = r.user_id WHERE u.id = ?";
         try {
-            List<UserEntity> users = jdbcTemplate.query(sql, new UserWithRolesExtractor());
+            List<UserEntity> users = jdbcTemplate.query(sql, new UserWithRolesExtractor(), id);
             return users.isEmpty() ? null : users.get(0);
         } catch (EmptyResultDataAccessException e) {
             return null;
