@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magic Dial Demo</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --text: #1f2a3d;
+      --accent: #3a7afe;
+      --accent-soft: #cfe0ff;
+      --border: #d9deea;
+      --good: #0fa958;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 20% 20%, #f0f5ff 0, #f7f8fb 35%, #f7f8fb 100%);
+      color: var(--text);
+      line-height: 1.5;
+      display: flex;
+      justify-content: center;
+    }
+
+    main {
+      width: min(1200px, 100%);
+      padding: 24px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 0.4px;
+    }
+
+    .tagline {
+      margin: 0;
+      color: #4c5c79;
+      font-weight: 500;
+    }
+
+    .layout {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 18px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .controls {
+      display: grid;
+      gap: 12px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 160px;
+      resize: vertical;
+      padding: 12px;
+      font-family: "JetBrains Mono", "Courier New", monospace;
+      font-size: 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fbfcff;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      color: #30405e;
+    }
+
+    input[type="number"],
+    input[type="range"] {
+      width: 110px;
+      padding: 6px 8px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .number-inputs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.08s ease;
+      box-shadow: 0 8px 18px rgba(58, 122, 254, 0.18);
+    }
+
+    button.secondary {
+      background: #eef2ff;
+      color: #1f2a3d;
+      border-color: #c7d4ff;
+      box-shadow: none;
+    }
+
+    button.danger {
+      background: #ffe8e5;
+      border-color: #ffb3a9;
+      color: #a52c2c;
+      box-shadow: none;
+    }
+
+    button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    button:not(:disabled):hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(58, 122, 254, 0.22);
+    }
+
+    .dial-area {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      justify-items: center;
+    }
+
+    .dial-wrapper {
+      position: relative;
+      width: 360px;
+      height: 360px;
+      display: grid;
+      place-items: center;
+    }
+
+    .dial {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff 60%, #eef2ff 100%);
+      border: 10px solid #dde6ff;
+      box-shadow: inset 0 8px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .dial::after {
+      content: "";
+      position: absolute;
+      inset: 15%;
+      border-radius: 50%;
+      border: 1px dashed #c7d4ff;
+    }
+
+    .dial-marks {
+      position: absolute;
+      inset: 0;
+    }
+
+    .mark {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 2px;
+      height: 16px;
+      background: #314064;
+      transform-origin: center;
+    }
+
+    .mark span {
+      position: absolute;
+      left: 50%;
+      top: -32px;
+      transform: translateX(-50%);
+      font-size: 12px;
+      color: #314064;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .pointer {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 12px;
+      height: 155px;
+      background: linear-gradient(to bottom, #ffb347 0, #ff7b54 70%, #ff7b54 100%);
+      clip-path: polygon(50% 0%, 70% 18%, 70% 100%, 30% 100%, 30% 18%);
+      transform-origin: 50% 90%;
+      transform: translate(-50%, -85%) rotate(0deg);
+      transition: transform 0.6s ease-in-out;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    .hub {
+      position: absolute;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #3a7afe;
+      border: 6px solid #fff;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+      z-index: 2;
+    }
+
+    .status-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .stat {
+      background: #f4f7ff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .stat .value {
+      display: block;
+      font-size: 28px;
+      color: #1f2a3d;
+    }
+
+    .stat .note {
+      color: #4c5c79;
+      font-size: 13px;
+    }
+
+    .log {
+      margin-top: 10px;
+      max-height: 220px;
+      overflow-y: auto;
+      background: #0e1221;
+      color: #e8ecf8;
+      border-radius: 10px;
+      padding: 10px;
+      font-family: "JetBrains Mono", "Courier New", monospace;
+      font-size: 13px;
+      border: 1px solid #1c2540;
+    }
+
+    .log-entry.zero {
+      color: #6ff7a6;
+    }
+
+    .log-entry {
+      margin: 2px 0;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .dial-wrapper {
+        width: 100%;
+        height: auto;
+      }
+      .dial {
+        width: min(320px, 90vw);
+        height: min(320px, 90vw);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Magic Dial Demo</h1>
+      <p class="tagline">Spin the dial with L/R cards and shout DING on zero.</p>
+    </header>
+
+    <div class="layout">
+      <section class="panel controls">
+        <div>
+          <label for="moves">Move cards (one per line, like L10 or R3):</label>
+          <textarea id="moves" spellcheck="false"></textarea>
+        </div>
+
+        <div class="number-inputs">
+          <label>
+            Start at
+            <input id="start" type="number" min="0" value="50" />
+          </label>
+          <label>
+            Dial size
+            <input id="dialSize" type="number" min="2" value="100" />
+          </label>
+          <label>
+            Delay (ms)
+            <input id="delay" type="number" min="0" value="600" />
+          </label>
+        </div>
+
+        <div class="number-inputs">
+          <label>
+            <input type="radio" name="mode" value="end" checked />
+            Count only when a move ends on 0
+          </label>
+          <label>
+            <input type="radio" name="mode" value="clicks" />
+            Count every click that lands on 0 (0x434C49434B)
+          </label>
+        </div>
+
+        <div class="buttons">
+          <button id="runBtn">Run animation</button>
+          <button id="stopBtn" class="secondary">Stop</button>
+          <button id="sampleBtn" class="secondary">Load sample</button>
+          <button id="clearBtn" class="danger">Clear</button>
+        </div>
+      </section>
+
+      <section class="panel dial-area">
+        <div class="dial-wrapper">
+          <div class="dial">
+            <div id="marks" class="dial-marks"></div>
+          </div>
+          <div id="pointer" class="pointer"></div>
+          <div class="hub"></div>
+        </div>
+        <div class="status-row">
+          <div class="stat">
+            <span class="value" id="positionValue">50</span>
+            <span class="note">Current position</span>
+          </div>
+          <div class="stat">
+            <span class="value" id="zeroCount">0</span>
+            <span class="note">Times landed on 0</span>
+          </div>
+          <div class="stat">
+            <span class="value" id="stepValue">0</span>
+            <span class="note">Moves completed</span>
+          </div>
+        </div>
+        <div class="log" id="log"></div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const movesInput = document.getElementById("moves");
+    const runBtn = document.getElementById("runBtn");
+    const stopBtn = document.getElementById("stopBtn");
+    const sampleBtn = document.getElementById("sampleBtn");
+    const clearBtn = document.getElementById("clearBtn");
+    const pointer = document.getElementById("pointer");
+    const marks = document.getElementById("marks");
+    const positionValue = document.getElementById("positionValue");
+    const zeroCountEl = document.getElementById("zeroCount");
+    const stepValue = document.getElementById("stepValue");
+    const logEl = document.getElementById("log");
+
+    let running = false;
+    let shouldStop = false;
+
+    const sampleText = `L68
+L30
+R48
+L5
+R60
+L55
+L1
+L99
+R14
+L82`;
+
+    sampleBtn.addEventListener("click", () => {
+      movesInput.value = sampleText;
+    });
+
+    clearBtn.addEventListener("click", () => {
+      movesInput.value = "";
+      resetDisplays();
+      clearLog();
+    });
+
+    stopBtn.addEventListener("click", () => {
+      shouldStop = true;
+    });
+
+    runBtn.addEventListener("click", () => {
+      startRun();
+    });
+
+    function resetDisplays(startPos = 50) {
+      positionValue.textContent = startPos;
+      zeroCountEl.textContent = "0";
+      stepValue.textContent = "0";
+      setPointer(startPos, getDialSize());
+    }
+
+    function clearLog() {
+      logEl.textContent = "";
+    }
+
+    function log(line, isZero = false) {
+      const div = document.createElement("div");
+      div.className = "log-entry" + (isZero ? " zero" : "");
+      div.textContent = line;
+      logEl.appendChild(div);
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    function parseMoves(text) {
+      const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+      if (!lines.length) {
+        throw new Error("No moves provided.");
+      }
+      return lines.map((line, idx) => {
+        const dir = line[0]?.toUpperCase();
+        const steps = parseInt(line.slice(1), 10);
+        if (!dir || !"LR".includes(dir) || Number.isNaN(steps)) {
+          throw new Error(`Bad move on line ${idx + 1}: "${line}"`);
+        }
+        return { dir, steps };
+      });
+    }
+
+    function applyMove(position, move, dialSize) {
+      const delta = move.dir === "R" ? move.steps : -move.steps;
+      return ((position + delta) % dialSize + dialSize) % dialSize;
+    }
+
+    function countZeroHits(position, move, dialSize, mode) {
+      const newPos = applyMove(position, move, dialSize);
+      if (mode === "end") {
+        return { hits: newPos === 0 ? 1 : 0, newPos };
+      }
+      // mode === "clicks": count every click that lands on 0.
+      if (move.dir === "R") {
+        const hits = Math.floor((position + move.steps) / dialSize);
+        return { hits, newPos };
+      } else {
+        const firstHit = position === 0 ? dialSize : position;
+        const hits = firstHit > move.steps ? 0 : 1 + Math.floor((move.steps - firstHit) / dialSize);
+        return { hits, newPos };
+      }
+    }
+
+    function angleForPosition(position, dialSize) {
+      const degreesPerStep = 360 / dialSize;
+      // 0 sits at the top of the dial; each step moves clockwise.
+      return position * degreesPerStep;
+    }
+
+    function setPointer(position, dialSize) {
+      const angle = angleForPosition(position, dialSize);
+      pointer.style.transform = `translate(-50%, -85%) rotate(${angle}deg)`;
+      positionValue.textContent = position;
+    }
+
+    function getDialSize() {
+      const dialSizeInput = document.getElementById("dialSize");
+      const parsed = parseInt(dialSizeInput.value, 10);
+      return Math.max(2, Number.isNaN(parsed) ? 100 : parsed);
+    }
+
+    function rebuildMarks() {
+      const size = getDialSize();
+      marks.innerHTML = "";
+      const tickCount = Math.max(4, Math.round(size / 10)); // 0,10,20... for size=100
+      const spacing = size / tickCount;
+      const radius = 150;
+      for (let i = 0; i < size; i += spacing) {
+        const angle = (i / size) * 360;
+        const mark = document.createElement("div");
+        mark.className = "mark";
+        mark.style.transform = `rotate(${angle}deg) translateY(-${radius}px)`;
+        const label = document.createElement("span");
+        label.textContent = Math.round(i);
+        label.style.transform = `rotate(${-angle}deg) translateY(-6px)`;
+        mark.appendChild(label);
+        marks.appendChild(mark);
+      }
+    }
+
+    function updateStats(step, zeros) {
+      stepValue.textContent = step;
+      zeroCountEl.textContent = zeros;
+    }
+
+    function disableWhileRunning(state) {
+      runBtn.disabled = state;
+      sampleBtn.disabled = state;
+      clearBtn.disabled = state;
+      document.getElementById("start").disabled = state;
+      document.getElementById("dialSize").disabled = state;
+      document.getElementById("delay").disabled = state;
+      document.querySelectorAll('input[name="mode"]').forEach(el => el.disabled = state);
+    }
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function startRun() {
+      if (running) return;
+      shouldStop = false;
+      running = true;
+      disableWhileRunning(true);
+      clearLog();
+
+      const startInput = document.getElementById("start");
+      const delayInput = document.getElementById("delay");
+      const dialSize = getDialSize();
+      rebuildMarks();
+
+      const startPos = Math.max(0, parseInt(startInput.value, 10) || 0) % dialSize;
+      const delay = Math.max(0, parseInt(delayInput.value, 10) || 0);
+      resetDisplays(startPos);
+
+      let moves;
+      try {
+        moves = parseMoves(movesInput.value);
+      } catch (err) {
+        alert(err.message);
+        running = false;
+        disableWhileRunning(false);
+        return;
+      }
+
+      const mode = document.querySelector('input[name="mode"]:checked')?.value || "end";
+
+      let position = startPos;
+      let zeros = 0;
+      setPointer(position, dialSize);
+
+      for (let i = 0; i < moves.length; i++) {
+        if (shouldStop) {
+          log(`Stopped at step ${i}.`, false);
+          break;
+        }
+        const { hits, newPos } = countZeroHits(position, moves[i], dialSize, mode);
+        position = newPos;
+        if (hits > 0) zeros += hits;
+        setPointer(position, dialSize);
+        updateStats(i + 1, zeros);
+        const ding = hits > 0 ? `  DING x${hits}!` : "";
+        const msg = `${i + 1}. ${moves[i].dir}${moves[i].steps} -> ${position}${ding}`;
+        log(msg, hits > 0);
+        await sleep(delay);
+      }
+
+      running = false;
+      disableWhileRunning(false);
+    }
+
+    // Initial setup
+    rebuildMarks();
+    resetDisplays();
+  </script>
+</body>
+</html>
