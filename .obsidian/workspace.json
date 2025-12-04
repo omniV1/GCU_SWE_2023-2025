@@ -198,8 +198,12 @@
       "bases:Create new base": false
     }
   },
-  "active": "443fc39ba02216fe",
+  "active": "af7d9a9ee92e78f8",
   "lastOpenFiles": [
+    "CST-407-Application-Security-Foundations/Assignments/eventsapp-milestone5-ssl.pdf",
+    "CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp.zip",
+    "CST-407-Application-Security-Foundations/Assignments/Pasted image 20251201171444.png",
+    "CST-407-Application-Security-Foundations/Pasted image 20251201171444.png",
     "2025-advent-of-code/day1-web/index.html",
     "2025-advent-of-code/day1-web",
     "2025-advent-of-code/day1.py",
@@ -209,8 +213,6 @@
     "CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/target/classes/com/shadsluiter/eventsapp/models/dto/AuthResponse.class",
     "CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/target/classes/com/shadsluiter/eventsapp/models/Converters.class",
     "CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/target/classes/com/shadsluiter/eventsapp/data/EventRepository.class",
-    "CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/target/classes/com/shadsluiter/eventsapp/data/EventRepository$EventModelRowMapper.class",
-    "CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/target/classes/com/shadsluiter/eventsapp/models/dto/LoginRequest.class",
     "Pasted image 20251201171444.png",
     "CST-407-Application-Security-Foundations/Assignments/eventsapp-milestone4-sql-injection.md",
     "CST-407-Application-Security-Foundations/Assignments/eventsapp-xss-sanitization.md",

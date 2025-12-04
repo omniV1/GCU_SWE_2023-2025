@@ -12,7 +12,7 @@ Enable SSL/TLS for the EventsApp so credentials are no longer sent in clear text
 
 ## Video Demonstration
 
-**Link (≤5 minutes):**  
+**Link (≤5 minutes):**  https://youtu.be/wHLpP_ZTLoQ
 Walkthrough: (1) capture clear-text login over HTTP, (2) generate and configure a self-signed PKCS12 keystore, (3) force HTTPS with redirect + secure channel, (4) recapture the login to show encrypted payloads.
 
 ---
