@@ -1,5 +1,4 @@
 """Advent of Code 2025 - Day 3: Lobby (escalator batteries).
-
 Puzzle recap:
 - Each line is a bank of batteries (digits 1-9).
 - You must turn on exactly two batteries in order (cannot reorder).

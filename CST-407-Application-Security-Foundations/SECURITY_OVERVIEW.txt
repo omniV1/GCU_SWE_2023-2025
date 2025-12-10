@@ -1,0 +1,19 @@
+EventsApp Security Handling
+==========================
+
+TLS/SSL
+- HTTPS is enabled via Spring Boot properties in src/main/resources/application.properties (server.ssl.enabled=true, server.port=8443) with a PKCS12 keystore (keystore.p12, alias eventsapp, password changeit) loaded from the classpath.
+- The app therefore serves traffic over TLS on 8443 by default.
+
+HTTP vs HTTPS
+- A Tomcat connector/redirect configuration exists in src/main/java/com/shadsluiter/eventsapp/config/HttpsRedirectConfig.java.off that would listen on the HTTP port (server.http.port=8080) and redirect all requests to HTTPS.
+- The file name ends with .off so it is not part of the build; only the HTTPS listener is active unless that config is renamed to .java.
+
+SQL Injection
+- Database access uses Spring JdbcTemplate with parameterized queries (no string concatenation of user input). Examples: EventRepository (find/save/update/delete/search) and UserRepository (login lookup, CRUD, roles) use ? placeholders so inputs are bound safely as prepared-statement parameters.
+- This prevents user input from altering SQL structure.
+
+XSS
+- User-controlled event fields are HTML-escaped in SanitizationService (HtmlUtils.htmlEscape, UTF-8) before being passed to the views.
+- Controllers sanitize messages and event lists prior to rendering (e.g., EventController getAll/search), and the Thymeleaf templates use th:utext to display the already-escaped values (templates/events.html).
+- This keeps the original text visible while preventing injected scripts/markup from executing in the browser.
