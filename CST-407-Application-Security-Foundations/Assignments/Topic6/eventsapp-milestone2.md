@@ -41,16 +41,16 @@ Screenshots captured during rehearsal are archived in the `@Photos` album for qu
 ### Events API (`/api/events`)
 
 - `GET /api/events` – Lists all events; open to everyone.
-  ![[../coding/CST-407-RS-T5-Milestone-Eventsapp/Photos/show_all_events.png]]
+  ![[show_all_events.png]]
 - `GET /api/events/{id}` – Retrieves a single record or returns HTTP 404.
-  ![[../coding/CST-407-RS-T5-Milestone-Eventsapp/Photos/Event1_Get.png]]
+  ![[Event1_Get.png]]
 - `GET /api/events/search?q=term` – Full text search across event descriptions.
-  ![[../coding/CST-407-RS-T5-Milestone-Eventsapp/Photos/Search_description.png]]
+  ![[Search_description.png]]
 - `POST /api/events` – Creates a new event; JWT required.
 - `PUT /api/events/{id}` – Updates an existing event; JWT required.
-  ![[../coding/CST-407-RS-T5-Milestone-Eventsapp/Photos/Put_event2.png]]
+  ![[Put_event2.png]]
 - `DELETE /api/events/{id}` – Removes an event; JWT required.
-  ![[../coding/CST-407-RS-T5-Milestone-Eventsapp/Photos/Delete_event.png]]
+  ![[Delete_event.png]]
 
 
 Validation is applied through `@Valid` and `EventModel`, keeping the API consistent with the service layer. Responses return `EventModel` payloads to align with future mobile or SPA consumers.
@@ -58,11 +58,11 @@ Validation is applied through `@Valid` and `EventModel`, keeping the API consist
 ### Users API (`/api/users`)
 
 - `POST /api/users/register` – Accepts `RegisterRequest` to create a user backed by BCrypt hashing.
-  ![[../coding/CST-407-RS-T5-Milestone-Eventsapp/Photos/registration_success.png]]
+  ![[registration_success.png]]
 - `POST /api/users/login` – Authenticates credentials and returns `AuthResponse` (JWT, expiration, user payload).
-  ![[../coding/CST-407-RS-T5-Milestone-Eventsapp/Photos/login_success.png]]
+  ![[login_success.png]]
 - `GET /api/users/me` – Returns the authenticated profile; secured by `@PreAuthorize("isAuthenticated()")`.
-  ![[../coding/CST-407-RS-T5-Milestone-Eventsapp/Photos/whoami.png]]
+  ![[whoami.png]]
 
 Role assignment defaults to `ROLE_USER`; additional roles can be added without modifying controller logic because Spring Security inspects the JWT claims exposed by `JwtService`.
 
