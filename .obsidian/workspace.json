@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CST-407-Application-Security-Foundations/Assignments/eventsapp-milestone5-ssl.md",
+                "file": "CST-180-Python/Homework/Animal_Shelter_3/animal_shelter_pt3.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "eventsapp-milestone5-ssl"
+              "title": "animal_shelter_pt3"
             }
           }
         ],
@@ -200,19 +200,19 @@
   },
   "active": "af7d9a9ee92e78f8",
   "lastOpenFiles": [
-    "CST-407-Application-Security-Foundations/Assignments/eventsapp-milestone5-ssl.pdf",
-    "CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp.zip",
+    "CST-201-algorithims-data-structures/Code/Topic7/Tourist_Markov_Chain_MCMC.ipynb",
+    "CST-201-algorithims-data-structures/Code/Topic7/MarkovChains.ipynb",
+    "CST-201-algorithims-data-structures/Code/Topic7",
+    "CST-180-Python/Homework/Animal_Shelter_3/animal_shelter_pt3.md.tmp.9093.1765472939551",
+    "CST-180-Python/Homework/Animal_Shelter_3/animal_shelter_pt3.md.tmp.9093.1765472933332",
+    "CST-180-Python/Homework/Animal_Shelter_3/animal_shelter_pt3.md.tmp.9093.1765472928252",
+    "CST-180-Python/Homework/Animal_Shelter_3/animal_shelter_pt3.md.tmp.9093.1765472921749",
+    "CST-180-Python/Homework/Animal_Shelter_3/animal_shelter_pt3.md.tmp.9093.1765472916778",
+    "CST-180-Python/Homework/Animal_Shelter_3/animal_shelter_pt3.md.tmp.9093.1765472910546",
+    "CST-180-Python/Homework/Animal_Shelter_3/animal_shelter_pt3.md.tmp.9093.1765472904301",
+    "CST-180-Python/Homework/Animal_Shelter_3/animal_shelter_pt3.md.tmp.9093.1765472896639",
     "CST-407-Application-Security-Foundations/Assignments/Pasted image 20251201171444.png",
     "CST-407-Application-Security-Foundations/Pasted image 20251201171444.png",
-    "2025-advent-of-code/day1-web/index.html",
-    "2025-advent-of-code/day1-web",
-    "2025-advent-of-code/day1.py",
-    "2025-advent-of-code",
-    "CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/src/main/resources/keystore.p12",
-    "CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/target/classes/com/shadsluiter/eventsapp/models/dto/UserResponse.class",
-    "CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/target/classes/com/shadsluiter/eventsapp/models/dto/AuthResponse.class",
-    "CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/target/classes/com/shadsluiter/eventsapp/models/Converters.class",
-    "CST-407-Application-Security-Foundations/coding/CST-407-RS-T5-Milestone-Eventsapp/eventsapp/target/classes/com/shadsluiter/eventsapp/data/EventRepository.class",
     "Pasted image 20251201171444.png",
     "CST-407-Application-Security-Foundations/Assignments/eventsapp-milestone4-sql-injection.md",
     "CST-407-Application-Security-Foundations/Assignments/eventsapp-xss-sanitization.md",
