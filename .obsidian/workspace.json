@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "abf7f5856eac06d7",
+        "id": "8325c2b1fabf563e",
         "type": "tabs",
         "children": [
           {
-            "id": "1b47789370f38c87",
+            "id": "e4e7bf1a867b35fe",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -183,8 +183,9 @@
       "bases:Create new base": false
     }
   },
-  "active": "1b47789370f38c87",
+  "active": "443fc39ba02216fe",
   "lastOpenFiles": [
+    "CST-323-Cloud-Computing/code/topic-1/screenshots/Pasted image 20260106114737.png",
     "CST-323-Cloud-Computing/Homework/activity1.md.tmp.61139.1767723755763",
     "CST-323-Cloud-Computing/Homework/activity1.md.tmp.61139.1767723746505",
     "CST-323-Cloud-Computing/Homework/activity1.md.tmp.61139.1767723737862",
@@ -197,7 +198,6 @@
     "CST-180-Python/Homework/Animal_Shelter_3/animal_shelter_pt3.md",
     "AIT-104-Data-mining-machine-learning/Code Projects/Presentation_Script.md",
     "AIT-104-Data-mining-machine-learning/Code Projects/HR-PCA/HR-PCA.zip",
-    "AIT-104-Data-mining-machine-learning/Code Projects/Clustering/Clustering.zip",
     "CST-407-Application-Security-Foundations/Assignments/Pasted image 20251201171444.png",
     "CST-407-Application-Security-Foundations/Pasted image 20251201171444.png",
     "Pasted image 20251201171444.png",
