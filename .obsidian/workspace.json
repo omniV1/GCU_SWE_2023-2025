@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "8325c2b1fabf563e",
+        "id": "8ec742c40ccc7736",
         "type": "tabs",
         "children": [
           {
-            "id": "e4e7bf1a867b35fe",
+            "id": "bfe83e2a2ab78905",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CST-323-Cloud-Computing/Homework/activity1.md",
+                "file": "AIT-204-Deep-Learning/class notes/In class activity 9 Jan 2026.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "activity1"
+              "title": "In class activity 9 Jan 2026"
             }
           }
         ]
@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "2480c2f0b49b9180",
@@ -183,34 +184,39 @@
       "bases:Create new base": false
     }
   },
-  "active": "443fc39ba02216fe",
+  "active": "bfe83e2a2ab78905",
   "lastOpenFiles": [
+    "AIT-204-Deep-Learning/class notes/In class activity 9 Jan 2026.md",
+    "AIT-204-Deep-Learning/class notes/Jan 9 2025 class notes.md",
+    "AIT-110-Stat-Learning-Theory/class notes/Jan 9 2025 class notes.md",
+    "Pasted image 20260109142003.png",
+    "Pasted image 20260109141902.png",
+    "AIT-204-Deep-Learning/class notes/Fundamentals of Deep Learning.md",
+    "Pasted image 20260108140100.png",
+    "Pasted image 20260108134540.png",
+    "Pasted image 20260108134526.png",
+    "Pasted image 20260108134012.png",
+    "screenshot-2026-01-08_13-38-07.png",
+    "CST-323-Cloud-Computing/code/topic-1/activity1/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst",
+    "CST-323-Cloud-Computing/code/topic-1/activity1/target/test-classes/com/gcu/AppTest.class",
+    "CST-323-Cloud-Computing/code/topic-1/activity1/target/test-classes/com/gcu",
+    "CST-323-Cloud-Computing/code/topic-1/activity1/target/test-classes/com",
+    "CST-323-Cloud-Computing/code/topic-1/activity1/target/test-classes",
+    "CST-323-Cloud-Computing/code/topic-1/activity1/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst",
+    "CST-323-Cloud-Computing/code/topic-1/activity1/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile",
+    "CST-323-Cloud-Computing/code/topic-1/activity1/target/maven-status/maven-compiler-plugin/testCompile",
+    "CST-323-Cloud-Computing/code/topic-1/activity1/target/generated-test-sources/test-annotations",
+    "CST-323-Cloud-Computing/code/topic-1/activity1/target/generated-test-sources",
+    "CST-323-Cloud-Computing/class notes/8 Jan 2025.md",
+    "CST-323-Cloud-Computing/Homework/activity1.md",
     "CST-323-Cloud-Computing/code/topic-1/screenshots/Pasted image 20260106114737.png",
-    "CST-323-Cloud-Computing/Homework/activity1.md.tmp.61139.1767723755763",
-    "CST-323-Cloud-Computing/Homework/activity1.md.tmp.61139.1767723746505",
-    "CST-323-Cloud-Computing/Homework/activity1.md.tmp.61139.1767723737862",
-    "CST-323-Cloud-Computing/Homework/activity1.md.tmp.61139.1767723730168",
-    "CST-323-Cloud-Computing/Homework/activity1.md.tmp.61139.1767723720828",
-    "CST-323-Cloud-Computing/Homework/activity1.md.tmp.61139.1767723712461",
-    "CST-323-Cloud-Computing/Homework/activity1.md.tmp.61139.1767723705537",
-    "CST-323-Cloud-Computing/Homework/activity1.md.tmp.61139.1767723694032",
-    "CST-323-Cloud-Computing/Homework/activity1.md.tmp.61139.1767723663460",
     "CST-180-Python/Homework/Animal_Shelter_3/animal_shelter_pt3.md",
     "AIT-104-Data-mining-machine-learning/Code Projects/Presentation_Script.md",
-    "AIT-104-Data-mining-machine-learning/Code Projects/HR-PCA/HR-PCA.zip",
     "CST-407-Application-Security-Foundations/Assignments/Pasted image 20251201171444.png",
     "CST-407-Application-Security-Foundations/Pasted image 20251201171444.png",
-    "Pasted image 20251201171444.png",
     "CST-407-Application-Security-Foundations/Assignments/eventsapp-milestone4-sql-injection.md",
     "CST-407-Application-Security-Foundations/Assignments/eventsapp-xss-sanitization.md",
     "CST-407-Application-Security-Foundations/Assignments/eventsapp-milestone2.md",
-    "CST-180-Python/Pasted image 20251120131115.png",
-    "CST-180-Python/Pasted image 20251120131056.png",
-    "CST-180-Python/Pasted image 20251120130940.png",
-    "CST-180-Python/Pasted image 20251120123719.png",
-    "CST-180-Python/Photos/Pasted image 20251120123533.png",
-    "CST-180-Python/Photos/Pasted image 20251120123640.png",
-    "CST-180-Python/Zybook_notes/Topic 6.md",
-    "CST-180-Python/Photos/Pasted image 20251120123255.png"
+    "CST-180-Python/Zybook_notes/Topic 6.md"
   ]
 }

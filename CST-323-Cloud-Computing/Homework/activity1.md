@@ -56,11 +56,15 @@ The database was populated with 10 product records including:
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## Application Architecture
 
 ### Project Structure
 
  ![[Pasted image 20260106114737.png]]
+
+<div style="page-break-after: always;"></div>
 
 ## Implementation Details
 
@@ -110,6 +114,8 @@ This separation allows for clean abstraction between database representation and
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### 2. Data Access Layer
 
 #### DataAccessInterface.java
@@ -150,6 +156,8 @@ Service class implementing `DataAccessInterface<OrderModel>`:
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### 3. Controller Layer
 
 #### OrdersController.java
@@ -169,6 +177,8 @@ Spring MVC controller handling all web requests with `@RequestMapping("/orders")
 | `deleteOrder(@PathVariable int id)`         | GET         | `/orders/deleteOrder/{id}`  | Delete an order                | redirect:/orders       |
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### 4. View Layer (Thymeleaf Templates)
 
@@ -241,6 +251,8 @@ The form structure mirrors the edit form but omits the hidden ID field since new
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## Configuration
 
 ### pom.xml Dependencies
@@ -302,6 +314,8 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## Screenshots and Demonstrations
 
 ### 1. Application Running - All Orders Page
@@ -319,6 +333,8 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 **Caption:** This screenshot shows the successful integration between the Spring Boot frontend and MariaDB backend. The browser displays the orders from the database, demonstrating that the OrdersDataService is correctly querying the database through the OrdersRepository, converting OrderEntity objects to OrderModel objects using the Mapper class, and passing them to the Thymeleaf template for rendering.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### 3. Show Order Details Page
 
@@ -344,6 +360,8 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### 6. Item Edited - After Update
 
 ![Item Edited - After Update](../code/topic-1/screenshots/item-edited.png)
@@ -368,6 +386,8 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### 9. Removed Item - After Deletion
 
 ![Removed Item - After Deletion](../code/topic-1/screenshots/removed-item.png)
@@ -376,11 +396,15 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 ---
 
-## Key Concepts Demonstrated
+<div style="page-break-after: always;"></div>
+
+## Key Concepts Summary
 
 Through building this application, I learned and applied several important software engineering principles. The first concept I implemented was **separation of concerns** by organizing the code into distinct layers, creating `OrderModel.java` to represent business logic, `OrderEntity.java` to handle database representation using Spring Data JDBC annotations like `@Table`, `@Id`, and `@Column`, `OrdersDataService.java` to coordinate CRUD operations, `OrdersController.java` to handle HTTP requests, and Thymeleaf templates (`allOrders.html`, `showOrder.html`, `editOrder.html`, `newOrder.html`) for the presentation layer with Bootstrap 5.3 styling. I also gained experience with **dependency injection** using Spring's IoC container, where I used `@Autowired` in `OrdersController` to inject `OrdersDataService`, and learned that `OrdersDataService` can use both constructor injection (for the `DataSource` parameter) and field injection (for the `OrdersRepository`), marked with the `@Service` annotation for Spring management. Another important pattern I implemented was the **Repository pattern** to abstract data access operations, creating a generic `DataAccessInterface<T>` that defines CRUD contracts and having `OrdersRepository` extend Spring Data's `CrudRepository<OrderEntity, Integer>`, which was particularly interesting because Spring Data JDBC automatically generates SQL operations without manual queries. The application follows the **MVC architecture**, which helped me understand how to separate the Model layer (using `OrderModel` and `OrderEntity`), the View layer (Thymeleaf templates with `th:each` and `th:text` for data binding), and the Controller layer (`OrdersController` that routes requests to services and returns template names). Finally, I implemented **data mapping** using a `Mapper` utility class with `toEntity()` and `toModel()` methods to convert between `OrderEntity` objects (with database annotations like `@Column("QTY")`) and `OrderModel` objects (used for business logic and views), ensuring that database schema changes only affect the entity layer while maintaining flexibility throughout the application. Overall, this project helped me understand how these concepts work together to create a well-structured, maintainable Spring Boot application.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Technologies Used
 
