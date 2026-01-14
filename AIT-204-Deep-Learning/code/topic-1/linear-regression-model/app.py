@@ -577,8 +577,8 @@ def main():
             # Train the model
             model.fit(X, y)
 
-            # Make predictions
-            y_pred = model.predict(X)
+            # Make predictions (flatten to 1D)
+            y_pred = model.predict(X).flatten()
 
             # Compute metrics
             metrics = compute_metrics(y, y_pred)
@@ -721,12 +721,13 @@ def main():
 
     st.subheader("���� Export Results")
 
-    # Create results DataFrame
+    # Create results DataFrame (ensure all arrays are 1D)
+    y_flat = np.asarray(y).flatten()
     results_df = pd.DataFrame({
         'X': X.flatten(),
-        'y_actual': y,
+        'y_actual': y_flat,
         'y_pred': y_pred,
-        'residual': y - y_pred
+        'residual': y_flat - y_pred
     })
 
     # Download button
