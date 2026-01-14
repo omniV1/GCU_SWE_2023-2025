@@ -226,6 +226,10 @@ def compute_metrics(y_true, y_pred):
     Returns:
         Dictionary with metrics
     """
+    # Ensure 1D arrays
+    y_true = np.asarray(y_true).flatten()
+    y_pred = np.asarray(y_pred).flatten()
+    
     # ==========================================
     # TODO 6: Compute evaluation metrics
     # ==========================================
@@ -300,6 +304,11 @@ def plot_predictions(X, y_true, y_pred, y_actual=None):
     Returns:
         Plotly figure
     """
+    # Ensure 1D arrays
+    X_flat = np.asarray(X).flatten()
+    y_true_flat = np.asarray(y_true).flatten()
+    y_pred_flat = np.asarray(y_pred).flatten()
+    
     # ==========================================
     # TODO 7b: Create predictions plot
     # ==========================================
@@ -308,19 +317,20 @@ def plot_predictions(X, y_true, y_pred, y_actual=None):
 
     # If actual values provided, plot them as scatter
     if y_actual is not None:
+        y_actual_flat = np.asarray(y_actual).flatten()
         # Add scatter plot for actual observations
         # Hint: Use go.Scatter with mode='markers'
         # WRITE YOUR CODE HERE
-        fig.add_trace(go.Scatter(x=X.flatten(), y=y_actual, mode='markers', name='Actual'))
+        fig.add_trace(go.Scatter(x=X_flat, y=y_actual_flat, mode='markers', name='Actual'))
 
     # Add line for true function (if available)
     # Sort by X for proper line plotting
-    sort_idx = np.argsort(X.flatten())
+    sort_idx = np.argsort(X_flat)
     # WRITE YOUR CODE HERE
-    fig.add_trace(go.Scatter(x=X.flatten(), y=y_true, mode='lines', name='True'))
+    fig.add_trace(go.Scatter(x=X_flat[sort_idx], y=y_true_flat[sort_idx], mode='lines', name='True'))
     # Add line for predictions
     # WRITE YOUR CODE HERE
-    fig.add_trace(go.Scatter(x=X.flatten(), y=y_pred, mode='lines', name='Predicted'))
+    fig.add_trace(go.Scatter(x=X_flat[sort_idx], y=y_pred_flat[sort_idx], mode='lines', name='Predicted'))
     fig.update_layout(
         title='Model Predictions vs Actual Data',
         xaxis_title='X',
@@ -343,17 +353,21 @@ def plot_residuals(y_true, y_pred):
     Returns:
         Plotly figure
     """
+    # Ensure 1D arrays
+    y_true_flat = np.asarray(y_true).flatten()
+    y_pred_flat = np.asarray(y_pred).flatten()
+    
     # ==========================================
     # TODO 7c: Create residuals plot
     # ==========================================
-    residuals = y_true - y_pred
+    residuals = y_true_flat - y_pred_flat
 
     fig = go.Figure()
 
     # Add scatter plot of residuals vs predictions
     # Hint: Use go.Scatter with mode='markers'
     # WRITE YOUR CODE HERE
-    fig.add_trace(go.Scatter(x=y_pred, y=residuals, mode='markers', name='Residuals'))
+    fig.add_trace(go.Scatter(x=y_pred_flat, y=residuals, mode='markers', name='Residuals'))
     # Add horizontal line at y=0
     # Hint: Use fig.add_hline()
     # WRITE YOUR CODE HERE
