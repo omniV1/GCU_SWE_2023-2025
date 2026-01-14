@@ -35,6 +35,25 @@ st.set_page_config(
 # HELPER FUNCTIONS
 # ==========================================
 
+def load_csv_data(file_path):
+    """
+    Load data from a CSV file.
+    
+    Args:
+        file_path: Path to the CSV file
+        
+    Returns:
+        X: Feature matrix (n_samples, 1)
+        y: Target vector (n_samples,)
+        y_true: True values without noise
+    """
+    df = pd.read_csv(file_path)
+    X = df['x'].values.reshape(-1, 1)
+    y = df['y'].values
+    y_true = df['y_true'].values
+    return X, y, y_true
+
+
 def generate_synthetic_data(n_samples, noise_level, data_type, random_seed):
     """
     Generate synthetic data for regression.
@@ -327,7 +346,6 @@ def plot_residuals(y_true, y_pred):
     # ==========================================
     # TODO 7c: Create residuals plot
     # ==========================================
-    fig.add_trace(go.Scatter(x=y_pred, y=residuals, mode='markers', name='Residuals'))
     residuals = y_true - y_pred
 
     fig = go.Figure()
@@ -373,56 +391,124 @@ def main():
     st.divider()
 
     # ==========================================
-    # SIDEBAR - Data Generation Parameters
+    # SIDEBAR - Data Source Selection
     # ==========================================
 
-    st.sidebar.header("���� Data Generation")
-
-    n_samples = st.sidebar.slider(
-        "Number of Samples",
-        min_value=50,
-        max_value=500,
-        value=100,
-        step=50,
-        help="Number of data points to generate"
+    st.sidebar.header("📊 Data Source")
+    
+    data_source = st.sidebar.radio(
+        "Choose data source:",
+        ["Generate Synthetic", "Load from CSV"],
+        help="Select how to get the training data"
     )
-
-    noise_level = st.sidebar.slider(
-        "Noise Level",
-        min_value=0.0,
-        max_value=5.0,
-        value=1.0,
-        step=0.1,
-        help="Standard deviation of noise (higher = more noisy)"
-    )
-
-    data_type = st.sidebar.selectbox(
-        "Data Type",
-        ["linear", "polynomial", "sinusoidal"],
-        help="Type of underlying relationship"
-    )
-
-    random_seed = st.sidebar.number_input(
-        "Random Seed",
-        min_value=0,
-        max_value=9999,
-        value=42,
-        help="For reproducible results"
-    )
-
-    # Generate data button
-    if st.sidebar.button("���� Generate Data", type="primary"):
-        X, y, y_true = generate_synthetic_data(
-            n_samples, noise_level, data_type, random_seed
+    
+    if data_source == "Generate Synthetic":
+        st.sidebar.subheader("Generation Parameters")
+        
+        n_samples = st.sidebar.slider(
+            "Number of Samples",
+            min_value=50,
+            max_value=500,
+            value=100,
+            step=50,
+            help="Number of data points to generate"
         )
 
-        # Store in session state
-        st.session_state.X = X
-        st.session_state.y = y
-        st.session_state.y_true = y_true
-        st.session_state.data_generated = True
+        noise_level = st.sidebar.slider(
+            "Noise Level",
+            min_value=0.0,
+            max_value=5.0,
+            value=1.0,
+            step=0.1,
+            help="Standard deviation of noise (higher = more noisy)"
+        )
 
-        st.sidebar.success("��� Data generated!")
+        data_type = st.sidebar.selectbox(
+            "Data Type",
+            ["linear", "polynomial", "sinusoidal"],
+            help="Type of underlying relationship"
+        )
+
+        random_seed = st.sidebar.number_input(
+            "Random Seed",
+            min_value=0,
+            max_value=9999,
+            value=42,
+            help="For reproducible results"
+        )
+
+        # Generate data button
+        if st.sidebar.button("🎲 Generate Data", type="primary"):
+            X, y, y_true = generate_synthetic_data(
+                n_samples, noise_level, data_type, random_seed
+            )
+
+            # Store in session state
+            st.session_state.X = X
+            st.session_state.y = y
+            st.session_state.y_true = y_true
+            st.session_state.data_generated = True
+            st.session_state.data_source_type = data_type
+
+            st.sidebar.success("✅ Data generated!")
+    
+    else:  # Load from CSV
+        st.sidebar.subheader("CSV File")
+        
+        # Option to use the included CSV file
+        use_included = st.sidebar.checkbox(
+            "Use included dataset",
+            value=True,
+            help="Use the synthetic_data_Simple_Linear.csv file"
+        )
+        
+        if use_included:
+            if st.sidebar.button("📂 Load CSV Data", type="primary"):
+                import os
+                # Get the directory where app.py is located
+                script_dir = os.path.dirname(os.path.abspath(__file__))
+                csv_path = os.path.join(script_dir, "synthetic_data_Simple_Linear.csv")
+                
+                try:
+                    X, y, y_true = load_csv_data(csv_path)
+                    
+                    # Store in session state
+                    st.session_state.X = X
+                    st.session_state.y = y
+                    st.session_state.y_true = y_true
+                    st.session_state.data_generated = True
+                    st.session_state.data_source_type = "linear (from CSV)"
+                    
+                    st.sidebar.success(f"✅ Loaded {len(X)} samples from CSV!")
+                except FileNotFoundError:
+                    st.sidebar.error("❌ CSV file not found!")
+                except Exception as e:
+                    st.sidebar.error(f"❌ Error loading CSV: {e}")
+        else:
+            uploaded_file = st.sidebar.file_uploader(
+                "Upload CSV file",
+                type=['csv'],
+                help="CSV should have columns: x, y, y_true"
+            )
+            
+            if uploaded_file is not None:
+                if st.sidebar.button("📂 Load Uploaded Data", type="primary"):
+                    try:
+                        df = pd.read_csv(uploaded_file)
+                        X = df['x'].values.reshape(-1, 1)
+                        y = df['y'].values
+                        y_true = df['y_true'].values
+                        
+                        # Store in session state
+                        st.session_state.X = X
+                        st.session_state.y = y
+                        st.session_state.y_true = y_true
+                        st.session_state.data_generated = True
+                        st.session_state.data_source_type = "uploaded CSV"
+                        
+                        st.sidebar.success(f"✅ Loaded {len(X)} samples!")
+                    except Exception as e:
+                        st.sidebar.error(f"❌ Error: {e}")
 
     st.sidebar.divider()
 
@@ -472,7 +558,8 @@ def main():
     with col2:
         st.metric("Features", X.shape[1])
     with col3:
-        st.metric("Data Type", data_type.capitalize())
+        data_type_display = st.session_state.get('data_source_type', 'unknown')
+        st.metric("Data Type", data_type_display.capitalize() if isinstance(data_type_display, str) else str(data_type_display))
 
     st.divider()
 
