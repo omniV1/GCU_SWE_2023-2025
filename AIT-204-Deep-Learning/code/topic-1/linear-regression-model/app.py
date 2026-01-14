@@ -135,6 +135,9 @@ class LinearRegression:
             y: Target vector (n_samples,)
         """
         n_samples, n_features = X.shape
+        
+        # Reshape y to column vector to match y_pred shape from matrix multiplication
+        y = y.reshape(-1, 1)
 
         # ==========================================
         # TODO 1: Initialize weights and bias
@@ -143,8 +146,8 @@ class LinearRegression:
         # Initialize bias to zero
         # Hint: Use np.random.randn() for weights
 
-        self.weights = np.random.randn(n_features, 1)  # REPLACE THIS
-        self.bias = 0.0   # REPLACE THIS
+        self.weights = np.random.randn(n_features, 1) * 0.01  # Small random values
+        self.bias = 0.0
 
         # ==========================================
         # Training loop
@@ -157,14 +160,14 @@ class LinearRegression:
             # Forward pass: y_pred = X @ w + b
             # Hint: Use @ for matrix multiplication or np.dot()
             
-            y_pred = X @ self.weights + self.bias  # REPLACE THIS
+            y_pred = X @ self.weights + self.bias
 
             # ==========================================
             # TODO 3: Compute loss (Mean Squared Error)
             # ==========================================
             # MSE = (1/n) * sum((y - y_pred)^2)
             # Hint: Use np.mean() and ** 2
-            loss = np.mean((y - y_pred) ** 2)  # REPLACE THIS
+            loss = np.mean((y - y_pred) ** 2)
 
             # Store loss for visualization
             self.losses.append(loss)
@@ -176,8 +179,8 @@ class LinearRegression:
             # Gradient for bias: db = -(2/n) * sum(y - y_pred)
             # Hint: Remember to transpose X for dw calculation
 
-            dw = -(2/n_samples) * X.T @ (y - y_pred)  # REPLACE THIS
-            db = -(2/n_samples) * np.sum(y - y_pred)  # REPLACE THIS
+            dw = -(2/n_samples) * X.T @ (y - y_pred)
+            db = -(2/n_samples) * np.sum(y - y_pred)
 
             # ==========================================
             # TODO 5: Update parameters
@@ -185,7 +188,7 @@ class LinearRegression:
             # Update rule: w = w - learning_rate * dw
             #              b = b - learning_rate * db
 
-            self.weights = self.weights - self.learning_rate * dw  # REPLACE THIS
+            self.weights = self.weights - self.learning_rate * dw
             self.bias = self.bias - self.learning_rate * db  
 
             # Optional: Print progress every 100 iterations
