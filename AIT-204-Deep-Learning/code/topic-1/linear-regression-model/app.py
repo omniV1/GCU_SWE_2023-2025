@@ -91,7 +91,7 @@ if data_type == 'linear':
     y_true = 2 * X.flatten() + 1
 
 elif data_type == 'polynomial':
-    # Quadratic: y = 0.5x² - 2x + 5
+    # Quadratic: y = 0.5x^2 - 2x + 5
     y_true = 0.5 * (X.flatten() ** 2) - 2 * X.flatten() + 5
 
 elif data_type == 'sinusoidal':
@@ -120,7 +120,7 @@ This class implements linear regression from scratch using
 gradient descent optimization.
 
 Model: y = Xw + b
-Loss: MSE = (1/n) * Σ(y - ŷ)²
+Loss: MSE = (1/n) * sum((y - y_pred)^2)
 """
 
 def __init__(self, learning_rate=0.01, n_iterations=1000):
@@ -128,7 +128,7 @@ def __init__(self, learning_rate=0.01, n_iterations=1000):
     Initialize the model.
 
     Args:
-        learning_rate: Step size for gradient descent (α)
+        learning_rate: Step size for gradient descent (alpha)
         n_iterations: Number of training iterations
     """
     self.learning_rate = learning_rate
@@ -168,7 +168,7 @@ def fit(self, X, y):
         # ==========================================
         # TODO 2: Compute predictions
         # ==========================================
-        # Forward pass: ŷ = X @ w + b
+        # Forward pass: y_pred = X @ w + b
         # Hint: Use @ for matrix multiplication or np.dot()
         
         y_pred = X @ self.weights + self.bias
@@ -176,7 +176,7 @@ def fit(self, X, y):
         # ==========================================
         # TODO 3: Compute loss (Mean Squared Error)
         # ==========================================
-        # MSE = (1/n) * Σ(y - ŷ)²
+        # MSE = (1/n) * sum((y - y_pred)^2)
         # Hint: Use np.mean() and ** 2
         loss = np.mean((y - y_pred) ** 2)
 
@@ -186,8 +186,8 @@ def fit(self, X, y):
         # ==========================================
         # TODO 4: Compute gradients
         # ==========================================
-        # Gradient for weights: dw = -(2/n) * Xᵀ @ (y - ŷ)
-        # Gradient for bias: db = -(2/n) * Σ(y - ŷ)
+        # Gradient for weights: dw = -(2/n) * X.T @ (y - y_pred)
+        # Gradient for bias: db = -(2/n) * sum(y - y_pred)
         # Hint: Remember to transpose X for dw calculation
 
         dw = -(2/n_samples) * X.T @ (y - y_pred)
@@ -196,8 +196,8 @@ def fit(self, X, y):
         # ==========================================
         # TODO 5: Update parameters
         # ==========================================
-        # Update rule: w = w - α * dw
-        #              b = b - α * db
+        # Update rule: w = w - learning_rate * dw
+        #              b = b - learning_rate * db
 
         self.weights = self.weights - self.learning_rate * dw
         self.bias = self.bias - self.learning_rate * db  
@@ -214,12 +214,12 @@ def predict(self, X):
         X: Feature matrix (n_samples, n_features)
 
     Returns:
-        ŷ: Predictions (n_samples,)
+        y_pred: Predictions (n_samples,)
     """
     # ==========================================
     # TODO 2 (repeated): Compute predictions
     # ==========================================
-    # Same as in training: ŷ = X @ w + b
+    # Same as in training: y_pred = X @ w + b
 
     y_pred = X @ self.weights + self.bias
     return y_pred
@@ -250,19 +250,19 @@ y_pred = np.asarray(y_pred).flatten()
 # ==========================================
 # TODO 6: Compute evaluation metrics
 # ==========================================
-# Mean Squared Error: MSE = (1/n) * Σ(y - ŷ)²
+# Mean Squared Error: MSE = (1/n) * sum((y - y_pred)^2)
 mse = np.mean((y_true - y_pred) ** 2)
 
 # Root Mean Squared Error
 rmse = np.sqrt(mse)
 
-# Mean Absolute Error: MAE = (1/n) * Σ|y - ŷ|
+# Mean Absolute Error: MAE = (1/n) * sum(|y - y_pred|)
 mae = np.mean(np.abs(y_true - y_pred))
 
-# R² Score (Coefficient of Determination)
-# R² = 1 - (SS_res / SS_tot)
-# where SS_res = Σ(y - ŷ)²
-#       SS_tot = Σ(y - ȳ)²
+# R^2 Score (Coefficient of Determination)
+# R^2 = 1 - (SS_res / SS_tot)
+# where SS_res = sum((y - y_pred)^2)
+#       SS_tot = sum((y - y_mean)^2)
 ss_res = np.sum((y_true - y_pred) ** 2)
 ss_tot = np.sum((y_true - np.mean(y_true)) ** 2)
 r2 = 1 - (ss_res / ss_tot)
@@ -271,7 +271,7 @@ return {
     'MSE': mse,
     'RMSE': rmse,
     'MAE': mae,
-    'R²': r2
+    'R2': r2
 }
 ```
 
@@ -375,7 +375,7 @@ Args:
 
 Returns:
     Plotly figure
-"""
+
 # Ensure 1D arrays
 y_true_flat = np.asarray(y_true).flatten()
 y_pred_flat = np.asarray(y_pred).flatten()
@@ -417,7 +417,7 @@ def main():
 
 ```
 # Title and description
-st.title("📈 Linear Regression with Gradient Descent")
+st.title("Linear Regression with Gradient Descent")
 st.markdown("""
 This app demonstrates linear regression using gradient descent.
 
@@ -434,7 +434,7 @@ st.divider()
 # SIDEBAR - Data Source Selection
 # ==========================================
 
-st.sidebar.header("📊 Data Source")
+st.sidebar.header("Data Source")
 
 data_source = st.sidebar.radio(
     "Choose data source:",
@@ -478,7 +478,7 @@ if data_source == "Generate Synthetic":
     )
 
     # Generate data button
-    if st.sidebar.button("🎲 Generate Data", type="primary"):
+    if st.sidebar.button("Generate Data", type="primary"):
         X, y, y_true = generate_synthetic_data(
             n_samples, noise_level, data_type, random_seed
         )
@@ -490,7 +490,7 @@ if data_source == "Generate Synthetic":
         st.session_state.data_generated = True
         st.session_state.data_source_type = data_type
 
-        st.sidebar.success("✅ Data generated!")
+        st.sidebar.success("Data generated!")
 
 else:  # Load from CSV
     st.sidebar.subheader("CSV File")
@@ -503,7 +503,7 @@ else:  # Load from CSV
     )
     
     if use_included:
-        if st.sidebar.button("📂 Load CSV Data", type="primary"):
+        if st.sidebar.button("Load CSV Data", type="primary"):
             import os
             # Get the directory where app.py is located
             script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -519,11 +519,11 @@ else:  # Load from CSV
                 st.session_state.data_generated = True
                 st.session_state.data_source_type = "linear (from CSV)"
                 
-                st.sidebar.success(f"✅ Loaded {len(X)} samples from CSV!")
+                st.sidebar.success(f"Loaded {len(X)} samples from CSV!")
             except FileNotFoundError:
-                st.sidebar.error("❌ CSV file not found!")
+                st.sidebar.error("CSV file not found!")
             except Exception as e:
-                st.sidebar.error(f"❌ Error loading CSV: {e}")
+                st.sidebar.error(f"Error loading CSV: {e}")
     else:
         uploaded_file = st.sidebar.file_uploader(
             "Upload CSV file",
@@ -532,7 +532,7 @@ else:  # Load from CSV
         )
         
         if uploaded_file is not None:
-            if st.sidebar.button("📂 Load Uploaded Data", type="primary"):
+            if st.sidebar.button("Load Uploaded Data", type="primary"):
                 try:
                     df = pd.read_csv(uploaded_file)
                     X = df['x'].values.reshape(-1, 1)
@@ -546,9 +546,9 @@ else:  # Load from CSV
                     st.session_state.data_generated = True
                     st.session_state.data_source_type = "uploaded CSV"
                     
-                    st.sidebar.success(f"✅ Loaded {len(X)} samples!")
+                    st.sidebar.success(f"Loaded {len(X)} samples!")
                 except Exception as e:
-                    st.sidebar.error(f"❌ Error: {e}")
+                    st.sidebar.error(f"Error: {e}")
 
 st.sidebar.divider()
 
@@ -556,10 +556,10 @@ st.sidebar.divider()
 # SIDEBAR - Model Parameters
 # ==========================================
 
-st.sidebar.header("🎯 Model Parameters")
+st.sidebar.header("Model Parameters")
 
 learning_rate = st.sidebar.slider(
-    "Learning Rate (α)",
+    "Learning Rate (alpha)",
     min_value=0.0001,
     max_value=0.1,
     value=0.01,
@@ -583,7 +583,7 @@ n_iterations = st.sidebar.slider(
 
 # Check if data has been generated
 if 'data_generated' not in st.session_state:
-    st.info("👈 Start by generating data using the sidebar controls")
+    st.info("Start by generating data using the sidebar controls")
     st.stop()
 
 # Get data from session state
@@ -604,7 +604,7 @@ with col3:
 st.divider()
 
 # Train model button
-if st.button("🚀 Train Model", type="primary"):
+if st.button("Train Model", type="primary"):
 
     with st.spinner("Training model... This may take a moment."):
 
@@ -629,11 +629,11 @@ if st.button("🚀 Train Model", type="primary"):
         st.session_state.metrics = metrics
         st.session_state.model_trained = True
 
-    st.success("✅ Model trained successfully!")
+    st.success("Model trained successfully!")
 
 # Check if model has been trained
 if 'model_trained' not in st.session_state:
-    st.info("🎯 Click 'Train Model' to train the regression model")
+    st.info("Click 'Train Model' to train the regression model")
     st.stop()
 
 # Get trained model and results
@@ -646,10 +646,10 @@ metrics = st.session_state.metrics
 # ==========================================
 
 tab1, tab2, tab3, tab4 = st.tabs([
-    "📉 Training Progress",
-    "🎯 Predictions",
-    "📊 Residuals",
-    "📈 Metrics"
+    "Training Progress",
+    "Predictions",
+    "Residuals",
+    "Metrics"
 ])
 
 # Tab 1: Training Progress
@@ -723,18 +723,18 @@ with tab4:
             help="Average absolute error. More robust to outliers."
         )
         st.metric(
-            "R² Score",
-            f"{metrics['R²']:.4f}",
+            "R-squared Score",
+            f"{metrics['R2']:.4f}",
             help="1 = perfect fit, 0 = no better than mean"
         )
 
     # Metric explanations
-    with st.expander("📚 Understanding Metrics"):
+    with st.expander("Understanding Metrics"):
         st.markdown("""
         **MSE (Mean Squared Error)**
         - Measures average squared difference between predictions and actual values
         - Penalizes large errors more heavily
-        - Formula: `MSE = (1/n) Σ(y - ŷ)²`
+        - Formula: MSE = (1/n) * sum((y - y_pred)^2)
 
         **RMSE (Root Mean Squared Error)**
         - Square root of MSE
@@ -744,9 +744,9 @@ with tab4:
         **MAE (Mean Absolute Error)**
         - Average absolute difference
         - Less sensitive to outliers than MSE
-        - Formula: `MAE = (1/n) Σ|y - ŷ|`
+        - Formula: MAE = (1/n) * sum(|y - y_pred|)
 
-        **R² Score (Coefficient of Determination)**
+        **R-squared Score (Coefficient of Determination)**
         - Proportion of variance explained by the model
         - 1.0 = perfect predictions
         - 0.0 = predictions no better than the mean
@@ -759,7 +759,7 @@ st.divider()
 # DATA EXPORT
 # ==========================================
 
-st.subheader("💾 Export Results")
+st.subheader("Export Results")
 
 # Create results DataFrame (ensure all arrays are 1D)
 y_flat = np.asarray(y).flatten()
@@ -773,7 +773,7 @@ results_df = pd.DataFrame({
 # Download button
 csv = results_df.to_csv(index=False)
 st.download_button(
-    label="📥 Download Results (CSV)",
+    label="Download Results (CSV)",
     data=csv,
     file_name="regression_results.csv",
     mime="text/csv"
