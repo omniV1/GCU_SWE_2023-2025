@@ -394,7 +394,7 @@ def main():
     """Main application function."""
 
     # Title and description
-    st.title("���� Linear Regression with Gradient Descent")
+    st.title("Linear Regression with Gradient Descent")
     st.markdown("""
     This app demonstrates linear regression using gradient descent.
 
@@ -533,10 +533,10 @@ def main():
     # SIDEBAR - Model Parameters
     # ==========================================
 
-    st.sidebar.header("���� Model Parameters")
+    st.sidebar.header(" Model Parameters")
 
     learning_rate = st.sidebar.slider(
-        "Learning Rate (��)",
+        "Learning Rate (📈)",
         min_value=0.0001,
         max_value=0.1,
         value=0.01,
