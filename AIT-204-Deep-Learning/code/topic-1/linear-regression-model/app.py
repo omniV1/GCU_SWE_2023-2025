@@ -1,4 +1,4 @@
-“””
+"""
 Regression Analysis App - Starter Code
 AIT-204 In-Class Activity
 
@@ -15,7 +15,7 @@ Instructions:
 - Complete each TODO section
 - Test your implementation incrementally
 - Use the hints provided in the activity guide
-  “””
+""" 
 
 import streamlit as st
 import numpy as np
@@ -42,10 +42,10 @@ layout=“wide”
 # ==========================================
 
 def load_csv_data(file_path):
-“””
+"""
 Load data from a CSV file.
 
-```
+
 Args:
     file_path: Path to the CSV file
     
@@ -54,18 +54,18 @@ Returns:
     y: Target vector (n_samples,)
     y_true: True values without noise
 """
+
 df = pd.read_csv(file_path)
 X = df['x'].values.reshape(-1, 1)
 y = df['y'].values
 y_true = df['y_true'].values
 return X, y, y_true
-```
+
 
 def generate_synthetic_data(n_samples, noise_level, data_type, random_seed):
-“””
+"""
 Generate synthetic data for regression.
 
-```
 This function creates simple synthetic datasets.
 For more complex data, you can use the full Synthetic Dataset Generator.
 
@@ -103,7 +103,7 @@ noise = np.random.normal(0, noise_level, n_samples)
 y = y_true + noise
 
 return X, y, y_true
-```
+
 
 # ==========================================
 
@@ -112,15 +112,16 @@ return X, y, y_true
 # ==========================================
 
 class LinearRegression:
-“””
+"""
 Linear Regression using Gradient Descent.
 
-```
+
 This class implements linear regression from scratch using
 gradient descent optimization.
 
 Model: y = Xw + b
 Loss: MSE = (1/n) * sum((y - y_pred)^2)
+
 """
 
 def __init__(self, learning_rate=0.01, n_iterations=1000):
@@ -223,7 +224,7 @@ def predict(self, X):
 
     y_pred = X @ self.weights + self.bias
     return y_pred
-```
+
 
 # ==========================================
 
@@ -232,10 +233,10 @@ def predict(self, X):
 # ==========================================
 
 def compute_metrics(y_true, y_pred):
-“””
+"""
 Compute evaluation metrics for regression.
 
-```
+
 Args:
     y_true: True values
     y_pred: Predicted values
@@ -273,7 +274,7 @@ return {
     'MAE': mae,
     'R2': r2
 }
-```
+
 
 # ==========================================
 
@@ -282,10 +283,10 @@ return {
 # ==========================================
 
 def plot_training_progress(losses):
-“””
+"""
 Plot loss vs. iteration to show training progress.
 
-```
+
 Args:
     losses: List of loss values over iterations
 
@@ -311,13 +312,12 @@ fig.update_layout(
 )
 
 return fig
-```
+
 
 def plot_predictions(X, y_true, y_pred, y_actual=None):
-“””
+"""
 Plot predictions vs actual values.
 
-```
 Args:
     X: Feature values
     y_true: True values (without noise)
@@ -362,20 +362,20 @@ fig.update_layout(
 )
 
 return fig
-```
+
 
 def plot_residuals(y_true, y_pred):
-“””
+"""
 Plot residuals (errors) to check model fit.
 
-```
+
 Args:
     y_true: True values
     y_pred: Predicted values
 
 Returns:
     Plotly figure
-
+"""
 # Ensure 1D arrays
 y_true_flat = np.asarray(y_true).flatten()
 y_pred_flat = np.asarray(y_pred).flatten()
@@ -404,7 +404,7 @@ fig.update_layout(
 )
 
 return fig
-```
+
 
 # ==========================================
 
@@ -413,9 +413,9 @@ return fig
 # ==========================================
 
 def main():
-“”“Main application function.”””
+"""Main application function."""
 
-```
+
 # Title and description
 st.title("Linear Regression with Gradient Descent")
 st.markdown("""
