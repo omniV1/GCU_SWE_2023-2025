@@ -606,11 +606,11 @@ def main():
             st.session_state.metrics = metrics
             st.session_state.model_trained = True
 
-        st.success("��� Model trained successfully!")
+        st.success(" Model trained successfully!")
 
     # Check if model has been trained
     if 'model_trained' not in st.session_state:
-        st.info("���� Click 'Train Model' to train the regression model")
+        st.info(" Click 'Train Model' to train the regression model")
         st.stop()
 
     # Get trained model and results
@@ -623,10 +623,10 @@ def main():
     # ==========================================
 
     tab1, tab2, tab3, tab4 = st.tabs([
-        "���� Training Progress",
-        "���� Predictions",
-        "���� Residuals",
-        "���� Metrics"
+        " Training Progress",
+        " Predictions",
+        " Residuals",
+        " Metrics"
     ])
 
     # Tab 1: Training Progress
@@ -700,18 +700,17 @@ def main():
                 help="Average absolute error. More robust to outliers."
             )
             st.metric(
-                "R�� Score",
-                f"{metrics['R��']:.4f}",
+                "R2 Score",
+                f"{metrics['R2']:.4f}",
                 help="1 = perfect fit, 0 = no better than mean"
             )
 
         # Metric explanations
-        with st.expander("���� Understanding Metrics"):
+        with st.expander("Understanding Metrics"):
             st.markdown("""
             **MSE (Mean Squared Error)**
             - Measures average squared difference between predictions and actual values
             - Penalizes large errors more heavily
-            - Formula: `MSE = (1/n) ��(y - ��)��`
 
             **RMSE (Root Mean Squared Error)**
             - Square root of MSE
@@ -721,9 +720,9 @@ def main():
             **MAE (Mean Absolute Error)**
             - Average absolute difference
             - Less sensitive to outliers than MSE
-            - Formula: `MAE = (1/n) ��|y - ��|`
+            
 
-            **R�� Score (Coefficient of Determination)**
+            **R2 Score (Coefficient of Determination)**
             - Proportion of variance explained by the model
             - 1.0 = perfect predictions
             - 0.0 = predictions no better than the mean
@@ -736,7 +735,7 @@ def main():
     # DATA EXPORT
     # ==========================================
 
-    st.subheader("���� Export Results")
+    st.subheader("Export Results")
 
     # Create results DataFrame (ensure all arrays are 1D)
     y_flat = np.asarray(y).flatten()
@@ -750,7 +749,7 @@ def main():
     # Download button
     csv = results_df.to_csv(index=False)
     st.download_button(
-        label="���� Download Results (CSV)",
+        label="Download Results (CSV)",
         data=csv,
         file_name="regression_results.csv",
         mime="text/csv"
