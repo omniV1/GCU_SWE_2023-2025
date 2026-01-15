@@ -317,7 +317,8 @@ def main():
     
     st.success(f"📊 Data loaded: {len(X)} samples")
     
-    if st.sidebar.button("🚀 Train Model", type="primary"):
+    # Train Model button in main area for visibility
+    if st.button(" Train Model", type="primary", use_container_width=True):
         with st.spinner("Training model..."):
             model = LinearRegression(lr, iters)
             model.fit(X, y)
@@ -327,10 +328,10 @@ def main():
             st.session_state.y_pred = y_pred
             st.session_state.metrics = compute_metrics(y, y_pred)
             st.session_state.model_trained = True
-        st.sidebar.success("✅ Model trained!")
+        st.success("✅ Model trained!")
     
     if "model_trained" not in st.session_state or not st.session_state.model_trained:
-        st.info("👆 Click 'Train Model' to train the regression model")
+        st.info("👆 Click 'Train Model' above to train the regression model")
         return
     
     # Get results from session state
