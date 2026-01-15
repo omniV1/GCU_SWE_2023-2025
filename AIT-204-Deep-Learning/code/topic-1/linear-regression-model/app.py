@@ -214,41 +214,158 @@ def plot_residuals(y_true, y_pred):
 def main():
     st.title("Linear Regression with Gradient Descent")
 
-    st.sidebar.header("Data Generation")
-
-    n_samples = st.sidebar.slider("Samples", 50, 500, 100, 50)
-    noise = st.sidebar.slider("Noise", 0.0, 5.0, 1.0, 0.1)
-    data_type = st.sidebar.selectbox("Type", ["linear", "polynomial", "sinusoidal"])
-    seed = st.sidebar.number_input("Random Seed", 0, 9999, 42)
-
-    lr = st.sidebar.slider("Learning Rate", 0.0001, 0.1, 0.01, 0.0001)
+    # ==========================================
+    # DATA SOURCE SELECTION
+    # ==========================================
+    st.sidebar.header("📊 Data Source")
+    
+    data_source = st.sidebar.radio(
+        "Choose data source:",
+        ["Generate Synthetic", "Upload CSV", "Use Included CSV"]
+    )
+    
+    X, y, y_true = None, None, None
+    data_loaded = False
+    
+    if data_source == "Generate Synthetic":
+        st.sidebar.subheader("Generation Settings")
+        n_samples = st.sidebar.slider("Samples", 50, 500, 100, 50)
+        noise = st.sidebar.slider("Noise", 0.0, 5.0, 1.0, 0.1)
+        data_type = st.sidebar.selectbox("Type", ["linear", "polynomial", "sinusoidal"])
+        seed = st.sidebar.number_input("Random Seed", 0, 9999, 42)
+        
+        if st.sidebar.button("🎲 Generate Data", type="primary"):
+            X, y, y_true = generate_synthetic_data(n_samples, noise, data_type, seed)
+            st.session_state.X = X
+            st.session_state.y = y
+            st.session_state.y_true = y_true
+            st.session_state.data_loaded = True
+            st.sidebar.success(f"✅ Generated {n_samples} samples!")
+    
+    elif data_source == "Upload CSV":
+        st.sidebar.subheader("Upload Your CSV")
+        st.sidebar.info("CSV should have columns: `x`, `y`, `y_true`")
+        
+        uploaded_file = st.sidebar.file_uploader("Choose a CSV file", type=["csv"])
+        
+        if uploaded_file is not None:
+            if st.sidebar.button("📂 Load CSV", type="primary"):
+                try:
+                    df = pd.read_csv(uploaded_file)
+                    
+                    # Check required columns
+                    required_cols = ["x", "y", "y_true"]
+                    missing = [c for c in required_cols if c not in df.columns]
+                    
+                    if missing:
+                        st.sidebar.error(f"❌ Missing columns: {missing}")
+                    else:
+                        X = df["x"].values.reshape(-1, 1)
+                        y = df["y"].values
+                        y_true = df["y_true"].values
+                        
+                        st.session_state.X = X
+                        st.session_state.y = y
+                        st.session_state.y_true = y_true
+                        st.session_state.data_loaded = True
+                        st.sidebar.success(f"✅ Loaded {len(X)} samples!")
+                except Exception as e:
+                    st.sidebar.error(f"❌ Error: {e}")
+    
+    else:  # Use Included CSV
+        st.sidebar.subheader("Included Dataset")
+        st.sidebar.info("Uses `synthetic_data_Simple_Linear.csv`")
+        
+        if st.sidebar.button("📂 Load Included CSV", type="primary"):
+            try:
+                import os
+                script_dir = os.path.dirname(os.path.abspath(__file__))
+                csv_path = os.path.join(script_dir, "synthetic_data_Simple_Linear.csv")
+                
+                X, y, y_true = load_csv_data(csv_path)
+                
+                st.session_state.X = X
+                st.session_state.y = y
+                st.session_state.y_true = y_true
+                st.session_state.data_loaded = True
+                st.sidebar.success(f"✅ Loaded {len(X)} samples!")
+            except FileNotFoundError:
+                st.sidebar.error("❌ CSV file not found!")
+            except Exception as e:
+                st.sidebar.error(f"❌ Error: {e}")
+    
+    st.sidebar.divider()
+    
+    # ==========================================
+    # MODEL PARAMETERS
+    # ==========================================
+    st.sidebar.header("⚙️ Model Parameters")
+    lr = st.sidebar.slider("Learning Rate", 0.0001, 0.1, 0.01, 0.0001, format="%.4f")
     iters = st.sidebar.slider("Iterations", 100, 5000, 1000, 100)
+    
+    # ==========================================
+    # TRAINING
+    # ==========================================
+    if "data_loaded" not in st.session_state or not st.session_state.data_loaded:
+        st.info("👆 Start by loading data from the sidebar")
+        return
+    
+    # Get data from session state
+    X = st.session_state.X
+    y = st.session_state.y
+    y_true = st.session_state.y_true
+    
+    st.success(f"📊 Data loaded: {len(X)} samples")
+    
+    if st.sidebar.button("🚀 Train Model", type="primary"):
+        with st.spinner("Training model..."):
+            model = LinearRegression(lr, iters)
+            model.fit(X, y)
+            y_pred = model.predict(X).flatten()
+            
+            st.session_state.model = model
+            st.session_state.y_pred = y_pred
+            st.session_state.metrics = compute_metrics(y, y_pred)
+            st.session_state.model_trained = True
+        st.sidebar.success("✅ Model trained!")
+    
+    if "model_trained" not in st.session_state or not st.session_state.model_trained:
+        st.info("👆 Click 'Train Model' to train the regression model")
+        return
+    
+    # Get results from session state
+    model = st.session_state.model
+    y_pred = st.session_state.y_pred
+    metrics = st.session_state.metrics
+    
+    # ==========================================
+    # RESULTS
+    # ==========================================
+    tab1, tab2, tab3, tab4 = st.tabs(["📉 Training", "📈 Predictions", "📊 Residuals", "📋 Metrics"])
 
-    if st.sidebar.button("Generate & Train", type="primary"):
-        X, y, y_true = generate_synthetic_data(n_samples, noise, data_type, seed)
+    with tab1:
+        st.plotly_chart(plot_training_progress(model.losses), use_container_width=True)
+        col1, col2 = st.columns(2)
+        col1.metric("Initial Loss", f"{model.losses[0]:.4f}")
+        col2.metric("Final Loss", f"{model.losses[-1]:.4f}")
 
-        model = LinearRegression(lr, iters)
-        model.fit(X, y)
-        y_pred = model.predict(X).flatten()
+    with tab2:
+        st.plotly_chart(plot_predictions(X, y_true, y_pred, y), use_container_width=True)
+        col1, col2 = st.columns(2)
+        col1.metric("Weight", f"{model.weights[0][0]:.4f}")
+        col2.metric("Bias", f"{model.bias:.4f}")
 
-        metrics = compute_metrics(y, y_pred)
+    with tab3:
+        st.plotly_chart(plot_residuals(y, y_pred), use_container_width=True)
 
-        tab1, tab2, tab3, tab4 = st.tabs(["Training", "Predictions", "Residuals", "Metrics"])
-
-        with tab1:
-            st.plotly_chart(plot_training_progress(model.losses), use_container_width=True)
-
-        with tab2:
-            st.plotly_chart(plot_predictions(X, y_true, y_pred, y), use_container_width=True)
-            st.metric("Weight", f"{model.weights[0][0]:.4f}")
-            st.metric("Bias", f"{model.bias:.4f}")
-
-        with tab3:
-            st.plotly_chart(plot_residuals(y, y_pred), use_container_width=True)
-
-        with tab4:
-            for k, v in metrics.items():
-                st.metric(k, f"{v:.4f}")
+    with tab4:
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric("MSE", f"{metrics['MSE']:.4f}")
+            st.metric("RMSE", f"{metrics['RMSE']:.4f}")
+        with col2:
+            st.metric("MAE", f"{metrics['MAE']:.4f}")
+            st.metric("R²", f"{metrics['R2']:.4f}")
 
 
 # ==========================================
