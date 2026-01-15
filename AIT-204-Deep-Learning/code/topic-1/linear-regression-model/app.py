@@ -27,7 +27,7 @@ from plotly.subplots import make_subplots
 
 st.set_page_config(
     page_title="Regression Analysis App",
-    page_icon="����",
+    page_icon="🌵",
     layout="wide"
 )
 
@@ -560,7 +560,7 @@ def main():
 
     # Check if data has been generated
     if 'data_generated' not in st.session_state:
-        st.info("���� Start by generating data using the sidebar controls")
+        st.info("Start by generating data using the sidebar controls")
         st.stop()
 
     # Get data from session state
@@ -581,7 +581,7 @@ def main():
     st.divider()
 
     # Train model button
-    if st.button("���� Train Model", type="primary"):
+    if st.button("Train Model", type="primary"):
 
         with st.spinner("Training model... This may take a moment."):
 
