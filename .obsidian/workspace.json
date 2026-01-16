@@ -20,23 +20,8 @@
               "icon": "lucide-file",
               "title": "Jan 14 2026"
             }
-          },
-          {
-            "id": "aac9cb6ad356f47b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "AIT-110-Stat-Learning-Theory/class notes/Jan 16 2026.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Jan 16 2026"
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -199,8 +184,25 @@
       "bases:Create new base": false
     }
   },
-  "active": "aac9cb6ad356f47b",
+  "active": "bfe83e2a2ab78905",
   "lastOpenFiles": [
+    "AIT-204-Deep-Learning/code/topic-1/student_performance_activity/student-performance-activity/solution_reference/requirements.txt",
+    "AIT-204-Deep-Learning/code/topic-1/student_performance_activity/student-performance-activity/solution_reference/model.py",
+    "AIT-204-Deep-Learning/code/topic-1/student_performance_activity/student-performance-activity/solution_reference/data_generator.py",
+    "AIT-204-Deep-Learning/code/topic-1/student_performance_activity/student-performance-activity/solution_reference/app.py",
+    "AIT-204-Deep-Learning/code/topic-1/student_performance_activity/student-performance-activity/solution_reference/README.md",
+    "AIT-204-Deep-Learning/code/topic-1/student_performance_activity/student-performance-activity/solution_reference",
+    "AIT-204-Deep-Learning/code/topic-1/student_performance_activity/student-performance-activity/README.md",
+    "AIT-204-Deep-Learning/code/topic-1/student_performance_activity/student-performance-activity/QUICK_START_GUIDE.md",
+    "AIT-204-Deep-Learning/code/topic-1/student_performance_activity/student-performance-activity/IN_CLASS_ACTIVITY.md",
+    "AIT-204-Deep-Learning/code/topic-1/student_performance_activity/student-performance-activity/INSTRUCTOR_OVERVIEW.md",
+    "AIT-204-Deep-Learning/code/topic-1/student_performance_activity/student-performance-activity",
+    "AIT-204-Deep-Learning/code/topic-1/student_performance_activity",
+    "AIT-204-Deep-Learning/code/topic-1/Financial-linear-regression/requirements.txt",
+    "AIT-204-Deep-Learning/code/topic-1/Financial-linear-regression/README.md",
+    "AIT-204-Deep-Learning/code/topic-1/Financial-linear-regression/backend/linear_regression.py",
+    "AIT-204-Deep-Learning/code/topic-1/Financial-linear-regression/backend/gradient_descent.py",
+    "AIT-204-Deep-Learning/code/topic-1/Financial-linear-regression/backend/data_utils.py",
     "AIT-110-Stat-Learning-Theory/class notes/Jan 16 2026.md",
     "AIT-204-Deep-Learning/class notes/Jan 7 2026 class notes.md",
     "AIT-204-Deep-Learning/class notes/Jan 9 2026 class notes.md",
@@ -217,16 +219,6 @@
     "Pasted image 20260108134526.png",
     "Pasted image 20260108134012.png",
     "screenshot-2026-01-08_13-38-07.png",
-    "CST-323-Cloud-Computing/code/topic-1/activity1/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst",
-    "CST-323-Cloud-Computing/code/topic-1/activity1/target/test-classes/com/gcu/AppTest.class",
-    "CST-323-Cloud-Computing/code/topic-1/activity1/target/test-classes/com/gcu",
-    "CST-323-Cloud-Computing/code/topic-1/activity1/target/test-classes/com",
-    "CST-323-Cloud-Computing/code/topic-1/activity1/target/test-classes",
-    "CST-323-Cloud-Computing/code/topic-1/activity1/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst",
-    "CST-323-Cloud-Computing/code/topic-1/activity1/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile",
-    "CST-323-Cloud-Computing/code/topic-1/activity1/target/maven-status/maven-compiler-plugin/testCompile",
-    "CST-323-Cloud-Computing/code/topic-1/activity1/target/generated-test-sources/test-annotations",
-    "CST-323-Cloud-Computing/code/topic-1/activity1/target/generated-test-sources",
     "CST-323-Cloud-Computing/class notes/8 Jan 2025.md",
     "CST-323-Cloud-Computing/Homework/activity1.md",
     "CST-323-Cloud-Computing/code/topic-1/screenshots/Pasted image 20260106114737.png",
