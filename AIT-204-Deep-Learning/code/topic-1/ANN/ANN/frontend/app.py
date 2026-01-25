@@ -5,8 +5,12 @@ from streamlit_drawable_canvas import st_canvas
 import sys
 import os
 
-# Add backend to path
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+# Add parent directory to path for backend imports (works locally and on Streamlit Cloud)
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PARENT_DIR = os.path.dirname(SCRIPT_DIR)
+if PARENT_DIR not in sys.path:
+    sys.path.insert(0, PARENT_DIR)
+
 from backend.model import MNISTModel
 
 # Page configuration
