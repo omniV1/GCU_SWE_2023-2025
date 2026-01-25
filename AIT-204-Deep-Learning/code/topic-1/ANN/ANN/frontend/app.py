@@ -25,7 +25,11 @@ if 'model' not in st.session_state:
 @st.cache_resource
 def load_model():
     """Load the trained model"""
-    model = MNISTModel(model_path='../mnist_model.h5')
+    # Get the directory where this script is located
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    model_path = os.path.join(script_dir, '..', 'mnist_model.h5')
+    
+    model = MNISTModel(model_path=model_path)
     if model.load_model():
         return model
     else:
