@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIT-110 Quiz: Lectures 1 & 2</title>
+    <style>
+        :root {
+            --bg-primary: #1e1e2e;
+            --bg-secondary: #313244;
+            --bg-tertiary: #45475a;
+            --text-primary: #cdd6f4;
+            --text-secondary: #a6adc8;
+            --accent: #89b4fa;
+            --correct: #a6e3a1;
+            --incorrect: #f38ba8;
+            --warning: #f9e2af;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+        }
+
+        h1 {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+
+        .score-display {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+        }
+
+        .score-display span {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .settings {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .settings h2 {
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .setting-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .setting-row label {
+            color: var(--text-secondary);
+        }
+
+        .setting-row select {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 2px solid var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .setting-row select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .start-btn {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 8px;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: opacity 0.2s ease;
+        }
+
+        .start-btn:hover {
+            opacity: 0.9;
+        }
+
+        .question-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--bg-tertiary);
+            transition: border-color 0.3s ease;
+        }
+
+        .question-card.correct {
+            border-left-color: var(--correct);
+        }
+
+        .question-card.incorrect {
+            border-left-color: var(--incorrect);
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .question-number {
+            color: var(--accent);
+            font-size: 0.9em;
+        }
+
+        .question-category {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+
+        .question-text {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .question-text code {
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option {
+            background: var(--bg-tertiary);
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .option:hover:not(.disabled) {
+            border-color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            border-color: var(--accent);
+            background: rgba(137, 180, 250, 0.1);
+        }
+
+        .option.correct-answer {
+            border-color: var(--correct);
+            background: rgba(166, 227, 161, 0.1);
+        }
+
+        .option.wrong-answer {
+            border-color: var(--incorrect);
+            background: rgba(243, 139, 168, 0.1);
+        }
+
+        .option.disabled {
+            cursor: default;
+            opacity: 0.7;
+        }
+
+        .option-letter {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            flex-shrink: 0;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: rgba(166, 227, 161, 0.15);
+            border: 1px solid var(--correct);
+            color: var(--correct);
+        }
+
+        .feedback.incorrect {
+            background: rgba(243, 139, 168, 0.15);
+            border: 1px solid var(--incorrect);
+            color: var(--incorrect);
+        }
+
+        .fill-blank-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .fill-blank-input {
+            background: var(--bg-tertiary);
+            border: 2px solid var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: var(--text-primary);
+            font-size: 1em;
+            width: 100%;
+            max-width: 300px;
+            transition: border-color 0.2s ease;
+        }
+
+        .fill-blank-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .fill-blank-input.correct {
+            border-color: var(--correct);
+        }
+
+        .fill-blank-input.incorrect {
+            border-color: var(--incorrect);
+        }
+
+        .check-btn {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            font-weight: 600;
+            transition: opacity 0.2s ease;
+        }
+
+        .check-btn:hover {
+            opacity: 0.9;
+        }
+
+        .check-btn:disabled {
+            opacity: 0.5;
+            cursor: default;
+        }
+
+        .results {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .results h2 {
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .final-score {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .final-score.excellent {
+            color: var(--correct);
+        }
+
+        .final-score.good {
+            color: var(--warning);
+        }
+
+        .final-score.needs-work {
+            color: var(--incorrect);
+        }
+
+        .restart-btn {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 8px;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: opacity 0.2s ease;
+        }
+
+        .restart-btn:hover {
+            opacity: 0.9;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AIT-110: Lectures 1 & 2 Quiz</h1>
+            <p class="subtitle">Questions randomized each attempt</p>
+            <p class="score-display">Score: <span id="current-score">0</span> / <span id="total-questions">10</span></p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+        </header>
+
+        <!-- Settings Panel -->
+        <div class="settings" id="settings-panel">
+            <h2>Quiz Settings</h2>
+            <div class="setting-row">
+                <label for="num-questions">Number of Questions:</label>
+                <select id="num-questions">
+                    <option value="5">5 Questions (Quick)</option>
+                    <option value="10" selected>10 Questions (Standard)</option>
+                    <option value="15">15 Questions (Thorough)</option>
+                    <option value="20">20 Questions (Comprehensive)</option>
+                    <option value="all">All Questions (Full Bank)</option>
+                </select>
+            </div>
+            <div class="setting-row">
+                <label for="category-filter">Category:</label>
+                <select id="category-filter">
+                    <option value="all" selected>All Topics</option>
+                    <option value="fundamentals">ML Fundamentals</option>
+                    <option value="logistic">Logistic Regression</option>
+                    <option value="mle">MLE & Loss Functions</option>
+                    <option value="odds">Log Odds Ratio</option>
+                    <option value="evaluation">Model Evaluation</option>
+                    <option value="optimization">VIF & Optimization</option>
+                </select>
+            </div>
+            <button class="start-btn" onclick="startQuiz()">Start Quiz</button>
+        </div>
+
+        <div id="quiz-container" class="hidden"></div>
+
+        <div class="results hidden" id="results">
+            <h2>Quiz Complete!</h2>
+            <div class="final-score" id="final-score">0%</div>
+            <p id="result-message"></p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="stat-correct">0</div>
+                    <div class="stat-label">Correct</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="stat-incorrect">0</div>
+                    <div class="stat-label">Incorrect</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="stat-accuracy">0%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+            </div>
+            <button class="restart-btn" onclick="restartQuiz()">Try Again</button>
+        </div>
+    </div>
+
+    <script>
+        // Question Bank - 30+ questions
+        const questionBank = [
+            // Fundamentals
+            {
+                id: 1,
+                category: 'fundamentals',
+                type: 'multiple',
+                question: 'Which type of learning involves building models from <strong>labeled data</strong> where the output variable is known?',
+                options: [
+                    { text: 'Unsupervised Learning', correct: false },
+                    { text: 'Supervised Learning', correct: true },
+                    { text: 'Reinforcement Learning', correct: false },
+                    { text: 'Semi-supervised Learning', correct: false }
+                ],
+                explanation: 'Supervised learning uses labeled data where we know the output variable.'
+            },
+            {
+                id: 2,
+                category: 'fundamentals',
+                type: 'multiple',
+                question: 'Which of these is an example of <strong>unsupervised learning</strong>?',
+                options: [
+                    { text: 'Spam email detection', correct: false },
+                    { text: 'Customer segmentation (clustering)', correct: true },
+                    { text: 'House price prediction', correct: false },
+                    { text: 'Fraud detection with labeled data', correct: false }
+                ],
+                explanation: 'Clustering is unsupervised learning - it finds patterns without labeled outputs.'
+            },
+            {
+                id: 3,
+                category: 'fundamentals',
+                type: 'multiple',
+                question: 'What type of output does <strong>classification</strong> predict?',
+                options: [
+                    { text: 'Continuous values', correct: false },
+                    { text: 'Categorical values', correct: true },
+                    { text: 'Time series', correct: false },
+                    { text: 'Probability distributions', correct: false }
+                ],
+                explanation: 'Classification predicts categorical outputs (classes/labels), while regression predicts continuous values.'
+            },
+            {
+                id: 4,
+                category: 'fundamentals',
+                type: 'multiple',
+                question: 'Dimensionality reduction is a type of:',
+                options: [
+                    { text: 'Supervised learning', correct: false },
+                    { text: 'Unsupervised learning', correct: true },
+                    { text: 'Reinforcement learning', correct: false },
+                    { text: 'Classification', correct: false }
+                ],
+                explanation: 'Dimensionality reduction (like PCA) finds structure in data without labels - unsupervised learning.'
+            },
+
+            // Logistic Regression
+            {
+                id: 5,
+                category: 'logistic',
+                type: 'multiple',
+                question: 'Logistic regression is a <strong>parametric</strong> model. What does this mean?',
+                options: [
+                    { text: 'It can handle any number of features', correct: false },
+                    { text: 'It is fit with a fixed number of parameters', correct: true },
+                    { text: 'It requires parameter tuning', correct: false },
+                    { text: 'It can be arbitrarily complex based on data', correct: false }
+                ],
+                explanation: 'Parametric models have a fixed number of parameters, regardless of data size.'
+            },
+            {
+                id: 6,
+                category: 'logistic',
+                type: 'multiple',
+                question: 'Which is NOT an advantage of logistic regression?',
+                options: [
+                    { text: 'Fast training and prediction', correct: false },
+                    { text: 'Captures non-linear relationships automatically', correct: true },
+                    { text: 'Interpretable coefficients', correct: false },
+                    { text: 'Provides good probability estimates', correct: false }
+                ],
+                explanation: 'Logistic regression REQUIRES feature engineering to capture non-linear relationships - this is a disadvantage.'
+            },
+            {
+                id: 7,
+                category: 'logistic',
+                type: 'multiple',
+                question: 'Logistic regression does NOT work well when:',
+                options: [
+                    { text: 'n > p (more samples than features)', correct: false },
+                    { text: 'p > n (more features than samples)', correct: true },
+                    { text: 'The data is linearly separable', correct: false },
+                    { text: 'Features are standardized', correct: false }
+                ],
+                explanation: 'Logistic regression struggles when p > n (more features than observations).'
+            },
+            {
+                id: 8,
+                category: 'logistic',
+                type: 'multiple',
+                question: 'What type of classifier is logistic regression?',
+                options: [
+                    { text: 'Hard classifier only', correct: false },
+                    { text: 'Soft classifier (predicts probabilities)', correct: true },
+                    { text: 'Non-parametric classifier', correct: false },
+                    { text: 'Unsupervised classifier', correct: false }
+                ],
+                explanation: 'Logistic regression is a soft classifier - it predicts probabilities for each class.'
+            },
+            {
+                id: 9,
+                category: 'logistic',
+                type: 'multiple',
+                question: 'Why is logistic regression often the first model to try for classification?',
+                options: [
+                    { text: 'It always gives the best accuracy', correct: false },
+                    { text: 'It\'s fast, simple, and interpretable', correct: true },
+                    { text: 'It handles non-linear data well', correct: false },
+                    { text: 'It requires no assumptions', correct: false }
+                ],
+                explanation: 'Logistic regression is fast, simple (few hyperparameters), and produces interpretable coefficients.'
+            },
+
+            // MLE & Loss Functions
+            {
+                id: 10,
+                category: 'mle',
+                type: 'multiple',
+                question: 'What loss function is typically used for linear regression?',
+                options: [
+                    { text: 'Log Loss', correct: false },
+                    { text: 'Sum of Squared Residuals', correct: true },
+                    { text: 'Cross-Entropy', correct: false },
+                    { text: 'Hinge Loss', correct: false }
+                ],
+                explanation: 'Linear regression minimizes the Sum of Squared Residuals (SSR).'
+            },
+            {
+                id: 11,
+                category: 'mle',
+                type: 'multiple',
+                question: 'What does MLE stand for?',
+                options: [
+                    { text: 'Minimum Loss Estimation', correct: false },
+                    { text: 'Maximum Likelihood Estimation', correct: true },
+                    { text: 'Mean Linear Estimation', correct: false },
+                    { text: 'Model Learning Evaluation', correct: false }
+                ],
+                explanation: 'MLE = Maximum Likelihood Estimation - finding parameters that maximize the likelihood of observing the data.'
+            },
+            {
+                id: 12,
+                category: 'mle',
+                type: 'fill',
+                question: 'The logistic function maps any real number to a value between ____ and ____.',
+                answers: ['0 and 1', '0, 1', '0 1', 'zero and one', '0 to 1'],
+                explanation: 'The logistic function σ(x) = 1/(1+e^-x) outputs values between 0 and 1.'
+            },
+            {
+                id: 13,
+                category: 'mle',
+                type: 'multiple',
+                question: 'For logistic regression, we assume Y follows which distribution?',
+                options: [
+                    { text: 'Normal distribution', correct: false },
+                    { text: 'Bernoulli distribution', correct: true },
+                    { text: 'Poisson distribution', correct: false },
+                    { text: 'Uniform distribution', correct: false }
+                ],
+                explanation: 'For binary classification, we model Y ~ Bernoulli(f(Xβ)).'
+            },
+            {
+                id: 14,
+                category: 'mle',
+                type: 'multiple',
+                question: 'What is the purpose of a loss function?',
+                options: [
+                    { text: 'To measure how well the model fits the data', correct: false },
+                    { text: 'To measure how poorly the model performs', correct: true },
+                    { text: 'To calculate feature importance', correct: false },
+                    { text: 'To normalize the data', correct: false }
+                ],
+                explanation: 'A loss function measures how "bad" our predictions are - we minimize it to find optimal parameters.'
+            },
+            {
+                id: 15,
+                category: 'mle',
+                type: 'multiple',
+                question: 'Why do we use log-likelihood instead of likelihood?',
+                options: [
+                    { text: 'It\'s more accurate', correct: false },
+                    { text: 'It converts products to sums, making optimization easier', correct: true },
+                    { text: 'It\'s required by the algorithm', correct: false },
+                    { text: 'It normalizes the probabilities', correct: false }
+                ],
+                explanation: 'Log converts products to sums, which is computationally easier and more numerically stable.'
+            },
+
+            // Log Odds Ratio
+            {
+                id: 16,
+                category: 'odds',
+                type: 'multiple',
+                question: 'If the odds are 3:1 in favor, what is the probability of success?',
+                options: [
+                    { text: '25%', correct: false },
+                    { text: '50%', correct: false },
+                    { text: '75%', correct: true },
+                    { text: '80%', correct: false }
+                ],
+                explanation: 'Odds 3:1 means P = 3/(3+1) = 3/4 = 75%'
+            },
+            {
+                id: 17,
+                category: 'odds',
+                type: 'multiple',
+                question: 'In logistic regression, if you increase X<sub>i</sub> by 1, you increase log(OR) by:',
+                options: [
+                    { text: 'β₀', correct: false },
+                    { text: 'βᵢ', correct: true },
+                    { text: 'e^βᵢ', correct: false },
+                    { text: '1/βᵢ', correct: false }
+                ],
+                explanation: 'log(OR) = Xβ, so increasing Xᵢ by 1 increases log(OR) by βᵢ'
+            },
+            {
+                id: 18,
+                category: 'odds',
+                type: 'multiple',
+                question: 'What is the log odds ratio when P(y=1) = 0.5?',
+                options: [
+                    { text: '-1', correct: false },
+                    { text: '0', correct: true },
+                    { text: '1', correct: false },
+                    { text: '0.5', correct: false }
+                ],
+                explanation: 'When P = 0.5, odds = 0.5/0.5 = 1, and log(1) = 0.'
+            },
+            {
+                id: 19,
+                category: 'odds',
+                type: 'multiple',
+                question: 'If P(y=1) = 0.8, what are the odds?',
+                options: [
+                    { text: '1:4', correct: false },
+                    { text: '4:1', correct: true },
+                    { text: '8:2', correct: false },
+                    { text: '2:8', correct: false }
+                ],
+                explanation: 'Odds = P/(1-P) = 0.8/0.2 = 4/1 = 4:1'
+            },
+            {
+                id: 20,
+                category: 'odds',
+                type: 'fill',
+                question: 'The formula for odds ratio is: P(y=1) / (1 - ____)',
+                answers: ['p(y=1)', 'P(y=1)', 'p', 'P'],
+                explanation: 'OR = P(y=1) / (1 - P(y=1))'
+            },
+
+            // Model Evaluation
+            {
+                id: 21,
+                category: 'evaluation',
+                type: 'multiple',
+                question: 'Which metric answers: "Of all positive predictions, how many were actually correct?"',
+                options: [
+                    { text: 'Recall', correct: false },
+                    { text: 'Precision', correct: true },
+                    { text: 'Specificity', correct: false },
+                    { text: 'Accuracy', correct: false }
+                ],
+                explanation: 'Precision = TP/(TP+FP) - of our positive predictions, how many were right?'
+            },
+            {
+                id: 22,
+                category: 'evaluation',
+                type: 'multiple',
+                question: 'Which metric answers: "Of all actual positives, how many did we find?"',
+                options: [
+                    { text: 'Precision', correct: false },
+                    { text: 'Recall (Sensitivity)', correct: true },
+                    { text: 'Specificity', correct: false },
+                    { text: 'F1-Score', correct: false }
+                ],
+                explanation: 'Recall (Sensitivity) = TP/(TP+FN) - of actual positives, how many did we catch?'
+            },
+            {
+                id: 23,
+                category: 'evaluation',
+                type: 'fill',
+                question: 'The formula for Precision is: TP / (TP + ____)',
+                answers: ['fp', 'FP', 'false positives', 'False Positives'],
+                explanation: 'Precision = TP / (TP + FP)'
+            },
+            {
+                id: 24,
+                category: 'evaluation',
+                type: 'fill',
+                question: 'The formula for Recall is: TP / (TP + ____)',
+                answers: ['fn', 'FN', 'false negatives', 'False Negatives'],
+                explanation: 'Recall = TP / (TP + FN)'
+            },
+            {
+                id: 25,
+                category: 'evaluation',
+                type: 'multiple',
+                question: 'What does the AUC of an ROC curve represent?',
+                options: [
+                    { text: 'Average accuracy across thresholds', correct: false },
+                    { text: 'Probability that model ranks a random positive higher than a random negative', correct: true },
+                    { text: 'The optimal classification threshold', correct: false },
+                    { text: 'The false positive rate at 50% recall', correct: false }
+                ],
+                explanation: 'AUC represents the probability that a randomly chosen positive is ranked higher than a randomly chosen negative.'
+            },
+            {
+                id: 26,
+                category: 'evaluation',
+                type: 'fill',
+                question: 'A random classifier has an AUC of approximately ____',
+                answers: ['0.5', '.5', '0.50', '50%'],
+                explanation: 'A random classifier produces a diagonal line on the ROC curve, giving AUC = 0.5'
+            },
+            {
+                id: 27,
+                category: 'evaluation',
+                type: 'multiple',
+                question: 'The F1-Score is the ____ mean of precision and recall.',
+                options: [
+                    { text: 'Arithmetic', correct: false },
+                    { text: 'Geometric', correct: false },
+                    { text: 'Harmonic', correct: true },
+                    { text: 'Weighted', correct: false }
+                ],
+                explanation: 'F1-Score = 2 * (Precision * Recall) / (Precision + Recall) - the harmonic mean.'
+            },
+            {
+                id: 28,
+                category: 'evaluation',
+                type: 'multiple',
+                question: 'Specificity measures the proportion of:',
+                options: [
+                    { text: 'True positives correctly identified', correct: false },
+                    { text: 'True negatives correctly identified', correct: true },
+                    { text: 'All correct predictions', correct: false },
+                    { text: 'False positives', correct: false }
+                ],
+                explanation: 'Specificity = TN/(TN+FP) - the true negative rate.'
+            },
+            {
+                id: 29,
+                category: 'evaluation',
+                type: 'multiple',
+                question: 'On an ROC curve, what is plotted on the Y-axis?',
+                options: [
+                    { text: 'False Positive Rate', correct: false },
+                    { text: 'True Positive Rate (Sensitivity)', correct: true },
+                    { text: 'Precision', correct: false },
+                    { text: 'Accuracy', correct: false }
+                ],
+                explanation: 'ROC: Y-axis = TPR (Sensitivity), X-axis = FPR (1-Specificity)'
+            },
+
+            // VIF & Optimization
+            {
+                id: 30,
+                category: 'optimization',
+                type: 'multiple',
+                question: 'A VIF value greater than ____ is typically considered problematic for multicollinearity.',
+                options: [
+                    { text: '1', correct: false },
+                    { text: '5', correct: false },
+                    { text: '10', correct: true },
+                    { text: '100', correct: false }
+                ],
+                explanation: 'VIF > 10 indicates high multicollinearity. VIF > 5 is moderate concern.'
+            },
+            {
+                id: 31,
+                category: 'optimization',
+                type: 'multiple',
+                question: 'Newton\'s method uses what geometric concept to find roots?',
+                options: [
+                    { text: 'Secant lines', correct: false },
+                    { text: 'Tangent lines', correct: true },
+                    { text: 'Normal lines', correct: false },
+                    { text: 'Parallel lines', correct: false }
+                ],
+                explanation: 'Newton\'s method draws tangent lines and finds where they cross the x-axis.'
+            },
+            {
+                id: 32,
+                category: 'optimization',
+                type: 'multiple',
+                question: 'What does VIF stand for?',
+                options: [
+                    { text: 'Variable Importance Factor', correct: false },
+                    { text: 'Variance Inflation Factor', correct: true },
+                    { text: 'Value Interpretation Framework', correct: false },
+                    { text: 'Vector Input Function', correct: false }
+                ],
+                explanation: 'VIF = Variance Inflation Factor, used to detect multicollinearity.'
+            },
+            {
+                id: 33,
+                category: 'optimization',
+                type: 'fill',
+                question: 'The VIF formula is: 1 / (1 - ____)',
+                answers: ['r^2', 'R^2', 'r2', 'R2', 'r squared', 'R squared'],
+                explanation: 'VIF = 1 / (1 - R²), where R² is from regressing that feature on all others.'
+            },
+            {
+                id: 34,
+                category: 'optimization',
+                type: 'multiple',
+                question: 'In Newton\'s method, each iteration finds where the ____ crosses the x-axis.',
+                options: [
+                    { text: 'Original function', correct: false },
+                    { text: 'Tangent line at current point', correct: true },
+                    { text: 'Derivative function', correct: false },
+                    { text: 'Second derivative', correct: false }
+                ],
+                explanation: 'Newton\'s method uses the tangent line\'s x-intercept as the next guess.'
+            },
+            {
+                id: 35,
+                category: 'optimization',
+                type: 'multiple',
+                question: 'What is the update formula for Newton\'s method?',
+                options: [
+                    { text: 'x_{n+1} = x_n - f(x_n)', correct: false },
+                    { text: 'x_{n+1} = x_n - f(x_n)/f\'(x_n)', correct: true },
+                    { text: 'x_{n+1} = x_n + f\'(x_n)', correct: false },
+                    { text: 'x_{n+1} = f(x_n)/f\'(x_n)', correct: false }
+                ],
+                explanation: 'Newton\'s method: x_{n+1} = x_n - f(x_n)/f\'(x_n)'
+            }
+        ];
+
+        let currentQuestions = [];
+        let score = 0;
+        let answered = 0;
+        let totalQuestions = 10;
+
+        // Shuffle array using Fisher-Yates algorithm
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function startQuiz() {
+            const numQuestions = document.getElementById('num-questions').value;
+            const categoryFilter = document.getElementById('category-filter').value;
+
+            // Filter by category
+            let filtered = categoryFilter === 'all'
+                ? [...questionBank]
+                : questionBank.filter(q => q.category === categoryFilter);
+
+            // Shuffle questions
+            filtered = shuffleArray(filtered);
+
+            // Select number of questions
+            if (numQuestions === 'all') {
+                currentQuestions = filtered;
+            } else {
+                currentQuestions = filtered.slice(0, Math.min(parseInt(numQuestions), filtered.length));
+            }
+
+            totalQuestions = currentQuestions.length;
+            score = 0;
+            answered = 0;
+
+            // Update UI
+            document.getElementById('total-questions').textContent = totalQuestions;
+            document.getElementById('current-score').textContent = '0';
+            document.getElementById('progress-fill').style.width = '0%';
+
+            // Hide settings, show quiz
+            document.getElementById('settings-panel').classList.add('hidden');
+            document.getElementById('results').classList.remove('show');
+
+            // Render questions
+            renderQuestions();
+            document.getElementById('quiz-container').classList.remove('hidden');
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            currentQuestions.forEach((q, index) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.dataset.question = index;
+                card.dataset.type = q.type;
+
+                const categoryNames = {
+                    'fundamentals': 'ML Fundamentals',
+                    'logistic': 'Logistic Regression',
+                    'mle': 'MLE & Loss Functions',
+                    'odds': 'Log Odds Ratio',
+                    'evaluation': 'Model Evaluation',
+                    'optimization': 'VIF & Optimization'
+                };
+
+                let html = `
+                    <div class="question-header">
+                        <span class="question-number">Question ${index + 1} of ${totalQuestions}</span>
+                        <span class="question-category">${categoryNames[q.category]}</span>
+                    </div>
+                    <div class="question-text">${q.question}</div>
+                `;
+
+                if (q.type === 'multiple') {
+                    // Shuffle options
+                    const shuffledOptions = shuffleArray(q.options.map((opt, i) => ({ ...opt, originalIndex: i })));
+
+                    html += '<div class="options">';
+                    const letters = ['A', 'B', 'C', 'D'];
+                    shuffledOptions.forEach((opt, i) => {
+                        html += `
+                            <div class="option" data-correct="${opt.correct}" data-text="${opt.text}">
+                                <span class="option-letter">${letters[i]}</span>
+                                <span>${opt.text}</span>
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                } else if (q.type === 'fill') {
+                    html += `
+                        <div class="fill-blank-container">
+                            <input type="text" class="fill-blank-input" placeholder="Type your answer..." id="input-${index}">
+                            <button class="check-btn" onclick="checkFillBlank(${index})">Check</button>
+                        </div>
+                    `;
+                }
+
+                html += '<div class="feedback"></div>';
+                card.innerHTML = html;
+                container.appendChild(card);
+            });
+
+            // Add event listeners for multiple choice
+            document.querySelectorAll('.question-card[data-type="multiple"] .option').forEach(option => {
+                option.addEventListener('click', handleOptionClick);
+            });
+
+            // Add enter key listener for fill-in-the-blank
+            document.querySelectorAll('.fill-blank-input').forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        const index = parseInt(this.id.split('-')[1]);
+                        checkFillBlank(index);
+                    }
+                });
+            });
+        }
+
+        function handleOptionClick(e) {
+            const option = e.currentTarget;
+            const card = option.closest('.question-card');
+            if (card.classList.contains('answered')) return;
+
+            const questionIndex = parseInt(card.dataset.question);
+            const q = currentQuestions[questionIndex];
+            const isCorrect = option.dataset.correct === 'true';
+            const feedback = card.querySelector('.feedback');
+
+            // Mark all options as disabled
+            card.querySelectorAll('.option').forEach(opt => opt.classList.add('disabled'));
+            card.classList.add('answered');
+
+            // Show correct/incorrect
+            if (isCorrect) {
+                option.classList.add('correct-answer');
+                card.classList.add('correct');
+                feedback.classList.add('correct');
+                feedback.textContent = '✓ Correct! ' + q.explanation;
+                score++;
+            } else {
+                option.classList.add('wrong-answer');
+                card.classList.add('incorrect');
+                feedback.classList.add('incorrect');
+                // Highlight correct answer
+                card.querySelectorAll('.option').forEach(opt => {
+                    if (opt.dataset.correct === 'true') {
+                        opt.classList.add('correct-answer');
+                    }
+                });
+                feedback.textContent = '✗ Incorrect. ' + q.explanation;
+            }
+
+            feedback.classList.add('show');
+            answered++;
+            updateProgress();
+        }
+
+        function checkFillBlank(questionIndex) {
+            const card = document.querySelector(`.question-card[data-question="${questionIndex}"]`);
+            if (card.classList.contains('answered')) return;
+
+            const q = currentQuestions[questionIndex];
+            const input = document.getElementById(`input-${questionIndex}`);
+            const userAnswer = input.value.trim().toLowerCase();
+            const feedback = card.querySelector('.feedback');
+            const btn = card.querySelector('.check-btn');
+
+            if (!userAnswer) return;
+
+            card.classList.add('answered');
+            btn.disabled = true;
+            input.disabled = true;
+
+            const isCorrect = q.answers.some(ans =>
+                userAnswer.includes(ans.toLowerCase()) || ans.toLowerCase().includes(userAnswer)
+            );
+
+            if (isCorrect) {
+                input.classList.add('correct');
+                card.classList.add('correct');
+                feedback.classList.add('correct');
+                feedback.textContent = '✓ Correct! ' + q.explanation;
+                score++;
+            } else {
+                input.classList.add('incorrect');
+                card.classList.add('incorrect');
+                feedback.classList.add('incorrect');
+                feedback.textContent = `✗ Incorrect. The answer is "${q.answers[0]}". ${q.explanation}`;
+            }
+
+            feedback.classList.add('show');
+            answered++;
+            updateProgress();
+        }
+
+        function updateProgress() {
+            document.getElementById('current-score').textContent = score;
+            const progress = (answered / totalQuestions) * 100;
+            document.getElementById('progress-fill').style.width = progress + '%';
+
+            if (answered === totalQuestions) {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            const percentage = Math.round((score / totalQuestions) * 100);
+            const finalScoreEl = document.getElementById('final-score');
+            const resultMessage = document.getElementById('result-message');
+
+            finalScoreEl.textContent = percentage + '%';
+            finalScoreEl.className = 'final-score';
+
+            document.getElementById('stat-correct').textContent = score;
+            document.getElementById('stat-incorrect').textContent = totalQuestions - score;
+            document.getElementById('stat-accuracy').textContent = percentage + '%';
+
+            if (percentage >= 80) {
+                finalScoreEl.classList.add('excellent');
+                resultMessage.textContent = 'Excellent work! You have a strong understanding of these concepts.';
+            } else if (percentage >= 60) {
+                finalScoreEl.classList.add('good');
+                resultMessage.textContent = 'Good job! Review the topics you missed and try again.';
+            } else {
+                finalScoreEl.classList.add('needs-work');
+                resultMessage.textContent = 'Keep studying! Review your notes and try again.';
+            }
+
+            document.getElementById('results').classList.add('show');
+        }
+
+        function restartQuiz() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('settings-panel').classList.remove('hidden');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
