@@ -1,0 +1,40 @@
+# Virtual environments - don't track these (especially on external drives that don't support symlinks)
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Model files (optional - uncomment if you don't want to track the trained model)
+# *.h5
+# *.keras
+
+# Logs
+*.log
+
+# Local environment files
+.env
+.env.local
