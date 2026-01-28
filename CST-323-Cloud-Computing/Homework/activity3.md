@@ -461,13 +461,15 @@ SELECT * FROM ORDERS;
 
 ### What I Learned
 
-<!-- TODO: Add 5 sentences summarizing what you learned from the AI conversation -->
+1. **Cloud costs are dominated by compute, not storage** — For small-scale applications, the MySQL Flexible Server compute tier (B1ms vs. General Purpose) accounts for the majority of monthly costs, while storage and bandwidth are often negligible or free within included limits.
 
-1.
-2.
-3.
-4.
-5.
+2. **Burstable tiers are ideal for development workloads** — The Burstable B-series for both App Service and MySQL provides CPU credits that accumulate during idle periods and can be spent during brief traffic spikes, making them cost-effective for applications with variable or low traffic.
+
+3. **Right-sizing requires understanding your traffic patterns** — The AI helped me calculate that 10k MAU with 10% peak concurrency translates to ~2,000 requests/minute, which is well within B1 tier capabilities; production apps with sustained high traffic would need General Purpose tiers.
+
+4. **Proactive cost management prevents billing surprises** — Setting up budget alerts at multiple thresholds (50%, 75%, 90%) and enabling forecast alerts provides early warning before credits are exhausted, giving time to adjust or stop resources.
+
+5. **Region co-location reduces hidden costs** — Placing the App Service and MySQL server in the same Azure region (West US 3) eliminates cross-region data transfer charges and reduces latency, which is a best practice the AI emphasized for both cost and performance optimization.
 
 ---
 
