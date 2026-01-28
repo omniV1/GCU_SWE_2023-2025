@@ -28,7 +28,35 @@
             width: 100%;
             height: 100%;
             z-index: 0;
+        }
+        
+        /* Magnetic Cursor */
+        .magnetic-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(168, 85, 247, 0.6);
+            border-radius: 50%;
             pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease-out, width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+            transform: translate(-50%, -50%);
+        }
+        .magnetic-cursor.hovering {
+            width: 50px;
+            height: 50px;
+            border-color: #a855f7;
+            background: rgba(168, 85, 247, 0.1);
+        }
+        .magnetic-cursor-dot {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: #a855f7;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
         }
         
         /* Navbar */
@@ -122,6 +150,7 @@
             padding: 14px 18px;
             border-radius: 10px;
             transition: all 0.2s ease;
+            cursor: pointer;
         }
         .nav-link:hover {
             color: #a855f7;
@@ -244,11 +273,17 @@
             margin-top: 4px;
         }
         
-        /* Cards Grid */
+        /* 3D Tilt Cards */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
+            perspective: 1000px;
+        }
+        .tilt-card {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
         }
         .feature-card {
             background: rgba(255, 255, 255, 0.03);
@@ -264,9 +299,31 @@
             position: relative;
             overflow: hidden;
             animation: fadeInUp 1s ease-out both;
+            cursor: pointer;
         }
-        .feature-card:nth-child(1) { animation-delay: 0.5s; }
-        .feature-card:nth-child(2) { animation-delay: 0.6s; }
+        .tilt-card:nth-child(1) .feature-card { animation-delay: 0.5s; }
+        .tilt-card:nth-child(2) .feature-card { animation-delay: 0.6s; }
+        
+        /* Card light reflection */
+        .card-shine {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 24px;
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(168, 85, 247, 0.15),
+                transparent 40%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .tilt-card:hover .card-shine {
+            opacity: 1;
+        }
         .feature-card::before {
             content: '';
             position: absolute;
@@ -278,13 +335,12 @@
             opacity: 0;
             transition: opacity 0.4s ease;
         }
-        .feature-card:hover {
-            transform: translateY(-8px);
+        .tilt-card:hover .feature-card {
             background: rgba(255, 255, 255, 0.06);
             border-color: rgba(168, 85, 247, 0.3);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
         }
-        .feature-card:hover::before {
+        .tilt-card:hover .feature-card::before {
             opacity: 1;
         }
         .card-icon-wrapper {
@@ -353,14 +409,190 @@
             margin-top: auto;
             transition: gap 0.3s ease;
         }
-        .feature-card:hover .card-arrow {
+        .tilt-card:hover .card-arrow {
             gap: 14px;
         }
         .card-arrow i {
             transition: transform 0.3s ease;
         }
-        .feature-card:hover .card-arrow i {
+        .tilt-card:hover .card-arrow i {
             transform: translateX(4px);
+        }
+        
+        /* Game Button */
+        .game-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            box-shadow: 0 10px 40px rgba(168, 85, 247, 0.4);
+            transition: all 0.3s ease;
+        }
+        .game-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 50px rgba(168, 85, 247, 0.6);
+        }
+        .game-btn i {
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        /* Game Modal */
+        .game-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .game-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .game-container {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 24px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            box-shadow: 0 0 100px rgba(168, 85, 247, 0.2);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .game-modal.active .game-container {
+            transform: scale(1);
+        }
+        .game-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+        }
+        .game-close:hover {
+            background: rgba(239, 68, 68, 0.3);
+        }
+        .game-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .game-subtitle {
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        #game-canvas {
+            width: 100%;
+            height: 400px;
+            border-radius: 16px;
+            background: #0a0a15;
+            display: block;
+        }
+        .game-score {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+        .score-item {
+            text-align: center;
+        }
+        .score-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .score-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #a855f7;
+        }
+        .game-instructions {
+            text-align: center;
+            margin-top: 15px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+        }
+        .game-over-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .game-over-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .game-over-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+        }
+        .game-over-score {
+            font-size: 1.2rem;
+            color: #a855f7;
+            margin-bottom: 20px;
+        }
+        .play-again-btn {
+            background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .play-again-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
         }
         
         /* Footer */
@@ -386,6 +618,9 @@
             .stat-value {
                 font-size: 1.5rem;
             }
+            .magnetic-cursor, .magnetic-cursor-dot {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -393,10 +628,49 @@
     <!-- Three.js Canvas -->
     <canvas id="three-canvas"></canvas>
     
+    <!-- Magnetic Cursor -->
+    <div class="magnetic-cursor" id="magneticCursor"></div>
+    <div class="magnetic-cursor-dot" id="magneticCursorDot"></div>
+    
+    <!-- Game Button -->
+    <button class="game-btn magnetic-element" onclick="openGame()" title="Play Box Stacker">
+        <i class="bi bi-controller"></i>
+    </button>
+    
+    <!-- Game Modal -->
+    <div class="game-modal" id="gameModal">
+        <div class="game-container">
+            <button class="game-close" onclick="closeGame()">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            <div class="game-title">📦 Box Stacker</div>
+            <div class="game-subtitle">Stack boxes as high as you can!</div>
+            <canvas id="game-canvas"></canvas>
+            <div class="game-score">
+                <div class="score-item">
+                    <div class="score-label">Score</div>
+                    <div class="score-value" id="currentScore">0</div>
+                </div>
+                <div class="score-item">
+                    <div class="score-label">Best</div>
+                    <div class="score-value" id="bestScore">0</div>
+                </div>
+            </div>
+            <div class="game-instructions">
+                Click or press SPACE to drop the box
+            </div>
+            <div class="game-over-overlay" id="gameOverOverlay">
+                <div class="game-over-text">Game Over!</div>
+                <div class="game-over-score">Score: <span id="finalScore">0</span></div>
+                <button class="play-again-btn" onclick="restartGame()">Play Again</button>
+            </div>
+        </div>
+    </div>
+    
     <!-- Navigation -->
     <nav class="navbar-custom">
         <a href="/" class="navbar-brand">Orders4U</a>
-        <div class="hamburger" onclick="toggleMenu()">
+        <div class="hamburger magnetic-element" onclick="toggleMenu()">
             <span></span>
             <span></span>
             <span></span>
@@ -441,35 +715,41 @@
         </div>
 
         <div class="cards-grid">
-            <a th:href="@{/orders}" class="feature-card">
-                <div class="card-icon-wrapper">
-                    <div class="card-icon inventory">
-                        <i class="bi bi-box-seam"></i>
+            <div class="tilt-card magnetic-element">
+                <a th:href="@{/orders}" class="feature-card">
+                    <div class="card-shine"></div>
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon inventory">
+                            <i class="bi bi-box-seam"></i>
+                        </div>
+                        <div class="card-icon-glow"></div>
                     </div>
-                    <div class="card-icon-glow"></div>
-                </div>
-                <div class="card-title">Inventory</div>
-                <div class="card-description">View, add, edit, and manage all your orders and products in one centralized location.</div>
-                <div class="card-arrow">
-                    <span>Manage Orders</span>
-                    <i class="bi bi-arrow-right"></i>
-                </div>
-            </a>
+                    <div class="card-title">Inventory</div>
+                    <div class="card-description">View, add, edit, and manage all your orders and products in one centralized location.</div>
+                    <div class="card-arrow">
+                        <span>Manage Orders</span>
+                        <i class="bi bi-arrow-right"></i>
+                    </div>
+                </a>
+            </div>
             
-            <a th:href="@{/admin/users}" class="feature-card" sec:authorize="hasRole('ADMIN')">
-                <div class="card-icon-wrapper">
-                    <div class="card-icon admin">
-                        <i class="bi bi-shield-lock"></i>
+            <div class="tilt-card magnetic-element" sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/admin/users}" class="feature-card">
+                    <div class="card-shine"></div>
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon admin">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <div class="card-icon-glow"></div>
                     </div>
-                    <div class="card-icon-glow"></div>
-                </div>
-                <div class="card-title">Admin Panel</div>
-                <div class="card-description">Manage users, roles, permissions, and system settings with full administrative control.</div>
-                <div class="card-arrow">
-                    <span>Open Admin</span>
-                    <i class="bi bi-arrow-right"></i>
-                </div>
-            </a>
+                    <div class="card-title">Admin Panel</div>
+                    <div class="card-description">Manage users, roles, permissions, and system settings with full administrative control.</div>
+                    <div class="card-arrow">
+                        <span>Open Admin</span>
+                        <i class="bi bi-arrow-right"></i>
+                    </div>
+                </a>
+            </div>
         </div>
         
         <div class="footer-text">
@@ -492,7 +772,82 @@
             }
         });
 
-        // Three.js Scene - Floating Boxes & Particles
+        // ============================================
+        // MAGNETIC CURSOR
+        // ============================================
+        const cursor = document.getElementById('magneticCursor');
+        const cursorDot = document.getElementById('magneticCursorDot');
+        let cursorX = 0, cursorY = 0;
+        let dotX = 0, dotY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            cursorX = e.clientX;
+            cursorY = e.clientY;
+        });
+        
+        function animateCursor() {
+            // Smooth follow for outer ring
+            const dx = cursorX - parseFloat(cursor.style.left || cursorX);
+            const dy = cursorY - parseFloat(cursor.style.top || cursorY);
+            
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            
+            // Smoother follow for dot
+            dotX += (cursorX - dotX) * 0.15;
+            dotY += (cursorY - dotY) * 0.15;
+            cursorDot.style.left = dotX + 'px';
+            cursorDot.style.top = dotY + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+        
+        // Magnetic effect on elements
+        document.querySelectorAll('.magnetic-element').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hovering');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hovering');
+            });
+        });
+
+        // ============================================
+        // 3D TILT CARDS
+        // ============================================
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                
+                // Update shine position
+                const shine = card.querySelector('.card-shine');
+                if (shine) {
+                    const percentX = (x / rect.width) * 100;
+                    const percentY = (y / rect.height) * 100;
+                    shine.style.setProperty('--mouse-x', percentX + '%');
+                    shine.style.setProperty('--mouse-y', percentY + '%');
+                }
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
+        });
+
+        // ============================================
+        // THREE.JS BACKGROUND SCENE
+        // ============================================
         const canvas = document.getElementById('three-canvas');
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -505,89 +860,53 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         
-        // Mouse tracking
         const mouse = { x: 0, y: 0 };
-        document.addEventListener('mousemove', (e) => {
-            mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-            mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-        });
         
-        // Create floating boxes (representing orders/packages)
-        const boxes = [];
-        const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
-        
+        // Colors
         const colors = [
-            0x6366f1, // Indigo
-            0x8b5cf6, // Purple
-            0xa855f7, // Violet
-            0xec4899, // Pink
-            0x3b82f6, // Blue
+            0x6366f1, 0x8b5cf6, 0xa855f7, 0xec4899, 0x3b82f6, 0x22c55e, 0xf59e0b
         ];
         
+        const allBoxes = [];
+        const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
+        
+        // Create floating boxes
         for (let i = 0; i < 15; i++) {
+            const color = colors[Math.floor(Math.random() * colors.length)];
             const material = new THREE.MeshBasicMaterial({
-                color: colors[Math.floor(Math.random() * colors.length)],
+                color: color,
                 transparent: true,
                 opacity: 0.15,
                 wireframe: true
             });
             
             const box = new THREE.Mesh(boxGeometry, material);
+            box.position.set(
+                (Math.random() - 0.5) * 30,
+                (Math.random() - 0.5) * 20,
+                (Math.random() - 0.5) * 15 - 5
+            );
             
-            // Random position
-            box.position.x = (Math.random() - 0.5) * 30;
-            box.position.y = (Math.random() - 0.5) * 20;
-            box.position.z = (Math.random() - 0.5) * 20 - 5;
-            
-            // Random scale
             const scale = Math.random() * 1.5 + 0.5;
             box.scale.set(scale, scale, scale);
             
-            // Store rotation speeds
-            box.userData.rotationSpeed = {
-                x: (Math.random() - 0.5) * 0.01,
-                y: (Math.random() - 0.5) * 0.01,
-                z: (Math.random() - 0.5) * 0.01
+            box.userData = {
+                rotationSpeed: {
+                    x: (Math.random() - 0.5) * 0.005,
+                    y: (Math.random() - 0.5) * 0.005,
+                    z: (Math.random() - 0.5) * 0.005
+                },
+                floatSpeed: Math.random() * 0.4 + 0.2,
+                floatOffset: Math.random() * Math.PI * 2
             };
-            box.userData.floatSpeed = Math.random() * 0.5 + 0.5;
-            box.userData.floatOffset = Math.random() * Math.PI * 2;
             
-            boxes.push(box);
+            allBoxes.push(box);
             scene.add(box);
         }
         
-        // Add some solid (non-wireframe) boxes for depth
-        for (let i = 0; i < 8; i++) {
-            const material = new THREE.MeshBasicMaterial({
-                color: colors[Math.floor(Math.random() * colors.length)],
-                transparent: true,
-                opacity: 0.08
-            });
-            
-            const box = new THREE.Mesh(boxGeometry, material);
-            
-            box.position.x = (Math.random() - 0.5) * 40;
-            box.position.y = (Math.random() - 0.5) * 25;
-            box.position.z = (Math.random() - 0.5) * 15 - 10;
-            
-            const scale = Math.random() * 2 + 1;
-            box.scale.set(scale, scale, scale);
-            
-            box.userData.rotationSpeed = {
-                x: (Math.random() - 0.5) * 0.005,
-                y: (Math.random() - 0.5) * 0.005,
-                z: (Math.random() - 0.5) * 0.005
-            };
-            box.userData.floatSpeed = Math.random() * 0.3 + 0.2;
-            box.userData.floatOffset = Math.random() * Math.PI * 2;
-            
-            boxes.push(box);
-            scene.add(box);
-        }
-        
-        // Create particles
+        // Ambient particles
         const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 500;
+        const particlesCount = 300;
         const posArray = new Float32Array(particlesCount * 3);
         
         for (let i = 0; i < particlesCount * 3; i++) {
@@ -597,20 +916,24 @@
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
         
         const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.03,
+            size: 0.025,
             color: 0xa855f7,
             transparent: true,
-            opacity: 0.6,
+            opacity: 0.4,
             blending: THREE.AdditiveBlending
         });
         
         const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
         scene.add(particlesMesh);
         
-        // Camera position
-        camera.position.z = 10;
+        camera.position.z = 12;
         
-        // Animation
+        // Mouse tracking for parallax
+        document.addEventListener('mousemove', (e) => {
+            mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+        
         const clock = new THREE.Clock();
         
         function animate() {
@@ -618,22 +941,17 @@
             
             const elapsedTime = clock.getElapsedTime();
             
-            // Animate boxes
-            boxes.forEach((box) => {
+            allBoxes.forEach(box => {
                 box.rotation.x += box.userData.rotationSpeed.x;
                 box.rotation.y += box.userData.rotationSpeed.y;
                 box.rotation.z += box.userData.rotationSpeed.z;
-                
-                // Floating motion
-                box.position.y += Math.sin(elapsedTime * box.userData.floatSpeed + box.userData.floatOffset) * 0.003;
+                box.position.y += Math.sin(elapsedTime * box.userData.floatSpeed + box.userData.floatOffset) * 0.002;
             });
             
-            // Animate particles
-            particlesMesh.rotation.y = elapsedTime * 0.02;
-            particlesMesh.rotation.x = elapsedTime * 0.01;
+            particlesMesh.rotation.y = elapsedTime * 0.01;
             
-            // Mouse influence on camera
-            camera.position.x += (mouse.x * 2 - camera.position.x) * 0.02;
+            // Camera parallax
+            camera.position.x += (mouse.x * 1.5 - camera.position.x) * 0.02;
             camera.position.y += (mouse.y * 1 - camera.position.y) * 0.02;
             camera.lookAt(scene.position);
             
@@ -642,12 +960,242 @@
         
         animate();
         
-        // Handle resize
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
+
+        // ============================================
+        // BOX STACKER GAME
+        // ============================================
+        let gameCanvas, gameCtx;
+        let gameRunning = false;
+        let gameScore = 0;
+        let bestScore = parseInt(localStorage.getItem('boxStackerBest') || '0');
+        
+        document.getElementById('bestScore').textContent = bestScore;
+        
+        let tower = [];
+        let currentBox = null;
+        let boxSpeed = 2;
+        let boxDirection = 1;
+        let cameraY = 0; // Camera offset for scrolling
+        
+        const GAME_WIDTH = 440;
+        const GAME_HEIGHT = 400;
+        const BOX_HEIGHT = 25;
+        const INITIAL_BOX_WIDTH = 150;
+        const VISIBLE_TOP_MARGIN = 80; // Keep this much space above the current box
+        
+        function openGame() {
+            document.getElementById('gameModal').classList.add('active');
+            initGame();
+        }
+        
+        function closeGame() {
+            document.getElementById('gameModal').classList.remove('active');
+            gameRunning = false;
+        }
+        
+        function initGame() {
+            gameCanvas = document.getElementById('game-canvas');
+            gameCanvas.width = GAME_WIDTH;
+            gameCanvas.height = GAME_HEIGHT;
+            gameCtx = gameCanvas.getContext('2d');
+            
+            // Reset game state
+            tower = [];
+            gameScore = 0;
+            boxSpeed = 2;
+            cameraY = 0;
+            document.getElementById('currentScore').textContent = '0';
+            document.getElementById('gameOverOverlay').classList.remove('active');
+            
+            // Create base
+            tower.push({
+                x: GAME_WIDTH / 2 - INITIAL_BOX_WIDTH / 2,
+                y: GAME_HEIGHT - BOX_HEIGHT,
+                width: INITIAL_BOX_WIDTH,
+                color: getBoxColor(0)
+            });
+            
+            // Create first moving box
+            spawnNewBox();
+            
+            gameRunning = true;
+            gameLoop();
+        }
+        
+        function getBoxColor(index) {
+            const hue = (index * 25) % 360;
+            return `hsl(${hue}, 70%, 60%)`;
+        }
+        
+        function spawnNewBox() {
+            const lastBox = tower[tower.length - 1];
+            // New box spawns one level above the last box (in world coordinates)
+            const worldY = GAME_HEIGHT - (tower.length + 1) * BOX_HEIGHT;
+            currentBox = {
+                x: 0,
+                y: worldY,
+                width: lastBox.width,
+                color: getBoxColor(tower.length)
+            };
+            
+            // Adjust camera if the new box would be too high on screen
+            const screenY = worldY + cameraY;
+            if (screenY < VISIBLE_TOP_MARGIN) {
+                cameraY = VISIBLE_TOP_MARGIN - worldY;
+            }
+        }
+        
+        function dropBox() {
+            if (!currentBox || !gameRunning) return;
+            
+            const lastBox = tower[tower.length - 1];
+            
+            // Calculate overlap
+            const overlapLeft = Math.max(currentBox.x, lastBox.x);
+            const overlapRight = Math.min(currentBox.x + currentBox.width, lastBox.x + lastBox.width);
+            const overlapWidth = overlapRight - overlapLeft;
+            
+            if (overlapWidth <= 0) {
+                // Game over - no overlap
+                gameOver();
+                return;
+            }
+            
+            // Perfect landing bonus
+            const isPerfect = Math.abs(currentBox.x - lastBox.x) < 5;
+            
+            // Add the overlapping part to tower
+            tower.push({
+                x: overlapLeft,
+                y: currentBox.y,
+                width: isPerfect ? lastBox.width : overlapWidth,
+                color: currentBox.color
+            });
+            
+            gameScore += isPerfect ? 2 : 1;
+            document.getElementById('currentScore').textContent = gameScore;
+            
+            // Increase difficulty
+            boxSpeed = Math.min(boxSpeed + 0.1, 8);
+            
+            // Spawn new box (this also adjusts camera if needed)
+            spawnNewBox();
+        }
+        
+        function gameOver() {
+            gameRunning = false;
+            
+            if (gameScore > bestScore) {
+                bestScore = gameScore;
+                localStorage.setItem('boxStackerBest', bestScore.toString());
+                document.getElementById('bestScore').textContent = bestScore;
+            }
+            
+            document.getElementById('finalScore').textContent = gameScore;
+            document.getElementById('gameOverOverlay').classList.add('active');
+        }
+        
+        function restartGame() {
+            initGame();
+        }
+        
+        function gameLoop() {
+            if (!gameRunning) return;
+            
+            // Clear canvas
+            gameCtx.fillStyle = '#0a0a15';
+            gameCtx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+            
+            // Draw grid
+            gameCtx.strokeStyle = 'rgba(168, 85, 247, 0.1)';
+            gameCtx.lineWidth = 1;
+            for (let i = 0; i < GAME_WIDTH; i += 40) {
+                gameCtx.beginPath();
+                gameCtx.moveTo(i, 0);
+                gameCtx.lineTo(i, GAME_HEIGHT);
+                gameCtx.stroke();
+            }
+            for (let i = 0; i < GAME_HEIGHT; i += 40) {
+                gameCtx.beginPath();
+                gameCtx.moveTo(0, i);
+                gameCtx.lineTo(GAME_WIDTH, i);
+                gameCtx.stroke();
+            }
+            
+            // Draw tower (apply camera offset)
+            tower.forEach((box, i) => {
+                const drawY = box.y + cameraY;
+                
+                // Only draw if visible on screen
+                if (drawY + BOX_HEIGHT < 0 || drawY > GAME_HEIGHT) return;
+                
+                // Box shadow
+                gameCtx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+                gameCtx.fillRect(box.x + 3, drawY + 3, box.width, BOX_HEIGHT);
+                
+                // Box fill
+                gameCtx.fillStyle = box.color;
+                gameCtx.fillRect(box.x, drawY, box.width, BOX_HEIGHT);
+                
+                // Box highlight
+                gameCtx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+                gameCtx.fillRect(box.x, drawY, box.width, 5);
+                
+                // Box border
+                gameCtx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                gameCtx.lineWidth = 2;
+                gameCtx.strokeRect(box.x, drawY, box.width, BOX_HEIGHT);
+            });
+            
+            // Move and draw current box
+            if (currentBox) {
+                currentBox.x += boxSpeed * boxDirection;
+                
+                // Bounce off walls
+                if (currentBox.x + currentBox.width > GAME_WIDTH) {
+                    boxDirection = -1;
+                } else if (currentBox.x < 0) {
+                    boxDirection = 1;
+                }
+                
+                const drawY = currentBox.y + cameraY;
+                
+                // Draw current box with glow
+                gameCtx.shadowColor = currentBox.color;
+                gameCtx.shadowBlur = 20;
+                gameCtx.fillStyle = currentBox.color;
+                gameCtx.fillRect(currentBox.x, drawY, currentBox.width, BOX_HEIGHT);
+                gameCtx.shadowBlur = 0;
+                
+                // Box highlight
+                gameCtx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                gameCtx.fillRect(currentBox.x, drawY, currentBox.width, 5);
+                
+                gameCtx.strokeStyle = 'white';
+                gameCtx.lineWidth = 2;
+                gameCtx.strokeRect(currentBox.x, drawY, currentBox.width, BOX_HEIGHT);
+            }
+            
+            requestAnimationFrame(gameLoop);
+        }
+        
+        // Game controls
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' && document.getElementById('gameModal').classList.contains('active')) {
+                e.preventDefault();
+                dropBox();
+            }
+            if (e.code === 'Escape') {
+                closeGame();
+            }
+        });
+        
+        document.getElementById('game-canvas')?.addEventListener('click', dropBox);
     </script>
 </body>
 </html>
