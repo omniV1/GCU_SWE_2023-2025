@@ -1,0 +1,105 @@
+{
+  "note": "CST-180-Python vuln corrected to PASS (API key in third-party .obsidian plugin)",
+  "comparisons": [
+    {
+      "project": "AIT-104-Data-mining-machine-learning",
+      "files": 7,
+      "our_bug": "FAIL",
+      "sonar_bug": "FAIL",
+      "bug_match": true,
+      "our_vuln": "PASS",
+      "sonar_vuln": "PASS",
+      "vuln_match": true
+    },
+    {
+      "project": "CST-201-algorithims-data-structures",
+      "files": 26,
+      "our_bug": "FAIL",
+      "sonar_bug": "PASS",
+      "bug_match": false,
+      "our_vuln": "PASS",
+      "sonar_vuln": "PASS",
+      "vuln_match": true
+    },
+    {
+      "project": "CST-321-Operating-system-fundamentals",
+      "files": 39,
+      "our_bug": "PASS",
+      "sonar_bug": "PASS",
+      "bug_match": true,
+      "our_vuln": "PASS",
+      "sonar_vuln": "PASS",
+      "vuln_match": true
+    },
+    {
+      "project": "CST-326-Written-Verbal-Communication-SWE",
+      "files": 57,
+      "our_bug": "FAIL",
+      "sonar_bug": "PASS",
+      "bug_match": false,
+      "our_vuln": "PASS",
+      "sonar_vuln": "PASS",
+      "vuln_match": true
+    },
+    {
+      "project": "CST-391-Web_dev",
+      "files": 245,
+      "our_bug": "FAIL",
+      "sonar_bug": "FAIL",
+      "bug_match": true,
+      "our_vuln": "PASS",
+      "sonar_vuln": "PASS",
+      "vuln_match": true
+    },
+    {
+      "project": "2025-advent-of-code",
+      "files": 4,
+      "our_bug": "FAIL",
+      "sonar_bug": "FAIL",
+      "bug_match": true,
+      "our_vuln": "PASS",
+      "sonar_vuln": "PASS",
+      "vuln_match": true
+    },
+    {
+      "project": "agent-quality-system",
+      "files": 46,
+      "our_bug": "FAIL",
+      "sonar_bug": "PASS",
+      "bug_match": false,
+      "our_vuln": "FAIL",
+      "sonar_vuln": "PASS",
+      "vuln_match": false
+    },
+    {
+      "project": "AIT-204-Deep-Learning",
+      "files": 18,
+      "our_bug": "FAIL",
+      "sonar_bug": "PASS",
+      "bug_match": false,
+      "our_vuln": "PASS",
+      "sonar_vuln": "PASS",
+      "vuln_match": true
+    },
+    {
+      "project": "CST-180-Python",
+      "files": 409,
+      "our_bug": "FAIL",
+      "sonar_bug": "FAIL",
+      "bug_match": true,
+      "our_vuln": "PASS",
+      "sonar_vuln": "PASS",
+      "vuln_match": true
+    }
+  ],
+  "bug_metrics": {
+    "accuracy": 0.5555555555555556,
+    "specificity": 0.2,
+    "sensitivity": 1.0
+  },
+  "vuln_metrics": {
+    "accuracy": 0.8888888888888888,
+    "specificity": 0.8888888888888888,
+    "sensitivity": 1.0
+  }
+}

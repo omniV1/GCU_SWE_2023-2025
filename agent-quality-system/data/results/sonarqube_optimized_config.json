@@ -1,0 +1,38 @@
+{
+  "trained_on": "sonarqube_ground_truth",
+  "projects_used": 8,
+  "project_fail_threshold": 0.1,
+  "bug_gate": {
+    "activation": "relu",
+    "complexity_threshold": 15,
+    "nesting_threshold": 4,
+    "length_threshold": 100,
+    "metrics": {
+      "TP": 4,
+      "FP": 3,
+      "TN": 1,
+      "FN": 0,
+      "accuracy": 0.625,
+      "specificity": 0.25,
+      "sensitivity": 1.0,
+      "f1": 0.7272727272727273
+    }
+  },
+  "vulnerability_gate": {
+    "activation": "relu",
+    "signal_threshold": 0,
+    "eval_threshold": 0,
+    "sql_threshold": 0,
+    "secret_threshold": 0,
+    "metrics": {
+      "TP": 0,
+      "FP": 3,
+      "TN": 5,
+      "FN": 0,
+      "accuracy": 0.625,
+      "specificity": 0.625,
+      "sensitivity": 0,
+      "f1": 0
+    }
+  }
+}

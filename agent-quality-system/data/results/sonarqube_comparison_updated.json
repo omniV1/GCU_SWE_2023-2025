@@ -1,0 +1,133 @@
+{
+  "timestamp": "2026-01-29T22:32:00.152174",
+  "comparisons": [
+    {
+      "project": "AIT-104-Data-mining-machine-learning",
+      "files": 22,
+      "our_bug": "FAIL",
+      "sonar_bug": "FAIL",
+      "bug_match": true,
+      "our_vuln": "FAIL",
+      "sonar_vuln": "PASS",
+      "vuln_match": false,
+      "sonar_bugs": 4,
+      "sonar_vulns": 0
+    },
+    {
+      "project": "CST-201-algorithims-data-structures",
+      "files": 26,
+      "our_bug": "FAIL",
+      "sonar_bug": "PASS",
+      "bug_match": false,
+      "our_vuln": "PASS",
+      "sonar_vuln": "PASS",
+      "vuln_match": true,
+      "sonar_bugs": 0,
+      "sonar_vulns": 0
+    },
+    {
+      "project": "CST-321-Operating-system-fundamentals",
+      "files": 39,
+      "our_bug": "PASS",
+      "sonar_bug": "PASS",
+      "bug_match": true,
+      "our_vuln": "PASS",
+      "sonar_vuln": "PASS",
+      "vuln_match": true,
+      "sonar_bugs": 0,
+      "sonar_vulns": 0
+    },
+    {
+      "project": "CST-326-Written-Verbal-Communication-SWE",
+      "files": 57,
+      "our_bug": "FAIL",
+      "sonar_bug": "PASS",
+      "bug_match": false,
+      "our_vuln": "FAIL",
+      "sonar_vuln": "PASS",
+      "vuln_match": false,
+      "sonar_bugs": 0,
+      "sonar_vulns": 0
+    },
+    {
+      "project": "CST-391-Web_dev",
+      "files": 245,
+      "our_bug": "FAIL",
+      "sonar_bug": "FAIL",
+      "bug_match": true,
+      "our_vuln": "FAIL",
+      "sonar_vuln": "PASS",
+      "vuln_match": false,
+      "sonar_bugs": 9,
+      "sonar_vulns": 0
+    },
+    {
+      "project": "2025-advent-of-code",
+      "files": 4,
+      "our_bug": "FAIL",
+      "sonar_bug": "FAIL",
+      "bug_match": true,
+      "our_vuln": "PASS",
+      "sonar_vuln": "PASS",
+      "vuln_match": true,
+      "sonar_bugs": 3,
+      "sonar_vulns": 0
+    },
+    {
+      "project": "agent-quality-system",
+      "files": 45,
+      "our_bug": "FAIL",
+      "sonar_bug": "PASS",
+      "bug_match": false,
+      "our_vuln": "FAIL",
+      "sonar_vuln": "PASS",
+      "vuln_match": false,
+      "sonar_bugs": 0,
+      "sonar_vulns": 0
+    },
+    {
+      "project": "AIT-204-Deep-Learning",
+      "files": 18,
+      "our_bug": "FAIL",
+      "sonar_bug": "PASS",
+      "bug_match": false,
+      "our_vuln": "PASS",
+      "sonar_vuln": "PASS",
+      "vuln_match": true,
+      "sonar_bugs": 0,
+      "sonar_vulns": 0
+    },
+    {
+      "project": "CST-180-Python",
+      "files": 421,
+      "our_bug": "FAIL",
+      "sonar_bug": "FAIL",
+      "bug_match": true,
+      "our_vuln": "FAIL",
+      "sonar_vuln": "FAIL",
+      "vuln_match": true,
+      "sonar_bugs": 215,
+      "sonar_vulns": 1
+    }
+  ],
+  "bug_metrics": {
+    "TP": 4,
+    "FP": 4,
+    "TN": 1,
+    "FN": 0,
+    "accuracy": 0.5555555555555556,
+    "specificity": 0.2,
+    "sensitivity": 1.0,
+    "precision": 0.5
+  },
+  "vuln_metrics": {
+    "TP": 1,
+    "FP": 4,
+    "TN": 4,
+    "FN": 0,
+    "accuracy": 0.5555555555555556,
+    "specificity": 0.5,
+    "sensitivity": 1.0,
+    "precision": 0.2
+  }
+}

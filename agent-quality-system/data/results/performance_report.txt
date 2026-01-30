@@ -1,0 +1,122 @@
+================================================================================
+QUALITY GATE SYSTEM PERFORMANCE REPORT
+Generated: 2026-01-29T22:33:52.281227
+================================================================================
+
+## EXECUTIVE SUMMARY
+
+Total files analyzed: 1559
+Projects evaluated against SonarQube: 9
+
+### Bug Gate Performance
+  - Accuracy:    55.6%
+  - Sensitivity: 100.0% (catches 4/4 actual bugs)
+  - Specificity: 20.0% (correctly identifies 1/5 clean projects)
+  - False Positives: 4 projects flagged incorrectly
+
+### Vulnerability Gate Performance
+  - Accuracy:    55.6%
+  - Sensitivity: 100.0% (catches 1/1 actual vulns)
+  - Specificity: 50.0% (correctly identifies 4/8 clean projects)
+  - False Positives: 4 projects flagged incorrectly
+
+================================================================================
+## KEY FINDINGS
+================================================================================
+
+### SUCCESSES
+
+1. CAUGHT ALL ACTUAL ISSUES (100% Sensitivity)
+   - The system successfully identified all 4 projects with real bugs
+   - The system caught the Google API key vulnerability in CST-180-Python
+
+### PROBLEMS
+
+1. TOO MANY FALSE POSITIVES (Low Specificity)
+   - Bug Gate: 4/5 clean projects incorrectly flagged (80% false positive rate)
+   - Vuln Gate: 4/8 clean projects incorrectly flagged (50% false positive rate)
+
+2. FALSE POSITIVE CAUSES:
+   - agent-quality-system: Demo/training files with intentional vulnerabilities
+   - CST-201-algorithims: C# code with complex patterns (not bugs)
+   - CST-326-Communication: Complex C# code structure
+   - AIT-204-Deep-Learning: High complexity in ML code (acceptable for ML)
+
+================================================================================
+## DETAILED PROJECT BREAKDOWN
+================================================================================
+
+### AIT-104-Data-mining-machine-learning
+   Files: 22
+   Bug Gate:  FAIL vs FAIL ✓
+   Vuln Gate: FAIL vs PASS ✗
+   SonarQube: 4 bugs, 0 vulnerabilities
+
+### CST-201-algorithims-data-structures
+   Files: 26
+   Bug Gate:  FAIL vs PASS ✗
+   Vuln Gate: PASS vs PASS ✓
+   SonarQube: 0 bugs, 0 vulnerabilities
+
+### CST-321-Operating-system-fundamentals
+   Files: 39
+   Bug Gate:  PASS vs PASS ✓
+   Vuln Gate: PASS vs PASS ✓
+   SonarQube: 0 bugs, 0 vulnerabilities
+
+### CST-326-Written-Verbal-Communication-SWE
+   Files: 57
+   Bug Gate:  FAIL vs PASS ✗
+   Vuln Gate: FAIL vs PASS ✗
+   SonarQube: 0 bugs, 0 vulnerabilities
+
+### CST-391-Web_dev
+   Files: 245
+   Bug Gate:  FAIL vs FAIL ✓
+   Vuln Gate: FAIL vs PASS ✗
+   SonarQube: 9 bugs, 0 vulnerabilities
+
+### 2025-advent-of-code
+   Files: 4
+   Bug Gate:  FAIL vs FAIL ✓
+   Vuln Gate: PASS vs PASS ✓
+   SonarQube: 3 bugs, 0 vulnerabilities
+
+### agent-quality-system
+   Files: 45
+   Bug Gate:  FAIL vs PASS ✗
+   Vuln Gate: FAIL vs PASS ✗
+   SonarQube: 0 bugs, 0 vulnerabilities
+
+### AIT-204-Deep-Learning
+   Files: 18
+   Bug Gate:  FAIL vs PASS ✗
+   Vuln Gate: PASS vs PASS ✓
+   SonarQube: 0 bugs, 0 vulnerabilities
+
+### CST-180-Python
+   Files: 421
+   Bug Gate:  FAIL vs FAIL ✓
+   Vuln Gate: FAIL vs FAIL ✓
+   SonarQube: 215 bugs, 1 vulnerabilities
+
+================================================================================
+## RECOMMENDATIONS
+================================================================================
+
+1. ADJUST BUG GATE THRESHOLDS
+   - Current thresholds are too strict for real-world code
+   - Consider: Complexity > 20 (vs current 15)
+   - Consider: Nesting > 5 (vs current 4)
+
+2. IMPROVE VULNERABILITY DETECTION
+   - The system correctly catches secrets now
+   - Need to reduce false positives from eval/exec in non-production code
+
+3. ADD CONTEXT-AWARE ANALYSIS
+   - Skip training/demo/test directories for vulnerability scanning
+   - Adjust thresholds based on code type (ML code has higher complexity)
+
+4. TRAINING DATA IMPROVEMENT
+   - Current training uses 15 synthetic samples
+   - Need to incorporate SonarQube labels as ground truth

@@ -173,7 +173,12 @@ def find_source_files(directory, exclude_patterns=None):
         exclude_patterns = [
             'venv', '__pycache__', '.git', 'node_modules', '.env',
             'migrations', 'dist', 'build', 'bin', 'obj', 'packages',
-            '.idea', '.vs', '.vscode', 'target', '.gradle'
+            '.idea', '.vs', '.vscode', 'target', '.gradle',
+            '.obsidian',  # Obsidian plugins (third-party code)
+            'vendor',     # Composer/Go vendor dependencies
+            'publish/',   # .NET publish output
+            'wwwroot/_content/',  # ASP.NET Core framework content
+            '/plugins/',  # Plugin directories (often third-party)
         ]
     
     source_files = []

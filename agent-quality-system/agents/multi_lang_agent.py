@@ -110,8 +110,9 @@ class MultiLanguageAgent:
     def _extract_python_vuln_features(self, code_text):
         """Extract vulnerability features from Python"""
         # Count hardcoded secrets - includes various API key patterns
+        # Note: [^\n"\']{8,} prevents matching across line boundaries
         secret_patterns = [
-            r'(password|secret|api_key|apikey|token|auth)\s*=\s*["\'][^"\']{8,}["\']',  # Generic secrets
+            r'(password|secret|api_key|apikey|token|auth)\s*=\s*["\'][^\n"\']{8,}["\']',  # Generic secrets (single line)
             r'AIzaSy[a-zA-Z0-9_-]{33}',  # Google API keys
             r'sk_live_[a-zA-Z0-9]{24,}',  # Stripe live keys
             r'sk_test_[a-zA-Z0-9]{24,}',  # Stripe test keys
@@ -311,8 +312,9 @@ class MultiLanguageAgent:
         sql_injection += len(re.findall(r'["\'].*SELECT.*["\'].*\+', code_text, re.IGNORECASE))
         
         # Hardcoded secrets - enhanced patterns for API keys
+        # Note: [^\n"\']{8,} prevents matching across line boundaries
         secret_patterns = [
-            r'(password|secret|apiKey|token|API_KEY|auth)\s*[=:]\s*["\'][^"\']{8,}["\']',  # Generic
+            r'(password|secret|apiKey|token|API_KEY|auth)\s*[=:]\s*["\'][^\n"\']{8,}["\']',  # Generic secrets (single line)
             r'AIzaSy[a-zA-Z0-9_-]{33}',  # Google API keys
             r'sk_live_[a-zA-Z0-9]{24,}',  # Stripe live keys
             r'sk_test_[a-zA-Z0-9]{24,}',  # Stripe test keys
