@@ -1,0 +1,101 @@
+{
+  "cst-180-python": {
+    "bug_gate": "FAIL",
+    "vulnerability_gate": "FAIL",
+    "security_hotspot_gate": "FAIL",
+    "reliability_gate": "FAIL",
+    "security_gate": "FAIL",
+    "maintainability_gate": "PASS",
+    "coverage_gate": "FAIL",
+    "duplication_gate": "FAIL",
+    "sonarqube_overall": "OK"
+  },
+  "cst-201-algorithims-data-structures": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "PASS",
+    "security_hotspot_gate": "PASS",
+    "reliability_gate": "PASS",
+    "security_gate": "PASS",
+    "maintainability_gate": "PASS",
+    "coverage_gate": "FAIL",
+    "duplication_gate": "PASS",
+    "sonarqube_overall": "OK"
+  },
+  "agent-quality-system": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "PASS",
+    "security_hotspot_gate": "FAIL",
+    "reliability_gate": "PASS",
+    "security_gate": "PASS",
+    "maintainability_gate": "PASS",
+    "coverage_gate": "FAIL",
+    "duplication_gate": "FAIL",
+    "sonarqube_overall": "OK"
+  },
+  "ait-204-deep-learning": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "PASS",
+    "security_hotspot_gate": "FAIL",
+    "reliability_gate": "PASS",
+    "security_gate": "PASS",
+    "maintainability_gate": "PASS",
+    "coverage_gate": "FAIL",
+    "duplication_gate": "PASS",
+    "sonarqube_overall": "OK"
+  },
+  "cst-321-operating-system-fundamentals": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "PASS",
+    "security_hotspot_gate": "PASS",
+    "reliability_gate": "PASS",
+    "security_gate": "PASS",
+    "maintainability_gate": "PASS",
+    "coverage_gate": "FAIL",
+    "duplication_gate": "PASS",
+    "sonarqube_overall": "OK"
+  },
+  "ait-104-data-mining-machine-learning": {
+    "bug_gate": "FAIL",
+    "vulnerability_gate": "PASS",
+    "security_hotspot_gate": "PASS",
+    "reliability_gate": "PASS",
+    "security_gate": "PASS",
+    "maintainability_gate": "PASS",
+    "coverage_gate": "FAIL",
+    "duplication_gate": "PASS",
+    "sonarqube_overall": "OK"
+  },
+  "2025-advent-of-code": {
+    "bug_gate": "FAIL",
+    "vulnerability_gate": "PASS",
+    "security_hotspot_gate": "PASS",
+    "reliability_gate": "PASS",
+    "security_gate": "PASS",
+    "maintainability_gate": "PASS",
+    "coverage_gate": "FAIL",
+    "duplication_gate": "PASS",
+    "sonarqube_overall": "OK"
+  },
+  "cst-326-written-verbal-communication-swe": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "PASS",
+    "security_hotspot_gate": "FAIL",
+    "reliability_gate": "PASS",
+    "security_gate": "PASS",
+    "maintainability_gate": "PASS",
+    "coverage_gate": "FAIL",
+    "duplication_gate": "PASS",
+    "sonarqube_overall": "OK"
+  },
+  "cst-391-web_dev": {
+    "bug_gate": "FAIL",
+    "vulnerability_gate": "PASS",
+    "security_hotspot_gate": "FAIL",
+    "reliability_gate": "PASS",
+    "security_gate": "PASS",
+    "maintainability_gate": "PASS",
+    "coverage_gate": "FAIL",
+    "duplication_gate": "FAIL",
+    "sonarqube_overall": "OK"
+  }
+}

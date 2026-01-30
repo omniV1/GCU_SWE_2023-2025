@@ -1,0 +1,226 @@
+{
+  "bug_gate": {
+    "sigmoid": {
+      "confusion_matrix": {
+        "true_positive": 4,
+        "false_positive": 4,
+        "true_negative": 1,
+        "false_negative": 0
+      },
+      "accuracy": 0.5556,
+      "specificity": 0.2,
+      "sensitivity": 1.0,
+      "precision": 0.5,
+      "total_samples": 9
+    },
+    "relu": {
+      "confusion_matrix": {
+        "true_positive": 4,
+        "false_positive": 4,
+        "true_negative": 1,
+        "false_negative": 0
+      },
+      "accuracy": 0.5556,
+      "specificity": 0.2,
+      "sensitivity": 1.0,
+      "precision": 0.5,
+      "total_samples": 9
+    }
+  },
+  "vulnerability_gate": {
+    "sigmoid": {
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 5,
+        "true_negative": 3,
+        "false_negative": 1
+      },
+      "accuracy": 0.3333,
+      "specificity": 0.375,
+      "sensitivity": 0.0,
+      "precision": 0.0,
+      "total_samples": 9
+    },
+    "relu": {
+      "confusion_matrix": {
+        "true_positive": 1,
+        "false_positive": 6,
+        "true_negative": 2,
+        "false_negative": 0
+      },
+      "accuracy": 0.3333,
+      "specificity": 0.25,
+      "sensitivity": 1.0,
+      "precision": 0.1429,
+      "total_samples": 9
+    }
+  },
+  "security_hotspot_gate": {
+    "sigmoid": {
+      "confusion_matrix": {
+        "true_positive": 4,
+        "false_positive": 2,
+        "true_negative": 2,
+        "false_negative": 1
+      },
+      "accuracy": 0.6667,
+      "specificity": 0.5,
+      "sensitivity": 0.8,
+      "precision": 0.6667,
+      "total_samples": 9
+    },
+    "relu": {
+      "confusion_matrix": {
+        "true_positive": 4,
+        "false_positive": 2,
+        "true_negative": 2,
+        "false_negative": 1
+      },
+      "accuracy": 0.6667,
+      "specificity": 0.5,
+      "sensitivity": 0.8,
+      "precision": 0.6667,
+      "total_samples": 9
+    }
+  },
+  "reliability_gate": {
+    "sigmoid": {
+      "confusion_matrix": {
+        "true_positive": 1,
+        "false_positive": 8,
+        "true_negative": 0,
+        "false_negative": 0
+      },
+      "accuracy": 0.1111,
+      "specificity": 0.0,
+      "sensitivity": 1.0,
+      "precision": 0.1111,
+      "total_samples": 9
+    },
+    "relu": {
+      "confusion_matrix": {
+        "true_positive": 1,
+        "false_positive": 8,
+        "true_negative": 0,
+        "false_negative": 0
+      },
+      "accuracy": 0.1111,
+      "specificity": 0.0,
+      "sensitivity": 1.0,
+      "precision": 0.1111,
+      "total_samples": 9
+    }
+  },
+  "security_gate": {
+    "sigmoid": {
+      "confusion_matrix": {
+        "true_positive": 1,
+        "false_positive": 4,
+        "true_negative": 4,
+        "false_negative": 0
+      },
+      "accuracy": 0.5556,
+      "specificity": 0.5,
+      "sensitivity": 1.0,
+      "precision": 0.2,
+      "total_samples": 9
+    },
+    "relu": {
+      "confusion_matrix": {
+        "true_positive": 1,
+        "false_positive": 4,
+        "true_negative": 4,
+        "false_negative": 0
+      },
+      "accuracy": 0.5556,
+      "specificity": 0.5,
+      "sensitivity": 1.0,
+      "precision": 0.2,
+      "total_samples": 9
+    }
+  },
+  "maintainability_gate": {
+    "sigmoid": {
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 8,
+        "true_negative": 1,
+        "false_negative": 0
+      },
+      "accuracy": 0.1111,
+      "specificity": 0.1111,
+      "sensitivity": 0,
+      "precision": 0.0,
+      "total_samples": 9
+    },
+    "relu": {
+      "confusion_matrix": {
+        "true_positive": 0,
+        "false_positive": 8,
+        "true_negative": 1,
+        "false_negative": 0
+      },
+      "accuracy": 0.1111,
+      "specificity": 0.1111,
+      "sensitivity": 0,
+      "precision": 0.0,
+      "total_samples": 9
+    }
+  },
+  "coverage_gate": {
+    "sigmoid": {
+      "confusion_matrix": {
+        "true_positive": 9,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0
+      },
+      "accuracy": 1.0,
+      "specificity": 0,
+      "sensitivity": 1.0,
+      "precision": 1.0,
+      "total_samples": 9
+    },
+    "relu": {
+      "confusion_matrix": {
+        "true_positive": 9,
+        "false_positive": 0,
+        "true_negative": 0,
+        "false_negative": 0
+      },
+      "accuracy": 1.0,
+      "specificity": 0,
+      "sensitivity": 1.0,
+      "precision": 1.0,
+      "total_samples": 9
+    }
+  },
+  "duplication_gate": {
+    "sigmoid": {
+      "confusion_matrix": {
+        "true_positive": 2,
+        "false_positive": 3,
+        "true_negative": 3,
+        "false_negative": 1
+      },
+      "accuracy": 0.5556,
+      "specificity": 0.5,
+      "sensitivity": 0.6667,
+      "precision": 0.4,
+      "total_samples": 9
+    },
+    "relu": {
+      "confusion_matrix": {
+        "true_positive": 2,
+        "false_positive": 3,
+        "true_negative": 3,
+        "false_negative": 1
+      },
+      "accuracy": 0.5556,
+      "specificity": 0.5,
+      "sensitivity": 0.6667,
+      "precision": 0.4,
+      "total_samples": 9
+    }
+  }
+}

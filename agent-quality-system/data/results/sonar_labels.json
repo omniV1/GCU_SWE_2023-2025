@@ -1,0 +1,38 @@
+{
+  "AIT-104-Data-mining-machine-learning_project.py": {
+    "bug_gate": "FAIL",
+    "vulnerability_gate": "PASS"
+  },
+  "CST-201-algorithims-data-structures_project.py": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "PASS"
+  },
+  "CST-321-Operating-system-fundamentals_project.py": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "PASS"
+  },
+  "CST-326-Written-Verbal-Communication-SWE_project.py": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "PASS"
+  },
+  "CST-391-Web_dev_project.py": {
+    "bug_gate": "FAIL",
+    "vulnerability_gate": "PASS"
+  },
+  "2025-advent-of-code_project.py": {
+    "bug_gate": "FAIL",
+    "vulnerability_gate": "PASS"
+  },
+  "agent-quality-system_project.py": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "PASS"
+  },
+  "AIT-204-Deep-Learning_project.py": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "PASS"
+  },
+  "CST-180-Python_project.py": {
+    "bug_gate": "FAIL",
+    "vulnerability_gate": "FAIL"
+  }
+}

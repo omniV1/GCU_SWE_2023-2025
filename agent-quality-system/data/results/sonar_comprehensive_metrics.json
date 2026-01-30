@@ -1,0 +1,420 @@
+{
+  "source": "SonarQube",
+  "projects": [
+    {
+      "project": "cst-180-python",
+      "metrics": {
+        "coverage": "0.0",
+        "bugs": "215",
+        "reliability_rating": "5.0",
+        "code_smells": "5419",
+        "duplicated_lines_density": "6.2",
+        "cognitive_complexity": "14437",
+        "security_rating": "5.0",
+        "ncloc": "81016",
+        "sqale_debt_ratio": "1.2",
+        "vulnerabilities": "1",
+        "security_hotspots": "22",
+        "sqale_rating": "1.0"
+      },
+      "gates": {
+        "bug_gate": "FAIL",
+        "vulnerability_gate": "FAIL",
+        "security_hotspot_gate": "FAIL",
+        "reliability_gate": "FAIL",
+        "security_gate": "FAIL",
+        "maintainability_gate": "PASS",
+        "coverage_gate": "FAIL",
+        "duplication_gate": "FAIL",
+        "sonarqube_overall": "OK"
+      },
+      "quality_gate_status": {
+        "status": "OK",
+        "conditions": [
+          {
+            "status": "OK",
+            "metricKey": "new_violations",
+            "comparator": "GT",
+            "errorThreshold": "0",
+            "actualValue": "0"
+          }
+        ],
+        "ignoredConditions": false,
+        "period": {
+          "mode": "PREVIOUS_VERSION",
+          "date": "2026-01-30T03:15:40+0000"
+        },
+        "caycStatus": "compliant"
+      }
+    },
+    {
+      "project": "cst-201-algorithims-data-structures",
+      "metrics": {
+        "bugs": "0",
+        "reliability_rating": "1.0",
+        "code_smells": "0",
+        "duplicated_lines_density": "0.0",
+        "security_rating": "1.0",
+        "sqale_debt_ratio": "0.0",
+        "vulnerabilities": "0",
+        "security_hotspots": "0",
+        "sqale_rating": "1.0"
+      },
+      "gates": {
+        "bug_gate": "PASS",
+        "vulnerability_gate": "PASS",
+        "security_hotspot_gate": "PASS",
+        "reliability_gate": "PASS",
+        "security_gate": "PASS",
+        "maintainability_gate": "PASS",
+        "coverage_gate": "FAIL",
+        "duplication_gate": "PASS",
+        "sonarqube_overall": "OK"
+      },
+      "quality_gate_status": {
+        "status": "OK",
+        "conditions": [
+          {
+            "status": "OK",
+            "metricKey": "new_violations",
+            "comparator": "GT",
+            "errorThreshold": "0",
+            "actualValue": "0"
+          }
+        ],
+        "ignoredConditions": false,
+        "period": {
+          "mode": "PREVIOUS_VERSION",
+          "date": "2026-01-30T03:13:29+0000"
+        },
+        "caycStatus": "compliant"
+      }
+    },
+    {
+      "project": "agent-quality-system",
+      "metrics": {
+        "coverage": "0.0",
+        "bugs": "0",
+        "reliability_rating": "1.0",
+        "code_smells": "86",
+        "duplicated_lines_density": "4.4",
+        "cognitive_complexity": "841",
+        "security_rating": "1.0",
+        "ncloc": "5143",
+        "sqale_debt_ratio": "0.4",
+        "vulnerabilities": "0",
+        "security_hotspots": "12",
+        "sqale_rating": "1.0"
+      },
+      "gates": {
+        "bug_gate": "PASS",
+        "vulnerability_gate": "PASS",
+        "security_hotspot_gate": "FAIL",
+        "reliability_gate": "PASS",
+        "security_gate": "PASS",
+        "maintainability_gate": "PASS",
+        "coverage_gate": "FAIL",
+        "duplication_gate": "FAIL",
+        "sonarqube_overall": "OK"
+      },
+      "quality_gate_status": {
+        "status": "OK",
+        "conditions": [
+          {
+            "status": "OK",
+            "metricKey": "new_violations",
+            "comparator": "GT",
+            "errorThreshold": "0",
+            "actualValue": "0"
+          }
+        ],
+        "ignoredConditions": false,
+        "period": {
+          "mode": "PREVIOUS_VERSION",
+          "date": "2026-01-30T03:15:05+0000"
+        },
+        "caycStatus": "compliant"
+      }
+    },
+    {
+      "project": "ait-204-deep-learning",
+      "metrics": {
+        "coverage": "0.0",
+        "bugs": "0",
+        "reliability_rating": "1.0",
+        "code_smells": "69",
+        "duplicated_lines_density": "1.2",
+        "cognitive_complexity": "166",
+        "security_rating": "1.0",
+        "ncloc": "3527",
+        "sqale_debt_ratio": "0.4",
+        "vulnerabilities": "0",
+        "security_hotspots": "1",
+        "sqale_rating": "1.0"
+      },
+      "gates": {
+        "bug_gate": "PASS",
+        "vulnerability_gate": "PASS",
+        "security_hotspot_gate": "FAIL",
+        "reliability_gate": "PASS",
+        "security_gate": "PASS",
+        "maintainability_gate": "PASS",
+        "coverage_gate": "FAIL",
+        "duplication_gate": "PASS",
+        "sonarqube_overall": "OK"
+      },
+      "quality_gate_status": {
+        "status": "OK",
+        "conditions": [
+          {
+            "status": "OK",
+            "metricKey": "new_violations",
+            "comparator": "GT",
+            "errorThreshold": "0",
+            "actualValue": "0"
+          }
+        ],
+        "ignoredConditions": false,
+        "period": {
+          "mode": "PREVIOUS_VERSION",
+          "date": "2026-01-30T03:15:25+0000"
+        },
+        "caycStatus": "compliant"
+      }
+    },
+    {
+      "project": "cst-321-operating-system-fundamentals",
+      "metrics": {
+        "bugs": "0",
+        "reliability_rating": "1.0",
+        "code_smells": "0",
+        "security_rating": "1.0",
+        "sqale_debt_ratio": "0.0",
+        "vulnerabilities": "0",
+        "security_hotspots": "0",
+        "sqale_rating": "1.0"
+      },
+      "gates": {
+        "bug_gate": "PASS",
+        "vulnerability_gate": "PASS",
+        "security_hotspot_gate": "PASS",
+        "reliability_gate": "PASS",
+        "security_gate": "PASS",
+        "maintainability_gate": "PASS",
+        "coverage_gate": "FAIL",
+        "duplication_gate": "PASS",
+        "sonarqube_overall": "OK"
+      },
+      "quality_gate_status": {
+        "status": "OK",
+        "conditions": [
+          {
+            "status": "OK",
+            "metricKey": "new_violations",
+            "comparator": "GT",
+            "errorThreshold": "0",
+            "actualValue": "0"
+          }
+        ],
+        "ignoredConditions": false,
+        "period": {
+          "mode": "PREVIOUS_VERSION",
+          "date": "2026-01-30T03:13:46+0000"
+        },
+        "caycStatus": "compliant"
+      }
+    },
+    {
+      "project": "ait-104-data-mining-machine-learning",
+      "metrics": {
+        "coverage": "0.0",
+        "bugs": "4",
+        "reliability_rating": "3.0",
+        "code_smells": "275",
+        "duplicated_lines_density": "0.0",
+        "cognitive_complexity": "688",
+        "security_rating": "1.0",
+        "ncloc": "7411",
+        "sqale_debt_ratio": "0.5",
+        "vulnerabilities": "0",
+        "security_hotspots": "0",
+        "sqale_rating": "1.0"
+      },
+      "gates": {
+        "bug_gate": "FAIL",
+        "vulnerability_gate": "PASS",
+        "security_hotspot_gate": "PASS",
+        "reliability_gate": "PASS",
+        "security_gate": "PASS",
+        "maintainability_gate": "PASS",
+        "coverage_gate": "FAIL",
+        "duplication_gate": "PASS",
+        "sonarqube_overall": "OK"
+      },
+      "quality_gate_status": {
+        "status": "OK",
+        "conditions": [
+          {
+            "status": "OK",
+            "metricKey": "new_violations",
+            "comparator": "GT",
+            "errorThreshold": "0",
+            "actualValue": "0"
+          }
+        ],
+        "ignoredConditions": false,
+        "period": {
+          "mode": "PREVIOUS_VERSION",
+          "date": "2026-01-30T03:13:12+0000"
+        },
+        "caycStatus": "compliant"
+      }
+    },
+    {
+      "project": "2025-advent-of-code",
+      "metrics": {
+        "coverage": "0.0",
+        "bugs": "3",
+        "reliability_rating": "3.0",
+        "code_smells": "8",
+        "duplicated_lines_density": "0.0",
+        "cognitive_complexity": "121",
+        "security_rating": "1.0",
+        "ncloc": "882",
+        "sqale_debt_ratio": "0.1",
+        "vulnerabilities": "0",
+        "security_hotspots": "0",
+        "sqale_rating": "1.0"
+      },
+      "gates": {
+        "bug_gate": "FAIL",
+        "vulnerability_gate": "PASS",
+        "security_hotspot_gate": "PASS",
+        "reliability_gate": "PASS",
+        "security_gate": "PASS",
+        "maintainability_gate": "PASS",
+        "coverage_gate": "FAIL",
+        "duplication_gate": "PASS",
+        "sonarqube_overall": "OK"
+      },
+      "quality_gate_status": {
+        "status": "OK",
+        "conditions": [
+          {
+            "status": "OK",
+            "metricKey": "new_violations",
+            "comparator": "GT",
+            "errorThreshold": "0",
+            "actualValue": "0"
+          }
+        ],
+        "ignoredConditions": false,
+        "period": {
+          "mode": "PREVIOUS_VERSION",
+          "date": "2026-01-30T03:14:46+0000"
+        },
+        "caycStatus": "compliant"
+      }
+    },
+    {
+      "project": "cst-326-written-verbal-communication-swe",
+      "metrics": {
+        "bugs": "0",
+        "reliability_rating": "1.0",
+        "code_smells": "13",
+        "duplicated_lines_density": "0.0",
+        "security_rating": "1.0",
+        "ncloc": "1523",
+        "sqale_debt_ratio": "0.1",
+        "vulnerabilities": "0",
+        "security_hotspots": "1",
+        "sqale_rating": "1.0"
+      },
+      "gates": {
+        "bug_gate": "PASS",
+        "vulnerability_gate": "PASS",
+        "security_hotspot_gate": "FAIL",
+        "reliability_gate": "PASS",
+        "security_gate": "PASS",
+        "maintainability_gate": "PASS",
+        "coverage_gate": "FAIL",
+        "duplication_gate": "PASS",
+        "sonarqube_overall": "OK"
+      },
+      "quality_gate_status": {
+        "status": "OK",
+        "conditions": [
+          {
+            "status": "OK",
+            "metricKey": "new_violations",
+            "comparator": "GT",
+            "errorThreshold": "0",
+            "actualValue": "0"
+          }
+        ],
+        "ignoredConditions": false,
+        "period": {
+          "mode": "PREVIOUS_VERSION",
+          "date": "2026-01-30T03:13:55+0000"
+        },
+        "caycStatus": "compliant"
+      }
+    },
+    {
+      "project": "cst-391-web_dev",
+      "metrics": {
+        "coverage": "0.0",
+        "bugs": "9",
+        "reliability_rating": "3.0",
+        "code_smells": "368",
+        "duplicated_lines_density": "11.5",
+        "cognitive_complexity": "502",
+        "security_rating": "1.0",
+        "ncloc": "14040",
+        "sqale_debt_ratio": "0.4",
+        "vulnerabilities": "0",
+        "security_hotspots": "17",
+        "sqale_rating": "1.0"
+      },
+      "gates": {
+        "bug_gate": "FAIL",
+        "vulnerability_gate": "PASS",
+        "security_hotspot_gate": "FAIL",
+        "reliability_gate": "PASS",
+        "security_gate": "PASS",
+        "maintainability_gate": "PASS",
+        "coverage_gate": "FAIL",
+        "duplication_gate": "FAIL",
+        "sonarqube_overall": "OK"
+      },
+      "quality_gate_status": {
+        "status": "OK",
+        "conditions": [
+          {
+            "status": "OK",
+            "metricKey": "new_violations",
+            "comparator": "GT",
+            "errorThreshold": "0",
+            "actualValue": "0"
+          }
+        ],
+        "ignoredConditions": false,
+        "period": {
+          "mode": "PREVIOUS_VERSION",
+          "date": "2026-01-30T03:14:20+0000"
+        },
+        "caycStatus": "compliant"
+      }
+    }
+  ],
+  "gate_definitions": {
+    "bug_gate": "FAIL if bugs > 0",
+    "vulnerability_gate": "FAIL if vulnerabilities > 0",
+    "security_hotspot_gate": "FAIL if security_hotspots > 0",
+    "reliability_gate": "FAIL if reliability_rating >= D",
+    "security_gate": "FAIL if security_rating >= D",
+    "maintainability_gate": "FAIL if sqale_rating >= D",
+    "coverage_gate": "FAIL if coverage < 80%",
+    "duplication_gate": "FAIL if duplicated_lines_density > 3%"
+  }
+}

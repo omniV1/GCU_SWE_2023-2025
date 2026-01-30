@@ -1,0 +1,77 @@
+{
+  "sample_001_clean.py": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "PASS",
+    "description": "Clean code, no issues"
+  },
+  "sample_002_complex.py": {
+    "bug_gate": "FAIL",
+    "vulnerability_gate": "PASS",
+    "description": "High complexity and deep nesting"
+  },
+  "sample_003_sql_injection.py": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "FAIL",
+    "description": "SQL injection vulnerabilities via string concatenation"
+  },
+  "sample_004_secrets.py": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "FAIL",
+    "description": "Hardcoded secrets and API keys"
+  },
+  "sample_005_eval.py": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "FAIL",
+    "description": "Dangerous eval/exec usage"
+  },
+  "sample_006_clean_utils.py": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "PASS",
+    "description": "Clean utility functions"
+  },
+  "sample_007_os_command.py": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "FAIL",
+    "description": "Command injection via os.system and shell=True"
+  },
+  "sample_008_moderate_complexity.py": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "PASS",
+    "description": "Moderate complexity, acceptable code"
+  },
+  "sample_009_pickle_vuln.py": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "FAIL",
+    "description": "Pickle deserialization vulnerability"
+  },
+  "sample_010_both_issues.py": {
+    "bug_gate": "FAIL",
+    "vulnerability_gate": "FAIL",
+    "description": "Both complexity and vulnerability issues"
+  },
+  "sample_011_clean_class.py": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "PASS",
+    "description": "Clean class implementation"
+  },
+  "sample_012_high_nesting.py": {
+    "bug_gate": "FAIL",
+    "vulnerability_gate": "PASS",
+    "description": "Very high nesting depth"
+  },
+  "sample_013_sql_format.py": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "FAIL",
+    "description": "SQL injection via format strings"
+  },
+  "sample_014_clean_math.py": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "PASS",
+    "description": "Clean math utilities"
+  },
+  "sample_015_multiple_vulns.py": {
+    "bug_gate": "PASS",
+    "vulnerability_gate": "FAIL",
+    "description": "Multiple vulnerability types"
+  }
+}

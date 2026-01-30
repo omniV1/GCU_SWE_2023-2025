@@ -1,0 +1,115 @@
+{
+  "comparisons": [
+    {
+      "project": "AIT-104-Data-mining-machine-learning",
+      "our_bug": "FAIL",
+      "sonar_bug": "FAIL",
+      "bug_match": true,
+      "our_vuln": "PASS",
+      "sonar_vuln": "PASS",
+      "vuln_match": true
+    },
+    {
+      "project": "CST-201-algorithims-data-structures",
+      "our_bug": "FAIL",
+      "sonar_bug": "PASS",
+      "bug_match": false,
+      "our_vuln": "PASS",
+      "sonar_vuln": "PASS",
+      "vuln_match": true
+    },
+    {
+      "project": "CST-321-Operating-system-fundamentals",
+      "our_bug": "PASS",
+      "sonar_bug": "PASS",
+      "bug_match": true,
+      "our_vuln": "PASS",
+      "sonar_vuln": "PASS",
+      "vuln_match": true
+    },
+    {
+      "project": "CST-326-Written-Verbal-Communication-SWE",
+      "our_bug": "FAIL",
+      "sonar_bug": "PASS",
+      "bug_match": false,
+      "our_vuln": "FAIL",
+      "sonar_vuln": "PASS",
+      "vuln_match": false
+    },
+    {
+      "project": "CST-391-Web_dev",
+      "our_bug": "FAIL",
+      "sonar_bug": "FAIL",
+      "bug_match": true,
+      "our_vuln": "PASS",
+      "sonar_vuln": "PASS",
+      "vuln_match": true
+    },
+    {
+      "project": "2025-advent-of-code",
+      "our_bug": "FAIL",
+      "sonar_bug": "FAIL",
+      "bug_match": true,
+      "our_vuln": "PASS",
+      "sonar_vuln": "PASS",
+      "vuln_match": true
+    },
+    {
+      "project": "agent-quality-system",
+      "our_bug": "FAIL",
+      "sonar_bug": "PASS",
+      "bug_match": false,
+      "our_vuln": "FAIL",
+      "sonar_vuln": "PASS",
+      "vuln_match": false
+    },
+    {
+      "project": "AIT-204-Deep-Learning",
+      "our_bug": "FAIL",
+      "sonar_bug": "PASS",
+      "bug_match": false,
+      "our_vuln": "PASS",
+      "sonar_vuln": "PASS",
+      "vuln_match": true
+    },
+    {
+      "project": "CST-180-Python",
+      "our_bug": "FAIL",
+      "sonar_bug": "FAIL",
+      "bug_match": true,
+      "our_vuln": "PASS",
+      "sonar_vuln": "FAIL",
+      "vuln_match": false
+    }
+  ],
+  "bug_metrics": {
+    "gate_name": "Bug Gate",
+    "confusion_matrix": {
+      "TP": 4,
+      "FP": 4,
+      "TN": 1,
+      "FN": 0
+    },
+    "accuracy": 0.5555555555555556,
+    "specificity": 0.2,
+    "sensitivity": 1.0,
+    "precision": 0.5,
+    "total": 9
+  },
+  "vuln_metrics": {
+    "gate_name": "Vulnerability Gate",
+    "confusion_matrix": {
+      "TP": 0,
+      "FP": 2,
+      "TN": 6,
+      "FN": 1
+    },
+    "accuracy": 0.6666666666666666,
+    "specificity": 0.75,
+    "sensitivity": 0.0,
+    "precision": 0.0,
+    "total": 9
+  },
+  "overall_bug_agreement": 0.5555555555555556,
+  "overall_vuln_agreement": 0.6666666666666666
+}

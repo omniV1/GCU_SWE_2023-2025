@@ -1,0 +1,429 @@
+{
+  "timestamp": "2026-01-29T18:45:56.415032",
+  "statistics": {
+    "total_files": 15,
+    "overall_passed": 5,
+    "overall_failed": 10,
+    "overall_pass_rate": 33.33333333333333,
+    "bug_gate_passed": 12,
+    "bug_gate_failed": 3,
+    "bug_gate_pass_rate": 80.0,
+    "vuln_gate_passed": 7,
+    "vuln_gate_failed": 8,
+    "vuln_gate_pass_rate": 46.666666666666664,
+    "complexity": {
+      "avg": 3.6666666666666665,
+      "max": 11,
+      "min": 1
+    },
+    "nesting": {
+      "avg": 2.2666666666666666,
+      "max": 10,
+      "min": 0
+    },
+    "function_length": {
+      "avg": 10.2,
+      "max": 27,
+      "min": 4
+    },
+    "vulnerability_breakdown": {
+      "sql_injection": 3,
+      "eval_exec": 3,
+      "hardcoded_secrets": 3,
+      "command_injection": 2,
+      "pickle_deserialization": 2
+    }
+  },
+  "file_results": [
+    {
+      "filepath": "data/training/sample_001_clean.py",
+      "filename": "sample_001_clean.py",
+      "bug_gate": "PASS",
+      "vulnerability_gate": "PASS",
+      "overall": "PASS",
+      "bug_features": {
+        "avg_complexity": 1.33,
+        "max_complexity": 2,
+        "max_nesting": 1,
+        "avg_function_length": 3.67,
+        "max_function_length": 5,
+        "num_functions": 3,
+        "lines_of_code": 16
+      },
+      "vulnerability_features": {
+        "sql_concat": 0,
+        "sql_format": 0,
+        "eval_usage": 0,
+        "pickle_usage": 0,
+        "hardcoded_secrets": 0,
+        "os_system": 0,
+        "shell_true": 0,
+        "total_vulnerability_signals": 0
+      }
+    },
+    {
+      "filepath": "data/training/sample_002_complex.py",
+      "filename": "sample_002_complex.py",
+      "bug_gate": "FAIL",
+      "vulnerability_gate": "PASS",
+      "overall": "FAIL",
+      "bug_features": {
+        "avg_complexity": 10.0,
+        "max_complexity": 10,
+        "max_nesting": 9,
+        "avg_function_length": 16.0,
+        "max_function_length": 16,
+        "num_functions": 1,
+        "lines_of_code": 19
+      },
+      "vulnerability_features": {
+        "sql_concat": 0,
+        "sql_format": 0,
+        "eval_usage": 0,
+        "pickle_usage": 0,
+        "hardcoded_secrets": 0,
+        "os_system": 0,
+        "shell_true": 0,
+        "total_vulnerability_signals": 0
+      }
+    },
+    {
+      "filepath": "data/training/sample_003_sql_injection.py",
+      "filename": "sample_003_sql_injection.py",
+      "bug_gate": "PASS",
+      "vulnerability_gate": "FAIL",
+      "overall": "FAIL",
+      "bug_features": {
+        "avg_complexity": 1.0,
+        "max_complexity": 1,
+        "max_nesting": 0,
+        "avg_function_length": 4.0,
+        "max_function_length": 4,
+        "num_functions": 2,
+        "lines_of_code": 12
+      },
+      "vulnerability_features": {
+        "sql_concat": 1,
+        "sql_format": 0,
+        "eval_usage": 0,
+        "pickle_usage": 0,
+        "hardcoded_secrets": 0,
+        "os_system": 0,
+        "shell_true": 0,
+        "total_vulnerability_signals": 1
+      }
+    },
+    {
+      "filepath": "data/training/sample_004_secrets.py",
+      "filename": "sample_004_secrets.py",
+      "bug_gate": "PASS",
+      "vulnerability_gate": "FAIL",
+      "overall": "FAIL",
+      "bug_features": {
+        "avg_complexity": 1.0,
+        "max_complexity": 1,
+        "max_nesting": 0,
+        "avg_function_length": 4.0,
+        "max_function_length": 4,
+        "num_functions": 1,
+        "lines_of_code": 10
+      },
+      "vulnerability_features": {
+        "sql_concat": 0,
+        "sql_format": 0,
+        "eval_usage": 0,
+        "pickle_usage": 0,
+        "hardcoded_secrets": 2,
+        "os_system": 0,
+        "shell_true": 0,
+        "total_vulnerability_signals": 2
+      }
+    },
+    {
+      "filepath": "data/training/sample_005_eval.py",
+      "filename": "sample_005_eval.py",
+      "bug_gate": "PASS",
+      "vulnerability_gate": "FAIL",
+      "overall": "FAIL",
+      "bug_features": {
+        "avg_complexity": 1.0,
+        "max_complexity": 1,
+        "max_nesting": 0,
+        "avg_function_length": 3.5,
+        "max_function_length": 4,
+        "num_functions": 2,
+        "lines_of_code": 11
+      },
+      "vulnerability_features": {
+        "sql_concat": 0,
+        "sql_format": 0,
+        "eval_usage": 1,
+        "pickle_usage": 0,
+        "hardcoded_secrets": 0,
+        "os_system": 0,
+        "shell_true": 0,
+        "total_vulnerability_signals": 1
+      }
+    },
+    {
+      "filepath": "data/training/sample_006_clean_utils.py",
+      "filename": "sample_006_clean_utils.py",
+      "bug_gate": "PASS",
+      "vulnerability_gate": "PASS",
+      "overall": "PASS",
+      "bug_features": {
+        "avg_complexity": 1.5,
+        "max_complexity": 2,
+        "max_nesting": 1,
+        "avg_function_length": 5.0,
+        "max_function_length": 7,
+        "num_functions": 4,
+        "lines_of_code": 26
+      },
+      "vulnerability_features": {
+        "sql_concat": 0,
+        "sql_format": 0,
+        "eval_usage": 0,
+        "pickle_usage": 0,
+        "hardcoded_secrets": 0,
+        "os_system": 0,
+        "shell_true": 0,
+        "total_vulnerability_signals": 0
+      }
+    },
+    {
+      "filepath": "data/training/sample_007_os_command.py",
+      "filename": "sample_007_os_command.py",
+      "bug_gate": "PASS",
+      "vulnerability_gate": "FAIL",
+      "overall": "FAIL",
+      "bug_features": {
+        "avg_complexity": 1.0,
+        "max_complexity": 1,
+        "max_nesting": 0,
+        "avg_function_length": 3.33,
+        "max_function_length": 4,
+        "num_functions": 3,
+        "lines_of_code": 18
+      },
+      "vulnerability_features": {
+        "sql_concat": 0,
+        "sql_format": 0,
+        "eval_usage": 0,
+        "pickle_usage": 0,
+        "hardcoded_secrets": 0,
+        "os_system": 1,
+        "shell_true": 1,
+        "total_vulnerability_signals": 2
+      }
+    },
+    {
+      "filepath": "data/training/sample_008_moderate_complexity.py",
+      "filename": "sample_008_moderate_complexity.py",
+      "bug_gate": "PASS",
+      "vulnerability_gate": "PASS",
+      "overall": "PASS",
+      "bug_features": {
+        "avg_complexity": 4.0,
+        "max_complexity": 7,
+        "max_nesting": 3,
+        "avg_function_length": 14.5,
+        "max_function_length": 20,
+        "num_functions": 2,
+        "lines_of_code": 33
+      },
+      "vulnerability_features": {
+        "sql_concat": 0,
+        "sql_format": 0,
+        "eval_usage": 0,
+        "pickle_usage": 0,
+        "hardcoded_secrets": 0,
+        "os_system": 0,
+        "shell_true": 0,
+        "total_vulnerability_signals": 0
+      }
+    },
+    {
+      "filepath": "data/training/sample_009_pickle_vuln.py",
+      "filename": "sample_009_pickle_vuln.py",
+      "bug_gate": "PASS",
+      "vulnerability_gate": "FAIL",
+      "overall": "FAIL",
+      "bug_features": {
+        "avg_complexity": 1.0,
+        "max_complexity": 1,
+        "max_nesting": 0,
+        "avg_function_length": 4.0,
+        "max_function_length": 4,
+        "num_functions": 3,
+        "lines_of_code": 19
+      },
+      "vulnerability_features": {
+        "sql_concat": 0,
+        "sql_format": 0,
+        "eval_usage": 0,
+        "pickle_usage": 1,
+        "hardcoded_secrets": 0,
+        "os_system": 0,
+        "shell_true": 0,
+        "total_vulnerability_signals": 1
+      }
+    },
+    {
+      "filepath": "data/training/sample_010_both_issues.py",
+      "filename": "sample_010_both_issues.py",
+      "bug_gate": "FAIL",
+      "vulnerability_gate": "FAIL",
+      "overall": "FAIL",
+      "bug_features": {
+        "avg_complexity": 9.0,
+        "max_complexity": 9,
+        "max_nesting": 8,
+        "avg_function_length": 27.0,
+        "max_function_length": 27,
+        "num_functions": 1,
+        "lines_of_code": 30
+      },
+      "vulnerability_features": {
+        "sql_concat": 1,
+        "sql_format": 0,
+        "eval_usage": 1,
+        "pickle_usage": 0,
+        "hardcoded_secrets": 1,
+        "os_system": 0,
+        "shell_true": 0,
+        "total_vulnerability_signals": 3
+      }
+    },
+    {
+      "filepath": "data/training/sample_011_clean_class.py",
+      "filename": "sample_011_clean_class.py",
+      "bug_gate": "PASS",
+      "vulnerability_gate": "PASS",
+      "overall": "PASS",
+      "bug_features": {
+        "avg_complexity": 2.6,
+        "max_complexity": 3,
+        "max_nesting": 1,
+        "avg_function_length": 6.0,
+        "max_function_length": 9,
+        "num_functions": 4,
+        "lines_of_code": 33
+      },
+      "vulnerability_features": {
+        "sql_concat": 0,
+        "sql_format": 0,
+        "eval_usage": 0,
+        "pickle_usage": 0,
+        "hardcoded_secrets": 0,
+        "os_system": 0,
+        "shell_true": 0,
+        "total_vulnerability_signals": 0
+      }
+    },
+    {
+      "filepath": "data/training/sample_012_high_nesting.py",
+      "filename": "sample_012_high_nesting.py",
+      "bug_gate": "FAIL",
+      "vulnerability_gate": "PASS",
+      "overall": "FAIL",
+      "bug_features": {
+        "avg_complexity": 11.0,
+        "max_complexity": 11,
+        "max_nesting": 10,
+        "avg_function_length": 18.0,
+        "max_function_length": 18,
+        "num_functions": 1,
+        "lines_of_code": 21
+      },
+      "vulnerability_features": {
+        "sql_concat": 0,
+        "sql_format": 0,
+        "eval_usage": 0,
+        "pickle_usage": 0,
+        "hardcoded_secrets": 0,
+        "os_system": 0,
+        "shell_true": 0,
+        "total_vulnerability_signals": 0
+      }
+    },
+    {
+      "filepath": "data/training/sample_013_sql_format.py",
+      "filename": "sample_013_sql_format.py",
+      "bug_gate": "PASS",
+      "vulnerability_gate": "FAIL",
+      "overall": "FAIL",
+      "bug_features": {
+        "avg_complexity": 1.0,
+        "max_complexity": 1,
+        "max_nesting": 0,
+        "avg_function_length": 6.0,
+        "max_function_length": 6,
+        "num_functions": 2,
+        "lines_of_code": 16
+      },
+      "vulnerability_features": {
+        "sql_concat": 0,
+        "sql_format": 2,
+        "eval_usage": 0,
+        "pickle_usage": 0,
+        "hardcoded_secrets": 0,
+        "os_system": 0,
+        "shell_true": 0,
+        "total_vulnerability_signals": 2
+      }
+    },
+    {
+      "filepath": "data/training/sample_014_clean_math.py",
+      "filename": "sample_014_clean_math.py",
+      "bug_gate": "PASS",
+      "vulnerability_gate": "PASS",
+      "overall": "PASS",
+      "bug_features": {
+        "avg_complexity": 2.5,
+        "max_complexity": 4,
+        "max_nesting": 1,
+        "avg_function_length": 7.25,
+        "max_function_length": 13,
+        "num_functions": 4,
+        "lines_of_code": 35
+      },
+      "vulnerability_features": {
+        "sql_concat": 0,
+        "sql_format": 0,
+        "eval_usage": 0,
+        "pickle_usage": 0,
+        "hardcoded_secrets": 0,
+        "os_system": 0,
+        "shell_true": 0,
+        "total_vulnerability_signals": 0
+      }
+    },
+    {
+      "filepath": "data/training/sample_015_multiple_vulns.py",
+      "filename": "sample_015_multiple_vulns.py",
+      "bug_gate": "PASS",
+      "vulnerability_gate": "FAIL",
+      "overall": "FAIL",
+      "bug_features": {
+        "avg_complexity": 1.0,
+        "max_complexity": 1,
+        "max_nesting": 0,
+        "avg_function_length": 8.0,
+        "max_function_length": 12,
+        "num_functions": 2,
+        "lines_of_code": 27
+      },
+      "vulnerability_features": {
+        "sql_concat": 0,
+        "sql_format": 0,
+        "eval_usage": 1,
+        "pickle_usage": 1,
+        "hardcoded_secrets": 2,
+        "os_system": 1,
+        "shell_true": 0,
+        "total_vulnerability_signals": 5
+      }
+    }
+  ]
+}

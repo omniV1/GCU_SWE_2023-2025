@@ -1,0 +1,644 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Quality Analysis Report</title>
+    <style>
+        :root {
+            --primary: #e94560;
+            --secondary: #0f3460;
+            --success: #00d9a5;
+            --danger: #e94560;
+            --bg-dark: #1a1a2e;
+            --bg-card: #16213e;
+            --text: #eaeaea;
+            --text-muted: #a0a0a0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0f0f23 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 15px;
+            border: 1px solid var(--secondary);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, var(--primary), #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+        
+        .header .timestamp {
+            margin-top: 1rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--secondary);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.2);
+        }
+        
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(15, 52, 96, 0.5);
+            border-radius: 8px;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .stat-value.success {
+            color: var(--success);
+        }
+        
+        .stat-value.danger {
+            color: var(--danger);
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.3rem;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: var(--secondary);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-fill.success {
+            background: linear-gradient(90deg, var(--success), #00ffcc);
+        }
+        
+        .progress-fill.warning {
+            background: linear-gradient(90deg, #ffc107, #ffeb3b);
+        }
+        
+        .progress-fill.danger {
+            background: linear-gradient(90deg, var(--danger), #ff6b9d);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--secondary);
+        }
+        
+        th {
+            background: var(--secondary);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: rgba(15, 52, 96, 0.3);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .badge-pass {
+            background: rgba(0, 217, 165, 0.2);
+            color: var(--success);
+        }
+        
+        .badge-fail {
+            background: rgba(233, 69, 96, 0.2);
+            color: var(--danger);
+        }
+        
+        .section {
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .confusion-matrix {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            max-width: 300px;
+            margin: 1rem auto;
+        }
+        
+        .cm-cell {
+            padding: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        
+        .cm-tn { background: rgba(0, 217, 165, 0.3); }
+        .cm-fp { background: rgba(233, 69, 96, 0.3); }
+        .cm-fn { background: rgba(233, 69, 96, 0.3); }
+        .cm-tp { background: rgba(0, 217, 165, 0.3); }
+        
+        .recommendations {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin-top: 1rem;
+        }
+        
+        .recommendations h4 {
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+        }
+        
+        .recommendations ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        
+        .recommendations li {
+            margin: 0.5rem 0;
+            color: var(--text-muted);
+        }
+        
+        .recommendations li::before {
+            content: "⚠️";
+            margin-right: 0.5rem;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .chart-container {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .chart-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                color: #333;
+            }
+            .card {
+                break-inside: avoid;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🔍 Code Quality Analysis Report</h1>
+            <p class="subtitle">Multi-Agent Quality Gate System - Automated Analysis Results</p>
+            <p class="timestamp">Generated: 2026-01-29 18:46:29</p>
+        </header>
+        
+        
+    <section class="section">
+        <h2 class="section-title">📊 Overview</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>📁 Files Analyzed</h3>
+                <div class="stat-grid">
+                    <div class="stat">
+                        <div class="stat-value">15</div>
+                        <div class="stat-label">Total Files</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value danger">33.3%</div>
+                        <div class="stat-label">Pass Rate</div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill danger" style="width: 33.33333333333333%"></div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>✅ Quality Gates</h3>
+                <div class="stat-grid">
+                    <div class="stat">
+                        <div class="stat-value success">5</div>
+                        <div class="stat-label">Passed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value danger">10</div>
+                        <div class="stat-label">Failed</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <h2 class="section-title">🚦 Quality Gate Results</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>🐛 Bug Gate</h3>
+                <div class="stat-grid">
+                    <div class="stat">
+                        <div class="stat-value success">12</div>
+                        <div class="stat-label">Passed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value danger">3</div>
+                        <div class="stat-label">Failed</div>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; color: var(--text-muted);">Pass Rate: <strong class="success">80.0%</strong></p>
+                <div class="progress-bar">
+                    <div class="progress-fill success" style="width: 80.0%"></div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>🔒 Vulnerability Gate</h3>
+                <div class="stat-grid">
+                    <div class="stat">
+                        <div class="stat-value success">7</div>
+                        <div class="stat-label">Passed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value danger">8</div>
+                        <div class="stat-label">Failed</div>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; color: var(--text-muted);">Pass Rate: <strong class="danger">46.7%</strong></p>
+                <div class="progress-bar">
+                    <div class="progress-fill danger" style="width: 46.666666666666664%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <h2 class="section-title">📈 Code Quality Metrics</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>🔄 Cyclomatic Complexity</h3>
+                <div class="stat-grid">
+                    <div class="stat">
+                        <div class="stat-value">3.7</div>
+                        <div class="stat-label">Average</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">11</div>
+                        <div class="stat-label">Maximum</div>
+                    </div>
+                </div>
+                <p style="margin-top: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">
+                    Threshold: 15 (higher indicates more complex code)
+                </p>
+            </div>
+            
+            <div class="card">
+                <h3>📐 Nesting Depth</h3>
+                <div class="stat-grid">
+                    <div class="stat">
+                        <div class="stat-value">2.3</div>
+                        <div class="stat-label">Average</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">10</div>
+                        <div class="stat-label">Maximum</div>
+                    </div>
+                </div>
+                <p style="margin-top: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">
+                    Threshold: 4 (deeper nesting = harder to maintain)
+                </p>
+            </div>
+            
+            <div class="card">
+                <h3>📏 Function Length</h3>
+                <div class="stat-grid">
+                    <div class="stat">
+                        <div class="stat-value">10</div>
+                        <div class="stat-label">Avg Lines</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">27</div>
+                        <div class="stat-label">Max Lines</div>
+                    </div>
+                </div>
+                <p style="margin-top: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">
+                    Threshold: 100 lines per function
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <h2 class="section-title">🔐 Security Vulnerabilities</h2>
+        <div class="card">
+            <h3>⚠️ Detected Vulnerability Types</h3>
+            <p style="margin-bottom: 1rem; color: var(--text-muted);">
+                Total files with vulnerabilities: <strong class="danger">13</strong>
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Vulnerability Type</th>
+                        <th>Files Affected</th>
+                        <th>Recommended Fix</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+        <tr>
+            <td>SQL Injection</td>
+            <td><span class="badge badge-fail">3 files</span></td>
+            <td style="color: var(--text-muted); font-size: 0.9rem;">Use parameterized queries</td>
+        </tr>
+        
+        <tr>
+            <td>Eval/Exec Usage</td>
+            <td><span class="badge badge-fail">3 files</span></td>
+            <td style="color: var(--text-muted); font-size: 0.9rem;">Avoid dynamic code execution</td>
+        </tr>
+        
+        <tr>
+            <td>Hardcoded Secrets</td>
+            <td><span class="badge badge-fail">3 files</span></td>
+            <td style="color: var(--text-muted); font-size: 0.9rem;">Use environment variables</td>
+        </tr>
+        
+        <tr>
+            <td>Command Injection</td>
+            <td><span class="badge badge-fail">2 files</span></td>
+            <td style="color: var(--text-muted); font-size: 0.9rem;">Avoid shell=True and os.system()</td>
+        </tr>
+        
+        <tr>
+            <td>Pickle Deserialize</td>
+            <td><span class="badge badge-fail">2 files</span></td>
+            <td style="color: var(--text-muted); font-size: 0.9rem;">Use safer alternatives like JSON</td>
+        </tr>
+        
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+    <section class="section">
+        <h2 class="section-title">⚙️ System Configuration</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>🐛 Bug Gate Configuration</h3>
+                <p><strong>Activation Function:</strong> RELU</p>
+                <p><strong>Trained Accuracy:</strong> 100.0%</p>
+                <p><strong>Trained Specificity:</strong> 100.0%</p>
+                <div class="confusion-matrix" style="margin-top: 1rem;">
+                    <div class="cm-cell cm-tn">TN: 12</div>
+                    <div class="cm-cell cm-fp">FP: 0</div>
+                    <div class="cm-cell cm-fn">FN: 0</div>
+                    <div class="cm-cell cm-tp">TP: 3</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>🔒 Vulnerability Gate Configuration</h3>
+                <p><strong>Activation Function:</strong> RELU</p>
+                <p><strong>Trained Accuracy:</strong> 100.0%</p>
+                <p><strong>Trained Specificity:</strong> 100.0%</p>
+                <div class="confusion-matrix" style="margin-top: 1rem;">
+                    <div class="cm-cell cm-tn">TN: 7</div>
+                    <div class="cm-cell cm-fp">FP: 0</div>
+                    <div class="cm-cell cm-fn">FN: 0</div>
+                    <div class="cm-cell cm-tp">TP: 8</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <h2 class="section-title">📋 File-by-File Results</h2>
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Filename</th>
+                        <th>Bug Gate</th>
+                        <th>Vulnerability Gate</th>
+                        <th>Overall</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+        <tr>
+            <td style="font-family: monospace;">sample_002_complex.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace;">sample_003_sql_injection.py</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace;">sample_004_secrets.py</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace;">sample_005_eval.py</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace;">sample_007_os_command.py</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace;">sample_009_pickle_vuln.py</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace;">sample_010_both_issues.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace;">sample_012_high_nesting.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace;">sample_013_sql_format.py</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace;">sample_015_multiple_vulns.py</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace;">sample_001_clean.py</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace;">sample_006_clean_utils.py</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace;">sample_008_moderate_complexity.py</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace;">sample_011_clean_class.py</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace;">sample_014_clean_math.py</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+        </tr>
+        
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+        
+        <footer class="footer">
+            <p>Generated by Multi-Agent Code Quality System</p>
+            <p>Optimizing for Specificity with Deep Learning-Inspired Architecture</p>
+        </footer>
+    </div>
+</body>
+</html>

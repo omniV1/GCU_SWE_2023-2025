@@ -1,0 +1,704 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Quality Analysis Report</title>
+    <style>
+        :root {
+            --primary: #e94560;
+            --secondary: #0f3460;
+            --success: #00d9a5;
+            --danger: #e94560;
+            --bg-dark: #1a1a2e;
+            --bg-card: #16213e;
+            --text: #eaeaea;
+            --text-muted: #a0a0a0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0f0f23 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 15px;
+            border: 1px solid var(--secondary);
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, var(--primary), #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .header .subtitle { color: var(--text-muted); font-size: 1.1rem; }
+        .header .timestamp { margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--secondary);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.2);
+        }
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        .stat {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(15, 52, 96, 0.5);
+            border-radius: 8px;
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .stat-value.success { color: var(--success); }
+        .stat-value.danger { color: var(--danger); }
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.3rem;
+        }
+        .progress-bar {
+            height: 12px;
+            background: var(--secondary);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 6px;
+        }
+        .progress-fill.success { background: linear-gradient(90deg, var(--success), #00ffcc); }
+        .progress-fill.warning { background: linear-gradient(90deg, #ffc107, #ffeb3b); }
+        .progress-fill.danger { background: linear-gradient(90deg, var(--danger), #ff6b9d); }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--secondary);
+        }
+        th {
+            background: var(--secondary);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        tr:hover { background: rgba(15, 52, 96, 0.3); }
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .badge-pass {
+            background: rgba(0, 217, 165, 0.2);
+            color: var(--success);
+        }
+        .badge-fail {
+            background: rgba(233, 69, 96, 0.2);
+            color: var(--danger);
+        }
+        .section { margin-bottom: 2rem; }
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Code Quality Analysis Report</h1>
+            <p class="subtitle">Multi-Agent Quality Gate System - GCU Coursework Analysis</p>
+            <p class="timestamp">Generated: 2026-01-29 18:53:22</p>
+        </header>
+        
+    <section class="section">
+        <h2 class="section-title">Overview</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Files Analyzed</h3>
+                <div class="stat-grid">
+                    <div class="stat">
+                        <div class="stat-value">475</div>
+                        <div class="stat-label">Total Files</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value warning">79.2%</div>
+                        <div class="stat-label">Pass Rate</div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill warning" style="width: 79.15789473684211%"></div>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Quality Gates</h3>
+                <div class="stat-grid">
+                    <div class="stat">
+                        <div class="stat-value success">376</div>
+                        <div class="stat-label">Passed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value danger">99</div>
+                        <div class="stat-label">Failed</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <h2 class="section-title">Quality Gate Results</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Bug Gate</h3>
+                <div class="stat-grid">
+                    <div class="stat">
+                        <div class="stat-value success">393</div>
+                        <div class="stat-label">Passed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value danger">82</div>
+                        <div class="stat-label">Failed</div>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; color: var(--text-muted);">Pass Rate: <strong>82.7%</strong></p>
+                <div class="progress-bar">
+                    <div class="progress-fill success" style="width: 82.73684210526315%"></div>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Vulnerability Gate</h3>
+                <div class="stat-grid">
+                    <div class="stat">
+                        <div class="stat-value success">450</div>
+                        <div class="stat-label">Passed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value danger">25</div>
+                        <div class="stat-label">Failed</div>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; color: var(--text-muted);">Pass Rate: <strong>94.7%</strong></p>
+                <div class="progress-bar">
+                    <div class="progress-fill success" style="width: 94.73684210526315%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <h2 class="section-title">Code Quality Metrics</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Cyclomatic Complexity</h3>
+                <div class="stat-grid">
+                    <div class="stat">
+                        <div class="stat-value">4.8</div>
+                        <div class="stat-label">Average</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">60</div>
+                        <div class="stat-label">Maximum</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Nesting Depth</h3>
+                <div class="stat-grid">
+                    <div class="stat">
+                        <div class="stat-value">1.6</div>
+                        <div class="stat-label">Average</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">11</div>
+                        <div class="stat-label">Maximum</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Function Length</h3>
+                <div class="stat-grid">
+                    <div class="stat">
+                        <div class="stat-value">49</div>
+                        <div class="stat-label">Avg Lines</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">637</div>
+                        <div class="stat-label">Max Lines</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <h2 class="section-title">Security Vulnerabilities</h2>
+        <div class="card">
+            <h3>Detected Vulnerability Types</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Vulnerability Type</th>
+                        <th>Files Affected</th>
+                        <th>Recommended Fix</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+        <tr>
+            <td>SQL Injection</td>
+            <td><span class="badge badge-fail">6 files</span></td>
+            <td style="color: var(--text-muted);">Use parameterized queries</td>
+        </tr>
+        
+        <tr>
+            <td>Eval/Exec Usage</td>
+            <td><span class="badge badge-fail">14 files</span></td>
+            <td style="color: var(--text-muted);">Avoid dynamic code execution</td>
+        </tr>
+        
+        <tr>
+            <td>Hardcoded Secrets</td>
+            <td><span class="badge badge-fail">6 files</span></td>
+            <td style="color: var(--text-muted);">Use environment variables</td>
+        </tr>
+        
+        <tr>
+            <td>Command Injection</td>
+            <td><span class="badge badge-fail">7 files</span></td>
+            <td style="color: var(--text-muted);">Avoid shell=True and os.system()</td>
+        </tr>
+        
+        <tr>
+            <td>Pickle Deserialize</td>
+            <td><span class="badge badge-fail">3 files</span></td>
+            <td style="color: var(--text-muted);">Use safer alternatives like JSON</td>
+        </tr>
+        
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+    <section class="section">
+        <h2 class="section-title">File-by-File Results (Top 50)</h2>
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Filename</th>
+                        <th>Bug Gate</th>
+                        <th>Vulnerability Gate</th>
+                        <th>Overall</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">aero_buildup.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">airfoil.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">airfoil_families.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">airplane.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">airplane.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">analyze.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">app.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">app.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">app.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">array.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">avl.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">batch_analyze.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">beams.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">black_box.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">body_euler.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">calculus.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">carpet_plot_utils.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">common.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">common_point_mass.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">compute_airfoil_quality.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">contour.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">core.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">costs.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">data_generators.py</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">day4.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">demo.py</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">determine_type.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">field_lengths.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">fitting.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">flowfield.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">formatting.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">functionalapproach.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">fuselage.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">fuselage_vspscript_generator.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">gas.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">generate_diagrams.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">inspect_tools.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">integrate.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">integrate_discrete.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">interpolate.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">interpolation_unstructured.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">kulfan_airfoil.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">lifting_line.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">linalg.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">linalg_top_level.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">linear_potential_flow.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">linear_strength_line_singularities.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">mass_properties.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">model_pytorch.py</td>
+            <td><span class="badge badge-pass">PASS</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+        <tr>
+            <td style="font-family: monospace; max-width: 300px; overflow: hidden; text-overflow: ellipsis;">mses.py</td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+            <td><span class="badge badge-fail">FAIL</span></td>
+        </tr>
+        
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+        <footer class="footer">
+            <p>Generated by Multi-Agent Code Quality System</p>
+            <p>Optimizing for Specificity with Deep Learning-Inspired Architecture</p>
+        </footer>
+    </div>
+</body>
+</html>

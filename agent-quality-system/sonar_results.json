@@ -1,0 +1,378 @@
+{
+  "timestamp": "2026-01-29T20:22:29.637099",
+  "base_directory": "/run/media/omniv/T7/GCU_SWE_2023-2025",
+  "total_projects": 19,
+  "successful_scans": 9,
+  "results": [
+    {
+      "project_name": "SummerPractice",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/SummerPractice",
+      "error": "Scan failed"
+    },
+    {
+      "project_name": "AIT-104-Data-mining-machine-learning",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/AIT-104-Data-mining-machine-learning",
+      "language": "python",
+      "sonarqube_key": "ait-104-data-mining-machine-learning",
+      "total_issues": 279,
+      "bugs": 4,
+      "vulnerabilities": 0,
+      "code_smells": 275,
+      "gate_status": {
+        "sonarqube_status": "OK",
+        "bug_gate": "FAIL",
+        "vulnerability_gate": "PASS",
+        "overall": "FAIL"
+      },
+      "issues_detail": {
+        "bugs": [
+          {
+            "rule": "ipython:S6663",
+            "severity": "MAJOR",
+            "message": "Make sure this object defines an `__index__` method."
+          },
+          {
+            "rule": "ipython:S6663",
+            "severity": "MAJOR",
+            "message": "Make sure this object defines an `__index__` method."
+          },
+          {
+            "rule": "ipython:S6663",
+            "severity": "MAJOR",
+            "message": "Make sure this object defines an `__index__` method."
+          },
+          {
+            "rule": "ipython:S6663",
+            "severity": "MAJOR",
+            "message": "Make sure this object defines an `__index__` method."
+          }
+        ],
+        "vulnerabilities": []
+      }
+    },
+    {
+      "project_name": "CST-150-C#1",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/CST-150-C#1",
+      "error": "Scan failed"
+    },
+    {
+      "project_name": "CST-201-algorithims-data-structures",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/CST-201-algorithims-data-structures",
+      "language": "cs",
+      "sonarqube_key": "cst-201-algorithims-data-structures",
+      "total_issues": 0,
+      "bugs": 0,
+      "vulnerabilities": 0,
+      "code_smells": 0,
+      "gate_status": {
+        "sonarqube_status": "OK",
+        "bug_gate": "PASS",
+        "vulnerability_gate": "PASS",
+        "overall": "PASS"
+      },
+      "issues_detail": {
+        "bugs": [],
+        "vulnerabilities": []
+      }
+    },
+    {
+      "project_name": "CST-239-Java2",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/CST-239-Java2",
+      "error": "Scan failed"
+    },
+    {
+      "project_name": "CST-250-C#2",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/CST-250-C#2",
+      "error": "Scan failed"
+    },
+    {
+      "project_name": "CST-321-Operating-system-fundamentals",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/CST-321-Operating-system-fundamentals",
+      "language": "c",
+      "sonarqube_key": "cst-321-operating-system-fundamentals",
+      "total_issues": 0,
+      "bugs": 0,
+      "vulnerabilities": 0,
+      "code_smells": 0,
+      "gate_status": {
+        "sonarqube_status": "OK",
+        "bug_gate": "PASS",
+        "vulnerability_gate": "PASS",
+        "overall": "PASS"
+      },
+      "issues_detail": {
+        "bugs": [],
+        "vulnerabilities": []
+      }
+    },
+    {
+      "project_name": "CST-326-Written-Verbal-Communication-SWE",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/CST-326-Written-Verbal-Communication-SWE",
+      "language": "cs",
+      "sonarqube_key": "cst-326-written-verbal-communication-swe",
+      "total_issues": 13,
+      "bugs": 0,
+      "vulnerabilities": 0,
+      "code_smells": 13,
+      "gate_status": {
+        "sonarqube_status": "OK",
+        "bug_gate": "PASS",
+        "vulnerability_gate": "PASS",
+        "overall": "PASS"
+      },
+      "issues_detail": {
+        "bugs": [],
+        "vulnerabilities": []
+      }
+    },
+    {
+      "project_name": "CST-339-Java3",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/CST-339-Java3",
+      "error": "Scan failed"
+    },
+    {
+      "project_name": "CST-345-Database-Design",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/CST-345-Database-Design",
+      "error": "Scan failed"
+    },
+    {
+      "project_name": "CST-350-C#3",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/CST-350-C#3",
+      "error": "Scan failed"
+    },
+    {
+      "project_name": "CST-391-Web_dev",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/CST-391-Web_dev",
+      "language": "js",
+      "sonarqube_key": "cst-391-web_dev",
+      "total_issues": 377,
+      "bugs": 9,
+      "vulnerabilities": 0,
+      "code_smells": 368,
+      "gate_status": {
+        "sonarqube_status": "OK",
+        "bug_gate": "FAIL",
+        "vulnerability_gate": "PASS",
+        "overall": "FAIL"
+      },
+      "issues_detail": {
+        "bugs": [
+          {
+            "rule": "Web:MouseEventWithoutKeyboardEquivalentCheck",
+            "severity": "MINOR",
+            "message": "Add a 'onKeyPress|onKeyDown|onKeyUp' attribute to this <mat-card-content> tag."
+          },
+          {
+            "rule": "typescript:S1082",
+            "severity": "MINOR",
+            "message": "Visible, non-interactive elements with click handlers must have at least one keyboard listener."
+          },
+          {
+            "rule": "typescript:S1082",
+            "severity": "MINOR",
+            "message": "Visible, non-interactive elements with click handlers must have at least one keyboard listener."
+          },
+          {
+            "rule": "typescript:S5256",
+            "severity": "MAJOR",
+            "message": "Add a valid header row or column to this \"<table>\"."
+          },
+          {
+            "rule": "Web:S5256",
+            "severity": "MAJOR",
+            "message": "Add \"<th>\" headers to this \"<table>\"."
+          },
+          {
+            "rule": "Web:S5256",
+            "severity": "MAJOR",
+            "message": "Add \"<th>\" headers to this \"<table>\"."
+          },
+          {
+            "rule": "css:S4649",
+            "severity": "MAJOR",
+            "message": "Unexpected missing generic font family"
+          },
+          {
+            "rule": "Web:S5256",
+            "severity": "MAJOR",
+            "message": "Add \"<th>\" headers to this \"<table>\"."
+          },
+          {
+            "rule": "Web:S5256",
+            "severity": "MAJOR",
+            "message": "Add \"<th>\" headers to this \"<table>\"."
+          }
+        ],
+        "vulnerabilities": []
+      }
+    },
+    {
+      "project_name": "CST-407-Application-Security-Foundations",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/CST-407-Application-Security-Foundations",
+      "error": "Scan failed"
+    },
+    {
+      "project_name": "2025-advent-of-code",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/2025-advent-of-code",
+      "language": "python",
+      "sonarqube_key": "2025-advent-of-code",
+      "total_issues": 11,
+      "bugs": 3,
+      "vulnerabilities": 0,
+      "code_smells": 8,
+      "gate_status": {
+        "sonarqube_status": "OK",
+        "bug_gate": "FAIL",
+        "vulnerability_gate": "PASS",
+        "overall": "FAIL"
+      },
+      "issues_detail": {
+        "bugs": [
+          {
+            "rule": "python:S1763",
+            "severity": "MAJOR",
+            "message": "Delete this unreachable code or refactor the code to make it reachable."
+          },
+          {
+            "rule": "python:S1763",
+            "severity": "MAJOR",
+            "message": "Delete this unreachable code or refactor the code to make it reachable."
+          },
+          {
+            "rule": "python:S1763",
+            "severity": "MAJOR",
+            "message": "Delete this unreachable code or refactor the code to make it reachable."
+          }
+        ],
+        "vulnerabilities": []
+      }
+    },
+    {
+      "project_name": "CST-323-PairPrograming",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/CST-323-PairPrograming",
+      "error": "Scan failed"
+    },
+    {
+      "project_name": "agent-quality-system",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/agent-quality-system",
+      "language": "python",
+      "sonarqube_key": "agent-quality-system",
+      "total_issues": 86,
+      "bugs": 0,
+      "vulnerabilities": 0,
+      "code_smells": 86,
+      "gate_status": {
+        "sonarqube_status": "OK",
+        "bug_gate": "PASS",
+        "vulnerability_gate": "PASS",
+        "overall": "PASS"
+      },
+      "issues_detail": {
+        "bugs": [],
+        "vulnerabilities": []
+      }
+    },
+    {
+      "project_name": "CST-323-Cloud-Computing",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/CST-323-Cloud-Computing",
+      "error": "Scan failed"
+    },
+    {
+      "project_name": "AIT-204-Deep-Learning",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/AIT-204-Deep-Learning",
+      "language": "python",
+      "sonarqube_key": "ait-204-deep-learning",
+      "total_issues": 69,
+      "bugs": 0,
+      "vulnerabilities": 0,
+      "code_smells": 69,
+      "gate_status": {
+        "sonarqube_status": "OK",
+        "bug_gate": "PASS",
+        "vulnerability_gate": "PASS",
+        "overall": "PASS"
+      },
+      "issues_detail": {
+        "bugs": [],
+        "vulnerabilities": []
+      }
+    },
+    {
+      "project_name": "CST-180-Python",
+      "project_path": "/run/media/omniv/T7/GCU_SWE_2023-2025/CST-180-Python",
+      "language": "python",
+      "sonarqube_key": "cst-180-python",
+      "total_issues": 5635,
+      "bugs": 215,
+      "vulnerabilities": 1,
+      "code_smells": 5419,
+      "gate_status": {
+        "sonarqube_status": "OK",
+        "bug_gate": "FAIL",
+        "vulnerability_gate": "FAIL",
+        "overall": "FAIL"
+      },
+      "issues_detail": {
+        "bugs": [
+          {
+            "rule": "python:S1244",
+            "severity": "MAJOR",
+            "message": "Do not perform equality checks with floating point values."
+          },
+          {
+            "rule": "python:S1244",
+            "severity": "MAJOR",
+            "message": "Do not perform equality checks with floating point values."
+          },
+          {
+            "rule": "python:S1244",
+            "severity": "MAJOR",
+            "message": "Do not perform equality checks with floating point values."
+          },
+          {
+            "rule": "python:S1244",
+            "severity": "MAJOR",
+            "message": "Do not perform equality checks with floating point values."
+          },
+          {
+            "rule": "python:S1244",
+            "severity": "MAJOR",
+            "message": "Do not perform equality checks with floating point values."
+          },
+          {
+            "rule": "python:S1763",
+            "severity": "MAJOR",
+            "message": "Delete this unreachable code or refactor the code to make it reachable."
+          },
+          {
+            "rule": "python:S1244",
+            "severity": "MAJOR",
+            "message": "Do not perform equality checks with floating point values."
+          },
+          {
+            "rule": "python:S1244",
+            "severity": "MAJOR",
+            "message": "Do not perform equality checks with floating point values."
+          },
+          {
+            "rule": "python:S1244",
+            "severity": "MAJOR",
+            "message": "Do not perform equality checks with floating point values."
+          },
+          {
+            "rule": "python:S905",
+            "severity": "MAJOR",
+            "message": "Remove or refactor this statement; it has no side effects."
+          }
+        ],
+        "vulnerabilities": [
+          {
+            "rule": "secrets:S6334",
+            "severity": "BLOCKER",
+            "message": "Make sure this Google API Key is either secured or revoked, changed, and removed from the code."
+          }
+        ]
+      }
+    }
+  ]
+}
