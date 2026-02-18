@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AIT-110-Stat-Learning-Theory/class notes/Jan 16 2026.md",
+                "file": "CST-323-Cloud-Computing/Topic-3/CST-323-Activity-4b-Cloud-Computing-Handout.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Jan 16 2026"
+              "title": "CST-323-Activity-4b-Cloud-Computing-Handout"
             }
           }
         ]
@@ -185,8 +185,13 @@
   },
   "active": "4684eadad8e47495",
   "lastOpenFiles": [
-    "AIT-204-Deep-Learning/docs/Activity_Week2_Regularization_Report.md",
+    "CST-323-Cloud-Computing/Topic-3/CST-323-Activity-4b-Cloud-Computing-Handout.pdf",
     "CST-323-Cloud-Computing/Homework/activity3.md",
+    "CST-323-Cloud-Computing/Topic-3/CST-323-Activity-4b-Cloud-Computing-Handout.md",
+    "Pasted image 20260212111444.png",
+    "CST-323-Cloud-Computing/Homework/activity3.pdf",
+    "AIT-204-Deep-Learning/docs/Activity_Week2_Regularization_Report.md",
+    "AIT-110-Stat-Learning-Theory/class notes/Jan 16 2026.md",
     "CST-323-Cloud-Computing/Homework/activity3.md.tmp.21100.1769549610598",
     "CST-323-Cloud-Computing/Homework/activity3.md.tmp.21100.1769549418496",
     "CST-323-Cloud-Computing/Homework/activity3.md.tmp.21100.1769549404682",
@@ -201,13 +206,10 @@
     "CST-323-Cloud-Computing/Homework/activity3-photos/deployment-successful.png",
     "CST-323-Cloud-Computing/Homework/activity3-photos/azcli-login-success.png",
     "CST-323-Cloud-Computing/Homework/activity3.md.tmp.21100.1769548247026",
-    "CST-323-Cloud-Computing/Homework/activity3.md.tmp.21100.1769548237653",
     "CST-323-Cloud-Computing/Homework/activity3-photos/application-settings-azureinfo.png",
     "CST-323-Cloud-Computing/Homework/activity3-photos/appserviceplan-azureinfo.png",
     "CST-323-Cloud-Computing/Homework/activity3-photos/resource-group-azureinfo.png",
     "CST-323-Cloud-Computing/Homework/activity3-photos/sqldb-azureservice-azureinfo.png",
-    "CST-323-Cloud-Computing/Homework/activity3-photos/webapp-deployed-azureinfo.png",
-    "AIT-110-Stat-Learning-Theory/class notes/Jan 16 2026.md",
     "AIT-204-Deep-Learning/class notes/Jan 14 2026.md",
     "AIT-204-Deep-Learning/code/topic-1/student_performance_activity/student-performance-activity/solution_reference/README.md",
     "AIT-204-Deep-Learning/code/topic-1/student_performance_activity/student-performance-activity/README.md",
@@ -228,7 +230,6 @@
     "AIT-104-Data-mining-machine-learning/Code Projects/Presentation_Script.md",
     "CST-407-Application-Security-Foundations/Assignments/eventsapp-milestone4-sql-injection.md",
     "CST-407-Application-Security-Foundations/Assignments/eventsapp-xss-sanitization.md",
-    "CST-407-Application-Security-Foundations/Assignments/eventsapp-milestone2.md",
-    "CST-180-Python/Zybook_notes/Topic 6.md"
+    "CST-407-Application-Security-Foundations/Assignments/eventsapp-milestone2.md"
   ]
 }
