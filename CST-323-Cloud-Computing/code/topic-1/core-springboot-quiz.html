@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Spring Boot - Focused Review</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            min-height: 100vh;
+            color: #e0e0e0;
+            padding: 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        header { text-align: center; padding: 30px 0; border-bottom: 2px solid #e74c3c; margin-bottom: 30px; }
+        h1 { color: #e74c3c; font-size: 2rem; margin-bottom: 10px; }
+        .subtitle { color: #a0a0a0; }
+        .card { background: #2d2d44; border-radius: 15px; padding: 30px; margin-bottom: 20px; }
+        .timer-bar { background: #2d2d44; border-radius: 10px; padding: 15px 20px; margin-bottom: 25px; display: flex; justify-content: space-between; }
+        .timer { font-size: 1.3rem; color: #e74c3c; font-weight: bold; }
+        .progress-bar { width: 100%; height: 8px; background: #2d2d44; border-radius: 4px; margin-bottom: 25px; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #e74c3c, #f39c12); border-radius: 4px; width: 0%; }
+        .start-screen { text-align: center; padding: 40px; }
+        .start-screen h2 { color: #e74c3c; font-size: 1.8rem; margin-bottom: 20px; }
+        .start-info { color: #a0a0a0; margin-bottom: 30px; line-height: 1.8; }
+        .focus-list { text-align: left; background: #1a1a2e; padding: 25px; border-radius: 10px; margin: 30px 0; }
+        .focus-list h3 { color: #f39c12; margin-bottom: 15px; }
+        .focus-list ul { list-style: none; }
+        .focus-list li { padding: 10px 0; border-bottom: 1px solid #2d2d44; color: #c0c0c0; }
+        .focus-list li::before { content: "!"; color: #e74c3c; margin-right: 12px; font-weight: bold; }
+        .btn { padding: 12px 30px; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; font-weight: 600; background: linear-gradient(135deg, #e74c3c, #f39c12); color: white; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4); }
+        .question-text { font-size: 1.3rem; line-height: 1.6; margin-bottom: 25px; }
+        .code-block { background: #1a1a2e; border-radius: 8px; padding: 15px; margin: 15px 0; font-family: monospace; border-left: 4px solid #e74c3c; white-space: pre-wrap; font-size: 0.9rem; }
+        .options { display: flex; flex-direction: column; gap: 12px; }
+        .option { background: #1a1a2e; border: 2px solid #3d3d5c; border-radius: 10px; padding: 15px 20px; cursor: pointer; display: flex; align-items: center; gap: 15px; }
+        .option:hover { border-color: #e74c3c; background: #252540; }
+        .option.selected { border-color: #e74c3c; background: rgba(231, 76, 60, 0.2); }
+        .option.correct { border-color: #00b894; background: rgba(0, 184, 148, 0.2); }
+        .option.incorrect { border-color: #e74c3c; background: rgba(231, 76, 60, 0.2); }
+        .option-letter { width: 35px; height: 35px; border-radius: 50%; background: #3d3d5c; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .option.selected .option-letter { background: #e74c3c; }
+        .option.correct .option-letter { background: #00b894; }
+        .option.incorrect .option-letter { background: #e74c3c; }
+        .feedback { margin-top: 20px; padding: 15px; border-radius: 10px; display: none; }
+        .feedback.show { display: block; }
+        .feedback.correct { background: rgba(0, 184, 148, 0.15); border: 1px solid #00b894; }
+        .feedback.incorrect { background: rgba(231, 76, 60, 0.15); border: 1px solid #e74c3c; }
+        .explanation { margin-top: 10px; color: #b0b0b0; font-size: 0.95rem; line-height: 1.5; }
+        .btn-container { display: flex; justify-content: space-between; margin-top: 25px; }
+        .btn-secondary { background: transparent; border: 2px solid #3d3d5c; color: #a0a0a0; }
+        .btn-secondary:hover { border-color: #e74c3c; color: #e74c3c; }
+        .results { text-align: center; padding: 40px; }
+        .score-circle { width: 180px; height: 180px; border-radius: 50%; background: linear-gradient(135deg, #e74c3c, #f39c12); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 30px auto; }
+        .score-number { font-size: 3rem; font-weight: bold; color: white; }
+        .score-label { color: rgba(255,255,255,0.8); }
+        .tip-box { background: #1a1a2e; border-left: 4px solid #f39c12; padding: 20px; margin: 20px 0; text-align: left; border-radius: 0 10px 10px 0; }
+        .tip-box h4 { color: #f39c12; margin-bottom: 10px; }
+        .tip-box p { color: #b0b0b0; line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Core Spring Boot - Focused Review</h1>
+            <p class="subtitle">Strengthen your weakest area</p>
+        </header>
+
+        <div id="startScreen" class="card">
+            <div class="start-screen">
+                <h2>Let's Master Core Spring Boot!</h2>
+                <p class="start-info">
+                    You scored 50% on Core Spring Boot. This focused quiz will help solidify these concepts.<br>
+                    <strong>10 questions</strong> | <strong>~10 minutes</strong> | <strong>Detailed explanations</strong>
+                </p>
+                <div class="focus-list">
+                    <h3>Key Concepts to Review</h3>
+                    <ul>
+                        <li>@SpringBootApplication and its three combined annotations</li>
+                        <li>SpringApplication.run() and ApplicationContext</li>
+                        <li>Spring Boot Starters (web, data-jpa, thymeleaf, etc.)</li>
+                        <li>Auto-configuration and how it works</li>
+                        <li>DevTools and development features</li>
+                        <li>Embedded servers (Tomcat, Jetty)</li>
+                    </ul>
+                </div>
+                <button class="btn" onclick="startQuiz()">Start Focused Review</button>
+            </div>
+        </div>
+
+        <div id="quizHeader" style="display:none;">
+            <div class="timer-bar">
+                <div class="timer" id="timer">10:00</div>
+                <div id="progress">1 of 10</div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+
+        <div id="questionArea"></div>
+
+        <div id="resultsScreen" class="card" style="display:none;">
+            <div class="results">
+                <h2>Focused Review Complete!</h2>
+                <div class="score-circle">
+                    <div class="score-number" id="finalScore">0%</div>
+                    <div class="score-label">Score</div>
+                </div>
+                <p id="resultMessage" style="font-size:1.3rem;margin:20px 0;"></p>
+                <p id="resultDetails" style="color:#a0a0a0;margin-bottom:20px;"></p>
+                <div id="tipBox" class="tip-box"></div>
+                <button class="btn" onclick="location.reload()" style="margin-top:20px;">Try Again</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+const questions = [
+    {
+        question: "What THREE annotations does @SpringBootApplication combine?",
+        code: `@SpringBootApplication
+public class App {
+    public static void main(String[] args) {
+        SpringApplication.run(App.class, args);
+    }
+}`,
+        options: [
+            "@Configuration, @EnableAutoConfiguration, @ComponentScan",
+            "@Controller, @Service, @Repository",
+            "@Bean, @Component, @Autowired",
+            "@SpringBean, @AutoConfig, @Scan"
+        ],
+        correct: 0,
+        explanation: "@SpringBootApplication = @Configuration (Java-based config) + @EnableAutoConfiguration (auto-configure based on classpath) + @ComponentScan (find @Component classes in package)."
+    },
+    {
+        question: "What does @Configuration indicate about a class?",
+        options: [
+            "It's a REST controller",
+            "It's a source of bean definitions (replaces XML config)",
+            "It connects to a database",
+            "It enables logging"
+        ],
+        correct: 1,
+        explanation: "@Configuration marks a class as a source of bean definitions. Methods annotated with @Bean inside it create Spring-managed objects. It's the Java replacement for XML configuration."
+    },
+    {
+        question: "What does @EnableAutoConfiguration do?",
+        options: [
+            "Enables manual configuration only",
+            "Automatically configures Spring beans based on classpath dependencies",
+            "Disables all default configurations",
+            "Enables configuration through XML files"
+        ],
+        correct: 1,
+        explanation: "@EnableAutoConfiguration tells Spring Boot to automatically configure beans based on JAR dependencies. If spring-boot-starter-web is on the classpath, it auto-configures Tomcat, Spring MVC, etc."
+    },
+    {
+        question: "What does @ComponentScan do?",
+        options: [
+            "Scans for security vulnerabilities",
+            "Scans the package and sub-packages for @Component, @Service, @Controller, etc.",
+            "Scans for database tables",
+            "Scans for configuration files"
+        ],
+        correct: 1,
+        explanation: "@ComponentScan tells Spring where to look for components. By default, it scans the package where @SpringBootApplication is located and all sub-packages for stereotype annotations."
+    },
+    {
+        question: "What does SpringApplication.run() return?",
+        options: [
+            "void - it returns nothing",
+            "A String with the application name",
+            "An ApplicationContext (the Spring IoC container)",
+            "A boolean indicating success"
+        ],
+        correct: 2,
+        explanation: "SpringApplication.run() returns a ConfigurableApplicationContext - the Spring IoC container that holds all beans. This context manages the entire lifecycle of your application."
+    },
+    {
+        question: "What does spring-boot-starter-web include?",
+        code: `<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>`,
+        options: [
+            "Only Spring MVC",
+            "Spring MVC, embedded Tomcat, Jackson (JSON), and validation",
+            "Only an embedded web server",
+            "Database connectivity libraries"
+        ],
+        correct: 1,
+        explanation: "spring-boot-starter-web is a 'starter POM' that bundles: Spring MVC, embedded Tomcat server, Jackson for JSON serialization, Bean Validation, and other web essentials."
+    },
+    {
+        question: "What is the purpose of Spring Boot 'starters'?",
+        options: [
+            "To start the application faster",
+            "To provide pre-configured dependency bundles for common use cases",
+            "To generate starter code templates",
+            "To initialize the database"
+        ],
+        correct: 1,
+        explanation: "Starters are curated dependency bundles. Instead of manually adding 10+ dependencies for web development, you add one starter. They follow 'convention over configuration' philosophy."
+    },
+    {
+        question: "What does spring-boot-devtools provide?",
+        code: `<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+</dependency>`,
+        options: [
+            "Production deployment tools",
+            "Automatic restart on code changes and LiveReload support",
+            "Database development tools",
+            "Code generation utilities"
+        ],
+        correct: 1,
+        explanation: "DevTools provides: automatic application restart when files change, LiveReload for browser refresh, disabled caching for templates, and enhanced error pages. It's automatically disabled in production."
+    },
+    {
+        question: "Which embedded server does Spring Boot use by default with spring-boot-starter-web?",
+        options: [
+            "Jetty",
+            "Undertow",
+            "Tomcat",
+            "GlassFish"
+        ],
+        correct: 2,
+        explanation: "Spring Boot uses embedded Tomcat by default. You can switch to Jetty or Undertow by excluding Tomcat and adding the alternative server dependency. No external server installation needed!"
+    },
+    {
+        question: "What is 'auto-configuration' in Spring Boot?",
+        code: `// You add this dependency:
+spring-boot-starter-data-jpa
+
+// Spring Boot automatically creates:
+// - DataSource bean
+// - EntityManagerFactory bean
+// - TransactionManager bean`,
+        options: [
+            "Manually writing all configuration",
+            "Spring Boot automatically configuring beans based on what's on the classpath",
+            "Generating configuration files",
+            "Configuring only the main class"
+        ],
+        correct: 1,
+        explanation: "Auto-configuration examines your classpath and automatically creates beans you're likely to need. Add a database driver? Spring configures a DataSource. Add JPA? It configures EntityManager. You can override any auto-config."
+    }
+];
+
+let current = 0;
+let answers = [];
+let timerInterval;
+let timeLeft = 10 * 60;
+
+function startQuiz() {
+    document.getElementById('startScreen').style.display = 'none';
+    document.getElementById('quizHeader').style.display = 'block';
+    renderQuestion();
+    startTimer();
+}
+
+function renderQuestion() {
+    const q = questions[current];
+    const area = document.getElementById('questionArea');
+
+    let codeHtml = q.code ? `<pre class="code-block">${q.code}</pre>` : '';
+
+    area.innerHTML = `
+        <div class="card">
+            <div style="color:#e74c3c;font-size:0.9rem;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;">
+                Question ${current + 1} of ${questions.length}
+            </div>
+            <div class="question-text">${q.question}</div>
+            ${codeHtml}
+            <div class="options">
+                ${q.options.map((opt, i) => `
+                    <div class="option" onclick="selectAnswer(${i})" id="opt${i}">
+                        <div class="option-letter">${String.fromCharCode(65 + i)}</div>
+                        <div>${opt}</div>
+                    </div>
+                `).join('')}
+            </div>
+            <div class="feedback" id="feedback">
+                <div id="feedbackText"></div>
+                <div class="explanation">${q.explanation}</div>
+            </div>
+            <div class="btn-container">
+                <button class="btn btn-secondary" onclick="prev()" ${current === 0 ? 'disabled' : ''}>Previous</button>
+                <button class="btn" onclick="next()">${current === questions.length - 1 ? 'See Results' : 'Next'}</button>
+            </div>
+        </div>
+    `;
+
+    document.getElementById('progress').textContent = `${current + 1} of ${questions.length}`;
+    document.getElementById('progressFill').style.width = `${((current + 1) / questions.length) * 100}%`;
+
+    if (answers[current] !== undefined) {
+        showAnswer(answers[current]);
+    }
+}
+
+function selectAnswer(i) {
+    if (answers[current] !== undefined) return;
+    answers[current] = i;
+    showAnswer(i);
+}
+
+function showAnswer(selected) {
+    const q = questions[current];
+    const opts = document.querySelectorAll('.option');
+
+    opts.forEach((opt, i) => {
+        if (i === selected) {
+            opt.classList.add('selected');
+            opt.classList.add(i === q.correct ? 'correct' : 'incorrect');
+        }
+        if (i === q.correct) opt.classList.add('correct');
+    });
+
+    const feedback = document.getElementById('feedback');
+    const feedbackText = document.getElementById('feedbackText');
+    feedback.classList.add('show');
+    feedback.classList.add(selected === q.correct ? 'correct' : 'incorrect');
+    feedbackText.textContent = selected === q.correct ? '✓ Correct!' : `✗ Incorrect. The answer is ${String.fromCharCode(65 + q.correct)}.`;
+}
+
+function next() {
+    if (current < questions.length - 1) {
+        current++;
+        renderQuestion();
+    } else {
+        showResults();
+    }
+}
+
+function prev() {
+    if (current > 0) {
+        current--;
+        renderQuestion();
+    }
+}
+
+function startTimer() {
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        const m = Math.floor(timeLeft / 60);
+        const s = timeLeft % 60;
+        document.getElementById('timer').textContent = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            showResults();
+        }
+    }, 1000);
+}
+
+function showResults() {
+    clearInterval(timerInterval);
+
+    const correct = answers.filter((a, i) => a === questions[i].correct).length;
+    const pct = Math.round((correct / questions.length) * 100);
+
+    document.getElementById('quizHeader').style.display = 'none';
+    document.getElementById('questionArea').innerHTML = '';
+    document.getElementById('resultsScreen').style.display = 'block';
+    document.getElementById('finalScore').textContent = `${pct}%`;
+    document.getElementById('resultDetails').textContent = `You got ${correct} out of ${questions.length} correct.`;
+
+    let msg, tip;
+    if (pct >= 90) {
+        msg = "Excellent! You've mastered Core Spring Boot!";
+        tip = `<h4>You're Ready!</h4><p>You now understand the foundation of Spring Boot. Remember: @SpringBootApplication combines three annotations, starters bundle dependencies, and auto-configuration does the heavy lifting based on your classpath.</p>`;
+    } else if (pct >= 70) {
+        msg = "Good progress! Almost there.";
+        tip = `<h4>Key Reminder</h4><p><strong>@SpringBootApplication</strong> = @Configuration + @EnableAutoConfiguration + @ComponentScan.<br><br>Starters are dependency bundles. Auto-config creates beans based on what JARs are present.</p>`;
+    } else {
+        msg = "Keep practicing! Review the explanations.";
+        tip = `<h4>Study These Core Concepts</h4><p>1. <strong>@SpringBootApplication</strong> combines: @Configuration, @EnableAutoConfiguration, @ComponentScan<br><br>2. <strong>Starters</strong> bundle related dependencies (spring-boot-starter-web = MVC + Tomcat + Jackson)<br><br>3. <strong>Auto-configuration</strong> creates beans automatically based on classpath<br><br>4. <strong>DevTools</strong> enables auto-restart during development</p>`;
+    }
+
+    document.getElementById('resultMessage').textContent = msg;
+    document.getElementById('tipBox').innerHTML = tip;
+}
+</script>
+</body>
+</html>
