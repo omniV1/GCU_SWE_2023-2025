@@ -1,5 +1,5 @@
 ---
-title: "Activity 4 — Spring Boot + MySQL on AWS"
+title: Activity 5 — Spring Boot + MySQL on AWS
 course: CST-323
 instructor: Professor Sluiter
 author: Owen Lindsey
@@ -12,21 +12,43 @@ tags:
   - elastic-beanstalk
   - rds
 aliases:
-  - Activity 4
+  - Activity 5
 ---
 
-# Activity 4 — Spring Boot + MySQL on AWS Deployment
+<style>
+@media print {
+  body { font-size: 11px; line-height: 1.35; }
+  h1 { font-size: 22px; margin: 0.3em 0; }
+  h2 { font-size: 18px; margin: 0.3em 0; }
+  h3 { font-size: 15px; margin: 0.2em 0; }
+  h4 { font-size: 13px; margin: 0.2em 0; }
+  p, li, td, th, blockquote { font-size: 11px; line-height: 1.35; }
+  blockquote { margin: 0.3em 0; padding: 0.2em 0.6em; }
+  table { font-size: 10px; margin: 0.3em 0; }
+  th, td { padding: 2px 6px; }
+  img { max-height: 280px; width: auto; display: block; margin: 0.3em auto; }
+  pre, code { font-size: 10px; }
+  pre { margin: 0.3em 0; padding: 0.3em; }
+  hr { margin: 0.3em 0; }
+  ul, ol { margin: 0.3em 0; padding-left: 1.4em; }
+  .page-break { page-break-after: always; }
+  table { page-break-inside: avoid; }
+  img { page-break-inside: avoid; }
+}
+</style>
+
+# Activity 5 — Spring Boot + MySQL on AWS Deployment
 
 ## Orders4U AWS Cloud Deployment
 
 ---
 
-|                |                                                                                                                  |
-| -------------- | ---------------------------------------------------------------------------------------------------------------- |
-| **Author**     | Owen Lindsey                                                                                                     |
-| **Course**     | CST-323 Cloud Computing                                                                                          |
-| **Instructor** | Professor Sluiter                                                                                                |
-| **Date**       | 17 February 2026                                                                                                 |
+|                |                                                                                                             |
+| -------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Author**     | Owen Lindsey                                                                                                |
+| **Course**     | CST-323 Cloud Computing                                                                                     |
+| **Instructor** | Professor Sluiter                                                                                           |
+| **Date**       | 22 February 2026                                                                                            |
 | **Links**      | Application URLs<br><br>- **Production:** http://orders-env.eba-edxntuky.us-west-1.elasticbeanstalk.com<br> |
 
 ---
@@ -83,6 +105,8 @@ An AWS account was created using the standard Free Tier option. The Free Tier pr
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### 2.2 RDS Instance Configuration
 
 > **Caption:** The Configuration tab of the `cloud-computing` RDS instance showing MySQL 8.4.7 engine, db.t4g.micro class (2 vCPU, 1 GB RAM), 20 GiB General Purpose SSD (gp2) storage with encryption enabled, and Enhanced Monitoring turned on. RDS Extended Support is disabled to avoid additional charges.
@@ -114,6 +138,8 @@ An AWS account was created using the standard Free Tier option. The Free Tier pr
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### 2.3 Connectivity & Security
 
 > **Caption:** The Connectivity & Security tab showing the RDS endpoint, connection instructions, security group rules, and replication status. Three security group rules are configured: an EC2 Security Group inbound rule, a CIDR/IP inbound rule allowing the developer's IP (174.73.233.95/32) for MySQL Workbench access, and an outbound rule allowing all traffic.
@@ -142,6 +168,8 @@ An AWS account was created using the standard Free Tier option. The Free Tier pr
 > **Note:** The inbound CIDR/IP rule restricts MySQL access to the developer's laptop IP. In production, this should be further restricted to only the Elastic Beanstalk security group.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### 2.4 RDS Logs & Events
 
@@ -191,6 +219,8 @@ An AWS account was created using the standard Free Tier option. The Free Tier pr
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### 3.2 Schema & Data Verification
 
 > **Caption:** MySQL Workbench connected to the RDS instance showing the `ordersapp` schema with ORDERS and USERS tables. A `SELECT * FROM ordersapp.ORDERS` query returns 10 rows of product data including order numbers, product names, prices, and quantities — confirming the DDL/DML scripts were successfully imported into the AWS database.
@@ -237,6 +267,8 @@ An AWS account was created using the standard Free Tier option. The Free Tier pr
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### 3.3 USERS Table — Spring Security Authentication
 
 > **Caption:** MySQL Workbench showing the `ordersapp.USERS` table with two registered users. Passwords are stored as BCrypt hashes (`$2a$10$...`), confirming the `BCryptPasswordEncoder` in `SecurityConfig.java` is hashing credentials before persisting to RDS. The `admin` user has `ROLE_ADMIN` and the `owen` user has `ROLE_USER`, both with `enabled = 1`.
@@ -281,6 +313,8 @@ An AWS account was created using the standard Free Tier option. The Free Tier pr
 | `mysql-connector-j`              | MySQL JDBC driver (runtime)          |
 | `spring-boot-starter-security`   | Authentication and authorization     |
 | `spring-boot-starter-thymeleaf`  | Server-side HTML templating          |
+
+<div style="page-break-after: always;"></div>
 
 ### 4.2 application.properties — Environment Variable Strategy
 
@@ -346,6 +380,8 @@ mvn clean package -DskipTests
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### 5.2 Environment Overview & Events
 
 > **Caption:** The Orders-env environment overview showing Health "Ok," Environment ID `e-2l2xww2mnz`, and the Corretto 25 platform. The Events tab shows a successful deployment timeline: the JAR was detected at 17:09:58, the Procfile generated at 17:09:59, instance deployment completed at 17:10:05, and the environment health transitioned to "Ok" at 17:11:39 — a total deployment time of about 51 seconds.
@@ -366,6 +402,8 @@ mvn clean package -DskipTests
 | 17:11:39 | Environment health transitioned from Info to Ok (took 51 seconds)        |
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### 5.3 Environment Configuration & Properties
 
@@ -410,6 +448,8 @@ mvn clean package -DskipTests
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### 5.4 Application Log Stream
 
 > **Caption:** CloudWatch log stream output from `/var/log/web.stdout.log` showing application runtime logs. The stack trace visible here is from an early deployment that encountered a `BadSqlGrammarException` related to the USERS table query — this was resolved by ensuring the DDL script was properly imported into the RDS schema. Logs like these were essential for diagnosing connectivity and schema issues during deployment.
@@ -436,6 +476,8 @@ mvn clean package -DskipTests
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### 6.2 User Registration
 
 > **Caption:** The "Create Account" page on the live AWS deployment. New users can register with a username, password, and password confirmation. Input validation is enforced (no special characters, minimum 8-character password, confirmation must match). This demonstrates the full registration flow working against the RDS-hosted USERS table.
@@ -444,9 +486,11 @@ mvn clean package -DskipTests
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### 6.3 Home Page — Authenticated User
 
-> **Caption:** The Orders4U home page after successful login, displaying "Welcome back, owen." The home page highlights the cloud-powered platform with 24/7 Availability, Azure Hosted, and Secure Platform badges, along with a navigation card to the Inventory management section. The authenticated session confirms Spring Security is properly wired to the RDS-backed `UsersDetailsService`.
+> **Caption:** The Orders4U home page after successful login, displaying "Welcome back, owen." The home page highlights the cloud-powered platform with 24/7 Availability, AWS Hosted, and Secure Platform badges, along with a navigation card to the Inventory management section. The authenticated session confirms Spring Security is properly wired to the RDS-backed `UsersDetailsService`.
 
 ![App Home Page](activity4-photos/App_home_page.png)
 
@@ -457,6 +501,8 @@ mvn clean package -DskipTests
 - **Session:** Spring Security session established
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### 6.4 Inventory Dashboard — Database Read
 
@@ -472,6 +518,8 @@ mvn clean package -DskipTests
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### 6.5 Order Detail View — Single Record Read
 
 > **Caption:** The order detail view for order m-801 ("Personality transplant") showing Order Number, Product Name, Price ($400), and Quantity (12) with Edit, Delete, and Back action buttons. This confirms the application can query individual records from the RDS database.
@@ -480,11 +528,15 @@ mvn clean package -DskipTests
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### 6.6 Edit Order — Database Update
 
 > **Caption (Before):** The Edit Order form pre-populated with the "Invisible Bread Box" order (T-9, Price: 38, Quantity: 5). The user can modify any field and click "Update Order" to save changes.
 
 ![App Edit Order Pending](activity4-photos/App_order_edit_pending.png)
+
+<div style="page-break-after: always;"></div>
 
 > **Caption (After):** The order detail view after a successful UPDATE operation. The "Invisible Bread Box" (T-9) now shows a Quantity of 500 (changed from 5), confirming the database write was committed to the RDS instance.
 
@@ -497,11 +549,15 @@ mvn clean package -DskipTests
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### 6.7 Delete Order — Database Delete
 
 > **Caption (Confirmation):** A JavaScript confirmation dialog ("Are you sure you want to delete this order?") triggered from the order detail page for "Personality transplant" (m-801). The dialog originates from the Elastic Beanstalk domain, confirming the app is running on AWS.
 
 ![App Deleting Order](activity4-photos/App_deleting_order.png)
+
+<div style="page-break-after: always;"></div>
 
 > **Caption (Result):** The Inventory page after the "Personality transplant" order has been deleted. The grid now shows 8 remaining orders (down from 9), confirming the DELETE operation was committed to the RDS database.
 
@@ -513,6 +569,8 @@ mvn clean package -DskipTests
 - [x] Inventory refreshes with updated count (9 → 8 orders)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### 6.8 Full CRUD Verification Summary
 
@@ -554,6 +612,8 @@ The nLayer architecture (Controller → Service → Data/Repository) is a solid 
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 #### What AWS Does Automatically vs. What Developers Must Design
 
 | Concern                     | AWS Handles Automatically                  | Developer Must Design                        |
@@ -581,6 +641,8 @@ The nLayer architecture (Controller → Service → Data/Repository) is a solid 
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### Follow-up Questions
 
 **Follow-up 1:** "At what user count should I start adding caching and read replicas?"
@@ -589,9 +651,11 @@ The nLayer architecture (Controller → Service → Data/Repository) is a solid 
 
 **Follow-up 2:** "How do I make Spring Security sessions work across multiple EB instances?"
 
-**Summary:** By default, Spring Security stores the HTTP session in the JVM's memory — when EB scales to multiple instances, a user authenticated on Instance A will get a 403 on Instance B. The fix is Spring Session with Redis: add `spring-session-data-redis` to `pom.xml`, point it at an ElastiCache Redis cluster, and Spring automatically serializes sessions to Redis instead of local memory. Every EB instance reads from the same Redis store, so sessions are shared transparently. ALB sticky sessions are an alternative but are fragile — if the pinned instance dies, the user loses their session.
+**Summary:** By default, Spring Security stores the HTTP session in the JVM's memory, when EB scales to multiple instances, a user authenticated on Instance A will get a 403 on Instance B. The fix is Spring Session with Redis: add `spring-session-data-redis` to `pom.xml`, point it at an ElastiCache Redis cluster, and Spring automatically serializes sessions to Redis instead of local memory. Every EB instance reads from the same Redis store, so sessions are shared transparently. ALB sticky sessions are an alternative but are fragile, if the pinned instance dies, the user loses their session.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### What I Learned
 
@@ -615,7 +679,7 @@ The nLayer architecture (Controller → Service → Data/Repository) is a solid 
 
 **Challenge 1:** Initial Elastic Beanstalk deployment returned a `BadSqlGrammarException` when Spring Security attempted to query the USERS table. The CloudWatch log stream showed the full stack trace originating from `UsersDetailsService.loadUserByUsername()`.
 
-**Solution:** The DDL script exported from the local MySQL 5.7 (MAMP) instance used column quoting that was incompatible with MySQL 8.4 on RDS. Re-exported the schema with MySQL 8 compatible syntax, re-imported via Workbench, and redeployed. CloudWatch log streaming was essential for diagnosing this — the EB health page only showed a generic 502.
+**Solution:** The DDL script exported from the local MySQL 5.7 (MAMP) instance used column quoting that was incompatible with MySQL 8.4 on RDS. Re-exported the schema with MySQL 8 compatible syntax, re-imported via Workbench, and redeployed. CloudWatch log streaming was essential for diagnosing this, the EB health page only showed a generic 502.
 
 ---
 
@@ -631,6 +695,8 @@ The nLayer architecture (Controller → Service → Data/Repository) is a solid 
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### Security Best Practices Applied
 
 | Practice | Implementation |
@@ -644,6 +710,8 @@ The nLayer architecture (Controller → Service → Data/Repository) is a solid 
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### Cost Management
 
 **Steps Taken to Stay Within Free Tier:**
@@ -656,6 +724,8 @@ The nLayer architecture (Controller → Service → Data/Repository) is a solid 
 - [x] All resources in same region (us-west-1) to eliminate cross-region egress
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### Key Terminology Learned
 
@@ -672,9 +742,15 @@ The nLayer architecture (Controller → Service → Data/Repository) is a solid 
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### AWS vs. Azure — Comparative Experience
 
-Deploying the same Spring Boot + MySQL application to AWS after having deployed it to Azure in Activity 3 provided a clear side-by-side comparison of the two major cloud platforms. The core workflow was nearly identical — provision a managed MySQL database, configure the Spring Boot application with environment variables, package a JAR, and deploy to a PaaS hosting service — but the specific tools and terminology differed significantly. Azure uses App Service with a Maven plugin for deployment (`mvn azure-webapp:deploy`), while AWS Elastic Beanstalk uses a JAR upload through the console or CLI. RDS felt slightly more manual than Azure Database for MySQL Flexible Server, particularly around security group configuration, where Azure's firewall rules are more integrated into the database setup wizard. However, EB's environment properties screen was more intuitive for configuring Spring Boot overrides than Azure's Application Settings blade. The biggest takeaway is that cloud platforms are converging on the same abstractions (managed databases, PaaS compute, environment variables for secrets), and understanding one makes learning the other dramatically faster.
+Deploying the same Spring Boot + MySQL application to AWS after having deployed it to Azure in Activity 3 provided a clear side-by-side comparison of the two major cloud platforms. 
+
+The core workflow was nearly identical, provision a managed MySQL database, configure the Spring Boot application with environment variables, package a JAR, and deploy to a PaaS hosting service  but the specific tools and terminology differed significantly. 
+
+Azure uses App Service with a Maven plugin for deployment (`mvn azure-webapp:deploy`), while AWS Elastic Beanstalk uses a JAR upload through the console or CLI. RDS felt slightly more manual than Azure Database for MySQL Flexible Server, especially around security group configuration, where Azure's firewall rules are more integrated into the database setup wizard. However, EB's environment properties screen was more intuitive for configuring Spring Boot overrides than Azure's Application Settings blade. The biggest takeaway is that cloud platforms are similar (managed databases, PaaS compute, environment variables for secrets), and understanding one makes learning the other faster.
 
 **Service Equivalency Table:**
 
@@ -688,11 +764,21 @@ Deploying the same Spring Boot + MySQL application to AWS after having deployed 
 | Log Streaming | Azure Log Stream | CloudWatch Logs |
 | Firewall Rules | Server Firewall (integrated) | VPC Security Groups (separate) |
 
+<div style="page-break-after: always;"></div>
+
 ### How I Will Approach My Next Cloud Deployment
 
-Knowing what I learned from both Azure and AWS deployments, I will approach my next cloud computing experience with three priorities. First, I will configure environment variables and TLS from the very beginning rather than treating them as post-deployment fixes — both deployments required troubleshooting connection issues that could have been avoided by setting `sslMode=REQUIRED` and environment overrides before the first deploy. Second, I will lean heavily on log streaming (Azure Log Stream, CloudWatch Logs) as my primary debugging tool, since both platforms surface application errors there long before they appear as user-facing error pages. Third, I will design my application to be stateless from the start, because both Azure and AWS make horizontal scaling trivial if the application doesn't depend on local state — but retrofitting statelessness into an existing app is much harder than building it in from day one.
+Knowing what I learned from both Azure and AWS deployments, I will approach my next cloud computing experience with three priorities.
+
+First, I will configure environment variables and TLS from the very beginning rather than treating them as post-deployment fixes both deployments required troubleshooting connection issues that could have been avoided by setting `sslMode=REQUIRED` and environment overrides before the first deploy. 
+
+Second, I will  use log streaming as my primary debugging tool, since platforms surface application errors there long before they appear as user-facing error pages. 
+
+Third, I will design my application to be stateless from the start, because both Azure and AWS make horizontal scaling trivial if the application doesn't depend on local state but retrofitting statelessness into an existing app is much harder than building it in from day one.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Appendix: Quick Reference
 

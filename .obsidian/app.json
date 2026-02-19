@@ -1,8 +1,8 @@
 {
   "pdfExportSettings": {
-    "pageSize": "Letter",
-    "landscape": false,
+    "pageSize": "Tabloid",
+    "landscape": true,
     "margin": "0",
-    "downscalePercent": 59
+    "downscalePercent": 50
   }
 }
