@@ -183,8 +183,10 @@
       "bases:Create new base": false
     }
   },
-  "active": "4684eadad8e47495",
+  "active": "443fc39ba02216fe",
   "lastOpenFiles": [
+    "AIT-204-Deep-Learning/code/topic-4/nlp.py",
+    "AIT-204-Deep-Learning/code/topic-4",
     "CST-323-Cloud-Computing/Topic-3/CST-323-Activity-4b-Cloud-Computing-Handout.pdf",
     "CST-323-Cloud-Computing/Homework/activity3.md",
     "CST-323-Cloud-Computing/Topic-3/CST-323-Activity-4b-Cloud-Computing-Handout.md",
@@ -199,13 +201,11 @@
     "CST-323-Cloud-Computing/Homework/activity3.md.tmp.21100.1769549190660",
     "CST-323-Cloud-Computing/Homework/activity3.md.tmp.21100.1769549176072",
     "CST-323-Cloud-Computing/Homework/activity3.md.tmp.21100.1769549163619",
-    "CST-323-Cloud-Computing/Homework/activity3.md.tmp.21100.1769549153095",
     "CST-323-Cloud-Computing/Homework/activity3-photos/database-output-azureinfo.png",
     "CST-323-Cloud-Computing/Homework/activity3-photos/logstream-azureinfo.png",
     "CST-323-Cloud-Computing/Homework/activity3-photos/home-after-login-success.png",
     "CST-323-Cloud-Computing/Homework/activity3-photos/deployment-successful.png",
     "CST-323-Cloud-Computing/Homework/activity3-photos/azcli-login-success.png",
-    "CST-323-Cloud-Computing/Homework/activity3.md.tmp.21100.1769548247026",
     "CST-323-Cloud-Computing/Homework/activity3-photos/application-settings-azureinfo.png",
     "CST-323-Cloud-Computing/Homework/activity3-photos/appserviceplan-azureinfo.png",
     "CST-323-Cloud-Computing/Homework/activity3-photos/resource-group-azureinfo.png",
