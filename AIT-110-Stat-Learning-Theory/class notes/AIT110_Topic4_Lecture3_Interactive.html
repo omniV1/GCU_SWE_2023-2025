@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIT 110 — Topic 4, Lecture 3: Ensemble Methods</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d27;
+    --card2: #22263a;
+    --border: #2e3350;
+    --accent: #6c63ff;
+    --accent2: #00d4aa;
+    --accent3: #ff6584;
+    --accent4: #ffd166;
+    --text: #e2e8f0;
+    --muted: #8892a4;
+    --success: #00d4aa;
+    --warning: #ffd166;
+    --danger: #ff6584;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.7; }
+
+  /* HEADER */
+  header { background: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%); border-bottom: 1px solid var(--border); padding: 2rem; text-align: center; position: sticky; top: 0; z-index: 100; }
+  header h1 { font-size: 1.6rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  header p { color: var(--muted); font-size: 0.9rem; margin-top: 0.25rem; }
+
+  /* NAV PILLS */
+  .nav-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-top: 1rem; }
+  .nav-pill { background: var(--card2); border: 1px solid var(--border); color: var(--muted); padding: 0.3rem 0.9rem; border-radius: 20px; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; text-decoration: none; }
+  .nav-pill:hover, .nav-pill.active { background: var(--accent); border-color: var(--accent); color: white; }
+
+  /* LAYOUT */
+  main { max-width: 1000px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+
+  /* SECTIONS */
+  .section { margin-bottom: 3rem; }
+  .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+  .section-num { background: var(--accent); color: white; width: 2.2rem; height: 2.2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9rem; flex-shrink: 0; }
+  .section-header h2 { font-size: 1.4rem; color: var(--text); }
+
+  /* CARDS */
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+  .card.accent { border-left: 4px solid var(--accent); }
+  .card.success { border-left: 4px solid var(--success); }
+  .card.warning { border-left: 4px solid var(--warning); }
+  .card.danger { border-left: 4px solid var(--danger); }
+  .card h3 { font-size: 1.05rem; margin-bottom: 0.75rem; color: var(--accent2); }
+  .card p, .card li { color: var(--muted); font-size: 0.95rem; }
+  .card ul, .card ol { padding-left: 1.5rem; }
+  .card li { margin-bottom: 0.4rem; }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+  @media(max-width: 700px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  /* HIGHLIGHT BOX */
+  .highlight { background: linear-gradient(135deg, rgba(108,99,255,0.1), rgba(0,212,170,0.1)); border: 1px solid rgba(108,99,255,0.3); border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1rem 0; }
+  .highlight .label { font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+
+  /* FORMULA */
+  .formula { background: #0a0c13; border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.5rem; font-family: 'Courier New', monospace; color: var(--accent4); font-size: 1.05rem; margin: 1rem 0; text-align: center; overflow-x: auto; }
+
+  /* STEP LIST */
+  .steps { counter-reset: step; list-style: none; padding: 0; }
+  .steps li { counter-increment: step; display: flex; gap: 1rem; margin-bottom: 1.25rem; padding: 1rem 1.25rem; background: var(--card2); border-radius: 10px; border: 1px solid var(--border); }
+  .steps li::before { content: counter(step); background: var(--accent); color: white; width: 1.8rem; height: 1.8rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .steps li .step-content strong { color: var(--text); display: block; margin-bottom: 0.3rem; }
+  .steps li .step-content span { color: var(--muted); font-size: 0.9rem; }
+
+  /* BUTTONS */
+  button { cursor: pointer; border: none; border-radius: 8px; padding: 0.6rem 1.2rem; font-size: 0.9rem; font-weight: 600; transition: all 0.2s; }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: #574dff; transform: translateY(-1px); }
+  .btn-success { background: var(--success); color: #0f1117; }
+  .btn-success:hover { background: #00b890; }
+  .btn-ghost { background: var(--card2); color: var(--text); border: 1px solid var(--border); }
+  .btn-ghost:hover { background: var(--border); }
+
+  /* INTERACTIVE DEMOS */
+  .demo-box { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .demo-header { background: var(--card2); padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .demo-header span { font-size: 0.85rem; font-weight: 600; color: var(--accent2); }
+  .demo-body { padding: 1.5rem; }
+
+  /* CANVAS */
+  canvas { display: block; border-radius: 8px; }
+
+  /* QUIZ */
+  .quiz-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+  .quiz-card .q { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 1rem; }
+  .quiz-options { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+  .quiz-opt { background: var(--card2); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; cursor: pointer; color: var(--muted); font-size: 0.9rem; transition: all 0.2s; text-align: left; width: 100%; }
+  .quiz-opt:hover { border-color: var(--accent); color: var(--text); }
+  .quiz-opt.correct { background: rgba(0,212,170,0.15); border-color: var(--success); color: var(--success); }
+  .quiz-opt.wrong { background: rgba(255,101,132,0.15); border-color: var(--danger); color: var(--danger); }
+  .quiz-feedback { font-size: 0.88rem; padding: 0.75rem 1rem; border-radius: 8px; display: none; }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.correct { background: rgba(0,212,170,0.1); border: 1px solid var(--success); color: var(--success); }
+  .quiz-feedback.wrong { background: rgba(255,101,132,0.1); border: 1px solid var(--danger); color: var(--danger); }
+
+  /* TAGS */
+  .tag { display: inline-block; background: rgba(108,99,255,0.15); border: 1px solid rgba(108,99,255,0.3); color: var(--accent); padding: 0.15rem 0.6rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin: 0.15rem; }
+  .tag.green { background: rgba(0,212,170,0.15); border-color: rgba(0,212,170,0.3); color: var(--success); }
+  .tag.red { background: rgba(255,101,132,0.15); border-color: rgba(255,101,132,0.3); color: var(--danger); }
+  .tag.yellow { background: rgba(255,209,102,0.15); border-color: rgba(255,209,102,0.3); color: var(--warning); }
+
+  /* PROGRESS */
+  .progress-bar { background: var(--card2); border-radius: 10px; height: 8px; overflow: hidden; margin-top: 0.5rem; }
+  .progress-fill { height: 100%; border-radius: 10px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width 0.5s ease; }
+
+  /* INPUT */
+  input[type=range] { width: 100%; accent-color: var(--accent); }
+  input[type=number] { background: var(--card2); border: 1px solid var(--border); border-radius: 6px; color: var(--text); padding: 0.4rem 0.75rem; font-size: 0.9rem; width: 80px; }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  th { background: var(--card2); color: var(--accent2); padding: 0.6rem 1rem; text-align: left; border-bottom: 2px solid var(--border); }
+  td { padding: 0.5rem 1rem; border-bottom: 1px solid var(--border); color: var(--muted); }
+  tr:hover td { background: rgba(108,99,255,0.05); }
+
+  /* DIVIDER */
+  hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+  /* CODE */
+  code { font-family: 'Courier New', monospace; font-size: 0.85rem; }
+  pre { background: #0a0c13; border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; overflow-x: auto; font-size: 0.85rem; color: #a8d8a8; line-height: 1.6; }
+  .kw { color: #c792ea; }
+  .fn { color: #82aaff; }
+  .str { color: #c3e88d; }
+  .cm { color: #546e7a; font-style: italic; }
+  .num { color: #f78c6c; }
+
+  /* SCROLL TARGET */
+  .scroll-target { scroll-margin-top: 80px; }
+
+  /* TREE VIZ */
+  .tree-node { border: 2px solid var(--border); border-radius: 8px; padding: 0.5rem 0.8rem; font-size: 0.8rem; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--card2); white-space: nowrap; }
+  .tree-node.root { border-color: var(--accent); background: rgba(108,99,255,0.1); }
+  .tree-node.leaf { border-color: var(--success); background: rgba(0,212,170,0.1); }
+  .tree-node:hover { transform: scale(1.05); }
+  .tree-connector { border-left: 2px dashed var(--border); margin-left: 50%; height: 1.5rem; }
+
+  /* FADE IN */
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { animation: fadeIn 0.4s ease forwards; }
+
+  /* TOOLTIP */
+  .tooltip-wrap { position: relative; display: inline-block; border-bottom: 1px dashed var(--accent); cursor: help; }
+  .tooltip-wrap .tooltip { visibility: hidden; background: var(--card2); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 0.5rem 0.75rem; font-size: 0.8rem; width: 220px; position: absolute; z-index: 10; bottom: 130%; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.2s; }
+  .tooltip-wrap:hover .tooltip { visibility: visible; opacity: 1; }
+
+  /* CONCEPT TOGGLE */
+  .concept-toggle { background: var(--card2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 0.75rem; }
+  .concept-toggle-header { padding: 0.9rem 1.25rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 0.95rem; }
+  .concept-toggle-header:hover { background: var(--border); }
+  .concept-toggle-body { padding: 0 1.25rem; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
+  .concept-toggle-body.open { max-height: 500px; padding: 1rem 1.25rem; border-top: 1px solid var(--border); }
+  .concept-toggle-arrow { transition: transform 0.3s; color: var(--accent); }
+  .concept-toggle-arrow.open { transform: rotate(180deg); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>AIT 110 &mdash; Topic 4, Lecture 3</h1>
+  <p>Ensemble Methods: Bootstrapping, Bagging, Random Forest &amp; Feature Importance</p>
+  <nav class="nav-pills">
+    <a class="nav-pill" href="#bootstrapping">1. Bootstrapping</a>
+    <a class="nav-pill" href="#bagging">2. Bagging</a>
+    <a class="nav-pill" href="#random-forest">3. Random Forest</a>
+    <a class="nav-pill" href="#oob">4. OOB Error</a>
+    <a class="nav-pill" href="#feature-importance">5. Feature Importance</a>
+    <a class="nav-pill" href="#ensemble-math">6. Ensemble Math</a>
+    <a class="nav-pill" href="#quiz">Quiz</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- =========================================================
+     SECTION 0 — OVERVIEW
+     ========================================================= -->
+<div class="section scroll-target" id="overview">
+  <div class="highlight" style="margin-top:1rem;">
+    <div class="label">Lecture 3 Road Map</div>
+    <p style="color:var(--text); margin-bottom:0.75rem;">This lecture builds on what you already know about Decision Trees and asks: <em>what if we used many trees together?</em> The key insight is that <strong>combining weak learners can dramatically outperform any single model</strong>.</p>
+    <div class="grid-3" style="margin-top:1rem;">
+      <div style="text-align:center; padding:1rem; background:var(--card); border-radius:10px; border:1px solid var(--border);">
+        <div style="font-size:2rem;">🎲</div>
+        <div style="font-weight:700; margin-top:0.5rem; color:var(--accent);">Bootstrap</div>
+        <div style="font-size:0.8rem; color:var(--muted);">Sample with replacement to simulate many datasets</div>
+      </div>
+      <div style="text-align:center; padding:1rem; background:var(--card); border-radius:10px; border:1px solid var(--border);">
+        <div style="font-size:2rem;">🌲🌲🌲</div>
+        <div style="font-weight:700; margin-top:0.5rem; color:var(--accent2);">Bagging / RF</div>
+        <div style="font-size:0.8rem; color:var(--muted);">Train many trees, average to reduce variance</div>
+      </div>
+      <div style="text-align:center; padding:1rem; background:var(--card); border-radius:10px; border:1px solid var(--border);">
+        <div style="font-size:2rem;">🔬</div>
+        <div style="font-weight:700; margin-top:0.5rem; color:var(--warning);">Feature Importance</div>
+        <div style="font-size:0.8rem; color:var(--muted);">Understand which features drive predictions</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION 1 — BOOTSTRAPPING
+     ========================================================= -->
+<div class="section scroll-target" id="bootstrapping">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Bootstrapping</h2>
+  </div>
+
+  <div class="card accent">
+    <h3>The Core Idea</h3>
+    <p>A <strong style="color:var(--text);">bootstrap sample</strong> is created by randomly selecting <em>n</em> data points <strong style="color:var(--accent);">with replacement</strong> from a dataset of <em>n</em> points.</p>
+    <p style="margin-top:0.75rem;">Because we sample <em>with replacement</em>, some data points appear multiple times and some are left out entirely. About <strong style="color:var(--accent2);">63.2%</strong> of original points appear in each sample on average.</p>
+  </div>
+
+  <div class="card">
+    <h3>Why Bootstrapping?</h3>
+    <p>We only have one dataset, but we want to estimate how a model behaves on different possible datasets. Bootstrap sampling lets us <em>simulate</em> multiple draws from the population.</p>
+    <p style="margin-top:0.75rem;"><strong style="color:var(--warning);">Classic Use Case:</strong> Build a 95% confidence interval around a statistic (like the median):</p>
+    <ol style="padding-left:1.5rem; margin-top:0.75rem; color:var(--muted);">
+      <li>Take 1000 bootstrap samples</li>
+      <li>Calculate the median of each sample</li>
+      <li>The 95% CI is the 25th and 975th largest values</li>
+    </ol>
+  </div>
+
+  <!-- INTERACTIVE BOOTSTRAP DEMO -->
+  <div class="demo-box">
+    <div class="demo-header">
+      <span>Interactive Demo — Bootstrap Sampling</span>
+      <button class="btn-primary" onclick="runBootstrap()">Generate Sample</button>
+    </div>
+    <div class="demo-body">
+      <p style="color:var(--muted); font-size:0.88rem; margin-bottom:1rem;">Original dataset has 10 items (indices 0-9). Each bootstrap sample picks 10 indices <em>with replacement</em>. Notice duplicates and missing values!</p>
+      <div id="bootstrap-original" style="margin-bottom:1rem;"></div>
+      <div id="bootstrap-sample" style="min-height:60px;"></div>
+      <div id="bootstrap-stats" style="margin-top:1rem; font-size:0.85rem; color:var(--muted);"></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1rem;">
+    <h3>The Python Code (from lecture)</h3>
+    <pre><span class="cm"># Create a bootstrap sample of the same size as training data</span>
+bootstrap_sample = np.<span class="fn">random</span>.<span class="fn">choice</span>(
+    <span class="fn">range</span>(<span class="fn">len</span>(X_train)),  <span class="cm"># indices 0..n-1</span>
+    size=<span class="fn">len</span>(X_train),    <span class="cm"># same size as original</span>
+    replace=<span class="kw">True</span>          <span class="cm"># KEY: with replacement!</span>
+)</pre>
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION 2 — BAGGING
+     ========================================================= -->
+<div class="section scroll-target" id="bagging">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Bagging — Bootstrap Aggregation</h2>
+  </div>
+
+  <div class="highlight">
+    <div class="label">The Big Idea</div>
+    <p style="color:var(--text);">If we had unlimited data, we'd train many models on different datasets and average them. Since we don't, we <strong>simulate</strong> multiple datasets using bootstrapping, then aggregate the predictions.</p>
+  </div>
+
+  <div class="card accent" style="margin-top:1rem;">
+    <h3>How Bagging Works</h3>
+    <ol class="steps">
+      <li>
+        <div class="step-content">
+          <strong>Create B bootstrap samples</strong>
+          <span>Draw B samples of size n (with replacement) from your training data.</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-content">
+          <strong>Train a model on each sample</strong>
+          <span>Typically a high-variance, low-bias model — like a fully grown decision tree (no pruning).</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-content">
+          <strong>Aggregate predictions</strong>
+          <span>For classification: majority vote. For regression: average the predictions.</span>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- VARIANCE REDUCTION DEMO -->
+  <div class="demo-box" style="margin-top:1rem;">
+    <div class="demo-header">
+      <span>Interactive Demo — Variance Reduction with Bagging</span>
+    </div>
+    <div class="demo-body">
+      <p style="color:var(--muted); font-size:0.88rem; margin-bottom:1rem;">Drag the slider to see how ensemble size affects variance. Each tree has individual noise, but the average is much more stable.</p>
+      <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+        <label style="color:var(--muted); font-size:0.9rem; white-space:nowrap;">Trees: <strong id="tree-count-label" style="color:var(--accent)">10</strong></label>
+        <input type="range" min="1" max="100" value="10" id="tree-slider" oninput="updateBaggingDemo(this.value)">
+      </div>
+      <canvas id="bagging-canvas" width="700" height="220"></canvas>
+      <div id="bagging-stats" style="margin-top:0.75rem; font-size:0.85rem; color:var(--muted);"></div>
+    </div>
+  </div>
+
+  <div class="card warning" style="margin-top:1rem;">
+    <h3>Why Variance Reduction &lt; √n ?</h3>
+    <p>Theoretically, averaging <em>n</em> independent models reduces variance by √n. But bootstrap samples all come from the <em>same original dataset</em>, so the trees are <strong>correlated</strong>. Correlated models don't reduce variance as much.</p>
+    <div class="formula">Var(avg of n correlated models) = ρσ² + (1-ρ)σ²/n</div>
+    <p>where ρ is the correlation between trees. Higher correlation → less variance reduction. This is exactly what Random Forest addresses!</p>
+  </div>
+
+  <div class="grid-2" style="margin-top:1rem;">
+    <div class="card success">
+      <h3>Pros of Bagging</h3>
+      <ul>
+        <li>Dramatically reduces variance</li>
+        <li>Works well out of the box</li>
+        <li>No feature scaling needed</li>
+        <li>Models non-linear relationships</li>
+      </ul>
+    </div>
+    <div class="card danger">
+      <h3>Cons of Bagging</h3>
+      <ul>
+        <li>Trees are still correlated</li>
+        <li>Expensive to train (many trees)</li>
+        <li>Not interpretable (black box)</li>
+        <li>Variance reduction limited by ρ</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION 3 — RANDOM FOREST
+     ========================================================= -->
+<div class="section scroll-target" id="random-forest">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Random Forest</h2>
+  </div>
+
+  <div class="card accent">
+    <h3>Random Forest = Bagging + One Extra Trick</h3>
+    <p>Random Forest improves on Bagging by <strong style="color:var(--accent2);">de-correlating the trees</strong> using <strong style="color:var(--accent2);">Subspace Sampling</strong>: at each split, only a random subset of <em>m</em> features is considered.</p>
+    <div class="formula">Typical m = √p (for classification) &nbsp;or&nbsp; m = p/3 (for regression)</div>
+    <p style="margin-top:0.75rem;">where <em>p</em> = total number of features. This prevents the same strong feature from always being chosen first, making trees more diverse and less correlated.</p>
+  </div>
+
+  <!-- RF VISUAL COMPARISON -->
+  <div class="card" style="margin-top:1rem;">
+    <h3>Bagging vs Random Forest — The Key Difference</h3>
+    <div class="grid-2" style="margin-top:0.75rem;">
+      <div style="background:var(--card2); border-radius:8px; padding:1rem; border:1px solid var(--border);">
+        <div style="color:var(--muted); font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.75rem;">Bagging</div>
+        <p style="font-size:0.85rem; color:var(--muted);">Each split: considers <strong style="color:var(--warning);">ALL features</strong><br>
+        → Strong features dominate<br>
+        → Trees look similar<br>
+        → High correlation ρ<br>
+        → Less variance reduction</p>
+      </div>
+      <div style="background:var(--card2); border-radius:8px; padding:1rem; border: 2px solid var(--success);">
+        <div style="color:var(--success); font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.75rem;">Random Forest</div>
+        <p style="font-size:0.85rem; color:var(--muted);">Each split: considers only <strong style="color:var(--success);">√p features</strong><br>
+        → Weaker features get chances<br>
+        → Trees look different<br>
+        → Lower correlation ρ<br>
+        → Better variance reduction</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1rem;">
+    <h3>Random Forest Key Parameters</h3>
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>What It Controls</th><th>Effect</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>n_estimators</code></td><td>Total number of trees</td><td>More trees → lower variance (but more compute)</td></tr>
+        <tr><td><code>max_features</code></td><td>Features per split (m)</td><td>Lower m → less correlated trees, but weaker individual trees</td></tr>
+        <tr><td><code>max_depth</code></td><td>Max tree depth</td><td>Shallower → lower variance, higher bias</td></tr>
+        <tr><td><code>min_samples_leaf</code></td><td>Min samples at leaves</td><td>Larger → smoother predictions, less overfit</td></tr>
+        <tr><td><code>criterion</code></td><td>Split measure (gini/entropy)</td><td>Usually similar performance</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-2" style="margin-top:1rem;">
+    <div class="card success">
+      <h3>Pros of Random Forest</h3>
+      <ul>
+        <li>Near state-of-the-art performance</li>
+        <li>Great out-of-the-box (few tuning needs)</li>
+        <li>No feature scaling required</li>
+        <li>Handles non-linear relationships</li>
+        <li>Parallelizable (trees independent)</li>
+      </ul>
+    </div>
+    <div class="card danger">
+      <h3>Cons of Random Forest</h3>
+      <ul>
+        <li>Expensive to train (though parallelizable)</li>
+        <li><strong>Not interpretable</strong> — black box</li>
+        <li>Memory-intensive for large forests</li>
+        <li>Slower predictions than a single tree</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION 4 — OOB ERROR
+     ========================================================= -->
+<div class="section scroll-target" id="oob">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Out-of-Bag (OOB) Error</h2>
+  </div>
+
+  <div class="card accent">
+    <h3>A Free Validation Set!</h3>
+    <p>Because each bootstrap sample leaves out ~37% of the training data, each data point is <em>out-of-bag</em> for many trees. We can use those "unseen" predictions to estimate test error — <strong style="color:var(--accent2);">without needing a separate validation set</strong>.</p>
+  </div>
+
+  <div class="card" style="margin-top:1rem;">
+    <h3>How OOB Error Works</h3>
+    <ol class="steps">
+      <li>
+        <div class="step-content">
+          <strong>For each data point x_i</strong>
+          <span>Identify all trees that did NOT see x_i in their bootstrap sample.</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-content">
+          <strong>Predict using those trees only</strong>
+          <span>Average (regression) or majority vote (classification) among those trees.</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-content">
+          <strong>Compare to actual y_i</strong>
+          <span>This gives an unbiased estimate of test error.</span>
+        </div>
+      </li>
+      <li>
+        <div class="step-content">
+          <strong>Average across all data points</strong>
+          <span>OOB score ≈ test set score. The lecture example found OOB score = 0.9528.</span>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- OOB INTERACTIVE -->
+  <div class="demo-box" style="margin-top:1rem;">
+    <div class="demo-header">
+      <span>Interactive Demo — Visualize OOB</span>
+      <button class="btn-primary" onclick="runOOBDemo()">Simulate</button>
+    </div>
+    <div class="demo-body">
+      <p style="color:var(--muted); font-size:0.88rem; margin-bottom:1rem;">10 data points, 5 trees. Green = included in bootstrap sample, Gray = out-of-bag. Each row is a tree, each column is a data point.</p>
+      <canvas id="oob-canvas" width="700" height="200"></canvas>
+      <div id="oob-legend" style="margin-top:0.75rem; font-size:0.85rem; color:var(--muted);"></div>
+    </div>
+  </div>
+
+  <div class="highlight" style="margin-top:1rem;">
+    <div class="label">Key Insight</div>
+    <p style="color:var(--text);">OOB error lets you tune hyperparameters without touching your test set. Set <code>oob_score=True</code> in scikit-learn's <code>RandomForestClassifier</code> to get it automatically.</p>
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION 5 — FEATURE IMPORTANCE
+     ========================================================= -->
+<div class="section scroll-target" id="feature-importance">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Feature Importance</h2>
+  </div>
+
+  <div class="card">
+    <h3>Why Feature Importance Matters</h3>
+    <p>Random Forests sacrifice interpretability for accuracy. Feature importance partially restores that interpretability by answering: <em>which features actually drive predictions?</em></p>
+    <div class="highlight" style="margin-top:1rem;">
+      <div class="label">Business Example</div>
+      <p style="color:var(--text);">In churn analysis, knowing <em>why</em> customers churn (feature importance) is often more valuable than just <em>who</em> will churn (prediction).</p>
+    </div>
+  </div>
+
+  <!-- TWO METHODS AS TOGGLES -->
+  <div style="margin-top:1rem;">
+    <div class="concept-toggle">
+      <div class="concept-toggle-header" onclick="toggleConcept(this)">
+        <span>Method 1: Mean Decrease in Impurity (MDI / Gini Importance)</span>
+        <span class="concept-toggle-arrow">▼</span>
+      </div>
+      <div class="concept-toggle-body">
+        <p style="color:var(--muted); margin-bottom:1rem;">How much does each feature reduce impurity across all splits in all trees?</p>
+        <ol class="steps">
+          <li>
+            <div class="step-content">
+              <strong>For each tree, each split</strong>
+              <span>Calculate the impurity decrease: (impurity before) − weighted (impurity after).</span>
+            </div>
+          </li>
+          <li>
+            <div class="step-content">
+              <strong>Sum by feature</strong>
+              <span>For each feature, sum all impurity decreases across splits that used that feature. Divide by total information gain = feature importance for one tree.</span>
+            </div>
+          </li>
+          <li>
+            <div class="step-content">
+              <strong>Average across forest</strong>
+              <span>Average the Gini importance for each feature across all trees.</span>
+            </div>
+          </li>
+        </ol>
+        <div class="formula">Importance(feature j) = avg over trees [ Σ splits using j (ΔImpurity) / Σ all splits (ΔImpurity) ]</div>
+        <div class="card warning" style="margin-top:1rem;">
+          <h3>Caution</h3>
+          <p>MDI is biased toward <strong>high-cardinality features</strong> (features with many unique values). A feature with 100 unique values will almost always look more important than one with 2.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-toggle">
+      <div class="concept-toggle-header" onclick="toggleConcept(this)">
+        <span>Method 2: Permutation Feature Importance (OOB-based)</span>
+        <span class="concept-toggle-arrow">▼</span>
+      </div>
+      <div class="concept-toggle-body">
+        <p style="color:var(--muted); margin-bottom:1rem;">What happens to OOB score if we <em>randomly scramble</em> one feature's values?</p>
+        <ol class="steps">
+          <li>
+            <div class="step-content">
+              <strong>Calculate baseline OOB score</strong>
+              <span>Get OOB score with original data. This is your reference point.</span>
+            </div>
+          </li>
+          <li>
+            <div class="step-content">
+              <strong>For each feature j</strong>
+              <span>Randomly shuffle the values of feature j in the OOB samples. Predict again. Record the drop in score.</span>
+            </div>
+          </li>
+          <li>
+            <div class="step-content">
+              <strong>Repeat and average</strong>
+              <span>Average the score decrease across many runs and all trees.</span>
+            </div>
+          </li>
+        </ol>
+        <div class="highlight" style="margin-top:1rem;">
+          <div class="label">Intuition</div>
+          <p style="color:var(--text);">If shuffling a feature causes a big drop in accuracy, the model was <em>relying</em> on that feature. If shuffling changes nothing, the feature wasn't important.</p>
+        </div>
+        <div class="card success" style="margin-top:1rem;">
+          <h3>Why This Method is Better</h3>
+          <p>No bias toward high-cardinality features. More reliable and model-agnostic. Lecture baseline OOB score: <strong style="color:var(--accent2);">0.9528</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE FEATURE IMPORTANCE VIZ -->
+  <div class="demo-box" style="margin-top:1.5rem;">
+    <div class="demo-header">
+      <span>Interactive Demo — Feature Importance Bar Chart</span>
+      <button class="btn-primary" onclick="shuffleFeatureImportance()">Shuffle</button>
+    </div>
+    <div class="demo-body">
+      <p style="color:var(--muted); font-size:0.88rem; margin-bottom:1rem;">Example feature importances from a random forest model. Click a bar to see explanation. Use Shuffle to see how rankings might vary.</p>
+      <canvas id="fi-canvas" width="700" height="280"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION 6 — ENSEMBLE MATH
+     ========================================================= -->
+<div class="section scroll-target" id="ensemble-math">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Ensemble Intuition &amp; Math</h2>
+  </div>
+
+  <div class="card accent">
+    <h3>Why Do Ensembles Work? (From the Lecture)</h3>
+    <p>Suppose we have 5 <em>independent</em> binary classifiers, each <strong style="color:var(--accent2);">70% accurate</strong>. The majority vote is correct if 3 or more agree:</p>
+    <div class="formula">P(majority correct) = C(5,5)·0.7⁵ + C(5,4)·0.7⁴·0.3 + C(5,3)·0.7³·0.3² ≈ <strong>83.2%</strong></div>
+    <p style="margin-top:0.75rem;">With 55 classifiers, this reaches <strong style="color:var(--success);">99.9% accuracy</strong>!</p>
+  </div>
+
+  <!-- ENSEMBLE CALCULATOR -->
+  <div class="demo-box" style="margin-top:1rem;">
+    <div class="demo-header">
+      <span>Interactive Demo — Ensemble Accuracy Calculator</span>
+    </div>
+    <div class="demo-body">
+      <div class="grid-2">
+        <div>
+          <label style="color:var(--muted); font-size:0.88rem; display:block; margin-bottom:0.5rem;">Individual Accuracy: <strong id="acc-label" style="color:var(--accent);">70%</strong></label>
+          <input type="range" min="51" max="99" value="70" id="acc-slider" oninput="updateEnsembleCalc()">
+        </div>
+        <div>
+          <label style="color:var(--muted); font-size:0.88rem; display:block; margin-bottom:0.5rem;">Number of Classifiers: <strong id="n-label" style="color:var(--accent);">5</strong></label>
+          <input type="range" min="1" max="101" step="2" value="5" id="n-slider" oninput="updateEnsembleCalc()">
+        </div>
+      </div>
+      <canvas id="ensemble-canvas" width="700" height="200" style="margin-top:1rem;"></canvas>
+      <div id="ensemble-result" style="margin-top:0.75rem; font-size:1rem; text-align:center; font-weight:700; color:var(--success);"></div>
+    </div>
+  </div>
+
+  <div class="card warning" style="margin-top:1rem;">
+    <h3>The Catch: Independence</h3>
+    <p>The huge accuracy gains assume <strong>independent</strong> classifiers. In practice, all trees are trained on the same dataset, so they're correlated. This is why:</p>
+    <ul style="padding-left:1.5rem; color:var(--muted); margin-top:0.75rem;">
+      <li>We use bootstrap sampling (different data → different trees)</li>
+      <li>Random Forest adds subspace sampling (different features → even more different trees)</li>
+      <li>The goal is to <em>maximize diversity</em> while maintaining individual accuracy</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Bias-Variance in Ensembles</h3>
+    <div class="grid-3" style="margin-top:0.75rem;">
+      <div style="background:var(--card2); border-radius:8px; padding:1rem; border:1px solid var(--border); text-align:center;">
+        <div style="color:var(--accent); font-size:1.5rem; font-weight:900;">↓</div>
+        <div style="font-weight:700; margin:0.25rem 0;">Variance</div>
+        <div style="font-size:0.8rem; color:var(--muted);">Averaging reduces variability</div>
+      </div>
+      <div style="background:var(--card2); border-radius:8px; padding:1rem; border:1px solid var(--border); text-align:center;">
+        <div style="color:var(--warning); font-size:1.5rem; font-weight:900;">≈</div>
+        <div style="font-weight:700; margin:0.25rem 0;">Bias</div>
+        <div style="font-size:0.8rem; color:var(--muted);">Individual trees are low bias (unpruned)</div>
+      </div>
+      <div style="background:var(--card2); border-radius:8px; padding:1rem; border:1px solid var(--border); text-align:center;">
+        <div style="color:var(--success); font-size:1.5rem; font-weight:900;">✓</div>
+        <div style="font-weight:700; margin:0.25rem 0;">Result</div>
+        <div style="font-size:0.8rem; color:var(--muted);">Better generalization overall</div>
+      </div>
+    </div>
+    <p style="color:var(--muted); font-size:0.88rem; margin-top:1rem;">An unpruned decision tree has <strong style="color:var(--text);">near-zero bias</strong> (memorizes training data) but <strong style="color:var(--text);">high variance</strong> (changes drastically with new data). Bagging/RF keeps the low bias and reduces the variance.</p>
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION 7 — QUIZ
+     ========================================================= -->
+<div class="section scroll-target" id="quiz">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Knowledge Check</h2>
+  </div>
+
+  <div id="quiz-score-box" style="display:none; background:linear-gradient(135deg,rgba(108,99,255,0.15),rgba(0,212,170,0.15)); border:1px solid var(--border); border-radius:12px; padding:1.5rem; text-align:center; margin-bottom:1.5rem;">
+    <div style="font-size:2.5rem; font-weight:900; color:var(--accent2);" id="quiz-score-text">0/8</div>
+    <div style="color:var(--muted); margin-top:0.25rem;">Questions Correct</div>
+    <div class="progress-bar" style="margin-top:1rem; max-width:300px; margin-left:auto; margin-right:auto;">
+      <div class="progress-fill" id="quiz-progress" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="quiz-card" id="q1">
+    <div class="q">Q1: What does "sampling with replacement" mean in bootstrapping?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkAnswer(this,'q1',false)">Once a data point is selected, it's removed from the pool</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q1',true)">A data point can be selected multiple times in the same sample</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q1',false)">Each data point must appear exactly once in the sample</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q1',false)">The sample is smaller than the original dataset</button>
+    </div>
+    <div class="quiz-feedback" id="q1-fb"></div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="quiz-card" id="q2">
+    <div class="q">Q2: In bagging, why do we use high-variance, low-bias models (like unpruned trees)?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkAnswer(this,'q2',false)">They train faster on bootstrap samples</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q2',false)">They are more interpretable</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q2',true)">Averaging reduces their variance while keeping their low bias advantage</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q2',false)">They are less sensitive to correlations between trees</button>
+    </div>
+    <div class="quiz-feedback" id="q2-fb"></div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="quiz-card" id="q3">
+    <div class="q">Q3: What is the key difference between Bagging and Random Forest?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkAnswer(this,'q3',false)">Random Forest uses pruned trees; Bagging does not</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q3',true)">Random Forest randomly selects a subset of features at each split to reduce tree correlation</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q3',false)">Bagging uses more trees than Random Forest</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q3',false)">Random Forest uses gradient descent to optimize the forest</button>
+    </div>
+    <div class="quiz-feedback" id="q3-fb"></div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="quiz-card" id="q4">
+    <div class="q">Q4: What is Out-of-Bag (OOB) error?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkAnswer(this,'q4',false)">The error on the training set for each tree</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q4',false)">A cross-validation score using k=10 folds</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q4',true)">An estimate of test error using data points not included in each tree's bootstrap sample</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q4',false)">The difference in accuracy between training and testing sets</button>
+    </div>
+    <div class="quiz-feedback" id="q4-fb"></div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="quiz-card" id="q5">
+    <div class="q">Q5: In Mean Decrease in Impurity (MDI), what are we measuring?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkAnswer(this,'q5',false)">How much each feature increases the number of trees</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q5',true)">How much each feature reduces impurity (Gini/entropy) across all splits in all trees</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q5',false)">The number of times each feature appears in a bootstrap sample</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q5',false)">The correlation between features</button>
+    </div>
+    <div class="quiz-feedback" id="q5-fb"></div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="quiz-card" id="q6">
+    <div class="q">Q6: What is the known limitation of MDI feature importance?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkAnswer(this,'q6',false)">It only works for binary classification</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q6',true)">It is biased toward features with many unique values (high cardinality)</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q6',false)">It requires a separate validation set</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q6',false)">It cannot handle missing values</button>
+    </div>
+    <div class="quiz-feedback" id="q6-fb"></div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="quiz-card" id="q7">
+    <div class="q">Q7: In the lecture example with 5 independent 70% accurate classifiers, what is the ensemble accuracy?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkAnswer(this,'q7',false)">70% — same as individual classifiers</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q7',false)">75%</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q7',true)">~83.2%</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q7',false)">95%</button>
+    </div>
+    <div class="quiz-feedback" id="q7-fb"></div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="quiz-card" id="q8">
+    <div class="q">Q8: In Permutation Feature Importance, how is a feature's importance measured?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkAnswer(this,'q8',false)">By counting how many times the feature is used as a root node</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q8',false)">By removing the feature entirely and measuring accuracy drop</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q8',true)">By randomly shuffling the feature's values and measuring the drop in OOB score</button>
+      <button class="quiz-opt" onclick="checkAnswer(this,'q8',false)">By measuring the variance of the feature across bootstrap samples</button>
+    </div>
+    <div class="quiz-feedback" id="q8-fb"></div>
+  </div>
+
+  <div style="text-align:center; margin-top:1.5rem;">
+    <button class="btn-ghost" onclick="resetQuiz()">Reset Quiz</button>
+  </div>
+</div>
+
+<!-- =========================================================
+     SECTION — SUMMARY
+     ========================================================= -->
+<div class="section">
+  <hr>
+  <div class="section-header">
+    <div class="section-num" style="background:var(--success);">✓</div>
+    <h2>Lecture 3 Summary</h2>
+  </div>
+  <div class="card">
+    <table>
+      <thead><tr><th>Concept</th><th>Key Idea</th><th>Reduces</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag">Bootstrap</span></td><td>Sample n points with replacement</td><td>Need for multiple real datasets</td></tr>
+        <tr><td><span class="tag">Bagging</span></td><td>Train many trees on bootstrap samples, average</td><td>Variance (somewhat)</td></tr>
+        <tr><td><span class="tag green">Random Forest</span></td><td>Bagging + random feature subsets at each split</td><td>Variance (more, via decorrelation)</td></tr>
+        <tr><td><span class="tag yellow">OOB Error</span></td><td>~37% of data unseen per tree → free validation</td><td>Need for separate val set</td></tr>
+        <tr><td><span class="tag">MDI</span></td><td>Avg impurity decrease per feature across all splits</td><td>— (but biased)</td></tr>
+        <tr><td><span class="tag green">Permutation FI</span></td><td>Shuffle feature → measure OOB score drop</td><td>Bias of MDI</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="highlight" style="margin-top:1rem;">
+    <div class="label">Coming Up — Lecture 4</div>
+    <p style="color:var(--text);">Boosting (AdaBoost, GBM, LightGBM, XGBoost) — instead of averaging independent trees, build trees <em>sequentially</em>, each one correcting the previous one's errors.</p>
+  </div>
+</div>
+
+</main>
+
+<script>
+// =========================================================
+// BOOTSTRAP DEMO
+// =========================================================
+const origData = Array.from({length:10}, (_,i) => i);
+
+function renderBootstrapOriginal() {
+  const el = document.getElementById('bootstrap-original');
+  el.innerHTML = '<div style="margin-bottom:0.5rem; color:var(--muted); font-size:0.82rem;">Original dataset:</div>' +
+    '<div style="display:flex; gap:6px; flex-wrap:wrap;">' +
+    origData.map(i => `<div style="width:36px;height:36px;border-radius:8px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent2);">${i}</div>`).join('') + '</div>';
+}
+
+function runBootstrap() {
+  const n = origData.length;
+  const sample = Array.from({length:n}, () => Math.floor(Math.random() * n));
+  const el = document.getElementById('bootstrap-sample');
+  const counts = {};
+  sample.forEach(x => counts[x] = (counts[x]||0)+1);
+  const missing = origData.filter(i => !counts[i]);
+
+  el.innerHTML = '<div style="margin-bottom:0.5rem; color:var(--muted); font-size:0.82rem;">Bootstrap sample:</div>' +
+    '<div style="display:flex; gap:6px; flex-wrap:wrap;">' +
+    sample.map(i => {
+      const c = counts[i] > 1 ? 'var(--warning)' : 'var(--accent2)';
+      return `<div style="width:36px;height:36px;border-radius:8px;background:var(--card2);border:2px solid ${c};display:flex;align-items:center;justify-content:center;font-weight:700;color:${c};">${i}</div>`;
+    }).join('') + '</div>';
+
+  document.getElementById('bootstrap-stats').innerHTML =
+    `<span style="color:var(--accent2);">Unique points included: ${Object.keys(counts).length}/10</span> &nbsp;|&nbsp; ` +
+    `<span style="color:var(--warning);">Duplicates: ${sample.length - Object.keys(counts).length}</span> &nbsp;|&nbsp; ` +
+    `<span style="color:var(--danger);">Missing (OOB): ${missing.join(', ') || 'none'}</span>`;
+}
+
+renderBootstrapOriginal();
+
+// =========================================================
+// BAGGING CANVAS DEMO
+// =========================================================
+function updateBaggingDemo(val) {
+  const n = parseInt(val);
+  document.getElementById('tree-count-label').textContent = n;
+
+  const canvas = document.getElementById('bagging-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+
+  const trueVal = 50;
+  const noise = 15;
+  const xs = Array.from({length:100}, (_,i) => i/99);
+
+  // Draw individual tree predictions
+  const preds = [];
+  for (let t = 0; t < n; t++) {
+    const offset = (Math.random()-0.5)*noise*2;
+    preds.push(offset);
+  }
+
+  ctx.strokeStyle = 'rgba(108,99,255,0.15)';
+  ctx.lineWidth = 1;
+  preds.forEach(offset => {
+    ctx.beginPath();
+    xs.forEach((x,i) => {
+      const y = trueVal + offset + Math.sin(x*10)*5 + (Math.random()-0.5)*8;
+      const cx2 = x*W;
+      const cy = H - (y/100)*H;
+      i===0 ? ctx.moveTo(cx2,cy) : ctx.lineTo(cx2,cy);
+    });
+    ctx.stroke();
+  });
+
+  // Draw ensemble mean
+  ctx.strokeStyle = '#00d4aa';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  xs.forEach((x,i) => {
+    const avgP = preds.reduce((a,b)=>a+b,0)/preds.length;
+    const y = trueVal + avgP/n + Math.sin(x*10)*3;
+    const cx2 = x*W;
+    const cy = H - (y/100)*H;
+    i===0 ? ctx.moveTo(cx2,cy) : ctx.lineTo(cx2,cy);
+  });
+  ctx.stroke();
+
+  // Legend
+  ctx.fillStyle = 'rgba(108,99,255,0.6)';
+  ctx.fillRect(10, 10, 20, 4);
+  ctx.fillStyle = '#8892a4';
+  ctx.font = '12px system-ui';
+  ctx.fillText('Individual trees', 36, 15);
+
+  ctx.fillStyle = '#00d4aa';
+  ctx.fillRect(10, 30, 20, 4);
+  ctx.fillStyle = '#8892a4';
+  ctx.fillText('Ensemble average', 36, 35);
+
+  const variance = preds.reduce((a,b)=>a+b*b,0)/preds.length;
+  document.getElementById('bagging-stats').textContent =
+    `${n} tree(s) — Individual variance proxy: ${variance.toFixed(1)} | Ensemble variance ≈ ${(variance/n).toFixed(1)} (≈ ${n}x reduction)`;
+}
+updateBaggingDemo(10);
+
+// =========================================================
+// OOB CANVAS DEMO
+// =========================================================
+function runOOBDemo() {
+  const canvas = document.getElementById('oob-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0,0,W,H);
+
+  const nTrees = 5, nPoints = 10;
+  const cellW = (W-80) / nPoints;
+  const cellH = (H-40) / nTrees;
+  const included = [];
+
+  // Draw grid
+  for (let t = 0; t < nTrees; t++) {
+    const sample = new Set();
+    for (let i = 0; i < nPoints; i++) sample.add(Math.floor(Math.random()*nPoints));
+    included.push(sample);
+
+    ctx.fillStyle = '#8892a4';
+    ctx.font = '11px system-ui';
+    ctx.fillText(`Tree ${t+1}`, 4, 40 + t*cellH + cellH/2 + 4);
+
+    for (let p = 0; p < nPoints; p++) {
+      const x = 80 + p*cellW + 4;
+      const y = 20 + t*cellH + 4;
+      const w = cellW - 8;
+      const h = cellH - 8;
+      const inBag = sample.has(p);
+
+      ctx.fillStyle = inBag ? 'rgba(0,212,170,0.25)' : 'rgba(136,146,164,0.1)';
+      ctx.strokeStyle = inBag ? '#00d4aa' : '#2e3350';
+      ctx.lineWidth = inBag ? 2 : 1;
+      ctx.beginPath();
+      ctx.roundRect(x, y, w, h, 4);
+      ctx.fill(); ctx.stroke();
+
+      ctx.fillStyle = inBag ? '#00d4aa' : '#546e7a';
+      ctx.font = 'bold 11px system-ui';
+      ctx.textAlign = 'center';
+      ctx.fillText(p, x+w/2, y+h/2+4);
+    }
+  }
+
+  // Column headers
+  for (let p = 0; p < nPoints; p++) {
+    ctx.fillStyle = '#8892a4';
+    ctx.font = '10px system-ui';
+    ctx.textAlign = 'center';
+    ctx.fillText(`P${p}`, 80 + p*cellW + cellW/2, 15);
+  }
+
+  // Count OOB per point
+  const oobCounts = Array.from({length:nPoints}, (_,p) =>
+    included.filter(s => !s.has(p)).length);
+
+  let legend = 'OOB counts per point: ';
+  legend += oobCounts.map((c,i) => `P${i}:${c}`).join(' | ');
+  document.getElementById('oob-legend').textContent = legend;
+}
+runOOBDemo();
+
+// =========================================================
+// FEATURE IMPORTANCE DEMO
+// =========================================================
+let fiData = [
+  {name:'Age', imp:0.31, color:'#6c63ff'},
+  {name:'Balance', imp:0.25, color:'#00d4aa'},
+  {name:'NumProducts', imp:0.18, color:'#ffd166'},
+  {name:'Tenure', imp:0.12, color:'#ff6584'},
+  {name:'CreditScore', imp:0.09, color:'#a78bfa'},
+  {name:'Geography', imp:0.05, color:'#60a5fa'},
+];
+
+function drawFeatureImportance() {
+  const canvas = document.getElementById('fi-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0,0,W,H);
+
+  const margin = {top:20, right:20, bottom:60, left:120};
+  const bH = (H - margin.top - margin.bottom) / fiData.length;
+  const maxImp = Math.max(...fiData.map(d=>d.imp));
+
+  fiData.forEach((d,i) => {
+    const y = margin.top + i*bH + 4;
+    const bW = (d.imp/maxImp) * (W - margin.left - margin.right);
+
+    // Bar
+    ctx.fillStyle = d.color + '40';
+    ctx.strokeStyle = d.color;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.roundRect(margin.left, y, bW, bH-8, 4);
+    ctx.fill(); ctx.stroke();
+
+    // Label
+    ctx.fillStyle = '#e2e8f0';
+    ctx.font = 'bold 12px system-ui';
+    ctx.textAlign = 'right';
+    ctx.fillText(d.name, margin.left - 8, y + bH/2 + 2);
+
+    // Value
+    ctx.fillStyle = d.color;
+    ctx.textAlign = 'left';
+    ctx.fillText((d.imp*100).toFixed(1)+'%', margin.left + bW + 6, y + bH/2 + 2);
+  });
+
+  // X axis label
+  ctx.fillStyle = '#8892a4';
+  ctx.font = '11px system-ui';
+  ctx.textAlign = 'center';
+  ctx.fillText('Feature Importance (MDI)', W/2, H-8);
+}
+
+function shuffleFeatureImportance() {
+  // Randomly jitter importances
+  fiData = fiData.map(d => ({...d, imp: Math.random()*0.35 + 0.02}));
+  const total = fiData.reduce((a,d)=>a+d.imp,0);
+  fiData = fiData.map(d => ({...d, imp: d.imp/total}));
+  fiData.sort((a,b) => b.imp - a.imp);
+  drawFeatureImportance();
+}
+drawFeatureImportance();
+
+// =========================================================
+// ENSEMBLE CALCULATOR
+// =========================================================
+function binomial(n, k) {
+  if (k < 0 || k > n) return 0;
+  let c = 1;
+  for (let i = 0; i < k; i++) c = c * (n-i) / (i+1);
+  return c;
+}
+
+function ensembleAccuracy(n, p) {
+  const majority = Math.floor(n/2) + 1;
+  let acc = 0;
+  for (let k = majority; k <= n; k++) {
+    acc += binomial(n,k) * Math.pow(p,k) * Math.pow(1-p, n-k);
+  }
+  return acc;
+}
+
+function updateEnsembleCalc() {
+  const p = parseInt(document.getElementById('acc-slider').value)/100;
+  const n = parseInt(document.getElementById('n-slider').value);
+  document.getElementById('acc-label').textContent = Math.round(p*100)+'%';
+  document.getElementById('n-label').textContent = n;
+
+  const ensAcc = ensembleAccuracy(n, p);
+
+  const canvas = document.getElementById('ensemble-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0,0,W,H);
+
+  // Draw accuracy vs n
+  const maxN = 101;
+  ctx.strokeStyle = '#2e3350';
+  ctx.lineWidth = 1;
+  // Grid
+  [0.5,0.6,0.7,0.8,0.9,1.0].forEach(v => {
+    const y = H - v*(H-20);
+    ctx.beginPath(); ctx.moveTo(40,y); ctx.lineTo(W-10,y); ctx.stroke();
+    ctx.fillStyle = '#546e7a';
+    ctx.font = '10px system-ui';
+    ctx.textAlign = 'right';
+    ctx.fillText(Math.round(v*100)+'%', 36, y+3);
+  });
+
+  ctx.strokeStyle = '#00d4aa';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  for (let i = 1; i <= maxN; i += 2) {
+    const acc = ensembleAccuracy(i, p);
+    const x = 40 + ((i-1)/(maxN-1)) * (W-50);
+    const y = H - acc*(H-20);
+    i===1 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+
+  // Individual accuracy line
+  ctx.strokeStyle = '#ffd166';
+  ctx.setLineDash([4,4]);
+  ctx.lineWidth = 1.5;
+  const yBase = H - p*(H-20);
+  ctx.beginPath(); ctx.moveTo(40,yBase); ctx.lineTo(W-10,yBase); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Dot at current n
+  const dotX = 40 + ((n-1)/(maxN-1)) * (W-50);
+  const dotY = H - ensAcc*(H-20);
+  ctx.fillStyle = '#6c63ff';
+  ctx.beginPath(); ctx.arc(dotX, dotY, 6, 0, Math.PI*2); ctx.fill();
+
+  // Legend
+  ctx.fillStyle = '#00d4aa'; ctx.fillRect(W-120,10,20,3);
+  ctx.fillStyle = '#8892a4'; ctx.font = '11px system-ui'; ctx.textAlign='left';
+  ctx.fillText('Ensemble acc', W-95, 15);
+  ctx.fillStyle = '#ffd166'; ctx.fillRect(W-120,25,20,3);
+  ctx.fillText('Individual acc', W-95, 30);
+
+  document.getElementById('ensemble-result').textContent =
+    `Ensemble accuracy: ${(ensAcc*100).toFixed(2)}% (individual: ${Math.round(p*100)}%)`;
+}
+updateEnsembleCalc();
+
+// =========================================================
+// QUIZ LOGIC
+// =========================================================
+const quizAnswers = {};
+const quizTotal = 8;
+let score = 0;
+
+const feedbacks = {
+  q1: { correct: "Correct! With replacement means a data point can be picked again. This is what creates the ~63% inclusion rate.", wrong: "Not quite. 'With replacement' means items can be picked more than once." },
+  q2: { correct: "Exactly! High-variance trees are individually noisy but unbiased. Averaging many of them cancels out the noise.", wrong: "The key insight is about the bias-variance tradeoff — we keep low bias and reduce variance through averaging." },
+  q3: { correct: "Correct! Subspace sampling (random feature subsets) is the key innovation — it decorrelates the trees.", wrong: "The critical difference is subspace sampling: RF only considers √p features at each split." },
+  q4: { correct: "Correct! About 37% of data points are 'out-of-bag' for any given tree, giving a free validation estimate.", wrong: "OOB uses data points not included in a tree's bootstrap sample — about 37% per tree." },
+  q5: { correct: "That's right! MDI sums up the impurity reduction at each split, weighted and averaged across all trees.", wrong: "MDI measures how much each feature's splits reduced Gini impurity/entropy across the entire forest." },
+  q6: { correct: "Correct! High-cardinality features (like user IDs) get artificially high MDI scores just because they have more split options.", wrong: "The bias is toward features with many unique values (high cardinality) — they get more chances to reduce impurity." },
+  q7: { correct: "Correct! P(≥3 of 5 correct) = C(5,5)·0.7⁵ + C(5,4)·0.7⁴·0.3 + C(5,3)·0.7³·0.3² ≈ 83.2%", wrong: "Using majority vote: P(≥3 of 5 correct) ≈ 83.2%." },
+  q8: { correct: "Exactly! Shuffling breaks the feature's signal. A big drop in OOB score → the feature was important.", wrong: "Permutation importance shuffles (not removes) the feature's values and measures how much OOB score drops." },
+};
+
+function checkAnswer(btn, qId, isCorrect) {
+  if (quizAnswers[qId] !== undefined) return; // Already answered
+  quizAnswers[qId] = isCorrect;
+
+  const card = document.getElementById(qId);
+  const btns = card.querySelectorAll('.quiz-opt');
+  btns.forEach(b => { b.disabled = true; b.style.cursor = 'default'; });
+
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+
+  const fb = document.getElementById(qId+'-fb');
+  fb.textContent = feedbacks[qId][isCorrect ? 'correct' : 'wrong'];
+  fb.className = 'quiz-feedback show ' + (isCorrect ? 'correct' : 'wrong');
+
+  if (isCorrect) score++;
+  updateQuizScore();
+}
+
+function updateQuizScore() {
+  const answered = Object.keys(quizAnswers).length;
+  document.getElementById('quiz-score-box').style.display = 'block';
+  document.getElementById('quiz-score-text').textContent = `${score}/${answered}`;
+  document.getElementById('quiz-progress').style.width = `${(score/quizTotal)*100}%`;
+}
+
+function resetQuiz() {
+  score = 0;
+  Object.keys(quizAnswers).forEach(k => delete quizAnswers[k]);
+  document.getElementById('quiz-score-box').style.display = 'none';
+  document.querySelectorAll('.quiz-opt').forEach(b => {
+    b.className = 'quiz-opt';
+    b.disabled = false;
+    b.style.cursor = 'pointer';
+  });
+  document.querySelectorAll('.quiz-feedback').forEach(f => {
+    f.className = 'quiz-feedback';
+  });
+}
+
+// =========================================================
+// CONCEPT TOGGLES
+// =========================================================
+function toggleConcept(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.concept-toggle-arrow');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+// =========================================================
+// SMOOTH SCROLL FOR NAV PILLS
+// =========================================================
+document.querySelectorAll('.nav-pill').forEach(pill => {
+  pill.addEventListener('click', e => {
+    e.preventDefault();
+    const id = pill.getAttribute('href').substring(1);
+    document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+    document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+  });
+});
+
+// Highlight nav on scroll
+const sections = document.querySelectorAll('.scroll-target');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('.nav-pill').forEach(p => {
+        p.classList.toggle('active', p.getAttribute('href') === '#'+id);
+      });
+    }
+  });
+}, {threshold:0.3});
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>AWS Deployment Quiz - CST-323 Activity 5</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            min-height: 100vh;
+            color: #e0e0e0;
+            padding: 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        header { text-align: center; padding: 30px 0; border-bottom: 2px solid #e88d2a; margin-bottom: 30px; }
+        h1 { color: #e88d2a; font-size: 2.5rem; margin-bottom: 10px; }
+        .subtitle { color: #a0a0a0; }
+        .card { background: #2d2d44; border-radius: 15px; padding: 30px; margin-bottom: 20px; }
+        .timer-bar { background: #2d2d44; border-radius: 10px; padding: 15px 20px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
+        .mode-label { font-size: 1.1rem; color: #00cec9; font-weight: bold; }
+        .progress-bar { width: 100%; height: 8px; background: #2d2d44; border-radius: 4px; margin-bottom: 25px; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #e88d2a, #00cec9); border-radius: 4px; width: 0%; transition: width 0.3s; }
+        .start-screen { text-align: center; padding: 40px; }
+        .start-screen h2 { color: #e88d2a; font-size: 2rem; margin-bottom: 20px; }
+        .start-info { color: #a0a0a0; margin-bottom: 30px; line-height: 1.8; }
+        .topics-list { text-align: left; background: #1a1a2e; padding: 25px; border-radius: 10px; margin: 30px 0; }
+        .topics-list h3 { color: #00cec9; margin-bottom: 15px; }
+        .topics-list ul { list-style: none; }
+        .topics-list li { padding: 8px 0; border-bottom: 1px solid #2d2d44; color: #c0c0c0; }
+        .topics-list li::before { content: "▸ "; color: #e88d2a; margin-right: 10px; font-weight: bold; }
+        .btn { padding: 12px 30px; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; font-weight: 600; background: linear-gradient(135deg, #e88d2a, #f0a04b); color: white; transition: transform 0.15s, box-shadow 0.15s; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(232, 141, 42, 0.4); }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+        .question-text { font-size: 1.3rem; line-height: 1.6; margin-bottom: 25px; }
+        .code-block { background: #1a1a2e; border-radius: 8px; padding: 15px; margin: 15px 0; font-family: 'Courier New', monospace; border-left: 4px solid #e88d2a; white-space: pre-wrap; font-size: 0.92rem; line-height: 1.5; overflow-x: auto; }
+        .options { display: flex; flex-direction: column; gap: 12px; }
+        .option { background: #1a1a2e; border: 2px solid #3d3d5c; border-radius: 10px; padding: 15px 20px; cursor: pointer; display: flex; align-items: center; gap: 15px; transition: border-color 0.15s, background 0.15s; }
+        .option:hover { border-color: #e88d2a; background: #252540; }
+        .option.selected { border-color: #e88d2a; background: rgba(232, 141, 42, 0.15); }
+        .option.correct { border-color: #00b894; background: rgba(0, 184, 148, 0.2); }
+        .option.incorrect { border-color: #e74c3c; background: rgba(231, 76, 60, 0.2); }
+        .option-letter { min-width: 35px; height: 35px; border-radius: 50%; background: #3d3d5c; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+        .option.selected .option-letter { background: #e88d2a; }
+        .option.correct .option-letter { background: #00b894; }
+        .option.incorrect .option-letter { background: #e74c3c; }
+        .feedback { margin-top: 20px; padding: 15px; border-radius: 10px; display: none; }
+        .feedback.show { display: block; }
+        .feedback.correct { background: rgba(0, 184, 148, 0.15); border: 1px solid #00b894; }
+        .feedback.incorrect { background: rgba(231, 76, 60, 0.15); border: 1px solid #e74c3c; }
+        .explanation { margin-top: 10px; color: #b0b0b0; font-size: 0.95rem; line-height: 1.5; }
+        .btn-container { display: flex; justify-content: space-between; margin-top: 25px; }
+        .btn-secondary { background: transparent; border: 2px solid #3d3d5c; color: #a0a0a0; }
+        .btn-secondary:hover { border-color: #e88d2a; color: #e88d2a; }
+        .results { text-align: center; padding: 40px; }
+        .score-circle { width: 200px; height: 200px; border-radius: 50%; background: linear-gradient(135deg, #e88d2a, #00cec9); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 30px auto; }
+        .score-number { font-size: 3.5rem; font-weight: bold; color: white; }
+        .score-label { color: rgba(255,255,255,0.8); }
+        .category-scores { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin: 30px 0; text-align: left; }
+        .category-item { background: #1a1a2e; padding: 15px; border-radius: 10px; border-left: 4px solid #e88d2a; }
+        .category-name { font-size: 0.9rem; color: #a0a0a0; margin-bottom: 5px; }
+        .category-score { font-size: 1.2rem; font-weight: bold; color: #00cec9; }
+        .category-bar { width: 100%; height: 6px; background: #3d3d5c; border-radius: 3px; margin-top: 8px; }
+        .category-bar-fill { height: 100%; border-radius: 3px; transition: width 0.5s; }
+        .review-section { margin-top: 30px; text-align: left; }
+        .review-section h3 { color: #e88d2a; margin-bottom: 15px; }
+        .review-item { background: #1a1a2e; border-radius: 10px; padding: 20px; margin-bottom: 15px; border-left: 4px solid #e74c3c; }
+        .review-item.was-correct { border-left-color: #00b894; }
+        .review-q { font-weight: 600; margin-bottom: 8px; }
+        .review-answer { color: #a0a0a0; font-size: 0.95rem; }
+        .review-answer span.right { color: #00b894; }
+        .review-answer span.wrong { color: #e74c3c; text-decoration: line-through; }
+        .shuffle-note { color: #a0a0a0; font-size: 0.85rem; margin-top: 8px; font-style: italic; }
+        .size-selector { background: #1a1a2e; padding: 25px; border-radius: 10px; margin: 25px 0; }
+        .size-selector h3 { color: #00cec9; margin-bottom: 18px; }
+        .size-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .size-option { cursor: pointer; }
+        .size-option input { display: none; }
+        .size-card { background: #2d2d44; border: 2px solid #3d3d5c; border-radius: 10px; padding: 18px 10px; text-align: center; transition: border-color 0.15s, background 0.15s, transform 0.1s; }
+        .size-card:hover { border-color: #e88d2a; background: #352d40; }
+        .size-option input:checked + .size-card { border-color: #e88d2a; background: rgba(232, 141, 42, 0.18); transform: scale(1.04); }
+        .size-number { font-size: 2rem; font-weight: bold; color: #e88d2a; }
+        .size-label { font-size: 0.8rem; color: #a0a0a0; margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+        @media (max-width: 500px) { .size-options { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .question-text { font-size: 1.1rem; }
+            .start-screen h2 { font-size: 1.5rem; }
+            .card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AWS Deployment Review</h1>
+            <p class="subtitle">CST-323 Activity 5: Spring Boot + MySQL on AWS</p>
+        </header>
+
+        <div id="startScreen" class="card">
+            <div class="start-screen">
+                <h2>Ready to Test Your AWS Knowledge?</h2>
+                <p class="start-info">
+                    This quiz covers the full Activity 5 guide: AWS account setup, RDS, Elastic Beanstalk,
+                    security, configuration, and scaling concepts.<br>
+                    <strong>67 questions available</strong> | <strong>No time limit</strong> | <strong>Immediate feedback</strong> | <strong>Shuffled each attempt</strong>
+                </p>
+                <div class="topics-list">
+                    <h3>Topics Covered</h3>
+                    <ul>
+                        <li>AWS Fundamentals (Regions, AZs, VPC, Subnets)</li>
+                        <li>Amazon RDS &amp; MySQL Database Setup</li>
+                        <li>Security Groups, IAM, TLS/SSL</li>
+                        <li>Elastic Beanstalk Deployment (PaaS)</li>
+                        <li>Spring Boot Configuration &amp; Environment Variables</li>
+                        <li>Azure vs. AWS Service Equivalents</li>
+                        <li>IaaS vs. PaaS vs. SaaS Concepts</li>
+                        <li>Scaling, Elasticity &amp; Architecture</li>
+                        <li>Connection Pooling, Caching &amp; Read Replicas</li>
+                        <li>Troubleshooting &amp; Logs</li>
+                    </ul>
+                </div>
+                <div class="size-selector">
+                    <h3>Choose Quiz Size</h3>
+                    <div class="size-options">
+                        <label class="size-option">
+                            <input type="radio" name="quizSize" value="10">
+                            <div class="size-card">
+                                <div class="size-number">10</div>
+                                <div class="size-label">Quick Review</div>
+                            </div>
+                        </label>
+                        <label class="size-option">
+                            <input type="radio" name="quizSize" value="20" checked>
+                            <div class="size-card">
+                                <div class="size-number">20</div>
+                                <div class="size-label">Test Simulation</div>
+                            </div>
+                        </label>
+                        <label class="size-option">
+                            <input type="radio" name="quizSize" value="35">
+                            <div class="size-card">
+                                <div class="size-number">35</div>
+                                <div class="size-label">Deep Practice</div>
+                            </div>
+                        </label>
+                        <label class="size-option">
+                            <input type="radio" name="quizSize" value="67">
+                            <div class="size-card">
+                                <div class="size-number">67</div>
+                                <div class="size-label">Full Bank</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <p class="shuffle-note">Questions are shuffled on each attempt so you can retake for fresh practice.</p>
+                <br>
+                <button class="btn" onclick="startQuiz()">Start Quiz</button>
+            </div>
+        </div>
+
+        <div id="quizHeader" style="display:none;">
+            <div class="timer-bar">
+                <div class="mode-label">No Time Limit — Take Your Time</div>
+                <div id="progress"></div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+
+        <div id="questionArea"></div>
+
+        <div id="resultsScreen" class="card" style="display:none;">
+            <div class="results">
+                <h2>Quiz Complete!</h2>
+                <div class="score-circle">
+                    <div class="score-number" id="finalScore">0%</div>
+                    <div class="score-label">Score</div>
+                </div>
+                <p id="resultMessage" style="font-size:1.5rem;margin:20px 0;"></p>
+                <p id="resultDetails" style="color:#a0a0a0;margin-bottom:30px;"></p>
+                <div id="categoryScores" class="category-scores"></div>
+                <div id="reviewSection" class="review-section"></div>
+                <br>
+                <button class="btn" onclick="location.reload()">Shuffle &amp; Try Again</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+const allQuestions = [
+    // ─── AWS Fundamentals ───
+    {
+        category: "AWS Fundamentals",
+        question: "Why did Amazon originally create AWS?",
+        options: [
+            "To compete with Microsoft Office",
+            "To sell more physical servers",
+            "To monetize internal infrastructure expertise and excess capacity",
+            "To replace their retail operations"
+        ],
+        correct: 2,
+        explanation: "Amazon built massive infrastructure for its retail business and realized it could offer that same infrastructure as cloud services to others, monetizing its expertise and excess capacity."
+    },
+    {
+        category: "AWS Fundamentals",
+        question: "Today, AWS is strategically important to Amazon primarily because:",
+        options: [
+            "It generates low revenue but high marketing value",
+            "It provides high-margin profit compared to retail",
+            "It replaces Amazon Prime",
+            "It eliminates the need for warehouses"
+        ],
+        correct: 1,
+        explanation: "AWS is Amazon's most profitable division. While retail has thin margins, AWS cloud services generate high-margin revenue that subsidizes and supports the rest of Amazon's business."
+    },
+    {
+        category: "AWS Fundamentals",
+        question: "What is an AWS Region?",
+        options: [
+            "A single data center",
+            "A geographic area containing multiple Availability Zones",
+            "A virtual network inside your account",
+            "A firewall configuration"
+        ],
+        correct: 1,
+        explanation: "A Region is a geographic area (e.g., us-west-1) that contains multiple Availability Zones. The guide recommends choosing one region and sticking to it."
+    },
+    {
+        category: "AWS Fundamentals",
+        question: "What is an Availability Zone (AZ)?",
+        options: [
+            "A geographic region like US-East",
+            "A data center within a Region",
+            "A security policy for your account",
+            "An auto-scaling configuration"
+        ],
+        correct: 1,
+        explanation: "An Availability Zone is a data center (or cluster of data centers) within a Region. RDS and Elastic Beanstalk may use multiple AZs for redundancy."
+    },
+    {
+        category: "AWS Fundamentals",
+        question: "What is a VPC (Virtual Private Cloud)?",
+        options: [
+            "A managed database service",
+            "Your private network in AWS",
+            "A container orchestration service",
+            "A type of EC2 instance"
+        ],
+        correct: 1,
+        explanation: "A VPC is your own isolated private network within AWS. RDS instances and EC2 instances live inside VPCs. For this lab, you use the Default VPC."
+    },
+    {
+        category: "AWS Fundamentals",
+        question: "What is the purpose of a Subnet in AWS?",
+        options: [
+            "It encrypts traffic between services",
+            "It is a slice of your VPC network; RDS lives in subnets",
+            "It manages user authentication",
+            "It stores application logs"
+        ],
+        correct: 1,
+        explanation: "A subnet is a range of IP addresses within your VPC. Database instances like RDS are placed in subnets (grouped via DB Subnet Groups)."
+    },
+    {
+        category: "AWS Fundamentals",
+        question: "Which AWS service provides object storage and is used by Elastic Beanstalk to store app versions?",
+        options: [
+            "RDS",
+            "CloudWatch",
+            "S3 (Simple Storage Service)",
+            "IAM"
+        ],
+        correct: 2,
+        explanation: "S3 is AWS's object storage service. Elastic Beanstalk uses S3 behind the scenes to store uploaded application versions (JAR files)."
+    },
+    {
+        category: "AWS Fundamentals",
+        question: "What does CloudWatch provide in AWS?",
+        options: [
+            "Database management",
+            "Metrics, alarms, and logs",
+            "User authentication",
+            "DNS routing"
+        ],
+        correct: 1,
+        explanation: "CloudWatch is AWS's monitoring service for metrics, alarms, and logs. You can pull Beanstalk and RDS logs through CloudWatch."
+    },
+    // ─── RDS & Database ───
+    {
+        category: "RDS & Database",
+        question: "What does RDS stand for and what does it do?",
+        options: [
+            "Relational Data Sync — syncs data across regions",
+            "Relational Database Service — AWS's managed database platform",
+            "Remote Desktop Service — provides GUI access to servers",
+            "Resource Deployment System — automates server creation"
+        ],
+        correct: 1,
+        explanation: "RDS is the Relational Database Service. Instead of installing and managing MySQL yourself, AWS handles patching, securing, backups, and scaling."
+    },
+    {
+        category: "RDS & Database",
+        question: "What is the difference between using EC2 vs. RDS for running MySQL?",
+        options: [
+            "EC2 is managed; RDS requires manual setup",
+            "With EC2 you install & manage everything (OS, patches, backups); with RDS, AWS manages it for you",
+            "RDS is more expensive and has no advantages over EC2",
+            "EC2 cannot run MySQL at all"
+        ],
+        correct: 1,
+        explanation: "EC2 gives you a raw virtual machine where you'd install MySQL, manage OS updates, patches, and backups yourself. RDS is a managed service where AWS handles all of that."
+    },
+    {
+        category: "RDS & Database",
+        question: "Which DB instance class is Free Tier eligible and recommended for this course?",
+        options: [
+            "db.m5.large",
+            "db.r5.xlarge",
+            "db.t3.micro",
+            "db.t3.medium"
+        ],
+        correct: 2,
+        explanation: "db.t3.micro (2 vCPUs, 1 GiB RAM) is Free Tier eligible. It's more than sufficient for a single Spring Boot app with a small MySQL schema."
+    },
+    {
+        category: "RDS & Database",
+        question: "What is an RDS endpoint?",
+        options: [
+            "The admin console URL for managing RDS",
+            "The hostname URL your app uses to connect to the database",
+            "The IP address of the EC2 instance running your app",
+            "A backup recovery point"
+        ],
+        correct: 1,
+        explanation: "The RDS endpoint is a hostname like mydb.cj7s123abcde.us-west-2.rds.amazonaws.com that your application uses in its JDBC connection string to reach the database."
+    },
+    {
+        category: "RDS & Database",
+        question: "What is the difference between a Cluster and a Database in RDS?",
+        options: [
+            "They are the same thing",
+            "Cluster = infrastructure grouping (instances + storage + networking); Database = schema inside MySQL (tables, data)",
+            "Cluster = a single table; Database = a collection of clusters",
+            "Database = the physical server; Cluster = a backup copy"
+        ],
+        correct: 1,
+        explanation: "A cluster is the infrastructure grouping (instances, storage, networking). A database (schema) lives inside MySQL on that cluster. A single RDS cluster can contain multiple databases/schemas."
+    },
+    {
+        category: "RDS & Database",
+        question: "Why does the guide recommend MySQL 8.0 over 5.7 for RDS?",
+        options: [
+            "MySQL 8.0 is cheaper on AWS",
+            "MySQL 5.7 reached end of life in Oct 2023; 8.0 is the default on AWS and Azure",
+            "MySQL 8.0 doesn't require any SQL changes",
+            "MySQL 5.7 cannot run on RDS at all"
+        ],
+        correct: 1,
+        explanation: "MySQL 5.7 reached end of life in October 2023, meaning no new features or security patches. Both AWS and Azure use MySQL 8.0 as their default. MySQL 8.0 does have stricter SQL rules (e.g., GROUP BY requirements)."
+    },
+    {
+        category: "RDS & Database",
+        question: "When setting up an RDS instance for this class, what should 'Public access' be set to?",
+        options: [
+            "No — only internal access is allowed",
+            "Yes — gives the DB a public endpoint for Beanstalk and Workbench access",
+            "It doesn't matter since security groups handle everything",
+            "Yes, but only if using IPv6"
+        ],
+        correct: 1,
+        explanation: "For this class, Public access = Yes gives the DB a public endpoint so you can connect from Elastic Beanstalk and from your laptop via MySQL Workbench. Security is still enforced via VPC security groups."
+    },
+    {
+        category: "RDS & Database",
+        question: "For credentials management when creating the RDS instance, which option is recommended for this class?",
+        options: [
+            "Managed in AWS Secrets Manager (automatic rotation)",
+            "Self managed — you set the password yourself",
+            "No password — use IAM authentication only",
+            "Store the password in application.properties and commit to Git"
+        ],
+        correct: 1,
+        explanation: "Self managed is recommended for classroom labs: no extra cost, easy to copy into Elastic Beanstalk environment variables. Secrets Manager costs $0.40/month per secret."
+    },
+    // ─── Security ───
+    {
+        category: "Security",
+        question: "What is a Security Group (SG) in AWS?",
+        options: [
+            "A group of IAM users",
+            "Firewall rules for inbound/outbound traffic",
+            "A database backup policy",
+            "An encryption certificate"
+        ],
+        correct: 1,
+        explanation: "A Security Group acts as a virtual firewall controlling inbound and outbound traffic. You'll configure one to open port 3306 for MySQL from your IP address."
+    },
+    {
+        category: "Security",
+        question: "To allow MySQL Workbench on your laptop to connect to RDS, what inbound rule must you add to the security group?",
+        options: [
+            "Type: HTTP, Port: 80, Source: Anywhere",
+            "Type: MySQL/Aurora, Port: 3306, Source: My IP",
+            "Type: SSH, Port: 22, Source: 0.0.0.0/0",
+            "Type: Custom TCP, Port: 8080, Source: My IP"
+        ],
+        correct: 1,
+        explanation: "You need to add an inbound rule for MySQL/Aurora on port 3306, with the source set to 'My IP' so AWS auto-detects your laptop's IP address."
+    },
+    {
+        category: "Security",
+        question: "What does IAM stand for and what does it manage?",
+        options: [
+            "Internet Access Manager — manages VPN connections",
+            "Identity and Access Management — users, roles, and policies (permissions)",
+            "Instance Allocation Module — assigns EC2 instances",
+            "Integrated Application Monitor — tracks app performance"
+        ],
+        correct: 1,
+        explanation: "IAM is Identity and Access Management. It controls who (users) can do what (policies/permissions) with which AWS resources. IAM Roles let services like Elastic Beanstalk assume permissions."
+    },
+    {
+        category: "Security",
+        question: "What does TLS/SSL provide when connecting to RDS?",
+        options: [
+            "Faster query execution",
+            "Encryption in transit — prevents network sniffers from capturing data",
+            "Automatic database backups",
+            "Load balancing across multiple instances"
+        ],
+        correct: 1,
+        explanation: "TLS/SSL encrypts all communication between your application and the database in transit, preventing network sniffers from capturing packets from inter-app communication."
+    },
+    {
+        category: "Security",
+        question: "In the JDBC connection string, what does sslMode=REQUIRED ensure?",
+        options: [
+            "The database automatically backs up",
+            "The connection is encrypted; it will fail if TLS is not available",
+            "The app uses HTTP instead of HTTPS",
+            "Passwords are hashed before storage"
+        ],
+        correct: 1,
+        explanation: "sslMode=REQUIRED ensures the JDBC connection uses TLS encryption. If the server can't provide a TLS connection, it will refuse to connect rather than falling back to unencrypted."
+    },
+    {
+        category: "Security",
+        question: "Why should you NOT hardcode database credentials in application.properties for production?",
+        options: [
+            "It makes the app slower",
+            "Secrets could be committed to Git and exposed; use environment variables or Secrets Manager instead",
+            "Spring Boot doesn't support hardcoded values",
+            "It causes compilation errors"
+        ],
+        correct: 1,
+        explanation: "Hardcoded secrets in application.properties can end up in Git repositories, exposing them. Best practice is to use environment variables (Beanstalk Environment Properties) or AWS Secrets Manager."
+    },
+    // ─── Elastic Beanstalk ───
+    {
+        category: "Elastic Beanstalk",
+        question: "What is AWS Elastic Beanstalk?",
+        options: [
+            "A managed database service",
+            "A PaaS for running web applications — you upload a JAR and EB handles infrastructure",
+            "A container orchestration platform like Kubernetes",
+            "A serverless function execution service"
+        ],
+        correct: 1,
+        explanation: "Elastic Beanstalk is Amazon's Platform-as-a-Service. You upload your app JAR, and EB automatically provisions EC2 instances, load balancers, scaling groups, and networking."
+    },
+    {
+        category: "Elastic Beanstalk",
+        question: "What does Elastic Beanstalk automatically create and manage for your app?",
+        options: [
+            "Only a database instance",
+            "EC2 instances, load balancers, scaling groups, and networking",
+            "Only DNS records",
+            "Only S3 storage buckets"
+        ],
+        correct: 1,
+        explanation: "EB provisions and manages EC2 instances (virtual servers), load balancers, Auto Scaling groups, and networking — letting you focus on your code."
+    },
+    {
+        category: "Elastic Beanstalk",
+        question: "How do you deploy a Spring Boot app to Elastic Beanstalk?",
+        options: [
+            "Push your source code directly from Git",
+            "Run 'mvn clean package' to create a JAR in target/, then upload that JAR to EB",
+            "Copy individual .java files to S3",
+            "Install Tomcat on EC2 and deploy a WAR manually"
+        ],
+        correct: 1,
+        explanation: "You use Maven ('mvn clean package') to build a fat JAR in the target/ directory, then upload that JAR file to Elastic Beanstalk through the console."
+    },
+    {
+        category: "Elastic Beanstalk",
+        question: "Where do you set database credentials for your Beanstalk-deployed app?",
+        options: [
+            "Hardcode them in application.properties",
+            "Elastic Beanstalk Environment Properties (environment variables)",
+            "In the RDS console under 'App Settings'",
+            "In a .env file committed to Git"
+        ],
+        correct: 1,
+        explanation: "You set SPRING_DATASOURCE_URL, SPRING_DATASOURCE_USERNAME, and SPRING_DATASOURCE_PASSWORD as Elastic Beanstalk Environment Properties. These override application.properties values at runtime."
+    },
+    {
+        category: "Elastic Beanstalk",
+        question: "What does a 502 error from Elastic Beanstalk typically indicate?",
+        options: [
+            "The URL route doesn't exist (wrong path)",
+            "An internal application problem — likely a runtime error such as a failed database connection",
+            "Your AWS Free Tier has expired",
+            "The JAR file was too large to upload"
+        ],
+        correct: 1,
+        explanation: "A 502 Bad Gateway error indicates an internal application problem. In this tutorial, it probably means the database is not connected to the application. Check error logs to diagnose."
+    },
+    {
+        category: "Elastic Beanstalk",
+        question: "What does a 404 error from Elastic Beanstalk indicate?",
+        options: [
+            "The database connection failed",
+            "An invalid route — the URL path doesn't match any controller endpoint",
+            "The application hasn't started yet",
+            "Your security group is blocking traffic"
+        ],
+        correct: 1,
+        explanation: "A 404 error means the requested URL route doesn't match any endpoint in your application. Check that you're navigating to the correct path (e.g., /orders)."
+    },
+    {
+        category: "Elastic Beanstalk",
+        question: "Where can you find error logs to troubleshoot a Beanstalk deployment?",
+        options: [
+            "Only in MySQL Workbench",
+            "In the Elastic Beanstalk console under Logs — you can request and download them",
+            "Only by SSH-ing into the EC2 instance",
+            "Error logs are not available on AWS"
+        ],
+        correct: 1,
+        explanation: "The Elastic Beanstalk console provides a Logs section where you can request and download error logs for diagnosing startup and runtime issues."
+    },
+    // ─── Spring Boot Configuration ───
+    {
+        category: "Spring Boot Config",
+        question: "What does the syntax ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/ordersdb} mean in application.properties?",
+        options: [
+            "It's a comment — ignored at runtime",
+            "Use the environment variable SPRING_DATASOURCE_URL if set; otherwise fall back to the localhost value",
+            "It always uses localhost regardless of environment variables",
+            "It creates two simultaneous database connections"
+        ],
+        correct: 1,
+        explanation: "The ${VAR:default} syntax means: use the environment variable VAR if it exists, otherwise use the default value after the colon. This lets the same properties file work locally and on AWS."
+    },
+    {
+        category: "Spring Boot Config",
+        question: "What is HikariCP in the context of Spring Boot?",
+        options: [
+            "A logging framework",
+            "The default JDBC connection pool used by Spring Boot",
+            "A database migration tool",
+            "An AWS monitoring agent"
+        ],
+        correct: 1,
+        explanation: "HikariCP is the default JDBC connection pool in Spring Boot. It manages a pool of reusable database connections, reducing the overhead of creating new connections for every request."
+    },
+    {
+        category: "Spring Boot Config",
+        question: "Why is setting server.port=${PORT:5000} important for Elastic Beanstalk?",
+        options: [
+            "MySQL requires port 5000",
+            "Elastic Beanstalk sets PORT=5000 by default; the app must listen on that port for the health check to pass",
+            "Port 5000 is the only port allowed by AWS security groups",
+            "It has no effect on deployment"
+        ],
+        correct: 1,
+        explanation: "Elastic Beanstalk expects the application to listen on port 5000 (set via the PORT environment variable). If the app listens on a different port, health checks fail and the environment goes unhealthy."
+    },
+    {
+        category: "Spring Boot Config",
+        question: "What does spring.jpa.hibernate.ddl-auto=update do?",
+        options: [
+            "Drops and recreates all tables on every startup",
+            "Updates the database schema to match entity classes without dropping existing data",
+            "Prevents any schema changes",
+            "Only validates the schema without making changes"
+        ],
+        correct: 1,
+        explanation: "The 'update' setting tells Hibernate to compare entity classes to the existing schema and apply non-destructive changes (add columns, tables) without dropping existing data."
+    },
+    // ─── Azure vs. AWS Equivalents ───
+    {
+        category: "Azure vs. AWS",
+        question: "What is the AWS equivalent of Azure Database for MySQL — Flexible Server?",
+        options: [
+            "AWS Lambda",
+            "Amazon RDS (MySQL)",
+            "Amazon DynamoDB",
+            "Amazon S3"
+        ],
+        correct: 1,
+        explanation: "Both Azure Database for MySQL and Amazon RDS are managed relational database services. You provision a MySQL instance and connect your app without managing the underlying server."
+    },
+    {
+        category: "Azure vs. AWS",
+        question: "What is the AWS equivalent of Azure App Service (Linux, Java SE runtime)?",
+        options: [
+            "Amazon S3",
+            "AWS Lambda",
+            "AWS Elastic Beanstalk (Java SE platform)",
+            "Amazon RDS"
+        ],
+        correct: 2,
+        explanation: "Both Azure App Service and AWS Elastic Beanstalk are PaaS options. You deploy a Spring Boot fat JAR and the platform runs it with load balancing, scaling, and logging."
+    },
+    {
+        category: "Azure vs. AWS",
+        question: "What is the AWS equivalent of Azure App Settings / Key Vault for injecting environment variables?",
+        options: [
+            "S3 bucket policies",
+            "Elastic Beanstalk Environment Properties / AWS Secrets Manager",
+            "CloudWatch Alarms",
+            "Route 53 DNS records"
+        ],
+        correct: 1,
+        explanation: "Azure App Settings correspond to EB Environment Properties (for env vars like DB URL, username, password). Azure Key Vault corresponds to AWS Secrets Manager for more secure secret storage."
+    },
+    // ─── IaaS vs. PaaS ───
+    {
+        category: "IaaS vs. PaaS",
+        question: "Using the pizza analogy from the guide, what does IaaS (EC2) correspond to?",
+        options: [
+            "Pizza delivery — the restaurant makes everything, you just eat",
+            "Take & bake pizza — the store gives you raw ingredients and you assemble, bake, and clean up",
+            "Frozen pizza — everything is pre-made, just microwave",
+            "Dining in — someone else cooks, serves, and cleans"
+        ],
+        correct: 1,
+        explanation: "IaaS (EC2) is like take & bake pizza: you get the raw infrastructure (server) but must install MySQL, Java, Tomcat, handle patches, etc. More control, but more work."
+    },
+    {
+        category: "IaaS vs. PaaS",
+        question: "Using the pizza analogy, what does PaaS (RDS / Beanstalk) correspond to?",
+        options: [
+            "Take & bake — you assemble everything yourself",
+            "Pizza delivery — the service is managed for you, you just use it",
+            "Growing your own wheat to make dough",
+            "Buying a pizza oven for your home"
+        ],
+        correct: 1,
+        explanation: "PaaS (RDS/Beanstalk) is like pizza delivery: the platform manages the infrastructure (database, server, scaling) and you just use it — connect to the DB, deploy your JAR."
+    },
+    // ─── Scaling & Architecture ───
+    {
+        category: "Scaling & Architecture",
+        question: "In Elastic Beanstalk, automatic scaling primarily relies on:",
+        options: [
+            "Manual developer resizing",
+            "CloudWatch metrics triggering Auto Scaling Groups",
+            "Increasing database size",
+            "Java garbage collection"
+        ],
+        correct: 1,
+        explanation: "Elastic Beanstalk uses CloudWatch to monitor metrics like CPU utilization and request count. When thresholds are exceeded, Auto Scaling Groups automatically launch or terminate EC2 instances."
+    },
+    {
+        category: "Scaling & Architecture",
+        question: "When traffic spikes suddenly, what typically happens first in the AWS auto-scaling pipeline?",
+        options: [
+            "Database schema changes",
+            "Load balancer distributes traffic",
+            "CloudWatch detects increased CPU/requests",
+            "Code recompilation"
+        ],
+        correct: 2,
+        explanation: "CloudWatch detects the increase in metrics (CPU, request count) first. It then triggers the Auto Scaling Group to launch new instances, and the load balancer distributes traffic across them."
+    },
+    {
+        category: "Scaling & Architecture",
+        question: "Which database strategy improves read scalability for an app with 1 million users?",
+        options: [
+            "Vertical scaling only",
+            "Read replicas",
+            "Increasing thread count in the app",
+            "Changing the primary key type"
+        ],
+        correct: 1,
+        explanation: "Read replicas create copies of your database that handle read queries, distributing the read load. This is a key horizontal scaling strategy for databases."
+    },
+    {
+        category: "Scaling & Architecture",
+        question: "Why is stateless design important in elastic (auto-scaling) environments?",
+        options: [
+            "It reduces memory leaks",
+            "It enables any instance to handle any request",
+            "It prevents SQL injection",
+            "It removes the need for TLS"
+        ],
+        correct: 1,
+        explanation: "Stateless design means no single server holds session data. Any instance behind the load balancer can handle any request, making it safe to add or remove instances dynamically."
+    },
+    {
+        category: "Scaling & Architecture",
+        question: "Which AWS service is commonly used to cache frequently accessed data and reduce database load?",
+        options: [
+            "S3",
+            "IAM",
+            "ElastiCache",
+            "Route 53"
+        ],
+        correct: 2,
+        explanation: "Amazon ElastiCache (Redis or Memcached) is a managed in-memory caching service. It reduces database load by serving frequently accessed data from fast in-memory storage."
+    },
+    {
+        category: "Scaling & Architecture",
+        question: "At large scale, connection pooling (e.g., HikariCP) is important because:",
+        options: [
+            "It encrypts data",
+            "It reduces repeated database connection overhead",
+            "It replaces load balancing",
+            "It eliminates the need for read replicas"
+        ],
+        correct: 1,
+        explanation: "Creating a new database connection for every request is expensive (TCP handshake, authentication, TLS negotiation). Connection pooling reuses connections, dramatically reducing overhead."
+    },
+    {
+        category: "Scaling & Architecture",
+        question: "Which scaling responsibility remains primarily with the software developer, not AWS?",
+        options: [
+            "Provisioning EC2 hardware",
+            "Designing stateless services",
+            "Configuring physical network cables",
+            "Managing AWS billing cycles"
+        ],
+        correct: 1,
+        explanation: "AWS handles infrastructure scaling, but the developer must design the application to be stateless, use caching wisely, optimize queries, and architect for horizontal scaling."
+    },
+    {
+        category: "Scaling & Architecture",
+        question: "What is an ALB (Application Load Balancer) in the context of Elastic Beanstalk?",
+        options: [
+            "A database replication mechanism",
+            "A service that distributes incoming traffic across multiple EC2 instances",
+            "A code compilation tool",
+            "An IAM policy type"
+        ],
+        correct: 1,
+        explanation: "An Application Load Balancer distributes incoming HTTP/HTTPS traffic across multiple EC2 instances managed by Elastic Beanstalk, ensuring no single instance is overwhelmed."
+    },
+    {
+        category: "Elastic Beanstalk",
+        question: "What is Amazon Corretto?",
+        options: [
+            "A managed database service",
+            "Amazon's build of the Java Development Kit (OpenJDK)",
+            "A container runtime for Docker",
+            "An AWS monitoring dashboard"
+        ],
+        correct: 1,
+        explanation: "Amazon Corretto is Amazon's no-cost, production-ready distribution of OpenJDK. Elastic Beanstalk's Java SE platform uses Corretto to run your Spring Boot application."
+    },
+    {
+        category: "AWS Fundamentals",
+        question: "What does AWS Free Tier provide for new accounts?",
+        options: [
+            "Unlimited free usage of all services forever",
+            "12 months of free usage for certain services (e.g., 750 hours/month of t3.micro, 20 GB RDS storage)",
+            "Only 30 days of free trial",
+            "Free usage only for S3 storage"
+        ],
+        correct: 1,
+        explanation: "AWS Free Tier provides 12 months of free usage for specific services: 750 hours/month of t2.micro or t3.micro EC2/Beanstalk, 20 GB RDS storage, and more. After 12 months, normal pricing applies."
+    },
+    {
+        category: "Security",
+        question: "What is the difference between Root User login and IAM User login in AWS?",
+        options: [
+            "They are identical — just different URLs",
+            "Root user logs in with email and has full account control; IAM users log in with an Account ID, username, and have scoped permissions",
+            "IAM users have more permissions than root",
+            "Root users can only view billing; IAM users manage services"
+        ],
+        correct: 1,
+        explanation: "The root user is the email you signed up with and has full billing and account control. IAM users are created under the root account with specific permissions. Root can delete the account and change payment info."
+    },
+    {
+        category: "RDS & Database",
+        question: "When connecting MySQL Workbench to RDS, what should 'Use SSL' be set to?",
+        options: [
+            "Disabled — SSL slows down queries",
+            "Require — encrypts the connection (CA file optional for class labs)",
+            "Only if connecting from outside the US",
+            "SSL is not available for MySQL on RDS"
+        ],
+        correct: 1,
+        explanation: "Set Use SSL = Require in Workbench. For class labs, you can skip downloading the CA file. The connection will be encrypted. For production, you'd also set the CA file for certificate verification."
+    },
+    {
+        category: "Spring Boot Config",
+        question: "What Maven command creates the deployable JAR for Elastic Beanstalk?",
+        options: [
+            "mvn compile",
+            "mvn clean package",
+            "mvn deploy",
+            "mvn spring-boot:run"
+        ],
+        correct: 1,
+        explanation: "'mvn clean package' cleans previous build artifacts, compiles your code, runs tests, and packages it into a fat JAR (e.g., orders-app-0.0.1-SNAPSHOT.jar) in the target/ directory."
+    },
+    {
+        category: "Elastic Beanstalk",
+        question: "Elastic Beanstalk automatically handles which of the following?",
+        options: [
+            "Code refactoring",
+            "Auto Scaling Group provisioning",
+            "Writing business logic",
+            "Database schema optimization"
+        ],
+        correct: 1,
+        explanation: "Elastic Beanstalk automatically provisions and manages Auto Scaling Groups, EC2 instances, load balancers, and monitoring. You're still responsible for your application code and database design."
+    },
+    // ─── Scenario & Troubleshooting (Tricky) ───
+    {
+        category: "Scenario: Troubleshooting",
+        question: "Your Spring Boot app deploys to Elastic Beanstalk and the health status turns Red with a 502 error. Logs show 'Communications link failure' and 'SSL handshake exception.' What is the MOST likely cause?",
+        options: [
+            "The JAR file is corrupted and needs to be recompiled",
+            "The SPRING_DATASOURCE_URL environment property is missing sslMode=REQUIRED or the RDS security group blocks port 3306 from EB",
+            "Elastic Beanstalk doesn't support MySQL connections",
+            "The application.properties file has a syntax error in the server.port line"
+        ],
+        correct: 1,
+        explanation: "'Communications link failure' + 'SSL handshake exception' points to a database connectivity issue. Either the JDBC URL doesn't include sslMode=REQUIRED (so the TLS handshake fails), or the security group isn't allowing inbound traffic on port 3306 from the Beanstalk instance."
+    },
+    {
+        category: "Scenario: Troubleshooting",
+        question: "You can connect to your RDS instance from MySQL Workbench on your laptop, but your Elastic Beanstalk app gets a connection timeout. What should you check first?",
+        options: [
+            "Your laptop's firewall settings",
+            "Whether the RDS security group inbound rules also allow traffic from the Elastic Beanstalk security group or IP range",
+            "Whether MySQL Workbench is using the correct SSL certificate",
+            "Whether your Maven version is too old"
+        ],
+        correct: 1,
+        explanation: "If Workbench connects but EB can't, the security group likely only has an inbound rule for 'My IP' (your laptop). You need to add a rule allowing the EB security group (or its IP range) to access port 3306."
+    },
+    {
+        category: "Scenario: Troubleshooting",
+        question: "After deploying to Elastic Beanstalk, your app returns a 404 on the root URL '/'. However, locally it works fine at localhost:5000/orders. What's happening?",
+        options: [
+            "Elastic Beanstalk doesn't support Spring MVC",
+            "The app is running but you're hitting '/' instead of '/orders' — EB doesn't change your routes, you need the correct path",
+            "The 404 means the database is unreachable",
+            "You need to configure a custom domain name first"
+        ],
+        correct: 1,
+        explanation: "A 404 means the route doesn't exist. Your controller maps to /orders, not /. The EB environment URL + /orders should work. A 404 is a routing issue, not a database issue (that would be a 502)."
+    },
+    {
+        category: "Scenario: Troubleshooting",
+        question: "Your EB environment shows Health: Severe. You download the logs and see 'java.lang.RuntimeException: Driver com.mysql.cj.jdbc.Driver claims to not accept jdbcUrl.' What's wrong?",
+        options: [
+            "You need to add the MySQL connector dependency to pom.xml",
+            "The SPRING_DATASOURCE_URL value is malformed — likely a typo in the JDBC connection string",
+            "The RDS instance is in the wrong region",
+            "HikariCP is not compatible with MySQL 8"
+        ],
+        correct: 1,
+        explanation: "This error means the MySQL JDBC driver can't parse the URL. The most common cause is a typo in the SPRING_DATASOURCE_URL environment property — a missing 'jdbc:mysql://' prefix, a wrong character, or incorrect escaping of special characters."
+    },
+    {
+        category: "Scenario: Configuration",
+        question: "You set SPRING_DATASOURCE_PASSWORD in Elastic Beanstalk Environment Properties, but your app still tries to connect with the password 'root' from application.properties. What went wrong?",
+        options: [
+            "Elastic Beanstalk Environment Properties cannot override application.properties",
+            "The environment property name doesn't match — Spring Boot expects the exact key format SPRING_DATASOURCE_PASSWORD to map to spring.datasource.password",
+            "You need to delete application.properties entirely before deploying",
+            "The password must be Base64 encoded in Environment Properties"
+        ],
+        correct: 1,
+        explanation: "Spring Boot maps environment variables to properties by converting dots to underscores and uppercasing (spring.datasource.password → SPRING_DATASOURCE_PASSWORD). If the property name doesn't match exactly, the fallback default from application.properties is used."
+    },
+    {
+        category: "Scenario: Configuration",
+        question: "Your application.properties has: spring.datasource.url=${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/ordersdb?sslMode=DISABLED}. On AWS, you set SPRING_DATASOURCE_URL with sslMode=REQUIRED. Which sslMode is actually used on AWS?",
+        options: [
+            "DISABLED — the default always wins",
+            "REQUIRED — the environment variable overrides the default value",
+            "Both are applied simultaneously",
+            "Neither — Spring Boot ignores sslMode entirely"
+        ],
+        correct: 1,
+        explanation: "The ${VAR:default} syntax uses the environment variable when it exists. Since SPRING_DATASOURCE_URL is set in EB Environment Properties, its value (with sslMode=REQUIRED) completely replaces the default localhost string."
+    },
+    {
+        category: "Scenario: Security",
+        question: "A classmate sets their RDS security group inbound rule to Source: 0.0.0.0/0 (anywhere) on port 3306 'to make things easier.' Why is this dangerous even for a class project?",
+        options: [
+            "It's not dangerous — security groups already encrypt all traffic",
+            "It exposes the database to the entire internet; automated bots constantly scan for open MySQL ports and attempt brute-force logins",
+            "It only allows IPv6 traffic which is not supported",
+            "It makes the database slower due to extra routing"
+        ],
+        correct: 1,
+        explanation: "Opening port 3306 to 0.0.0.0/0 means anyone on the internet can attempt to connect. Bots actively scan for open database ports. Always restrict to 'My IP' or the EB security group."
+    },
+    {
+        category: "Scenario: Security",
+        question: "You commit your application.properties to a public GitHub repository. It contains spring.datasource.password=Cst323Pass2025. What is the risk, even after you delete the file in a new commit?",
+        options: [
+            "No risk — deleting the file removes it completely",
+            "The password is still visible in Git history; anyone can see previous commits. You must rotate the password immediately.",
+            "GitHub automatically redacts passwords",
+            "The password is encrypted by Spring Boot before being committed"
+        ],
+        correct: 1,
+        explanation: "Git keeps full history. Even after deletion, the password is visible in previous commits. You must change the RDS password immediately and use environment variables instead. This is exactly why the guide recommends EB Environment Properties."
+    },
+    {
+        category: "Scenario: Architecture",
+        question: "Your Spring Boot app stores user session data in a HashMap inside the controller. On Elastic Beanstalk with 3 instances behind a load balancer, users randomly get logged out. Why?",
+        options: [
+            "Elastic Beanstalk has a bug with multiple instances",
+            "The app is stateful — each instance has its own HashMap, so a request routed to a different instance loses the session",
+            "The load balancer is deleting session cookies",
+            "MySQL doesn't support concurrent connections"
+        ],
+        correct: 1,
+        explanation: "This is the classic stateful design problem. Each EC2 instance has its own in-memory HashMap. When the load balancer routes a request to a different instance, that instance has no session data. The fix: use an external store (ElastiCache/Redis, database) for sessions."
+    },
+    {
+        category: "Scenario: Architecture",
+        question: "Your app is scaling to handle high traffic. You notice the RDS instance CPU is at 95% and all queries are SELECT statements. Which solution is most appropriate?",
+        options: [
+            "Add more Elastic Beanstalk instances",
+            "Create RDS read replicas to distribute the read query load",
+            "Increase the server.port value",
+            "Switch from MySQL to S3"
+        ],
+        correct: 1,
+        explanation: "High CPU from SELECT queries means the database is read-bottlenecked. Read replicas handle read traffic while the primary handles writes. Adding more EB instances would actually make it worse by sending even more queries to the same overloaded database."
+    },
+    {
+        category: "Scenario: Database",
+        question: "You created your schema on local MAMP (MySQL 5.7) and exported the DDL. On RDS (MySQL 8.0), running the DDL script fails with errors about GROUP BY and reserved keywords. Why?",
+        options: [
+            "RDS doesn't support DDL scripts",
+            "MySQL 8.0 has stricter SQL rules — GROUP BY requires properly aggregated columns and some reserved keywords changed from 5.7",
+            "You need to convert the script to PostgreSQL first",
+            "MAMP exports are incompatible with all cloud services"
+        ],
+        correct: 1,
+        explanation: "MySQL 8.0 enforces stricter SQL standards than 5.7. Common issues include: GROUP BY requiring all non-aggregated columns, changed reserved keywords, and deprecated functions. The guide specifically warns about testing DDL/DML scripts with MySQL 8.0."
+    },
+    {
+        category: "Scenario: Database",
+        question: "You accidentally set spring.jpa.hibernate.ddl-auto=create in your EB Environment Properties. The app deploys successfully but all existing order data is gone. What happened?",
+        options: [
+            "The RDS instance was automatically replaced",
+            "'create' drops and recreates all tables on every startup, destroying existing data. You should have used 'update'.",
+            "The security group blocked all read operations",
+            "Hibernate doesn't work with MySQL 8"
+        ],
+        correct: 1,
+        explanation: "'create' tells Hibernate to DROP all existing tables and recreate them from entity classes on each startup. All data is lost. 'update' preserves existing data and only applies non-destructive schema changes. The guide recommends 'update' (or 'create' only if you intentionally want tables rebuilt)."
+    },
+    {
+        category: "Scenario: Costs",
+        question: "A student finishes CST-323 and forgets to shut down their RDS db.t3.micro instance and Elastic Beanstalk environment. When does billing start?",
+        options: [
+            "Never — Free Tier is permanent",
+            "After 12 months when Free Tier expires, or immediately if they exceed 750 hours/month of usage",
+            "Only if they deploy a second application",
+            "Only if they enable CloudWatch monitoring"
+        ],
+        correct: 1,
+        explanation: "AWS Free Tier lasts 12 months and covers 750 hours/month of t3.micro usage. After 12 months, normal pay-as-you-go pricing kicks in. The guide specifically warns: 'Be sure to cancel the AWS service after this course if you do not plan on using the application.'"
+    },
+    {
+        category: "Scenario: Networking",
+        question: "You set up your RDS instance with Public access = No. You can't connect from MySQL Workbench OR from Elastic Beanstalk. What's the fundamental issue?",
+        options: [
+            "MySQL Workbench doesn't support AWS",
+            "With Public access = No, the DB has no public endpoint. Workbench can't reach it from outside AWS, and EB would need to be in the same VPC with proper subnet routing.",
+            "You need to change the DB to PostgreSQL",
+            "Port 3306 is permanently blocked by AWS"
+        ],
+        correct: 1,
+        explanation: "Public access = No means no public DNS endpoint is created. External tools like Workbench cannot connect at all. EB could connect only if it's in the same VPC with proper subnet and security group configuration. The guide recommends Public access = Yes for class simplicity."
+    },
+    {
+        category: "Scenario: Deployment",
+        question: "You run 'mvn clean package' but the build fails with 'JAVA_HOME not found.' You check and Java 17 is installed. What's likely wrong?",
+        options: [
+            "Maven doesn't support Java 17",
+            "The JAVA_HOME environment variable isn't set or points to the wrong directory",
+            "You need to install MySQL before building",
+            "The pom.xml is missing the spring-boot-starter-parent"
+        ],
+        correct: 1,
+        explanation: "Even if Java is installed, Maven needs the JAVA_HOME environment variable to find the JDK. The guide includes a video link specifically for fixing 'JAVA_HOME not found.' You need to set it to your JDK installation path."
+    }
+];
+
+let questions = [];
+let current = 0;
+let answers = [];
+
+function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+function startQuiz() {
+    const size = parseInt(document.querySelector('input[name="quizSize"]:checked').value);
+    questions = shuffle(allQuestions).slice(0, size);
+    answers = new Array(questions.length).fill(undefined);
+    current = 0;
+    document.getElementById('startScreen').style.display = 'none';
+    document.getElementById('quizHeader').style.display = 'block';
+    renderQuestion();
+}
+
+function renderQuestion() {
+    const q = questions[current];
+    const area = document.getElementById('questionArea');
+    let codeHtml = q.code ? `<pre class="code-block">${q.code}</pre>` : '';
+
+    area.innerHTML = `
+        <div class="card">
+            <div style="color:#e88d2a;font-size:0.9rem;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;">
+                ${q.category} — Question ${current + 1}
+            </div>
+            <div class="question-text">${q.question}</div>
+            ${codeHtml}
+            <div class="options">
+                ${q.options.map((opt, i) => `
+                    <div class="option" onclick="selectAnswer(${i})" id="opt${i}">
+                        <div class="option-letter">${String.fromCharCode(65 + i)}</div>
+                        <div>${opt}</div>
+                    </div>
+                `).join('')}
+            </div>
+            <div class="feedback" id="feedback">
+                <div id="feedbackText"></div>
+                <div class="explanation">${q.explanation}</div>
+            </div>
+            <div class="btn-container">
+                <button class="btn btn-secondary" onclick="prev()" ${current === 0 ? 'disabled' : ''}>Previous</button>
+                <button class="btn" onclick="next()" id="nextBtn">${current === questions.length - 1 ? 'Finish Quiz' : 'Next'}</button>
+            </div>
+        </div>
+    `;
+
+    document.getElementById('progress').textContent = `${current + 1} of ${questions.length}`;
+    document.getElementById('progressFill').style.width = `${((current + 1) / questions.length) * 100}%`;
+
+    if (answers[current] !== undefined) {
+        showAnswer(answers[current]);
+    }
+}
+
+function selectAnswer(i) {
+    if (answers[current] !== undefined) return;
+    answers[current] = i;
+    showAnswer(i);
+}
+
+function showAnswer(selected) {
+    const q = questions[current];
+    const opts = document.querySelectorAll('.option');
+
+    opts.forEach((opt, i) => {
+        opt.onclick = null;
+        if (i === selected) {
+            opt.classList.add('selected');
+            opt.classList.add(i === q.correct ? 'correct' : 'incorrect');
+        }
+        if (i === q.correct) opt.classList.add('correct');
+    });
+
+    const feedback = document.getElementById('feedback');
+    const feedbackText = document.getElementById('feedbackText');
+    feedback.classList.add('show');
+    feedback.classList.add(selected === q.correct ? 'correct' : 'incorrect');
+    feedbackText.textContent = selected === q.correct
+        ? '✓ Correct!'
+        : `✗ Incorrect. The answer is ${String.fromCharCode(65 + q.correct)}.`;
+}
+
+function next() {
+    if (current < questions.length - 1) {
+        current++;
+        renderQuestion();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+        showResults();
+    }
+}
+
+function prev() {
+    if (current > 0) {
+        current--;
+        renderQuestion();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+function showResults() {
+    const correct = answers.filter((a, i) => a === questions[i].correct).length;
+    const pct = Math.round((correct / questions.length) * 100);
+
+    document.getElementById('quizHeader').style.display = 'none';
+    document.getElementById('questionArea').innerHTML = '';
+    document.getElementById('resultsScreen').style.display = 'block';
+    document.getElementById('finalScore').textContent = `${pct}%`;
+    document.getElementById('resultDetails').textContent = `You answered ${correct} out of ${questions.length} questions correctly.`;
+
+    let msg;
+    if (pct >= 90) msg = "Excellent! You're ready for the test!";
+    else if (pct >= 75) msg = "Great job! Review the missed categories below.";
+    else if (pct >= 60) msg = "Good effort — focus on the weak areas and retake!";
+    else msg = "Keep studying the guide and try again!";
+    document.getElementById('resultMessage').textContent = msg;
+
+    const cats = {};
+    questions.forEach((q, i) => {
+        if (!cats[q.category]) cats[q.category] = { correct: 0, total: 0 };
+        cats[q.category].total++;
+        if (answers[i] === q.correct) cats[q.category].correct++;
+    });
+
+    document.getElementById('categoryScores').innerHTML = Object.entries(cats).map(([cat, s]) => {
+        const catPct = Math.round(s.correct / s.total * 100);
+        const color = catPct >= 80 ? '#00b894' : catPct >= 60 ? '#e88d2a' : '#e74c3c';
+        return `
+            <div class="category-item">
+                <div class="category-name">${cat}</div>
+                <div class="category-score">${s.correct}/${s.total} (${catPct}%)</div>
+                <div class="category-bar"><div class="category-bar-fill" style="width:${catPct}%;background:${color};"></div></div>
+            </div>
+        `;
+    }).join('');
+
+    let reviewHtml = '<h3>Question Review</h3>';
+    questions.forEach((q, i) => {
+        const wasCorrect = answers[i] === q.correct;
+        const userAnswer = answers[i] !== undefined ? q.options[answers[i]] : '(skipped)';
+        reviewHtml += `
+            <div class="review-item ${wasCorrect ? 'was-correct' : ''}">
+                <div class="review-q">${i + 1}. ${q.question}</div>
+                <div class="review-answer">
+                    ${wasCorrect
+                        ? `<span class="right">✓ ${q.options[q.correct]}</span>`
+                        : `Your answer: <span class="wrong">${userAnswer}</span><br>Correct: <span class="right">${q.options[q.correct]}</span>`
+                    }
+                </div>
+                <div class="explanation" style="margin-top:6px;">${q.explanation}</div>
+            </div>
+        `;
+    });
+    document.getElementById('reviewSection').innerHTML = reviewHtml;
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
