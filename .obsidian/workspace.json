@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "3562fae67ac4846d",
+        "id": "99e8093e2517289e",
         "type": "tabs",
         "children": [
           {
-            "id": "4684eadad8e47495",
+            "id": "68d1bfeb6f43c7f8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CST-323-Cloud-Computing/Homework/activity4.md",
+                "file": "Untitled.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "activity4"
+              "title": "Untitled"
             }
           }
         ]
@@ -183,24 +183,26 @@
       "bases:Create new base": false
     }
   },
-  "active": "443fc39ba02216fe",
+  "active": "68d1bfeb6f43c7f8",
   "lastOpenFiles": [
-    "AIT-204-Deep-Learning/code/topic-4/nlp.py",
-    "AIT-204-Deep-Learning/code/topic-4",
-    "CST-323-Cloud-Computing/Topic-3/CST-323-Activity-4b-Cloud-Computing-Handout.pdf",
+    "Untitled.md",
+    "AIT-110-Stat-Learning-Theory/Assignments/random_tree/script.md",
+    "AIT-110-Stat-Learning-Theory/Assignments/random_tree/script.md.tmp.3024.1772330178024",
+    "AIT-110-Stat-Learning-Theory/Assignments/random_tree/patch_notebook.py",
+    "AIT-110-Stat-Learning-Theory/Assignments/random_tree/patch_notebook.py.tmp.3024.1772330158553",
+    "AIT-110-Stat-Learning-Theory/Assignments/random_tree/script.md.tmp.3024.1772329954856",
+    "AIT-110-Stat-Learning-Theory/Assignments/random_tree/patch_notebook.py.tmp.3024.1772329935106",
+    "AIT-110-Stat-Learning-Theory/Assignments/random_tree/script.md.tmp.3024.1772329547762",
+    "AIT-110-Stat-Learning-Theory/Assignments/random_tree/script.md.tmp.3024.1772329538154",
+    "AIT-110-Stat-Learning-Theory/Assignments/random_tree/script.md.tmp.3024.1772329514527",
+    "AIT-110-Stat-Learning-Theory/Assignments/random_tree/patch_notebook.py.tmp.3024.1772329467812",
+    "AIT-110-Stat-Learning-Theory/Assignments/random_tree/patch_notebook.py.tmp.3024.1772328914560",
+    "CST-323-Cloud-Computing/Homework/activity4.md",
     "CST-323-Cloud-Computing/Homework/activity3.md",
     "CST-323-Cloud-Computing/Topic-3/CST-323-Activity-4b-Cloud-Computing-Handout.md",
     "Pasted image 20260212111444.png",
-    "CST-323-Cloud-Computing/Homework/activity3.pdf",
     "AIT-204-Deep-Learning/docs/Activity_Week2_Regularization_Report.md",
     "AIT-110-Stat-Learning-Theory/class notes/Jan 16 2026.md",
-    "CST-323-Cloud-Computing/Homework/activity3.md.tmp.21100.1769549610598",
-    "CST-323-Cloud-Computing/Homework/activity3.md.tmp.21100.1769549418496",
-    "CST-323-Cloud-Computing/Homework/activity3.md.tmp.21100.1769549404682",
-    "CST-323-Cloud-Computing/Homework/activity3.md.tmp.21100.1769549200264",
-    "CST-323-Cloud-Computing/Homework/activity3.md.tmp.21100.1769549190660",
-    "CST-323-Cloud-Computing/Homework/activity3.md.tmp.21100.1769549176072",
-    "CST-323-Cloud-Computing/Homework/activity3.md.tmp.21100.1769549163619",
     "CST-323-Cloud-Computing/Homework/activity3-photos/database-output-azureinfo.png",
     "CST-323-Cloud-Computing/Homework/activity3-photos/logstream-azureinfo.png",
     "CST-323-Cloud-Computing/Homework/activity3-photos/home-after-login-success.png",
@@ -228,8 +230,6 @@
     "CST-323-Cloud-Computing/Homework/activity1.md",
     "CST-180-Python/Homework/Animal_Shelter_3/animal_shelter_pt3.md",
     "AIT-104-Data-mining-machine-learning/Code Projects/Presentation_Script.md",
-    "CST-407-Application-Security-Foundations/Assignments/eventsapp-milestone4-sql-injection.md",
-    "CST-407-Application-Security-Foundations/Assignments/eventsapp-xss-sanitization.md",
-    "CST-407-Application-Security-Foundations/Assignments/eventsapp-milestone2.md"
+    "CST-407-Application-Security-Foundations/Assignments/eventsapp-milestone4-sql-injection.md"
   ]
 }
