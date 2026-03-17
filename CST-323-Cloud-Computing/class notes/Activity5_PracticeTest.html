@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Activity 5 Practice Test — Deploy to Google Cloud</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 20px;
+      background: #f4f6f9;
+      color: #222;
+    }
+    h1 {
+      text-align: center;
+      color: #1a73e8;
+      margin-bottom: 4px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #555;
+      margin-bottom: 30px;
+      font-size: 0.95em;
+    }
+    .question-block {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .question-block p {
+      font-weight: bold;
+      margin-bottom: 12px;
+      font-size: 1em;
+    }
+    .question-block label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background 0.15s;
+    }
+    .question-block label:hover {
+      background: #f0f4ff;
+    }
+    .question-block input[type="radio"] {
+      margin-right: 10px;
+    }
+    .feedback {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-size: 0.9em;
+      display: none;
+    }
+    .correct-feedback {
+      background: #d4edda;
+      color: #155724;
+    }
+    .incorrect-feedback {
+      background: #f8d7da;
+      color: #721c24;
+    }
+    .btn-check {
+      display: block;
+      margin: 30px auto 10px;
+      padding: 12px 40px;
+      background: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    .btn-check:hover {
+      background: #1558b0;
+    }
+    .btn-reset {
+      display: block;
+      margin: 10px auto 40px;
+      padding: 10px 30px;
+      background: #888;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.95em;
+      cursor: pointer;
+    }
+    .btn-reset:hover {
+      background: #555;
+    }
+    #score-box {
+      display: none;
+      text-align: center;
+      font-size: 1.3em;
+      font-weight: bold;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      background: #e8f0fe;
+      color: #1a73e8;
+    }
+    .correct-highlight { background: #d4edda !important; }
+    .incorrect-highlight { background: #f8d7da !important; }
+  </style>
+</head>
+<body>
+
+<h1>Activity 5 Practice Test</h1>
+<p class="subtitle">Deploying Spring Boot + MySQL to Google Cloud Platform &mdash; 30 Questions</p>
+
+<div id="quiz-form">
+
+  <!-- Q1 -->
+  <div class="question-block" id="q1">
+    <p>1. What is Google Compute Engine equivalent to in Amazon Web Services?</p>
+    <label><input type="radio" name="q1" value="A"> A. Cloud SQL</label>
+    <label><input type="radio" name="q1" value="B"> B. App Engine</label>
+    <label><input type="radio" name="q1" value="C"> C. EC2 (Elastic Compute Cloud)</label>
+    <label><input type="radio" name="q1" value="D"> D. Cloud Storage</label>
+    <div class="feedback" id="q1-feedback"></div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="question-block" id="q2">
+    <p>2. How much in free credits does Google Cloud give new accounts, and for how long?</p>
+    <label><input type="radio" name="q2" value="A"> A. $100 for 30 days</label>
+    <label><input type="radio" name="q2" value="B"> B. $200 for 60 days</label>
+    <label><input type="radio" name="q2" value="C"> C. $300 for 90 days</label>
+    <label><input type="radio" name="q2" value="D"> D. $500 for 120 days</label>
+    <div class="feedback" id="q2-feedback"></div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="question-block" id="q3">
+    <p>3. Which Google Cloud SQL edition is recommended for CST-323 student projects?</p>
+    <label><input type="radio" name="q3" value="A"> A. Cloud SQL Enterprise Plus</label>
+    <label><input type="radio" name="q3" value="B"> B. Cloud SQL Enterprise</label>
+    <label><input type="radio" name="q3" value="C"> C. Sandbox (MySQL 8.0)</label>
+    <label><input type="radio" name="q3" value="D"> D. Cloud SQL Developer Edition</label>
+    <div class="feedback" id="q3-feedback"></div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="question-block" id="q4">
+    <p>4. What port does MySQL use by default when connecting via MySQL Workbench?</p>
+    <label><input type="radio" name="q4" value="A"> A. 8080</label>
+    <label><input type="radio" name="q4" value="B"> B. 443</label>
+    <label><input type="radio" name="q4" value="C"> C. 5432</label>
+    <label><input type="radio" name="q4" value="D"> D. 3306</label>
+    <div class="feedback" id="q4-feedback"></div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="question-block" id="q5">
+    <p>5. Why is utf8mb4 the recommended character set for the database in this activity?</p>
+    <label><input type="radio" name="q5" value="A"> A. It is faster than ASCII encoding</label>
+    <label><input type="radio" name="q5" value="B"> B. It provides full Unicode support including emoji and all modern languages</label>
+    <label><input type="radio" name="q5" value="C"> C. It is required by Google Cloud SQL</label>
+    <label><input type="radio" name="q5" value="D"> D. It compresses data automatically</label>
+    <div class="feedback" id="q5-feedback"></div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="question-block" id="q6">
+    <p>6. What is the purpose of the <code>com.google.cloud.sql</code> dependency in pom.xml?</p>
+    <label><input type="radio" name="q6" value="A"> A. It provides the MySQL JDBC driver</label>
+    <label><input type="radio" name="q6" value="B"> B. It connects App Engine to Cloud SQL through a secure internal socket factory instead of a public IP</label>
+    <label><input type="radio" name="q6" value="C"> C. It enables Hibernate ORM support</label>
+    <label><input type="radio" name="q6" value="D"> D. It installs the Google Cloud CLI tools</label>
+    <div class="feedback" id="q6-feedback"></div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="question-block" id="q7">
+    <p>7. What error will you see if you omit the Cloud SQL Socket Factory dependency and deploy to App Engine Standard?</p>
+    <label><input type="radio" name="q7" value="A"> A. NullPointerException in Spring context</label>
+    <label><input type="radio" name="q7" value="B"> B. 404 Not Found from App Engine</label>
+    <label><input type="radio" name="q7" value="C"> C. Communications link failure or Connection refused</label>
+    <label><input type="radio" name="q7" value="D"> D. YAML parse error on startup</label>
+    <div class="feedback" id="q7-feedback"></div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="question-block" id="q8">
+    <p>8. What does <code>env: standard</code> mean in the app.yaml file?</p>
+    <label><input type="radio" name="q8" value="A"> A. The app runs on a bare-metal server</label>
+    <label><input type="radio" name="q8" value="B"> B. The app uses App Engine's lightweight, fully managed environment with automatic scaling</label>
+    <label><input type="radio" name="q8" value="C"> C. The app is deployed using Docker containers</label>
+    <label><input type="radio" name="q8" value="D"> D. The environment is set to development mode</label>
+    <div class="feedback" id="q8-feedback"></div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="question-block" id="q9">
+    <p>9. What does setting <code>min_instances: 0</code> in app.yaml accomplish?</p>
+    <label><input type="radio" name="q9" value="A"> A. Guarantees the app is always running</label>
+    <label><input type="radio" name="q9" value="B"> B. Disables autoscaling</label>
+    <label><input type="radio" name="q9" value="C"> C. Shuts all instances down when idle, reducing cost to zero when not in use</label>
+    <label><input type="radio" name="q9" value="D"> D. Limits the app to one request at a time</label>
+    <div class="feedback" id="q9-feedback"></div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="question-block" id="q10">
+    <p>10. Which command builds the deployable JAR file for the Spring Boot application?</p>
+    <label><input type="radio" name="q10" value="A"> A. <code>gcloud app deploy</code></label>
+    <label><input type="radio" name="q10" value="B"> B. <code>mvn clean package -DskipTests</code></label>
+    <label><input type="radio" name="q10" value="C"> C. <code>java -jar build.jar</code></label>
+    <label><input type="radio" name="q10" value="D"> D. <code>gcloud builds submit</code></label>
+    <div class="feedback" id="q10-feedback"></div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="question-block" id="q11">
+    <p>11. What is the purpose of the <code>entrypoint</code> field in app.yaml?</p>
+    <label><input type="radio" name="q11" value="A"> A. It specifies the region where the app is deployed</label>
+    <label><input type="radio" name="q11" value="B"> B. It tells App Engine how to start the Spring Boot application</label>
+    <label><input type="radio" name="q11" value="C"> C. It sets the Java version for the runtime</label>
+    <label><input type="radio" name="q11" value="D"> D. It defines the database connection string</label>
+    <div class="feedback" id="q11-feedback"></div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="question-block" id="q12">
+    <p>12. How do environment variables defined in app.yaml get injected into Spring Boot?</p>
+    <label><input type="radio" name="q12" value="A"> A. Spring Boot reads app.yaml directly at startup</label>
+    <label><input type="radio" name="q12" value="B"> B. Maven copies them into the JAR during packaging</label>
+    <label><input type="radio" name="q12" value="C"> C. application.properties uses <code>${VARIABLE_NAME}</code> placeholders that Spring resolves from environment variables at runtime</label>
+    <label><input type="radio" name="q12" value="D"> D. The Google Cloud CLI injects them before the JAR starts</label>
+    <div class="feedback" id="q12-feedback"></div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="question-block" id="q13">
+    <p>13. Why is it NOT recommended to use default values in application.properties (e.g., <code>${PORT:8080}</code>)?</p>
+    <label><input type="radio" name="q13" value="A"> A. Default values slow down startup time</label>
+    <label><input type="radio" name="q13" value="B"> B. If environment variables fail, defaults silently mask the problem with connection errors instead of clear "missing parameter" messages</label>
+    <label><input type="radio" name="q13" value="C"> C. Google Cloud does not support default values</label>
+    <label><input type="radio" name="q13" value="D"> D. Defaults cause YAML parse errors</label>
+    <div class="feedback" id="q13-feedback"></div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="question-block" id="q14">
+    <p>14. What command is used to deploy the Spring Boot app to Google App Engine?</p>
+    <label><input type="radio" name="q14" value="A"> A. <code>gcloud run deploy</code></label>
+    <label><input type="radio" name="q14" value="B"> B. <code>mvn deploy -Pgcloud</code></label>
+    <label><input type="radio" name="q14" value="C"> C. <code>gcloud app deploy</code></label>
+    <label><input type="radio" name="q14" value="D"> D. <code>gcloud compute deploy</code></label>
+    <div class="feedback" id="q14-feedback"></div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="question-block" id="q15">
+    <p>15. What command streams live logs from your deployed App Engine service?</p>
+    <label><input type="radio" name="q15" value="A"> A. <code>gcloud app logs read</code></label>
+    <label><input type="radio" name="q15" value="B"> B. <code>gcloud app logs tail -s default</code></label>
+    <label><input type="radio" name="q15" value="C"> C. <code>gcloud logging watch</code></label>
+    <label><input type="radio" name="q15" value="D"> D. <code>gcloud app debug --stream</code></label>
+    <div class="feedback" id="q15-feedback"></div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="question-block" id="q16">
+    <p>16. What role must be granted to the App Engine service account so that deployments can upload files to Cloud Storage?</p>
+    <label><input type="radio" name="q16" value="A"> A. roles/cloudsql.admin</label>
+    <label><input type="radio" name="q16" value="B"> B. roles/appengine.deployer</label>
+    <label><input type="radio" name="q16" value="C"> C. roles/storage.admin</label>
+    <label><input type="radio" name="q16" value="D"> D. roles/iam.serviceAccountUser</label>
+    <div class="feedback" id="q16-feedback"></div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="question-block" id="q17">
+    <p>17. Which sslMode option in the JDBC URL enforces both hostname verification AND certificate validation?</p>
+    <label><input type="radio" name="q17" value="A"> A. REQUIRED</label>
+    <label><input type="radio" name="q17" value="B"> B. VERIFY_CA</label>
+    <label><input type="radio" name="q17" value="C"> C. VERIFY_IDENTITY</label>
+    <label><input type="radio" name="q17" value="D"> D. DISABLED</label>
+    <div class="feedback" id="q17-feedback"></div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="question-block" id="q18">
+    <p>18. Why is <code>sslMode=DISABLED</code> acceptable when using the Cloud SQL Socket Factory?</p>
+    <label><input type="radio" name="q18" value="A"> A. Cloud SQL does not support SSL</label>
+    <label><input type="radio" name="q18" value="B"> B. The Socket Factory itself handles the secure channel, making an additional SSL layer redundant</label>
+    <label><input type="radio" name="q18" value="C"> C. SSL is only required for production accounts</label>
+    <label><input type="radio" name="q18" value="D"> D. App Engine Standard blocks SSL connections</label>
+    <div class="feedback" id="q18-feedback"></div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="question-block" id="q19">
+    <p>19. What does the <code>cloudSqlInstance</code> parameter in the JDBC URL identify?</p>
+    <label><input type="radio" name="q19" value="A"> A. The local IP address of the database</label>
+    <label><input type="radio" name="q19" value="B"> B. The Spring Boot application name</label>
+    <label><input type="radio" name="q19" value="C"> C. The specific Cloud SQL instance in the format Project:Region:Instance</label>
+    <label><input type="radio" name="q19" value="D"> D. The Cloud Storage bucket used for backups</label>
+    <div class="feedback" id="q19-feedback"></div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="question-block" id="q20">
+    <p>20. What does <code>SPRING_JPA_HIBERNATE_DDL_AUTO: "update"</code> tell Hibernate to do?</p>
+    <label><input type="radio" name="q20" value="A"> A. Drop and recreate all tables on every startup</label>
+    <label><input type="radio" name="q20" value="B"> B. Create tables if they don't exist and update columns if the entity model changes</label>
+    <label><input type="radio" name="q20" value="C"> C. Disable all database schema management</label>
+    <label><input type="radio" name="q20" value="D"> D. Validate the schema without making any changes</label>
+    <div class="feedback" id="q20-feedback"></div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="question-block" id="q21">
+    <p>21. What is the most cost-effective Cloud SQL and App Engine setup for a student project?</p>
+    <label><input type="radio" name="q21" value="A"> A. App Engine Flexible + Cloud SQL Enterprise Plus</label>
+    <label><input type="radio" name="q21" value="B"> B. App Engine Standard + Cloud SQL Sandbox + stopping unused versions</label>
+    <label><input type="radio" name="q21" value="C"> C. Compute Engine VM + MySQL Enterprise</label>
+    <label><input type="radio" name="q21" value="D"> D. Cloud Run + Cloud SQL Enterprise</label>
+    <div class="feedback" id="q21-feedback"></div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="question-block" id="q22">
+    <p>22. Where should the app.yaml file be placed in the project structure?</p>
+    <label><input type="radio" name="q22" value="A"> A. Inside the <code>src/main/resources</code> folder</label>
+    <label><input type="radio" name="q22" value="B"> B. Inside the <code>target</code> folder</label>
+    <label><input type="radio" name="q22" value="C"> C. In the project root, the same folder as pom.xml</label>
+    <label><input type="radio" name="q22" value="D"> D. Inside the <code>.github</code> folder</label>
+    <div class="feedback" id="q22-feedback"></div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="question-block" id="q23">
+    <p>23. Which gcloud command sets the active project before deploying?</p>
+    <label><input type="radio" name="q23" value="A"> A. <code>gcloud projects use &lt;PROJECT_ID&gt;</code></label>
+    <label><input type="radio" name="q23" value="B"> B. <code>gcloud config set project &lt;PROJECT_ID&gt;</code></label>
+    <label><input type="radio" name="q23" value="C"> C. <code>gcloud init --project &lt;PROJECT_ID&gt;</code></label>
+    <label><input type="radio" name="q23" value="D"> D. <code>gcloud app set project &lt;PROJECT_ID&gt;</code></label>
+    <div class="feedback" id="q23-feedback"></div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="question-block" id="q24">
+    <p>24. What does <code>gcloud app deploy --no-cache</code> do?</p>
+    <label><input type="radio" name="q24" value="A"> A. Skips uploading static files</label>
+    <label><input type="radio" name="q24" value="B"> B. Forces a clean rebuild by skipping cached Docker or Maven layers</label>
+    <label><input type="radio" name="q24" value="C"> C. Disables Cloud Storage during deployment</label>
+    <label><input type="radio" name="q24" value="D"> D. Deploys without prompting for confirmation</label>
+    <div class="feedback" id="q24-feedback"></div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="question-block" id="q25">
+    <p>25. What error message indicates the database password in app.yaml is wrong or missing?</p>
+    <label><input type="radio" name="q25" value="A"> A. <code>404 Not Found</code></label>
+    <label><input type="radio" name="q25" value="B"> B. <code>jar not found in target directory</code></label>
+    <label><input type="radio" name="q25" value="C"> C. <code>Access denied for user 'root'@'cloudsqlproxy~IP'</code></label>
+    <label><input type="radio" name="q25" value="D"> D. <code>YAML indentation error on line 3</code></label>
+    <div class="feedback" id="q25-feedback"></div>
+  </div>
+
+  <!-- Q26 -->
+  <div class="question-block" id="q26">
+    <p>26. Which command opens the deployed App Engine app in your browser?</p>
+    <label><input type="radio" name="q26" value="A"> A. <code>gcloud app open</code></label>
+    <label><input type="radio" name="q26" value="B"> B. <code>gcloud app browse</code></label>
+    <label><input type="radio" name="q26" value="C"> C. <code>gcloud app view</code></label>
+    <label><input type="radio" name="q26" value="D"> D. <code>gcloud app launch</code></label>
+    <div class="feedback" id="q26-feedback"></div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="question-block" id="q27">
+    <p>27. What is the primary purpose of a Google Cloud Project?</p>
+    <label><input type="radio" name="q27" value="A"> A. To store source code in version control</label>
+    <label><input type="radio" name="q27" value="B"> B. To group billing, permissions, and resources (databases, servers, storage) in one organized unit</label>
+    <label><input type="radio" name="q27" value="C"> C. To define the runtime environment for App Engine</label>
+    <label><input type="radio" name="q27" value="D"> D. To configure firewall rules for a VPC</label>
+    <div class="feedback" id="q27-feedback"></div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="question-block" id="q28">
+    <p>28. What is the Google Cloud equivalent of AWS Elastic Beanstalk for deploying web applications?</p>
+    <label><input type="radio" name="q28" value="A"> A. Compute Engine</label>
+    <label><input type="radio" name="q28" value="B"> B. Cloud Run</label>
+    <label><input type="radio" name="q28" value="C"> C. App Engine</label>
+    <label><input type="radio" name="q28" value="D"> D. Cloud Functions</label>
+    <div class="feedback" id="q28-feedback"></div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="question-block" id="q29">
+    <p>29. What is the Google Cloud equivalent of Amazon RDS for managed relational databases?</p>
+    <label><input type="radio" name="q29" value="A"> A. Cloud Spanner</label>
+    <label><input type="radio" name="q29" value="B"> B. Firestore</label>
+    <label><input type="radio" name="q29" value="C"> C. BigQuery</label>
+    <label><input type="radio" name="q29" value="D"> D. Cloud SQL</label>
+    <div class="feedback" id="q29-feedback"></div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="question-block" id="q30">
+    <p>30. For a production app, what should replace plain-text passwords stored in app.yaml?</p>
+    <label><input type="radio" name="q30" value="A"> A. Base64-encoded strings in application.properties</label>
+    <label><input type="radio" name="q30" value="B"> B. Google Secret Manager with a service account to inject secrets at runtime</label>
+    <label><input type="radio" name="q30" value="C"> C. A private GitHub repository</label>
+    <label><input type="radio" name="q30" value="D"> D. Environment variables hardcoded in the Java source code</label>
+    <div class="feedback" id="q30-feedback"></div>
+  </div>
+
+  <button class="btn-check" onclick="checkAnswers()">Submit Answers</button>
+  <button class="btn-reset" onclick="resetQuiz()">Reset</button>
+  <div id="score-box"></div>
+
+</div>
+
+<script>
+  const answers = {
+    q1: 'C', q2: 'C', q3: 'C', q4: 'D', q5: 'B',
+    q6: 'B', q7: 'C', q8: 'B', q9: 'C', q10: 'B',
+    q11: 'B', q12: 'C', q13: 'B', q14: 'C', q15: 'B',
+    q16: 'C', q17: 'C', q18: 'B', q19: 'C', q20: 'B',
+    q21: 'B', q22: 'C', q23: 'B', q24: 'B', q25: 'C',
+    q26: 'B', q27: 'B', q28: 'C', q29: 'D', q30: 'B'
+  };
+
+  const explanations = {
+    q1: 'Compute Engine is Google\'s VM service, equivalent to AWS EC2.',
+    q2: 'Google Cloud gives $300 in free credits valid for 90 days.',
+    q3: 'Sandbox (MySQL 8.0) is cost-effective and free-tier eligible — perfect for student projects.',
+    q4: 'MySQL\'s default port is 3306.',
+    q5: 'utf8mb4 supports all Unicode characters including emoji, preventing data loss with multilingual content.',
+    q6: 'The Cloud SQL Socket Factory routes connections through Google\'s secure internal network instead of a public IP.',
+    q7: 'Without the Socket Factory, App Engine Standard cannot reach the database, resulting in "Communications link failure."',
+    q8: 'The Standard environment is lightweight, fully managed, and part of Google\'s Free Tier.',
+    q9: 'min_instances: 0 allows GCP to shut down all instances when idle, eliminating cost during inactivity.',
+    q10: 'mvn clean package -DskipTests compiles the project and packages it into a runnable JAR.',
+    q11: 'The entrypoint tells App Engine the command to execute to launch your Spring Boot server.',
+    q12: 'Spring Boot reads ${VARIABLE_NAME} placeholders in application.properties and resolves them from the OS environment variables at runtime.',
+    q13: 'Defaults silently connect to localhost and fail with vague connection errors instead of clearly indicating a missing environment variable.',
+    q14: 'gcloud app deploy is the standard command for deploying to App Engine.',
+    q15: 'gcloud app logs tail -s default streams live logs from the default App Engine service.',
+    q16: 'roles/storage.admin allows the App Engine service account to upload JAR files to Cloud Storage during deployment.',
+    q17: 'VERIFY_IDENTITY checks both the CA certificate and the server hostname, providing the strongest SSL verification.',
+    q18: 'The Socket Factory creates a secure encrypted tunnel so adding SSL on top is unnecessary.',
+    q19: 'cloudSqlInstance identifies the specific Cloud SQL instance using the format Project:Region:Instance.',
+    q20: '"update" tells Hibernate to create missing tables and alter existing columns without dropping data.',
+    q21: 'App Engine Standard + Cloud SQL Sandbox is free-tier eligible. Stopping unused versions avoids lingering charges.',
+    q22: 'app.yaml must be in the project root alongside pom.xml so gcloud app deploy can find it.',
+    q23: 'gcloud config set project sets the active project context for all subsequent gcloud commands.',
+    q24: '--no-cache forces a clean rebuild, useful when cached build artifacts cause repeated deployment failures.',
+    q25: '"Access denied for user root@cloudsqlproxy" is the Cloud SQL error when credentials are wrong or missing.',
+    q26: 'gcloud app browse opens the deployed app URL in your default browser.',
+    q27: 'A Google Cloud Project is a container that groups billing, IAM permissions, and cloud resources together.',
+    q28: 'App Engine is Google\'s PaaS offering, comparable to AWS Elastic Beanstalk.',
+    q29: 'Cloud SQL is Google\'s fully managed relational database service, equivalent to Amazon RDS.',
+    q30: 'Google Secret Manager stores secrets securely and injects them at runtime via a service account, keeping credentials out of config files.'
+  };
+
+  function checkAnswers() {
+    let score = 0;
+    const total = Object.keys(answers).length;
+
+    for (const [qId, correct] of Object.entries(answers)) {
+      const selected = document.querySelector(`input[name="${qId}"]:checked`);
+      const feedback = document.getElementById(`${qId}-feedback`);
+      const labels = document.querySelectorAll(`#${qId} label`);
+
+      labels.forEach(label => {
+        label.classList.remove('correct-highlight', 'incorrect-highlight');
+      });
+
+      if (selected) {
+        const selectedLabel = selected.parentElement;
+        if (selected.value === correct) {
+          score++;
+          selectedLabel.classList.add('correct-highlight');
+          feedback.className = 'feedback correct-feedback';
+          feedback.textContent = '✓ Correct! ' + explanations[qId];
+        } else {
+          selectedLabel.classList.add('incorrect-highlight');
+          // highlight correct answer
+          labels.forEach(label => {
+            const radio = label.querySelector('input');
+            if (radio && radio.value === correct) {
+              label.classList.add('correct-highlight');
+            }
+          });
+          feedback.className = 'feedback incorrect-feedback';
+          feedback.textContent = `✗ Incorrect. The correct answer is ${correct}. ${explanations[qId]}`;
+        }
+      } else {
+        feedback.className = 'feedback incorrect-feedback';
+        feedback.textContent = `No answer selected. Correct answer: ${correct}. ${explanations[qId]}`;
+        labels.forEach(label => {
+          const radio = label.querySelector('input');
+          if (radio && radio.value === correct) {
+            label.classList.add('correct-highlight');
+          }
+        });
+      }
+      feedback.style.display = 'block';
+    }
+
+    const scoreBox = document.getElementById('score-box');
+    const pct = Math.round((score / total) * 100);
+    scoreBox.style.display = 'block';
+    scoreBox.textContent = `Your Score: ${score} / ${total} (${pct}%)`;
+    scoreBox.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function resetQuiz() {
+    document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+    document.querySelectorAll('.feedback').forEach(f => { f.style.display = 'none'; f.textContent = ''; });
+    document.querySelectorAll('label').forEach(l => l.classList.remove('correct-highlight', 'incorrect-highlight'));
+    const scoreBox = document.getElementById('score-box');
+    scoreBox.style.display = 'none';
+    scoreBox.textContent = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
