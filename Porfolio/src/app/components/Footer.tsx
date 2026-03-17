@@ -6,7 +6,7 @@ export function Footer() {
           className="text-muted-foreground/40"
           style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.65rem" }}
         >
-          &copy; 2025 Owen Lindsey // Built with precision.
+          &copy; 2026 Owen Lindsey // Built with precision.
         </span>
         <div className="flex items-center gap-4">
           <a
