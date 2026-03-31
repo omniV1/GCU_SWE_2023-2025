@@ -1,0 +1,13 @@
+# Lightweight Java runtime
+FROM eclipse-temurin:17-jre
+
+WORKDIR /app
+
+# Copy the built JAR into the image
+COPY target/cloud-app-1.0.0.jar app.jar
+
+# Document the container's listening port (informational)
+EXPOSE 8080
+
+# Start the Spring Boot app
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/app.jar"]

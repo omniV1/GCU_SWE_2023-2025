@@ -1,0 +1,568 @@
+% ============================================================
+%  Activity 8 – Deploy Java App to Cloud (Render)
+%  Style mirrors: Docker_Lab_Report.pdf (Activity 6)
+% ============================================================
+\documentclass[11pt,letterpaper]{article}
+
+% ---------- packages ----------
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{microtype}
+
+% ---------- colours ----------
+\definecolor{codebg}{HTML}{F5F5F5}
+\definecolor{codeframe}{HTML}{CCCCCC}
+\definecolor{keyword}{HTML}{0000FF}
+\definecolor{string}{HTML}{A31515}
+\definecolor{comment}{HTML}{008000}
+\definecolor{gcupurple}{HTML}{522D80}
+
+% ---------- listings ----------
+\lstset{
+  backgroundcolor=\color{codebg},
+  frame=single,
+  rulecolor=\color{codeframe},
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{keyword}\bfseries,
+  stringstyle=\color{string},
+  commentstyle=\color{comment}\itshape,
+  breaklines=true,
+  breakatwhitespace=false,
+  showstringspaces=false,
+  tabsize=2,
+  aboveskip=10pt,
+  belowskip=10pt,
+  xleftmargin=4pt,
+  xrightmargin=4pt,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  numbersep=8pt,
+}
+
+% ---------- header / footer ----------
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textit{Deploy Java App to Cloud (Render)}}
+\rhead{\thepage}
+\lfoot{Completed: March 31, 2026}
+\rfoot{CST-323 Cloud Computing}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% ---------- section style ----------
+\titleformat{\section}{\Large\bfseries}{}{0em}{\thesection\quad}
+\titleformat{\subsection}{\large\bfseries}{}{0em}{\thesubsection\quad}
+
+% ---------- hyperlinks ----------
+\hypersetup{
+  colorlinks=true,
+  linkcolor=gcupurple,
+  urlcolor=blue!70!black,
+  citecolor=gcupurple,
+}
+
+% ============================================================
+\begin{document}
+
+% ---------- TITLE PAGE ----------
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+{\Huge\bfseries Deploy Java App to Cloud Infrastructure\\[6pt]}
+{\LARGE Laboratory Completion Report\\[12pt]}
+{\Large GCU Cloud-App (Spring Boot + MySQL) on Render\\[24pt]}
+
+\begin{tabular}{@{}rl@{}}
+\textbf{Date Completed:}    & March 31, 2026 \\
+\textbf{Course:}            & CST-323 Cloud Computing \\
+\textbf{Platform:}          & Render.com (Free Web Service) \\
+\textbf{Docker Runtime:}    & Eclipse Temurin 17-JRE Alpine \\
+\textbf{Spring Boot:}       & v3.2.0 \\
+\textbf{MySQL Provider:}    & \textit{<your MySQL host, e.g.\ Railway / Aiven / PlanetScale>} \\
+\textbf{Application:}       & cloud-app v1.0.0 \\
+\end{tabular}
+
+\vfill
+{\small Grand Canyon University --- College of Science, Engineering and Technology}
+\end{titlepage}
+
+% ---------- TOC ----------
+\tableofcontents
+\newpage
+
+% ============================================================
+\section{Introduction and Learning Objectives}
+% ============================================================
+
+This report documents the deployment of the GCU Cloud-App (Spring Boot + MySQL ``Orders App'') to a cloud hosting platform.
+The original assignment targets Oracle Cloud Infrastructure (OCI); however, OCI account creation was blocked during signup (HTTP 403 / ``Forbidden'' on the payment-verification step).
+After consulting with the instructor, \textbf{Render.com} was approved as an equivalent deployment target.
+
+Render provides a Platform-as-a-Service (PaaS) model that abstracts away the Virtual Cloud Network (VCN), subnets, and firewall rules that OCI requires.
+The core learning outcomes---containerised deployment, cloud database connectivity, environment-variable configuration, and live verification---are preserved.
+
+\subsection{Learning Objectives Achieved}
+
+\begin{itemize}[nosep]
+  \item Compare Oracle Cloud's IaaS approach to the PaaS-oriented model used by Render (and AWS, GCP, Azure).
+  \item Build and containerise a Spring Boot application using Docker and deploy the image to a cloud service.
+  \item Provision and connect to a managed MySQL database from a cloud-hosted container.
+  \item Configure environment variables for secure, externalised database credentials.
+  \item Diagnose and resolve deployment issues (health-check failures, port binding, datasource overrides).
+  \item Evaluate the trade-offs of IaaS-style vs.\ PaaS-style deployment in cloud architecture design.
+\end{itemize}
+
+\subsection{System Architecture Overview}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Component} & \textbf{Service} & \textbf{Port} & \textbf{Notes} \\
+\midrule
+Web Application & Render Web Service (Docker) & 8080 (auto) & Free tier, cold-start enabled \\
+Database         & \textit{<MySQL provider>}   & 3306        & Managed MySQL 8              \\
+Health Check     & \texttt{/actuator/health}    & ---         & Permitted without login      \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ============================================================
+\section{IaaS vs.\ PaaS --- Why Render Instead of OCI}
+% ============================================================
+
+\subsection{Oracle Cloud's IaaS Approach}
+
+OCI requires developers to manually design the underlying network before deploying any compute or container service:
+Virtual Cloud Network (VCN), public and private subnets, Internet Gateway, NAT Gateway, route tables, and Security List ingress/egress rules.
+Only after this infrastructure is in place can a Compute VM, Container Instance, or MySQL Database Service be provisioned.
+
+\subsection{Render's PaaS Approach}
+
+Render abstracts the entire networking layer.
+Deploying a Docker container requires only:
+
+\begin{enumerate}[nosep]
+  \item A GitHub repository with a \texttt{Dockerfile}.
+  \item A \textit{Web Service} resource on the Render dashboard.
+  \item Environment variables for the datasource.
+\end{enumerate}
+
+Render handles TLS termination, DNS, load balancing, and health checking automatically.
+
+\subsection{Side-by-Side Comparison}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{lXX}
+\toprule
+\textbf{Aspect} & \textbf{OCI (IaaS)} & \textbf{Render (PaaS)} \\
+\midrule
+Network Setup         & Manual VCN, subnets, gateways, route tables & Fully managed; none required \\
+Database              & Oracle MySQL Database Service (private subnet) & External MySQL (Railway, Aiven, etc.) \\
+Container Hosting     & OCI Container Instances / OCIR                 & Render Web Service (Docker) \\
+Firewall Rules        & Manual Security List ingress/egress             & Automatic; outbound open by default \\
+TLS / HTTPS           & Manual certificate or Load Balancer             & Automatic via \texttt{*.onrender.com} \\
+Cost (free tier)      & Always-Free shapes available                    & Free Web Service (750\,h/month) \\
+Deployment Complexity & High --- hands-on DevOps                        & Low --- git-push or image deploy \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% ============================================================
+\section{OCI Account Issue --- Instructor Approval}
+% ============================================================
+
+Multiple attempts to create an Oracle Cloud Free Tier account resulted in an HTTP 403 (``Forbidden'') error during the payment/identity-verification step.
+Efforts included:
+
+\begin{itemize}[nosep]
+  \item Trying different browsers and clearing cookies.
+  \item Using multiple email addresses.
+  \item Attempting different payment methods.
+  \item Contacting Oracle Support (ticket submitted; 24--48\,h response time).
+\end{itemize}
+
+The instructor was notified via email and confirmed that Render is an acceptable substitute.
+Screenshots of the Oracle error page and the instructor correspondence are included below.
+
+\textbf{Screenshot 1 --- OCI Signup Error.}
+The Oracle Cloud signup page displays a ``Forbidden'' error during identity verification, preventing account creation.
+
+% TODO: replace with your actual screenshot
+% \includegraphics[width=\textwidth]{screenshots/oci-forbidden.png}
+\begin{center}
+\fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}\textit{Insert screenshot of OCI ``Forbidden'' error here}\vspace{2cm}}}
+\end{center}
+
+\textbf{Screenshot 2 --- Instructor Approval.}
+Email exchange confirming Render as an approved alternative to OCI for this assignment.
+
+\begin{center}
+\fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}\textit{Insert screenshot of instructor email approval here}\vspace{2cm}}}
+\end{center}
+
+% ============================================================
+\section{Environment Setup}
+% ============================================================
+
+\subsection{Render Account Creation}
+
+A free Render account was created using GitHub OAuth at \url{https://render.com}.
+Render was authorised to read the GitHub repository containing the cloud-app source code.
+
+\textbf{Screenshot 3 --- Render Dashboard.}
+The Render dashboard after account creation, showing the connected GitHub account.
+
+\begin{center}
+\fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}\textit{Insert screenshot of Render dashboard here}\vspace{2cm}}}
+\end{center}
+
+\subsection{GitHub Repository}
+
+The cloud-app source code was pushed to a GitHub repository so Render can build from the \texttt{Dockerfile}.
+
+\begin{lstlisting}[language=bash,caption={Push cloud-app to GitHub}]
+cd CST-323-Cloud-Computing/code/topic-2/cloud-app
+git init
+git remote add origin https://github.com/<username>/<repo>.git
+git add .
+git commit -m "Initial cloud-app for Render deployment"
+git push -u origin main
+\end{lstlisting}
+
+% ============================================================
+\section{MySQL Database in the Cloud}
+% ============================================================
+
+\subsection{Provisioning the Database}
+
+A managed MySQL 8 instance was created on \textit{<your provider>}.
+The provider supplies a standard TCP connection string, username, and password.
+
+\textbf{Screenshot 4 --- Cloud MySQL Instance.}
+The database provider dashboard showing the MySQL instance is active and the connection details (hostname, port, database name).
+
+\begin{center}
+\fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}\textit{Insert screenshot of MySQL provider dashboard here}\vspace{2cm}}}
+\end{center}
+
+\subsection{Schema Initialisation}
+
+Because the application uses Spring Data JDBC (not JPA/Hibernate), the \texttt{USERS} and \texttt{ORDERS} tables must be created manually:
+
+\begin{lstlisting}[language=SQL,caption={Create USERS and ORDERS tables}]
+CREATE TABLE IF NOT EXISTS USERS (
+  id       INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  role     VARCHAR(50)  NOT NULL,
+  enabled  BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+CREATE TABLE IF NOT EXISTS ORDERS (
+  ID           INT AUTO_INCREMENT PRIMARY KEY,
+  ORDER_NUMBER VARCHAR(100),
+  PRODUCT_NAME VARCHAR(255),
+  PRICE        INT,
+  QTY          INT
+);
+\end{lstlisting}
+
+\textbf{Screenshot 5 --- Tables Created.}
+Query result showing both \texttt{USERS} and \texttt{ORDERS} tables exist in the cloud database.
+
+\begin{center}
+\fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}\textit{Insert screenshot of SHOW TABLES result here}\vspace{2cm}}}
+\end{center}
+
+% ============================================================
+\section{Application Configuration for Render}
+% ============================================================
+
+\subsection{Dockerfile}
+
+The multi-stage Dockerfile builds the JAR inside an Alpine JDK container and copies it to a lightweight JRE runtime image.
+\texttt{chmod +x ./mvnw} ensures the Maven wrapper is executable on Linux build hosts (Render runs Linux).
+
+\begin{lstlisting}[caption={Dockerfile (project root)}]
+FROM eclipse-temurin:17-jdk-alpine AS build
+WORKDIR /app
+COPY . .
+RUN chmod +x ./mvnw && ./mvnw package -DskipTests
+
+FROM eclipse-temurin:17-jre-alpine
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
+\end{lstlisting}
+
+\subsection{application.properties --- Runtime Overrides}
+
+Spring's \texttt{\$\{VAR:default\}} syntax allows every setting to be overridden via environment variables without rebuilding the image:
+
+\begin{lstlisting}[caption={application.properties (key lines)}]
+server.port=${PORT:8080}
+
+spring.datasource.url=${SPRING_DATASOURCE_URL:jdbc:mysql://...}
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME:admin}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD:...}
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+spring.jpa.hibernate.ddl-auto=${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+
+management.endpoints.web.exposure.include=health
+management.endpoint.health.probes.enabled=true
+\end{lstlisting}
+
+\textbf{Key change:} Actuator health endpoint is now exposed so Render's HTTP health check can reach \texttt{/actuator/health} without authentication.
+
+\subsection{SecurityConfig --- Permit Health Check}
+
+The \texttt{/actuator/health} path was added to Spring Security's permit list so Render's health probe is not redirected to the login page:
+
+\begin{lstlisting}[language=Java,caption={SecurityConfig.java --- health-check permit}]
+.authorizeHttpRequests(auth -> auth
+    .requestMatchers("/actuator/health", "/actuator/health/**")
+        .permitAll()
+    .requestMatchers("/users/register", "/users/processRegister",
+                     "/users/login").permitAll()
+    .requestMatchers("/admin/**").hasRole("ADMIN")
+    .anyRequest().authenticated()
+)
+\end{lstlisting}
+
+% ============================================================
+\section{Deploying to Render}
+% ============================================================
+
+\subsection{Create a Web Service}
+
+On the Render dashboard: \textbf{New $\rightarrow$ Web Service $\rightarrow$} connect the GitHub repository.
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Setting} & \textbf{Value} \\
+\midrule
+Name             & \texttt{cloud-app} \\
+Region           & Oregon (US West) \\
+Environment      & Docker \\
+Instance Type    & Free \\
+Health Check Path & \texttt{/actuator/health} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Environment Variables}
+
+The following variables were set in the Render dashboard under \textbf{Environment}:
+
+\begin{center}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Variable} & \textbf{Value (redacted)} \\
+\midrule
+\texttt{SPRING\_DATASOURCE\_URL}      & \texttt{jdbc:mysql://<host>:3306/<db>?sslMode=REQUIRED\&serverTimezone=UTC} \\
+\texttt{SPRING\_DATASOURCE\_USERNAME} & \texttt{<username>} \\
+\texttt{SPRING\_DATASOURCE\_PASSWORD} & \texttt{********} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textit{Note:} Render sets \texttt{PORT} automatically; the application reads it via \texttt{server.port=\$\{PORT:8080\}}.
+
+\textbf{Screenshot 6 --- Render Environment Variables.}
+The Render Environment tab showing the \texttt{SPRING\_DATASOURCE\_*} keys are configured (values redacted).
+
+\begin{center}
+\fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}\textit{Insert screenshot of Render Environment tab here}\vspace{2cm}}}
+\end{center}
+
+\subsection{Build and Deploy}
+
+Clicking \textbf{Create Web Service} triggers a Docker build on Render's servers.
+The build log shows Maven compiling the project, running \texttt{mvnw package}, and creating the runtime image.
+
+\textbf{Screenshot 7 --- Render Build Logs.}
+The Render deploy log showing a successful Docker build (Maven compile + JAR packaging) and service startup.
+
+\begin{center}
+\fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}\textit{Insert screenshot of Render build/deploy logs here}\vspace{2cm}}}
+\end{center}
+
+% ============================================================
+\section{System Verification}
+% ============================================================
+
+\subsection{Health Check}
+
+After deployment, the health endpoint confirms the application is running:
+
+\begin{lstlisting}[language=bash,caption={Health check via curl (or browser)}]
+$ curl https://<your-app>.onrender.com/actuator/health
+{"status":"UP"}
+\end{lstlisting}
+
+\textbf{Screenshot 8 --- Health Check.}
+Browser or terminal showing \texttt{\{"status":"UP"\}} from the \texttt{/actuator/health} endpoint on the live Render URL.
+
+\begin{center}
+\fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}\textit{Insert screenshot of /actuator/health response here}\vspace{2cm}}}
+\end{center}
+
+\subsection{Render Service Status}
+
+\textbf{Screenshot 9 --- Render Service Live.}
+The Render dashboard showing the service status as \textbf{Live} with the public URL.
+
+\begin{center}
+\fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}\textit{Insert screenshot of Render service status (Live) here}\vspace{2cm}}}
+\end{center}
+
+% ============================================================
+\section{CRUD Walkthrough --- Orders4U Web Application}
+% ============================================================
+
+With the application live on Render and connected to the cloud MySQL database, the full Create, Read, Update, and Delete lifecycle was exercised through the browser.
+
+\subsection{Authentication --- Login (Spring Security)}
+
+\textbf{Screenshot 10 --- Login Page.}
+The login page at \texttt{https://<app>.onrender.com/users/login}.
+Spring Security intercepts all unauthenticated requests and redirects to this form.
+BCrypt-hashed credentials are verified against the \texttt{USERS} table in the cloud database.
+
+\begin{center}
+\fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}\textit{Insert screenshot of login page here}\vspace{2cm}}}
+\end{center}
+
+\subsection{Read --- Home Dashboard (after login)}
+
+\textbf{Screenshot 11 --- Home Dashboard.}
+The home page after successful authentication, showing the personalised welcome and navigation to the Orders section.
+
+\begin{center}
+\fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}\textit{Insert screenshot of home dashboard here}\vspace{2cm}}}
+\end{center}
+
+\subsection{Read --- Inventory List}
+
+\textbf{Screenshot 12 --- All Orders.}
+The inventory page at \texttt{/orders} displaying all current orders retrieved via \texttt{SELECT * FROM ORDERS}.
+
+\begin{center}
+\fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}\textit{Insert screenshot of orders list here}\vspace{2cm}}}
+\end{center}
+
+\subsection{Create --- New Order}
+
+\textbf{Screenshot 13 --- New Order.}
+The new-order form at \texttt{/orders/newOrder} with sample data entered.
+On submit, \texttt{OrdersController} calls \texttt{repository.save()}, issuing an \texttt{INSERT INTO ORDERS}.
+
+\begin{center}
+\fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}\textit{Insert screenshot of new order form here}\vspace{2cm}}}
+\end{center}
+
+\subsection{Read --- Single Order Detail}
+
+\textbf{Screenshot 14 --- Order Detail.}
+The detail page at \texttt{/orders/showOrder/\{id\}} showing the newly created order.
+
+\begin{center}
+\fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}\textit{Insert screenshot of order detail here}\vspace{2cm}}}
+\end{center}
+
+\subsection{Update --- Edit Order}
+
+\textbf{Screenshot 15 --- Edit Order.}
+The order after editing (price or quantity changed).
+Spring Data JDBC issues \texttt{UPDATE ORDERS SET \ldots\ WHERE ID = ?}.
+
+\begin{center}
+\fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}\textit{Insert screenshot of updated order here}\vspace{2cm}}}
+\end{center}
+
+\subsection{Delete --- Remove Order}
+
+\textbf{Screenshot 16 --- Delete Confirmation.}
+The delete confirmation dialog followed by the inventory page showing the order has been removed.
+
+\begin{center}
+\fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}\textit{Insert screenshot of delete confirmation here}\vspace{2cm}}}
+\end{center}
+
+\subsection{CRUD Summary}
+
+\begin{center}
+\begin{tabular}{lllll}
+\toprule
+\textbf{Operation} & \textbf{Route} & \textbf{HTTP} & \textbf{SQL Issued} & \textbf{Screenshot} \\
+\midrule
+Login      & \texttt{/users/login}            & POST & SELECT (auth)      & 10 \\
+Read All   & \texttt{/orders}                 & GET  & SELECT *           & 12 \\
+Create     & \texttt{/orders/newOrder}         & POST & INSERT INTO        & 13 \\
+Read One   & \texttt{/orders/showOrder/\{id\}} & GET  & SELECT WHERE ID=?  & 14 \\
+Update     & \texttt{/orders/editOrder/\{id\}} & POST & UPDATE WHERE ID=?  & 15 \\
+Delete     & \texttt{/orders/deleteOrder/\{id\}} & POST & DELETE WHERE ID=? & 16 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ============================================================
+\section{Collaborating with AI}
+% ============================================================
+
+% CHOOSE ONE of 1A, 2A, or 3A and fill in your reflection below.
+% Delete the other two subsections.
+
+\subsection{3A --- Cross-Cloud Reflection}
+
+\textbf{Prompt:} ``How does deploying a Java application with MySQL on Oracle Cloud compare to similar workflows on AWS (Aurora + ECS), Azure (Database for MySQL + Container Instances), or Google Cloud (SQL + Cloud Run)? Which platform might best suit different project priorities such as cost, performance, or ease of use?''
+
+\textbf{Summary of Findings:}
+
+% TODO: Replace the text below with your own 150--200 word reflection.
+
+\textit{<Your 150--200 word reflection here. Summarise what the AI told you, then add your own analysis. Conclude with which platform you would personally choose for a future project, and why.>}
+
+% ============================================================
+\section{Conclusion and Next Steps}
+% ============================================================
+
+\subsection{What Was Accomplished}
+
+\begin{enumerate}[nosep]
+  \item Documented the OCI account-creation issue and obtained instructor approval for Render as a substitute.
+  \item Created a Render Web Service backed by a Docker container built from the cloud-app \texttt{Dockerfile}.
+  \item Provisioned a managed MySQL 8 database and created the required \texttt{USERS} and \texttt{ORDERS} tables.
+  \item Configured \texttt{SPRING\_DATASOURCE\_*} environment variables on Render for secure credential injection.
+  \item Exposed the \texttt{/actuator/health} endpoint and permitted it in Spring Security for Render's health probe.
+  \item Verified the live deployment via health check, login, and a full CRUD walkthrough of the Orders application.
+\end{enumerate}
+
+\subsection{Suggested Next Steps}
+
+\begin{itemize}[nosep]
+  \item \textbf{CI/CD Pipeline:} Add GitHub Actions to build, push to GHCR, and trigger a Render Deploy Hook automatically on each push (Activity~9).
+  \item \textbf{Custom Domain:} Configure a custom domain with Render's automatic TLS.
+  \item \textbf{Production Database:} Migrate to a production-grade managed MySQL with automated backups.
+  \item \textbf{Secrets Management:} Use Render's secret files or a vault service instead of plain environment variables.
+  \item \textbf{Monitoring:} Integrate Spring Boot Actuator metrics with an observability platform (Grafana, Datadog).
+\end{itemize}
+
+\vfill
+\begin{center}
+\small CST-323 Cloud Computing \textbullet{} March 31, 2026
+\end{center}
+
+\end{document}
