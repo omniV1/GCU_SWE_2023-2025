@@ -1,0 +1,34 @@
+\contentsline {section}{\numberline {1}Introduction and Learning Objectives}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Learning Objectives Achieved}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Pipeline Architecture Overview}{2}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Preparing the Application}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Starter Application}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Project Structure}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Local Build Verification}{3}{subsection.2.3}%
+\contentsline {section}{\numberline {3}GitHub Repository Setup}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Creating the Remote Repository}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Initialising Git and Pushing}{3}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Dockerfile}{4}{section.4}%
+\contentsline {section}{\numberline {5}GitHub Secrets Configuration}{5}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Personal Access Token for GHCR}{5}{subsection.5.1}%
+\contentsline {section}{\numberline {6}GitHub Actions Workflow}{5}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Workflow File}{5}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}What Each Step Does}{6}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}First Pipeline Run}{6}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Container Registry (GHCR)}{7}{section.7}%
+\contentsline {section}{\numberline {8}Deploying to Render.com}{7}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Render Account and Service Creation}{7}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Initial Deployment}{8}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Render Deploy Hook (Automated CD)}{9}{subsection.8.3}%
+\contentsline {section}{\numberline {9}Incremental Updates (v1--v4)}{9}{section.9}%
+\contentsline {subsection}{\numberline {9.1}v1: Structured Comments Table}{9}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}v2: CSS Styling}{11}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}v3: Timestamps}{13}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}v4: Search / Filter by Author}{16}{subsection.9.4}%
+\contentsline {section}{\numberline {10}Version Summary}{19}{section.10}%
+\contentsline {section}{\numberline {11}Collaborating with AI}{19}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Prompt Selected: Improving the CI/CD Pipeline}{19}{subsection.11.1}%
+\contentsline {section}{\numberline {12}Conclusion}{20}{section.12}%
+\contentsline {subsection}{\numberline {12.1}What Was Accomplished}{20}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Key Takeaway}{20}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Project Links}{21}{subsection.12.3}%

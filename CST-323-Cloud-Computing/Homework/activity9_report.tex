@@ -1,0 +1,738 @@
+% ============================================================
+%  Activity 9 – Automated CI/CD Pipeline for Cloud Deployment
+%  Style mirrors: activity8_report.tex (Activity 8)
+% ============================================================
+\documentclass[11pt,letterpaper]{article}
+
+% ---------- packages ----------
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{microtype}
+\usepackage{float}
+\graphicspath{{activity9-photos/}}
+
+\raggedbottom
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\textfloatsep}{8pt plus 2pt minus 4pt}
+\setlength{\floatsep}{8pt plus 2pt minus 4pt}
+\setlength{\intextsep}{8pt plus 2pt minus 4pt}
+
+\newcommand{\screenshot}[1]{%
+  \begin{center}
+  \includegraphics[width=\textwidth,height=0.38\textheight,keepaspectratio]{#1}%
+  \end{center}%
+}
+
+% ---------- colours ----------
+\definecolor{codebg}{HTML}{F5F5F5}
+\definecolor{codeframe}{HTML}{CCCCCC}
+\definecolor{keyword}{HTML}{0000FF}
+\definecolor{string}{HTML}{A31515}
+\definecolor{comment}{HTML}{008000}
+\definecolor{gcupurple}{HTML}{522D80}
+
+% ---------- listings ----------
+\lstset{
+  backgroundcolor=\color{codebg},
+  frame=single,
+  rulecolor=\color{codeframe},
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{keyword}\bfseries,
+  stringstyle=\color{string},
+  commentstyle=\color{comment}\itshape,
+  breaklines=true,
+  breakatwhitespace=false,
+  showstringspaces=false,
+  tabsize=2,
+  aboveskip=6pt,
+  belowskip=6pt,
+  xleftmargin=4pt,
+  xrightmargin=4pt,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  numbersep=8pt,
+}
+
+% ---------- header / footer ----------
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textit{Automated CI/CD Pipeline for Cloud Deployment}}
+\rhead{\thepage}
+\lfoot{Completed: April 7, 2026}
+\rfoot{CST-323 Cloud Computing}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% ---------- section style ----------
+\titleformat{\section}{\Large\bfseries}{}{0em}{\thesection\quad}
+\titleformat{\subsection}{\large\bfseries}{}{0em}{\thesubsection\quad}
+
+% ---------- hyperlinks ----------
+\hypersetup{
+  colorlinks=true,
+  linkcolor=gcupurple,
+  urlcolor=blue!70!black,
+  citecolor=gcupurple,
+}
+
+% ============================================================
+\begin{document}
+
+% ---------- TITLE PAGE ----------
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+{\Huge\bfseries Automated CI/CD Pipeline\\for Cloud Deployment\\[6pt]}
+{\LARGE Laboratory Completion Report\\[12pt]}
+{\Large Comments App (Spring Boot) with GitHub Actions + Render\\[24pt]}
+
+\begin{tabular}{@{}rl@{}}
+\textbf{Author:}            & Owen Lindsey \\
+\textbf{Date Completed:}    & April 7, 2026 \\
+\textbf{Course:}            & CST-323 Cloud Computing \\
+\textbf{Instructor:}        & Professor Sluiter \\
+\textbf{CI/CD Platform:}    & GitHub Actions \\
+\textbf{Container Registry:}& GitHub Container Registry (GHCR) \\
+\textbf{Cloud Host:}        & Render.com (Free Web Service) \\
+\textbf{Docker Runtime:}    & Eclipse Temurin 17-JDK \\
+\textbf{Spring Boot:}       & v4.0.0 \\
+\textbf{Application:}       & comments-pipeline-demo v0--v4 \\
+\end{tabular}
+
+\vfill
+{\small Grand Canyon University, College of Science, Engineering and Technology}
+\end{titlepage}
+
+% ---------- TOC ----------
+\tableofcontents
+\vspace{12pt}
+
+% ============================================================
+\section{Introduction and Learning Objectives}
+% ============================================================
+
+This report covers the setup of a CI/CD pipeline for a Spring Boot application. The pipeline starts when code is pushed to GitHub and finishes with a live, updated container running on Render.com without any manual steps.
+
+This builds on the tools from the rest of CST-323: Java, Spring Boot, Maven, Docker, and GitHub. The new part is \textbf{automation}. Instead of building containers and deploying by hand, GitHub Actions takes care of compiling, testing, containerizing, pushing to a registry, and triggering the cloud deployment.
+
+\subsection{Learning Objectives Achieved}
+
+\begin{itemize}[nosep]
+  \item Explain the purpose of a CI/CD pipeline and how Continuous Integration and Continuous Deployment improve software reliability and speed.
+  \item Configure GitHub Actions as a build-and-deployment pipeline that automatically runs tests, compiles a Spring Boot app, builds a Docker image, and deploys it.
+  \item Package and version an application using Docker in an automated workflow, producing new container versions based on Git commits.
+  \item Push container images automatically to the GitHub Container Registry (GHCR).
+  \item Deploy a container image to a cloud service (Render.com) without manual commands via a Deploy Hook.
+  \item Validate pipeline execution and troubleshoot failed builds by interpreting build logs and common pipeline failure scenarios.
+\end{itemize}
+
+\subsection{Pipeline Architecture Overview}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Stage} & \textbf{Tool} & \textbf{Trigger} & \textbf{Output} \\
+\midrule
+Source Control   & GitHub                & \texttt{git push}       & Code in repo \\
+CI -- Build      & GitHub Actions        & Push to \texttt{main}   & JAR (Maven) \\
+CI -- Containerise & GitHub Actions      & After build             & Docker image \\
+Registry         & GHCR (\texttt{ghcr.io}) & After build           & Versioned image \\
+CD -- Deploy     & Render Deploy Hook    & POST from Actions       & Live URL \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ============================================================
+\section{Preparing the Application}
+% ============================================================
+
+\subsection{Starter Application}
+
+The starter application was cloned from the instructor-provided repository:
+
+\begin{lstlisting}[language=bash,caption={Clone starter repo}]
+git clone https://github.com/shadsluiter/commentsappCICD.git comment-tool
+\end{lstlisting}
+
+The project is a minimal Spring Boot app with Thymeleaf templates. It uses an in-memory \texttt{CommentsDAO} with three seed comments. There is no database, so all state lives in memory and resets on restart.
+
+\subsection{Project Structure}
+
+\begin{lstlisting}[caption={Key files in the starter application}]
+comment-tool/
+  pom.xml
+  Dockerfile
+  src/main/java/edu/shadsluiter/comments/
+    CommentsApplication.java          -- @SpringBootApplication entry point
+    controllers/MainController.java   -- GET / and POST /submitComment
+    data/CommentsDAO.java             -- In-memory CRUD for comments
+    model/AppComment.java             -- POJO: id, author, content
+  src/main/resources/
+    application.properties
+    templates/index.html              -- Thymeleaf view
+  src/test/java/.../CommentsApplicationTests.java
+\end{lstlisting}
+
+\subsection{Local Build Verification}
+
+Before pushing anything, the application was built and tested locally:
+
+\begin{lstlisting}[language=bash,caption={Local Maven build}]
+.\mvnw.cmd clean package
+\end{lstlisting}
+
+The build completed successfully, producing \texttt{target/comments-0.0.1-SNAPSHOT.jar}. Running \texttt{java -jar target/comments-0.0.1-SNAPSHOT.jar} started the app on \texttt{http://localhost:8080}.
+
+\textbf{Screenshot 1: Local Application Running.}
+The starter comments app running on localhost:8080, showing the three seed comments and the submission form.
+
+\screenshot{localapp.png}
+
+% ============================================================
+\section{GitHub Repository Setup}
+% ============================================================
+
+\subsection{Creating the Remote Repository}
+
+A new repository was created on GitHub.com. The repo was left empty (no README initialisation) so we could push the local project cleanly.
+
+\subsection{Initialising Git and Pushing}
+
+\begin{lstlisting}[language=bash,caption={Git initialisation and first push}]
+cd comment-tool
+git init
+git add .
+git commit -m "Initial commit for the starter application"
+git branch -M main
+git remote add origin https://github.com/omniV1/comments-pipeline-demo.git
+git push -u origin main
+\end{lstlisting}
+
+After pushing, all project files were visible in the GitHub repository.
+
+\textbf{Screenshot 2: GitHub Repository Populated.}
+The GitHub repository page showing all Spring Boot project files after the initial push.
+
+\screenshot{initial-git-repo.png}
+
+% ============================================================
+\section{Dockerfile}
+% ============================================================
+
+The Dockerfile was already included in the cloned repository. It uses the Eclipse Temurin JDK 17 base image, copies the Maven-built JAR into the container, and runs it on port 8080:
+
+\begin{lstlisting}[caption={Dockerfile}]
+FROM eclipse-temurin:17-jdk
+WORKDIR /app
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
+\end{lstlisting}
+
+This Dockerfile expects the JAR to be pre-built by Maven before the Docker build step runs. In the GitHub Actions workflow, Maven runs first, then Docker copies the output JAR.
+
+% ============================================================
+\section{GitHub Secrets Configuration}
+% ============================================================
+
+\subsection{Personal Access Token for GHCR}
+
+Before GitHub Actions can push Docker images to GitHub Container Registry, it needs a Personal Access Token with \texttt{write:packages} and \texttt{read:packages} scopes.
+
+\begin{enumerate}[nosep]
+  \item GitHub Profile $\rightarrow$ Settings $\rightarrow$ Developer Settings $\rightarrow$ Personal access tokens $\rightarrow$ Generate new token (classic).
+  \item Selected scopes: \texttt{write:packages}, \texttt{read:packages}.
+  \item Copied the generated token.
+  \item Repository $\rightarrow$ Settings $\rightarrow$ Secrets and variables $\rightarrow$ Actions $\rightarrow$ New repository secret.
+  \item Name: \texttt{GHCR\_PAT}, Value: the copied token.
+\end{enumerate}
+
+Storing the token as a GitHub Secret keeps it encrypted so only the workflow can read it. Putting tokens directly in the YAML file would expose them in the repo.
+
+% ============================================================
+\section{GitHub Actions Workflow}
+% ============================================================
+
+\subsection{Workflow File}
+
+The CI pipeline was defined in \texttt{.github/workflows/build-and-push.yml}:
+
+\begin{lstlisting}[caption={.github/workflows/build-and-push.yml}]
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  buildandpush:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build Spring Boot JAR
+        run: mvn -B package --file pom.xml
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_PAT }}
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            -t ghcr.io/${{ github.actor }}/comments-pipeline-demo:latest .
+
+      - name: Push Docker image
+        run: |
+          docker push \
+            ghcr.io/${{ github.actor }}/comments-pipeline-demo:latest
+
+      - name: Trigger Render deploy
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: curl -X POST "$RENDER_DEPLOY_HOOK"
+\end{lstlisting}
+
+\subsection{What Each Step Does}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Step} & \textbf{Purpose} \\
+\midrule
+Checkout code        & Downloads the repository onto the GitHub-hosted Ubuntu runner. \\
+Set up JDK 17        & Installs Eclipse Temurin JDK 17 so Maven can compile the project. \\
+Build Spring Boot JAR & Runs \texttt{mvn -B package} to compile, test, and produce the JAR. \\
+Log in to GHCR       & Authenticates Docker with \texttt{ghcr.io} using the \texttt{GHCR\_PAT} secret. \\
+Build Docker image   & Builds the container from the Dockerfile, tagging it with the GHCR path. \\
+Push Docker image    & Uploads the built image to GitHub Container Registry. \\
+Trigger Render deploy & Sends a POST to the Render Deploy Hook URL, causing Render to pull the latest image. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{First Pipeline Run}
+
+After committing and pushing the workflow file, GitHub Actions triggered automatically. The workflow ran all steps successfully.
+
+\textbf{Screenshot 3: Successful GitHub Actions Workflow.}
+The Actions tab showing the green checkmark and expanded \texttt{buildandpush} job with all steps completed.
+
+\screenshot{v0-action-success.png}
+
+% ============================================================
+\section{Container Registry (GHCR)}
+% ============================================================
+
+After the pipeline completed, the Docker image appeared under GitHub Packages. The image was made public so Render can pull it without additional registry credentials.
+
+\begin{lstlisting}[caption={GHCR image URL}]
+ghcr.io/omniv1/comments-pipeline-demo:latest
+\end{lstlisting}
+
+To make the package public: GitHub $\rightarrow$ Packages $\rightarrow$ select the image $\rightarrow$ Settings $\rightarrow$ Visibility $\rightarrow$ Public.
+
+% ============================================================
+\section{Deploying to Render.com}
+% ============================================================
+
+\subsection{Render Account and Service Creation}
+
+A free Render account was created using GitHub OAuth sign-in. A new Web Service was created using the ``Existing Image'' option:
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Setting} & \textbf{Value} \\
+\midrule
+Service Type   & Web Service \\
+Image Source   & Existing Image \\
+Image URL      & \texttt{ghcr.io/omniv1/comments-pipeline-demo:latest} \\
+Instance Type  & Free \\
+Region         & Oregon (US West) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+No environment variables were needed since the app stores everything in memory and does not connect to a database or external API.
+
+\subsection{Initial Deployment}
+
+Render pulled the container image from GHCR and started the service. After a short build period, the application was live at a public URL.
+
+\textbf{Screenshot 4a: Render Deployment Logs.}
+The Render dashboard showing the service is live at \texttt{https://comments-pipeline-demo-latest-p6z3.onrender.com}.
+
+\screenshot{v0-render-successmessage.png}
+
+\textbf{Screenshot 4b: Live Application on Render.}
+The comments application running on the public Render URL, showing the baseline v0 version.
+
+\screenshot{v0-render-webapp.png}
+
+\subsection{Render Deploy Hook (Automated CD)}
+
+To close the CI/CD loop and eliminate manual redeployments:
+
+\begin{enumerate}[nosep]
+  \item Render Dashboard $\rightarrow$ Service $\rightarrow$ Settings $\rightarrow$ Deploy Hook, then copied the secret URL.
+  \item GitHub Repository $\rightarrow$ Settings $\rightarrow$ Secrets $\rightarrow$ New repository secret: \texttt{RENDER\_DEPLOY\_HOOK}.
+  \item Added the ``Trigger Render deploy'' step to the workflow (shown in Section~6.1).
+\end{enumerate}
+
+Now every \texttt{git push} to \texttt{main} kicks off the full chain: build, containerize, push to GHCR, and deploy to Render, all without any manual steps.
+
+% ============================================================
+\section{Incremental Updates (v1--v4)}
+% ============================================================
+
+The following four updates were made to demonstrate the automated pipeline in action. Each change was committed, pushed, and automatically built and deployed.
+
+\subsection{v1: Structured Comments Table}
+
+\textbf{Goal:} Replace the basic comment list with a proper HTML table showing ID, Author, and Content columns.
+
+\textbf{Files Modified:} \texttt{templates/index.html}
+
+Changes made to the Thymeleaf template:
+
+\begin{lstlisting}[language=HTML,caption={v1 -- Table with three columns (index.html excerpt)}]
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Author</th>
+      <th scope="col">Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="comment : ${comments}">
+      <td th:text="${comment.id}">1</td>
+      <td th:text="${comment.author}">Alice</td>
+      <td th:text="${comment.content}">Sample content</td>
+    </tr>
+  </tbody>
+</table>
+\end{lstlisting}
+
+\begin{lstlisting}[language=bash,caption={v1 commit and push}]
+git add .
+git commit -m "v1: Display comments in a structured table"
+git push
+\end{lstlisting}
+
+\textbf{Screenshot 5a: v1 GitHub Actions Success.}
+The Actions tab showing the v1 workflow completed successfully with the deploy hook step.
+
+\screenshot{v1-action-sucess.png}
+
+\textbf{Screenshot 5b: v1 Render Auto-Deploy.}
+Render automatically pulled the updated image and redeployed the service.
+
+\screenshot{v1-render-successmessage.png}
+
+\textbf{Screenshot 5c: v1 Table Layout Live.}
+The deployed application showing comments in a three-column table (ID, Author, Comment).
+
+\screenshot{v1-render-webapp.png}
+
+\subsection{v2: CSS Styling}
+
+\textbf{Goal:} Add custom styling to improve the visual presentation of the page.
+
+\textbf{Files Modified:} \texttt{templates/index.html}, new file \texttt{static/style.css}
+
+A stylesheet was added with custom fonts, colors, spacing, and a styled form. The template was updated with a \texttt{<head>} section linking the CSS file:
+
+\begin{lstlisting}[caption={v2 -- style.css (excerpt)}]
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.table th, .table td {
+  padding: 10px 14px;
+  border: 1px solid #dee2e6;
+  text-align: left;
+}
+
+.table th {
+  background-color: #522D80;
+  color: white;
+}
+
+.btn-primary {
+  background-color: #522D80;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=bash,caption={v2 commit and push}]
+git add .
+git commit -m "v2: Add CSS styling to index"
+git push
+\end{lstlisting}
+
+\textbf{Screenshot 6a: v2 GitHub Actions Success.}
+The Actions tab showing the v2 workflow completed successfully.
+
+\screenshot{v2-action-success.png}
+
+\textbf{Screenshot 6b: v2 Render Auto-Deploy.}
+Render automatically pulled the updated image with the new styling.
+
+\screenshot{v2-render-success.png}
+
+\textbf{Screenshot 6c: v2 CSS Styling Live.}
+The deployed application with custom styling: GCU purple table headers, updated fonts, card-style form layout, and proper spacing.
+
+\screenshot{v2-render-webapp.png}
+
+\subsection{v3: Timestamps}
+
+\textbf{Goal:} Add a \texttt{createdAt} timestamp to each comment, set when comments are created, and display it in a new table column.
+
+\textbf{Files Modified:} \texttt{model/AppComment.java}, \texttt{data/CommentsDAO.java}, \texttt{templates/index.html}
+
+\begin{lstlisting}[language=Java,caption={v3 -- AppComment.java: new createdAt field}]
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class AppComment {
+    private int id;
+    private String author;
+    private String content;
+    private LocalDateTime createdAt;
+
+    public AppComment(int id, String author, String content) {
+        this.id = id;
+        this.author = author;
+        this.content = content;
+        this.createdAt = LocalDateTime.now();
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public String getFormattedDate() {
+        return createdAt.format(
+            DateTimeFormatter.ofPattern("MMM dd, yyyy hh:mm a"));
+    }
+    // ... existing getters/setters ...
+}
+\end{lstlisting}
+
+The index template was updated to include a ``Submitted at'' column:
+
+\begin{lstlisting}[language=HTML,caption={v3 -- New timestamp column in index.html}]
+<th scope="col">Submitted at</th>
+...
+<td th:text="${comment.formattedDate}">Apr 07, 2026 01:00 PM</td>
+\end{lstlisting}
+
+\begin{lstlisting}[language=bash,caption={v3 commit and push}]
+git add .
+git commit -m "v3: Add timestamp to comments"
+git push
+\end{lstlisting}
+
+\textbf{Screenshot 7a: v3 GitHub Actions Success.}
+The Actions tab showing the v3 workflow completed successfully.
+
+\screenshot{v3-action-success.png}
+
+\textbf{Screenshot 7b: v3 Render Auto-Deploy.}
+Render automatically pulled the updated image with the timestamp feature.
+
+\screenshot{v3-render-success.png}
+
+\textbf{Screenshot 7c: v3 Timestamps Live.}
+The deployed application showing the new ``Submitted at'' column with readable date/time values for each comment.
+
+\screenshot{v3-render-webapp.png}
+
+\subsection{v4: Search / Filter by Author}
+
+\textbf{Goal:} Add a search form that filters comments by author or content. Display a ``Showing X of Y comments'' summary.
+
+\textbf{Files Modified:} \texttt{controllers/MainController.java}, \texttt{data/CommentsDAO.java}, \texttt{templates/index.html}
+
+The DAO already had a \texttt{searchForComments} method in the starter code. The controller was updated to accept an optional search parameter:
+
+\begin{lstlisting}[language=Java,caption={v4 -- MainController.java: search support}]
+@GetMapping("/")
+public String index(
+        @RequestParam(required = false) String search,
+        Model model) {
+    List<AppComment> allComments = commentsDAO.getComments();
+    List<AppComment> displayed;
+
+    if (search != null && !search.isBlank()) {
+        displayed = commentsDAO.searchForComments(search);
+        model.addAttribute("search", search);
+    } else {
+        displayed = allComments;
+    }
+
+    model.addAttribute("comments", displayed);
+    model.addAttribute("showing", displayed.size());
+    model.addAttribute("total", allComments.size());
+    return "index";
+}
+\end{lstlisting}
+
+A search form was added to the template:
+
+\begin{lstlisting}[language=HTML,caption={v4 -- Search form and result count in index.html}]
+<form th:action="@{/}" method="get" class="search-form">
+  <label for="search" class="form-label">Search Comments</label>
+  <input type="text" class="form-control" id="search"
+         name="search" th:value="${search}"
+         placeholder="Search by author or content...">
+  <button type="submit" class="btn btn-primary">Search</button>
+  <a th:href="@{/}" class="btn btn-secondary">Clear</a>
+</form>
+<p th:text="'Showing ' + ${showing} + ' of ' + ${total} + ' comments'">
+  Showing 3 of 3 comments
+</p>
+\end{lstlisting}
+
+\begin{lstlisting}[language=bash,caption={v4 commit and push}]
+git add .
+git commit -m "v4: Add search feature for comments"
+git push
+\end{lstlisting}
+
+\textbf{Screenshot 8a: v4 GitHub Actions Success.}
+The Actions tab showing the v4 workflow completed successfully.
+
+\screenshot{v4-action-success.png}
+
+\textbf{Screenshot 8b: v4 Render Auto-Deploy.}
+Render automatically pulled the updated image with the search feature.
+
+\screenshot{v4-render-success.png}
+
+\textbf{Screenshot 8c: v4 Search Feature Live.}
+The deployed application showing the search bar, ``Showing 3 of 3 comments'' summary, and the full comment table with timestamps.
+
+\screenshot{v4-render-webapp.png}
+
+% ============================================================
+\section{Version Summary}
+% ============================================================
+
+\begin{center}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Version} & \textbf{Commit Message} & \textbf{What Changed} \\
+\midrule
+v0 & Initial commit for the starter application & Baseline app with raw comment list \\
+v1 & v1: Display comments in a structured table & Three-column HTML table (ID, Author, Comment) \\
+v2 & v2: Add CSS styling to index & Custom stylesheet with fonts, colors, layout \\
+v3 & v3: Add timestamp to comments & \texttt{createdAt} field + ``Submitted at'' column \\
+v4 & v4: Add search feature for comments & Search form, filtered results, X-of-Y summary \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Each version was pushed to \texttt{main}, automatically built and containerized by GitHub Actions, pushed to GHCR, and deployed to Render through the Deploy Hook. This confirmed the full CI/CD pipeline works end to end.
+
+% ============================================================
+\section{Collaborating with AI}
+% ============================================================
+
+\subsection{Prompt Selected: Improving the CI/CD Pipeline}
+
+\textbf{Prompt:} ``What are additions that would improve the GitHub Actions workflow shown in this activity to make it more production-ready? Explain what other steps in the process might be added such as testing, security scanning, tag versioning and more. In other words, tell me what I don't know yet about routines that an enterprise application goes through on a CI/CD pipeline.''
+
+\textbf{Summary of Findings:}
+
+I asked what a production-ready pipeline would look like compared to what we built. It turns out our workflow only covers the happy path. Production pipelines spend most of their effort on the \emph{unhappy} path.
+
+\textbf{Testing layers.} Our pipeline only runs Maven's default test suite, which here is a single \texttt{contextLoads()} test. Real pipelines add integration tests, end-to-end tests (Selenium, Playwright), and contract tests for API boundaries. Some teams set a minimum code-coverage threshold so the build fails if coverage drops below 80\%. I never thought of coverage as a pipeline gate before. In my earlier courses testing was always something I ran locally, not something that could block a deployment.
+
+\textbf{Security scanning.} Tools like Trivy, Snyk, or Grype scan Docker images for known CVEs in OS packages and Java dependencies. SAST tools like SonarQube check source code for injection flaws and hardcoded secrets. I asked whether Trivy would have caught anything in our image, and it would have. Our \texttt{eclipse-temurin:17-jdk} base image is over 400\,MB and ships a full JDK with compilers and tools that add unnecessary attack surface. A production Dockerfile would use a slim JRE image instead. I actually used the \texttt{17-jre-alpine} image in Activity~8 but forgot to carry that over here.
+
+\textbf{Image tagging and versioning.} We always tag as \texttt{:latest}, which means there is no way to roll back. Production pipelines tag with the Git SHA (\texttt{:abc1234}) or a semantic version (\texttt{:1.2.3}). If a deployment breaks, the team can redeploy the last known-good tag right away. This made sense to me when I thought about our v1--v4 progression: if v4 had broken the app, I would have had to revert the code and push again instead of just pointing Render at the v3 image. With proper tagging, rollback is one command.
+
+\textbf{Multi-environment promotion.} Instead of deploying straight to production, most teams use staging environments. A common setup is: push to \texttt{main} deploys to \texttt{staging}, and after manual approval or automated smoke tests the image gets promoted to \texttt{production}. GitHub Actions has environment protection rules and required reviewers for this. I asked whether Render supports staging, and you can just create a second Render service that points at a \texttt{:staging} tag.
+
+\textbf{Notifications and observability.} Most production setups send Slack or Teams messages on build failure, and run post-deploy health checks. One thing that stuck with me was the idea of a ``deploy verification'' step that hits the app's health endpoint after deployment and rolls back automatically if it gets a non-200 response. Right now our pipeline has no way to tell if the deployment actually worked.
+
+\textbf{What I Learned Beyond the Assignment:}
+
+The main thing I took away is how defensive a production pipeline has to be. Our workflow is about 35 lines of YAML and handles the ``everything works'' case. A real pipeline could be 200+ lines with matrix builds, parallel test suites, vulnerability scans, approval gates, and rollback logic. The core loop (push, build, test, containerize, deploy) is the same, but there are a lot more safety nets around it. After deploying the same Spring Boot app across AWS, Google Cloud, Azure, and Render throughout CST-323, I noticed that the \emph{application code} stays the same every time. It is the infrastructure and automation around it that changes. CI/CD is what hides those differences from the developer.
+
+% ============================================================
+\section{Conclusion}
+% ============================================================
+
+\subsection{What Was Accomplished}
+
+\begin{enumerate}[nosep]
+  \item Cloned the instructor-provided Spring Boot comments application and verified it builds locally with Maven.
+  \item Created a GitHub repository and pushed the project with a clean commit history.
+  \item Configured a \texttt{GHCR\_PAT} secret for GitHub Container Registry authentication.
+  \item Created a GitHub Actions workflow (\texttt{build-and-push.yml}) that compiles the app, builds a Docker image, pushes it to GHCR, and triggers a Render deployment.
+  \item Deployed the containerized application to Render.com as a free Web Service.
+  \item Configured a Render Deploy Hook and stored it as a GitHub secret (\texttt{RENDER\_DEPLOY\_HOOK}) for fully automated CD.
+  \item Implemented four incremental updates (v1--v4): table layout, CSS styling, timestamps, and search. Each was automatically built and deployed through the pipeline.
+  \item Explored production CI/CD improvements through AI collaboration, covering security scanning, image versioning, multi-environment promotion, and observability.
+\end{enumerate}
+
+\subsection{Key Takeaway}
+
+The biggest shift in this lab was going from ``I deploy my app'' to ``my pipeline deploys my app.'' Once the workflow and deploy hook were set up, every code change went from \texttt{git push} to a live URL without me opening a dashboard or running a manual command. That is what CI/CD does: it takes the repetitive deployment steps out of my hands so I can just write code.
+
+\subsection{Project Links}
+
+\begin{itemize}[nosep]
+  \item \textbf{GitHub Repository:} \url{https://github.com/omniV1/comments-pipeline-demo}
+  \item \textbf{Live Application:} \url{https://comments-pipeline-demo-latest-p6z3.onrender.com}
+  \item \textbf{GHCR Package:} \url{https://github.com/users/omniV1/packages/container/comments-pipeline-demo}
+\end{itemize}
+
+The repository is public. All source code, the Dockerfile, the GitHub Actions workflow, and the full v0--v4 commit history are visible.
+
+\vfill
+\begin{center}
+\small CST-323 Cloud Computing \textbullet{} April 7, 2026
+\end{center}
+
+\end{document}

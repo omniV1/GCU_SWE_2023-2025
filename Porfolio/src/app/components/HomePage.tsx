@@ -18,16 +18,18 @@ const featuredProjects = [
     liveUrl: "https://www.lunaracare.org",
   },
   {
-    id: "agms",
-    tags: ["Java", "Spring Boot", "MySQL", "Docker"],
-    title: "AIRPORT GATE MGMT SYSTEM",
-    description: "Enterprise-grade airport operations platform with role-based access across 4 user types, full CRUD for 6 entity types, and OpenAPI documentation.",
+    id: "iron-palace",
+    tags: ["React 18", "TypeScript", "Vite", "Tailwind 4", "Docker"],
+    title: "IRON PALACE PODCAST",
+    description: "Single-page podcast site that fetches the channel's YouTube RSS at build time so episode links stay reliable on any static host. Live at ironpalace.live.",
+    liveUrl: "https://ironpalace.live",
   },
   {
-    id: "multi-agent",
-    tags: ["Python", "ML", "SonarQube", "Pre-commit"],
-    title: "MULTI-AGENT CODE QUALITY",
-    description: "Adaptive ML classifier system predicting SonarQube gate failures in real-time across 8 quality dimensions using per-gate activation function selection.",
+    id: "nlp-sentiment",
+    tags: ["Python", "PyTorch", "Streamlit", "NLP"],
+    title: "NLP SENTIMENT ANALYSIS",
+    description: "End-to-end PyTorch sentiment classifier with a Streamlit frontend / model-service backend split, deployed to Streamlit Community Cloud with a translation comparison tab.",
+    liveUrl: "https://nlp-owen.streamlit.app/",
   },
 ];
 
@@ -51,10 +53,10 @@ const techStack = [
 ];
 
 const keyMetrics = [
-  { value: "5", label: "YEARS USAF", sub: "F-22 maintenance" },
-  { value: "LIVE", label: "DEPLOYED APP", sub: "lunaracare.org" },
+  { value: "2026", label: "GRADUATED GCU", sub: "B.S. SD + ML/AI minor" },
+  { value: "3", label: "LIVE DEPLOYMENTS", sub: "lunara · iron palace · streamlit" },
   { value: "375", label: "TESTS WRITTEN", sub: "81.9% coverage" },
-  { value: "6", label: "PROJECTS SHIPPED", sub: "full-stack to ML" },
+  { value: "10", label: "PROJECTS SHIPPED", sub: "full-stack to ML" },
 ];
 
 export function HomePage() {
@@ -119,8 +121,7 @@ export function HomePage() {
                 texts={[
                   "Software Engineer",
                   "Full-Stack Developer",
-                  "USAF Veteran",
-                  "Production Systems Builder",
+                  "ML/AI Practitioner",
                 ]}
                 typingSpeed={60}
                 deletingSpeed={35}
@@ -131,8 +132,8 @@ export function HomePage() {
               className="mt-3 text-muted-foreground"
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", lineHeight: 1.7, maxWidth: "520px" }}
             >
-              Full-stack developer with 5 years USAF F-22 maintenance experience.
-              I build production systems that ship, scale, and don't break.
+              Full-stack developer with a Machine Learning &amp; AI minor.
+              B.S. Software Development from GCU, 2026.
             </p>
           </FadeIn>
 
@@ -148,9 +149,9 @@ export function HomePage() {
               <div className="border border-border bg-card/40 overflow-x-auto" style={{ backdropFilter: "blur(8px)" }}>
                 <div className="grid grid-cols-2 md:grid-cols-4 min-w-[500px]">
                   {[
-                    { label: "BRANCH", value: "USAF Veteran" },
-                    { label: "EDUCATION", value: "B.S. Software Dev.\nGrand Canyon Univ.\nClass of 2026" },
-                    { label: "STACK", value: "Java \u00b7 Python \u00b7 TS\nReact \u00b7 Spring Boot" },
+                    { label: "FOCUS", value: "Full-stack +\nApplied ML/AI" },
+                    { label: "EDUCATION", value: "B.S. Software Dev.\n+ ML/AI Minor\nGCU \u00b7 Graduated 2026" },
+                    { label: "STACK", value: "Java \u00b7 Python \u00b7 TS\nReact \u00b7 Spring Boot\nPyTorch \u00b7 Streamlit" },
                     { label: "LOCATION", value: "Phoenix, AZ\nRemote available" },
                   ].map((item, i) => (
                     <div
@@ -309,7 +310,7 @@ export function HomePage() {
                           textShadow: "0 0 8px rgba(255,45,107,0.4)",
                         }}
                       >
-                        [ LIVE :: lunaracare.org ]
+                        [ LIVE :: {new URL(project.liveUrl).host.replace(/^www\./, "")} ]
                       </a>
                     )}
                     {/* Link */}
@@ -428,14 +429,15 @@ export function HomePage() {
                   <p>
                     <span className="text-foreground/90">Production experience.</span>{" "}
                     LUNARA is live at lunaracare.org with real users, 375 tests, and 81.9% coverage.
+                    Iron Palace and a deployed PyTorch sentiment app round out three live deployments.
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="w-1 h-1 rounded-full bg-primary shrink-0 mt-2.5" style={{ boxShadow: "0 0 4px #00FFD4" }} />
                   <p>
-                    <span className="text-foreground/90">Military discipline.</span>{" "}
-                    5 years in F-22 tactical aircraft maintenance taught me to document everything,
-                    test thoroughly, and build for handoff.
+                    <span className="text-foreground/90">ML/AI minor.</span>{" "}
+                    Survival analysis, SVMs, and trained PyTorch models on real datasets — not
+                    just glue code around someone else's API.
                   </p>
                 </div>
                 <div className="flex items-start gap-3">

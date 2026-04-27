@@ -1,0 +1,44 @@
+---
+description: Java and Spring Boot coding standards, patterns, and best practices
+globs: "{**/*.java,**/application.properties,**/application.yml,**/pom.xml}"
+alwaysApply: false
+---
+
+# Java / Spring Boot Standards
+
+## Project Structure
+Organize packages as: `controllers`, `services`, `repositories` (`data`), `models`, `config`.
+
+## Naming
+- **Classes**: PascalCase (`UserController`, `OrderService`)
+- **Methods/variables**: camelCase (`findUserById`, `isOrderValid`)
+- **Constants**: ALL_CAPS (`MAX_RETRY_ATTEMPTS`, `DEFAULT_PAGE_SIZE`)
+
+## Code Style
+- Java 17+ features (records, sealed classes, pattern matching) where applicable.
+- Constructor injection over field injection.
+- Use `@Valid` and Bean Validation for input validation.
+- RESTful design: proper HTTP methods, status codes, and resource naming.
+
+## Spring Boot Conventions
+- Use Spring Boot 3.x starters and auto-configuration.
+- Annotations: `@SpringBootApplication`, `@RestController`, `@Service`, `@Repository`.
+- Global exception handling via `@ControllerAdvice` + `@ExceptionHandler`.
+- Type-safe config with `@ConfigurationProperties`; environment profiles for dev/test/prod.
+- Spring Data JPA for data access; proper entity relationships and cascading.
+- Spring Security for auth; BCrypt for passwords; CORS configuration as needed.
+- SLF4J + Logback logging at appropriate levels (ERROR, WARN, INFO, DEBUG).
+- Spring Boot Actuator for monitoring; Spring Cache for caching; `@Async` for non-blocking ops.
+- Springdoc OpenAPI for API documentation.
+
+## Testing
+- JUnit 5 + Spring Boot Test.
+- `MockMvc` for web layer tests; `@SpringBootTest` for integration; `@DataJpaTest` for repositories.
+
+## Build & Deploy
+- Maven for builds and dependency management.
+- Docker for containerization when applicable.
+- Flyway or Liquibase for database migrations.
+
+## Principles
+Adhere to SOLID. Maintain high cohesion, low coupling.

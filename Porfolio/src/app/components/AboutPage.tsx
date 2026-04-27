@@ -4,7 +4,10 @@ import { motion, AnimatePresence } from "motion/react";
 import { FadeIn } from "./FadeIn";
 
 const timeline = [
-  { year: "2026", event: "B.S. Software Development — Grand Canyon University (Spring)" },
+  { year: "2026", event: "Graduated GCU — B.S. Software Development with Machine Learning & AI minor" },
+  { year: "2026", event: "AIT-110 Statistical Learning — survival analysis, SVMs, ensembles, unsupervised methods" },
+  { year: "2026", event: "AIT-204 Deep Learning — trained and deployed a PyTorch NLP sentiment classifier" },
+  { year: "2026", event: "Iron Palace — single-page podcast site shipped to ironpalace.live" },
   { year: "2026", event: "LUNARA — senior capstone, deployed to production at lunaracare.org" },
   { year: "2026", event: "Built Multi-Agent Code Quality System" },
   { year: "2025", event: "CineScope — movie review platform, primary developer on 4-person Agile team" },
@@ -99,13 +102,20 @@ export function AboutPage() {
 
               <div className="space-y-4 text-foreground/70" style={{ fontSize: "0.82rem", lineHeight: 1.85 }}>
                 <p>
-                  Software engineer and USAF veteran. Served in F-22 Tactical Aircraft Maintenance
-                  (2A3X7) before transitioning to civilian software engineering. B.S. in
-                  Software Development, Grand Canyon University, Class of 2026.
+                  Software engineer focused on full-stack web and applied ML/AI. Graduated Grand
+                  Canyon University in 2026 with a B.S. in Software Development and a minor in
+                  Machine Learning &amp; AI.
                 </p>
                 <p>
-                  I bring operational discipline from the flight line to the codebase — I build systems
-                  that are reliable under pressure, documented thoroughly, and designed to be handed off.
+                  My ML/AI minor covered the full statistical learning stack — survival analysis,
+                  SVMs, decision trees and random forests, regularization, and unsupervised methods —
+                  plus PyTorch deep learning shipped as deployed Streamlit apps. Not just glue code
+                  around someone else's model.
+                </p>
+                <p>
+                  Before software: five years U.S. Air Force veteran, F-22 maintenance, active
+                  Secret clearance throughout service. Useful background — but the work I want
+                  to be measured on lives on this site.
                 </p>
               </div>
 

@@ -1,8 +1,44 @@
 import { useState } from "react";
-import { ChevronDown, ExternalLink } from "lucide-react";
+import { ChevronDown, ExternalLink, Play, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { FadeIn } from "./FadeIn";
 import { HudCard } from "./HudCard";
+
+interface StatLearningHighlight {
+  id: string;
+  title: string;
+  dataset: string;
+  blurb: string;
+  notebookUrl: string;
+  videoUrl: string;
+}
+
+const statLearningHighlights: StatLearningHighlight[] = [
+  {
+    id: "survival",
+    title: "SURVIVAL ANALYSIS",
+    dataset: "Cancer prognosis · censored time-to-event data",
+    blurb: "Kaplan-Meier estimation and Cox proportional hazards on real cancer data, including the standard pitfalls — why dropping censored patients silently biases survival curves downward, and how the survival function S(t) and hazard h(t) relate.",
+    notebookUrl: "https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/AIT-110-Stat-Learning-Theory/Assignments/Survival/survival.ipynb",
+    videoUrl: "https://www.youtube.com/watch?v=Dv7rq1sbAgc",
+  },
+  {
+    id: "svm",
+    title: "SUPPORT VECTOR MACHINES",
+    dataset: "Loan default · credit risk classification",
+    blurb: "Maximum-margin classifiers from first principles: support vectors, the soft-margin formulation, the regularization parameter C, and the kernel trick — applied to a real loan-default dataset where the boundary is anything but linearly separable.",
+    notebookUrl: "https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/AIT-110-Stat-Learning-Theory/Assignments/svm/svm.ipynb",
+    videoUrl: "https://www.youtube.com/watch?v=iZ83wnr_TXc",
+  },
+  {
+    id: "classification-churn",
+    title: "CLASSIFICATION · CHURN",
+    dataset: "Telco customer churn · binary classification",
+    blurb: "End-to-end churn analysis on the Telco dataset: full EDA, class-imbalance handling via resampling, logistic regression baseline, and a comparison across classifiers — held to the question that actually matters in production: are we catching the customers who will leave?",
+    notebookUrl: "https://github.com/omniV1/GCU_SWE_2023-2025/blob/main/AIT-110-Stat-Learning-Theory/Assignments/classification/Classification.ipynb",
+    videoUrl: "https://youtu.be/C_c_y0Bobtc",
+  },
+];
 
 interface Project {
   id: string;
@@ -13,6 +49,7 @@ interface Project {
   expanded: string;
   github: string;
   liveUrl?: string;
+  extraLinks?: { label: string; url: string }[];
 }
 
 const allProjects: Project[] = [
@@ -25,6 +62,48 @@ const allProjects: Project[] = [
     expanded: "Provider dashboard surfaces active clients, upcoming appointments, and flagged check-ins at a glance. Providers manage client accounts, schedule appointments via an integrated calendar, exchange real-time messages, publish educational blog posts and resource articles, review uploaded documents with structured feedback, and build individualized care plans with milestone tracking.\n\nClient onboarding uses a multi-step intake wizard capturing personal, birth, feeding, support-network, and health information. Clients record daily check-ins with a 1\u201310 mood rating and 10 physical symptom self-assessments (fatigue, sleep quality, appetite, anxiety, pain). Clients upload documents, browse resources, track care plan milestones, book appointments, and message their provider via Socket.IO-powered real-time chat.\n\nBackend exposes 19 route modules and 70+ API endpoints. 20+ Mongoose models. JWT + Passport.js authentication with TOTP multi-factor auth. MongoDB GridFS for file storage. Security stack: Helmet, CORS, bcrypt (12 salt rounds), rate limiting, express-validator. Email via Nodemailer, push notifications via Web Push.\n\nQuality: 375 automated tests across unit, component, service, and integration layers. 81.9% code coverage. All SonarQube quality gates rated A. Deployed via Vercel (frontend) and Render (backend).",
     github: "https://github.com/omniV1/AQC",
     liveUrl: "https://www.lunaracare.org",
+    extraLinks: [{ label: "PROFILE / CASE STUDY SITE", url: "https://www.lunara-profile.design/" }],
+  },
+  {
+    id: "lunara-profile",
+    title: "LUNARA PROFILE SITE",
+    category: "FULL-STACK",
+    tags: ["React", "TypeScript", "Vite", "Experimental UI"],
+    short: "Companion microsite to lunaracare.org \u2014 a deployed case-study / profile summary of the LUNARA build, used as a sandbox for newer UX patterns and modern tooling.",
+    expanded: "Standalone site at lunara-profile.design that pairs with the production lunaracare.org app. Acts as a technical narrative \u2014 surfaces architecture decisions, the provider/client feature split, the testing strategy, and the deployment pipeline behind the production product.\n\nUsed as a deliberate playground for newer/experimental front-end choices outside the production app's stability constraints, so that proven patterns can be promoted upstream into LUNARA later. Pair this with the live LUNARA app for a complete picture of what shipped to real users.",
+    github: "https://github.com/omniV1/AQC",
+    liveUrl: "https://www.lunara-profile.design/",
+  },
+  {
+    id: "iron-palace",
+    title: "IRON PALACE PODCAST",
+    category: "FULL-STACK",
+    tags: ["React 18", "TypeScript", "Vite 6", "Tailwind 4", "Radix UI", "Framer Motion", "Docker"],
+    short: "Single-page site for the Iron Palace Podcast. Pulls episodes from the channel's YouTube RSS feed at build time, then ships as a static bundle. Live at ironpalace.live.",
+    expanded: "A `prebuild` Node script hits the channel's public YouTube RSS (no browser CORS, no API key) and writes the result to `public/youtube-videos.json`. The app reads that snapshot first in production so episode links keep working on any static host even if the feed momentarily fails.\n\nUI built with React 18 + Vite 6 + TypeScript, styled with Tailwind 4 and Radix primitives, with Framer Motion for transitions. Image assets pre-processed via vite-imagetools and sharp. Production build is a static `dist/` shipped behind a Dockerfile that serves on port 80, deployable to any container or static host.\n\nDesigned for low-effort updates: new episode goes up on YouTube, next site rebuild picks it up automatically.",
+    github: "https://github.com/omniV1/iron_palace",
+    liveUrl: "https://ironpalace.live",
+  },
+  {
+    id: "nlp-sentiment",
+    title: "NLP SENTIMENT ANALYSIS",
+    category: "ML-AI",
+    tags: ["Python", "PyTorch", "Streamlit", "NumPy", "Embeddings", "Tokenization"],
+    short: "End-to-end PyTorch sentiment classifier with a frontend/backend split, deployed live on Streamlit Community Cloud. AIT-204 Deep Learning, Spring 2026.",
+    expanded: "Full pipeline: text preprocessing (vocabulary, tokenization, encoding, padding) \u2192 model architecture (Embedding \u2192 Pool \u2192 FC \u2192 ReLU \u2192 FC \u2192 Sigmoid) \u2192 training loop with train/val split and loss-curve plotting \u2192 model artifact saved to disk \u2192 backend service that loads the model and exposes predict() and compare() \u2192 Streamlit frontend that calls the backend.\n\nDeliberate frontend/backend separation: `model_service.py` is independently testable from the command line and contains zero UI code; `activity4_app.py` contains zero model code. The backend can be swapped to FastAPI without touching the UI; the UI can be swapped to React without touching the model.\n\nIncludes a translation comparison tab that runs both an original and a translated input through the same model to surface translation-induced sentiment drift, plus a written ethics analysis covering bias, privacy, transparency, and the consequences of inaccurate predictions.",
+    github: "https://github.com/omniV1/AIT-204-pair-programing/tree/main/NLP/Topic4_NLP",
+    liveUrl: "https://nlp-owen.streamlit.app/",
+  },
+  {
+    id: "matrix-ann",
+    title: "MATRIX & NEURAL NETWORKS",
+    category: "ML-AI",
+    tags: ["Python", "scikit-learn", "MLP", "Streamlit", "NumPy"],
+    short: "Multilayer perceptron trained on an NBA player dataset to select an optimal 5-player team from physical and draft features. Deployed Streamlit demo + presentation.",
+    expanded: "Builds a weakly-supervised target by combining normalized height, weight, age-vs-prime, and draft-round signals into a single suitability score, then trains an MLP to learn the underlying nonlinear pattern from the labels alone (the model never sees the formula directly).\n\nThe deployed Streamlit app lets a viewer pick from a candidate pool and watch the model rank the top 5 players by predicted suitability, with the matrix-fundamentals walkthrough (transpose, scalar multiplication, identity, valid/invalid multiplications) as a teaching companion.\n\nWritten as a paired AIT-204 deliverable with a presentation covering matrix algebra fundamentals, ANN architecture, ethical considerations (bias, privacy, transparency, error consequences), and an interpretation of the model's output.",
+    github: "https://github.com/omniV1/AIT-204-pair-programing/tree/main/matrix-and-nn",
+    liveUrl: "https://mlp-owen.streamlit.app/",
+    extraLinks: [{ label: "PRESENTATION", url: "https://docs.google.com/presentation/d/13tsobpSMuF19WWWzfXjexNoUIdMoUP3uakOSJY4WdJw/edit" }],
   },
   {
     id: "agms",
@@ -58,7 +137,7 @@ const allProjects: Project[] = [
     title: "AIRCRAFT FLEET MANAGER",
     category: "FULL-STACK",
     tags: ["React 18", "TypeScript", "Redux Toolkit", "Material UI", "Tailwind CSS", "C#", "ASP.NET Core", ".NET 8", "Entity Framework Core", "MySQL"],
-    short: "Aviation maintenance tracking system with React frontend, ASP.NET Core REST API, and Entity Framework persistence. Domain-specific design informed by real F-22 maintenance background.",
+    short: "Aviation maintenance tracking system with React frontend, ASP.NET Core REST API, and Entity Framework persistence. Domain-specific design informed by hands-on aviation maintenance experience.",
     expanded: "React 18 frontend with Redux Toolkit state management, Material UI components, Formik/Yup form validation, and Axios API integration. Full CRUD component suite for aircraft listing, details, creation, editing, and deletion.\n\nASP.NET Core .NET 8 backend with Entity Framework Core migrations and MySQL database. Custom error handling middleware and status code configuration. RESTful endpoints for aircraft CRUD operations.\n\nPostman API documentation. Responsive UI with both Material UI and Tailwind CSS styling. SASS preprocessing for custom styles.",
     github: "https://github.com/omniV1/GCU_SWE_2023-2025/tree/main/CST-391-Web_dev/src/Milestone",
   },
@@ -153,8 +232,27 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             }}
           >
             <ExternalLink size={12} />
-            LIVE :: lunaracare.org
+            LIVE :: {new URL(project.liveUrl).host.replace(/^www\./, "")}
           </a>
+        )}
+
+        {/* Extra links (presentations, video, companion sites) */}
+        {project.extraLinks && project.extraLinks.length > 0 && (
+          <div className="flex flex-wrap gap-x-4 gap-y-1 mb-3">
+            {project.extraLinks.map((link) => (
+              <a
+                key={link.url}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-primary/70 hover:text-primary transition-colors duration-150"
+                style={{ fontSize: "0.68rem", fontFamily: "'IBM Plex Mono', monospace" }}
+              >
+                <ExternalLink size={12} />
+                {link.label}
+              </a>
+            ))}
+          </div>
         )}
 
         {/* Expand toggle */}
@@ -245,6 +343,75 @@ export function ProjectsPage() {
           <p className="text-muted-foreground mb-12" style={{ fontSize: "0.78rem", lineHeight: 1.7 }}>
             Full project index — click any entry for technical details.
           </p>
+        </FadeIn>
+
+        {/* ===== STATISTICAL LEARNING HIGHLIGHTS (AIT-110) ===== */}
+        <FadeIn>
+          <div className="mb-12 border border-border bg-card/30 p-5 md:p-6" style={{ backdropFilter: "blur(6px)" }}>
+            <div className="flex items-center gap-3 mb-4">
+              <span
+                className="text-primary"
+                style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: "0.7rem",
+                  textShadow: "0 0 6px rgba(0,255,212,0.4)",
+                }}
+              >
+                // STATISTICAL LEARNING HIGHLIGHTS · AIT-110
+              </span>
+              <div className="flex-1 h-px" style={{ background: "linear-gradient(90deg, #1A2633, transparent)" }} />
+            </div>
+            <p className="text-muted-foreground mb-5" style={{ fontSize: "0.74rem", lineHeight: 1.7 }}>
+              Three top picks from the Machine Learning &amp; AI minor — each shipped as a Jupyter notebook with a recorded walkthrough.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {statLearningHighlights.map((h) => (
+                <div key={h.id} className="border border-border/60 p-4 flex flex-col">
+                  <h4
+                    className="text-foreground"
+                    style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.1rem", letterSpacing: "0.04em" }}
+                  >
+                    {h.title}
+                  </h4>
+                  <p
+                    className="text-primary/70 mt-1 mb-3"
+                    style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.6rem" }}
+                  >
+                    {h.dataset}
+                  </p>
+                  <p className="text-foreground/60 flex-1 mb-4" style={{ fontSize: "0.72rem", lineHeight: 1.65 }}>
+                    {h.blurb}
+                  </p>
+                  <div className="flex flex-col gap-1.5">
+                    <a
+                      href={h.notebookUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-primary/70 hover:text-primary transition-colors duration-150"
+                      style={{ fontSize: "0.66rem", fontFamily: "'IBM Plex Mono', monospace" }}
+                    >
+                      <FileText size={11} />
+                      VIEW NOTEBOOK
+                    </a>
+                    <a
+                      href={h.videoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-accent/80 hover:text-accent transition-colors duration-150"
+                      style={{
+                        fontSize: "0.66rem",
+                        fontFamily: "'IBM Plex Mono', monospace",
+                        textShadow: "0 0 6px rgba(255,45,107,0.25)",
+                      }}
+                    >
+                      <Play size={11} />
+                      WATCH WALKTHROUGH
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </FadeIn>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

@@ -62,12 +62,12 @@
 
 %----------HEADER----------
 \begin{center}
-  {\Large\textbf{Owen Lindsey}} \\[2pt]
+  {\Large\textbf{Owen Lindsey --- Full-Stack Software Engineer}} \\[2pt]
   Phoenix, AZ \enspace$\cdot$\enspace
   \href{mailto:owen.lindsey98@outlook.com}{owen.lindsey98@outlook.com} \enspace$\cdot$\enspace
   480-201-7558 \enspace$\cdot$\enspace
   \href{https://github.com/omniV1}{github.com/omniV1} \enspace$\cdot$\enspace
-  \href{https://www.linkedin.com/in/owen-lindsey-5b323a23b/}{LinkedIn}
+  \href{https://www.linkedin.com/in/owen-lindsey-5b323a23b/}{linkedin.com/in/owen-lindsey}
 \end{center}
 
 \vspace{-0.8em}
@@ -75,13 +75,13 @@
 %----------SUMMARY----------
 \section{Summary}
 \vspace{0.1em}
-Full-stack software engineer and U.S. Air Force veteran with 5 years of F-22 Raptor maintenance experience. Builds production-grade applications with thorough testing, documentation, and CI/CD. Shipped a live care coordination platform with 375 automated tests and 81.9\% code coverage.
+Full-stack software engineer and recent GCU graduate (B.S. Software Development, Minor in Machine Learning \& AI, 2026). Built three live deployments in 2026, including a client-sponsored care platform for Lunara Care with 375 tests at 81.9\% coverage. U.S. Air Force veteran (5 years, Secret clearance).
 
 %----------EDUCATION----------
 \section{Education}
 \resumeHeading
-  {Bachelor of Science in Software Development}{Expected 2026}
-  {Grand Canyon University --- Minor in Machine Learning}{Phoenix, AZ}
+  {Bachelor of Science in Software Development}{Graduated 2026}
+  {Grand Canyon University --- Minor in Machine Learning \& AI}{Phoenix, AZ}
 
 %----------TECHNICAL SKILLS----------
 \section{Technical Skills}
@@ -89,22 +89,38 @@ Full-stack software engineer and U.S. Air Force veteran with 5 years of F-22 Rap
 \textbf{Languages:} Java, C\#, Python, TypeScript, JavaScript, C, SQL, Bash \\
 \textbf{Frontend:} React 18, Angular, Blazor WebAssembly, Tailwind CSS, Material UI, Redux Toolkit \\
 \textbf{Backend:} Spring Boot 3, Node.js/Express, ASP.NET Core, .NET Web API, Spring Security, REST API Design \\
+\textbf{Machine Learning:} PyTorch, scikit-learn, NumPy, Pandas, Streamlit, statistical learning (SVM, survival analysis, ensembles, regularization, unsupervised) \\
 \textbf{Data \& Testing:} MongoDB, MySQL, Jest, JUnit 5, Mockito, SonarQube, JaCoCo \\
 \textbf{DevOps:} Docker, Git, GitHub Actions, Azure, Vercel, Render, OpenAPI/Swagger, Maven
 
+%----------EXPERIENCE----------
+\section{Experience}
+\resumeHeading
+  {Lunara Care}{2026}
+  {Client Partner --- Lead Full-Stack Developer}{Remote}
+\begin{itemize}
+  \item Led end-to-end development of a production postpartum care platform used by real doula--client pairs
+  \item Architected 70+ REST endpoints across 19 route modules and delivered 375 automated tests at 81.9\% coverage
+\end{itemize}
+
+\resumeHeading
+  {Iron Palace Podcast}{2026}
+  {Client Partner --- Full-Stack Developer}{Remote}
+\begin{itemize}
+  \item Designed, built, and deployed a production single-page site for podcast stakeholders at ironpalace.live
+  \item Implemented RSS-to-JSON ingestion and Dockerized deployment for reliable static-host delivery
+\end{itemize}
+
 %----------PROJECTS----------
-\section{Projects}
+\section{Selected Projects}
 
 \projectHeading
-  {LUNARA --- Postpartum Care Platform \textnormal{(\href{https://www.lunaracare.org}{lunaracare.org} $\cdot$ \href{https://github.com/omniV1/AQC}{GitHub})}}
+  {NLP Sentiment Analysis \textnormal{(\href{https://nlp-owen.streamlit.app/}{Live Demo} $\cdot$ \href{https://github.com/omniV1/AIT-204-pair-programing/tree/main/NLP/Topic4_NLP}{GitHub})}}
   {2026}
-  {React 18, TypeScript, Node.js, Express, MongoDB, Socket.IO, JWT, Docker, SonarQube}
+  {Python, PyTorch, Streamlit, NumPy}
 \begin{itemize}
-  \item Built and deployed a production care coordination platform serving real doula--client pairs at lunaracare.org
-  \item Architected backend with 19 route modules, 70+ REST API endpoints, and 20+ Mongoose models
-  \item Implemented real-time encrypted messaging via Socket.IO and push notifications with Web Push API
-  \item Wrote 375 automated tests (unit, component, service, integration) achieving 81.9\% code coverage
-  \item Integrated JWT + Passport.js auth with TOTP MFA and bcrypt hashing; all SonarQube quality gates rated A
+  \item Trained a PyTorch sentiment model on IMDb reviews to \textasciitilde83\% validation accuracy (best val loss \textasciitilde0.35 at epoch 3) and analyzed overfitting via train/validation divergence
+  \item Deployed a Streamlit app with a decoupled SentimentService backend; ran 10 round-trip translation tests showing 80\% label preservation, 20\% flips, and 0.160 average confidence delta
 \end{itemize}
 
 \projectHeading
@@ -112,32 +128,18 @@ Full-stack software engineer and U.S. Air Force veteran with 5 years of F-22 Rap
   {2025}
   {C\#, ASP.NET Core, Blazor WASM, .NET 9, MongoDB, Claude API, Azure, JWT}
 \begin{itemize}
-  \item Served as primary developer on a 4-person Agile team, owning architecture, API design, and all core features
-  \item Built 5-tier architecture: Blazor WASM SPA, ASP.NET Core API, 9 services, MongoDB repositories
-  \item Integrated Anthropic Claude API via Model Context Protocol for AI-powered recommendations
-  \item Implemented JWT auth with BCrypt, account lockout, token refresh, and role-based access control
-  \item Deployed to Azure with GitHub Actions CI/CD and Azure Key Vault for secrets management
+  \item Led architecture and core feature delivery as primary developer on a 4-person Agile team
+  \item Implemented a 5-tier stack (Blazor WASM SPA, ASP.NET Core API, services, MongoDB) and integrated Anthropic Claude via Model Context Protocol
+  \item Shipped to Azure with GitHub Actions CI/CD and Key Vault; secured auth with JWT, BCrypt, account lockout, and RBAC
 \end{itemize}
 
 \projectHeading
-  {Airport Gate Management System \textnormal{(\href{https://github.com/omniV1/GCU_SWE_2023-2025/tree/main/CST-339-Java3/workspaceCST-339/src/Milestone/agms}{GitHub})}}
+  {Airport Gate Management System (Spring Boot) \textnormal{(\href{https://github.com/omniV1/GCU_SWE_2023-2025/tree/main/CST-339-Java3/workspaceCST-339/src/Milestone/agms}{GitHub})}}
   {2025}
   {Java 17, Spring Boot 3, Spring Security, Spring Data REST, MySQL, JUnit 5, OpenAPI 3.0}
 \begin{itemize}
-  \item Designed N-layer enterprise architecture with Spring Data REST, HATEOAS, and Bean validation
-  \item Implemented role-based access control across 4 user types with Spring Security
-  \item Built CRUD operations for 6 entity types with JUnit 5/Mockito tests and JaCoCo coverage
-  \item Generated OpenAPI 3.0 documentation with Swagger UI; configured Cloud Run deployment
-\end{itemize}
-
-\projectHeading
-  {Multi-Agent Code Quality System \textnormal{(\href{https://github.com/omniV1/GCU_SWE_2023-2025/tree/main/agent-quality-system}{GitHub})}}
-  {2026}
-  {Python, NumPy, Pandas, Radon, SonarQube API, Matplotlib}
-\begin{itemize}
-  \item Built ML-inspired system with 8 specialized gate analyzers predicting SonarQube failures before commit
-  \item Implemented adaptive activation function selection (Sigmoid vs ReLU) per gate to minimize false positives
-  \item Supports 5 languages (Python, Java, C\#, TypeScript, C/C++); installs as a Git pre-commit hook
+  \item Built an N-layer backend with role-based access for 4 user types and CRUD workflows across 6 entity domains
+  \item Delivered JUnit 5/Mockito coverage with JaCoCo, OpenAPI/Swagger documentation, and Google Cloud Run deployment
 \end{itemize}
 
 %----------MILITARY EXPERIENCE----------
