@@ -1,0 +1,171 @@
+#!/usr/bin/env python3
+"""Pre-commit hook - Multi-Agent Code Quality Gate Check"""
+
+import os
+import sys
+import subprocess
+import json
+from pathlib import Path
+
+# Force UTF-8 on stdout/stderr so Unicode box-drawing chars work on Windows (cp1252).
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except (AttributeError, OSError):
+    pass
+
+# Configuration - dynamically find agent system relative to git root
+def get_git_root():
+    result = subprocess.run(["git", "rev-parse", "--show-toplevel"],
+                           capture_output=True, text=True)
+    return result.stdout.strip() if result.returncode == 0 else None
+
+GIT_ROOT = get_git_root()
+AGENT_SYSTEM_PATH = os.path.join(GIT_ROOT, "agent-quality-system") if GIT_ROOT else None
+SKIP_GATES = ["coverage_gate"]  # Gates to skip (coverage needs test framework)
+BLOCK_ON_FAIL = True  # Set to False to warn only
+
+# Skip these paths (agent infrastructure, training data, demos)
+SKIP_PATTERNS = [
+    "agent-quality-system/",  # The agent system itself (can't analyze itself)
+    "training/",
+    "data/",
+    "demo",
+    "test_",
+    "sample_",
+]
+
+def get_staged_files():
+    """Get list of staged source files"""
+    result = subprocess.run(
+        ["git", "diff", "--cached", "--name-only", "--diff-filter=ACM"],
+        capture_output=True, text=True
+    )
+    
+    extensions = {'.py', '.java', '.cs', '.js', '.ts', '.jsx', '.tsx', '.c', '.cpp', '.h'}
+    files = []
+    
+    for line in result.stdout.strip().split('\n'):
+        if line and Path(line).suffix.lower() in extensions:
+            files.append(line)
+    
+    return files
+
+
+def analyze_files(files):
+    """Analyze files using the quality gate system"""
+    if not AGENT_SYSTEM_PATH or not os.path.exists(AGENT_SYSTEM_PATH):
+        print(f"\033[33mWarning: Agent system not found, skipping analysis\033[0m")
+        return True, []
+
+    sys.path.insert(0, AGENT_SYSTEM_PATH)
+    
+    try:
+        from agents.enhanced_feature_extractor import EnhancedFeatureExtractor
+        from agents.all_gate_classifiers import AllGatesClassificationPipeline
+    except ImportError as e:
+        print(f"\033[33mWarning: Could not load agent system: {e}\033[0m")
+        return True, []
+    
+    # Load config
+    config_path = Path(AGENT_SYSTEM_PATH) / "data/results/all_gates_optimal_config.json"
+    try:
+        with open(config_path, 'r') as f:
+            config = json.load(f)
+        pipeline_config = {g: {'activation': c.get('activation', 'sigmoid')} 
+                           for g, c in config.get('gates', {}).items()}
+    except:
+        pipeline_config = {}
+    
+    extractor = EnhancedFeatureExtractor()
+    pipeline = AllGatesClassificationPipeline(pipeline_config)
+    
+    failed_files = []
+    
+    for filepath in files:
+        if not os.path.exists(filepath):
+            continue
+        
+        try:
+            with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+                code = f.read()
+            
+            features = extractor.extract_all_features(code, filepath)
+            results = pipeline.classify(
+                features['bug_features'],
+                features['vulnerability_features'],
+                features['project_features']
+            )
+            
+            # Check for failures (excluding skipped gates)
+            failed_gates = [
+                g for g, v in results.items() 
+                if v == 'FAIL' and g != 'overall' and g not in SKIP_GATES
+            ]
+            
+            if failed_gates:
+                failed_files.append({'file': filepath, 'gates': failed_gates})
+                
+        except Exception as e:
+            pass  # Skip files that can't be analyzed
+    
+    return len(failed_files) == 0, failed_files
+
+
+def main():
+    print("\033[36m╭──────────────────────────────────────────╮\033[0m")
+    print("\033[36m│  Multi-Agent Code Quality Gate Check     │\033[0m")
+    print("\033[36m╰──────────────────────────────────────────╯\033[0m")
+    
+    files = get_staged_files()
+
+    if not files:
+        print("\033[32m✓ No source files staged\033[0m")
+        sys.exit(0)
+
+    # Filter out excluded paths
+    filtered_files = [f for f in files if not any(p in f for p in SKIP_PATTERNS)]
+    excluded_count = len(files) - len(filtered_files)
+
+    if not filtered_files:
+        print(f"\033[32m✓ No source files to analyze ({excluded_count} excluded)\033[0m")
+        sys.exit(0)
+
+    msg = f"\033[33mAnalyzing {len(filtered_files)} staged file(s)"
+    if excluded_count > 0:
+        msg += f" ({excluded_count} excluded)"
+    print(msg + "...\033[0m")
+    files = filtered_files  # Use filtered list
+    
+    passed, failures = analyze_files(files)
+    
+    if passed:
+        print("\033[32m╭──────────────────────────────────────────╮\033[0m")
+        print("\033[32m│  ✓ All quality gates passed!             │\033[0m")
+        print("\033[32m╰──────────────────────────────────────────╯\033[0m")
+        sys.exit(0)
+    else:
+        print("\033[31m╭──────────────────────────────────────────╮\033[0m")
+        print("\033[31m│  ✗ Quality gate check failed!            │\033[0m")
+        print("\033[31m╰──────────────────────────────────────────╯\033[0m")
+        print()
+        print("\033[33mIssues found:\033[0m")
+        for ff in failures[:10]:
+            gates = ', '.join(g.replace('_gate', '').replace('_', ' ') for g in ff['gates'])
+            print(f"  \033[31m✗\033[0m {ff['file']}")
+            print(f"    Failed: {gates}")
+        
+        if len(failures) > 10:
+            print(f"  ... and {len(failures) - 10} more files")
+        
+        print()
+        if BLOCK_ON_FAIL:
+            print("\033[33mTo commit anyway: git commit --no-verify\033[0m")
+            sys.exit(1)
+        else:
+            print("\033[33mWarning only - commit will proceed\033[0m")
+            sys.exit(0)
+
+
+if __name__ == "__main__":
+    main()
