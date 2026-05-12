@@ -1,205 +1,410 @@
-#  Software Engineering Portfolio | Grand Canyon University (2023–2025)
+<!-- =========================================================== -->
+<!--                          HERO                               -->
+<!-- =========================================================== -->
 
 <div align="center">
 
-![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
-![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+# Software Engineering Portfolio
 
-![.NET](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
-![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
-![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![Node.js](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+#### Grand Canyon University &nbsp;·&nbsp; Class of 2026
 
-![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
-![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
-![Visual Studio](https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=visual-studio&logoColor=white)
-![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
+<sub><i>A multi-year archive of software engineering coursework, milestone projects, and post-graduation work.</i></sub>
+
+<br />
+
+![Degree](https://img.shields.io/badge/Degree-B.S.%20Software%20Engineering-1F2937?style=flat-square&labelColor=111827)
+![Institution](https://img.shields.io/badge/Institution-Grand%20Canyon%20University-522D80?style=flat-square&labelColor=111827)
+![Program](https://img.shields.io/badge/Program-2023%E2%80%932026-1F2937?style=flat-square&labelColor=111827)
+![Status](https://img.shields.io/badge/Status-Graduated-2E7D32?style=flat-square&labelColor=111827)
+
+<br />
+
+<sub><b>LANGUAGES</b></sub>
+
+![C#](https://img.shields.io/badge/C%23-239120?style=flat-square&logo=c-sharp&logoColor=white)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=ffdd54)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=flat-square&logo=javascript&logoColor=F7DF1E)
+![C](https://img.shields.io/badge/C-00599C?style=flat-square&logo=c&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-4479A1?style=flat-square&logo=postgresql&logoColor=white)
+
+<sub><b>FRAMEWORKS &nbsp;&amp;&nbsp; PLATFORMS</b></sub>
+
+![.NET](https://img.shields.io/badge/.NET-5C2D91?style=flat-square&logo=.net&logoColor=white)
+![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-512BD4?style=flat-square&logo=dotnet&logoColor=white)
+![Spring](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=flat-square&logo=spring&logoColor=white)
+![Angular](https://img.shields.io/badge/Angular-DD0031?style=flat-square&logo=angular&logoColor=white)
+![React](https://img.shields.io/badge/React-20232a?style=flat-square&logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-6DA55F?style=flat-square&logo=node.js&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
+
+<sub><b>DATA &nbsp;&amp;&nbsp; ML</b></sub>
+
+![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?style=flat-square&logo=microsoftsqlserver&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-00618A?style=flat-square&logo=mysql&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4ea94b?style=flat-square&logo=mongodb&logoColor=white)
+![pandas](https://img.shields.io/badge/pandas-150458?style=flat-square&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 
 </div>
 
-> **A comprehensive collection of software engineering coursework, projects, and milestones showcasing full-stack development, algorithms, systems programming, and secure coding practices.**
+<br />
 
-##  Portfolio Overview
+<hr />
 
-This repository represents two years of intensive software engineering education at Grand Canyon University, featuring **13 courses** spanning foundational programming to enterprise-level development. From building desktop applications in C# to deploying microservices with Spring Boot, this portfolio demonstrates mastery across the full technology stack.
+<!-- =========================================================== -->
+<!--                       SNAPSHOT                              -->
+<!-- =========================================================== -->
 
-###  Core Competencies Demonstrated
-- **Full-Stack Web Development** → REST APIs, MVC patterns, database integration
-- **Object-Oriented Programming** → Design patterns, inheritance, polymorphism 
-- **Systems Programming** → Operating systems, concurrency, memory management
-- **Database Engineering** → SQL/NoSQL design, optimization, data modeling
-- **Security Engineering** → Secure coding, vulnerability assessment, cryptography
-- **Algorithms & Data Structures** → Recursion, searching/sorting, complexity analysis
+<table>
+<tr>
+<td valign="top" width="50%">
 
-###  Portfolio Statistics
-- **Languages**: C#, Java, Python, JavaScript/TypeScript, C, SQL
-- **Frameworks**: .NET Core, Spring Boot, Angular, React, Express.js
-- **Databases**: SQL Server, MySQL, MongoDB
-- **Projects**: 25+ major assignments, 8 milestone projects
-- **Lines of Code**: 50,000+ across all repositories
+### Overview
 
-## Directory Index (by course)
+A curated archive of coursework, milestone projects, and independent work completed during my Bachelor of Science in Software Engineering at Grand Canyon University.
 
-- **AIT-104-Data-mining-machine-learning**: Intro ML and data analysis with Python/pandas.
-  - Contents: Jupyter notebooks (linear modeling), weekly learning notes, CSV datasets (`AAPL.csv`, `PLTR.csv`).
-  - Highlights: Linear modeling notebooks and curated study notes.
+The repository spans foundational programming, full-stack development, systems and database engineering, secure coding, and applied machine learning — alongside post-graduation projects that continue the work.
 
-- **CST-150-C#1**: C# I fundamentals with WinForms.
-  - Contents: `Milestone_Fall2023` WinForms app with forms (`frmIntro`, `frmCurrentInventory`) and supporting classes.
-  - Highlights: Inventory management milestone (WinForms).
+</td>
+<td valign="top" width="50%">
 
-- **CST-180-Python**: Python basics and assignments.
-  - Contents: Class notes (md/pdf), homework (e.g., `PopulationSimulation`), templates for document generation.
+### At a Glance
 
-- **CST-201-algorithims-data-structures**: Algorithms and data structures in C#.
-  - Contents: Topics 1–5 source trees, documentation per topic, and notes.
-  - Highlights: String matching, searching/sorting topics, and applied exercises.
+| | |
+| --- | --- |
+| **Degree** | B.S. Software Engineering |
+| **Focus** | Software Engineering &nbsp;+&nbsp; Applied AI |
+| **Institution** | Grand Canyon University |
+| **Program** | 2023 – 2026 |
+| **Scope** | 18 courses &nbsp;+&nbsp; independent projects |
+| **Status** | Graduated, 2026 |
 
-- **CST-239-Java2**: Java II OOP and application development.
-  - Contents: Activities and multi‑part milestone work; documentation and presentations.
-  - Highlights: Later milestones (6–7) with larger application builds.
+</td>
+</tr>
+</table>
 
-- **CST-250-C#2**: C# II with OOP, recursion, file I/O, and GUI basics.
-  - Contents:
-    - Activities: `AnimalClasses` (inheritance/interfaces), `ChessBoardConsoleApp` and `ChessBoardGuiApp` (WinForms), `TextFileDataAccessDemo` (file I/O), `Activity3_Recursion` (CountToOne, Factorial, GCD, Knight’s Tour).
-    - Milestone: Minesweeper (console and WinForms GUI) with flood fill, flags, and high scores.
-  - Highlights: Minesweeper GUI milestone; chessboard movement logic; recursion exercises.
+<hr />
 
-- **CST-321-Operating-system-fundamentals**: OS concepts and systems programming in C.
-  - Contents: `src` C projects and shell scripts; extensive documentation and notes.
-  - Read more: `CST-321-Operating-system-fundamentals/README.md`.
+<!-- =========================================================== -->
+<!--                        CONTENTS                             -->
+<!-- =========================================================== -->
 
-- **CST-326-Written-Verbal-Communication-SWE**: Professional communication for SWE.
-  - Contents: `CineScopeProduction` (.NET/razor project) and course PDFs.
+## Table of Contents
 
-- **CST-339-Java3**: Enterprise Java (Spring, Maven, MongoDB, Security, Microservices).
-  - Contents: Large `workspaceCST-339` with labs and milestone; documentation by topic.
-  - Read more: `CST-339-Java3/README.md`.
+1. [Core Competencies](#core-competencies)
+2. [Coursework](#coursework)
+3. [Independent &amp; Post-Graduation Projects](#independent--post-graduation-projects)
+4. [Featured Milestones](#featured-milestones)
+5. [Getting Started](#getting-started)
+6. [Repository Layout](#repository-layout)
+7. [Learning Progression](#learning-progression)
+8. [License](#license)
 
-- **CST-345-Database-Design**: Relational/NoSQL database design and applications.
-  - Contents: SQL exercises, Windows/.NET database apps, MongoDB apps, milestone docs.
-  - Highlights: MongoMusicApp, Cst‑345 Milestone 2 and 4.
+<hr />
 
-- **CST-350-C#3**: ASP.NET Core MVC, authentication, sessions, and web development in C#.
-  - Contents: Topic folders, documentation, and `CST-350-Milestone` web app.
-  - Read more: `CST-350-C#3/Readme.md`.
+<!-- =========================================================== -->
+<!--                   CORE COMPETENCIES                         -->
+<!-- =========================================================== -->
 
-- **CST-391-Web_dev**: JavaScript/TypeScript full‑stack (Node/Express, Angular).
-  - Contents: `src` for activities and milestone; `docs` for screenshots/design.
-  - Read more: `CST-391-Web_dev/readme.md`.
+## Core Competencies
 
-- **CST-407-Application-Security-Foundations**: AppSec foundations and secure coding.
-  - Contents: Assignments, Java coding exercises, security docs and images.
-  - Read more: `CST-407-Application-Security-Foundations/README.md`.
+<table>
+<tr>
+<td valign="top" width="50%">
 
-- **SummerPractice**: Self‑directed practice and side projects across C#, Java, TS.
-  - Contents: `AerospaceAPI`, language‑specific practice folders, and notes.
-  - Read more: `SummerPractice/README.md`.
+- **Full-stack development** — REST APIs, MVC, typed frontends, server-rendered views
+- **Object-oriented design** — interfaces, inheritance, polymorphism, design patterns
+- **Algorithms &amp; data structures** — searching, sorting, recursion, complexity analysis
+- **Database engineering** — relational schema design, NoSQL modeling, query optimization
 
-##  Featured Project Highlights
+</td>
+<td valign="top" width="50%">
 
-###  Minesweeper Suite (CST-250)
-**Technologies**: C#, WinForms, Recursion Algorithms  
-Complete implementation featuring dynamic bomb placement, flood-fill algorithms, GUI with flagging system, timer, and persistent high scores.  
-📁 `CST-250-C#2/Code/Milestone/src/MinesweeperGui/`
+- **Systems programming** — operating system concepts, concurrency, low-level C
+- **Application security** — secure coding, threat modeling, cryptography fundamentals
+- **Cloud &amp; enterprise patterns** — microservices, service discovery, deployment
+- **Applied machine learning** — regression, statistical learning, neural networks, NLP
 
-### 🌐 GameCube E-Commerce Platform (CST-391)
-**Technologies**: Node.js, Express, Angular, React, MySQL  
-Full-stack web application with REST API backend, dual frontend implementations, complete CRUD operations, and comprehensive API documentation.  
-📁 `CST-391-Web_dev/src/Milestone/`
+</td>
+</tr>
+</table>
 
-### Enterprise Web Application (CST-339)
-**Technologies**: Spring Boot, Spring Security, MongoDB, Maven  
-Microservices architecture with authentication, service discovery, API gateway patterns, and enterprise security practices.  
-📁 `CST-339-Java3/src/Milestone/`
+<hr />
 
-### Security Assessment Suite (CST-407)
-**Technologies**: Java, Cryptography, Vulnerability Analysis  
-Hands-on implementation of secure coding practices, threat modeling, and cryptographic protocols with vulnerability assessments.  
-📁 `CST-407-Application-Security-Foundations/`
+<!-- =========================================================== -->
+<!--                       COURSEWORK                            -->
+<!-- =========================================================== -->
 
-### Database Management Systems (CST-345)
-**Technologies**: SQL Server, MongoDB, .NET, ADO.NET  
-Comprehensive database design projects featuring normalized schemas, complex queries, and NoSQL document modeling.  
-📁 `CST-345-Database-Design/`
+## Coursework
+
+<details open>
+<summary><b>Software Engineering Core</b> &nbsp;·&nbsp; 14 courses</summary>
+
+<br />
+
+| Course | Topic | Notes |
+| --- | --- | --- |
+| [`CST-150-C#1`](./CST-150-C%231/) | C# I — Fundamentals &amp; WinForms | Inventory management milestone (WinForms). |
+| [`CST-180-Python`](./CST-180-Python/) | Python | Class notes, homework, simulation work. |
+| [`CST-201-algorithims-data-structures`](./CST-201-algorithims-data-structures/) | Algorithms &amp; Data Structures | Searching, sorting, string matching across five topic trees. |
+| [`CST-239-Java2`](./CST-239-Java2/) | Java II — OOP &amp; Application Development | Multi-part milestones and presentations. |
+| [`CST-250-C#2`](./CST-250-C%232/) | C# II — OOP, Recursion, File I/O, GUI | Minesweeper milestone (console + WinForms); chess board logic; recursion exercises. |
+| [`CST-321-Operating-system-fundamentals`](./CST-321-Operating-system-fundamentals/) | OS Fundamentals | Systems programming in C with shell scripting. |
+| [`CST-323-Cloud-Computing`](./CST-323-Cloud-Computing/) | Cloud Computing | Spring-based services, deployment exercises, SQL fixtures. |
+| [`CST-323-PairPrograming`](./CST-323-PairPrograming/) | Pair Programming (CST-323) | Collaborative engineering practice. |
+| [`CST-326-Written-Verbal-Communication-SWE`](./CST-326-Written-Verbal-Communication-SWE/) | Technical Communication | `CineScopeProduction` (.NET / Razor) and written deliverables. |
+| [`CST-339-Java3`](./CST-339-Java3/) | Enterprise Java | Spring Boot, Spring Security, MongoDB, microservices. |
+| [`CST-345-Database-Design`](./CST-345-Database-Design/) | Database Design | Relational and NoSQL applications; MongoMusicApp. |
+| [`CST-350-C#3`](./CST-350-C%233/) | ASP.NET Core MVC | Authentication, sessions, milestone web app. |
+| [`CST-391-Web_dev`](./CST-391-Web_dev/) | Full-Stack Web Development | Node / Express / Angular / React e-commerce milestone. |
+| [`CST-407-Application-Security-Foundations`](./CST-407-Application-Security-Foundations/) | Application Security | Secure coding exercises and threat-modeling deliverables. |
+
+</details>
+
+<details>
+<summary><b>Applied AI Coursework</b> &nbsp;·&nbsp; 4 courses</summary>
+
+<br />
+
+| Course | Topic | Notes |
+| --- | --- | --- |
+| [`AIT-104-Data-mining-machine-learning`](./AIT-104-Data-mining-machine-learning/) | Data Mining &amp; ML | Linear modeling notebooks; financial datasets (AAPL, PLTR). |
+| [`AIT-110-Stat-Learning-Theory`](./AIT-110-Stat-Learning-Theory/) | Statistical Learning Theory | Class notes and assignments. |
+| [`AIT-204-Deep-Learning`](./AIT-204-Deep-Learning/) | Deep Learning | Notebooks, code, and supporting documentation. |
+| [`AIT-204-pair-programing`](./AIT-204-pair-programing/) | Deep Learning Pair Work | Linear regression, CNN, RNN, NLP, tuning workspaces. |
+
+</details>
+
+<sub>Each course directory contains its own README or documentation where available — see the linked <code>README.md</code> inside each folder for setup and run instructions.</sub>
+
+<hr />
+
+<!-- =========================================================== -->
+<!--          INDEPENDENT & POST-GRADUATION PROJECTS             -->
+<!-- =========================================================== -->
+
+## Independent &amp; Post-Graduation Projects
+
+<table>
+<tr>
+<td valign="top" width="50%">
+
+#### `SummerPractice/`
+<sub><kbd>C#</kbd> <kbd>Java</kbd> <kbd>TypeScript</kbd> <kbd>Python</kbd> <kbd>.NET</kbd> <kbd>React</kbd></sub>
+
+Ongoing self-directed practice across multiple languages, plus a full-stack `AerospaceAPI` (ASP.NET Core + React + Tailwind) and a growing set of algorithm exercises in Python.
+
+</td>
+<td valign="top" width="50%">
+
+#### `Porfolio/`
+<sub><kbd>Vite</kbd> <kbd>React</kbd> <kbd>TypeScript</kbd></sub>
+
+Personal portfolio site with project showcases, attributions, and an embedded resume section. Deployed via Vercel.
+
+</td>
+</tr>
+<tr>
+<td valign="top" width="50%">
+
+#### `iron_palace-/`
+<sub><kbd>Vite</kbd> <kbd>React</kbd> <kbd>TypeScript</kbd> <kbd>Docker</kbd></sub>
+
+Vite/React TypeScript application with a Dockerized API and frontend. An exploratory full-stack build.
+
+</td>
+<td valign="top" width="50%">
+
+#### `2025-advent-of-code/`
+<sub><kbd>Python</kbd></sub>
+
+Solutions to the 2025 Advent of Code, primarily in Python with a web visualization for select days.
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top">
+
+#### `agent-quality-system/`
+<sub><kbd>Python</kbd> <kbd>MCP</kbd> <kbd>NLP</kbd> <kbd>SonarQube</kbd></sub>
+
+Research and prototyping work on an agent-based code-quality system — NLP and classifier training, SonarQube comparison harness, MCP server integration, reporting tooling, and end-to-end demo pipelines.
+
+</td>
+</tr>
+</table>
+
+<hr />
+
+<!-- =========================================================== -->
+<!--                  FEATURED MILESTONES                        -->
+<!-- =========================================================== -->
+
+## Featured Milestones
+
+<table>
+<tr>
+<td valign="top" width="50%">
+
+#### Minesweeper Suite
+<sub><kbd>CST-250</kbd> <kbd>C#</kbd> <kbd>WinForms</kbd> <kbd>Recursion</kbd></sub>
+
+Full implementation featuring dynamic mine placement, flood-fill expansion, flagging, timer, and persistent high scores. Both console and GUI variants.
+
+<sub><code>CST-250-C#2/Code/Milestone/src/MinesweeperGui/</code></sub>
+
+</td>
+<td valign="top" width="50%">
+
+#### GameCube E-Commerce Platform
+<sub><kbd>CST-391</kbd> <kbd>Node.js</kbd> <kbd>Express</kbd> <kbd>Angular</kbd> <kbd>React</kbd> <kbd>MySQL</kbd></sub>
+
+A full-stack web application with a REST API, two parallel frontend implementations, full CRUD, and API documentation.
+
+<sub><code>CST-391-Web_dev/src/Milestone/</code></sub>
+
+</td>
+</tr>
+<tr>
+<td valign="top" width="50%">
+
+#### Enterprise Spring Application
+<sub><kbd>CST-339</kbd> <kbd>Spring Boot</kbd> <kbd>Spring Security</kbd> <kbd>MongoDB</kbd></sub>
+
+Microservices architecture with authentication, service discovery, and API gateway patterns.
+
+<sub><code>CST-339-Java3/src/Milestone/</code></sub>
+
+</td>
+<td valign="top" width="50%">
+
+#### Application Security Suite
+<sub><kbd>CST-407</kbd> <kbd>Java</kbd> <kbd>Cryptography</kbd></sub>
+
+Secure coding exercises, threat modeling, and applied cryptographic protocols with vulnerability assessments.
+
+<sub><code>CST-407-Application-Security-Foundations/</code></sub>
+
+</td>
+</tr>
+<tr>
+<td colspan="2" valign="top">
+
+#### Database Design Projects
+<sub><kbd>CST-345</kbd> <kbd>SQL Server</kbd> <kbd>MongoDB</kbd> <kbd>.NET</kbd> <kbd>ADO.NET</kbd></sub>
+
+Normalized relational schemas, complex queries, NoSQL document modeling, and full database-backed .NET applications.
+
+<sub><code>CST-345-Database-Design/</code></sub>
+
+</td>
+</tr>
+</table>
+
+<hr />
+
+<!-- =========================================================== -->
+<!--                      GETTING STARTED                        -->
+<!-- =========================================================== -->
 
 ## Getting Started
 
-### Quick Start Guide
 ```bash
-# Clone the repository
 git clone <repository-url>
 cd GCU_SWE_2023-2025
-
-# Navigate to any course folder
-cd CST-250-C#2
-
-# Follow course-specific README for setup
+cd <course-or-project-folder>
 ```
 
-### Development Environment Setup
-- **C#/.NET**: Visual Studio 2022+ or `dotnet` CLI
-- **Java**: IntelliJ IDEA or Eclipse with Maven/Gradle
-- **JavaScript/TypeScript**: VS Code with Node.js 18+
-- **Python**: Jupyter Notebook or VS Code with Python 3.10+
-- **Database**: SQL Server, MySQL, or MongoDB as needed
+Each subdirectory contains its own README or build configuration with setup and run instructions.
 
-Each course folder contains a detailed README with specific setup instructions and dependencies.
+### Development Environment
 
-## 📂 Repository Structure
+<table>
+<tr><th align="left">Stack</th><th align="left">Tooling</th></tr>
+<tr><td><b>C# / .NET</b></td><td>Visual Studio 2022 or the <code>dotnet</code> CLI</td></tr>
+<tr><td><b>Java</b></td><td>IntelliJ IDEA or Eclipse with Maven</td></tr>
+<tr><td><b>JavaScript / TypeScript</b></td><td>Node.js 18+, npm, VS Code</td></tr>
+<tr><td><b>Python</b></td><td>Python 3.10+, Jupyter, virtualenv or conda</td></tr>
+<tr><td><b>Databases</b></td><td>SQL Server, MySQL, or MongoDB as required by the project</td></tr>
+</table>
+
+<hr />
+
+<!-- =========================================================== -->
+<!--                    REPOSITORY LAYOUT                        -->
+<!-- =========================================================== -->
+
+## Repository Layout
 
 ```
-📦 GCU_SWE_2023-2025
-├── 🤖 AIT-104-Data-mining-machine-learning/
-├── 💻 CST-150-C#1/
-├── 🐍 CST-180-Python/
-├── 🔢 CST-201-algorithims-data-structures/
-├── ☕ CST-239-Java2/
-├── 🎯 CST-250-C#2/
-├── 🖥️ CST-321-Operating-system-fundamentals/
-├── 📝 CST-326-Written-Verbal-Communication-SWE/
-├── 🏭 CST-339-Java3/
-├── 🗄️ CST-345-Database-Design/
-├── 🌐 CST-350-C#3/
-├── 🚀 CST-391-Web_dev/
-├── 🔒 CST-407-Application-Security-Foundations/
-└── ☀️ SummerPractice/
+GCU_SWE_2023-2025/
+│
+├── Coursework — Software Engineering
+│   ├── CST-150-C#1/
+│   ├── CST-180-Python/
+│   ├── CST-201-algorithims-data-structures/
+│   ├── CST-239-Java2/
+│   ├── CST-250-C#2/
+│   ├── CST-321-Operating-system-fundamentals/
+│   ├── CST-323-Cloud-Computing/
+│   ├── CST-323-PairPrograming/
+│   ├── CST-326-Written-Verbal-Communication-SWE/
+│   ├── CST-339-Java3/
+│   ├── CST-345-Database-Design/
+│   ├── CST-350-C#3/
+│   ├── CST-391-Web_dev/
+│   └── CST-407-Application-Security-Foundations/
+│
+├── Coursework — Applied AI
+│   ├── AIT-104-Data-mining-machine-learning/
+│   ├── AIT-110-Stat-Learning-Theory/
+│   ├── AIT-204-Deep-Learning/
+│   └── AIT-204-pair-programing/
+│
+└── Independent Projects
+    ├── SummerPractice/
+    ├── Porfolio/
+    ├── iron_palace-/
+    ├── 2025-advent-of-code/
+    └── agent-quality-system/
 ```
 
-##  Learning Journey Progression
+<hr />
+
+<!-- =========================================================== -->
+<!--                  LEARNING PROGRESSION                       -->
+<!-- =========================================================== -->
+
+## Learning Progression
 
 ```mermaid
 graph LR
     A[Programming Fundamentals] --> B[Object-Oriented Design]
-    B --> C[Data Structures & Algorithms] 
+    B --> C[Data Structures & Algorithms]
     C --> D[Database Systems]
-    D --> E[Web Development]
-    E --> F[Enterprise Applications]
-    F --> G[Security & Best Practices]
+    D --> E[Web & Full-Stack Development]
+    E --> F[Enterprise & Cloud Applications]
+    F --> G[Application Security]
+    G --> H[Applied Machine Learning]
 ```
 
-##  Connect & Collaborate
+<hr />
 
-Interested in discussing any of these projects or potential collaboration opportunities? Feel free to explore the codebase and reach out!
+<!-- =========================================================== -->
+<!--                          LICENSE                            -->
+<!-- =========================================================== -->
 
----
+## License
 
-**📧 Contact**: [Your Email]  
-**🎓 Institution**: Grand Canyon University  
-**📅 Program Duration**: 2023 - 2025  
-**🎯 Degree**: Bachelor of Science in Software Engineering
+Released under the terms of the included [LICENSE](./LICENSE). Coursework remains the intellectual product of the author; any reuse should respect the academic integrity policies of the relevant institution.
 
-> *"Code is like humor. When you have to explain it, it's bad."* – Cory House
+<br />
 
----
-<div align="center">
-
-**⭐ Star this repository if you find it helpful!**
-
-![Visitor Count](https://visitor-badge.glitch.me/badge?page_id=GCU_SWE_Portfolio)
-
+<div align="right">
+<sub>
+<b>Grand Canyon University</b> &nbsp;·&nbsp; B.S. Software Engineering &nbsp;·&nbsp; 2023 – 2026
+</sub>
 </div>
