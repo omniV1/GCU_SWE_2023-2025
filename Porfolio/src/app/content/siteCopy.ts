@@ -1,5 +1,5 @@
 /**
- * Portfolio site voice — plain, specific, written like Owen talks.
+ * Portfolio site voice: plain, specific, written like Owen talks.
  * Keep the HUD look; soften the words.
  */
 
@@ -19,7 +19,7 @@ export const siteCopy = {
   },
 
   home: {
-    heroTagline: "I build web apps that ship — from client work to side projects.",
+    heroTagline: "I build web apps that ship, from client work to side projects.",
     heroSub:
       "GCU grad (B.S. Software Development, ML/AI minor). Before code: five years on F-22 maintenance at Edwards AFB.",
     typewriter: [
@@ -49,11 +49,11 @@ export const siteCopy = {
     aboutPoints: [
       {
         lead: "Production beats prototypes.",
-        body: "Lunara Care is live at lunaracare.org with real doula–client users. Iron Palace, Turnover Log, and ML demos are deployed too — links on the projects page.",
+        body: "Lunara Care is live at lunaracare.org with real doula-client users. Iron Palace, Turnover Log, and ML demos are deployed too. Links are on the projects page.",
       },
       {
         lead: "ML/AI minor, not just buzzwords.",
-        body: "Survival analysis, SVMs, and a PyTorch sentiment app I trained and deployed myself — with numbers I can explain in an interview.",
+        body: "Survival analysis, SVMs, and a PyTorch sentiment app I trained and deployed myself, with numbers I can explain in an interview.",
       },
       {
         lead: "Maintenance background still shows up.",
@@ -74,7 +74,7 @@ export const siteCopy = {
       tags: ["React", "TypeScript", "Node.js", "MongoDB"],
       title: "Lunara Care",
       description:
-        "Postpartum care platform I led end to end — scheduling, chat, care plans — live with real users at lunaracare.org.",
+        "Postpartum care platform I led end to end: scheduling, chat, care plans. Live with real users at lunaracare.org.",
       liveUrl: "https://www.lunaracare.org",
     },
     {
@@ -90,7 +90,7 @@ export const siteCopy = {
       tags: ["React", "Vite", "Docker"],
       title: "Iron Palace Podcast",
       description:
-        "Podcast site for a client — pulls YouTube RSS at build time so new episodes show up after a redeploy.",
+        "Podcast site for a client. Pulls YouTube RSS at build time so new episodes show up after a redeploy.",
       liveUrl: "https://ironpalace.live",
     },
   ] as const,
@@ -102,7 +102,7 @@ export const siteCopy = {
       "Coursework, client work, and projects I shipped on my own. Click a card for more detail, or open the live site when you see the badge.",
     statLearningEyebrow: "Statistical learning · AIT-110",
     statLearningIntro:
-      "Three notebooks I’m especially proud of — each has a walkthrough video if you want to hear my thinking out loud.",
+      "Three notebooks I'm especially proud of. Each has a walkthrough video if you want to hear my thinking out loud.",
     expand: "More detail",
     collapse: "Less detail",
     viewGithub: "Code on GitHub",
@@ -111,12 +111,12 @@ export const siteCopy = {
 
   about: {
     eyebrow: "About",
-    title: "Hi — I'm Owen",
+    title: "Hi, I'm Owen",
     backgroundTitle: "Background",
     paragraphs: [
       "I'm a software engineer who graduated from Grand Canyon University in 2026 (B.S. Software Development, Machine Learning & AI minor). I like owning a feature from the database to the UI and leaving it in a state the next person can maintain.",
-      "My ML minor wasn’t a checkbox: survival analysis, SVMs, ensembles, and a PyTorch sentiment model I trained, evaluated, and deployed to Streamlit with real metrics I can walk through.",
-      "Before GCU I spent five years in the Air Force on F-22 maintenance at Edwards AFB — crew chief work with USAF, Lockheed, and Boeing teams. That’s where Turnover Log started. I still hold (and can reactivate) Secret clearance.",
+      "My ML minor wasn't a checkbox: survival analysis, SVMs, ensembles, and a PyTorch sentiment model I trained, evaluated, and deployed to Streamlit with real metrics I can walk through.",
+      "Before GCU I spent five years in the Air Force on F-22 maintenance at Edwards AFB, crew chief work with USAF, Lockheed, and Boeing teams. That's where Turnover Log started. I still hold (and can reactivate) Secret clearance.",
     ],
     interestsTitle: "Off the clock",
     timelineTitle: "Timeline",
@@ -140,17 +140,17 @@ export const siteCopy = {
     formMessage: "Message",
     formPlaceholder: "What are you working on?",
     formSubmit: "Send message",
-    formSent: "Thanks — message received.",
+    formSent: "Thanks, message received.",
   },
 } as const
 
-/** Humanized Turnover Log entry — merged in ProjectsPage */
+/** Humanized Turnover Log entry, merged in ProjectsPage */
 export const turnoverLogProject = {
   short:
     "Shift handoff tool from my maintenance days: tail numbers, priority, and a supervisor inbox that works without SMTP. React on Vercel, .NET API on Render.",
-  expanded: `I built Turnover Log after crew-chief work on the F-22 — the problem is the handoff between shifts, not another generic task board.
+  expanded: `I built Turnover Log after crew-chief work on the F-22. The problem is the handoff between shifts, not another generic task board.
 
 Technicians log open items by asset or tail number. Supervisors get in-app alerts when something opens or closes. Email is optional; production runs fine without an SMTP server.
 
-Stack: React 18 + TypeScript + Vite on Vercel, ASP.NET Core 8 + EF Core on Render with PostgreSQL, JWT auth. xUnit integration tests run in GitHub Actions on every push. The board starts empty — no fake seed data.`,
+Stack: React 18 + TypeScript + Vite on Vercel, ASP.NET Core 8 + EF Core on Render with PostgreSQL, JWT auth. xUnit integration tests run in GitHub Actions on every push. The board starts empty, with no fake seed data.`,
 } as const

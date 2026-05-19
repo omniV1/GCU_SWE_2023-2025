@@ -347,7 +347,7 @@ export function HomePage() {
       {/* ===== ABOUT STRIP ===== */}
       <section className="border-t border-border">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2">
-          {/* Left — Photo */}
+          {/* Left: Photo */}
           <div className="relative h-64 md:h-auto overflow-hidden">
             <ImageWithFallback
               src={ABOUT_BG}
@@ -367,7 +367,7 @@ export function HomePage() {
             />
           </div>
 
-          {/* Right — Bio */}
+          {/* Right: Bio */}
           <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center">
             <FadeIn>
               <h2

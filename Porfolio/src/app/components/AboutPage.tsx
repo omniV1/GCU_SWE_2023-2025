@@ -8,19 +8,19 @@ import { SectionEyebrow } from "./SectionEyebrow";
 const about = siteCopy.about;
 
 const timeline = [
-  { year: "2026", event: "Graduated GCU — B.S. Software Development with Machine Learning & AI minor" },
-  { year: "2026", event: "AIT-110 Statistical Learning — survival analysis, SVMs, ensembles, unsupervised methods" },
-  { year: "2026", event: "AIT-204 Deep Learning — trained and deployed a PyTorch NLP sentiment classifier" },
-  { year: "2026", event: "Turnover Log — maintenance shift handoff app deployed (turnover-log.vercel.app)" },
-  { year: "2026", event: "Iron Palace — single-page podcast site shipped to ironpalace.live" },
-  { year: "2026", event: "LUNARA — senior capstone, deployed to production at lunaracare.org" },
+  { year: "2026", event: "Graduated GCU, B.S. Software Development with Machine Learning & AI minor" },
+  { year: "2026", event: "AIT-110 Statistical Learning: survival analysis, SVMs, ensembles, unsupervised methods" },
+  { year: "2026", event: "AIT-204 Deep Learning: trained and deployed a PyTorch NLP sentiment classifier" },
+  { year: "2026", event: "Turnover Log: maintenance shift handoff app deployed (turnover-log.vercel.app)" },
+  { year: "2026", event: "Iron Palace: single-page podcast site shipped to ironpalace.live" },
+  { year: "2026", event: "LUNARA: senior capstone, deployed to production at lunaracare.org" },
   { year: "2026", event: "Built Multi-Agent Code Quality System" },
-  { year: "2025", event: "CineScope — movie review platform, primary developer on 4-person Agile team" },
-  { year: "2025", event: "Built AGMS — enterprise airport operations platform" },
-  { year: "2025", event: "Aircraft Fleet Manager — React + ASP.NET Core maintenance tracking system" },
+  { year: "2025", event: "CineScope: movie review platform, primary developer on 4-person Agile team" },
+  { year: "2025", event: "Built AGMS, enterprise airport operations platform" },
+  { year: "2025", event: "Aircraft Fleet Manager: React + ASP.NET Core maintenance tracking system" },
   { year: "2023", event: "Began GCU Software Engineering program" },
-  { year: "2022", event: "Separated from USAF — Tactical Aircraft Maintenance (5th Gen), F-22 Raptor" },
-  { year: "2017", event: "Enlisted — United States Air Force \u00b7 5 Years of Service" },
+  { year: "2022", event: "Separated from USAF, Tactical Aircraft Maintenance (5th Gen), F-22 Raptor" },
+  { year: "2017", event: "Enlisted, United States Air Force · 5 Years of Service" },
 ];
 
 const interests = [
@@ -81,7 +81,7 @@ export function AboutPage() {
       {/* Two-column content */}
       <section className="py-16 px-6 md:px-20">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-          {/* Left — Bio */}
+          {/* Left: Bio */}
           <FadeIn>
             <div>
               <h2
@@ -121,7 +121,7 @@ export function AboutPage() {
             </div>
           </FadeIn>
 
-          {/* Right — Timeline */}
+          {/* Right: Timeline */}
           <FadeIn delay={0.15}>
             <div>
               <h2
@@ -204,7 +204,7 @@ export function AboutPage() {
                           style={{ boxShadow: "0 0 4px #00FFD4, 0 0 10px rgba(0,255,212,0.3)" }}
                         />
                         <span className="text-foreground/80" style={{ fontSize: "0.82rem", fontWeight: 500 }}>
-                          Eagle Scout — Boy Scouts of America
+                          Eagle Scout, Boy Scouts of America
                         </span>
                       </div>
                       <p className="text-foreground/40 ml-[1.125rem] pl-3" style={{ fontSize: "0.75rem", lineHeight: 1.7 }}>

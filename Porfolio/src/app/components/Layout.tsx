@@ -32,7 +32,7 @@ function AvailabilityBanner() {
             className="text-primary/80 tracking-widest"
             style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.58rem" }}
           >
-            OPEN TO WORK — Full-time / Contract / Remote
+            OPEN TO WORK · Full-time / Contract / Remote
           </span>
         </div>
         <Link

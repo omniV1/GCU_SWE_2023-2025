@@ -3,7 +3,7 @@ interface SectionEyebrowProps {
   className?: string
 }
 
-/** Small section label — readable, not terminal cosplay. */
+/** Small section label, readable, not terminal cosplay. */
 export function SectionEyebrow({ children, className = "" }: SectionEyebrowProps) {
   return (
     <span
