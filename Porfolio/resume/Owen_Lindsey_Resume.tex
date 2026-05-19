@@ -13,54 +13,35 @@
 \usepackage{titlesec}
 \usepackage{xcolor}
 
-% Remove page numbers
 \pagestyle{empty}
-
-% Colors
 \definecolor{linkblue}{HTML}{0066CC}
 
-% Hyperlink setup
 \hypersetup{
     colorlinks=true,
     urlcolor=linkblue,
     linkcolor=linkblue,
     pdfauthor={Owen Lindsey},
     pdftitle={Owen Lindsey - Software Engineer Resume},
-    pdfsubject={Software Engineering},
-    pdfkeywords={software engineer, full-stack, React, TypeScript, Java, Spring Boot, Node.js, Python, C\#, .NET}
 }
 
-% Section formatting
-\titleformat{\section}
-  {\normalsize\bfseries\uppercase}
-  {}
-  {0em}
-  {}
-  [\titlerule]
+\titleformat{\section}{\normalsize\bfseries\uppercase}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{0.45em}{0.25em}
+\setlist[itemize]{nosep, leftmargin=1.2em, topsep=0pt, parsep=0pt, itemsep=0pt}
 
-\titlespacing{\section}{0pt}{0.5em}{0.3em}
-
-% Tight lists
-\setlist[itemize]{nosep, leftmargin=1.2em, topsep=1pt, parsep=0pt, itemsep=0pt}
-
-% Custom commands
 \newcommand{\resumeHeading}[4]{
   \vspace{1pt}
   \textbf{#1} \hfill \textit{#2} \\
   \textit{#3} \hfill #4
-  \vspace{0pt}
 }
 
 \newcommand{\projectHeading}[3]{
   \vspace{1pt}
   \textbf{#1} \hfill #2 \\
   \textit{#3}
-  \vspace{0pt}
 }
 
 \begin{document}
 
-%----------HEADER----------
 \begin{center}
   {\Large\textbf{Owen Lindsey --- Full-Stack Software Engineer}} \\[2pt]
   Phoenix, AZ \enspace$\cdot$\enspace
@@ -69,98 +50,60 @@
   \href{https://github.com/omniV1}{github.com/omniV1} \enspace$\cdot$\enspace
   \href{https://www.linkedin.com/in/owen-lindsey-5b323a23b/}{linkedin.com/in/owen-lindsey}
 \end{center}
+\vspace{-0.9em}
 
-\vspace{-0.8em}
-
-%----------SUMMARY----------
 \section{Summary}
-\vspace{0.1em}
-Full-stack software engineer and recent GCU graduate (B.S. Software Development, Minor in Machine Learning \& AI, 2026). Built three live deployments in 2026, including a client-sponsored care platform for Lunara Care with 375 tests at 81.9\% coverage. U.S. Air Force veteran (5 years, Secret clearance).
+Full-stack developer; GCU 2026 (B.S. Software Development, ML/AI minor). Five years F-22 maintenance at Edwards AFB, then production web work including Lunara Care and live deployed projects. USAF veteran; Secret clearance.
 
-%----------EDUCATION----------
 \section{Education}
-\resumeHeading
-  {Bachelor of Science in Software Development}{Graduated 2026}
-  {Grand Canyon University --- Minor in Machine Learning \& AI}{Phoenix, AZ}
+\resumeHeading{Bachelor of Science in Software Development}{Graduated 2026}{Grand Canyon University --- ML/AI minor}{Phoenix, AZ}
 
-%----------TECHNICAL SKILLS----------
 \section{Technical Skills}
-\vspace{0.1em}
 \textbf{Languages:} Java, C\#, Python, TypeScript, JavaScript, C, SQL, Bash \\
-\textbf{Frontend:} React 18, Angular, Blazor WebAssembly, Tailwind CSS, Material UI, Redux Toolkit \\
-\textbf{Backend:} Spring Boot 3, Node.js/Express, ASP.NET Core, .NET Web API, Spring Security, REST API Design \\
-\textbf{Machine Learning:} PyTorch, scikit-learn, NumPy, Pandas, Streamlit, statistical learning (SVM, survival analysis, ensembles, regularization, unsupervised) \\
-\textbf{Data \& Testing:} MongoDB, MySQL, Jest, JUnit 5, Mockito, SonarQube, JaCoCo \\
-\textbf{DevOps:} Docker, Git, GitHub Actions, Azure, Vercel, Render, OpenAPI/Swagger, Maven
+\textbf{Frontend:} React 18, Angular, Blazor WASM, Tailwind CSS, Material UI, Redux Toolkit \\
+\textbf{Backend:} Spring Boot 3, Node.js/Express, ASP.NET Core, REST, Spring Security \\
+\textbf{ML:} PyTorch, scikit-learn, NumPy, Pandas, Streamlit \\
+\textbf{Data \& Testing:} MongoDB, MySQL, PostgreSQL, Jest, JUnit 5, xUnit, SonarQube, JaCoCo \\
+\textbf{DevOps:} Docker, Git, GitHub Actions, Azure, Vercel, Render, OpenAPI/Swagger
 
-%----------EXPERIENCE----------
 \section{Experience}
-\resumeHeading
-  {Lunara Care}{2026}
-  {Client Partner --- Lead Full-Stack Developer}{Remote}
+\resumeHeading{Lunara Care}{2026}{Lead Full-Stack Developer --- Client Partner}{Remote}
 \begin{itemize}
-  \item Led end-to-end development of a production postpartum care platform used by real doula--client pairs
-  \item Architected 70+ REST endpoints across 19 route modules and delivered 375 automated tests at 81.9\% coverage
+  \item Owned Lunara Care end to end (scheduling, chat, care plans, documents); live at lunaracare.org with real doula--client users
+  \item 375 automated tests at 81.9\% coverage; SonarQube gates held green through releases
+\end{itemize}
+\resumeHeading{Iron Palace Podcast}{2026}{Full-Stack Developer --- Client Partner}{Remote}
+\begin{itemize}
+  \item Shipped ironpalace.live: React site that ingests YouTube RSS at build time so episode links stay current
+  \item Dockerized for one-command redeploys when the feed updates
 \end{itemize}
 
-\resumeHeading
-  {Iron Palace Podcast}{2026}
-  {Client Partner --- Full-Stack Developer}{Remote}
-\begin{itemize}
-  \item Designed, built, and deployed a production single-page site for podcast stakeholders at ironpalace.live
-  \item Implemented RSS-to-JSON ingestion and Dockerized deployment for reliable static-host delivery
-\end{itemize}
-
-%----------PROJECTS----------
 \section{Selected Projects}
-
-\projectHeading
-  {Turnover Log \textnormal{(\href{https://turnover-log.vercel.app/}{Live Demo} $\cdot$ \href{https://github.com/omniV1/turnover-log}{GitHub})}}
-  {2026}
-  {React, TypeScript, ASP.NET Core 8, EF Core, PostgreSQL, JWT, xUnit}
+\projectHeading{Turnover Log \textnormal{(\href{https://turnover-log.vercel.app/}{Live} $\cdot$ \href{https://github.com/omniV1/turnover-log}{GitHub})}}{2026}{React, TypeScript, ASP.NET Core 8, PostgreSQL, JWT, xUnit}
 \begin{itemize}
-  \item Built and deployed a maintenance shift handoff web app with JWT auth, handoff CRUD, and a database-backed supervisor inbox (optional SMTP)
-  \item Shipped a React + Vite client on Vercel and a .NET 8 API on Render with PostgreSQL; added xUnit integration tests in GitHub Actions CI
+  \item Shift handoff board from my maintenance background: tail-number entries, supervisor in-app alerts (no SMTP required); React/Vercel + .NET/Render/PostgreSQL
+  \item xUnit integration tests in GitHub Actions CI
+\end{itemize}
+\projectHeading{NLP Sentiment Analysis \textnormal{(\href{https://nlp-owen.streamlit.app/}{Live} $\cdot$ \href{https://github.com/omniV1/AIT-204-pair-programing/tree/main/NLP/Topic4_NLP}{GitHub})}}{2026}{Python, PyTorch, Streamlit}
+\begin{itemize}
+  \item IMDb sentiment model: \textasciitilde83\% val accuracy; tracked overfitting via train/val loss curves
+  \item Streamlit UI + separate SentimentService; 10 translation round-trips: 80\% label match, 0.16 avg confidence shift
+\end{itemize}
+\projectHeading{CineScope \textnormal{(\href{https://github.com/omniV1/CineScope}{GitHub})}}{2025}{Blazor WASM, ASP.NET Core, MongoDB, Claude API, Azure}
+\begin{itemize}
+  \item Lead dev on a 4-person team: reviews, moderation, admin; Claude recommendations via MCP
+  \item Azure deploy with GitHub Actions, Key Vault, JWT + BCrypt auth
+\end{itemize}
+\projectHeading{Airport Gate Management System \textnormal{(\href{https://github.com/omniV1/GCU_SWE_2023-2025/tree/main/CST-339-Java3/workspaceCST-339/src/Milestone/agms}{GitHub})}}{2025}{Java 17, Spring Boot 3, Spring Security, MySQL}
+\begin{itemize}
+  \item Airport ops CRUD (gates, flights, assignments) with RBAC for four roles; OpenAPI docs; Cloud Run deploy
 \end{itemize}
 
-\projectHeading
-  {NLP Sentiment Analysis \textnormal{(\href{https://nlp-owen.streamlit.app/}{Live Demo} $\cdot$ \href{https://github.com/omniV1/AIT-204-pair-programing/tree/main/NLP/Topic4_NLP}{GitHub})}}
-  {2026}
-  {Python, PyTorch, Streamlit, NumPy}
-\begin{itemize}
-  \item Trained a PyTorch sentiment model on IMDb reviews to \textasciitilde83\% validation accuracy (best val loss \textasciitilde0.35 at epoch 3) and analyzed overfitting via train/validation divergence
-  \item Deployed a Streamlit app with a decoupled SentimentService backend; ran 10 round-trip translation tests showing 80\% label preservation, 20\% flips, and 0.160 average confidence delta
-\end{itemize}
-
-\projectHeading
-  {CineScope --- Movie Review Platform \textnormal{(\href{https://github.com/omniV1/CineScope}{GitHub})}}
-  {2025}
-  {C\#, ASP.NET Core, Blazor WASM, .NET 9, MongoDB, Claude API, Azure, JWT}
-\begin{itemize}
-  \item Led architecture and core feature delivery as primary developer on a 4-person Agile team
-  \item Implemented a 5-tier stack (Blazor WASM SPA, ASP.NET Core API, services, MongoDB) and integrated Anthropic Claude via Model Context Protocol
-  \item Shipped to Azure with GitHub Actions CI/CD and Key Vault; secured auth with JWT, BCrypt, account lockout, and RBAC
-\end{itemize}
-
-\projectHeading
-  {Airport Gate Management System (Spring Boot) \textnormal{(\href{https://github.com/omniV1/GCU_SWE_2023-2025/tree/main/CST-339-Java3/workspaceCST-339/src/Milestone/agms}{GitHub})}}
-  {2025}
-  {Java 17, Spring Boot 3, Spring Security, Spring Data REST, MySQL, JUnit 5, OpenAPI 3.0}
-\begin{itemize}
-  \item Built an N-layer backend with role-based access for 4 user types and CRUD workflows across 6 entity domains
-  \item Delivered JUnit 5/Mockito coverage with JaCoCo, OpenAPI/Swagger documentation, and Google Cloud Run deployment
-\end{itemize}
-
-%----------MILITARY EXPERIENCE----------
 \section{Military Experience}
-\resumeHeading
-  {Tactical Aircraft Maintenance --- F-22 Raptor (2A3X7)}{Sept 2017 --- Sept 2022}
-  {United States Air Force --- 411th Flight Test Squadron, Edwards AFB}{5 Years, Honorable Discharge}
+\resumeHeading{Tactical Aircraft Maintenance --- F-22 (2A3X7)}{Sept 2017 --- Sept 2022}{USAF, 411th FLTS, Edwards AFB}{Honorable Discharge}
 \begin{itemize}
-  \item Led maintenance operations across USAF, Lockheed Martin, and Boeing teams on the Raptor 2.0 program
-  \item Executed Link 16 integration and high-visibility procedures including horizontal stabilizer removal and critical TCTOs
-  \item Trained and mentored new crew chiefs; maintained readiness standards on 5th-generation fighters
-  \item Held Secret security clearance
+  \item Coordinated USAF, Lockheed, and Boeing maintenance on Raptor 2.0; Link 16 integration, critical TCTOs, stabilizer removals
+  \item Trained new crew chiefs on 5th-gen readiness; Secret clearance
 \end{itemize}
 
 \end{document}
