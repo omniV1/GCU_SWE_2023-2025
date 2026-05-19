@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { ChevronDown, ExternalLink, Play, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { siteCopy, turnoverLogProject } from "@/app/content/siteCopy";
 import { FadeIn } from "./FadeIn";
 import { HudCard } from "./HudCard";
+import { SectionEyebrow } from "./SectionEyebrow";
+
+const pp = siteCopy.projectsPage;
 
 interface StatLearningHighlight {
   id: string;
@@ -102,10 +106,8 @@ const allProjects: Project[] = [
       "Render",
       "GitHub Actions",
     ],
-    short:
-      "Live shift handoff board for maintenance crews — open items, equipment tags, priority, resolve flow, and a supervisor inbox (no SMTP required). Informed by hands-on F-22 maintenance experience. Deployed at turnover-log.vercel.app.",
-    expanded:
-      "Full-stack portfolio build: React 18 + TypeScript + Vite 6 client with an accessible, maintenance-focused UI; ASP.NET Core 8 Web API with EF Core, JWT authentication, and role-style flows for technicians vs supervisors.\n\nHandoff CRUD with severity and status filters. When a handoff opens or closes, the API writes to a supervisor notification inbox in the database; optional SMTP only if configured — production runs in-app alerts only.\n\nLocal dev uses SQL Server; production API on Render uses PostgreSQL via DATABASE_URL. xUnit integration tests with an in-memory database and fake email sender; GitHub Actions runs dotnet test on every push.\n\nClient deployed to Vercel (VITE_API_URL); API + DB via Render blueprint (render.yaml). Board starts empty — no seeded sample handoffs.",
+    short: turnoverLogProject.short,
+    expanded: turnoverLogProject.expanded,
     github: "https://github.com/omniV1/turnover-log",
     liveUrl: "https://turnover-log.vercel.app",
   },
@@ -212,7 +214,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 textShadow: "0 0 6px rgba(255,45,107,0.4)",
               }}
             >
-              :: LIVE
+              {pp.liveBadge}
             </span>
           )}
         </div>
@@ -257,7 +259,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             }}
           >
             <ExternalLink size={12} />
-            LIVE :: {new URL(project.liveUrl).host.replace(/^www\./, "")}
+            {pp.liveBadge} · {new URL(project.liveUrl).host.replace(/^www\./, "")}
           </a>
         )}
 
@@ -287,7 +289,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             className="flex items-center gap-1.5 text-primary/70 hover:text-primary transition-colors duration-150"
             style={{ fontSize: "0.68rem", fontFamily: "'IBM Plex Mono', monospace" }}
           >
-            [ {expanded ? "COLLAPSE" : "EXPAND DETAILS"} ]
+            {expanded ? pp.collapse : pp.expand}
             <ChevronDown
               size={12}
               className={`transition-transform duration-150 ${expanded ? "rotate-180" : ""}`}
@@ -317,7 +319,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                   style={{ fontSize: "0.68rem", fontFamily: "'IBM Plex Mono', monospace" }}
                 >
                   <ExternalLink size={12} />
-                  VIEW ON GITHUB
+                  {pp.viewGithub}
                 </a>
               </div>
             </motion.div>
@@ -334,7 +336,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             style={{ fontSize: "0.68rem", fontFamily: "'IBM Plex Mono', monospace" }}
           >
             <ExternalLink size={12} />
-            VIEW ON GITHUB
+            {pp.viewGithub}
           </a>
         )}
       </div>
@@ -347,26 +349,15 @@ export function ProjectsPage() {
     <div className="py-24 px-6 md:px-20">
       <div className="max-w-[1200px] mx-auto">
         <FadeIn>
-          <div className="mb-4">
-            <span
-              className="text-primary"
-              style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.75rem",
-                textShadow: "0 0 8px rgba(0,255,212,0.4)",
-              }}
-            >
-              // ALL PROJECTS
-            </span>
-          </div>
+          <SectionEyebrow className="mb-4 block">{pp.eyebrow}</SectionEyebrow>
           <h1
             className="mb-3"
             style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(2.5rem, 6vw, 4rem)", letterSpacing: "0.04em", color: "#D4DEE8" }}
           >
-            PROJECT INDEX
+            {pp.title}
           </h1>
-          <p className="text-muted-foreground mb-12" style={{ fontSize: "0.78rem", lineHeight: 1.7 }}>
-            Full project index — click any entry for technical details.
+          <p className="text-muted-foreground mb-12 max-w-2xl" style={{ fontSize: "0.9rem", lineHeight: 1.75, fontFamily: "'Space Grotesk', sans-serif" }}>
+            {pp.intro}
           </p>
         </FadeIn>
 
@@ -374,20 +365,11 @@ export function ProjectsPage() {
         <FadeIn>
           <div className="mb-12 border border-border bg-card/30 p-5 md:p-6" style={{ backdropFilter: "blur(6px)" }}>
             <div className="flex items-center gap-3 mb-4">
-              <span
-                className="text-primary"
-                style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: "0.7rem",
-                  textShadow: "0 0 6px rgba(0,255,212,0.4)",
-                }}
-              >
-                // STATISTICAL LEARNING HIGHLIGHTS · AIT-110
-              </span>
+              <SectionEyebrow>{pp.statLearningEyebrow}</SectionEyebrow>
               <div className="flex-1 h-px" style={{ background: "linear-gradient(90deg, #1A2633, transparent)" }} />
             </div>
-            <p className="text-muted-foreground mb-5" style={{ fontSize: "0.74rem", lineHeight: 1.7 }}>
-              Three top picks from the Machine Learning &amp; AI minor — each shipped as a Jupyter notebook with a recorded walkthrough.
+            <p className="text-muted-foreground mb-5 max-w-2xl" style={{ fontSize: "0.85rem", lineHeight: 1.75, fontFamily: "'Space Grotesk', sans-serif" }}>
+              {pp.statLearningIntro}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {statLearningHighlights.map((h) => (

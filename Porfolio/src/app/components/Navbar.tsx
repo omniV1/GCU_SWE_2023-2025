@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
+import { siteCopy } from "@/app/content/siteCopy";
 
 const navLinks = [
-  { path: "/projects", label: "PROJECTS" },
-  { path: "/about", label: "ABOUT" },
-  { path: "/resume", label: "RESUME" },
-  { path: "/contact", label: "CONTACT" },
+  { path: "/projects", label: siteCopy.nav.projects },
+  { path: "/about", label: siteCopy.nav.about },
+  { path: "/resume", label: siteCopy.nav.resume },
+  { path: "/contact", label: siteCopy.nav.contact },
 ];
 
 export function Navbar() {
@@ -20,64 +21,48 @@ export function Navbar() {
     >
       <div className="max-w-[1200px] mx-auto px-6 md:px-20">
         <div className="flex items-center justify-between h-12">
-          {/* Logo */}
           <Link
             to="/"
-            className="text-primary tracking-widest"
+            className="text-primary font-medium tracking-tight"
             style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: "0.85rem",
-              textShadow: "0 0 10px rgba(0,255,212,0.5)",
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: "0.95rem",
             }}
           >
-            OL://
+            {siteCopy.brand.logo}
           </Link>
 
-          {/* Desktop Nav */}
           <div
-            className="hidden md:flex items-center"
+            className="hidden md:flex items-center gap-6"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            {navLinks.map((link, i) => (
-              <span key={link.path} className="flex items-center">
-                {i > 0 && (
-                  <span className="text-[#1A2633] mx-3 select-none" style={{ fontSize: "0.75rem" }}>
-                    //
-                  </span>
-                )}
-                <Link
-                  to={link.path}
-                  className={`py-1 tracking-wider transition-colors duration-150 ${
-                    location.pathname === link.path || (link.path !== "/" && location.pathname.startsWith(link.path))
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                  style={{
-                    fontSize: "0.7rem",
-                    letterSpacing: "0.12em",
-                    ...(location.pathname === link.path || (link.path !== "/" && location.pathname.startsWith(link.path))
-                      ? { textShadow: "0 0 8px rgba(0,255,212,0.4)" }
-                      : {}),
-                  }}
-                >
-                  {link.label}
-                </Link>
-              </span>
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`py-1 text-sm transition-colors duration-150 ${
+                  location.pathname === link.path ||
+                  (link.path !== "/" && location.pathname.startsWith(link.path))
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {link.label}
+              </Link>
             ))}
           </div>
 
-          {/* Mobile Toggle */}
           <button
-            className="md:hidden text-primary tracking-widest"
+            type="button"
+            className="md:hidden text-primary text-sm"
             onClick={() => setMobileOpen(!mobileOpen)}
-            style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.7rem" }}
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            [{mobileOpen ? "CLOSE" : "MENU"}]
+            {mobileOpen ? siteCopy.nav.menuOpen : siteCopy.nav.menuClosed}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -97,12 +82,11 @@ export function Navbar() {
                   key={link.path}
                   to={link.path}
                   onClick={() => setMobileOpen(false)}
-                  className={`px-3 py-2 tracking-wider transition-colors duration-150 ${
+                  className={`px-3 py-2 text-sm transition-colors duration-150 ${
                     location.pathname === link.path
                       ? "text-primary"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
-                  style={{ fontSize: "0.75rem", letterSpacing: "0.1em" }}
                 >
                   {link.label}
                 </Link>

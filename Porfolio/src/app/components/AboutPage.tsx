@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { siteCopy } from "@/app/content/siteCopy";
 import { FadeIn } from "./FadeIn";
+import { SectionEyebrow } from "./SectionEyebrow";
+
+const about = siteCopy.about;
 
 const timeline = [
   { year: "2026", event: "Graduated GCU — B.S. Software Development with Machine Learning & AI minor" },
@@ -58,16 +62,7 @@ export function AboutPage() {
 
         <div className="relative max-w-[1200px] mx-auto">
           <FadeIn>
-            <span
-              className="text-primary"
-              style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.75rem",
-                textShadow: "0 0 8px rgba(0,255,212,0.4)",
-              }}
-            >
-              // ABOUT
-            </span>
+            <SectionEyebrow>{about.eyebrow}</SectionEyebrow>
             <h1
               className="mt-3"
               style={{
@@ -77,7 +72,7 @@ export function AboutPage() {
                 color: "#D4DEE8",
               }}
             >
-              ABOUT THE ENGINEER
+              {about.title}
             </h1>
           </FadeIn>
         </div>
@@ -98,26 +93,13 @@ export function AboutPage() {
                   textShadow: "0 0 6px rgba(0,255,212,0.3)",
                 }}
               >
-                BACKGROUND
+                {about.backgroundTitle}
               </h2>
 
-              <div className="space-y-4 text-foreground/70" style={{ fontSize: "0.82rem", lineHeight: 1.85 }}>
-                <p>
-                  Software engineer focused on full-stack web and applied ML/AI. Graduated Grand
-                  Canyon University in 2026 with a B.S. in Software Development and a minor in
-                  Machine Learning &amp; AI.
-                </p>
-                <p>
-                  My ML/AI minor covered the full statistical learning stack — survival analysis,
-                  SVMs, decision trees and random forests, regularization, and unsupervised methods —
-                  plus PyTorch deep learning shipped as deployed Streamlit apps. Not just glue code
-                  around someone else's model.
-                </p>
-                <p>
-                  Before software: five years U.S. Air Force veteran, F-22 maintenance, active
-                  Secret clearance throughout service. Useful background — but the work I want
-                  to be measured on lives on this site.
-                </p>
+              <div className="space-y-4 text-foreground/70" style={{ fontSize: "0.9rem", lineHeight: 1.85, fontFamily: "'Space Grotesk', sans-serif" }}>
+                {about.paragraphs.map((para) => (
+                  <p key={para.slice(0, 40)}>{para}</p>
+                ))}
               </div>
 
               <div className="mt-10">
@@ -130,10 +112,10 @@ export function AboutPage() {
                     textShadow: "0 0 6px rgba(0,255,212,0.3)",
                   }}
                 >
-                  INTERESTS
+                  {about.interestsTitle}
                 </h2>
-                <p className="text-foreground/50" style={{ fontSize: "0.78rem", lineHeight: 1.8 }}>
-                  {interests.join("  //  ")}
+                <p className="text-foreground/50" style={{ fontSize: "0.85rem", lineHeight: 1.8, fontFamily: "'Space Grotesk', sans-serif" }}>
+                  {interests.join(" · ")}
                 </p>
               </div>
             </div>
@@ -151,7 +133,7 @@ export function AboutPage() {
                   textShadow: "0 0 6px rgba(0,255,212,0.3)",
                 }}
               >
-                TIMELINE
+                {about.timelineTitle}
               </h2>
 
               <div className="space-y-0">
@@ -197,7 +179,7 @@ export function AboutPage() {
                 className="text-muted-foreground tracking-widest"
                 style={{ fontSize: "0.65rem", fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "0.12em" }}
               >
-                ADDITIONAL QUALIFICATIONS
+                {about.qualificationsTitle}
               </span>
               <ChevronDown
                 size={14}

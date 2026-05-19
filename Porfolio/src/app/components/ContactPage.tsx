@@ -1,5 +1,9 @@
 import { useState } from "react";
+import { siteCopy } from "@/app/content/siteCopy";
 import { FadeIn } from "./FadeIn";
+import { SectionEyebrow } from "./SectionEyebrow";
+
+const contact = siteCopy.contact;
 
 export function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -26,16 +30,7 @@ export function ContactPage() {
       <div className="max-w-[650px] w-full relative">
         <FadeIn>
           <div className="text-center">
-            <span
-              className="text-primary"
-              style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.75rem",
-                textShadow: "0 0 8px rgba(0,255,212,0.4)",
-              }}
-            >
-              // CONTACT
-            </span>
+            <SectionEyebrow className="block">{contact.eyebrow}</SectionEyebrow>
 
             <h1
               className="mt-4 mb-6"
@@ -46,7 +41,7 @@ export function ContactPage() {
                 color: "#D4DEE8",
               }}
             >
-              LET'S BUILD SOMETHING.
+              {contact.title}
             </h1>
 
             <div className="mb-6">
@@ -57,7 +52,7 @@ export function ContactPage() {
                 className="text-muted-foreground mt-1"
                 style={{ fontSize: "0.78rem", fontFamily: "'Space Grotesk', sans-serif" }}
               >
-                Software Engineer // Phoenix, AZ
+                {contact.role}
               </p>
             </div>
           </div>
@@ -68,15 +63,10 @@ export function ContactPage() {
               className="text-primary/70 tracking-widest mb-3"
               style={{ fontSize: "0.55rem", fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "0.15em" }}
             >
-              CURRENTLY SEEKING
+              {contact.seekingTitle}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {[
-                "Full-time software engineering roles",
-                "Contract / freelance projects",
-                "Remote or Phoenix, AZ on-site",
-                "Full-stack, backend, or systems work",
-              ].map((item) => (
+              {contact.seeking.map((item) => (
                 <div key={item} className="flex items-center gap-2">
                   <span
                     className="w-1 h-1 rounded-full bg-primary shrink-0"
@@ -117,7 +107,7 @@ export function ContactPage() {
             className="text-muted-foreground mb-10 italic text-center"
             style={{ fontSize: "0.75rem" }}
           >
-            "Available for full-time roles, contract work, and interesting problems."
+            {contact.note}
           </p>
         </FadeIn>
 
@@ -135,7 +125,7 @@ export function ContactPage() {
                     textShadow: "0 0 4px rgba(0,255,212,0.2)",
                   }}
                 >
-                  NAME
+                  {contact.formName}
                 </label>
                 <input
                   type="text"
@@ -156,7 +146,7 @@ export function ContactPage() {
                     textShadow: "0 0 4px rgba(0,255,212,0.2)",
                   }}
                 >
-                  EMAIL
+                  {contact.formEmail}
                 </label>
                 <input
                   type="email"
@@ -178,7 +168,7 @@ export function ContactPage() {
                   textShadow: "0 0 4px rgba(0,255,212,0.2)",
                 }}
               >
-                MESSAGE
+                {contact.formMessage}
               </label>
               <textarea
                 value={form.message}
@@ -187,7 +177,7 @@ export function ContactPage() {
                 rows={4}
                 className="w-full px-4 py-3 bg-[#0C1016] border border-border text-foreground focus:border-primary/40 focus:shadow-[0_0_10px_rgba(0,255,212,0.1)] focus:outline-none transition-all duration-150 resize-none"
                 style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.8rem", caretColor: "#00FFD4" }}
-                placeholder="Tell me about the role or project..."
+                placeholder={contact.formPlaceholder}
               />
             </div>
             <button
@@ -195,7 +185,7 @@ export function ContactPage() {
               className="w-full px-6 py-3 bg-primary text-primary-foreground hover:shadow-[0_0_20px_rgba(0,255,212,0.3)] transition-all duration-150"
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.05em" }}
             >
-              {submitted ? "TRANSMISSION SENT." : "> SEND_MESSAGE"}
+              {submitted ? contact.formSent : contact.formSubmit}
             </button>
           </form>
         </FadeIn>

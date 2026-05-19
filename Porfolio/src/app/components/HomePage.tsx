@@ -1,7 +1,9 @@
 import { Link } from "react-router";
+import { siteCopy } from "@/app/content/siteCopy";
 import { FadeIn } from "./FadeIn";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { HudCard } from "./HudCard";
+import { SectionEyebrow } from "./SectionEyebrow";
 import { Typewriter } from "./Typewriter";
 import { AnimatedCounter } from "./AnimatedCounter";
 
@@ -9,30 +11,7 @@ const HERO_BG = "https://images.unsplash.com/photo-1764347840355-b30ef7283a16?cr
 
 const ABOUT_BG = "https://images.unsplash.com/photo-1745202089032-e2ab9acb5b3c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNlcnQlMjB0ZXJyYWluJTIwYWVyaWFsJTIwZGFyayUyMHNvdXRod2VzdHxlbnwxfHx8fDE3NzM3MDEyNDF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 
-const featuredProjects = [
-  {
-    id: "lunara",
-    tags: ["React 18", "TypeScript", "Node.js", "MongoDB", "Socket.IO"],
-    title: "LUNARA CARE",
-    description: "Production postpartum care coordination platform connecting doulas and new mothers. 375 automated tests, 81.9% coverage, deployed live at lunaracare.org.",
-    liveUrl: "https://www.lunaracare.org",
-  },
-  {
-    id: "iron-palace",
-    tags: ["React 18", "TypeScript", "Vite", "Tailwind 4", "Docker"],
-    title: "IRON PALACE PODCAST",
-    description: "Single-page podcast site that fetches the channel's YouTube RSS at build time so episode links stay reliable on any static host. Live at ironpalace.live.",
-    liveUrl: "https://ironpalace.live",
-  },
-  {
-    id: "turnover-log",
-    tags: ["React 18", "TypeScript", "ASP.NET Core 8", "PostgreSQL", "JWT"],
-    title: "TURNOVER LOG",
-    description:
-      "Maintenance shift handoff board — handoffs, priority, supervisor inbox, and JWT auth. Live full-stack deploy informed by F-22 maintenance experience.",
-    liveUrl: "https://turnover-log.vercel.app",
-  },
-];
+const { home: copy, featuredProjects } = siteCopy;
 
 const techStack = [
   {
@@ -53,12 +32,7 @@ const techStack = [
   },
 ];
 
-const keyMetrics = [
-  { value: "2026", label: "GRADUATED GCU", sub: "B.S. SD + ML/AI minor" },
-  { value: "4", label: "LIVE DEPLOYMENTS", sub: "lunara · iron palace · turnover · streamlit" },
-  { value: "375", label: "TESTS WRITTEN", sub: "81.9% coverage · turnover CI" },
-  { value: "11", label: "PROJECTS SHIPPED", sub: "full-stack to ML" },
-];
+const keyMetrics = copy.metrics;
 
 export function HomePage() {
   return (
@@ -119,22 +93,23 @@ export function HomePage() {
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.85rem" }}
             >
               <Typewriter
-                texts={[
-                  "Software Engineer",
-                  "Full-Stack Developer",
-                  "ML/AI Practitioner",
-                ]}
+                texts={[...copy.typewriter]}
                 typingSpeed={60}
                 deletingSpeed={35}
                 pauseTime={2000}
               />
             </div>
             <p
-              className="mt-3 text-muted-foreground"
-              style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", lineHeight: 1.7, maxWidth: "520px" }}
+              className="mt-3 text-muted-foreground max-w-xl"
+              style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.95rem", lineHeight: 1.75 }}
             >
-              Full-stack developer with a Machine Learning &amp; AI minor.
-              B.S. Software Development from GCU, 2026.
+              {copy.heroTagline}
+            </p>
+            <p
+              className="mt-2 text-muted-foreground/80 max-w-xl"
+              style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.82rem", lineHeight: 1.7 }}
+            >
+              {copy.heroSub}
             </p>
           </FadeIn>
 
@@ -149,12 +124,7 @@ export function HomePage() {
 
               <div className="border border-border bg-card/40 overflow-x-auto" style={{ backdropFilter: "blur(8px)" }}>
                 <div className="grid grid-cols-2 md:grid-cols-4 min-w-[500px]">
-                  {[
-                    { label: "FOCUS", value: "Full-stack +\nApplied ML/AI" },
-                    { label: "EDUCATION", value: "B.S. Software Dev.\n+ ML/AI Minor\nGCU \u00b7 Graduated 2026" },
-                    { label: "STACK", value: "Java \u00b7 Python \u00b7 TS\nReact \u00b7 Spring Boot\nPyTorch \u00b7 Streamlit" },
-                    { label: "LOCATION", value: "Phoenix, AZ\nRemote available" },
-                  ].map((item, i) => (
+                  {copy.readout.map((item, i) => (
                     <div
                       key={item.label}
                       className={`p-4 md:p-5 ${i > 0 ? "border-l border-border" : ""}`}
@@ -171,7 +141,7 @@ export function HomePage() {
                       </p>
                       <p
                         className="text-foreground/80 whitespace-pre-line"
-                        style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.72rem", lineHeight: 1.6 }}
+                        style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.72rem", lineHeight: 1.6 }}
                       >
                         {item.value}
                       </p>
@@ -188,23 +158,23 @@ export function HomePage() {
               <Link
                 to="/projects"
                 className="inline-flex items-center justify-center px-6 py-3 border border-primary text-primary hover:bg-primary/10 hover:shadow-[0_0_20px_rgba(0,255,212,0.15)] transition-all duration-150"
-                style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.05em" }}
+                style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.8rem", fontWeight: 500 }}
               >
-                [ VIEW PROJECTS ]
+                {copy.ctaProjects}
               </Link>
               <Link
                 to="/contact"
                 className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground hover:shadow-[0_0_20px_rgba(0,255,212,0.3)] transition-all duration-150"
-                style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.05em" }}
+                style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.8rem", fontWeight: 500 }}
               >
-                [ CONTACT ME ]
+                {copy.ctaContact}
               </Link>
               <a
                 href="/Owen_Lindsey_Resume.pdf" download
                 className="inline-flex items-center justify-center px-6 py-3 border border-border text-muted-foreground hover:border-primary/50 hover:text-primary transition-all duration-150"
-                style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.05em" }}
+                style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.8rem" }}
               >
-                [ DOWNLOAD RESUME ]
+                {copy.ctaResume}
               </a>
             </div>
           </FadeIn>
@@ -236,7 +206,7 @@ export function HomePage() {
                   </p>
                   <p
                     className="text-muted-foreground mt-0.5"
-                    style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.55rem" }}
+                    style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.55rem" }}
                   >
                     {metric.sub}
                   </p>
@@ -252,16 +222,7 @@ export function HomePage() {
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <div className="flex items-center gap-4 mb-8">
-              <span
-                className="text-primary"
-                style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: "0.75rem",
-                  textShadow: "0 0 8px rgba(0,255,212,0.4)",
-                }}
-              >
-                // SELECTED WORK
-              </span>
+              <SectionEyebrow>{copy.workSection}</SectionEyebrow>
               <div className="flex-1 h-px" style={{ background: "linear-gradient(90deg, #1A2633, transparent)" }} />
             </div>
           </FadeIn>
@@ -311,7 +272,7 @@ export function HomePage() {
                           textShadow: "0 0 8px rgba(255,45,107,0.4)",
                         }}
                       >
-                        [ LIVE :: {new URL(project.liveUrl).host.replace(/^www\./, "")} ]
+                        Live · {new URL(project.liveUrl).host.replace(/^www\./, "")}
                       </a>
                     )}
                     {/* Link */}
@@ -319,7 +280,7 @@ export function HomePage() {
                       className="text-primary/70 group-hover:text-primary transition-colors duration-150"
                       style={{ fontSize: "0.7rem", fontFamily: "'IBM Plex Mono', monospace" }}
                     >
-                      VIEW CASE STUDY &rarr;
+                      Project details &rarr;
                     </span>
                   </HudCard>
                 </Link>
@@ -334,7 +295,7 @@ export function HomePage() {
                 className="text-primary/70 hover:text-primary transition-colors duration-150"
                 style={{ fontSize: "0.7rem", fontFamily: "'IBM Plex Mono', monospace" }}
               >
-                VIEW ALL PROJECTS &rarr;
+                {copy.workViewAll} &rarr;
               </Link>
             </div>
           </FadeIn>
@@ -346,16 +307,7 @@ export function HomePage() {
         <div className="max-w-[1200px] mx-auto">
           <FadeIn>
             <div className="flex items-center gap-4 mb-10">
-              <span
-                className="text-primary"
-                style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: "0.75rem",
-                  textShadow: "0 0 8px rgba(0,255,212,0.4)",
-                }}
-              >
-                // TECHNICAL PROFILE
-              </span>
+              <SectionEyebrow>{copy.techSection}</SectionEyebrow>
               <div className="flex-1 h-px" style={{ background: "linear-gradient(90deg, #1A2633, transparent)" }} />
             </div>
           </FadeIn>
@@ -422,31 +374,25 @@ export function HomePage() {
                 className="mb-6"
                 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "2rem", letterSpacing: "0.04em", color: "#D4DEE8" }}
               >
-                WHY HIRE ME
+                {copy.aboutTitle}
               </h2>
               <div className="space-y-3 text-foreground/70" style={{ fontSize: "0.8rem", lineHeight: 1.8 }}>
                 <div className="flex items-start gap-3">
                   <span className="w-1 h-1 rounded-full bg-primary shrink-0 mt-2.5" style={{ boxShadow: "0 0 4px #00FFD4" }} />
                   <p>
-                    <span className="text-foreground/90">Production experience.</span>{" "}
-                    LUNARA is live at lunaracare.org with real users, 375 tests, and 81.9% coverage.
-                    Iron Palace and a deployed PyTorch sentiment app round out three live deployments.
+                    <span className="text-foreground/90">{copy.aboutPoints[0].lead}</span> {copy.aboutPoints[0].body}
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="w-1 h-1 rounded-full bg-primary shrink-0 mt-2.5" style={{ boxShadow: "0 0 4px #00FFD4" }} />
                   <p>
-                    <span className="text-foreground/90">ML/AI minor.</span>{" "}
-                    Survival analysis, SVMs, and trained PyTorch models on real datasets — not
-                    just glue code around someone else's API.
+                    <span className="text-foreground/90">{copy.aboutPoints[1].lead}</span> {copy.aboutPoints[1].body}
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="w-1 h-1 rounded-full bg-primary shrink-0 mt-2.5" style={{ boxShadow: "0 0 4px #00FFD4" }} />
                   <p>
-                    <span className="text-foreground/90">Full-stack range.</span>{" "}
-                    React to Spring Boot to Python ML tooling to C systems programming.
-                    I go where the problem is.
+                    <span className="text-foreground/90">{copy.aboutPoints[2].lead}</span> {copy.aboutPoints[2].body}
                   </p>
                 </div>
               </div>
@@ -456,14 +402,14 @@ export function HomePage() {
                   className="inline-block text-primary/70 hover:text-primary transition-colors duration-150"
                   style={{ fontSize: "0.7rem", fontFamily: "'IBM Plex Mono', monospace" }}
                 >
-                  [ READ MORE &rarr; ]
+                  {copy.aboutMore} &rarr;
                 </Link>
                 <Link
                   to="/contact"
                   className="inline-block text-accent/70 hover:text-accent transition-colors duration-150"
                   style={{ fontSize: "0.7rem", fontFamily: "'IBM Plex Mono', monospace" }}
                 >
-                  [ GET IN TOUCH &rarr; ]
+                  {copy.aboutContact} &rarr;
                 </Link>
               </div>
             </FadeIn>
@@ -475,12 +421,7 @@ export function HomePage() {
       <section className="border-t border-border py-16 px-6 md:px-20 text-center" style={{ backgroundColor: "#0C1016" }}>
         <div className="max-w-[600px] mx-auto">
           <FadeIn>
-            <p
-              className="text-primary/50 mb-4"
-              style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.65rem" }}
-            >
-              // AVAILABLE NOW
-            </p>
+            <SectionEyebrow className="block mb-4 text-primary/70">Open to work</SectionEyebrow>
             <h2
               style={{
                 fontFamily: "'Bebas Neue', sans-serif",
@@ -489,29 +430,28 @@ export function HomePage() {
                 color: "#D4DEE8",
               }}
             >
-              READY TO JOIN YOUR TEAM.
+              {copy.ctaTitle}
             </h2>
             <p
               className="text-muted-foreground mt-3 mb-8"
-              style={{ fontSize: "0.78rem", lineHeight: 1.7 }}
+              style={{ fontSize: "0.9rem", lineHeight: 1.7, fontFamily: "'Space Grotesk', sans-serif" }}
             >
-              Looking for full-time, contract, or remote software engineering roles.
-              Based in Phoenix, AZ.
+              {copy.ctaBody}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 to="/contact"
                 className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground hover:shadow-[0_0_20px_rgba(0,255,212,0.3)] transition-all duration-150"
-                style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.05em" }}
+                style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.85rem", fontWeight: 500 }}
               >
-                [ CONTACT ME ]
+                {copy.ctaBottomContact}
               </Link>
               <a
                 href="/Owen_Lindsey_Resume.pdf" download
                 className="inline-flex items-center justify-center px-8 py-3 border border-border text-muted-foreground hover:border-primary/50 hover:text-primary transition-all duration-150"
-                style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.05em" }}
+                style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.85rem" }}
               >
-                [ DOWNLOAD RESUME ]
+                {copy.ctaBottomResume}
               </a>
             </div>
           </FadeIn>
