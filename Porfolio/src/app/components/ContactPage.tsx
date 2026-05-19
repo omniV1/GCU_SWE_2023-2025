@@ -89,7 +89,7 @@ export function ContactPage() {
               { label: "Resume PDF", href: "/Owen_Lindsey_Resume.pdf" },
             ].map((link, i) => (
               <span key={link.label} className="flex items-center">
-                {i > 0 && <span className="text-border mx-2">//</span>}
+                {i > 0 && <span className="text-border mx-2">·</span>}
                 <a
                   href={link.href}
                   target={link.href.startsWith("http") ? "_blank" : undefined}

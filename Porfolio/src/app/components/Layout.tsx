@@ -40,7 +40,7 @@ function AvailabilityBanner() {
           className="text-primary/60 hover:text-primary transition-colors duration-150 hidden sm:block"
           style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.55rem" }}
         >
-          [ GET IN TOUCH ]
+          Get in touch
         </Link>
       </div>
     </div>

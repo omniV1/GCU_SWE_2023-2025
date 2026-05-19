@@ -123,6 +123,14 @@ export const siteCopy = {
     qualificationsTitle: "Also worth knowing",
   },
 
+  resume: {
+    eyebrow: "Resume",
+    title: "Download resume",
+    body: "PDF resume available for download. For the most current information, see the projects and about pages.",
+    download: "Download PDF",
+    viewInBrowser: "View in browser",
+  },
+
   contact: {
     eyebrow: "Contact",
     title: "Say hello",
