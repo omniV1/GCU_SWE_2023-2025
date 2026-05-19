@@ -19,7 +19,7 @@ export const siteCopy = {
   },
 
   home: {
-    heroTagline: "I build web apps that ship, from client work to side projects.",
+    heroTagline: "Full-stack developer with live apps in production, from client work to side projects.",
     heroSub:
       "GCU grad (B.S. Software Development, ML/AI minor). Before code: five years on F-22 maintenance at Edwards AFB.",
     typewriter: [
@@ -29,7 +29,7 @@ export const siteCopy = {
     ],
     readout: [
       { label: "Focus", value: "Full-stack +\napplied ML" },
-      { label: "Education", value: "B.S. Software Dev\nML/AI minor · GCU 2026" },
+      { label: "Education", value: "B.S. Software Dev\nML/AI minor · GCU\nAug 2023 - Apr 2026" },
       { label: "Stack", value: "React · .NET · Java\nPython · Spring Boot" },
       { label: "Based in", value: "Phoenix, AZ\nOpen to remote" },
     ],
@@ -37,7 +37,7 @@ export const siteCopy = {
     ctaContact: "Get in touch",
     ctaResume: "Download resume",
     metrics: [
-      { value: "2026", label: "Graduated", sub: "GCU · Software Dev + ML/AI" },
+      { value: "2026", label: "Graduated", sub: "GCU · Apr 2026 · Software Dev + ML/AI" },
       { value: "4", label: "Live apps", sub: "Lunara, Iron Palace, Turnover Log + ML demos" },
       { value: "5 yr", label: "USAF", sub: "F-22 maintenance · Edwards AFB" },
       { value: "375", label: "Lunara tests", sub: "81.9% coverage in production" },
@@ -99,7 +99,7 @@ export const siteCopy = {
     eyebrow: "Projects",
     title: "Things I've built",
     intro:
-      "Coursework, client work, and projects I shipped on my own. Click a card for more detail, or open the live site when you see the badge.",
+      "Coursework, client work, and projects I built and deployed on my own. Click a card for more detail, or open the live site when you see the badge.",
     statLearningEyebrow: "Statistical learning · AIT-110",
     statLearningIntro:
       "Three notebooks I'm especially proud of. Each has a walkthrough video if you want to hear my thinking out loud.",
@@ -114,7 +114,7 @@ export const siteCopy = {
     title: "Hi, I'm Owen",
     backgroundTitle: "Background",
     paragraphs: [
-      "I'm a software engineer who graduated from Grand Canyon University in 2026 (B.S. Software Development, Machine Learning & AI minor). I like owning a feature from the database to the UI and leaving it in a state the next person can maintain.",
+      "I'm a software engineer who graduated from Grand Canyon University in April 2026 (B.S. Software Development, Machine Learning & AI minor, Aug 2023 - Apr 2026). I like owning a feature from the database to the UI and leaving it in a state the next person can maintain.",
       "My ML minor wasn't a checkbox: survival analysis, SVMs, ensembles, and a PyTorch sentiment model I trained, evaluated, and deployed to Streamlit with real metrics I can walk through.",
       "Before GCU I spent five years in the Air Force on F-22 maintenance at Edwards AFB, crew chief work with USAF, Lockheed, and Boeing teams. That's where Turnover Log started. I still hold (and can reactivate) Secret clearance.",
     ],
