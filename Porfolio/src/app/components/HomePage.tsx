@@ -25,11 +25,12 @@ const featuredProjects = [
     liveUrl: "https://ironpalace.live",
   },
   {
-    id: "nlp-sentiment",
-    tags: ["Python", "PyTorch", "Streamlit", "NLP"],
-    title: "NLP SENTIMENT ANALYSIS",
-    description: "End-to-end PyTorch sentiment classifier with a Streamlit frontend / model-service backend split, deployed to Streamlit Community Cloud with a translation comparison tab.",
-    liveUrl: "https://nlp-owen.streamlit.app/",
+    id: "turnover-log",
+    tags: ["React 18", "TypeScript", "ASP.NET Core 8", "PostgreSQL", "JWT"],
+    title: "TURNOVER LOG",
+    description:
+      "Maintenance shift handoff board — handoffs, priority, supervisor inbox, and JWT auth. Live full-stack deploy informed by F-22 maintenance experience.",
+    liveUrl: "https://turnover-log.vercel.app",
   },
 ];
 
@@ -54,9 +55,9 @@ const techStack = [
 
 const keyMetrics = [
   { value: "2026", label: "GRADUATED GCU", sub: "B.S. SD + ML/AI minor" },
-  { value: "3", label: "LIVE DEPLOYMENTS", sub: "lunara · iron palace · streamlit" },
-  { value: "375", label: "TESTS WRITTEN", sub: "81.9% coverage" },
-  { value: "10", label: "PROJECTS SHIPPED", sub: "full-stack to ML" },
+  { value: "4", label: "LIVE DEPLOYMENTS", sub: "lunara · iron palace · turnover · streamlit" },
+  { value: "375", label: "TESTS WRITTEN", sub: "81.9% coverage · turnover CI" },
+  { value: "11", label: "PROJECTS SHIPPED", sub: "full-stack to ML" },
 ];
 
 export function HomePage() {

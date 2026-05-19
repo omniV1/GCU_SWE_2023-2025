@@ -85,6 +85,31 @@ const allProjects: Project[] = [
     liveUrl: "https://ironpalace.live",
   },
   {
+    id: "turnover-log",
+    title: "TURNOVER LOG",
+    category: "FULL-STACK",
+    tags: [
+      "React 18",
+      "TypeScript",
+      "Vite 6",
+      "Tailwind CSS 4",
+      "ASP.NET Core 8",
+      "EF Core",
+      "PostgreSQL",
+      "JWT",
+      "xUnit",
+      "Vercel",
+      "Render",
+      "GitHub Actions",
+    ],
+    short:
+      "Live shift handoff board for maintenance crews — open items, equipment tags, priority, resolve flow, and a supervisor inbox (no SMTP required). Informed by hands-on F-22 maintenance experience. Deployed at turnover-log.vercel.app.",
+    expanded:
+      "Full-stack portfolio build: React 18 + TypeScript + Vite 6 client with an accessible, maintenance-focused UI; ASP.NET Core 8 Web API with EF Core, JWT authentication, and role-style flows for technicians vs supervisors.\n\nHandoff CRUD with severity and status filters. When a handoff opens or closes, the API writes to a supervisor notification inbox in the database; optional SMTP only if configured — production runs in-app alerts only.\n\nLocal dev uses SQL Server; production API on Render uses PostgreSQL via DATABASE_URL. xUnit integration tests with an in-memory database and fake email sender; GitHub Actions runs dotnet test on every push.\n\nClient deployed to Vercel (VITE_API_URL); API + DB via Render blueprint (render.yaml). Board starts empty — no seeded sample handoffs.",
+    github: "https://github.com/omniV1/turnover-log",
+    liveUrl: "https://turnover-log.vercel.app",
+  },
+  {
     id: "nlp-sentiment",
     title: "NLP SENTIMENT ANALYSIS",
     category: "ML-AI",

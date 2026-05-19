@@ -7,6 +7,7 @@ const timeline = [
   { year: "2026", event: "Graduated GCU — B.S. Software Development with Machine Learning & AI minor" },
   { year: "2026", event: "AIT-110 Statistical Learning — survival analysis, SVMs, ensembles, unsupervised methods" },
   { year: "2026", event: "AIT-204 Deep Learning — trained and deployed a PyTorch NLP sentiment classifier" },
+  { year: "2026", event: "Turnover Log — maintenance shift handoff app deployed (turnover-log.vercel.app)" },
   { year: "2026", event: "Iron Palace — single-page podcast site shipped to ironpalace.live" },
   { year: "2026", event: "LUNARA — senior capstone, deployed to production at lunaracare.org" },
   { year: "2026", event: "Built Multi-Agent Code Quality System" },
