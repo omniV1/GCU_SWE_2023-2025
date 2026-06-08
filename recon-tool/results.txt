@@ -1,0 +1,24 @@
+Scan target: ftp.gnu.org
+  CVE: CVE-1999-0202 - The GNU tar command, when used in FTP sessions, may allow an attacker to execute arbitrary commands.
+  CVE: CVE-1999-1411 - The installation of the fsp package 2.71-10 in Debian GNU/Linux 2.0 adds the anonymous FTP user with
+  CVE: CVE-1999-0914 - Buffer overflow in the FTP client in the Debian GNU/Linux netstd package.
+Banner: 220 GNU FTP server ready.
+--------------------
+Port 21 is open
+--------------------
+  CVE: CVE-2021-36368 - An issue was discovered in OpenSSH before 8.9. If a client is using public-key authentication with a
+  CVE: CVE-2023-28531 - ssh-add in OpenSSH before 9.3 adds smartcard keys to ssh-agent without the intended per-hop destinat
+Banner: SSH-2.0-OpenSSH_8.9p1 Trisquel_GNU/Linux_11.0-10
+--------------------
+Port 22 is open
+--------------------
+Port 80 is open
+--------------------
+Port 443 is open
+--------------------
+Port 8080 is closed
+--------------------
+Port 3306 is closed
+--------------------
+Port 5432 is closed
+--------------------
