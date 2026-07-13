@@ -15,20 +15,30 @@ namespace CineScope.Server.Services
         private readonly IMongoDbService _mongoDbService;
         private readonly MongoDbSettings _settings;
         private readonly ILogger<DataSeedService> _logger;
+        private readonly IConfiguration _configuration;
+        private readonly IHostEnvironment _environment;
 
         public DataSeedService(
             IMongoDbService mongoDbService,
             IOptions<MongoDbSettings> settings,
-            ILogger<DataSeedService> logger)
+            ILogger<DataSeedService> logger,
+            IConfiguration configuration,
+            IHostEnvironment environment)
         {
             _mongoDbService = mongoDbService;
             _settings = settings.Value;
             _logger = logger;
+            _configuration = configuration;
+            _environment = environment;
         }
 
         public async Task SeedInitialDataAsync()
         {
-            await SeedAdminUserAsync();
+            if (_environment.IsDevelopment())
+            {
+                await SeedAdminUserAsync();
+            }
+
             await SeedBannedWordsAsync();
             await CreateDatabaseIndexesAsync();
         }
@@ -38,21 +48,25 @@ namespace CineScope.Server.Services
         /// </summary>
         private async Task SeedAdminUserAsync()
         {
+            var username = GetRequiredSeedSetting("AdminSeed:Username");
+            var email = GetRequiredSeedSetting("AdminSeed:Email");
+            var password = GetRequiredSeedSetting("AdminSeed:Password");
+
             try
             {
                 var usersCollection = _mongoDbService.GetCollection<User>(_settings.UsersCollectionName);
 
                 // Check if admin user already exists
-                var adminUser = await usersCollection.Find(u => u.Username == "AdminUser").FirstOrDefaultAsync();
+                var adminUser = await usersCollection.Find(u => u.Username == username).FirstOrDefaultAsync();
 
                 if (adminUser == null)
                 {
                     // Create admin user
                     var newAdmin = new User
                     {
-                        Username = "AdminUser",
-                        Email = "admin@cinescope.com",
-                        PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin123!"), // Change in production!
+                        Username = username,
+                        Email = email,
+                        PasswordHash = BCrypt.Net.BCrypt.HashPassword(password),
                         Roles = new List<string> { "Admin", "User" },
                         CreatedAt = DateTime.UtcNow,
                         IsLocked = false,
@@ -80,6 +94,18 @@ namespace CineScope.Server.Services
             {
                 _logger.LogError(ex, "Error seeding admin user");
             }
+        }
+
+        private string GetRequiredSeedSetting(string key)
+        {
+            var value = _configuration[key];
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new InvalidOperationException(
+                    $"{key.Replace(":", "__")} must be configured for Development admin seeding.");
+            }
+
+            return value;
         }
 
         /// <summary>

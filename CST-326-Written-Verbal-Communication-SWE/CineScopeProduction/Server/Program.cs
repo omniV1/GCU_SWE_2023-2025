@@ -23,7 +23,7 @@ builder.Services.AddRazorPages();
 builder.Services.Configure<MongoDbSettings>(
     builder.Configuration.GetSection(nameof(MongoDbSettings)));
 
-// Add memory cache 
+// Add memory cache
 builder.Services.AddMemoryCache();
 
 // Register MongoDB service
@@ -34,7 +34,10 @@ builder.Services.AddSingleton<MovieCacheService>();
 
 // Register other services
 builder.Services.AddScoped<AdminService>();
-builder.Services.AddScoped<DataSeedService>();
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddScoped<DataSeedService>();
+}
 builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ReviewService>();
@@ -42,8 +45,26 @@ builder.Services.AddScoped<ContentFilterService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddHttpClient<RecaptchaService>();
 builder.Services.AddScoped<RecaptchaService>();
-builder.Services.Configure<RecaptchaSettings>(
-    builder.Configuration.GetSection("Recaptcha"));
+builder.Services.AddOptions<RecaptchaSettings>()
+    .Bind(builder.Configuration.GetSection("Recaptcha"))
+    .Validate(
+        settings => !settings.Enabled ||
+                    (!string.IsNullOrWhiteSpace(settings.SiteKey) &&
+                     !string.IsNullOrWhiteSpace(settings.SecretKey)),
+        "Recaptcha__SiteKey and Recaptcha__SecretKey are required when reCAPTCHA is enabled.")
+    .ValidateOnStart();
+
+var jwtIssuer = builder.Configuration["JwtSettings:Issuer"]
+    ?? throw new InvalidOperationException("JwtSettings__Issuer is required.");
+var jwtAudience = builder.Configuration["JwtSettings:Audience"]
+    ?? throw new InvalidOperationException("JwtSettings__Audience is required.");
+var jwtSecret = builder.Configuration["JwtSettings:Secret"]
+    ?? throw new InvalidOperationException("JwtSettings__Secret is required.");
+
+if (Encoding.UTF8.GetByteCount(jwtSecret) < 32)
+{
+    throw new InvalidOperationException("JwtSettings__Secret must be at least 32 bytes.");
+}
 
 builder.Services.AddAuthentication(options =>
 {
@@ -52,51 +73,16 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
-    try
+    options.TokenValidationParameters = new TokenValidationParameters
     {
-        // Get JWT settings with fallbacks
-        var jwtIssuer = builder.Configuration["JwtSettings__Issuer"] ??
-                        builder.Configuration["JwtSettings:Issuer"] ??
-                        "https://cinescope-ctaec7bchqbehtdf.westus-01.azurewebsites.net";
-
-        var jwtAudience = builder.Configuration["JwtSettings__Audience"] ??
-                          builder.Configuration["JwtSettings:Audience"] ??
-                          "https://cinescope-ctaec7bchqbehtdf.westus-01.azurewebsites.net";
-
-        var jwtSecret = builder.Configuration["JwtSettings__Secret"] ??
-                        builder.Configuration["JwtSettings:Secret"] ??
-                        "very_long_secret_key_for_development_purposes_at_least_32_characters";
-
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = jwtIssuer,
-            ValidAudience = jwtAudience,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret))
-        };
-
-        // For troubleshooting
-        Console.WriteLine($"JWT Config - Issuer: {jwtIssuer}, Audience: {jwtAudience}, Secret Length: {jwtSecret?.Length ?? 0}");
-    }
-    catch (Exception ex)
-    {
-        // Log the error but don't throw
-        Console.WriteLine($"Error configuring JWT: {ex.Message}");
-
-        // Use a default fallback configuration
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = false,
-            ValidateAudience = false,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes("very_long_secret_key_for_development_purposes_at_least_32_characters"))
-        };
-    }
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtIssuer,
+        ValidAudience = jwtAudience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret))
+    };
 });
 
 // Add authorization

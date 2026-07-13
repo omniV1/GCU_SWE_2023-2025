@@ -5,8 +5,10 @@ import { UserDAO } from '../user/user.dao';
 
 const userDAO = new UserDAO();
 
-// This should be in an environment variable in a real application
-const JWT_SECRET = process.env.JWT_SECRET || 'Pickles';
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET must be set before starting the API.');
+}
 
 export const login = async (req: Request, res: Response) => {
   const { username, password } = req.body;

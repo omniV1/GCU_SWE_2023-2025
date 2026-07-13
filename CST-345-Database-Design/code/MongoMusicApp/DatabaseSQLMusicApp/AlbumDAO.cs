@@ -10,7 +10,6 @@ namespace MongoDBMusicApp
 {
     internal class AlbumDAO
     {
-        private const string CONNECTION = "mongodb+srv://OwenLindsey:Owen@myAtlasClusterEDU.bjgbnzk.mongodb.net/";
         private const string DATABASE_NAME = "musicDatabase";
         private const string ALBUM_COLLECTION = "albums";
         private MongoClient client;
@@ -19,7 +18,14 @@ namespace MongoDBMusicApp
 
         public AlbumDAO()
         {
-            client = new MongoClient(CONNECTION);
+            var connectionString = Environment.GetEnvironmentVariable("MONGODB_ATLAS_URI");
+            if (string.IsNullOrWhiteSpace(connectionString))
+            {
+                throw new InvalidOperationException(
+                    "MONGODB_ATLAS_URI must be set before starting MongoMusicApp.");
+            }
+
+            client = new MongoClient(connectionString);
             database = client.GetDatabase(DATABASE_NAME);
             albumCollection = database.GetCollection<Album>(ALBUM_COLLECTION);
         }

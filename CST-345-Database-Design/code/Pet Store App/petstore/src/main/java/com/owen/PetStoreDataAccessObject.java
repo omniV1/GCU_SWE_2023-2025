@@ -23,8 +23,12 @@ public class PetStoreDataAccessObject {
      * Constructor to initialize MongoDB connection.
      */
     public PetStoreDataAccessObject() {
-        
-        String connectionString = "mongodb+srv://myAtlasDBUser:1@myatlasclustered.byiowq8.mongodb.net/?retryWrites=true&w=majority";
+        String connectionString = System.getenv("MONGODB_ATLAS_URI");
+        if (connectionString == null || connectionString.trim().isEmpty()) {
+            throw new IllegalStateException(
+                "MONGODB_ATLAS_URI must be set before starting the Pet Store app.");
+        }
+
         MongoClient mongoClient = MongoClients.create(connectionString);
         this.database = mongoClient.getDatabase("Pets");
         this.collection = database.getCollection("petscollection");
@@ -32,7 +36,7 @@ public class PetStoreDataAccessObject {
 
     /**
      * Adds a new pet to the database.
-     * 
+     *
      * @param pet The Pet object to add.
      * @return true if the operation was successful.
      */
@@ -48,7 +52,7 @@ public class PetStoreDataAccessObject {
 
     /**
      * Retrieves a pet by its ID.
-     * 
+     *
      * @param id The ID of the pet to retrieve.
      * @return The found Pet object, or null if not found.
      */
@@ -64,7 +68,7 @@ public class PetStoreDataAccessObject {
 
     /**
      * Updates a pet in the database.
-     * 
+     *
      * @param pet The Pet object to update.
      * @return true if the operation was successful.
      */
@@ -76,10 +80,10 @@ public class PetStoreDataAccessObject {
                     .append("description", pet.getDescription())
                     .append("price", pet.getPrice())
                     .append("categoryId", pet.getCategoryId());
-            
+
             // Update the document in the collection corresponding to the ObjectId
             collection.updateOne(Filters.eq("_id", id), new Document("$set", update));
-            
+
             // If the code reaches this point without an exception, the update was successful
             return true;
         } catch (Exception e) {
@@ -88,10 +92,10 @@ public class PetStoreDataAccessObject {
             return false;
         }
     }
-    
+
     /**
      * Deletes a pet from the database by name.
-     * 
+     *
      * @param name The name of the pet to delete.
      * @return true if the operation was successful.
      */
@@ -102,7 +106,7 @@ public class PetStoreDataAccessObject {
 
     /**
      * Searches for pets by a keyword in their name or description.
-     * 
+     *
      * @param keyword The keyword to search for.
      * @return A list of Pet objects matching the keyword.
      */
@@ -115,14 +119,14 @@ public class PetStoreDataAccessObject {
         collection.find(query).forEach(doc -> pets.add(documentToPet(doc)));
         return pets;
     }
-    
-   
-    
-    
+
+
+
+
 
     /**
      * Retrieves all pets from the database.
-     * 
+     *
      * @return A list of all Pet objects.
      */
     public List<Pet> getAllPets() {
@@ -133,7 +137,7 @@ public class PetStoreDataAccessObject {
 
     /**
      * Converts a Document object to a Pet object.
-     * 
+     *
      * @param doc The Document object to convert.
      * @return A Pet object.
      */
@@ -142,11 +146,11 @@ public class PetStoreDataAccessObject {
         pet.setId(doc.getObjectId("_id").toString());
         pet.setName(doc.getString("name"));
         pet.setDescription(doc.getString("description"));
-        
+
         // Retrieve the price as a Number and convert to double
         Number price = doc.get("price", Number.class);
         pet.setPrice(price.doubleValue());
-        
+
         pet.setCategoryId(doc.getInteger("categoryId"));
         return pet;
     }
