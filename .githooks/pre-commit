@@ -33,6 +33,7 @@ SKIP_PATTERNS = [
     "demo",
     "test_",
     "sample_",
+    "siteCopy.ts",  # Portfolio copy/content, not application logic
 ]
 
 def get_staged_files():
