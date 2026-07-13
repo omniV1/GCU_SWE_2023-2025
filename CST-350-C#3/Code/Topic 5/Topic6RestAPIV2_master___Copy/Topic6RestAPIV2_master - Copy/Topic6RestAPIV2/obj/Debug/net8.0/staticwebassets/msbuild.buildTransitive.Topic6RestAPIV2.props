@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\Topic6RestAPIV2.props" />
-</Project>

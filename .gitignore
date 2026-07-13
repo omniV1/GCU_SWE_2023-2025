@@ -8,6 +8,7 @@ Thumbs.db
 .vscode/
 .idea/
 *.code-workspace
+.obsidian/
 
 # .NET build artifacts
 **/bin/
@@ -21,7 +22,35 @@ node_modules/
 **/dist/
 **/.angular/cache/
 
+# Java / Maven
+**/target/
+
+# Python
+**/__pycache__/
+**/.venv/
+**/venv/
+*.py[cod]
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Private job-search documents
+Porfolio/resume/Job_Applications/
+Porfolio/resume/20994841.pdf
+Porfolio/resume/Owen_Lindsey_*.pdf
+!Porfolio/resume/Owen_Lindsey_Resume.pdf
+Porfolio/public/*.docx
+
 # Archives
 **/*.zip
-
-

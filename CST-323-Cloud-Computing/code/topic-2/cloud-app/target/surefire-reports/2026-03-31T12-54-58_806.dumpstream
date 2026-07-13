@@ -1,5 +1,0 @@
-# Created at 2026-03-31T12:54:59.469
-Boot Manifest-JAR contains absolute paths in classpath 'E:\GCU_SWE_2023-2025\CST-323-Cloud-Computing\code\topic-2\cloud-app\target\test-classes'
-Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-'other' has different root
-

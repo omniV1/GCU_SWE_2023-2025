@@ -22,9 +22,9 @@ This project is a RESTful API for managing aircraft maintenance records.
 - [x] **Custom Middleware**: Implemented `ErrorHandlingMiddleware` to handle and log exceptions.
 - [x] **Status Code Pages**: Configured status code pages to return JSON responses for API errors.
 
-### Unit and Integration Testing
-- [x] **Unit Tests**: Wrote unit tests for service methods.
-- [x] **Integration Tests**: Created integration tests using Postman for API endpoints, including tests for response status, content type, and schema validation.
+### API Testing
+- [x] **Postman Tests**: Created API checks for response status, content type, and schema validation.
+- [ ] **Automated Test Project**: Add unit and integration tests that run outside Postman.
 
 ### Documentation
 - [x] **API Documentation**: Documented API endpoints and example requests/responses in Postman.
@@ -53,8 +53,10 @@ This project is a RESTful API for managing aircraft maintenance records.
 
 First, clone the repository to your local machine:
 
-git clone https://github.com/yourusername/AircraftMaintenanceAPI.git
-cd AircraftMaintenanceAPI
+```bash
+git clone https://github.com/omniV1/GCU_SWE_2023-2025.git
+cd GCU_SWE_2023-2025/SummerPractice/AerospaceAPI/AircraftMaintenanceAPI
+```
 
 ### Setup the Database
 
@@ -64,20 +66,12 @@ CREATE DATABASE AircraftMaintenanceDB;
 
 ### Configure Connection String
 
-Update the connection string in `appsettings.json` to match your MySQL configuration:
+Keep credentials out of `appsettings.json`. Store the local connection string with
+.NET user secrets:
 
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "server=localhost;port=3306;database=AircraftMaintenanceDB;user=root;password=Bannana"
-  },
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "AllowedHosts": "*"
-}
+```bash
+dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Server=localhost;Port=3306;Database=AircraftMaintenanceDB;User=your_user;Password=your_password;"
+```
 
 ### Restore Dependencies
 
