@@ -57,3 +57,7 @@ Porfolio/public/*.docx
 
 # Vendored third-party coursework dependency
 CST-180-Python/Homework/Presentation/AeroSandbox-master/
+
+# Standalone portfolio repositories cloned beside the coursework archive
+turnover-log/
+iron_palace-/
