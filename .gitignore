@@ -54,3 +54,6 @@ Porfolio/public/*.docx
 
 # Archives
 **/*.zip
+
+# Vendored third-party coursework dependency
+CST-180-Python/Homework/Presentation/AeroSandbox-master/
