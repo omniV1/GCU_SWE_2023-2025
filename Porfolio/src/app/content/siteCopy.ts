@@ -1,12 +1,18 @@
 /**
- * Portfolio site voice: plain, specific, written like Owen talks.
- * Keep the HUD look; soften the words.
+ * Portfolio site voice: plain, specific, recruiter-scannable in ~30 seconds.
  */
+
+export const recruiterLinks = [
+  { label: "Resume (PDF)", href: "/Owen_Lindsey_Resume.pdf", download: true },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/owen-lindsey-5b323a23b/" },
+  { label: "Email", href: "mailto:owen.lindsey98@outlook.com" },
+  { label: "GitHub", href: "https://github.com/omniV1" },
+] as const
 
 export const siteCopy = {
   brand: {
     logo: "Owen Lindsey",
-    footer: "© 2026 Owen Lindsey · Thanks for stopping by.",
+    footer: "© 2026 Owen Lindsey · Full-stack software engineer · Phoenix, AZ",
   },
 
   nav: {
@@ -16,55 +22,56 @@ export const siteCopy = {
     contact: "Contact",
     menuOpen: "Close",
     menuClosed: "Menu",
+    resumeCta: "Resume ↓",
   },
 
   home: {
-    heroTagline: "Full-stack developer with live apps in production, from client work to side projects.",
+    heroRole: "Full-Stack Software Engineer",
+    heroTagline:
+      "I ship full-stack apps end to end—React and TypeScript on the front, .NET or Node on the back—with four live demos you can click through below.",
     heroSub:
-      "GCU grad (B.S. Software Development, ML/AI minor). Before code: five years on F-22 maintenance at Edwards AFB.",
+      "GCU '26 (B.S. Software Development, ML/AI minor). Five years on F-22 maintenance before I wrote code for a living.",
     typewriter: [
-      "Full-stack software engineer",
       "React · TypeScript · .NET · Node.js",
-      "USAF veteran · F-22 maintenance",
+      "4 live apps in production",
+      "Open to full-time · Phoenix or remote",
     ],
     readout: [
-      { label: "Focus", value: "Full-stack product\nengineering" },
-      { label: "Education", value: "B.S. Software Dev\nML/AI minor · GCU\nAug 2023 - Apr 2026" },
-      { label: "Stack", value: "React · TypeScript\n.NET · Node.js" },
-      { label: "Based in", value: "Phoenix, AZ\nOpen to remote" },
+      { label: "Status", value: "Open to work\nFull-time preferred" },
+      { label: "Education", value: "B.S. Software Dev\nML/AI minor · GCU '26" },
+      { label: "Stack", value: "React · TypeScript\n.NET · Node.js · Python" },
+      { label: "Location", value: "Phoenix, AZ\nRemote OK" },
     ],
-    ctaProjects: "See my work",
-    ctaContact: "Get in touch",
+    ctaProjects: "View projects",
+    ctaContact: "Contact",
     ctaResume: "Download resume",
     metrics: [
-      { value: "2026", label: "Graduated", sub: "GCU · Apr 2026 · Software Dev + ML/AI" },
-      { value: "4", label: "Live apps", sub: "Lunara, Iron Palace, Turnover Log + ML demos" },
-      { value: "5 yr", label: "USAF", sub: "F-22 maintenance · Edwards AFB" },
-      { value: "375", label: "Lunara tests", sub: "81.9% coverage in production" },
+      { value: "2026", label: "Graduated", sub: "GCU · Software Dev + ML/AI" },
+      { value: "4", label: "Live apps", sub: "Lunara, Iron Palace, Turnover Log, NLP Sentiment" },
     ],
-    workSection: "Work I'm proud of",
-    workViewAll: "All projects",
-    techSection: "What I work with",
-    aboutTitle: "A little more context",
+    recruiter: {
+      eyebrow: "Recruiter snapshot",
+      bullets: [
+        "Targeting junior / entry-level full-stack roles (and teams that value ops or maintenance backgrounds).",
+        "Strongest proof: Lunara Care—live capstone with 375 automated tests and 82% line coverage.",
+        "Stack match: React, TypeScript, ASP.NET Core, Node.js, MongoDB, PostgreSQL, JWT, CI/CD.",
+        "Secret clearance held during USAF service; not currently active.",
+      ],
+    },
+    workSection: "Selected work (live demos)",
+    workViewAll: "All projects + coursework",
+    techSection: "Technical skills",
+    aboutTitle: "Background",
     aboutPoints: [
-      {
-        lead: "Production beats prototypes.",
-        body: "Lunara Care is live at lunaracare.org with real doula-client users. Iron Palace, Turnover Log, and ML demos are deployed too. Links are on the projects page.",
-      },
-      {
-        lead: "ML/AI minor, not just buzzwords.",
-        body: "Survival analysis, SVMs, and a PyTorch sentiment app I trained and deployed myself, with numbers I can explain in an interview.",
-      },
-      {
-        lead: "Maintenance background still shows up.",
-        body: "Turnover Log came from shift handoffs on the flight line. I care about tools crews will actually use.",
-      },
+      "Lunara Care is my capstone—live at lunaracare.org with a full case study at lunara-profile.design.",
+      "Iron Palace and Turnover Log are shipped apps; NLP Sentiment is a deployed PyTorch + Streamlit demo.",
+      "I spent five years on F-22s at Edwards before GCU. I still think in handoffs, checklists, and who uses the tool next.",
     ],
-    aboutMore: "About me",
-    aboutContact: "Say hello",
-    ctaTitle: "Looking for a teammate?",
-    ctaBody: "Open to full-time, contract, or remote roles. Based in Phoenix, AZ.",
-    ctaBottomContact: "Contact me",
+    aboutMore: "Full bio",
+    aboutContact: "Email me",
+    ctaTitle: "Looking for a wingman?",
+    ctaBody: "Full-time or contract. Phoenix-based, open to remote. Reply by email or LinkedIn—I read everything.",
+    ctaBottomContact: "Contact",
     ctaBottomResume: "Resume (PDF)",
   },
 
@@ -74,49 +81,62 @@ export const siteCopy = {
       tags: ["React", "TypeScript", "Node.js", "MongoDB"],
       title: "Lunara Care",
       description:
-        "Postpartum care platform I led end to end: scheduling, chat, care plans. Live with real users at lunaracare.org.",
+        "Capstone in production at lunaracare.org. Provider/client platform with scheduling, real-time chat, and care plans. 375 tests, 82% coverage.",
       liveUrl: "https://www.lunaracare.org",
+      caseStudyUrl: "https://www.lunara-profile.design/",
+      screenshot: "/screenshots/LunaraHome.png",
     },
     {
       id: "turnover-log",
       tags: ["React", "ASP.NET Core 8", "PostgreSQL"],
       title: "Turnover Log",
       description:
-        "Shift handoff board I built after F-22 maintenance work. Technicians log open items; supervisors see updates without setting up email.",
+        "Shift handoff app from my maintenance background. React + ASP.NET Core 8, JWT auth, supervisor inbox, GitHub Actions CI.",
       liveUrl: "https://turnover-log.vercel.app",
+      screenshot: "/screenshots/TurnoverTechHome.png",
     },
     {
       id: "iron-palace",
       tags: ["React", "Vite", "Docker"],
       title: "Iron Palace Podcast",
       description:
-        "Podcast site for a client. Pulls YouTube RSS at build time so new episodes show up after a redeploy.",
+        "Client podcast site at ironpalace.live. YouTube RSS at build time, in-app player, admin panel, Dockerized static deploy.",
       liveUrl: "https://ironpalace.live",
+      screenshot: "/screenshots/IronPalacePodcastHome.png",
+    },
+    {
+      id: "nlp-sentiment",
+      tags: ["Python", "PyTorch", "Streamlit"],
+      title: "Movie Sentiment Analyzer",
+      description:
+        "PyTorch classifier with separated train/serve layers. Live Streamlit demo with translation-comparison tab for cross-lingual drift.",
+      liveUrl: "https://nlp-moviereview.streamlit.app/",
+      screenshot: "/screenshots/MovieReviewSentimentAnalyzer.png",
     },
   ] as const,
 
   projectsPage: {
     eyebrow: "Projects",
-    title: "Things I've built",
+    title: "Work samples",
     intro:
-      "Coursework, client work, and projects I built and deployed on my own. Click a card for more detail, or open the live site when you see the badge.",
+      "Start with the four live apps on the home page. Everything else is coursework, client work, or tools I built to learn. Each live badge links to something you can click.",
     statLearningEyebrow: "Statistical learning · AIT-110",
     statLearningIntro:
-      "Three notebooks I'm especially proud of. Each has a walkthrough video if you want to hear my thinking out loud.",
-    expand: "More detail",
+      "Notebook work with walkthrough videos—useful if you're evaluating ML fundamentals, not just framework tutorials.",
+    expand: "Technical detail",
     collapse: "Less detail",
     viewGithub: "Code on GitHub",
-    liveBadge: "Live",
+    liveBadge: "Live demo",
   },
 
   about: {
     eyebrow: "About",
-    title: "Hi, I'm Owen",
-    backgroundTitle: "Background",
+    title: "Owen Lindsey",
+    backgroundTitle: "Summary",
     paragraphs: [
-      "I'm a software engineer who graduated from Grand Canyon University in April 2026 (B.S. Software Development, Machine Learning & AI minor, Aug 2023 - Apr 2026). I like owning a feature from the database to the UI and leaving it in a state the next person can maintain.",
-      "My ML minor wasn't a checkbox: survival analysis, SVMs, ensembles, and a PyTorch sentiment model I trained, evaluated, and deployed to Streamlit with real metrics I can walk through.",
-      "Before GCU I spent five years in the Air Force on F-22 maintenance at Edwards AFB, including crew chief work with USAF, Lockheed, and Boeing teams. That's where Turnover Log started. I held Secret clearance during service; it is not currently active.",
+      "Full-stack software engineer (GCU, Apr 2026). I build from database to UI and leave code testable and documented. Best reference: Lunara Care at lunaracare.org—375 automated tests, SonarQube A ratings, production deploy on Vercel + Render.",
+      "ML/AI minor with hands-on work: survival analysis, SVMs, and a PyTorch sentiment model I trained and deployed to Streamlit (linked from this site).",
+      "USAF veteran—five years on F-22 maintenance at Edwards AFB, crew chief work with USAF, Lockheed, and Boeing. Secret clearance during service; inactive since separation. Turnover Log came directly from shift-handoff pain on the flight line.",
     ],
     interestsTitle: "Off the clock",
     timelineTitle: "Timeline",
@@ -125,40 +145,49 @@ export const siteCopy = {
 
   resume: {
     eyebrow: "Resume",
-    title: "Download resume",
-    body: "PDF resume available for download. For the most current information, see the projects and about pages.",
+    title: "Junior SDE resume (PDF)",
+    body: "One-page, ATS-friendly PDF tuned for junior software engineer and entry-level full-stack roles. Matches the live demos and metrics on this site.",
+    targetLine: "Targeting junior SDE · full-stack · backend-leaning · Phoenix, AZ & remote",
+    highlightsTitle: "What's on the PDF",
+    highlights: [
+      "One page, ATS-friendly PDF aligned with this portfolio",
+      "Four live apps: Lunara Care, Turnover Log, Iron Palace, NLP Sentiment",
+      "Lunara capstone: 375 tests, 82% coverage, production at lunaracare.org",
+      "Stack: React, TypeScript, Node.js, ASP.NET Core, PostgreSQL, MongoDB, JWT, CI/CD",
+      "USAF veteran (F-22 maintenance); clearance inactive since separation",
+    ],
     download: "Download PDF",
-    viewInBrowser: "View in browser",
+    viewInBrowser: "Open in browser",
   },
 
   contact: {
     eyebrow: "Contact",
-    title: "Say hello",
-    role: "Software engineer · Phoenix, AZ",
-    seekingTitle: "What I'm looking for",
+    title: "Get in touch",
+    role: "Full-Stack Software Engineer · Open to work · Phoenix, AZ",
+    seekingTitle: "Open to",
     seeking: [
-      "Full-time software roles",
-      "Contract or freelance projects",
-      "Remote or Phoenix-area on-site",
-      "Full-stack, backend, defense, or operations-software teams",
+      "Junior / entry-level full-stack roles",
+      "Backend or frontend-heavy teams",
+      "Remote or Phoenix-area hybrid",
+      "Defense, aerospace, or ops-adjacent software",
     ],
-    note: "I read every message. If you're hiring or have a project in mind, tell me a bit about the team and timeline.",
+    note: "Email is fastest: owen.lindsey98@outlook.com. Include the role title and stack if you have one—I reply to every serious inquiry.",
     formName: "Name",
     formEmail: "Email",
     formMessage: "Message",
-    formPlaceholder: "What are you working on?",
+    formPlaceholder: "Role, team, or project—whatever you have",
     formSubmit: "Send message",
-    formSent: "Thanks, message received.",
+    formSent: "Thanks—message received.",
   },
 } as const
 
 /** Humanized Turnover Log entry, merged in ProjectsPage */
 export const turnoverLogProject = {
   short:
-    "Shift handoff tool from my maintenance days: tail numbers, priority, and a supervisor inbox that works without SMTP. React on Vercel, .NET API on Render.",
-  expanded: `I built Turnover Log after crew-chief work on the F-22. The problem is the handoff between shifts, not another generic task board.
+    "Maintenance shift handoff: asset ID, priority, supervisor inbox without SMTP. React on Vercel, ASP.NET Core 8 API on Render, PostgreSQL, JWT, xUnit + GitHub Actions.",
+  expanded: `Built after F-22 crew-chief work at Edwards. The problem is the handoff between shifts—not another generic task board.
 
-Technicians log open items by asset or tail number. Supervisors get in-app alerts when something opens or closes. Email is optional; production runs fine without an SMTP server.
+Technicians log open items by tail number or asset ID. Supervisors get in-app alerts when something opens or closes. Email is optional; the app runs fine without SMTP.
 
-Stack: React 18 + TypeScript + Vite on Vercel, ASP.NET Core 8 + EF Core on Render with PostgreSQL, JWT auth. xUnit integration tests run in GitHub Actions on every push. The board starts empty, with no fake seed data.`,
+Stack: React 18 + TypeScript + Vite on Vercel, ASP.NET Core 8 + EF Core on Render with PostgreSQL, JWT auth. xUnit integration tests in GitHub Actions on every push.`,
 } as const

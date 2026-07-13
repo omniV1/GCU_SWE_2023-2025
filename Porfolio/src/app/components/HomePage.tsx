@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { siteCopy } from "@/app/content/siteCopy";
+import { siteCopy, recruiterLinks } from "@/app/content/siteCopy";
 import { FadeIn } from "./FadeIn";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { HudCard } from "./HudCard";
@@ -80,6 +80,12 @@ export function HomePage() {
               <br />
               LINDSEY
             </h1>
+            <p
+              className="mt-3 text-primary tracking-wide"
+              style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.1rem", fontWeight: 500 }}
+            >
+              {copy.heroRole}
+            </p>
             <style>{`
               .glitch-hover:hover {
                 animation: glitch 0.3s ease-in-out;
@@ -170,12 +176,28 @@ export function HomePage() {
                 {copy.ctaContact}
               </Link>
               <a
-                href="/Owen_Lindsey_Resume.pdf" download
+                href="/Owen_Lindsey_Resume.pdf"
+                download
                 className="inline-flex items-center justify-center px-6 py-3 border border-border text-muted-foreground hover:border-primary/50 hover:text-primary transition-all duration-150"
                 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.8rem" }}
               >
                 {copy.ctaResume}
               </a>
+            </div>
+            <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2">
+              {recruiterLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  download={"download" in link ? link.download : undefined}
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="text-primary/60 hover:text-primary transition-colors duration-150"
+                  style={{ fontSize: "0.68rem", fontFamily: "'IBM Plex Mono', monospace" }}
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
           </FadeIn>
         </div>
@@ -185,7 +207,7 @@ export function HomePage() {
       <section className="border-t border-border" style={{ backgroundColor: "#0C1016" }}>
         <div className="max-w-[1200px] mx-auto px-6 md:px-20">
           <FadeIn>
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-border">
+            <div className="grid grid-cols-2 divide-x divide-border max-w-2xl mx-auto">
               {keyMetrics.map((metric) => (
                 <div key={metric.label} className="py-8 px-4 text-center">
                   <AnimatedCounter
@@ -217,6 +239,29 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* ===== RECRUITER SNAPSHOT ===== */}
+      <section className="border-t border-border py-12 px-6 md:px-20">
+        <div className="max-w-[1200px] mx-auto">
+          <FadeIn>
+            <SectionEyebrow className="mb-4 block">{copy.recruiter.eyebrow}</SectionEyebrow>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-4xl">
+              {copy.recruiter.bullets.map((bullet) => (
+                <li
+                  key={bullet}
+                  className="flex gap-3 text-foreground/70 border border-border/60 bg-card/30 p-4"
+                  style={{ fontSize: "0.78rem", lineHeight: 1.65, fontFamily: "'Space Grotesk', sans-serif" }}
+                >
+                  <span className="text-primary shrink-0 mt-0.5" aria-hidden>
+                    →
+                  </span>
+                  {bullet}
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* ===== FEATURED PROJECTS ===== */}
       <section className="py-20 px-6 md:px-20 border-t border-border">
         <div className="max-w-[1200px] mx-auto">
@@ -227,13 +272,24 @@ export function HomePage() {
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {featuredProjects.map((project, i) => (
               <FadeIn key={project.id} delay={i * 0.1}>
                 <Link to={`/projects`} className="group block h-full">
-                  <HudCard className="h-full flex flex-col p-5" label={`PRJ.0${i + 1}`}>
+                  <HudCard className="h-full flex flex-col overflow-hidden" label={`PRJ.0${i + 1}`}>
+                    {"screenshot" in project && project.screenshot && (
+                      <div className="border-b border-border overflow-hidden bg-black/30">
+                        <img
+                          src={project.screenshot}
+                          alt={`${project.title} screenshot`}
+                          className="w-full aspect-[16/10] object-cover object-top"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
+                    <div className="flex flex-col flex-1 p-5 md:p-6">
                     {/* Tags */}
-                    <div className="flex flex-wrap gap-1.5 mb-4">
+                    <div className="flex flex-wrap gap-1.5 mb-3 mt-1">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
@@ -265,7 +321,7 @@ export function HomePage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1.5 mb-3 text-accent hover:underline"
+                        className="inline-flex items-center gap-1.5 mb-2 text-accent hover:underline"
                         style={{
                           fontSize: "0.68rem",
                           fontFamily: "'IBM Plex Mono', monospace",
@@ -275,6 +331,21 @@ export function HomePage() {
                         Live · {new URL(project.liveUrl).host.replace(/^www\./, "")}
                       </a>
                     )}
+                    {"caseStudyUrl" in project && project.caseStudyUrl && (
+                      <a
+                        href={project.caseStudyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-1.5 mb-3 text-primary/80 hover:text-primary hover:underline"
+                        style={{
+                          fontSize: "0.68rem",
+                          fontFamily: "'IBM Plex Mono', monospace",
+                        }}
+                      >
+                        Case study · lunara-profile.design
+                      </a>
+                    )}
                     {/* Link */}
                     <span
                       className="text-primary/70 group-hover:text-primary transition-colors duration-150"
@@ -282,6 +353,7 @@ export function HomePage() {
                     >
                       Project details &rarr;
                     </span>
+                    </div>
                   </HudCard>
                 </Link>
               </FadeIn>
@@ -376,25 +448,10 @@ export function HomePage() {
               >
                 {copy.aboutTitle}
               </h2>
-              <div className="space-y-3 text-foreground/70" style={{ fontSize: "0.8rem", lineHeight: 1.8 }}>
-                <div className="flex items-start gap-3">
-                  <span className="w-1 h-1 rounded-full bg-primary shrink-0 mt-2.5" style={{ boxShadow: "0 0 4px #00FFD4" }} />
-                  <p>
-                    <span className="text-foreground/90">{copy.aboutPoints[0].lead}</span> {copy.aboutPoints[0].body}
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="w-1 h-1 rounded-full bg-primary shrink-0 mt-2.5" style={{ boxShadow: "0 0 4px #00FFD4" }} />
-                  <p>
-                    <span className="text-foreground/90">{copy.aboutPoints[1].lead}</span> {copy.aboutPoints[1].body}
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="w-1 h-1 rounded-full bg-primary shrink-0 mt-2.5" style={{ boxShadow: "0 0 4px #00FFD4" }} />
-                  <p>
-                    <span className="text-foreground/90">{copy.aboutPoints[2].lead}</span> {copy.aboutPoints[2].body}
-                  </p>
-                </div>
+              <div className="space-y-4 text-foreground/70" style={{ fontSize: "0.82rem", lineHeight: 1.8 }}>
+                {copy.aboutPoints.map((point) => (
+                  <p key={point}>{point}</p>
+                ))}
               </div>
               <div className="mt-6 flex gap-3">
                 <Link

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
-import { siteCopy } from "@/app/content/siteCopy";
+import { siteCopy, recruiterLinks } from "@/app/content/siteCopy";
 
 const navLinks = [
   { path: "/projects", label: siteCopy.nav.projects },
@@ -33,7 +33,7 @@ export function Navbar() {
           </Link>
 
           <div
-            className="hidden md:flex items-center gap-6"
+            className="hidden md:flex items-center gap-5"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
             {navLinks.map((link) => (
@@ -50,6 +50,13 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <a
+              href={recruiterLinks[0].href}
+              download
+              className="ml-1 px-3 py-1.5 text-sm border border-primary/60 text-primary hover:bg-primary/10 transition-colors duration-150"
+            >
+              {siteCopy.nav.resumeCta}
+            </a>
           </div>
 
           <button
@@ -91,6 +98,14 @@ export function Navbar() {
                   {link.label}
                 </Link>
               ))}
+              <a
+                href={recruiterLinks[0].href}
+                download
+                onClick={() => setMobileOpen(false)}
+                className="px-3 py-2 text-sm text-primary border border-primary/40 mt-2 text-center"
+              >
+                {siteCopy.nav.resumeCta}
+              </a>
             </div>
           </motion.div>
         )}

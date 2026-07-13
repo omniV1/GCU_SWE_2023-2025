@@ -53,6 +53,8 @@ interface Project {
   expanded: string;
   github: string;
   liveUrl?: string;
+  screenshot?: string;
+  gallery?: { src: string; alt: string }[];
   extraLinks?: { label: string; url: string }[];
 }
 
@@ -62,21 +64,18 @@ const allProjects: Project[] = [
     title: "LUNARA CARE",
     category: "FULL-STACK",
     tags: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Mongoose", "Socket.IO", "JWT", "Passport.js", "Zod", "React Hook Form", "Axios", "Docker", "SonarQube", "Swagger/OpenAPI", "Jest", "Supertest"],
-    short: "Production-deployed care coordination platform connecting doulas and new mothers. Built as senior capstone and shipped to real users at lunaracare.org.",
-    expanded: "Provider dashboard surfaces active clients, upcoming appointments, and flagged check-ins at a glance. Providers manage client accounts, schedule appointments via an integrated calendar, exchange real-time messages, publish educational blog posts and resource articles, review uploaded documents with structured feedback, and build individualized care plans with milestone tracking.\n\nClient onboarding uses a multi-step intake wizard capturing personal, birth, feeding, support-network, and health information. Clients record daily check-ins with a 1-10 mood rating and 10 physical symptom self-assessments (fatigue, sleep quality, appetite, anxiety, pain). Clients upload documents, browse resources, track care plan milestones, book appointments, and message their provider via Socket.IO-powered real-time chat.\n\nBackend exposes 19 route modules and 70+ API endpoints. 20+ Mongoose models. JWT + Passport.js authentication with TOTP multi-factor auth. MongoDB GridFS for file storage. Security stack: Helmet, CORS, bcrypt (12 salt rounds), rate limiting, express-validator. Email via Nodemailer, push notifications via Web Push.\n\nQuality: 375 automated tests across unit, component, service, and integration layers. 81.9% code coverage. All SonarQube quality gates rated A. Deployed via Vercel (frontend) and Render (backend).",
+    short: "Production-deployed care coordination platform connecting doulas and new mothers. Capstone shipped to lunaracare.org with 375 tests at 82% coverage. Case study at lunara-profile.design.",
+    expanded: "Provider dashboard surfaces active clients, upcoming appointments, and flagged check-ins at a glance. Providers manage client accounts, schedule appointments via an integrated calendar, exchange real-time messages, publish educational blog posts and resource articles, review uploaded documents with structured feedback, and build individualized care plans with milestone tracking.\n\nClient onboarding uses a multi-step intake wizard capturing personal, birth, feeding, support-network, and health information. Clients record daily check-ins with a 1-10 mood rating and 10 physical symptom self-assessments (fatigue, sleep quality, appetite, anxiety, pain). Clients upload documents, browse resources, track care plan milestones, book appointments, and message their provider via Socket.IO-powered real-time chat.\n\nBackend exposes 19 route modules and 70+ API endpoints. 20+ Mongoose models. JWT + Passport.js authentication with TOTP multi-factor auth. MongoDB GridFS for file storage. Security stack: Helmet, CORS, bcrypt (12 salt rounds), rate limiting, express-validator. Email via Nodemailer, push notifications via Web Push.\n\nQuality: 375 automated tests across unit, component, service, and integration layers. 81.9% code coverage. All SonarQube quality gates rated A. Deployed via Vercel (frontend) and Render (backend).\n\nFor recruiters: lunaracare.org is the live product; lunara-profile.design is the dedicated case-study site with architecture, testing, and feature narrative.",
     github: "https://github.com/omniV1/AQC",
     liveUrl: "https://www.lunaracare.org",
-    extraLinks: [{ label: "PROFILE / CASE STUDY SITE", url: "https://www.lunara-profile.design/" }],
-  },
-  {
-    id: "lunara-profile",
-    title: "LUNARA PROFILE SITE",
-    category: "FULL-STACK",
-    tags: ["React", "TypeScript", "Vite", "Experimental UI"],
-    short: "Companion microsite to lunaracare.org: a deployed case-study / profile summary of the LUNARA build, used as a sandbox for newer UX patterns and modern tooling.",
-    expanded: "Standalone site at lunara-profile.design that pairs with the production lunaracare.org app. Acts as a technical narrative that surfaces architecture decisions, the provider/client feature split, the testing strategy, and the deployment pipeline behind the production product.\n\nUsed as a deliberate playground for newer/experimental front-end choices outside the production app's stability constraints, so that proven patterns can be promoted upstream into LUNARA later. Pair this with the live LUNARA app for a complete picture of what shipped to real users.",
-    github: "https://github.com/omniV1/AQC",
-    liveUrl: "https://www.lunara-profile.design/",
+    screenshot: "/screenshots/LunaraHome.png",
+    gallery: [
+      { src: "/screenshots/LunaraHome.png", alt: "Lunara Care public home page" },
+      { src: "/screenshots/LunaraCaseStudy.png", alt: "Lunara case study at lunara-profile.design" },
+      { src: "/screenshots/LunaraProviderHomePage.png", alt: "Lunara provider dashboard" },
+      { src: "/screenshots/LunaraClientHome.png", alt: "Lunara client home" },
+    ],
+    extraLinks: [{ label: "CASE STUDY · lunara-profile.design", url: "https://www.lunara-profile.design/" }],
   },
   {
     id: "iron-palace",
@@ -87,6 +86,12 @@ const allProjects: Project[] = [
     expanded: "A `prebuild` Node script hits the channel's public YouTube RSS (no browser CORS, no API key) and writes the result to `public/youtube-videos.json`. The app reads that snapshot first in production so episode links keep working on any static host even if the feed momentarily fails.\n\nUI built with React 18 + Vite 6 + TypeScript, styled with Tailwind 4 and Radix primitives, with Framer Motion for transitions. Image assets pre-processed via vite-imagetools and sharp. Production build is a static `dist/` shipped behind a Dockerfile that serves on port 80, deployable to any container or static host.\n\nDesigned for low-effort updates: new episode goes up on YouTube, next site rebuild picks it up automatically.",
     github: "https://github.com/omniV1/iron_palace",
     liveUrl: "https://ironpalace.live",
+    screenshot: "/screenshots/IronPalacePodcastHome.png",
+    gallery: [
+      { src: "/screenshots/IronPalacePodcastHome.png", alt: "Iron Palace Podcast home page" },
+      { src: "/screenshots/InAppVideoPlayerIronPalacePodcast.png", alt: "In-app episode video player" },
+      { src: "/screenshots/IronPalacePodcastAdminPanel.png", alt: "Admin panel for site updates" },
+    ],
   },
   {
     id: "turnover-log",
@@ -110,6 +115,12 @@ const allProjects: Project[] = [
     expanded: turnoverLogProject.expanded,
     github: "https://github.com/omniV1/turnover-log",
     liveUrl: "https://turnover-log.vercel.app",
+    screenshot: "/screenshots/TurnoverTechHome.png",
+    gallery: [
+      { src: "/screenshots/TurnoverLogHome.png", alt: "Turnover Log sign-in and onboarding" },
+      { src: "/screenshots/TurnoverTechHome.png", alt: "Technician shift handoff board" },
+      { src: "/screenshots/TurnoverSupervisorHome.png", alt: "Supervisor inbox and handoff overview" },
+    ],
   },
   {
     id: "nlp-sentiment",
@@ -119,7 +130,12 @@ const allProjects: Project[] = [
     short: "End-to-end PyTorch sentiment classifier with a frontend/backend split, deployed live on Streamlit Community Cloud. AIT-204 Deep Learning, Spring 2026.",
     expanded: "Full pipeline: text preprocessing (vocabulary, tokenization, encoding, padding) \u2192 model architecture (Embedding \u2192 Pool \u2192 FC \u2192 ReLU \u2192 FC \u2192 Sigmoid) \u2192 training loop with train/val split and loss-curve plotting \u2192 model artifact saved to disk \u2192 backend service that loads the model and exposes predict() and compare() \u2192 Streamlit frontend that calls the backend.\n\nDeliberate frontend/backend separation: `model_service.py` is independently testable from the command line and contains zero UI code; `activity4_app.py` contains zero model code. The backend can be swapped to FastAPI without touching the UI; the UI can be swapped to React without touching the model.\n\nIncludes a translation comparison tab that runs both an original and a translated input through the same model to surface translation-induced sentiment drift, plus a written ethics analysis covering bias, privacy, transparency, and the consequences of inaccurate predictions.",
     github: "https://github.com/omniV1/AIT-204-pair-programing/tree/main/NLP/Topic4_NLP",
-    liveUrl: "https://nlp-owen.streamlit.app/",
+    liveUrl: "https://nlp-moviereview.streamlit.app/",
+    screenshot: "/screenshots/MovieReviewSentimentAnalyzer.png",
+    gallery: [
+      { src: "/screenshots/MovieReviewSentimentAnalyzer.png", alt: "Movie review sentiment analysis" },
+      { src: "/screenshots/NLPMovieReviewSentimentRoundTripTranslation.png", alt: "Round-trip translation comparison" },
+    ],
   },
   {
     id: "matrix-ann",
@@ -130,6 +146,10 @@ const allProjects: Project[] = [
     expanded: "Builds a weakly-supervised target by combining normalized height, weight, age-vs-prime, and draft-round signals into a single suitability score, then trains an MLP to learn the underlying nonlinear pattern from the labels alone (the model never sees the formula directly).\n\nThe deployed Streamlit app lets a viewer pick from a candidate pool and watch the model rank the top 5 players by predicted suitability, with the matrix-fundamentals walkthrough (transpose, scalar multiplication, identity, valid/invalid multiplications) as a teaching companion.\n\nWritten as a paired AIT-204 deliverable with a presentation covering matrix algebra fundamentals, ANN architecture, ethical considerations (bias, privacy, transparency, error consequences), and an interpretation of the model's output.",
     github: "https://github.com/omniV1/AIT-204-pair-programing/tree/main/matrix-and-nn",
     liveUrl: "https://mlp-owen.streamlit.app/",
+    screenshot: "/screenshots/MLPTraining.png",
+    gallery: [
+      { src: "/screenshots/MLPTraining.png", alt: "MLP training dashboard with optimal team output" },
+    ],
     extraLinks: [{ label: "PRESENTATION", url: "https://docs.google.com/presentation/d/13tsobpSMuF19WWWzfXjexNoUIdMoUP3uakOSJY4WdJw/edit" }],
   },
   {
@@ -138,8 +158,17 @@ const allProjects: Project[] = [
     category: "ENTERPRISE",
     tags: ["Java 17", "Spring Boot 3", "Spring Security", "Spring Data REST", "MySQL", "Thymeleaf", "JUnit 5", "Mockito", "SonarQube", "OpenAPI 3.0", "JaCoCo"],
     short: "Full-stack enterprise airport operations platform built across 6+ development milestones with Spring Boot Actuator monitoring and Cloud SQL deployment support.",
-    expanded: "N-layer architecture (Controller \u2192 Service \u2192 Repository) with Spring Data REST and HATEOAS. Role-based access control for Admin, Gate Agent, Airline Rep, and Passenger user types. Complete CRUD across 6 entity types: gates, flights, airlines, assignments, terminals, passengers.\n\nJUnit 5 + Mockito test suite with JaCoCo code coverage reporting. SonarQube static analysis integration. SpringDoc OpenAPI 3.0 documentation with Swagger UI. Bean validation across all form inputs. Spring Boot Actuator for runtime monitoring.\n\nCloud Run deployment with Cloud SQL connector. Javadoc generation for full API documentation.",
+    expanded: "N-layer architecture (Controller \u2192 Service \u2192 Repository) with Spring Data REST and HATEOAS. Role-based access control for Admin, Operations Manager, Gate Manager, and Airline Staff user types. Complete CRUD across gates, flights, aircraft, and maintenance records.\n\nJUnit 5 + Mockito test suite with JaCoCo code coverage reporting. SonarQube static analysis integration. SpringDoc OpenAPI 3.0 documentation with Swagger UI. Bean validation across all form inputs. Spring Boot Actuator for runtime monitoring.\n\nScreenshots show the public home page and role-specific dashboards after login. Local development uses an in-memory H2 profile; production targets Cloud SQL.",
     github: "https://github.com/omniV1/GCU_SWE_2023-2025/tree/main/CST-339-Java3/workspaceCST-339/src/Milestone/agms",
+    screenshot: "/screenshots/AGMSHome.png",
+    gallery: [
+      { src: "/screenshots/AGMSHome.png", alt: "AGMS public home page" },
+      { src: "/screenshots/AGMSAdminHome.png", alt: "Administrator dashboard" },
+      { src: "/screenshots/AGMSOperationHome.png", alt: "Operations manager dashboard" },
+      { src: "/screenshots/AGMSGateHome.png", alt: "Gate manager dashboard" },
+      { src: "/screenshots/AGMSUserHome.png", alt: "Airline staff dashboard" },
+      { src: "/screenshots/AGMSAbout.png", alt: "About and system overview" },
+    ],
   },
   {
     id: "multi-agent",
@@ -218,6 +247,17 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </span>
           )}
         </div>
+
+        {project.screenshot && (
+          <div className="mb-4 border border-border overflow-hidden bg-black/20">
+            <img
+              src={project.screenshot}
+              alt={`${project.title} product screenshot`}
+              className="w-full h-auto object-cover object-top max-h-52"
+              loading="lazy"
+            />
+          </div>
+        )}
 
         {/* Title */}
         <h3
@@ -308,6 +348,26 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               className="overflow-hidden"
             >
               <div className="mt-4 pt-4 border-t border-border">
+                {project.gallery && project.gallery.length > 0 && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+                    {project.gallery.map((shot) => (
+                      <figure key={shot.src} className="border border-border overflow-hidden bg-black/20">
+                        <img
+                          src={shot.src}
+                          alt={shot.alt}
+                          className="w-full h-auto object-cover object-top max-h-44"
+                          loading="lazy"
+                        />
+                        <figcaption
+                          className="px-2 py-1.5 text-muted-foreground border-t border-border"
+                          style={{ fontSize: "0.62rem", fontFamily: "'IBM Plex Mono', monospace" }}
+                        >
+                          {shot.alt}
+                        </figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                )}
                 <p className="text-foreground/50 mb-4 whitespace-pre-line" style={{ fontSize: "0.75rem", lineHeight: 1.8 }}>
                   {project.expanded}
                 </p>
