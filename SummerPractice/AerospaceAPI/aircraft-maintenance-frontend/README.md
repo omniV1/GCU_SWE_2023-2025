@@ -1,6 +1,8 @@
 # Aircraft Maintenance Frontend
 
-This project is a React-based frontend for the Aircraft Maintenance API, providing a user-friendly interface to manage aircraft maintenance records.
+This project is a React 18 frontend built with Create React App and CRACO. It
+uses React Router, Axios, and project CSS to manage aircraft and maintenance
+records through the Aircraft Maintenance API.
 
 ## Major Checkpoints
 
@@ -27,7 +29,7 @@ This project is a React-based frontend for the Aircraft Maintenance API, providi
 ## Prerequisites
 
 - Node.js and npm
-- React (created using Create React App)
+- Node.js 20 and npm
 
 ## Setup
 
@@ -35,15 +37,15 @@ This project is a React-based frontend for the Aircraft Maintenance API, providi
 
 1.) First, clone the repository to your local machine:
 ```
-git clone https://github.com/yourusername/aircraft-maintenance-frontend.git
-cd aircraft-maintenance-frontend
+git clone https://github.com/omniV1/GCU_SWE_2023-2025.git
+cd GCU_SWE_2023-2025/SummerPractice/AerospaceAPI/aircraft-maintenance-frontend
 
 ```
 ### Install Dependencies
 
 2.) Install the necessary dependencies:
 ```
-npm install
+npm ci
 ```
 ### Run the Application
 
@@ -130,13 +132,15 @@ The application uses React Router to navigate between different components:
 
 ## Styling
 
-All the CSS styles are contained within the `App.css` file located in the `styles` directory.
+Component and application styles are split across `src/styles` and `src/index.css`.
 
 ## Running Tests
 
-To run the tests, use the following command:
+The current smoke test verifies that the main aircraft list route and primary
+navigation render while the API request is mocked. Run it once in
+non-interactive mode with:
 ```
-npm test
+npm test -- --watchAll=false
 ```
 ## License
 
@@ -148,8 +152,7 @@ This project is licensed under the MIT License - see the `LICENSE` file for deta
 - [ ] **Validation**: Add form validation to ensure data integrity.
 - [ ] **User Authentication**: Implement user authentication and authorization.
 - [ ] **Styling Improvements**: Enhance the UI with more styling and responsiveness.
-- [ ] **Unit Tests**: Expand unit tests to cover more components and functionalities.
-- [ ] **Integration Tests**: Add integration tests to ensure seamless API integration.
+- [ ] **Automated Tests**: Expand component coverage for forms, API errors, and maintenance record workflows.
 
 ## APP Layout
 

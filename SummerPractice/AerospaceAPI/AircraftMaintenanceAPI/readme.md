@@ -1,12 +1,13 @@
 # Aircraft Maintenance API
 
-This project is a RESTful API for managing aircraft maintenance records.
+This project combines an ASP.NET Core 8 REST API, Entity Framework Core with
+MySQL, and a React 18 frontend for managing aircraft maintenance records.
 
 ## Major Checkpoints
 
 ### Project Setup
 - [x] **Initialized Project Structure**: Set up the basic directory structure and initialized a new ASP.NET Core project.
-- [x] **Added Essential Packages**: Installed necessary packages including EntityFrameworkCore, MySqlConnector, and ASP.NET Core tools.
+- [x] **Added Essential Packages**: Uses Entity Framework Core and the Pomelo MySQL provider on .NET 8.
 
 ### Database Integration
 - [x] **Database Configuration**: Configured MySQL database connection in `appsettings.json`.
@@ -23,15 +24,15 @@ This project is a RESTful API for managing aircraft maintenance records.
 - [x] **Status Code Pages**: Configured status code pages to return JSON responses for API errors.
 
 ### API Testing
-- [x] **Postman Tests**: Created API checks for response status, content type, and schema validation.
-- [ ] **Automated Test Project**: Add unit and integration tests that run outside Postman.
+- [x] **Postman Documentation**: Documented requests for manual API exploration.
+- [x] **Automated Test Project**: Added xUnit integration tests using `WebApplicationFactory` and an isolated in-memory database.
 
 ### Documentation
 - [x] **API Documentation**: Documented API endpoints and example requests/responses in Postman.
 - [x] **README Update**: Detailed documentation of the project setup, API endpoints, and progress in README.md.
 
 ### Continuous Integration/Continuous Deployment
-- [ ] **CI/CD Pipeline**: Set up GitHub Actions for automated builds and tests (work in progress).
+- [x] **CI Pipeline**: GitHub Actions restores, builds, and tests the API and installs, tests, and builds the frontend.
 
 ### Frontend Development
 - [x] **React Frontend Setup**: Initialized a new React project using Create React App.
@@ -44,8 +45,9 @@ This project is a RESTful API for managing aircraft maintenance records.
 
 - .NET 8 SDK
 - MySQL server
+- Node.js 20 and npm
 - Visual Studio or Visual Studio Code
-- Postman (for testing API endpoints)
+- Postman (optional, for manual API exploration)
 
 ## Setup
 
@@ -99,9 +101,9 @@ Navigate to the `aircraft-maintenance-frontend` directory:
 
 cd aircraft-maintenance-frontend
 
-Install the necessary dependencies:
+Install the locked dependencies:
 
-npm install
+npm ci
 
 Start the React development server:
 
@@ -171,7 +173,23 @@ Response:
 
 ### Running Tests
 
-To run the Postman tests, import the Postman collection from the `tests` directory and execute the requests.
+From the `AerospaceAPI` directory, run the backend integration tests:
+
+```bash
+dotnet restore AircraftMaintenanceAPI/AircraftMaintenanceAPI.sln --configfile ../../NuGet.Config
+dotnet test AircraftMaintenanceAPI/AircraftMaintenanceAPI.sln --no-restore
+```
+
+Run the frontend test once, without interactive watch mode:
+
+```bash
+cd aircraft-maintenance-frontend
+npm test -- --watchAll=false
+```
+
+The backend suite currently exercises representative aircraft endpoint behavior:
+not-found responses, validation, creation, persistence, and retrieval. The
+frontend suite smoke-tests the main aircraft list route and navigation.
 
 ## License
 
@@ -179,11 +197,9 @@ This project is licensed under the MIT License - see the `LICENSE` file for deta
 
 ## Future TODOS
 
-- [ ] **CI/CD Pipeline**: Set up GitHub Actions for automated builds and tests.
 - [ ] **User Authentication and Authorization**: Implement user registration, login, and role management.
 - [ ] **Search and Filter Functionality**: Add search and filter options for aircrafts.
 - [ ] **Additional Features**: Implement additional features such as notifications and reporting.
 - [ ] **Performance Optimization**: Optimize API performance and database queries.
 - [ ] **Documentation**: Enhance documentation with detailed usage examples and setup guides.
-- [ ] **Unit Tests**: Expand unit tests to cover more edge cases and scenarios.
-- [ ] **Integration Tests**: Enhance integration tests for comprehensive API validation.
+- [ ] **Automated Tests**: Expand integration coverage to maintenance record endpoints and failure paths.
