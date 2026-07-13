@@ -20,6 +20,13 @@ class BaseClassifier:
     def log(self, message):
         if self.verbose:
             print(message)
+
+    @staticmethod
+    def validate_activation(activation):
+        if activation not in {'sigmoid', 'relu'}:
+            raise ValueError(
+                f"Unknown activation {activation!r}; expected 'sigmoid' or 'relu'"
+            )
     
     @staticmethod
     def sigmoid(x):
@@ -35,6 +42,7 @@ class BugGateClassifier(BaseClassifier):
         self.name = "Bug Gate Classifier"
     
     def classify(self, features, activation='relu'):
+        self.validate_activation(activation)
         self.activation_function = activation
         
         max_complexity = features.get('max_complexity', 0)
@@ -76,6 +84,7 @@ class VulnerabilityGateClassifier(BaseClassifier):
         self.name = "Vulnerability Gate Classifier"
     
     def classify(self, features, activation='relu'):
+        self.validate_activation(activation)
         self.activation_function = activation
         
         total_signals = features.get('total_vulnerability_signals', 0)
@@ -119,6 +128,7 @@ class SecurityHotspotClassifier(BaseClassifier):
         self.name = "Security Hotspot Classifier"
     
     def classify(self, features, activation='relu'):
+        self.validate_activation(activation)
         self.activation_function = activation
         
         # Security hotspots are patterns that MIGHT be issues
@@ -150,6 +160,7 @@ class ReliabilityGateClassifier(BaseClassifier):
         self.name = "Reliability Gate Classifier"
     
     def classify(self, features, activation='relu'):
+        self.validate_activation(activation)
         self.activation_function = activation
         
         # Reliability is based on bug indicators
@@ -187,6 +198,7 @@ class SecurityGateClassifier(BaseClassifier):
         self.name = "Security Gate Classifier"
     
     def classify(self, features, activation='relu'):
+        self.validate_activation(activation)
         self.activation_function = activation
         
         # Critical security issues
@@ -220,6 +232,7 @@ class MaintainabilityGateClassifier(BaseClassifier):
         self.name = "Maintainability Gate Classifier"
     
     def classify(self, features, activation='relu'):
+        self.validate_activation(activation)
         self.activation_function = activation
         
         # Code smell indicators
@@ -257,6 +270,7 @@ class CoverageGateClassifier(BaseClassifier):
         self.name = "Coverage Gate Classifier"
     
     def classify(self, features, activation='relu'):
+        self.validate_activation(activation)
         self.activation_function = activation
         
         # Check for test indicators
@@ -292,6 +306,7 @@ class DuplicationGateClassifier(BaseClassifier):
         self.name = "Duplication Gate Classifier"
     
     def classify(self, features, activation='relu'):
+        self.validate_activation(activation)
         self.activation_function = activation
         
         # Duplication metrics
@@ -331,14 +346,14 @@ class AllGatesClassificationPipeline:
         
         # Default activations (can be optimized during training)
         self.activations = {
-            'bug_gate': config.get('bug_gate', {}).get('activation', 'relu'),
-            'vulnerability_gate': config.get('vulnerability_gate', {}).get('activation', 'relu'),
-            'security_hotspot_gate': config.get('security_hotspot_gate', {}).get('activation', 'relu'),
-            'reliability_gate': config.get('reliability_gate', {}).get('activation', 'relu'),
-            'security_gate': config.get('security_gate', {}).get('activation', 'relu'),
-            'maintainability_gate': config.get('maintainability_gate', {}).get('activation', 'relu'),
-            'coverage_gate': config.get('coverage_gate', {}).get('activation', 'relu'),
-            'duplication_gate': config.get('duplication_gate', {}).get('activation', 'relu'),
+            'bug_gate': self.config.get('bug_gate', {}).get('activation', 'relu'),
+            'vulnerability_gate': self.config.get('vulnerability_gate', {}).get('activation', 'relu'),
+            'security_hotspot_gate': self.config.get('security_hotspot_gate', {}).get('activation', 'relu'),
+            'reliability_gate': self.config.get('reliability_gate', {}).get('activation', 'relu'),
+            'security_gate': self.config.get('security_gate', {}).get('activation', 'relu'),
+            'maintainability_gate': self.config.get('maintainability_gate', {}).get('activation', 'relu'),
+            'coverage_gate': self.config.get('coverage_gate', {}).get('activation', 'relu'),
+            'duplication_gate': self.config.get('duplication_gate', {}).get('activation', 'relu'),
         }
     
     def classify(self, bug_features, vuln_features, project_features=None):

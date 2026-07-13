@@ -1,15 +1,19 @@
-# Multi-Agent Code Quality System
+# Experimental Code Quality Heuristics
 
-A deep learning-inspired multi-agent system for predicting SonarQube quality gate failures in real-time. Trained on **real SonarQube data** from your own repositories.
+A developer-tooling prototype that extracts static-analysis signals and applies
+configurable, deterministic heuristics inspired by SonarQube quality gates. It
+is not a deep-learning system, a SonarQube replacement, or a security scanner.
+The included experimental configuration was evaluated against a small set of
+SonarQube results; the metrics below are not strong enough for production use.
 
 ## 🎯 Key Features
 
-- **All 8 Quality Gates** - Bug, Vulnerability, Security, Reliability, Maintainability, Coverage, Duplication, Security Hotspots
-- **Real-time Pre-commit Analysis** - Catches issues before they're committed
+- **Eight experimental signals** - Bug, vulnerability, security, reliability, maintainability, test presence, duplication, and security hotspots
+- **Fast local feedback** - Runs deterministic source-pattern checks before commit
 - **Multi-Language Support** - Python, Java, C#, JavaScript/TypeScript, C/C++
-- **Adaptive Architecture** - Automatically selects optimal activation (Sigmoid vs ReLU) per gate
-- **SonarQube Ground Truth** - Trained on real SonarQube scan results
-- **Specificity Optimized** - Minimizes false positives
+- **Configurable thresholds** - Compares sigmoid-style scoring with hard thresholds
+- **SonarQube comparison data** - Includes a small experimental evaluation dataset
+- **Offline unit tests** - Core extraction and classification tests need no network or SonarQube server
 
 ## 📊 Quality Gates
 
@@ -77,10 +81,14 @@ A deep learning-inspired multi-agent system for predicting SonarQube quality gat
 ## 🚀 Quick Start
 
 ```bash
-# Install dependencies
-pip install -r requirements.txt
+# Install runtime dependencies
+python -m pip install -r requirements.txt
 
-# Train on SonarQube ground truth
+# Install development dependencies and run offline tests
+python -m pip install -r requirements-dev.txt
+python -m pytest -q
+
+# Re-evaluate heuristic configurations using existing SonarQube labels
 python train_all_gates.py
 
 # Analyze a file
@@ -98,7 +106,8 @@ python install_hook.py /path/to/your/repo
 ### 1. Clone/Setup
 ```bash
 cd agent-quality-system
-pip install -r requirements.txt
+python -m pip install -r requirements-dev.txt
+python -m pytest -q
 ```
 
 ### 2. Train with SonarQube Data
@@ -158,7 +167,12 @@ git commit --no-verify -m "Skip check"
 
 ## 📊 Training Results
 
-Trained on 9 real projects with SonarQube ground truth:
+These historical results come from only nine projects and show weak,
+inconsistent performance. Several gates have 0% specificity or sensitivity,
+so the classifiers should be treated as experimental static-analysis
+heuristics—not validated predictors. The 100% coverage-gate accuracy is
+especially misleading because this prototype estimates test presence rather
+than measuring executed line or branch coverage.
 
 | Quality Gate | Activation | Specificity | Accuracy | Sensitivity |
 |--------------|------------|-------------|----------|-------------|
@@ -256,7 +270,7 @@ The system optimizes for **Specificity** (minimizing false positives):
 | Aspect | Our System | SonarQube |
 |--------|------------|-----------|
 | **Analysis Type** | Pattern-based | Semantic + Dataflow |
-| **Speed** | Instant (~1s/file) | Minutes |
+| **Speed** | Local pattern matching; benchmark for your project | Depends on project and server |
 | **Scope** | Source files | Everything (notebooks, configs) |
 | **Integration** | Pre-commit hook | CI/CD |
 | **Training** | Customizable per-project | Fixed rules |
@@ -271,6 +285,9 @@ rich>=13.7.0        # Terminal formatting
 matplotlib>=3.8.0   # Visualizations
 requests>=2.31.0    # SonarQube API
 ```
+
+Development and CI dependencies are defined in `requirements-dev.txt`.
+GitHub Actions runs the offline pytest suite on Python 3.10, 3.11, and 3.12.
 
 ## License
 

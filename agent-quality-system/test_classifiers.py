@@ -1,49 +1,72 @@
-# test_classifiers.py
-from agents.nlp_agent import NLPAgent
-from agents.classifiers import BugGateClassifier, VulnerabilityGateClassifier
+import pytest
 
-# Test code with known issues
-bad_code = """
-def overly_complex_function(a, b, c, d, e):
-    if a > 0:
-        if b > 0:
-            if c > 0:
-                if d > 0:
-                    if e > 0:
-                        for i in range(100):
-                            for j in range(100):
-                                for k in range(100):
-                                    print(i + j + k)
-    query = "SELECT * FROM users WHERE id = " + user_input
-    password = "super_secret_password_123"
-    eval(user_code)
-    return a + b + c + d + e
-"""
+from agents.all_gate_classifiers import (
+    AllGatesClassificationPipeline,
+    BugGateClassifier,
+    VulnerabilityGateClassifier,
+)
 
-# Extract features
-nlp = NLPAgent()
-features = nlp.extract_features(bad_code, "bad_code.py")
 
-# Test Bug Gate
-print("\n=== BUG GATE TESTING ===")
-bug_classifier = BugGateClassifier()
+@pytest.mark.parametrize("activation", ["relu", "sigmoid"])
+def test_bug_classifier_passes_low_risk_features(activation):
+    features = {
+        "max_complexity": 1,
+        "max_nesting": 0,
+        "max_function_length": 5,
+    }
 
-print("\nTesting with Sigmoid:")
-result_sigmoid = bug_classifier.classify(features['bug_features'], activation='sigmoid')
-print(f"Result: {result_sigmoid}")
+    assert BugGateClassifier().classify(features, activation) == "PASS"
 
-print("\nTesting with ReLU:")
-result_relu = bug_classifier.classify(features['bug_features'], activation='relu')
-print(f"Result: {result_relu}")
 
-# Test Vulnerability Gate
-print("\n=== VULNERABILITY GATE TESTING ===")
-vuln_classifier = VulnerabilityGateClassifier()
+@pytest.mark.parametrize("activation", ["relu", "sigmoid"])
+def test_bug_classifier_fails_high_risk_features(activation):
+    features = {
+        "max_complexity": 30,
+        "max_nesting": 8,
+        "max_function_length": 200,
+    }
 
-print("\nTesting with Sigmoid:")
-result_sigmoid = vuln_classifier.classify(features['vulnerability_features'], activation='sigmoid')
-print(f"Result: {result_sigmoid}")
+    assert BugGateClassifier().classify(features, activation) == "FAIL"
 
-print("\nTesting with ReLU:")
-result_relu = vuln_classifier.classify(features['vulnerability_features'], activation='relu')
-print(f"Result: {result_relu}")
+
+@pytest.mark.parametrize("activation", ["relu", "sigmoid"])
+def test_vulnerability_classifier_distinguishes_clean_and_flagged_code(activation):
+    classifier = VulnerabilityGateClassifier()
+    clean = {"total_vulnerability_signals": 0}
+    flagged = {
+        "total_vulnerability_signals": 2,
+        "eval_exec": 1,
+        "sql_injection": 1,
+    }
+
+    assert classifier.classify(clean, activation) == "PASS"
+    assert classifier.classify(flagged, activation) == "FAIL"
+
+
+def test_classifier_rejects_unknown_activation():
+    with pytest.raises(ValueError, match="Unknown activation"):
+        BugGateClassifier().classify({}, "softmax")
+
+
+def test_pipeline_uses_defaults_when_config_is_omitted():
+    pipeline = AllGatesClassificationPipeline()
+
+    assert pipeline.get_gate_names() == [
+        "bug_gate",
+        "vulnerability_gate",
+        "security_hotspot_gate",
+        "reliability_gate",
+        "security_gate",
+        "maintainability_gate",
+        "coverage_gate",
+        "duplication_gate",
+    ]
+
+
+def test_pipeline_honors_explicit_activation_configuration():
+    pipeline = AllGatesClassificationPipeline(
+        {"bug_gate": {"activation": "sigmoid"}}
+    )
+
+    assert pipeline.activations["bug_gate"] == "sigmoid"
+    assert pipeline.activations["security_gate"] == "relu"

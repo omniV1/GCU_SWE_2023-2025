@@ -5,10 +5,15 @@ import re
 from radon.complexity import cc_visit
 
 class NLPAgent:
-    """Extracts features from Python code for quality gate classification"""
+    """Extracts deterministic static-analysis features from Python code."""
     
-    def __init__(self):
+    def __init__(self, verbose=False):
         self.name = "NLP Feature Extraction Agent"
+        self.verbose = verbose
+
+    def _log(self, message):
+        if self.verbose:
+            print(f"[NLP Agent] {message}")
     
     def extract_features(self, code_text, filepath):
         """
@@ -21,12 +26,12 @@ class NLPAgent:
         Returns:
             dict: Features for both gates
         """
-        print(f"[NLP Agent] Extracting features from {filepath}")
+        self._log(f"Extracting features from {filepath}")
         
         try:
             tree = ast.parse(code_text)
         except SyntaxError as e:
-            print(f"[NLP Agent] Syntax error in {filepath}: {e}")
+            self._log(f"Syntax error in {filepath}: {e}")
             return self._default_features(filepath)
         
         bug_features = self._extract_bug_features(code_text, tree)
@@ -47,7 +52,7 @@ class NLPAgent:
             complexities = [r.complexity for r in complexity_results]
             avg_complexity = sum(complexities) / max(len(complexities), 1)
             max_complexity = max(complexities, default=0)
-        except:
+        except (TypeError, ValueError):
             avg_complexity = 0
             max_complexity = 0
         
@@ -75,7 +80,7 @@ class NLPAgent:
             'lines_of_code': lines_of_code
         }
         
-        print(f"[NLP Agent] Bug features: {features}")
+        self._log(f"Bug features: {features}")
         return features
     
     def _extract_vulnerability_features(self, code_text, tree):
@@ -117,7 +122,7 @@ class NLPAgent:
             'total_vulnerability_signals': total_signals
         }
         
-        print(f"[NLP Agent] Vulnerability features: {features}")
+        self._log(f"Vulnerability features: {features}")
         return features
     
     def _calculate_max_nesting(self, tree):
