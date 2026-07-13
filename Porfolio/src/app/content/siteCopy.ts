@@ -23,14 +23,14 @@ export const siteCopy = {
     heroSub:
       "GCU grad (B.S. Software Development, ML/AI minor). Before code: five years on F-22 maintenance at Edwards AFB.",
     typewriter: [
-      "Full-stack developer",
-      "ML/AI minor · PyTorch & stats",
-      "USAF veteran · Secret clearance",
+      "Full-stack software engineer",
+      "React · TypeScript · .NET · Node.js",
+      "USAF veteran · F-22 maintenance",
     ],
     readout: [
-      { label: "Focus", value: "Full-stack +\napplied ML" },
+      { label: "Focus", value: "Full-stack product\nengineering" },
       { label: "Education", value: "B.S. Software Dev\nML/AI minor · GCU\nAug 2023 - Apr 2026" },
-      { label: "Stack", value: "React · .NET · Java\nPython · Spring Boot" },
+      { label: "Stack", value: "React · TypeScript\n.NET · Node.js" },
       { label: "Based in", value: "Phoenix, AZ\nOpen to remote" },
     ],
     ctaProjects: "See my work",
@@ -116,7 +116,7 @@ export const siteCopy = {
     paragraphs: [
       "I'm a software engineer who graduated from Grand Canyon University in April 2026 (B.S. Software Development, Machine Learning & AI minor, Aug 2023 - Apr 2026). I like owning a feature from the database to the UI and leaving it in a state the next person can maintain.",
       "My ML minor wasn't a checkbox: survival analysis, SVMs, ensembles, and a PyTorch sentiment model I trained, evaluated, and deployed to Streamlit with real metrics I can walk through.",
-      "Before GCU I spent five years in the Air Force on F-22 maintenance at Edwards AFB, crew chief work with USAF, Lockheed, and Boeing teams. That's where Turnover Log started. I still hold (and can reactivate) Secret clearance.",
+      "Before GCU I spent five years in the Air Force on F-22 maintenance at Edwards AFB, including crew chief work with USAF, Lockheed, and Boeing teams. That's where Turnover Log started. I previously held a Secret clearance through honorable separation.",
     ],
     interestsTitle: "Off the clock",
     timelineTitle: "Timeline",
@@ -140,7 +140,7 @@ export const siteCopy = {
       "Full-time software roles",
       "Contract or freelance projects",
       "Remote or Phoenix-area on-site",
-      "Full-stack, backend, or systems-leaning teams",
+      "Full-stack, backend, defense, or operations-software teams",
     ],
     note: "I read every message. If you're hiring or have a project in mind, tell me a bit about the team and timeline.",
     formName: "Name",

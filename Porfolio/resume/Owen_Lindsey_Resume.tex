@@ -7,7 +7,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage[margin=0.4in, top=0.35in, bottom=0.35in]{geometry}
+\usepackage[margin=0.35in, top=0.28in, bottom=0.28in]{geometry}
 \usepackage{enumitem}
 \usepackage{hyperref}
 \usepackage{titlesec}
@@ -21,21 +21,21 @@
     urlcolor=linkblue,
     linkcolor=linkblue,
     pdfauthor={Owen Lindsey},
-    pdftitle={Owen Lindsey - Software Engineer Resume},
+    pdftitle={Owen Lindsey - Full-Stack Software Engineer},
 }
 
 \titleformat{\section}{\normalsize\bfseries\uppercase}{}{0em}{}[\titlerule]
-\titlespacing{\section}{0pt}{0.45em}{0.25em}
+\titlespacing{\section}{0pt}{0.28em}{0.12em}
 \setlist[itemize]{nosep, leftmargin=1.2em, topsep=0pt, parsep=0pt, itemsep=0pt}
 
 \newcommand{\resumeHeading}[4]{
-  \vspace{1pt}
+  \vspace{0pt}
   \textbf{#1} \hfill \textit{#2} \\
   \textit{#3} \hfill #4
 }
 
 \newcommand{\projectHeading}[3]{
-  \vspace{1pt}
+  \vspace{0pt}
   \textbf{#1} \hfill #2 \\
   \textit{#3}
 }
@@ -43,8 +43,8 @@
 \begin{document}
 
 \begin{center}
-  {\Large\textbf{Owen Lindsey --- Full-Stack Software Engineer}} \\[2pt]
-  Phoenix, AZ \enspace$\cdot$\enspace
+  {\Large\textbf{Owen Lindsey \textbar{} Full-Stack Software Engineer}} \\[2pt]
+  \textbf{React, TypeScript, .NET \& Node.js} \enspace$\cdot$\enspace \textbf{USAF Veteran} \enspace$\cdot$\enspace Phoenix, AZ \\[2pt]
   \href{mailto:owen.lindsey98@outlook.com}{owen.lindsey98@outlook.com} \enspace$\cdot$\enspace
   480-201-7558 \enspace$\cdot$\enspace
   \href{https://github.com/omniV1}{github.com/omniV1} \enspace$\cdot$\enspace
@@ -53,57 +53,47 @@
 \vspace{-0.9em}
 
 \section{Summary}
-Full-stack developer; GCU 2026 (B.S. Software Development, ML/AI minor). Five years F-22 maintenance at Edwards AFB, then production web work including Lunara Care and live deployed projects. USAF veteran; Secret clearance.
+Full-stack software engineer shipping production applications with React, TypeScript, Node.js, and ASP.NET Core. Led delivery of Lunara Care, a live postpartum platform backed by 375 automated tests at 81.9\% line coverage, and built Turnover Log from real flight-line shift-handoff workflows. GCU software development graduate with an ML/AI minor and five years of F-22 maintenance experience in the U.S. Air Force.
 
 \section{Education}
-\resumeHeading{Bachelor of Science in Software Development}{Graduated 2026}{Grand Canyon University --- ML/AI minor}{Phoenix, AZ}
+\resumeHeading{Bachelor of Science in Software Development}{Graduated 2026}{Grand Canyon University, Minor in Machine Learning \& AI}{Phoenix, AZ}
 
 \section{Technical Skills}
-\textbf{Languages:} Java, C\#, Python, TypeScript, JavaScript, C, SQL, Bash \\
-\textbf{Frontend:} React 18, Angular, Blazor WASM, Tailwind CSS, Material UI, Redux Toolkit \\
-\textbf{Backend:} Spring Boot 3, Node.js/Express, ASP.NET Core, REST, Spring Security \\
-\textbf{ML:} PyTorch, scikit-learn, NumPy, Pandas, Streamlit \\
-\textbf{Data \& Testing:} MongoDB, MySQL, PostgreSQL, Jest, JUnit 5, xUnit, SonarQube, JaCoCo \\
-\textbf{DevOps:} Docker, Git, GitHub Actions, Azure, Vercel, Render, OpenAPI/Swagger
+\textbf{Languages \& Systems:} C (POSIX threads, mutex / semaphore synchronization, signals, IPC, virtual memory, deadlock prevention), C\# / .NET 8--9, Java 17, TypeScript, JavaScript, Python, SQL, Bash, Linux \\
+\textbf{Backend \& APIs:} ASP.NET Core, Entity Framework Core \textbar{} Spring Boot 3, Spring Security, JdbcTemplate, Maven, OpenAPI / Swagger, HATEOAS \textbar{} Node.js / Express, Mongoose; REST, multi-tier service architecture \\
+\textbf{Frontend:} React 18, Vite, TypeScript, Redux Toolkit, MUI, Tailwind, Blazor WebAssembly, Socket.IO real-time event streams \\
+\textbf{Data \& Cloud:} MySQL, PostgreSQL, MongoDB, SQL Server; Docker, GitHub Actions, Azure (App Service, Key Vault), Vercel, Render \\
+\textbf{Methodology \& QA:} Agile / Scrum (2-week sprints, Jira, peer-reviewed PRs); JUnit 5, Mockito, JaCoCo, SonarQube, xUnit, Jest, Supertest; debugging, test-driven development, code review
 
 \section{Experience}
-\resumeHeading{Lunara Care}{2026}{Lead Full-Stack Developer --- Client Partner}{Remote}
+\resumeHeading{Lunara Care}{2026}{Full-Stack Developer}{Remote, live at lunaracare.org}
 \begin{itemize}
-  \item Owned Lunara Care end to end (scheduling, chat, care plans, documents); live at lunaracare.org with real doula--client users
-  \item 375 automated tests at 81.9\% coverage; SonarQube gates held green through releases
+  \item Owned end-to-end delivery of a postpartum care platform on Node/Express with 70+ REST endpoints across 19 route modules and 20+ Mongoose models; React 18 + Vite + TypeScript on the client; Socket.IO real-time event streams for chat, presence, and live check-in notifications
+  \item Backend hardened with JWT + Passport.js + TOTP MFA, GridFS, Helmet, CORS, bcrypt, and rate limiting; multi-tier split deploy (Vercel frontend, Render API, MongoDB Atlas) with environment promotion through GitHub Actions
+  \item 375 unit, component, service, and integration tests at 81.9\% line coverage with Jest + Supertest; all 8 SonarQube quality gates rated A through every release
 \end{itemize}
-\resumeHeading{Iron Palace Podcast}{2026}{Full-Stack Developer --- Client Partner}{Remote}
+\resumeHeading{Iron Palace Podcast}{2026}{Frontend Developer, Client Project}{Remote, live at ironpalace.live}
 \begin{itemize}
-  \item Shipped ironpalace.live: React site that ingests YouTube RSS at build time so episode links stay current
-  \item Dockerized for one-command redeploys when the feed updates
+  \item React 18 + Vite 6 + TypeScript single-page site (Tailwind 4, Radix UI, Framer Motion); prebuild Node script pulls the channel's YouTube RSS at build time and writes a static JSON snapshot the app reads in production, so episodes stay current with no API key, CMS, or manual client updates; ships as a static bundle behind a Dockerfile
 \end{itemize}
-
 \section{Selected Projects}
-\projectHeading{Turnover Log \textnormal{(\href{https://turnover-log.vercel.app/}{Live} $\cdot$ \href{https://github.com/omniV1/turnover-log}{GitHub})}}{2026}{React, TypeScript, ASP.NET Core 8, PostgreSQL, JWT, xUnit}
+\projectHeading{Aircraft Maintenance Tracker \textnormal{(\href{https://github.com/omniV1/GCU_SWE_2023-2025/tree/main/SummerPractice/AerospaceAPI}{GitHub})}}{2025}{React 18, Axios, ASP.NET Core 8, Entity Framework Core, MySQL}
 \begin{itemize}
-  \item Shift handoff board from my maintenance background: tail-number entries, supervisor in-app alerts (no SMTP required); React/Vercel + .NET/Render/PostgreSQL
-  \item xUnit integration tests in GitHub Actions CI
+  \item Built full-stack CRUD workflows for aircraft and maintenance records using React 18 and Axios with an ASP.NET Core 8 API backed by EF Core and MySQL; added centralized API error handling and based the domain model on five years of F-22 maintenance experience
 \end{itemize}
-\projectHeading{NLP Sentiment Analysis \textnormal{(\href{https://nlp-owen.streamlit.app/}{Live} $\cdot$ \href{https://github.com/omniV1/AIT-204-pair-programing/tree/main/NLP/Topic4_NLP}{GitHub})}}{2026}{Python, PyTorch, Streamlit}
+\projectHeading{Turnover Log \textnormal{(\href{https://turnover-log.vercel.app/}{Live} $\cdot$ \href{https://github.com/omniV1/turnover-log}{GitHub})}}{2026}{React 18, TypeScript, ASP.NET Core 8, EF Core, PostgreSQL, JWT, xUnit}
 \begin{itemize}
-  \item IMDb sentiment model: \textasciitilde83\% val accuracy; tracked overfitting via train/val loss curves
-  \item Streamlit UI + separate SentimentService; 10 translation round-trips: 80\% label match, 0.16 avg confidence shift
+  \item Shift handoff board modeled on F-22 flight-line turnover: open items by tail number, severity, and sign-off; supervisor dashboard surfaces open/close events without SMTP; xUnit integration tests in GitHub Actions on every push gate the deploy
 \end{itemize}
-\projectHeading{CineScope \textnormal{(\href{https://github.com/omniV1/CineScope}{GitHub})}}{2025}{Blazor WASM, ASP.NET Core, MongoDB, Claude API, Azure}
+\projectHeading{CineScope \textnormal{(\href{https://github.com/omniV1/CineScope}{GitHub})}}{2025}{C\# / .NET 9, ASP.NET Core, Blazor WebAssembly, MongoDB, Anthropic Claude API, Azure, JWT}
 \begin{itemize}
-  \item Lead dev on a 4-person team: reviews, moderation, admin; Claude recommendations via MCP
-  \item Azure deploy with GitHub Actions, Key Vault, JWT + BCrypt auth
-\end{itemize}
-\projectHeading{Airport Gate Management System \textnormal{(\href{https://github.com/omniV1/GCU_SWE_2023-2025/tree/main/CST-339-Java3/workspaceCST-339/src/Milestone/agms}{GitHub})}}{2025}{Java 17, Spring Boot 3, Spring Security, MySQL}
-\begin{itemize}
-  \item Airport ops CRUD (gates, flights, assignments) with RBAC for four roles; OpenAPI docs; Cloud Run deploy
+  \item Primary developer on a 4-person Agile team across 2-week sprints with Jira and peer-reviewed PRs; 5-tier architecture (Blazor WASM, ASP.NET Core API, service layer, MongoDB repositories), 9 controllers / 9 services; AI recommendations via Claude API over Model Context Protocol; JWT + BCrypt with role-based access; deployed to Azure with Key Vault and GitHub Actions CI/CD
 \end{itemize}
 
 \section{Military Experience}
-\resumeHeading{Tactical Aircraft Maintenance --- F-22 (2A3X7)}{Sept 2017 --- Sept 2022}{USAF, 411th FLTS, Edwards AFB}{Honorable Discharge}
+\resumeHeading{Tactical Aircraft Maintenance, F-22 (2A3X7)}{Sept 2017 -- Sept 2022}{USAF, 411th FLTS, Edwards AFB}{Honorable Discharge}
 \begin{itemize}
-  \item Coordinated USAF, Lockheed, and Boeing maintenance on Raptor 2.0; Link 16 integration, critical TCTOs, stabilizer removals
-  \item Trained new crew chiefs on 5th-gen readiness; Secret clearance
+  \item Coordinated time-critical F-22 maintenance with USAF, Lockheed, and Boeing teams; trained incoming crew chiefs on technical procedures and safety; previously held a Secret clearance through honorable separation
 \end{itemize}
 
 \end{document}

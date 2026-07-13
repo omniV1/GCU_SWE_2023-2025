@@ -4,15 +4,15 @@
 
 <div align="center">
 
-# Software Engineering Portfolio
+# Software Engineering Coursework Archive
 
 #### Grand Canyon University &nbsp;·&nbsp; Class of 2026
 
-<sub><i>A multi-year archive of software engineering coursework, milestone projects, and post-graduation work.</i></sub>
+<sub><i>A multi-year academic archive. Recruiter-facing production work is linked below.</i></sub>
 
 <br />
 
-![Degree](https://img.shields.io/badge/Degree-B.S.%20Software%20Engineering-1F2937?style=flat-square&labelColor=111827)
+![Degree](https://img.shields.io/badge/Degree-B.S.%20Software%20Development-1F2937?style=flat-square&labelColor=111827)
 ![Institution](https://img.shields.io/badge/Institution-Grand%20Canyon%20University-522D80?style=flat-square&labelColor=111827)
 ![Program](https://img.shields.io/badge/Program-2023%E2%80%932026-1F2937?style=flat-square&labelColor=111827)
 ![Status](https://img.shields.io/badge/Status-Graduated-2E7D32?style=flat-square&labelColor=111827)
@@ -52,6 +52,14 @@
 
 <br />
 
+> **Looking for portfolio projects?** Start with
+> [Lunara Care](https://www.lunaracare.org),
+> [Turnover Log](https://turnover-log.vercel.app),
+> [Iron Palace](https://ironpalace.live), or the
+> [`Porfolio/`](./Porfolio/) site source. This repository preserves coursework
+> and learning progression; it is not intended to present every folder as
+> production-ready work.
+
 <hr />
 
 <!-- =========================================================== -->
@@ -64,7 +72,7 @@
 
 ### Overview
 
-A curated archive of coursework, milestone projects, and independent work completed during my Bachelor of Science in Software Engineering at Grand Canyon University.
+A curated archive of coursework, milestone projects, and independent work completed during my Bachelor of Science in Software Development, with a minor in Machine Learning &amp; AI, at Grand Canyon University.
 
 The repository spans foundational programming, full-stack development, systems and database engineering, secure coding, and applied machine learning — alongside post-graduation projects that continue the work.
 
@@ -75,8 +83,8 @@ The repository spans foundational programming, full-stack development, systems a
 
 | | |
 | --- | --- |
-| **Degree** | B.S. Software Engineering |
-| **Focus** | Software Engineering &nbsp;+&nbsp; Applied AI |
+| **Degree** | B.S. Software Development |
+| **Minor** | Machine Learning &amp; AI |
 | **Institution** | Grand Canyon University |
 | **Program** | 2023 – 2026 |
 | **Scope** | 18 courses &nbsp;+&nbsp; independent projects |
@@ -405,6 +413,6 @@ Released under the terms of the included [LICENSE](./LICENSE). Coursework remain
 
 <div align="right">
 <sub>
-<b>Grand Canyon University</b> &nbsp;·&nbsp; B.S. Software Engineering &nbsp;·&nbsp; 2023 – 2026
+<b>Grand Canyon University</b> &nbsp;·&nbsp; B.S. Software Development, Minor in Machine Learning &amp; AI &nbsp;·&nbsp; 2023 – 2026
 </sub>
 </div>

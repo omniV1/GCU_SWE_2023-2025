@@ -17,7 +17,7 @@ const timeline = [
   { year: "2026", event: "Built Multi-Agent Code Quality System" },
   { year: "2025", event: "CineScope: movie review platform, primary developer on 4-person Agile team" },
   { year: "2025", event: "Built AGMS, enterprise airport operations platform" },
-  { year: "2025", event: "Aircraft Fleet Manager: React + ASP.NET Core maintenance tracking system" },
+  { year: "2025", event: "Aircraft Maintenance Tracker: React + ASP.NET Core practice project" },
   { year: "2023", event: "Started GCU (Aug 2023), B.S. Software Development" },
   { year: "2022", event: "Separated from USAF, Tactical Aircraft Maintenance (5th Gen), F-22 Raptor" },
   { year: "2017", event: "Enlisted, United States Air Force · 5 Years of Service" },

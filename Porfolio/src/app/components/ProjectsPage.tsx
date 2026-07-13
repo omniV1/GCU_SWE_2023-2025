@@ -161,12 +161,12 @@ const allProjects: Project[] = [
   },
   {
     id: "fleet-manager",
-    title: "AIRCRAFT FLEET MANAGER",
+    title: "AIRCRAFT MAINTENANCE TRACKER",
     category: "FULL-STACK",
-    tags: ["React 18", "TypeScript", "Redux Toolkit", "Material UI", "Tailwind CSS", "C#", "ASP.NET Core", ".NET 8", "Entity Framework Core", "MySQL"],
+    tags: ["React 18", "Axios", "C#", "ASP.NET Core", ".NET 8", "Entity Framework Core", "MySQL"],
     short: "Aviation maintenance tracking system with React frontend, ASP.NET Core REST API, and Entity Framework persistence. Domain-specific design informed by hands-on aviation maintenance experience.",
-    expanded: "React 18 frontend with Redux Toolkit state management, Material UI components, Formik/Yup form validation, and Axios API integration. Full CRUD component suite for aircraft listing, details, creation, editing, and deletion.\n\nASP.NET Core .NET 8 backend with Entity Framework Core migrations and MySQL database. Custom error handling middleware and status code configuration. RESTful endpoints for aircraft CRUD operations.\n\nPostman API documentation. Responsive UI with both Material UI and Tailwind CSS styling. SASS preprocessing for custom styles.",
-    github: "https://github.com/omniV1/GCU_SWE_2023-2025/tree/main/CST-391-Web_dev/src/Milestone",
+    expanded: "React 18 frontend with React Router, Axios API integration, and a full CRUD component suite for aircraft listing, details, creation, editing, and deletion.\n\nASP.NET Core .NET 8 backend with Entity Framework Core migrations and MySQL database. Custom error handling middleware and status code configuration. RESTful endpoints for aircraft CRUD operations.\n\nPostman API documentation and screenshots document the workflow. This is a self-directed practice project rather than a production deployment.",
+    github: "https://github.com/omniV1/GCU_SWE_2023-2025/tree/main/SummerPractice/AerospaceAPI",
   },
   {
     id: "os-fundamentals",
