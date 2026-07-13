@@ -116,7 +116,7 @@ export const siteCopy = {
     paragraphs: [
       "I'm a software engineer who graduated from Grand Canyon University in April 2026 (B.S. Software Development, Machine Learning & AI minor, Aug 2023 - Apr 2026). I like owning a feature from the database to the UI and leaving it in a state the next person can maintain.",
       "My ML minor wasn't a checkbox: survival analysis, SVMs, ensembles, and a PyTorch sentiment model I trained, evaluated, and deployed to Streamlit with real metrics I can walk through.",
-      "Before GCU I spent five years in the Air Force on F-22 maintenance at Edwards AFB, including crew chief work with USAF, Lockheed, and Boeing teams. That's where Turnover Log started. I previously held a Secret clearance through honorable separation.",
+      "Before GCU I spent five years in the Air Force on F-22 maintenance at Edwards AFB, including crew chief work with USAF, Lockheed, and Boeing teams. That's where Turnover Log started. I held Secret clearance during service; it is not currently active.",
     ],
     interestsTitle: "Off the clock",
     timelineTitle: "Timeline",
