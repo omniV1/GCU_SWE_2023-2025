@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Amazon Lab — NeetCode-style Roadmap</title>
+<link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="logo">Amazon Lab</div>
+    <span class="sep">|</span>
+    <button class="tabbtn active" data-view="roadmap">Roadmap</button>
+    <button class="tabbtn" data-view="picker">When to use</button>
+    <button class="tabbtn" data-view="practice">Practice</button>
+    <div class="spacer"></div>
+    <span class="progress" id="progress">0 / 0</span>
+    <span class="save-indicator" id="save-indicator" title="Progress saved in this browser">Saved locally</span>
+    <span class="timer" id="timer">35:00</span>
+    <button class="btn ghost" id="btn-timer">Timer</button>
+    <button class="btn warn" id="btn-protocol">Protocol</button>
+    <button class="btn ghost" id="btn-reset">Reset progress</button>
+  </header>
+
+  <div id="view-roadmap" class="view">
+    <div class="hero">
+      <h1>NeetCode-ordered · Amazon-weighted</h1>
+      <p>Patterns stack inside each category. Not sure which move? Open <strong>When to use</strong> first.</p>
+      <p class="meta" id="bank-meta"></p>
+    </div>
+    <div id="roadmap-grid" class="roadmap"></div>
+  </div>
+
+  <div id="view-picker" class="view hide">
+    <div class="hero">
+      <h1>When to use each move</h1>
+      <p>Read the problem → match signals → pick a pattern. Use this before you code.</p>
+    </div>
+    <div id="picker-content" class="picker"></div>
+  </div>
+
+  <div id="view-practice" class="view hide">
+    <div class="main">
+      <aside class="sidebar" id="sidebar"></aside>
+      <section class="desc">
+        <div class="pane-tabs">
+          <button class="tab active" data-pane="pattern">Learn pattern</button>
+          <button class="tab" data-pane="desc">Description</button>
+          <button class="tab" data-pane="bridge">Pattern bridge</button>
+          <button class="tab" data-pane="interview">Say out loud</button>
+        </div>
+        <div class="scroll" id="desc-pane"></div>
+      </section>
+      <section class="work">
+        <div class="pane-tabs">
+          <button class="tab active">Code</button>
+          <span class="meta" id="fn-label"></span>
+        </div>
+        <div class="editor-wrap">
+          <textarea id="editor" spellcheck="false"></textarea>
+          <div class="runbar">
+            <button class="btn primary" id="btn-run">Run</button>
+            <button class="btn primary" id="btn-submit">Submit</button>
+            <button class="btn ghost" id="btn-reset-code">Reset code</button>
+            <button class="btn ghost" id="btn-hint">Hint</button>
+            <button class="btn ghost" id="btn-solution">Solution</button>
+            <button class="btn ghost" id="btn-next">Next</button>
+            <span id="status">Loading Python…</span>
+          </div>
+          <div class="results" id="results"><span class="muted">Select a problem from the roadmap.</span></div>
+          <div class="memory-bar">
+            <label class="memory-label" for="problem-note">Your notes (auto-saved)</label>
+            <textarea id="problem-note" rows="2" placeholder="Pattern reminder, mistake, real-world hook in your own words…"></textarea>
+            <div class="memory-actions">
+              <button class="btn ghost" id="btn-mastered" type="button">Mark mastered</button>
+              <button class="btn ghost" id="btn-export" type="button">Export progress</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="modal-back" id="protocol-modal">
+  <div class="modal">
+    <h2>Amazon live-coding protocol</h2>
+    <ul>
+      <li><b>0–2m</b> Restate + clarify constraints/edges</li>
+      <li><b>2–5m</b> Name pattern, brute force, target Big-O</li>
+      <li><b>5–8m</b> One-sentence invariant</li>
+      <li><b>Code</b> Narrate; if stuck &gt;3m, say so and simplify</li>
+      <li><b>End</b> Trace edges + time/space + tradeoff</li>
+    </ul>
+    <div class="callout bad">Worst day: silence, no edges, wrong complexity, ego when nudged.</div>
+    <div class="callout good">Best day: fast classify, collaborate, catch own bugs, story wrappers → pattern in 2 minutes.</div>
+    <button class="btn primary" id="close-protocol">Got it</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>

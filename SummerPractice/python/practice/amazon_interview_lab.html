@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Amazon Interview Lab — LeetCode-style Pattern Trainer</title>
+<style>
+  :root {
+    --bg: #1a1a1a;
+    --panel: #282828;
+    --panel-2: #2d2d2d;
+    --ink: #eff2f6;
+    --ink-dim: #9ca3af;
+    --line: #3e3e3e;
+    --accent: #ffa116;
+    --accent-2: #2cbb5d;
+    --good: #2cbb5d;
+    --bad: #ef4743;
+    --warn: #ffa116;
+    --code-bg: #1e1e1e;
+    --side: #262626;
+    --mono: ui-monospace, "Cascadia Code", "JetBrains Mono", Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font-family: var(--sans); }
+  button { font-family: inherit; cursor: pointer; }
+  .app { display: grid; grid-template-rows: 48px 1fr; height: 100vh; }
+  .top {
+    display: flex; align-items: center; gap: 12px; padding: 0 14px;
+    border-bottom: 1px solid var(--line); background: #212121;
+  }
+  .logo { font-weight: 700; color: var(--accent); font-size: 14px; letter-spacing: .02em; }
+  .top .sep { color: var(--line); }
+  .top .meta { color: var(--ink-dim); font-size: 13px; }
+  .spacer { flex: 1; }
+  .btn {
+    background: var(--panel-2); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 6px; padding: 6px 12px; font-size: 13px;
+  }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary { background: var(--accent-2); border-color: var(--accent-2); color: #06240f; font-weight: 700; }
+  .btn.primary:disabled { opacity: .55; cursor: wait; }
+  .btn.ghost { background: transparent; }
+  .btn.warn { background: rgba(255,161,22,.15); border-color: var(--warn); color: var(--warn); }
+
+  .main {
+    display: grid;
+    grid-template-columns: 260px 1fr 1fr;
+    min-height: 0;
+  }
+  @media (max-width: 1100px) {
+    .main { grid-template-columns: 1fr; grid-template-rows: auto 45vh 40vh; }
+    .sidebar { max-height: 180px; }
+  }
+
+  .sidebar {
+    background: var(--side); border-right: 1px solid var(--line);
+    overflow: auto; padding: 10px 0;
+  }
+  .side-h {
+    padding: 8px 14px 4px; font-size: 11px; text-transform: uppercase;
+    letter-spacing: .08em; color: var(--ink-dim);
+  }
+  .prob {
+    display: flex; gap: 8px; align-items: flex-start;
+    padding: 8px 14px; cursor: pointer; border-left: 3px solid transparent;
+    font-size: 13px;
+  }
+  .prob:hover { background: rgba(255,255,255,.04); }
+  .prob.active { background: rgba(255,161,22,.10); border-left-color: var(--accent); }
+  .prob .st { width: 14px; text-align: center; flex-shrink: 0; }
+  .prob .st.pass { color: var(--good); }
+  .prob .st.fail { color: var(--bad); }
+  .prob .diff { margin-left: auto; font-size: 11px; color: var(--ink-dim); }
+  .diff.easy { color: #00b8a3; }
+  .diff.med { color: var(--accent); }
+  .diff.hard { color: var(--bad); }
+
+  .desc, .work { min-height: 0; display: flex; flex-direction: column; border-right: 1px solid var(--line); }
+  .work { border-right: 0; }
+  .pane-tabs {
+    display: flex; gap: 2px; padding: 6px 8px; border-bottom: 1px solid var(--line);
+    background: #212121; flex-wrap: wrap;
+  }
+  .pane-tabs .tab {
+    background: transparent; border: 0; color: var(--ink-dim);
+    padding: 6px 10px; border-radius: 6px; font-size: 13px;
+  }
+  .pane-tabs .tab.active { background: var(--panel); color: var(--ink); }
+  .scroll { overflow: auto; padding: 16px 18px 28px; flex: 1; }
+  .title-row { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+  .title-row h1 { margin: 0; font-size: 22px; font-weight: 600; }
+  .pill {
+    font-size: 12px; padding: 2px 8px; border-radius: 999px;
+    border: 1px solid var(--line); color: var(--ink-dim);
+  }
+  .pill.pattern { border-color: rgba(255,161,22,.45); color: var(--accent); }
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: rgba(255,161,22,.08);
+    padding: 10px 12px; border-radius: 0 8px 8px 0; margin: 12px 0;
+    font-size: 14px;
+  }
+  .callout.good { border-left-color: var(--good); background: rgba(44,187,93,.08); }
+  .callout.bad { border-left-color: var(--bad); background: rgba(239,71,67,.08); }
+  .callout.info { border-left-color: #5b8def; background: rgba(91,141,239,.08); }
+  h3 { font-size: 14px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-dim); margin: 18px 0 6px; }
+  pre.trace, pre.ex {
+    background: var(--code-bg); border: 1px solid var(--line); border-radius: 8px;
+    padding: 12px; overflow-x: auto; font-family: var(--mono); font-size: 12.5px; line-height: 1.5;
+  }
+  .say {
+    margin-top: 10px; padding: 10px 12px; border: 1px dashed var(--line); border-radius: 8px;
+    font-size: 13.5px; color: var(--ink);
+  }
+  .say b { color: var(--accent); }
+
+  .editor-wrap { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+  #editor {
+    flex: 1; width: 100%; min-height: 220px; resize: none;
+    background: var(--code-bg); color: #d4d4d4; border: 0;
+    padding: 14px; font-family: var(--mono); font-size: 13.5px; line-height: 1.55;
+    outline: none;
+  }
+  .runbar {
+    display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+    padding: 8px 10px; border-top: 1px solid var(--line); background: #212121;
+  }
+  #status { font-size: 12px; color: var(--ink-dim); }
+  .results {
+    border-top: 1px solid var(--line); max-height: 38%; overflow: auto;
+    background: #1c1c1c; padding: 10px 12px; font-family: var(--mono); font-size: 12.5px;
+    white-space: pre-wrap;
+  }
+  .results .ok { color: var(--good); }
+  .results .err { color: var(--bad); }
+  .results .muted { color: var(--ink-dim); }
+
+  .timer { font-family: var(--mono); font-size: 13px; color: var(--accent); min-width: 64px; }
+  .progress { font-size: 12px; color: var(--ink-dim); }
+
+  .modal-back {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.55);
+    align-items: center; justify-content: center; z-index: 50; padding: 20px;
+  }
+  .modal-back.show { display: flex; }
+  .modal {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    max-width: 640px; width: 100%; max-height: 80vh; overflow: auto; padding: 18px 20px;
+  }
+  .modal h2 { margin: 0 0 8px; font-size: 18px; }
+  .modal ul { margin: 8px 0; padding-left: 18px; font-size: 14px; color: var(--ink-dim); }
+  .modal li { margin: 4px 0; color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="logo">Amazon Interview Lab</div>
+    <span class="sep">|</span>
+    <div class="meta" id="top-title">Hash Pattern Ladder</div>
+    <div class="spacer"></div>
+    <span class="progress" id="progress">0 / 0 solved</span>
+    <span class="timer" id="timer">35:00</span>
+    <button class="btn ghost" id="btn-timer" title="Interview timer">Timer</button>
+    <button class="btn warn" id="btn-protocol">Interview protocol</button>
+    <button class="btn ghost" id="btn-reset-progress">Reset progress</button>
+  </header>
+
+  <div class="main">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <section class="desc">
+      <div class="pane-tabs">
+        <button class="tab active" data-pane="desc">Description</button>
+        <button class="tab" data-pane="bridge">Pattern bridge</button>
+        <button class="tab" data-pane="interview">Say this out loud</button>
+      </div>
+      <div class="scroll" id="desc-pane"></div>
+    </section>
+
+    <section class="work">
+      <div class="pane-tabs">
+        <button class="tab active">Code</button>
+        <span class="meta" style="margin-left:8px;align-self:center;" id="fn-label"></span>
+      </div>
+      <div class="editor-wrap">
+        <textarea id="editor" spellcheck="false" autocomplete="off"></textarea>
+        <div class="runbar">
+          <button class="btn primary" id="btn-run">Run</button>
+          <button class="btn" id="btn-submit">Submit tests</button>
+          <button class="btn ghost" id="btn-reset">Reset code</button>
+          <button class="btn ghost" id="btn-hint">Reveal tip</button>
+          <button class="btn ghost" id="btn-solution">Show solution</button>
+          <span id="status">Loading Python…</span>
+        </div>
+        <div class="results" id="results"><span class="muted">Pick a problem. Read the bridge. Then code.</span></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="modal-back" id="protocol-modal">
+  <div class="modal">
+    <h2>Amazon live-coding protocol (best + worst day)</h2>
+    <p style="color:var(--ink-dim);font-size:14px;margin:0 0 8px;">Use this every Run — especially under pressure.</p>
+    <ul>
+      <li><b>0–2 min:</b> Restate problem. Ask: empty? duplicates? n size? mutate?</li>
+      <li><b>2–5 min:</b> Name pattern out loud. State brute force + target Big-O.</li>
+      <li><b>5–8 min:</b> Write the invariant in one sentence before code.</li>
+      <li><b>Code:</b> Narrate. If stuck &gt;3 min, say so and simplify.</li>
+      <li><b>Before submit:</b> Trace empty / single / duplicates on paper or in comments.</li>
+      <li><b>End:</b> Time, space, one tradeoff.</li>
+    </ul>
+    <div class="callout bad">
+      Worst day: silent coding, skipping edges, fighting the interviewer, forgetting LP stories.
+      This lab’s “Say this out loud” tab is your safety script.
+    </div>
+    <div class="callout good">
+      Best day: pattern named fast, edges listed, collaborative when stuck, complexity crisp.
+    </div>
+    <button class="btn primary" id="close-protocol" style="margin-top:12px;">Got it</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+<script>
+/* ========== Problem bank ========== */
+const PROBLEMS = [
+  {
+    id: "L0",
+    group: "Hash Lab (ladder)",
+    title: "L0 — Tools: set vs dict",
+    difficulty: "easy",
+    pattern: "Hashing foundations",
+    kind: "demo",
+    alreadyKnow: "Nothing required. This is the foundation for every later lesson.",
+    whatsNew: "Two boxes: set = yes/no membership. dict = membership + payload (index, count, list…).",
+    trace: `set walk on [3,1,3,2]:
+  see 3 -> add {3}
+  see 1 -> add {1,3}
+  see 3 -> ALREADY IN SET -> duplicate
+  see 2 -> add {1,2,3}
+
+dict stores INDEX:
+  2 at 0 -> {2:0}
+  7 at 1 -> {2:0, 7:1}
+
+COMPLEMENT idea (Two Sum / Subarray Sum):
+  at value x, ask "have I seen target - x?"`,
+    sayOutLoud: "A set answers 'have I seen this?' A dict answers 'have I seen this, and what did I store with it?'",
+    complexity: "Lookup O(1) average.",
+    hint: "Just click Run to see demos. No code to write.",
+    starter: `# L0 is demos only — click Run.
+# Read the printed walkthrough, then open L1.
+
+print("Ready for L1: Contains Duplicate")
+`,
+    solution: `print("Ready for L1: Contains Duplicate")`,
+    tests: null,
+    runExtra: `
+seen = set()
+for x in [3, 1, 3, 2]:
+    if x in seen:
+        print(x, "already in set -> DUPLICATE")
+    else:
+        seen.add(x)
+        print("add", x, "set=", seen)
+print("--- dict stores index ---")
+index_of = {}
+for i, x in enumerate([2, 7, 11]):
+    index_of[x] = i
+    print("saw", x, "at", i, "dict=", index_of)
+`
+  },
+  {
+    id: "L1",
+    group: "Hash Lab (ladder)",
+    title: "L1 — Contains Duplicate",
+    difficulty: "easy",
+    pattern: "Hashing · set",
+    alreadyKnow: "From L0: a set answers 'have I seen this value?' in O(1).",
+    whatsNew: "Turn that into a function: scan once; if value already in set -> True; else add it.",
+    trace: `nums = [1, 2, 3, 1]
+  1 -> not in set -> add {1}
+  2 -> not in set -> add {1,2}
+  3 -> not in set -> add {1,2,3}
+  1 -> IN set -> return True`,
+    sayOutLoud: "I'll use a set. One pass. If I see a value I've already stored, return True.",
+    complexity: "Time O(n), Space O(n)",
+    hint: "seen = set(); for x in nums: if x in seen: return True; seen.add(x)",
+    starter: `def contains_duplicate(nums):
+    seen = set()
+    for x in nums:
+        # >>> if x already seen, return True; else add x
+        pass
+    return False
+`,
+    solution: `def contains_duplicate(nums):
+    seen = set()
+    for x in nums:
+        if x in seen:
+            return True
+        seen.add(x)
+    return False
+`,
+    fn: "contains_duplicate",
+    tests: [
+      { args: [[1, 2, 3, 1]], expect: true },
+      { args: [[1, 2, 3, 4]], expect: false },
+      { args: [[1]], expect: false },
+    ]
+  },
+  {
+    id: "L2",
+    group: "Hash Lab (ladder)",
+    title: "L2 — Two Sum",
+    difficulty: "easy",
+    pattern: "Hashing · dict + complement",
+    alreadyKnow: "L1: one-pass scan with a membership box.",
+    whatsNew: "Upgrade set -> dict (store INDEX). Ask for COMPLEMENT (target - num), not the number itself.",
+    trace: `nums=[2,7,11,15] target=9
+  i=0 num=2 need=7 dict={}      miss -> store 2:0
+  i=1 num=7 need=2 dict={2:0}   HIT -> return [0,1]
+
+Same scan as L1. Lookup key changed: x  ->  (target - x)`,
+    sayOutLoud: "Same one-pass as Contains Duplicate, but I look up target minus current, and the dict stores indices.",
+    complexity: "Time O(n), Space O(n)",
+    hint: "need = target - num; if need in seen: return [seen[need], i]; seen[num] = i",
+    starter: `def two_sum(nums, target):
+    seen = {}  # value -> index
+    for i, num in enumerate(nums):
+        need = target - num
+        # >>> if need in seen: return [seen[need], i]
+        # >>> else seen[num] = i
+        pass
+    return []
+`,
+    solution: `def two_sum(nums, target):
+    seen = {}
+    for i, num in enumerate(nums):
+        need = target - num
+        if need in seen:
+            return [seen[need], i]
+        seen[num] = i
+    return []
+`,
+    fn: "two_sum",
+    tests: [
+      { args: [[2, 7, 11, 15], 9], expect: [0, 1], unorderedPair: true },
+      { args: [[3, 2, 4], 6], expect: [1, 2], unorderedPair: true },
+      { args: [[3, 3], 6], expect: [0, 1], unorderedPair: true },
+    ]
+  },
+  {
+    id: "L3",
+    group: "Hash Lab (ladder)",
+    title: "L3 — Group Anagrams",
+    difficulty: "med",
+    pattern: "Hashing · signature key",
+    alreadyKnow: "L2: dict maps a KEY to something useful (there: value -> index).",
+    whatsNew: "Key is a SIGNATURE = ''.join(sorted(word)). Value is a LIST bucket of words. Still a dict — only the key recipe changed.",
+    trace: `["eat","tea","bat"]
+  eat -> key "aet" -> {"aet": ["eat"]}
+  tea -> key "aet" -> {"aet": ["eat","tea"]}
+  bat -> key "abt" -> {"aet": [...], "abt": ["bat"]}`,
+    sayOutLoud: "Still a dict like Two Sum. Only the key changed — sorted letters become the group id.",
+    complexity: "Time O(n * k log k), Space O(n*k)",
+    hint: "from collections import defaultdict; key = ''.join(sorted(word)); groups[key].append(word)",
+    starter: `from collections import defaultdict
+
+def group_anagrams(strs):
+    groups = defaultdict(list)
+    for word in strs:
+        # >>> key = "".join(sorted(word)); groups[key].append(word)
+        pass
+    return list(groups.values())
+`,
+    solution: `from collections import defaultdict
+
+def group_anagrams(strs):
+    groups = defaultdict(list)
+    for word in strs:
+        key = "".join(sorted(word))
+        groups[key].append(word)
+    return list(groups.values())
+`,
+    fn: "group_anagrams",
+    tests: [
+      { args: [["eat", "tea", "tan", "ate", "nat", "bat"]], expectGroups: [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]] },
+      { args: [[""]], expectGroups: [[""]] },
+      { args: [["a"]], expectGroups: [["a"]] },
+    ]
+  },
+  {
+    id: "L4",
+    group: "Hash Lab (ladder)",
+    title: "L4 — Top K Frequent",
+    difficulty: "med",
+    pattern: "Hashing · count then rank",
+    alreadyKnow: "L1/L2 fill a dict in one pass. L3 also fills a dict — but L3 sorts LETTERS for a signature key.",
+    whatsNew: "Phase 1 COUNT (same scan as L1 — NOT L3 sorting). Phase 2 RANK keys by those counts and take top k.",
+    trace: `NOT L3: do not sorted() the number.
+
+Phase 1 nums=[1,1,1,2,2,3]
+  1 -> {1:1}
+  1 -> {1:2}
+  1 -> {1:3}
+  2 -> {1:3, 2:1}
+  2 -> {1:3, 2:2}
+  3 -> {1:3, 2:2, 3:1}
+
+Phase 2: sort keys by count high->low -> [1,2,3]; k=2 -> [1,2]`,
+    sayOutLoud: "I count with a dict like Contains Duplicate, then I rank keys by count. I am NOT making anagram signatures.",
+    complexity: "Time O(n + u log u), Space O(u)",
+    hint: "freq[x] = freq.get(x,0)+1 then sorted(freq.keys(), key=lambda x: freq[x], reverse=True)[:k]",
+    starter: `def top_k_frequent(nums, k):
+    # Phase 1: COUNT (L1-style). Do NOT sorted() the number (that is L3).
+    freq = {}
+    for x in nums:
+        # >>> freq[x] = freq.get(x, 0) + 1
+        pass
+
+    # Phase 2: RANK
+    # >>> ranked = sorted(freq.keys(), key=lambda x: freq[x], reverse=True)
+    # >>> return ranked[:k]
+    pass
+`,
+    solution: `def top_k_frequent(nums, k):
+    freq = {}
+    for x in nums:
+        freq[x] = freq.get(x, 0) + 1
+    ranked = sorted(freq.keys(), key=lambda x: freq[x], reverse=True)
+    return ranked[:k]
+`,
+    fn: "top_k_frequent",
+    tests: [
+      { args: [[1, 1, 1, 2, 2, 3], 2], expectSet: [1, 2] },
+      { args: [[1], 1], expect: [1] },
+    ]
+  },
+  {
+    id: "L5",
+    group: "Hash Lab (ladder)",
+    title: "L5 — Subarray Sum Equals K",
+    difficulty: "med",
+    pattern: "Hashing · prefix + complement",
+    alreadyKnow: "L2 complement lookup. L4 dict values can be COUNTS.",
+    whatsNew: "Store PREFIX SUMS (running totals) in the dict. Look up (prefix - k). This is Two Sum for running totals.",
+    trace: `nums=[1,1,1] k=2; start seen={0:1}
+  +1 prefix=1 look 1-2=-1 miss  seen={0:1,1:1} ans=0
+  +1 prefix=2 look 2-2=0  HIT1  ans=1
+  +1 prefix=3 look 3-2=1  HIT1  ans=2`,
+    sayOutLoud: "Subarray Sum K is Two Sum on prefix sums. The dict counts how often each prefix appeared.",
+    complexity: "Time O(n), Space O(n)",
+    hint: "ans += seen.get(prefix - k, 0); then seen[prefix] = seen.get(prefix,0)+1. Start with seen={0:1}",
+    starter: `def subarray_sum(nums, k):
+    seen = {0: 1}
+    prefix = 0
+    ans = 0
+    for num in nums:
+        prefix += num
+        # >>> ans += seen.get(prefix - k, 0)
+        # >>> seen[prefix] = seen.get(prefix, 0) + 1
+        pass
+    return ans
+`,
+    solution: `def subarray_sum(nums, k):
+    seen = {0: 1}
+    prefix = 0
+    ans = 0
+    for num in nums:
+        prefix += num
+        ans += seen.get(prefix - k, 0)
+        seen[prefix] = seen.get(prefix, 0) + 1
+    return ans
+`,
+    fn: "subarray_sum",
+    tests: [
+      { args: [[1, 1, 1], 2], expect: 2 },
+      { args: [[1, 2, 3], 3], expect: 2 },
+      { args: [[1], 0], expect: 0 },
+    ]
+  },
+  {
+    id: "W1",
+    group: "Window Lab (next)",
+    title: "W1 — Longest Substring No Repeat",
+    difficulty: "med",
+    pattern: "Sliding window",
+    alreadyKnow: "Hash set for 'what's in my current window'.",
+    whatsNew: "Two pointers. Expand right. Shrink left while window invalid (duplicate char).",
+    trace: `"abcabcbb"
+  grow abc (len 3), then duplicate a -> shrink until unique, track max`,
+    sayOutLoud: "Invariant: everything in [left, right] is unique. Shrink left when that breaks.",
+    complexity: "Time O(n), Space O(alphabet)",
+    hint: "while ch in window: remove s[left]; left += 1; then add ch; best = max(best, right-left+1)",
+    starter: `def length_of_longest_substring(s):
+    left = 0
+    best = 0
+    window = set()
+    for right, ch in enumerate(s):
+        # >>> shrink while ch in window; add ch; update best
+        pass
+    return best
+`,
+    solution: `def length_of_longest_substring(s):
+    left = 0
+    best = 0
+    window = set()
+    for right, ch in enumerate(s):
+        while ch in window:
+            window.remove(s[left])
+            left += 1
+        window.add(ch)
+        best = max(best, right - left + 1)
+    return best
+`,
+    fn: "length_of_longest_substring",
+    tests: [
+      { args: ["abcabcbb"], expect: 3 },
+      { args: ["bbbbb"], expect: 1 },
+      { args: ["pwwkew"], expect: 3 },
+      { args: [""], expect: 0 },
+    ]
+  },
+  {
+    id: "W2",
+    group: "Window Lab (next)",
+    title: "W2 — Min Size Subarray Sum",
+    difficulty: "med",
+    pattern: "Sliding window · shrink while valid",
+    alreadyKnow: "W1: expand right, shrink left when INVALID.",
+    whatsNew: "Flip: shrink left while still VALID (sum >= target) to minimize length. Same window tool.",
+    trace: `target=7 [2,3,1,2,4,3]
+  grow until sum>=7, shrink recording best length -> 2 ([4,3])`,
+    sayOutLoud: "Same window as W1. Stop rule flipped — shrink while valid to find the shortest.",
+    complexity: "Time O(n), Space O(1)",
+    hint: "while total >= target: best = min(...); total -= nums[left]; left += 1",
+    starter: `def min_subarray_len(target, nums):
+    left = 0
+    total = 0
+    best = float("inf")
+    for right, num in enumerate(nums):
+        total += num
+        # >>> while total >= target: update best and shrink left
+        pass
+    return 0 if best == float("inf") else best
+`,
+    solution: `def min_subarray_len(target, nums):
+    left = 0
+    total = 0
+    best = float("inf")
+    for right, num in enumerate(nums):
+        total += num
+        while total >= target:
+            best = min(best, right - left + 1)
+            total -= nums[left]
+            left += 1
+    return 0 if best == float("inf") else best
+`,
+    fn: "min_subarray_len",
+    tests: [
+      { args: [7, [2, 3, 1, 2, 4, 3]], expect: 2 },
+      { args: [4, [1, 4, 4]], expect: 1 },
+      { args: [11, [1, 1, 1, 1, 1, 1, 1, 1]], expect: 0 },
+    ]
+  },
+  {
+    id: "A1",
+    group: "Amazon pressure reps",
+    title: "Number of Islands",
+    difficulty: "med",
+    pattern: "Grid DFS/BFS",
+    alreadyKnow: "Visit neighbors; mark visited so you don't loop.",
+    whatsNew: "Each fresh '1' starts an island; flood-fill the whole component.",
+    trace: `Find '1' -> islands+=1 -> DFS sinks entire island to '0'`,
+    sayOutLoud: "I'll scan the grid. Every unvisited land cell starts DFS/BFS to mark one island.",
+    complexity: "Time O(mn), Space O(mn)",
+    hint: "dfs: if OOB or not '1' return; set '0'; recurse 4 dirs",
+    starter: `def num_islands(grid):
+    if not grid:
+        return 0
+    rows, cols = len(grid), len(grid[0])
+
+    def dfs(r, c):
+        # >>> base cases + mark + 4 neighbors
+        pass
+
+    islands = 0
+    for r in range(rows):
+        for c in range(cols):
+            # >>> if land: islands += 1; dfs(r,c)
+            pass
+    return islands
+`,
+    solution: `def num_islands(grid):
+    if not grid:
+        return 0
+    rows, cols = len(grid), len(grid[0])
+
+    def dfs(r, c):
+        if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] != "1":
+            return
+        grid[r][c] = "0"
+        dfs(r + 1, c)
+        dfs(r - 1, c)
+        dfs(r, c + 1)
+        dfs(r, c - 1)
+
+    islands = 0
+    for r in range(rows):
+        for c in range(cols):
+            if grid[r][c] == "1":
+                islands += 1
+                dfs(r, c)
+    return islands
+`,
+    fn: "num_islands",
+    tests: [
+      {
+        args: [[["1","1","0","0","0"],["1","1","0","0","0"],["0","0","1","0","0"],["0","0","0","1","1"]]],
+        expect: 3,
+        deepcopy: true
+      },
+      { args: [[["0"]]], expect: 0, deepcopy: true },
+    ]
+  },
+  {
+    id: "A2",
+    group: "Amazon pressure reps",
+    title: "Course Schedule",
+    difficulty: "med",
+    pattern: "Graph · topo / cycle",
+    alreadyKnow: "Dependencies form a directed graph.",
+    whatsNew: "Cycle => impossible. Kahn BFS: repeatedly take indegree-0 courses.",
+    trace: `2 courses, [[1,0]] -> take 0 then 1 -> True
+  [[1,0],[0,1]] -> cycle -> False`,
+    sayOutLoud: "I'll build the graph, queue indegree zero, and count how many courses I can take.",
+    complexity: "Time O(V+E), Space O(V+E)",
+    hint: "from collections import defaultdict, deque; process indegree-0 queue",
+    starter: `from collections import defaultdict, deque
+
+def can_finish(num_courses, prerequisites):
+    graph = defaultdict(list)
+    indegree = [0] * num_courses
+    for a, b in prerequisites:
+        graph[b].append(a)
+        indegree[a] += 1
+    q = deque([i for i in range(num_courses) if indegree[i] == 0])
+    taken = 0
+    # >>> BFS topo; return taken == num_courses
+    pass
+    return taken == num_courses
+`,
+    solution: `from collections import defaultdict, deque
+
+def can_finish(num_courses, prerequisites):
+    graph = defaultdict(list)
+    indegree = [0] * num_courses
+    for a, b in prerequisites:
+        graph[b].append(a)
+        indegree[a] += 1
+    q = deque([i for i in range(num_courses) if indegree[i] == 0])
+    taken = 0
+    while q:
+        course = q.popleft()
+        taken += 1
+        for nxt in graph[course]:
+            indegree[nxt] -= 1
+            if indegree[nxt] == 0:
+                q.append(nxt)
+    return taken == num_courses
+`,
+    fn: "can_finish",
+    tests: [
+      { args: [2, [[1, 0]]], expect: true },
+      { args: [2, [[1, 0], [0, 1]]], expect: false },
+      { args: [1, []], expect: true },
+    ]
+  },
+];
+
+const STORE = "amazon-interview-lab-v1";
+const CODE_STORE = "amazon-interview-lab-code-v1";
+
+/* ========== State ========== */
+let pyodide = null;
+let currentId = null;
+let timerSecs = 35 * 60;
+let timerId = null;
+let descTab = "desc";
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(STORE) || "{}"); } catch { return {}; }
+}
+function saveState(s) { localStorage.setItem(STORE, JSON.stringify(s)); }
+function loadCodeMap() {
+  try { return JSON.parse(localStorage.getItem(CODE_STORE) || "{}"); } catch { return {}; }
+}
+function saveCodeMap(m) { localStorage.setItem(CODE_STORE, JSON.stringify(m)); }
+
+function problemById(id) { return PROBLEMS.find(p => p.id === id); }
+
+/* ========== Sidebar ========== */
+function renderSidebar() {
+  const state = loadState();
+  const root = document.getElementById("sidebar");
+  root.innerHTML = "";
+  let group = null;
+  for (const p of PROBLEMS) {
+    if (p.group !== group) {
+      group = p.group;
+      const h = document.createElement("div");
+      h.className = "side-h";
+      h.textContent = group;
+      root.appendChild(h);
+    }
+    const st = state[p.id];
+    const row = document.createElement("div");
+    row.className = "prob" + (p.id === currentId ? " active" : "");
+    row.innerHTML = `<span class="st ${st === "pass" ? "pass" : st === "fail" ? "fail" : ""}">${st === "pass" ? "✓" : st === "fail" ? "✗" : "·"}</span>
+      <span>${p.title}</span>
+      <span class="diff ${p.difficulty}">${p.difficulty}</span>`;
+    row.onclick = () => selectProblem(p.id);
+    root.appendChild(row);
+  }
+  const passed = PROBLEMS.filter(p => loadState()[p.id] === "pass").length;
+  document.getElementById("progress").textContent = `${passed} / ${PROBLEMS.length} solved`;
+}
+
+/* ========== Description ========== */
+function renderDesc(p) {
+  const pane = document.getElementById("desc-pane");
+  document.getElementById("top-title").textContent = p.title;
+  document.getElementById("fn-label").textContent = p.fn ? `Implement ${p.fn}(...)` : "Demo / read";
+
+  if (descTab === "bridge") {
+    pane.innerHTML = `
+      <div class="title-row"><h1>Pattern bridge</h1><span class="pill pattern">${p.pattern}</span></div>
+      <div class="callout info"><b>YOU ALREADY KNOW</b><br>${esc(p.alreadyKnow)}</div>
+      <div class="callout good"><b>WHAT'S NEW</b><br>${esc(p.whatsNew)}</div>
+      <h3>Trace</h3>
+      <pre class="trace">${esc(p.trace)}</pre>
+      <h3>Complexity target</h3>
+      <p>${esc(p.complexity)}</p>`;
+    return;
+  }
+  if (descTab === "interview") {
+    pane.innerHTML = `
+      <div class="title-row"><h1>Say this out loud</h1></div>
+      <div class="say"><b>Script:</b> ${esc(p.sayOutLoud)}</div>
+      <div class="callout">
+        <b>Before you type:</b> name the pattern, brute force, target Big-O, one invariant, two edge cases.
+      </div>
+      <div class="callout bad">
+        <b>Amazon fail modes:</b> silence, coding before clarifying, no edges, wrong complexity, ego when nudged.
+      </div>
+      <div class="callout good">
+        <b>Best-case signals:</b> collaborate when stuck, catch your own bugs, map story wrappers to patterns in 2 minutes.
+      </div>`;
+    return;
+  }
+
+  pane.innerHTML = `
+    <div class="title-row">
+      <h1>${esc(p.title)}</h1>
+      <span class="pill pattern">${esc(p.pattern)}</span>
+      <span class="pill diff ${p.difficulty}">${p.difficulty}</span>
+    </div>
+    <div class="callout info"><b>YOU ALREADY KNOW</b><br>${esc(p.alreadyKnow)}</div>
+    <div class="callout good"><b>WHAT'S NEW</b><br>${esc(p.whatsNew)}</div>
+    <h3>Examples / Trace</h3>
+    <pre class="ex">${esc(p.trace)}</pre>
+    <h3>Complexity</h3>
+    <p>${esc(p.complexity)}</p>
+    <div class="say"><b>Interview line:</b> ${esc(p.sayOutLoud)}</div>
+  `;
+}
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+/* ========== Select / code ========== */
+function selectProblem(id) {
+  // save previous code
+  if (currentId) {
+    const map = loadCodeMap();
+    map[currentId] = document.getElementById("editor").value;
+    saveCodeMap(map);
+  }
+  currentId = id;
+  const p = problemById(id);
+  const map = loadCodeMap();
+  document.getElementById("editor").value = map[id] || p.starter;
+  renderDesc(p);
+  renderSidebar();
+  document.getElementById("results").innerHTML = `<span class="muted">Ready. Read Pattern bridge, then Submit tests.</span>`;
+}
+
+/* ========== Pyodide ========== */
+async function ensurePy() {
+  if (pyodide) return pyodide;
+  document.getElementById("status").textContent = "Loading Python…";
+  document.getElementById("btn-run").disabled = true;
+  document.getElementById("btn-submit").disabled = true;
+  pyodide = await loadPyodide({ indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/" });
+  document.getElementById("status").textContent = "Python ready";
+  document.getElementById("btn-run").disabled = false;
+  document.getElementById("btn-submit").disabled = false;
+  return pyodide;
+}
+
+function pyRepr(v) {
+  return JSON.stringify(v);
+}
+
+async function runUserCode(extra = "") {
+  const py = await ensurePy();
+  const code = document.getElementById("editor").value + "\n" + extra;
+  let out = "";
+  py.setStdout({ batched: (s) => { out += s + "\n"; } });
+  py.setStderr({ batched: (s) => { out += "[stderr] " + s + "\n"; } });
+  await py.runPythonAsync(code);
+  return out;
+}
+
+function deepCopyArgs(args) {
+  return JSON.parse(JSON.stringify(args));
+}
+
+function normalizeGroups(groups) {
+  return JSON.stringify(groups.map(g => [...g].sort()).sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b))));
+}
+
+async function submitTests() {
+  const p = problemById(currentId);
+  const box = document.getElementById("results");
+  box.innerHTML = `<span class="muted">Running tests…</span>`;
+
+  try {
+    if (p.kind === "demo" || !p.tests) {
+      const out = await runUserCode(p.runExtra || "");
+      box.innerHTML = `<span class="ok">PASS (demo)</span>\n${esc(out || "(no output)")}`;
+      mark(currentId, "pass");
+      return;
+    }
+
+    // load user defs
+    await runUserCode("");
+    const py = pyodide;
+    let passed = 0;
+    let lines = [];
+
+    for (let i = 0; i < p.tests.length; i++) {
+      const t = p.tests[i];
+      const args = t.deepcopy ? deepCopyArgs(t.args) : t.args;
+      const call = `${p.fn}(${args.map(a => pyRepr(a)).join(", ")})`;
+      try {
+        const resultProxy = await py.runPythonAsync(call);
+        let js = resultProxy;
+        if (resultProxy && typeof resultProxy.toJs === "function") {
+          js = resultProxy.toJs({ dict_converter: Object.fromEntries });
+        }
+        // PyProxy bool/int sometimes still need conversion
+        if (js && typeof js === "object" && typeof js.toJs === "function") {
+          js = js.toJs();
+        }
+        let ok = false;
+        if (t.unorderedPair) {
+          ok = Array.isArray(js) && new Set(js).size === new Set(t.expect).size &&
+               [...t.expect].every(x => js.includes(x));
+        } else if (t.expectSet) {
+          ok = Array.isArray(js) && new Set(js).size === new Set(t.expectSet).size &&
+               t.expectSet.every(x => js.includes(x));
+        } else if (t.expectGroups) {
+          ok = normalizeGroups(js) === normalizeGroups(t.expectGroups);
+        } else {
+          ok = JSON.stringify(js) === JSON.stringify(t.expect);
+        }
+        if (ok) {
+          passed++;
+          lines.push(`<span class="ok">✓ Case ${i + 1}</span>  ${esc(call)} -> ${esc(JSON.stringify(js))}`);
+        } else {
+          lines.push(`<span class="err">✗ Case ${i + 1}</span>  ${esc(call)}\n  expected ${esc(JSON.stringify(t.expect || t.expectSet || t.expectGroups))}\n  got      ${esc(JSON.stringify(js))}`);
+        }
+      } catch (e) {
+        lines.push(`<span class="err">✗ Case ${i + 1} crashed</span>\n  ${esc(e.message || e)}`);
+      }
+    }
+
+    const all = passed === p.tests.length;
+    lines.unshift(all
+      ? `<span class="ok">Accepted — ${passed}/${p.tests.length}</span>`
+      : `<span class="err">Wrong Answer — ${passed}/${p.tests.length}</span>`);
+    box.innerHTML = lines.join("\n");
+    mark(currentId, all ? "pass" : "fail");
+  } catch (e) {
+    box.innerHTML = `<span class="err">Runtime Error</span>\n${esc(e.message || String(e))}`;
+    mark(currentId, "fail");
+  }
+}
+
+async function runOnly() {
+  const p = problemById(currentId);
+  const box = document.getElementById("results");
+  try {
+    const out = await runUserCode(p.runExtra || `\nprint("Loaded. Use Submit tests to grade.")\n`);
+    box.innerHTML = `<span class="muted">Run output:</span>\n${esc(out || "(no stdout)")}`;
+  } catch (e) {
+    box.innerHTML = `<span class="err">Runtime Error</span>\n${esc(e.message || String(e))}`;
+  }
+}
+
+function mark(id, status) {
+  const s = loadState();
+  s[id] = status;
+  saveState(s);
+  renderSidebar();
+}
+
+/* ========== Timer ========== */
+function tick() {
+  const m = String(Math.floor(timerSecs / 60)).padStart(2, "0");
+  const s = String(timerSecs % 60).padStart(2, "0");
+  document.getElementById("timer").textContent = `${m}:${s}`;
+  if (timerSecs <= 0) {
+    clearInterval(timerId); timerId = null;
+    document.getElementById("results").innerHTML += `\n<span class="err">Timer done — submit what you have and explain edges.</span>`;
+    return;
+  }
+  timerSecs--;
+}
+
+/* ========== Boot ========== */
+document.querySelectorAll(".desc .tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".desc .tab").forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+    descTab = tab.dataset.pane;
+    if (currentId) renderDesc(problemById(currentId));
+  });
+});
+
+document.getElementById("btn-run").onclick = runOnly;
+document.getElementById("btn-submit").onclick = submitTests;
+document.getElementById("btn-reset").onclick = () => {
+  const p = problemById(currentId);
+  document.getElementById("editor").value = p.starter;
+};
+document.getElementById("btn-hint").onclick = () => {
+  const p = problemById(currentId);
+  document.getElementById("results").innerHTML = `<span class="muted">Tip:</span>\n${esc(p.hint)}`;
+};
+document.getElementById("btn-solution").onclick = () => {
+  if (!confirm("Reveal full solution? Only after 15+ min stuck. Close and retype after reading.")) return;
+  const p = problemById(currentId);
+  document.getElementById("editor").value = p.solution;
+};
+document.getElementById("btn-reset-progress").onclick = () => {
+  if (!confirm("Reset all solved progress and saved code?")) return;
+  localStorage.removeItem(STORE);
+  localStorage.removeItem(CODE_STORE);
+  location.reload();
+};
+document.getElementById("btn-protocol").onclick = () => document.getElementById("protocol-modal").classList.add("show");
+document.getElementById("close-protocol").onclick = () => document.getElementById("protocol-modal").classList.remove("show");
+document.getElementById("btn-timer").onclick = () => {
+  if (timerId) { clearInterval(timerId); timerId = null; return; }
+  timerSecs = 35 * 60;
+  tick();
+  timerId = setInterval(tick, 1000);
+};
+
+document.getElementById("editor").addEventListener("keydown", (e) => {
+  if (e.key === "Tab") {
+    e.preventDefault();
+    const ta = e.target;
+    const start = ta.selectionStart;
+    ta.value = ta.value.slice(0, start) + "    " + ta.value.slice(ta.selectionEnd);
+    ta.selectionStart = ta.selectionEnd = start + 4;
+  }
+});
+
+ensurePy().catch(e => {
+  document.getElementById("status").textContent = "Python failed to load — check network / CDN";
+  document.getElementById("results").innerHTML = `<span class="err">${esc(e.message || e)}</span>`;
+});
+
+selectProblem("L0");
+</script>
+</body>
+</html>

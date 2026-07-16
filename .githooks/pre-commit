@@ -29,6 +29,7 @@ BLOCK_ON_FAIL = True  # Set to False to warn only
 SKIP_PATTERNS = [
     "agent-quality-system/",  # The agent system itself (can't analyze itself)
     "Porfolio/",  # Portfolio site UI and content, not backend application logic
+    "SummerPractice/python/practice/",  # Interview drills and learning lab (incomplete by design)
     "training/",
     "data/",
     "demo",

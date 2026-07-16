@@ -1,0 +1,3601 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Patterns &amp; Practice — Amazon Post-OA Interview Coach</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #161a22;
+    --panel-2: #1d2230;
+    --ink: #e6e8ee;
+    --ink-dim: #a5acbb;
+    --line: #2a3142;
+    --accent: #6ea8ff;
+    --accent-2: #9f7bff;
+    --good: #4ade80;
+    --bad: #f87171;
+    --warn: #fbbf24;
+    --code-bg: #0b0d12;
+    --mono: ui-monospace, "Cascadia Code", "JetBrains Mono", Menlo, Consolas, monospace;
+  }
+  [data-theme="light"] {
+    --bg: #f7f8fb;
+    --panel: #ffffff;
+    --panel-2: #f1f3f9;
+    --ink: #14181f;
+    --ink-dim: #5b6577;
+    --line: #e3e6ee;
+    --accent: #2563eb;
+    --accent-2: #7c3aed;
+    --code-bg: #f5f5f7;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .wrap { max-width: 900px; margin: 0 auto; padding: 32px 24px 120px; }
+  header.hero {
+    background: linear-gradient(135deg, rgba(110,168,255,0.12), rgba(159,123,255,0.10));
+    border: 1px solid var(--line);
+    padding: 28px 28px 24px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+  }
+  header.hero h1 { margin: 0 0 6px; font-size: clamp(24px, 4vw, 34px); }
+  header.hero p.sub { margin: 0; color: var(--ink-dim); }
+  .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 10px; flex-wrap: wrap; }
+  .badge {
+    display: inline-block;
+    padding: 2px 10px; border-radius: 999px;
+    font-size: 12px; color: var(--accent); border: 1px solid var(--accent);
+    background: rgba(110,168,255,0.08);
+  }
+  .pillbtn {
+    background: var(--panel-2); color: var(--ink); border: 1px solid var(--line);
+    padding: 6px 12px; border-radius: 999px; cursor: pointer; font-size: 13px;
+  }
+  .pillbtn:hover { border-color: var(--accent); }
+
+  h2 {
+    font-size: 24px; margin: 48px 0 8px;
+    border-bottom: 1px solid var(--line); padding-bottom: 8px;
+    scroll-margin-top: 20px;
+  }
+  h3 { font-size: 19px; margin: 28px 0 6px; }
+  h4 { font-size: 16px; margin: 18px 0 4px; color: var(--ink-dim); text-transform: uppercase; letter-spacing: .05em; }
+
+  p { margin: 8px 0 12px; }
+
+  /* TOC */
+  nav.toc {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+  }
+  nav.toc h3 { margin: 0 0 6px; font-size: 14px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-dim); }
+  nav.toc ol { margin: 4px 0 0; padding-left: 22px; }
+  nav.toc li { margin: 2px 0; }
+
+  /* Cards */
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 0;
+  }
+  .card.tight { padding: 14px 18px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .tile {
+    background: var(--panel-2); border: 1px solid var(--line);
+    border-radius: 10px; padding: 12px 14px;
+  }
+  .tile h4 { margin: 0 0 4px; color: var(--ink); text-transform: none; letter-spacing: 0; font-size: 14px; }
+  .tile p { margin: 0; color: var(--ink-dim); font-size: 13px; }
+  .tile.done { border-color: rgba(74,222,128,0.4); }
+  .tile.todo { border-color: rgba(251,191,36,0.4); }
+  .tile.bug  { border-color: rgba(248,113,113,0.45); }
+  .tile .tag {
+    display: inline-block; font-size: 11px; padding: 1px 6px; border-radius: 4px;
+    margin-bottom: 4px;
+  }
+  .tag.done { background: rgba(74,222,128,0.15); color: var(--good); }
+  .tag.todo { background: rgba(251,191,36,0.15); color: var(--warn); }
+  .tag.bug  { background: rgba(248,113,113,0.18); color: var(--bad); }
+
+  /* Code */
+  pre, code { font-family: var(--mono); }
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  code.inline {
+    background: var(--code-bg);
+    border: 1px solid var(--line);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  .lang { color: var(--ink-dim); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; }
+
+  /* Callouts */
+  .callout {
+    border-left: 3px solid var(--accent);
+    padding: 10px 14px;
+    background: rgba(110,168,255,0.06);
+    border-radius: 0 8px 8px 0;
+    margin: 14px 0;
+  }
+  .callout.warn { border-left-color: var(--warn); background: rgba(251,191,36,0.08); }
+  .callout.bad { border-left-color: var(--bad); background: rgba(248,113,113,0.08); }
+  .callout.good { border-left-color: var(--good); background: rgba(74,222,128,0.08); }
+  .callout strong { color: var(--ink); }
+
+  /* Quiz */
+  .quiz { margin: 14px 0; }
+  .quiz .q { font-weight: 600; margin-bottom: 8px; }
+  .choices { display: flex; flex-direction: column; gap: 6px; }
+  .choice {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px;
+    background: var(--panel-2); cursor: pointer; transition: border-color .15s;
+  }
+  .choice:hover { border-color: var(--accent); }
+  .choice input { margin-top: 4px; }
+  .choice.correct { border-color: var(--good); background: rgba(74,222,128,0.10); }
+  .choice.wrong { border-color: var(--bad); background: rgba(248,113,113,0.10); }
+  .reveal {
+    margin-top: 10px; padding: 10px 12px;
+    border-radius: 8px; background: var(--panel-2); border: 1px dashed var(--line);
+    display: none;
+  }
+  .reveal.show { display: block; }
+
+  details { background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; margin: 8px 0; }
+  details > summary { cursor: pointer; font-weight: 600; }
+  details[open] { padding-bottom: 14px; }
+
+  /* Visual / step traces */
+  .trace {
+    display: grid; grid-auto-flow: column; gap: 6px; padding: 10px;
+    background: var(--code-bg); border: 1px solid var(--line); border-radius: 8px;
+    overflow-x: auto;
+  }
+  .cell {
+    min-width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--panel-2); border: 1px solid var(--line);
+    border-radius: 6px; font-family: var(--mono); font-size: 14px;
+  }
+  .cell.hi-l { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(110,168,255,0.25) inset; }
+  .cell.hi-r { border-color: var(--accent-2); box-shadow: 0 0 0 2px rgba(159,123,255,0.25) inset; }
+  .legend { font-size: 12px; color: var(--ink-dim); margin-top: 6px; }
+
+  /* Playground */
+  #playground textarea {
+    width: 100%; min-height: 180px;
+    background: var(--code-bg); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 8px;
+    padding: 12px; font-family: var(--mono); font-size: 13.5px;
+    line-height: 1.55; resize: vertical;
+  }
+  .run-row { display: flex; align-items: center; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+  button.primary {
+    background: var(--accent); color: white; border: 0;
+    padding: 8px 14px; border-radius: 8px; cursor: pointer; font-weight: 600;
+  }
+  button.primary[disabled] { opacity: 0.6; cursor: progress; }
+  button.ghost {
+    background: transparent; color: var(--ink); border: 1px solid var(--line);
+    padding: 7px 12px; border-radius: 8px; cursor: pointer;
+  }
+  #py-output {
+    background: var(--code-bg); border: 1px solid var(--line); border-radius: 8px;
+    padding: 12px; font-family: var(--mono); font-size: 13px; white-space: pre-wrap;
+    min-height: 60px; margin-top: 8px;
+  }
+  #py-status { color: var(--ink-dim); font-size: 12px; }
+
+  /* zyBook-style participation activities (fill-in blanks) */
+  .zb-pa {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .zb-pa h4 {
+    margin: 0 0 8px;
+    color: var(--accent);
+    text-transform: none;
+    font-size: 14px;
+    letter-spacing: 0;
+  }
+  .zb-pa pre { margin: 8px 0; }
+  .zb-blank {
+    display: inline-block;
+    min-width: 60px;
+    padding: 2px 8px;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink);
+    text-align: center;
+    margin: 0 1px;
+  }
+  .zb-blank:focus { outline: none; border-color: var(--accent); }
+  .zb-blank.correct {
+    border-color: var(--good);
+    background: rgba(74,222,128,0.12);
+    color: var(--good);
+  }
+  .zb-blank.wrong {
+    border-color: var(--bad);
+    background: rgba(248,113,113,0.10);
+    color: var(--bad);
+  }
+  .zb-hint {
+    font-size: 12px; color: var(--ink-dim); margin-top: 6px;
+  }
+  .zb-check-row {
+    display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap;
+  }
+  .zb-check-row .zb-status { font-size: 13px; color: var(--ink-dim); }
+  .zb-check-row .zb-status.good { color: var(--good); }
+  .zb-check-row .zb-status.bad { color: var(--bad); }
+
+  /* Stepper / animated walkthrough */
+  .zb-stepper {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent-2);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 16px 0;
+  }
+  .zb-stepper h4 {
+    margin: 0 0 8px;
+    color: var(--accent-2);
+    text-transform: none;
+    font-size: 14px;
+    letter-spacing: 0;
+  }
+  .zb-stepper-controls {
+    display: flex; gap: 8px; align-items: center;
+    margin-bottom: 12px; flex-wrap: wrap;
+  }
+  .zb-step-count { color: var(--ink-dim); font-size: 13px; margin-left: auto; }
+  .zb-stage { margin: 6px 0; }
+  .zb-state-vars {
+    display: flex; gap: 10px; font-family: var(--mono); font-size: 13.5px;
+    margin-top: 10px; flex-wrap: wrap;
+  }
+  .zb-var {
+    background: var(--code-bg); border: 1px solid var(--line);
+    padding: 4px 10px; border-radius: 6px;
+  }
+  .zb-var b { color: var(--accent); font-weight: 600; }
+  .zb-narration {
+    background: var(--panel-2);
+    border: 1px dashed var(--line);
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-size: 14px;
+    min-height: 38px;
+    font-family: var(--mono);
+  }
+  .cell.dim { opacity: 0.45; }
+  .cell.kept { border-color: var(--good); background: rgba(74,222,128,0.10); }
+
+  /* Amazon track */
+  .phase-row {
+    display: grid; grid-template-columns: 72px 1fr; gap: 12px;
+    padding: 12px 0; border-bottom: 1px solid var(--line); align-items: start;
+  }
+  .phase-row:last-child { border-bottom: 0; }
+  .phase-n {
+    font-family: var(--mono); font-size: 12px; color: var(--accent);
+    border: 1px solid var(--accent); border-radius: 6px; text-align: center;
+    padding: 6px 4px; background: rgba(110,168,255,0.08);
+  }
+  .lp-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px;
+  }
+  .lp-card {
+    background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
+  }
+  .lp-card h4 { margin: 0 0 6px; color: var(--ink); text-transform: none; letter-spacing: 0; font-size: 14px; }
+  .lp-card p { margin: 0; font-size: 13px; color: var(--ink-dim); }
+  .lp-card .prompt { margin-top: 8px; font-size: 12.5px; color: var(--ink); border-top: 1px dashed var(--line); padding-top: 8px; }
+  .checklist label {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px;
+    background: var(--panel-2); margin: 6px 0; cursor: pointer; font-size: 14px;
+  }
+  .checklist label:has(input:checked) {
+    border-color: rgba(74,222,128,0.45); background: rgba(74,222,128,0.08);
+  }
+  .script-block {
+    background: var(--code-bg); border: 1px solid var(--line); border-radius: 8px;
+    padding: 12px 14px; font-size: 14px; margin: 10px 0;
+  }
+  .script-block .t { color: var(--accent); font-family: var(--mono); font-size: 12px; }
+
+  /* Multi-select "pick all that apply" */
+  .zb-multi {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--warn);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .zb-multi h4 {
+    margin: 0 0 8px;
+    color: var(--warn);
+    text-transform: none;
+    font-size: 14px;
+    letter-spacing: 0;
+  }
+  .zb-multi .q { font-weight: 600; margin-bottom: 8px; }
+  .zb-multi .choices { display: flex; flex-direction: column; gap: 6px; }
+  .zb-multi label.choice {
+    display: flex; gap: 10px;
+    padding: 8px 12px;
+    border: 1px solid var(--line); border-radius: 6px;
+    background: var(--panel-2); cursor: pointer; align-items: flex-start;
+  }
+  .zb-multi label.choice:hover { border-color: var(--warn); }
+  .zb-multi label.choice.correct {
+    border-color: var(--good);
+    background: rgba(74,222,128,0.10);
+  }
+  .zb-multi label.choice.wrong {
+    border-color: var(--bad);
+    background: rgba(248,113,113,0.10);
+  }
+  .zb-multi label.choice.missed {
+    border-color: var(--warn);
+    background: rgba(251,191,36,0.10);
+  }
+  .zb-multi label.choice input { margin-top: 4px; }
+
+  /* "How to recognize this pattern" instruction box */
+  .pattern-id {
+    background: linear-gradient(135deg, rgba(110,168,255,0.08), rgba(159,123,255,0.06));
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 18px 0;
+  }
+  .pattern-id h4 {
+    margin: 0 0 6px;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+  .pattern-id ul { margin: 6px 0 0; padding-left: 20px; }
+  .pattern-id li { margin: 2px 0; }
+
+  /* "Practice reps" section divider */
+  .reps-header {
+    margin: 28px 0 10px;
+    padding-bottom: 6px;
+    font-size: 17px;
+    border-bottom: 2px dashed var(--accent-2);
+    color: var(--accent-2);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+  }
+  .reps-header small {
+    color: var(--ink-dim);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    margin-left: 8px;
+  }
+
+  /* Auto-graded coding challenge */
+  .zb-challenge {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--good);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 16px 0;
+  }
+  .zb-challenge h4 {
+    margin: 0 0 6px;
+    color: var(--good);
+    text-transform: none;
+    font-size: 14px;
+    letter-spacing: 0;
+  }
+  .zb-challenge textarea {
+    width: 100%; min-height: 150px;
+    background: var(--code-bg); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 6px;
+    padding: 10px; font-family: var(--mono); font-size: 13.5px;
+    line-height: 1.55; resize: vertical;
+    margin-top: 6px;
+  }
+  .zb-test-results { margin-top: 10px; }
+  .zb-test-row {
+    font-family: var(--mono); font-size: 12.5px;
+    padding: 6px 10px; border-radius: 4px;
+    margin: 4px 0; background: var(--panel-2);
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .zb-test-row.pass { border-left: 3px solid var(--good); }
+  .zb-test-row.fail { border-left: 3px solid var(--bad); }
+  .zb-test-row .tstatus { font-weight: 700; min-width: 46px; }
+  .zb-test-row.pass .tstatus { color: var(--good); }
+  .zb-test-row.fail .tstatus { color: var(--bad); }
+  .zb-test-row .tmsg { color: var(--ink-dim); font-size: 12px; }
+  .zb-test-summary {
+    font-size: 13px; margin-top: 8px; color: var(--ink-dim);
+  }
+  .zb-test-summary.good { color: var(--good); }
+
+  /* Progress */
+  .progress-wrap { display: flex; align-items: center; gap: 10px; }
+  .bar { background: var(--panel-2); height: 10px; border-radius: 999px; flex: 1; overflow: hidden; border: 1px solid var(--line); }
+  .bar > span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); width: 0%; transition: width .3s; }
+
+  footer { color: var(--ink-dim); text-align: center; margin-top: 60px; font-size: 13px; }
+
+  hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
+
+  /* Print niceness */
+  @media print {
+    body { background: white; color: black; }
+    .pillbtn, #playground textarea, .reveal { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="topbar">
+  <span class="badge">Amazon Post-OA · Technical Loop Coach</span>
+  <div>
+    <button class="pillbtn" id="theme-toggle" aria-label="Toggle theme">Toggle theme</button>
+    <button class="pillbtn" id="reset-btn">Reset quiz progress</button>
+  </div>
+</div>
+
+<header class="hero">
+  <h1>Patterns &amp; Practice — Ace the Amazon loop after the OA</h1>
+  <p class="sub">The OA proves you can code alone under a timer. The loop proves you can <em>think out loud</em>, pick the right shape in 2 minutes, handle pressure with a partner, and map your experience to Leadership Principles. This guide turns the patterns in your solved files into interview-ready performance.</p>
+  <div class="progress-wrap" style="margin-top:14px;">
+    <span style="font-size:13px;color:var(--ink-dim);">Progress</span>
+    <div class="bar"><span id="overall-bar"></span></div>
+    <span id="overall-pct" style="font-size:13px;color:var(--ink-dim);min-width:38px;text-align:right;">0%</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Table of contents">
+  <h3>Table of contents</h3>
+  <ol>
+    <li><a href="#how-to-use">How to use this guide</a></li>
+    <li><a href="#dashboard">Your problem dashboard</a></li>
+    <li><a href="#bigo">Mental model: Big-O in 5 minutes</a></li>
+    <li><a href="#p1">Pattern 1 — Map &amp; Reduce <span style="color:var(--ink-dim);">(richest customer)</span></a></li>
+    <li><a href="#p2">Pattern 2 — Running state, single pass <span style="color:var(--ink-dim);">(max consecutive ones)</span></a></li>
+    <li><a href="#p3">Pattern 3 — Two pointers, converging <span style="color:var(--ink-dim);">(valid palindrome)</span></a></li>
+    <li><a href="#p4">Pattern 4 — Two pointers, same direction <span style="color:var(--ink-dim);">(move zeroes, is subsequence)</span></a></li>
+    <li><a href="#p5">Pattern 5 — Greedy with thresholds <span style="color:var(--ink-dim);">(integer to roman)</span></a></li>
+    <li><a href="#p6">Pattern 6 — Horizontal scan / prefix shrink <span style="color:var(--ink-dim);">(longest common prefix)</span></a></li>
+    <li><a href="#p7">Pattern 7 — Counting &amp; XOR <span style="color:var(--ink-dim);">(find the difference)</span></a></li>
+    <li><a href="#p8">Pattern 8 — Index-driven iteration <span style="color:var(--ink-dim);">(merge strings alternately)</span></a> <span class="tag bug">contains bug walk-through</span></li>
+    <li><a href="#cheatsheet">Pattern recognition cheat sheet</a></li>
+    <li><a href="#cumulative">Cumulative pattern test</a></li>
+    <li><a href="#amazon-now"><strong>Amazon — start here today</strong></a></li>
+    <li><a href="#amazon-problems"><strong>Amazon problem bank (solve these)</strong></a></li>
+    <li><a href="#amazon-hitlist">Amazon coding hit list</a></li>
+    <li><a href="#amazon-story">Amazon story problems (OA → loop)</a></li>
+    <li><a href="#live-coding">Live coding + phone screen script</a></li>
+    <li><a href="#lps">Leadership Principles — STAR bank</a></li>
+    <li><a href="#bar-raiser">Bar raiser &amp; follow-ups</a></li>
+    <li><a href="#gap-patterns">Drill map (your files)</a></li>
+    <li><a href="#post-oa-plan">14-day schedule</a></li>
+    <li><a href="#playground">Python playground</a></li>
+  </ol>
+</nav>
+
+<!-- =============================================================== -->
+<section id="how-to-use">
+<h2>1. How to use this guide</h2>
+<div class="card">
+  <p>This is one long, self-contained HTML page. Open it in any browser; nothing installs.</p>
+  <ul>
+    <li><strong>Master sections 3–13 first</strong> if pattern recognition still feels fuzzy — those are the foundation the loop assumes you already own.</li>
+    <li><strong>Jump to <a href="#amazon-now">§14 Amazon — start here today</a></strong> if you are actively prepping. Hit list, story wrappers, phone script, LPs, and drills are there — not in the pattern tour.</li>
+    <li><strong>Try quizzes before peeking.</strong> Wrong answers stay marked red so you can return to them.</li>
+    <li><strong>Do the participation activities.</strong> Fill blanks, press Tab/Enter — they turn green or red instantly.</li>
+    <li><strong>Use animated walkthroughs + challenges</strong> to force active recall, not passive reading.</li>
+    <li><strong>Pattern-first thinking.</strong> Stop asking "what's the trick?" Start asking "what shape is this?" Amazon story prompts are wrappers around ~12 shapes.</li>
+  </ul>
+  <div class="callout warn">
+    <strong>OA ≠ interview.</strong> Passing the OA gets you in the door. The loop fails people for weak communication, fuzzy invariants, missed edge cases, thin LP stories, and freezing when the interviewer nudges. Practice the protocol in §15 out loud — silent AC on LeetCode is not enough.
+  </div>
+  <p style="color:var(--ink-dim);font-size:14px;">Quiz progress saves in <code class="inline">localStorage</code>. Drill files live under <code class="inline">interview_prep/</code>.</p>
+</div>
+</section>
+
+<!-- =============================================================== -->
+<section id="dashboard">
+<h2>2. Your problem dashboard</h2>
+<p>Here's the at-a-glance status of each file. Green = solved cleanly. Yellow = unsolved (we will solve it together). Red = solved but has a bug we'll walk through.</p>
+
+<div class="grid">
+  <div class="tile done">
+    <span class="tag done">SOLVED</span>
+    <h4>01 — Richest Customer Wealth</h4>
+    <p>Clean one-liner. Pattern: map &amp; reduce.</p>
+  </div>
+  <div class="tile todo">
+    <span class="tag todo">UNSOLVED</span>
+    <h4>02 — Max Consecutive Ones</h4>
+    <p>Function body is <code class="inline">pass</code>. We'll build it.</p>
+  </div>
+  <div class="tile todo">
+    <span class="tag todo">UNSOLVED</span>
+    <h4>03 — Valid Palindrome</h4>
+    <p>Function body is <code class="inline">pass</code>. We'll build it.</p>
+  </div>
+  <div class="tile done">
+    <span class="tag done">SOLVED</span>
+    <h4>12 — Integer to Roman</h4>
+    <p>Works. We'll show a cleaner table-driven version.</p>
+  </div>
+  <div class="tile done">
+    <span class="tag done">SOLVED</span>
+    <h4>14 — Longest Common Prefix</h4>
+    <p>Works. We'll discuss why it's also <em>fast enough</em>.</p>
+  </div>
+  <div class="tile done">
+    <span class="tag done">SOLVED</span>
+    <h4>283 — Move Zeroes</h4>
+    <p>Classic same-direction two-pointer. Excellent.</p>
+  </div>
+  <div class="tile done">
+    <span class="tag done">SOLVED</span>
+    <h4>389 — Find the Difference</h4>
+    <p>XOR trick. Slick. We'll compare against alternatives.</p>
+  </div>
+  <div class="tile done">
+    <span class="tag done">SOLVED</span>
+    <h4>392 — Is Subsequence</h4>
+    <p>Two pointers at different speeds. Clean.</p>
+  </div>
+  <div class="tile bug">
+    <span class="tag bug">BUG</span>
+    <h4>1768 — Merge Strings Alternately</h4>
+    <p>Three real bugs. We'll dissect them.</p>
+  </div>
+</div>
+</section>
+
+<!-- =============================================================== -->
+<section id="bigo">
+<h2>3. Mental model — Big-O in 5 minutes</h2>
+<div class="card">
+  <p>Every problem in this doc has a complexity. You don't need a CS proof — you need a habit: every time you write a loop, you should be able to say its cost out loud.</p>
+
+  <h4>The only 5 you'll see in this guide</h4>
+  <table style="width:100%;border-collapse:collapse;">
+    <thead>
+      <tr style="text-align:left;border-bottom:1px solid var(--line);">
+        <th style="padding:6px 0;">Notation</th><th>Read as</th><th>Example from your files</th>
+      </tr>
+    </thead>
+    <tbody style="font-size:14px;">
+      <tr><td><code class="inline">O(1)</code></td><td>"constant"</td><td>Returning <code class="inline">left == len(s)</code></td></tr>
+      <tr><td><code class="inline">O(n)</code></td><td>"linear" — one pass over n items</td><td>Move zeroes, find the difference, is subsequence</td></tr>
+      <tr><td><code class="inline">O(n + m)</code></td><td>"linear in both inputs"</td><td>Merge strings alternately</td></tr>
+      <tr><td><code class="inline">O(m × n)</code></td><td>"nested loops"</td><td>Richest customer (m customers × n banks)</td></tr>
+      <tr><td><code class="inline">O(n × k)</code></td><td>"linear with a small inner cost"</td><td>Longest common prefix (n strings × k = prefix length)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>Rule of thumb:</strong> "How many times will my outermost loop run, and how much work happens inside each iteration?" Multiply. That's your time complexity.
+  </div>
+</div>
+</section>
+
+<!-- =============================================================== -->
+<!-- PATTERN 1 -->
+<section id="p1">
+<h2>4. Pattern 1 — Map &amp; Reduce</h2>
+<p class="lang">From <code class="inline">01_richest_customer.py</code></p>
+
+<h3>The shape</h3>
+<p>You have a collection of <em>things</em>. For each thing, compute a number. Then reduce all those numbers into a single answer (max, min, sum, count).</p>
+
+<pre><code>collection ---map---&gt;  [n1, n2, n3, ...]  ---reduce---&gt;  answer</code></pre>
+
+<h3>Your solution</h3>
+<pre><code>def maximumWealth(accounts):
+    return max(sum(customer) for customer in accounts)</code></pre>
+
+<div class="callout good">
+  <strong>What you nailed:</strong> generator expression instead of building a list, single line, reads like English. This is genuinely idiomatic Python.
+</div>
+
+<h3>Mental walkthrough on <code class="inline">[[1,5],[7,3],[3,5]]</code></h3>
+<table style="width:100%;font-size:14px;border-collapse:collapse;">
+  <thead><tr style="border-bottom:1px solid var(--line);text-align:left;"><th>Step</th><th>Customer</th><th>sum(customer)</th><th>Running max</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>[1, 5]</td><td>6</td><td>6</td></tr>
+    <tr><td>2</td><td>[7, 3]</td><td>10</td><td>10</td></tr>
+    <tr><td>3</td><td>[3, 5]</td><td>8</td><td>10 ✓ answer</td></tr>
+  </tbody>
+</table>
+
+<h3>Where this pattern shows up</h3>
+<ul>
+  <li>"Find the student with the highest average grade."</li>
+  <li>"Which day had the most logins?" (group by day, count, take max)</li>
+  <li>"Largest file in this folder tree" (map = size, reduce = max)</li>
+  <li>SQL: <code class="inline">SELECT MAX(SUM(amount)) FROM ... GROUP BY customer</code></li>
+</ul>
+
+<div class="zb-pa">
+  <h4>Participation activity 1.1 — Complete the expression</h4>
+  <p>Fill in the blanks so this returns the maximum customer wealth. The outer reducer is <code class="inline">max</code>; the per-row map is summing.</p>
+<pre><code>def maximumWealth(accounts):
+    return <input class="zb-blank" data-answer="max" size="4" />(<input class="zb-blank" data-answer="sum" size="4" />(customer) for customer in accounts)</code></pre>
+  <p class="zb-hint">Tip: press <kbd>Tab</kbd> or <kbd>Enter</kbd> after typing. Green = correct, red = try again.</p>
+</div>
+
+<div class="zb-pa">
+  <h4>Participation activity 1.2 — Reduce-by-key</h4>
+  <p>Modify the pattern: instead of the <em>wealth</em>, return the <em>index</em> of the richest customer. Fill in the missing piece.</p>
+<pre><code>def richestCustomerIndex(accounts):
+    return max(range(len(accounts)), key=lambda i: <input class="zb-blank" data-answer="sum(accounts[i])" data-equiv="sum( accounts[i] )" size="20" />)</code></pre>
+  <p class="zb-hint">The <code class="inline">key=</code> argument tells <code class="inline">max</code> what to score each candidate by — without changing what gets returned.</p>
+</div>
+
+<div class="pattern-id">
+  <h4>How to recognize this pattern</h4>
+  <ul>
+    <li>Your input is a <strong>collection of things</strong> — list, list-of-lists, dict of stuff.</li>
+    <li>For each thing you can compute a single value (a score, a sum, a length).</li>
+    <li>The final answer collapses all those values into <strong>one</strong> result via <code class="inline">max</code>, <code class="inline">min</code>, <code class="inline">sum</code>, <code class="inline">count</code>, or <code class="inline">any</code>/<code class="inline">all</code>.</li>
+    <li>Keyword cues: "<em>find the most/least…</em>", "<em>total across all…</em>", "<em>which has the highest…</em>", "<em>any/all of them…</em>".</li>
+  </ul>
+</div>
+
+<div class="reps-header">Practice reps <small>— pattern 1 (map &amp; reduce)</small></div>
+
+<div class="zb-pa">
+  <h4>PA 1.3 — Predict the output (reducers)</h4>
+  <p>Type the value each expression evaluates to:</p>
+  <p><code class="inline">max([3, 1, 4, 1, 5, 9, 2, 6])</code> &rarr; <input class="zb-blank" data-answer="9" size="4" /></p>
+  <p><code class="inline">min([3, 1, 4, 1, 5, 9, 2, 6])</code> &rarr; <input class="zb-blank" data-answer="1" size="4" /></p>
+  <p><code class="inline">sum([3, 1, 4, 1, 5, 9, 2, 6])</code> &rarr; <input class="zb-blank" data-answer="31" size="4" /></p>
+  <p><code class="inline">len([3, 1, 4, 1, 5, 9, 2, 6])</code> &rarr; <input class="zb-blank" data-answer="8" size="4" /></p>
+  <p><code class="inline">sum([sum(r) for r in [[1,2],[3,4],[5,6]]])</code> &rarr; <input class="zb-blank" data-answer="21" size="4" /></p>
+  <p><code class="inline">max([len(s) for s in ["hi", "hello", "hey"]])</code> &rarr; <input class="zb-blank" data-answer="5" size="4" /></p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 1.4 — Predict the output (max with key=)</h4>
+  <p>This is the same trick as PA 1.2 — <code class="inline">key=</code> only changes how candidates are <em>scored</em>, not what gets returned.</p>
+  <p><code class="inline">max(["hi", "hello", "hey"], key=len)</code> &rarr; <input class="zb-blank" data-answer="hello" data-equiv='"hello"|&apos;hello&apos;' size="10" /></p>
+  <p><code class="inline">min(["aaa", "b", "cc"], key=len)</code> &rarr; <input class="zb-blank" data-answer="b" data-equiv='"b"|&apos;b&apos;' size="8" /></p>
+  <p><code class="inline">max([(1,9), (5,2), (3,7)], key=lambda t: t[1])</code> &rarr; <input class="zb-blank" data-answer="(1, 9)" data-equiv="(1,9)" size="10" /></p>
+  <p><code class="inline">max([[1,5], [7,3], [3,5]], key=sum)</code> &rarr; <input class="zb-blank" data-answer="[7, 3]" data-equiv="[7,3]" size="10" /></p>
+  <p class="zb-hint"><code class="inline">key=sum</code> means "score each list by its sum, return the original list with the highest score." That's <em>exactly</em> the richest-customer pattern — except returning the customer instead of their wealth.</p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 1.5 — Variant: total wealth across ALL customers</h4>
+  <p>Now don't take the max — just sum everything.</p>
+<pre><code>def totalWealth(accounts):
+    return <input class="zb-blank" data-answer="sum" size="4" />(<input class="zb-blank" data-answer="sum" size="4" />(customer) for customer in accounts)</code></pre>
+  <p class="zb-hint">Same shape, just <code class="inline">max</code> swapped for <code class="inline">sum</code>. Try mentally: for <code class="inline">[[1,5],[7,3],[3,5]]</code> this should give 24.</p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 1.6 — Variant: average wealth per customer</h4>
+  <p>Map + reduce + arithmetic. Fill in two blanks.</p>
+<pre><code>def averageWealth(accounts):
+    wealths = [sum(c) for c in accounts]
+    return <input class="zb-blank" data-answer="sum" size="4" />(wealths) / <input class="zb-blank" data-answer="len" size="4" />(wealths)</code></pre>
+  <p class="zb-hint">Or in one line: <code class="inline">sum(map(sum, accounts)) / len(accounts)</code>.</p>
+</div>
+
+<div class="zb-multi" data-multi="m-p1" data-quiz="m-p1">
+  <h4>PA 1.7 — Select all that apply</h4>
+  <div class="q">Which expressions compute the wealth of the richest customer for <code class="inline">accounts = [[1,5],[7,3]]</code>?</div>
+  <div class="choices">
+    <label class="choice"><input type="checkbox" data-correct> <code class="inline">max(sum(c) for c in accounts)</code></label>
+    <label class="choice"><input type="checkbox" data-correct> <code class="inline">max([sum(c) for c in accounts])</code></label>
+    <label class="choice"><input type="checkbox" data-correct> <code class="inline">sum(max(accounts, key=sum))</code></label>
+    <label class="choice"><input type="checkbox"> <code class="inline">sum(max(c) for c in accounts)</code></label>
+    <label class="choice"><input type="checkbox"> <code class="inline">max(max(c) for c in accounts)</code></label>
+    <label class="choice"><input type="checkbox" data-correct> <code class="inline">max(map(sum, accounts))</code></label>
+  </div>
+  <div class="run-row" style="margin-top:8px;">
+    <button class="ghost" onclick="checkMulti('m-p1')">Check all</button>
+  </div>
+  <div class="reveal">
+    The three correct forms all do "sum each row, then take the max." The two wrong ones take the max-of-each-row first (which is the biggest <em>single bank balance</em>, not total wealth) — different problem entirely.
+  </div>
+</div>
+
+<h3>Quiz</h3>
+<div class="quiz" data-quiz="q1">
+  <div class="q">Q1. What is the time complexity of <code class="inline">max(sum(row) for row in accounts)</code> when accounts has m rows and n columns?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="q1" value="a"> O(m)</label>
+    <label class="choice"><input type="radio" name="q1" value="b" data-correct="1"> O(m × n)</label>
+    <label class="choice"><input type="radio" name="q1" value="c"> O(m²)</label>
+    <label class="choice"><input type="radio" name="q1" value="d"> O(log m)</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('q1')">Check</button>
+  <div class="reveal">
+    <strong>O(m × n).</strong> Outer iteration is m rows; inside, <code class="inline">sum(row)</code> walks all n elements of that row. Multiply.
+  </div>
+</div>
+
+<div class="quiz" data-quiz="q2">
+  <div class="q">Q2. What's the difference between <code class="inline">[sum(r) for r in rows]</code> and <code class="inline">(sum(r) for r in rows)</code>?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="q2" value="a"> They are identical — Python treats them the same.</label>
+    <label class="choice"><input type="radio" name="q2" value="b" data-correct="1"> The list comp builds the full list in memory; the generator produces values one at a time.</label>
+    <label class="choice"><input type="radio" name="q2" value="c"> The generator is faster only on small inputs.</label>
+    <label class="choice"><input type="radio" name="q2" value="d"> The list comp returns a tuple.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('q2')">Check</button>
+  <div class="reveal">
+    <strong>Memory.</strong> For <code class="inline">max(...)</code>, max only needs one value at a time, so the generator is the right tool — O(1) extra space instead of O(m).
+  </div>
+</div>
+
+<h3>Stretch challenge</h3>
+<div class="callout">
+  Modify <code class="inline">maximumWealth</code> to return the <em>index</em> of the richest customer (0-based) instead of their wealth. Two ways:
+  <ol>
+    <li>One pass with a manual max-tracker.</li>
+    <li>One line with <code class="inline">max(range(len(accounts)), key=lambda i: sum(accounts[i]))</code>.</li>
+  </ol>
+  Try both. The <code class="inline">key=</code> argument is one of Python's most underused superpowers — learn it cold.
+</div>
+</section>
+
+<!-- =============================================================== -->
+<!-- PATTERN 2 -->
+<section id="p2">
+<h2>5. Pattern 2 — Running state, single pass</h2>
+<p class="lang">From <code class="inline">02_max_consecutive_ones.py</code> <span class="tag todo">UNSOLVED</span></p>
+
+<h3>The shape</h3>
+<p>Walk an array once. Carry two pieces of state with you: <strong>what's true right now</strong>, and <strong>the best you've ever seen</strong>. Update both as you walk.</p>
+
+<h3>Why this matters</h3>
+<p>Beginners reach for "compute all the runs first, then take the max." That's <em>two</em> passes and a list. The streaming version is one pass and one integer. Same answer, infinitely better for large inputs (think: server logs, sensor data).</p>
+
+<h3>The solution, built step by step</h3>
+<pre><code>def findMaxConsecutiveOnes(nums):
+    current = 0      # length of the run I'm in RIGHT NOW
+    best    = 0      # longest run I've ever seen
+
+    for n in nums:
+        if n == 1:
+            current += 1
+            best = max(best, current)
+        else:
+            current = 0
+
+    return best</code></pre>
+
+<div class="callout good">
+  <strong>Why update <code class="inline">best</code> inside the <em>if</em> branch?</strong> If you only update best when you hit a <em>zero</em>, a list ending in 1's never triggers it. Updating on every 1 is bulletproof — no trailing edge case.
+</div>
+
+<h3>Trace on <code class="inline">[1, 1, 0, 1, 1, 1]</code></h3>
+
+<div class="zb-stepper" id="p2-stepper">
+  <h4>Animation 2.1 — Step through the algorithm</h4>
+  <div class="zb-stepper-controls">
+    <button class="ghost btn-prev">◀ Prev</button>
+    <button class="primary btn-next">Next ▶</button>
+    <button class="ghost btn-reset">Reset</button>
+    <span class="zb-step-count"></span>
+  </div>
+  <div class="zb-stage trace" aria-label="array state"></div>
+  <div class="zb-state-vars"></div>
+  <div class="zb-narration"></div>
+</div>
+
+<div class="pattern-id">
+  <h4>How to recognize this pattern</h4>
+  <ul>
+    <li>You walk a sequence <strong>exactly once</strong> (left to right).</li>
+    <li>The answer depends on something you've seen <em>previously</em> — so you carry state.</li>
+    <li>Usually two variables: <strong>"current"</strong> (the thing happening right now — resets) and <strong>"best"</strong> (the all-time peak — only updates upward).</li>
+    <li>Keyword cues: "<em>longest run/streak</em>", "<em>max so far</em>", "<em>running total</em>", "<em>most consecutive</em>", "<em>best window ending at i</em>".</li>
+  </ul>
+</div>
+
+<div class="reps-header">Practice reps <small>— pattern 2 (running state)</small></div>
+
+<div class="zb-pa">
+  <h4>PA 2.2 — Predict current/best at each step</h4>
+  <p>Same algorithm, new input: <code class="inline">[0, 1, 1, 1, 0, 1, 1]</code>. Fill in the state after processing each element.</p>
+<pre><code>step  num   current   best
+ 1     0    <input class="zb-blank" data-answer="0" size="3" />        <input class="zb-blank" data-answer="0" size="3" />
+ 2     1    <input class="zb-blank" data-answer="1" size="3" />        <input class="zb-blank" data-answer="1" size="3" />
+ 3     1    <input class="zb-blank" data-answer="2" size="3" />        <input class="zb-blank" data-answer="2" size="3" />
+ 4     1    <input class="zb-blank" data-answer="3" size="3" />        <input class="zb-blank" data-answer="3" size="3" />
+ 5     0    <input class="zb-blank" data-answer="0" size="3" />        <input class="zb-blank" data-answer="3" size="3" />
+ 6     1    <input class="zb-blank" data-answer="1" size="3" />        <input class="zb-blank" data-answer="3" size="3" />
+ 7     1    <input class="zb-blank" data-answer="2" size="3" />        <input class="zb-blank" data-answer="3" size="3" /></code></pre>
+  <p class="zb-hint">Final answer: 3. Notice how <code class="inline">best</code> never drops, only <code class="inline">current</code> resets.</p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 2.3 — Predict the output</h4>
+  <p>What does <code class="inline">findMaxConsecutiveOnes</code> return for each input?</p>
+  <p><code class="inline">[1, 1, 1, 1, 1]</code> &rarr; <input class="zb-blank" data-answer="5" size="3" /></p>
+  <p><code class="inline">[0, 0, 0, 0]</code> &rarr; <input class="zb-blank" data-answer="0" size="3" /></p>
+  <p><code class="inline">[1]</code> &rarr; <input class="zb-blank" data-answer="1" size="3" /></p>
+  <p><code class="inline">[1, 0, 1, 1, 0, 1, 1, 1]</code> &rarr; <input class="zb-blank" data-answer="3" size="3" /></p>
+  <p><code class="inline">[1, 1, 0, 1, 1]</code> &rarr; <input class="zb-blank" data-answer="2" size="3" /></p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 2.4 — Variant: running sum (accumulator)</h4>
+  <p>Same shape: walk once, carry one piece of state. Return a <em>list</em> of running sums.</p>
+<pre><code>def running_sums(nums):
+    out = []
+    total = 0
+    for n in nums:
+        total <input class="zb-blank" data-answer="+=" data-equiv="+= n" size="4" /> n
+        <input class="zb-blank" data-answer="out.append(total)" data-equiv="out += [total]" size="22" />
+    return out
+</code></pre>
+  <p class="zb-hint">Test mentally: <code class="inline">running_sums([1,2,3,4])</code> should return <code class="inline">[1, 3, 6, 10]</code>.</p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 2.5 — Variant: max consecutive ZEROS</h4>
+  <p>Same skeleton, target flipped. Fill in two blanks.</p>
+<pre><code>def findMaxConsecutiveZeros(nums):
+    current, best = 0, 0
+    for n in nums:
+        if n == <input class="zb-blank" data-answer="0" size="3" />:
+            current += 1
+            best = max(best, current)
+        else:
+            current = <input class="zb-blank" data-answer="0" size="3" />
+    return best
+</code></pre>
+  <p class="zb-hint">Pattern bends, doesn't break. Only the "what counts" predicate changes.</p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 2.6 — Variant: longest strictly increasing streak</h4>
+  <p>Now state needs a small upgrade — you need to know the <em>previous</em> value to decide.</p>
+<pre><code>def longest_increasing_streak(nums):
+    if not nums:
+        return 0
+    current = 1
+    best = 1
+    for i in range(1, len(nums)):
+        if nums[i] <input class="zb-blank" data-answer=">" size="3" /> nums[i - 1]:
+            current += 1
+            best = <input class="zb-blank" data-answer="max(best, current)" size="20" />
+        else:
+            current = <input class="zb-blank" data-answer="1" size="3" />
+    return best
+</code></pre>
+  <p class="zb-hint">Note current resets to <code class="inline">1</code>, not 0 — every element is at least a "streak of one." Edge cases like that come from really understanding the state, not memorizing.</p>
+</div>
+
+<div class="zb-multi" data-multi="m-p2" data-quiz="m-p2">
+  <h4>PA 2.7 — Select all that apply</h4>
+  <div class="q">Which of these problems are solved by the "running state" pattern?</div>
+  <div class="choices">
+    <label class="choice"><input type="checkbox" data-correct> Longest consecutive run of the same value</label>
+    <label class="choice"><input type="checkbox" data-correct> Maximum subarray sum (Kadane's)</label>
+    <label class="choice"><input type="checkbox" data-correct> Best time to buy and sell stock (one transaction)</label>
+    <label class="choice"><input type="checkbox" data-correct> Running average over a stream</label>
+    <label class="choice"><input type="checkbox"> Sort an array</label>
+    <label class="choice"><input type="checkbox"> Find median of two sorted arrays</label>
+    <label class="choice"><input type="checkbox" data-correct> Most consecutive "wins" in a game log</label>
+  </div>
+  <div class="run-row" style="margin-top:8px;">
+    <button class="ghost" onclick="checkMulti('m-p2')">Check all</button>
+  </div>
+  <div class="reveal">
+    Anything that says "as I walk through, what's the longest/highest/best so far?" fits. Sorting and median-finding need different machinery — sorting algorithms have their own family, and median-of-two requires a binary-search-on-the-answer trick.
+  </div>
+</div>
+
+<h3>The deeper lesson — "streaming" thinking</h3>
+<p>If I gave you the same problem but the array was 10 billion elements long and didn't fit in RAM, you would <em>have</em> to write the streaming version. Many real-world systems work this way:</p>
+<ul>
+  <li><strong>Monitoring:</strong> max latency in the last hour</li>
+  <li><strong>Finance:</strong> longest streak of green days</li>
+  <li><strong>Games:</strong> longest combo</li>
+</ul>
+<p>You're always tracking "now" and "best." Sometimes "worst." Sometimes "average so far." It's the same skeleton.</p>
+
+<h3>Quiz</h3>
+<div class="quiz" data-quiz="q3">
+  <div class="q">Q3. You're tempted to skip <code class="inline">best = max(best, current)</code> inside the loop and just do <code class="inline">return max(...)</code> at the end. Why won't that work without rewriting?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="q3" value="a"> Python doesn't let you call max() outside a loop.</label>
+    <label class="choice"><input type="radio" name="q3" value="b" data-correct="1"> By the end of the loop, <code class="inline">current</code> only knows about the FINAL run, not the longest one.</label>
+    <label class="choice"><input type="radio" name="q3" value="c"> max() is O(n²) inside loops.</label>
+    <label class="choice"><input type="radio" name="q3" value="d"> The loop variable is out of scope.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('q3')">Check</button>
+  <div class="reveal">
+    <strong>You'd lose history.</strong> The whole point of <code class="inline">best</code> is to <em>remember</em> peaks that the current state has since moved past. State that you don't snapshot is state you've forgotten.
+  </div>
+</div>
+
+<div class="quiz" data-quiz="q4">
+  <div class="q">Q4. Suppose the problem changed to: "max run of EITHER 0's or 1's." Smallest change to the solution?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="q4" value="a"> Run it twice with different targets.</label>
+    <label class="choice"><input type="radio" name="q4" value="b" data-correct="1"> Track current vs previous value: reset <code class="inline">current</code> only when the value <em>changes</em>.</label>
+    <label class="choice"><input type="radio" name="q4" value="c"> Sort the input first.</label>
+    <label class="choice"><input type="radio" name="q4" value="d"> Convert to a set.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('q4')">Check</button>
+  <div class="reveal">
+    Same skeleton, slightly richer state. One extra variable: <code class="inline">prev</code>. The pattern bends; it doesn't break.
+  </div>
+</div>
+
+<h3>Now you try</h3>
+
+<div class="zb-challenge" data-id="ch-p2" data-quiz="ch-p2"></div>
+
+<p style="margin-top:18px;">Ready for a harder one? Same family — Kadane's algorithm.</p>
+
+<div class="zb-challenge" data-id="ch-p2b" data-quiz="ch-p2b"></div>
+
+<details>
+  <summary>Bonus exercise (manual — paste into the playground)</summary>
+  <p>Write <code class="inline">longest_run(nums, target)</code> that returns the length of the longest consecutive run of <code class="inline">target</code> in <code class="inline">nums</code>. Test: <code class="inline">longest_run([3, 3, 5, 3, 3, 3, 2], 3) == 3</code>. Paste into the playground at the bottom.</p>
+</details>
+</section>
+
+<!-- =============================================================== -->
+<!-- PATTERN 3 -->
+<section id="p3">
+<h2>6. Pattern 3 — Two pointers, converging</h2>
+<p class="lang">From <code class="inline">03_valid_palindrome.py</code> <span class="tag todo">UNSOLVED</span></p>
+
+<h3>The shape</h3>
+<p>One pointer starts at the <strong>left</strong>, one at the <strong>right</strong>. They walk toward each other. The loop ends when they meet.</p>
+
+<div class="trace">
+  <div class="cell hi-l">A</div><div class="cell">m</div><div class="cell">a</div><div class="cell">n</div><div class="cell">a</div><div class="cell">m</div><div class="cell hi-r">A</div>
+</div>
+<div class="legend">Blue = left pointer. Purple = right pointer. They move inward.</div>
+
+<h3>Why this beats "reverse and compare"</h3>
+<p>The naive solution is: clean the string, reverse it, compare. That works, but allocates <em>two</em> extra strings. Two pointers compare in-place — O(1) extra memory. Same answer, less garbage.</p>
+
+<h3>The skeleton you should memorize</h3>
+<pre><code>def isPalindrome(s):
+    left, right = 0, len(s) - 1
+    while left &lt; right:
+        # 1) skip junk on the left
+        while left &lt; right and not s[left].isalnum():
+            left += 1
+        # 2) skip junk on the right
+        while left &lt; right and not s[right].isalnum():
+            right -= 1
+        # 3) compare
+        if s[left].lower() != s[right].lower():
+            return False
+        left += 1
+        right -= 1
+    return True</code></pre>
+
+<div class="callout warn">
+  <strong>The classic bug:</strong> forgetting <code class="inline">left &lt; right</code> inside the inner while loops. On the input <code class="inline">".,!?"</code> the left pointer will walk right off the end of the string and crash. Always re-check the bound in nested loops.
+</div>
+
+<div class="zb-pa">
+  <h4>Participation activity 3.1 — Reconstruct the skeleton</h4>
+  <p>Fill in the missing pieces. You're building the canonical two-pointer-converging template.</p>
+<pre><code>def isPalindrome(s):
+    left, right = 0, len(s) - <input class="zb-blank" data-answer="1" size="2" />
+    while left &lt; right:
+        while left &lt; right and not s[left].<input class="zb-blank" data-answer="isalnum" size="8" />():
+            left += 1
+        while left &lt; right and not s[right].isalnum():
+            right -= <input class="zb-blank" data-answer="1" size="2" />
+        if s[left].<input class="zb-blank" data-answer="lower" size="6" />() != s[right].lower():
+            return <input class="zb-blank" data-answer="False" data-equiv="false" size="6" />
+        left += 1
+        right -= 1
+    return <input class="zb-blank" data-answer="True" data-equiv="true" size="6" />
+</code></pre>
+  <p class="zb-hint">Same shape works for "reverse vowels", "two sum on sorted array", "is array a palindrome" — memorize the skeleton, not the variant.</p>
+</div>
+
+<div class="pattern-id">
+  <h4>How to recognize this pattern</h4>
+  <ul>
+    <li>Comparing or operating on the <strong>two ends</strong> of a sequence.</li>
+    <li>Often appears on <strong>strings</strong> or <strong>sorted arrays</strong> (sortedness is a huge clue).</li>
+    <li>O(n) time, O(1) space — much better than "build a reversed copy and compare."</li>
+    <li>Keyword cues: "<em>palindrome</em>", "<em>symmetric</em>", "<em>reverse</em>", "<em>two-sum on sorted</em>", "<em>container with most water</em>", "<em>swap pairs from outside in</em>".</li>
+  </ul>
+</div>
+
+<div class="zb-stepper" id="p3-stepper">
+  <h4>Animation 3.1 — Step through "racecar"</h4>
+  <div class="zb-stepper-controls">
+    <button class="ghost btn-prev">◀ Prev</button>
+    <button class="primary btn-next">Next ▶</button>
+    <button class="ghost btn-reset">Reset</button>
+    <span class="zb-step-count"></span>
+  </div>
+  <div class="zb-stage trace" aria-label="palindrome pointers"></div>
+  <div class="zb-state-vars"></div>
+  <div class="zb-narration"></div>
+</div>
+
+<div class="reps-header">Practice reps <small>— pattern 3 (converging two pointers)</small></div>
+
+<div class="zb-pa">
+  <h4>PA 3.2 — Predict palindrome True/False</h4>
+  <p>Assume the function strips non-alphanumerics and ignores case.</p>
+  <p><code class="inline">isPalindrome("level")</code> &rarr; <input class="zb-blank" data-answer="True" data-equiv="true" size="6" /></p>
+  <p><code class="inline">isPalindrome("hello")</code> &rarr; <input class="zb-blank" data-answer="False" data-equiv="false" size="6" /></p>
+  <p><code class="inline">isPalindrome("A man, a plan, a canal: Panama")</code> &rarr; <input class="zb-blank" data-answer="True" data-equiv="true" size="6" /></p>
+  <p><code class="inline">isPalindrome(" ")</code> &rarr; <input class="zb-blank" data-answer="True" data-equiv="true" size="6" /></p>
+  <p><code class="inline">isPalindrome("0P")</code> &rarr; <input class="zb-blank" data-answer="False" data-equiv="false" size="6" /></p>
+  <p class="zb-hint">"0P" is the classic gotcha: after cleaning it's "0p", and '0' ≠ 'p'. Be deliberate about your "clean" rules.</p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 3.3 — Variant: reverse a list in place</h4>
+  <p>Same converging-two-pointer skeleton — but instead of compare, we <em>swap</em>.</p>
+<pre><code>def reverse_in_place(nums):
+    left, right = 0, len(nums) - 1
+    while left &lt; right:
+        nums[left], nums[right] = <input class="zb-blank" data-answer="nums[right], nums[left]" size="22" />
+        left += 1
+        right <input class="zb-blank" data-answer="-=" size="3" /> 1
+    return nums
+</code></pre>
+  <p class="zb-hint">"When both pointers land on interesting cells, do work." For palindrome the work is "compare and quit if different." For reverse it's "swap." Same skeleton, different verb.</p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 3.4 — Pointer trace on "ab*ba" (with skip)</h4>
+  <p>Walking <code class="inline">"ab*ba"</code> where <code class="inline">*</code> should be skipped (treat <code class="inline">isalnum()</code> as the skip predicate). Fill in pointer positions <em>after</em> each iteration.</p>
+<pre><code>start                 left=<input class="zb-blank" data-answer="0" size="2" />  right=<input class="zb-blank" data-answer="4" size="2" />
+compare 'a' vs 'a' OK left=<input class="zb-blank" data-answer="1" size="2" />  right=<input class="zb-blank" data-answer="3" size="2" />
+compare 'b' vs 'b' OK left=<input class="zb-blank" data-answer="2" size="2" />  right=<input class="zb-blank" data-answer="2" size="2" />
+loop ends             return <input class="zb-blank" data-answer="True" data-equiv="true" size="6" /></code></pre>
+  <p class="zb-hint">When the indices meet at the middle character, we stop — that single character is trivially equal to itself, no work needed.</p>
+</div>
+
+<div class="zb-multi" data-multi="m-p3" data-quiz="m-p3">
+  <h4>PA 3.5 — Select all valid loop conditions</h4>
+  <div class="q">Which of these are correct loop conditions for a converging-two-pointer scan over a string of length n?</div>
+  <div class="choices">
+    <label class="choice"><input type="checkbox" data-correct> <code class="inline">while left &lt; right</code></label>
+    <label class="choice"><input type="checkbox"> <code class="inline">while left &lt;= right</code> (does extra useless work — compares middle to itself)</label>
+    <label class="choice"><input type="checkbox"> <code class="inline">while left &lt; n</code> (ignores right pointer entirely)</label>
+    <label class="choice"><input type="checkbox"> <code class="inline">while left != right</code> (works if you control increments exactly, but fragile — can skip past)</label>
+    <label class="choice"><input type="checkbox" data-correct> <code class="inline">while left &lt; right and not_done</code> (adding an extra condition is fine)</label>
+  </div>
+  <div class="run-row" style="margin-top:8px;">
+    <button class="ghost" onclick="checkMulti('m-p3')">Check all</button>
+  </div>
+  <div class="reveal">
+    <code class="inline">while left &lt; right</code> is the canonical, bulletproof version. <code class="inline">&lt;=</code> just wastes one comparison. <code class="inline">!=</code> is dangerous: if left ever increments past right (it shouldn't, but bugs happen), you'll loop forever.
+  </div>
+</div>
+
+<h3>Challenge</h3>
+<div class="zb-challenge" data-id="ch-p3" data-quiz="ch-p3"></div>
+
+<h3>Where this pattern shows up</h3>
+<ul>
+  <li>Reverse a string in-place</li>
+  <li>Reverse vowels of a string (LC 345 — you already saw the cousin)</li>
+  <li>"Two-sum" on a <em>sorted</em> array</li>
+  <li>Trapping rain water (advanced, but same skeleton)</li>
+  <li>Anything that asks "is this symmetric"</li>
+</ul>
+
+<h3>Quiz</h3>
+<div class="quiz" data-quiz="q5">
+  <div class="q">Q5. The loop condition is <code class="inline">while left &lt; right</code>, not <code class="inline">while left &lt;= right</code>. Why?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="q5" value="a"> Off-by-one errors are scary.</label>
+    <label class="choice"><input type="radio" name="q5" value="b" data-correct="1"> When left == right we are comparing a single character to itself — pointless work, and comparing the middle of an odd-length string is always equal.</label>
+    <label class="choice"><input type="radio" name="q5" value="c"> Python doesn't allow <code class="inline">&lt;=</code> in while loops.</label>
+    <label class="choice"><input type="radio" name="q5" value="d"> It would be O(n²).</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('q5')">Check</button>
+  <div class="reveal">
+    Once <code class="inline">left == right</code> they point to the same character. Any character equals itself. No information gained. Stop.
+  </div>
+</div>
+
+<div class="quiz" data-quiz="q6">
+  <div class="q">Q6. What's the time complexity?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="q6" value="a" data-correct="1"> O(n) — each index is touched at most once by either pointer.</label>
+    <label class="choice"><input type="radio" name="q6" value="b"> O(n²) because of the inner while loops.</label>
+    <label class="choice"><input type="radio" name="q6" value="c"> O(n log n) due to comparisons.</label>
+    <label class="choice"><input type="radio" name="q6" value="d"> O(1) since pointers are constants.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('q6')">Check</button>
+  <div class="reveal">
+    Inner whiles look like nested loops but each is <em>amortized</em> linear: across the whole run, left moves right at most n times and right moves left at most n times. Total work ≤ 2n.
+  </div>
+</div>
+</section>
+
+<!-- =============================================================== -->
+<!-- PATTERN 4 -->
+<section id="p4">
+<h2>7. Pattern 4 — Two pointers, same direction</h2>
+<p class="lang">From <code class="inline">283_move_zeroes.py</code> and <code class="inline">392_Is_Subsequence.py</code></p>
+
+<h3>The shape</h3>
+<p>Both pointers start at the left. One races ahead (<em>scanner</em>), the other lags behind (<em>writer</em>). The lagging pointer only advances when something interesting happens.</p>
+
+<p>This is one of the most useful patterns in your whole toolkit. Once you see it, you'll see it everywhere — deduplication, filtering, in-place compaction, subsequence checks, sliding windows.</p>
+
+<h3>Your Move Zeroes solution</h3>
+<pre><code>def moveZeroes(self, nums):
+    left = 0
+    right = 0
+    while right &lt; len(nums):
+        if nums[right] != 0:
+            nums[left], nums[right] = nums[right], nums[left]
+            left += 1
+        right += 1
+    return nums</code></pre>
+
+<div class="callout good">
+  <strong>Excellent.</strong> <code class="inline">right</code> is the scanner — it looks at every element. <code class="inline">left</code> is the writer — it only advances when we keep a value (i.e. it's non-zero). Swapping (instead of just writing) is what guarantees the zeroes end up at the end with no extra space.
+</div>
+
+<h3>Trace on <code class="inline">[0, 1, 0, 3, 12]</code></h3>
+<table style="width:100%;font-size:13px;border-collapse:collapse;">
+  <thead><tr style="border-bottom:1px solid var(--line);text-align:left;">
+    <th>right</th><th>nums[right]</th><th>action</th><th>state after</th><th>left</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>0</td><td>0</td><td>skip</td><td>[0, 1, 0, 3, 12]</td><td>0</td></tr>
+    <tr><td>1</td><td>1</td><td>swap (0,1)</td><td>[1, 0, 0, 3, 12]</td><td>1</td></tr>
+    <tr><td>2</td><td>0</td><td>skip</td><td>[1, 0, 0, 3, 12]</td><td>1</td></tr>
+    <tr><td>3</td><td>3</td><td>swap (1,3)</td><td>[1, 3, 0, 0, 12]</td><td>2</td></tr>
+    <tr><td>4</td><td>12</td><td>swap (2,4)</td><td>[1, 3, 12, 0, 0]</td><td>3</td></tr>
+  </tbody>
+</table>
+
+<h3>Your Is-Subsequence solution</h3>
+<pre><code>def isSubsequence(self, s, t):
+    left = 0
+    right = 0
+    while left &lt; len(s) and right &lt; len(t):
+        if s[left] == t[right]:
+            left += 1
+        right += 1
+    return left == len(s)</code></pre>
+
+<div class="callout good">
+  <strong>Same skeleton, different verbs.</strong> <code class="inline">right</code> always advances (scan every char of t). <code class="inline">left</code> only advances when there's a match (move on to the next char we still need to find).
+</div>
+
+<h3>The connection</h3>
+<table style="width:100%;font-size:13.5px;border-collapse:collapse;">
+  <thead><tr style="border-bottom:1px solid var(--line);text-align:left;">
+    <th></th><th>Move Zeroes</th><th>Is Subsequence</th>
+  </tr></thead>
+  <tbody>
+    <tr><td><strong>Scanner</strong></td><td>right (every element)</td><td>right (every char of t)</td></tr>
+    <tr><td><strong>Writer / progress</strong></td><td>left (advances on non-zero)</td><td>left (advances on match)</td></tr>
+    <tr><td><strong>Loop ends when</strong></td><td>scanner finishes</td><td>either finishes</td></tr>
+    <tr><td><strong>Answer</strong></td><td>array is mutated</td><td>did left finish?</td></tr>
+  </tbody>
+</table>
+
+<div class="pattern-id">
+  <h4>How to recognize this pattern</h4>
+  <ul>
+    <li>You need to <strong>filter, deduplicate, partition</strong>, or <strong>match in lockstep</strong> — in place if possible.</li>
+    <li>One pointer ("scanner") looks at <em>every</em> element. The other ("writer") only advances when something <em>passes</em> a test.</li>
+    <li>The answer is either the writer's final position (a length / index), or the mutated array itself.</li>
+    <li>Keyword cues: "<em>remove duplicates / element</em>", "<em>move all X to one side</em>", "<em>is X a subsequence of Y</em>", "<em>partition by condition</em>", "<em>compact / squeeze out</em>".</li>
+  </ul>
+</div>
+
+<div class="zb-stepper" id="p4-stepper">
+  <h4>Animation 4.1 — Step through Move Zeroes</h4>
+  <div class="zb-stepper-controls">
+    <button class="ghost btn-prev">◀ Prev</button>
+    <button class="primary btn-next">Next ▶</button>
+    <button class="ghost btn-reset">Reset</button>
+    <span class="zb-step-count"></span>
+  </div>
+  <div class="zb-stage trace" aria-label="move zeros state"></div>
+  <div class="zb-state-vars"></div>
+  <div class="zb-narration"></div>
+</div>
+
+<div class="reps-header">Practice reps <small>— pattern 4 (same-direction two pointers)</small></div>
+
+<div class="zb-pa">
+  <h4>PA 4.1 — Identify scanner vs writer</h4>
+  <p>In this snippet (removing all 5s from <code class="inline">nums</code>), label each pointer.</p>
+<pre><code>def remove_fives(nums):
+    a = 0
+    for b in range(len(nums)):
+        if nums[b] != 5:
+            nums[a] = nums[b]
+            a += 1
+    return a
+</code></pre>
+  <p>a is the &nbsp;<input class="zb-blank" data-answer="writer" size="8" /></p>
+  <p>b is the &nbsp;<input class="zb-blank" data-answer="scanner" size="8" /></p>
+  <p class="zb-hint">"Which one looks at everything?" → that's the scanner. "Which one only advances when something passes the test?" → writer.</p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 4.2 — Predict isSubsequence outputs</h4>
+  <p><code class="inline">isSubsequence("abc", "ahbgdc")</code> &rarr; <input class="zb-blank" data-answer="True" data-equiv="true" size="6" /></p>
+  <p><code class="inline">isSubsequence("axc", "ahbgdc")</code> &rarr; <input class="zb-blank" data-answer="False" data-equiv="false" size="6" /></p>
+  <p><code class="inline">isSubsequence("", "anything")</code> &rarr; <input class="zb-blank" data-answer="True" data-equiv="true" size="6" /></p>
+  <p><code class="inline">isSubsequence("xyz", "")</code> &rarr; <input class="zb-blank" data-answer="False" data-equiv="false" size="6" /></p>
+  <p><code class="inline">isSubsequence("abc", "abc")</code> &rarr; <input class="zb-blank" data-answer="True" data-equiv="true" size="6" /></p>
+  <p class="zb-hint">Empty string is a subsequence of everything (vacuously true). Nothing is a subsequence of the empty string except the empty string itself.</p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 4.3 — Variant: count non-zero elements (no swap)</h4>
+  <p>You don't need to swap if you just want a count.</p>
+<pre><code>def count_nonzero(nums):
+    count = 0
+    for n in nums:
+        if n <input class="zb-blank" data-answer="!=" size="3" /> 0:
+            count <input class="zb-blank" data-answer="+=" size="3" /> 1
+    return count
+</code></pre>
+  <p class="zb-hint">When you only need to count, the "writer" collapses into a counter. Same pattern family, simpler instantiation.</p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 4.4 — Move-zeros trace on <code class="inline">[1, 0, 2, 0, 3]</code></h4>
+  <p>Fill in the array state and left pointer after each iteration of right:</p>
+<pre><code>right=0  nums[0]=1 → swap → nums=<input class="zb-blank" data-answer="[1, 0, 2, 0, 3]" data-equiv="[1,0,2,0,3]" size="20" />  left=<input class="zb-blank" data-answer="1" size="2" />
+right=1  nums[1]=0 → skip   → nums=[1, 0, 2, 0, 3]  left=1
+right=2  nums[2]=2 → swap   → nums=<input class="zb-blank" data-answer="[1, 2, 0, 0, 3]" data-equiv="[1,2,0,0,3]" size="20" />  left=<input class="zb-blank" data-answer="2" size="2" />
+right=3  nums[3]=0 → skip   → nums=[1, 2, 0, 0, 3]  left=2
+right=4  nums[4]=3 → swap   → nums=<input class="zb-blank" data-answer="[1, 2, 3, 0, 0]" data-equiv="[1,2,3,0,0]" size="20" />  left=<input class="zb-blank" data-answer="3" size="2" /></code></pre>
+</div>
+
+<div class="zb-multi" data-multi="m-p4" data-quiz="m-p4">
+  <h4>PA 4.5 — Select all that apply</h4>
+  <div class="q">Which problems are solved by the same-direction two-pointer pattern?</div>
+  <div class="choices">
+    <label class="choice"><input type="checkbox" data-correct> Move all zeros to the end (in place)</label>
+    <label class="choice"><input type="checkbox" data-correct> Remove all instances of a given value</label>
+    <label class="choice"><input type="checkbox" data-correct> Remove duplicates from a sorted array</label>
+    <label class="choice"><input type="checkbox" data-correct> Is s a subsequence of t?</label>
+    <label class="choice"><input type="checkbox"> Reverse a string in place</label>
+    <label class="choice"><input type="checkbox"> Sort an array</label>
+    <label class="choice"><input type="checkbox" data-correct> Partition an array around a pivot value</label>
+  </div>
+  <div class="run-row" style="margin-top:8px;">
+    <button class="ghost" onclick="checkMulti('m-p4')">Check all</button>
+  </div>
+  <div class="reveal">
+    Reverse uses <em>converging</em> (pattern 3), not same-direction. Sorting needs a real sorting algorithm. Everything else fits the "scan + conditionally write" shape.
+  </div>
+</div>
+
+<h3>Quiz</h3>
+<div class="quiz" data-quiz="q7">
+  <div class="q">Q7. In your isSubsequence, why is the return value <code class="inline">left == len(s)</code> and not <code class="inline">right == len(t)</code>?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="q7" value="a"> They mean the same thing.</label>
+    <label class="choice"><input type="radio" name="q7" value="b" data-correct="1"> We succeed only if every character of s was matched — which is exactly "left reached the end of s." Whether t finished is irrelevant.</label>
+    <label class="choice"><input type="radio" name="q7" value="c"> Python evaluates right faster.</label>
+    <label class="choice"><input type="radio" name="q7" value="d"> right could be negative.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('q7')">Check</button>
+  <div class="reveal">
+    The pattern is "I'm done iff the <em>thing I needed</em> got fully consumed." For isSubsequence, that's s.
+  </div>
+</div>
+
+<div class="quiz" data-quiz="q8">
+  <div class="q">Q8. Swap-based move-zeroes is O(n) time, O(1) space. Could you do it without swapping?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="q8" value="a" data-correct="1"> Yes — overwrite at <code class="inline">left</code> with <code class="inline">nums[right]</code>, then pad the tail with zeroes after the scan.</label>
+    <label class="choice"><input type="radio" name="q8" value="b"> No — swapping is required for correctness.</label>
+    <label class="choice"><input type="radio" name="q8" value="c"> Only with a sorted input.</label>
+    <label class="choice"><input type="radio" name="q8" value="d"> Only in languages with pointers.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('q8')">Check</button>
+  <div class="reveal">
+    Two passes, still O(n). First pass: <code class="inline">if nums[r] != 0: nums[l]=nums[r]; l+=1</code>. Second pass: zero out from <code class="inline">l</code> to end. Sometimes overwriting reads cleaner than swapping. Pick what fits the prompt.
+  </div>
+</div>
+
+<h3>Stretch challenge</h3>
+<p>Same skeleton — writer advances only when <code class="inline">nums[right] != nums[right-1]</code>. (LeetCode 26.) Implement it, then click <em>Run tests</em>:</p>
+
+<div class="zb-challenge" data-id="ch-p4" data-quiz="ch-p4"></div>
+
+<p style="margin-top:18px;">And one more — the same skeleton, but the test is "value to remove" instead of "duplicate":</p>
+
+<div class="zb-challenge" data-id="ch-p4b" data-quiz="ch-p4b"></div>
+</section>
+
+<!-- =============================================================== -->
+<!-- PATTERN 5 -->
+<section id="p5">
+<h2>8. Pattern 5 — Greedy with thresholds</h2>
+<p class="lang">From <code class="inline">12_integer_to_roman.py</code></p>
+
+<h3>The shape</h3>
+<p>"Repeatedly take the biggest chunk that fits, subtract it, repeat." A <em>greedy</em> algorithm. It works for Roman numerals because the system is constructed so the greedy choice is always optimal.</p>
+
+<h3>Your solution</h3>
+<p>Your big <code class="inline">if/elif</code> chain is <strong>correct</strong>. It's also 26 lines of similar-looking code. That's a smell — when code repeats itself, table-drive it.</p>
+
+<h3>The same logic, table-driven</h3>
+<pre><code>def intToRoman(num):
+    pairs = [
+        (1000, "M"),  (900, "CM"), (500, "D"),  (400, "CD"),
+        (100,  "C"),  (90,  "XC"), (50,  "L"),  (40,  "XL"),
+        (10,   "X"),  (9,   "IX"), (5,   "V"),  (4,   "IV"),
+        (1,    "I"),
+    ]
+    out = []
+    for value, symbol in pairs:
+        count, num = divmod(num, value)
+        out.append(symbol * count)
+    return "".join(out)</code></pre>
+
+<div class="callout good">
+  <strong>Three wins:</strong>
+  <ol>
+    <li><strong>Data, not control flow.</strong> The Roman numeral rules live in one list. To add a new symbol, edit the data, not the if-chain.</li>
+    <li><strong>divmod.</strong> "How many fit, and what's left?" in one call. Beats <code class="inline">while num &gt;= value: ...</code>.</li>
+    <li><strong>join</strong> over <code class="inline">+=</code>. Building strings with <code class="inline">+=</code> in a loop is O(n²) in the worst case in most languages; Python optimizes the common case but <code class="inline">"".join(list)</code> is the idiomatic, fast version.</li>
+  </ol>
+</div>
+
+<h3>When greedy works (and when it doesn't)</h3>
+<p>Greedy is dangerous: it doesn't always give the optimal answer. Classic example:</p>
+
+<table style="width:100%;font-size:13.5px;border-collapse:collapse;">
+  <thead><tr style="border-bottom:1px solid var(--line);text-align:left;">
+    <th>Problem</th><th>Greedy works?</th><th>Why</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>Integer → Roman</td><td>Yes</td><td>Roman denominations are designed for it.</td></tr>
+    <tr><td>Coin change with US coins {1,5,10,25}</td><td>Yes</td><td>Standard coin system.</td></tr>
+    <tr><td>Coin change with {1, 3, 4} → make 6</td><td><strong>No</strong></td><td>Greedy picks 4+1+1=3 coins. Optimal is 3+3=2 coins.</td></tr>
+  </tbody>
+</table>
+
+<p>For untrusted coin sets, you need <em>dynamic programming</em>. That's a future topic — but knowing the limit of greedy is half the lesson.</p>
+
+<div class="zb-pa">
+  <h4>Participation activity 5.1 — Predict the output</h4>
+  <p>Type your prediction. Quotes are optional.</p>
+  <p><code class="inline">divmod(2025, 1000)</code> returns &nbsp;
+    <input class="zb-blank" data-answer="(2, 25)" data-equiv="2,25|(2,25)| (2, 25)" size="12" />
+  </p>
+  <p><code class="inline">"I" * 3</code> evaluates to &nbsp;
+    <input class="zb-blank" data-answer="III" data-equiv='"III"|&apos;III&apos;' size="10" />
+  </p>
+  <p><code class="inline">"".join(["a", "b", "c"])</code> evaluates to &nbsp;
+    <input class="zb-blank" data-answer="abc" data-equiv='"abc"|&apos;abc&apos;' size="10" />
+  </p>
+  <p><code class="inline">"x".join(["a", "b", "c"])</code> evaluates to &nbsp;
+    <input class="zb-blank" data-answer="axbxc" data-equiv='"axbxc"|&apos;axbxc&apos;' size="10" />
+  </p>
+  <p class="zb-hint">When stuck, paste the expression into the playground at the bottom and see for yourself.</p>
+</div>
+
+<div class="pattern-id">
+  <h4>How to recognize this pattern</h4>
+  <ul>
+    <li>You're converting a number/value to a different <strong>representation</strong> using a <strong>known table</strong> of pieces.</li>
+    <li>At each step you "take the largest piece that fits, subtract, repeat."</li>
+    <li>Only works when the system is <em>designed</em> for greedy choice (Roman numerals; US coin denominations). For arbitrary coin sets, greedy fails — you need DP.</li>
+    <li>Keyword cues: "<em>convert N to X</em>", "<em>fewest coins</em>", "<em>encode / compress</em>", "<em>roman numeral</em>".</li>
+  </ul>
+</div>
+
+<div class="zb-stepper" id="p5-stepper">
+  <h4>Animation 5.1 — Greedy convert 1994 → MCMXCIV</h4>
+  <div class="zb-stepper-controls">
+    <button class="ghost btn-prev">◀ Prev</button>
+    <button class="primary btn-next">Next ▶</button>
+    <button class="ghost btn-reset">Reset</button>
+    <span class="zb-step-count"></span>
+  </div>
+  <div class="zb-stage" aria-label="roman conversion"></div>
+  <div class="zb-state-vars"></div>
+  <div class="zb-narration"></div>
+</div>
+
+<div class="reps-header">Practice reps <small>— pattern 5 (greedy with thresholds)</small></div>
+
+<div class="zb-pa">
+  <h4>PA 5.2 — Predict the Roman numeral</h4>
+  <p><code class="inline">intToRoman(9)</code> &rarr; <input class="zb-blank" data-answer="IX" data-equiv='"IX"' size="8" /></p>
+  <p><code class="inline">intToRoman(40)</code> &rarr; <input class="zb-blank" data-answer="XL" data-equiv='"XL"' size="8" /></p>
+  <p><code class="inline">intToRoman(58)</code> &rarr; <input class="zb-blank" data-answer="LVIII" data-equiv='"LVIII"' size="10" /></p>
+  <p><code class="inline">intToRoman(2024)</code> &rarr; <input class="zb-blank" data-answer="MMXXIV" data-equiv='"MMXXIV"' size="12" /></p>
+  <p><code class="inline">intToRoman(3999)</code> &rarr; <input class="zb-blank" data-answer="MMMCMXCIX" data-equiv='"MMMCMXCIX"' size="14" /></p>
+  <p class="zb-hint">3999 is the max input. Going greedy: 3×1000 then 900 (CM) then 90 (XC) then 9 (IX).</p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 5.3 — More divmod predictions</h4>
+  <p><code class="inline">divmod(17, 5)</code> &rarr; <input class="zb-blank" data-answer="(3, 2)" data-equiv="3,2|(3,2)" size="10" /></p>
+  <p><code class="inline">divmod(100, 7)</code> &rarr; <input class="zb-blank" data-answer="(14, 2)" data-equiv="14,2|(14,2)" size="10" /></p>
+  <p><code class="inline">divmod(0, 9)</code> &rarr; <input class="zb-blank" data-answer="(0, 0)" data-equiv="0,0|(0,0)" size="10" /></p>
+  <p><code class="inline">divmod(9, 10)</code> &rarr; <input class="zb-blank" data-answer="(0, 9)" data-equiv="0,9|(0,9)" size="10" /></p>
+  <p class="zb-hint">divmod returns (quotient, remainder). Crucial for greedy: <code class="inline">count, num = divmod(num, denomination)</code>.</p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 5.4 — Variant: fewest US coins</h4>
+  <p>Same greedy shape, just a different table. US denominations are designed for greedy.</p>
+<pre><code>def fewest_us_coins(amount):
+    coins = [<input class="zb-blank" data-answer="25" size="3" />, <input class="zb-blank" data-answer="10" size="3" />, <input class="zb-blank" data-answer="5" size="3" />, <input class="zb-blank" data-answer="1" size="3" />]
+    count = 0
+    for c in coins:
+        q, amount = divmod(amount, c)
+        count += q
+    return count
+</code></pre>
+  <p class="zb-hint">Coins must be ordered largest-to-smallest. Try <code class="inline">fewest_us_coins(63)</code> → should give 6 (2×25 + 10 + 3×1).</p>
+</div>
+
+<div class="zb-multi" data-multi="m-p5" data-quiz="m-p5">
+  <h4>PA 5.5 — Where does greedy succeed?</h4>
+  <div class="q">Select the problems where a greedy "always take the biggest piece that fits" approach gives the optimal answer.</div>
+  <div class="choices">
+    <label class="choice"><input type="checkbox" data-correct> Convert 1..3999 to a Roman numeral</label>
+    <label class="choice"><input type="checkbox" data-correct> Fewest US coins to make an amount (denominations 1,5,10,25)</label>
+    <label class="choice"><input type="checkbox"> Fewest coins from {1, 3, 4} to make 6 (greedy gives 4+1+1=3 coins; optimal is 3+3=2 coins)</label>
+    <label class="choice"><input type="checkbox"> Maximum subarray sum (running state pattern, not greedy)</label>
+    <label class="choice"><input type="checkbox"> Longest increasing subsequence (needs DP)</label>
+    <label class="choice"><input type="checkbox" data-correct> Schedule maximum non-overlapping intervals (sort by end time, take greedily)</label>
+  </div>
+  <div class="run-row" style="margin-top:8px;">
+    <button class="ghost" onclick="checkMulti('m-p5')">Check all</button>
+  </div>
+  <div class="reveal">
+    Greedy works when the problem has the "greedy choice property" — locally optimal picks lead to a globally optimal answer. For arbitrary coin denominations, that property fails and you need DP. Knowing the limit of greedy is half the lesson.
+  </div>
+</div>
+
+<h3>Challenge</h3>
+<p>Practice the reverse problem — given a Roman numeral string, get back the integer.</p>
+<div class="zb-challenge" data-id="ch-p5" data-quiz="ch-p5"></div>
+
+<h3>Quiz</h3>
+<div class="quiz" data-quiz="q9">
+  <div class="q">Q9. <code class="inline">divmod(58, 50)</code> returns:</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="q9" value="a"> (50, 8)</label>
+    <label class="choice"><input type="radio" name="q9" value="b" data-correct="1"> (1, 8)</label>
+    <label class="choice"><input type="radio" name="q9" value="c"> (8, 1)</label>
+    <label class="choice"><input type="radio" name="q9" value="d"> ValueError</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('q9')">Check</button>
+  <div class="reveal">
+    <code class="inline">divmod(a, b)</code> returns <code class="inline">(a // b, a % b)</code>. For 58 and 50, that's <code class="inline">(1, 8)</code>.
+  </div>
+</div>
+</section>
+
+<!-- =============================================================== -->
+<!-- PATTERN 6 -->
+<section id="p6">
+<h2>9. Pattern 6 — Horizontal scan / prefix shrink</h2>
+<p class="lang">From <code class="inline">14_longest_common_prefix.py</code></p>
+
+<h3>Your solution</h3>
+<pre><code>def longestCommonPrefix(self, strs):
+    if not strs:
+        return ""
+    if len(strs) == 1:
+        return strs[0]
+    prefix = strs[0]
+    for i in range(1, len(strs)):
+        while not strs[i].startswith(prefix):
+            prefix = prefix[:-1]
+    return prefix</code></pre>
+
+<div class="callout good">
+  <strong>Smart edge-case handling up top.</strong> Empty list returns <code class="inline">""</code>. Single-element list returns itself. The main loop only runs when there's real work to do.
+</div>
+
+<div class="callout">
+  <strong>Subtle correctness check:</strong> what happens when <code class="inline">prefix</code> shrinks all the way to <code class="inline">""</code>? <code class="inline">"anything".startswith("")</code> is <code class="inline">True</code>, so the inner while loop exits cleanly and we eventually return <code class="inline">""</code>. The empty string is the universal prefix — your code handles it without a special case. Nice.
+</div>
+
+<h3>The pattern: "candidate, then refute"</h3>
+<p>Take the first item as a tentative answer. Walk the rest. Every time you find evidence the candidate is too generous, shrink it. If it survives the gauntlet, return it.</p>
+
+<p>This is the same shape as "running minimum," "running max," "candidate winner in a vote," etc. Pick a champion, defend them.</p>
+
+<h3>Complexity</h3>
+<p>Worst case: every string forces the prefix to shrink one character at a time. With <code class="inline">n</code> strings of length <code class="inline">L</code>, you do up to <code class="inline">n × L</code> character comparisons. For typical inputs it's much faster.</p>
+
+<h3>An alternative: vertical scan</h3>
+<pre><code>def longestCommonPrefix_vertical(strs):
+    if not strs:
+        return ""
+    for i, ch in enumerate(strs[0]):
+        for s in strs[1:]:
+            if i &gt;= len(s) or s[i] != ch:
+                return strs[0][:i]
+    return strs[0]</code></pre>
+
+<p>Same Big-O. The vertical version often returns earlier on diverse inputs (you fail at the first character that disagrees, before even looking at all the strings). Horizontal is shorter; vertical short-circuits faster. Both are valid — knowing both shows depth.</p>
+
+<div class="pattern-id">
+  <h4>How to recognize this pattern</h4>
+  <ul>
+    <li>You have <strong>multiple sequences</strong> and want to find what they all <em>share</em>.</li>
+    <li>"Candidate, then refute": take a tentative answer, shrink it whenever new evidence disagrees.</li>
+    <li>Keyword cues: "<em>common prefix / suffix</em>", "<em>intersection of arrays</em>", "<em>longest match</em>", "<em>candidate winner</em>" (in election/voting problems).</li>
+  </ul>
+</div>
+
+<div class="reps-header">Practice reps <small>— pattern 6 (horizontal scan / prefix shrink)</small></div>
+
+<div class="zb-pa">
+  <h4>PA 6.1 — Predict the longest common prefix</h4>
+  <p><code class="inline">longestCommonPrefix(["flower", "flow", "flight"])</code> &rarr; <input class="zb-blank" data-answer="fl" data-equiv='"fl"' size="8" /></p>
+  <p><code class="inline">longestCommonPrefix(["dog", "racecar", "car"])</code> &rarr; <input class="zb-blank" data-answer="" data-equiv='""|&apos;&apos;|(empty)|empty' size="10" /></p>
+  <p><code class="inline">longestCommonPrefix(["abc", "abc", "abc"])</code> &rarr; <input class="zb-blank" data-answer="abc" data-equiv='"abc"' size="8" /></p>
+  <p><code class="inline">longestCommonPrefix(["interspecies", "interstellar", "interstate"])</code> &rarr; <input class="zb-blank" data-answer="inters" data-equiv='"inters"' size="10" /></p>
+  <p><code class="inline">longestCommonPrefix(["", "anything"])</code> &rarr; <input class="zb-blank" data-answer="" data-equiv='""|&apos;&apos;|(empty)|empty' size="10" /></p>
+  <p class="zb-hint">For the empty answer, type the word "empty" or two quotes <code class="inline">""</code>.</p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 6.2 — Build the horizontal scan template</h4>
+<pre><code>def longestCommonPrefix(strs):
+    if not strs:
+        return <input class="zb-blank" data-answer="" data-equiv='""|&apos;&apos;' size="6" />
+    prefix = strs[<input class="zb-blank" data-answer="0" size="2" />]
+    for s in strs[1:]:
+        while not s.<input class="zb-blank" data-answer="startswith" size="11" />(prefix):
+            prefix = prefix[:<input class="zb-blank" data-answer="-1" size="3" />]
+            if prefix == "":
+                return ""
+    return <input class="zb-blank" data-answer="prefix" size="8" />
+</code></pre>
+  <p class="zb-hint">Tentative answer = first string. Shrink one character at a time until every other string starts with it.</p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 6.3 — Trace prefix shrinking</h4>
+  <p>For <code class="inline">["flower", "flow", "flight"]</code>, fill in the value of <code class="inline">prefix</code> after each loop iteration:</p>
+<pre><code>start            prefix = <input class="zb-blank" data-answer="flower" data-equiv='"flower"' size="10" />
+process "flow"   prefix = <input class="zb-blank" data-answer="flow" data-equiv='"flow"' size="10" />
+process "flight" prefix = <input class="zb-blank" data-answer="fl" data-equiv='"fl"' size="10" /></code></pre>
+  <p class="zb-hint">Each iteration only ever <em>shrinks</em> the prefix (or leaves it alone). It never grows back.</p>
+</div>
+
+<div class="zb-multi" data-multi="m-p6" data-quiz="m-p6">
+  <h4>PA 6.4 — Select all that apply</h4>
+  <div class="q">For the input <code class="inline">["car", "cargo", "carpet", "cart"]</code>, which of the following are common prefixes (not necessarily the longest)?</div>
+  <div class="choices">
+    <label class="choice"><input type="checkbox" data-correct> <code class="inline">""</code> (the empty string is a prefix of everything)</label>
+    <label class="choice"><input type="checkbox" data-correct> <code class="inline">"c"</code></label>
+    <label class="choice"><input type="checkbox" data-correct> <code class="inline">"ca"</code></label>
+    <label class="choice"><input type="checkbox" data-correct> <code class="inline">"car"</code> (the LONGEST common prefix)</label>
+    <label class="choice"><input type="checkbox"> <code class="inline">"carg"</code> ("cart" doesn't start with this)</label>
+    <label class="choice"><input type="checkbox"> <code class="inline">"cargo"</code></label>
+  </div>
+  <div class="run-row" style="margin-top:8px;">
+    <button class="ghost" onclick="checkMulti('m-p6')">Check all</button>
+  </div>
+  <div class="reveal">
+    The empty string is always a common prefix — a useful "base case" that your code should handle naturally without a special case. Your file's solution does: <code class="inline">"".startswith("")</code> is True.
+  </div>
+</div>
+
+<h3>Challenge</h3>
+<div class="zb-challenge" data-id="ch-p6" data-quiz="ch-p6"></div>
+
+<h3>Quiz</h3>
+<div class="quiz" data-quiz="q10">
+  <div class="q">Q10. For input <code class="inline">["", "abc"]</code>, what does the horizontal version return?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="q10" value="a"> "a"</label>
+    <label class="choice"><input type="radio" name="q10" value="b"> "abc"</label>
+    <label class="choice"><input type="radio" name="q10" value="c" data-correct="1"> ""</label>
+    <label class="choice"><input type="radio" name="q10" value="d"> Error</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('q10')">Check</button>
+  <div class="reveal">
+    <code class="inline">prefix = strs[0] = ""</code>. The inner while loop never runs because <code class="inline">"abc".startswith("")</code> is True. Returns <code class="inline">""</code>.
+  </div>
+</div>
+</section>
+
+<!-- =============================================================== -->
+<!-- PATTERN 7 -->
+<section id="p7">
+<h2>10. Pattern 7 — Counting &amp; XOR</h2>
+<p class="lang">From <code class="inline">389_find_the_difference.py</code></p>
+
+<h3>Your solution</h3>
+<pre><code>def findTheDifference(self, s, t):
+    xor_val = 0
+    for ch in s:
+        xor_val ^= ord(ch)
+    for ch in t:
+        xor_val ^= ord(ch)
+    return chr(xor_val)</code></pre>
+
+<div class="callout good">
+  <strong>This is a beautiful piece of code.</strong> O(n) time, O(1) space, and zero allocations.
+</div>
+
+<h3>Why XOR works</h3>
+<p>XOR has three magical properties:</p>
+<ul>
+  <li><code class="inline">a ^ a == 0</code> — anything XOR'd with itself cancels.</li>
+  <li><code class="inline">a ^ 0 == a</code> — XOR with zero is identity.</li>
+  <li><code class="inline">a ^ b == b ^ a</code> — order doesn't matter (commutative + associative).</li>
+</ul>
+<p>So when you XOR every character of s with every character of t, every character that appears the same number of times in both strings cancels itself out. Only the <em>odd one out</em> survives. Magic? No — it's group theory. But it <em>feels</em> like magic.</p>
+
+<h3>Three valid approaches, ranked</h3>
+<table style="width:100%;font-size:13.5px;border-collapse:collapse;">
+  <thead><tr style="border-bottom:1px solid var(--line);text-align:left;">
+    <th>Approach</th><th>Time</th><th>Space</th><th>Readability</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>Sort both, compare char by char</td><td>O(n log n)</td><td>O(n)</td><td>Easy to explain</td></tr>
+    <tr><td><code class="inline">Counter(t) - Counter(s)</code></td><td>O(n)</td><td>O(n)</td><td>Most "Pythonic"</td></tr>
+    <tr><td>XOR (yours)</td><td>O(n)</td><td>O(1)</td><td>Clever, requires bit insight</td></tr>
+  </tbody>
+</table>
+
+<h3>The Counter version, for your toolkit</h3>
+<pre><code>from collections import Counter
+
+def findTheDifference(s, t):
+    diff = Counter(t) - Counter(s)
+    return next(iter(diff))</code></pre>
+
+<p><code class="inline">Counter</code> is a multiset. Subtracting two counters gives you the surplus. Whenever a problem says "what extra / what's missing," reach for <code class="inline">Counter</code>.</p>
+
+<div class="pattern-id">
+  <h4>How to recognize this pattern</h4>
+  <ul>
+    <li>You need to count occurrences, find duplicates, missing values, extras, or pair things that cancel.</li>
+    <li>Use <strong><code class="inline">Counter</code></strong> for general counting; use <strong>XOR</strong> when items appear in <em>pairs that should cancel</em>.</li>
+    <li>O(n) time, often O(1) space if you can use XOR or a fixed-size array (e.g., 26 letters).</li>
+    <li>Keyword cues: "<em>extra/missing character</em>", "<em>appears once</em>", "<em>find the duplicate</em>", "<em>anagram</em>", "<em>frequency</em>".</li>
+  </ul>
+</div>
+
+<div class="reps-header">Practice reps <small>— pattern 7 (counting &amp; XOR)</small></div>
+
+<div class="zb-pa">
+  <h4>PA 7.1 — XOR truth table</h4>
+  <p>Type 0 or 1.</p>
+  <p><code class="inline">0 ^ 0</code> &rarr; <input class="zb-blank" data-answer="0" size="3" /></p>
+  <p><code class="inline">0 ^ 1</code> &rarr; <input class="zb-blank" data-answer="1" size="3" /></p>
+  <p><code class="inline">1 ^ 0</code> &rarr; <input class="zb-blank" data-answer="1" size="3" /></p>
+  <p><code class="inline">1 ^ 1</code> &rarr; <input class="zb-blank" data-answer="0" size="3" /></p>
+  <p class="zb-hint">"Different bits → 1. Same bits → 0." That's why <code class="inline">a ^ a == 0</code> always.</p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 7.2 — XOR chain trace</h4>
+  <p>Track the running XOR value across consecutive ops.</p>
+<pre><code>v = 0
+v ^= 5    # v = <input class="zb-blank" data-answer="5" size="3" />
+v ^= 3    # v = <input class="zb-blank" data-answer="6" size="3" />
+v ^= 5    # v = <input class="zb-blank" data-answer="3" size="3" />  (5 cancelled!)
+v ^= 3    # v = <input class="zb-blank" data-answer="0" size="3" />  (3 cancelled!)
+v ^= 7    # v = <input class="zb-blank" data-answer="7" size="3" /></code></pre>
+  <p class="zb-hint">Everything you XOR in pairs disappears. Whatever's left appeared an odd number of times. That's the entire trick behind <code class="inline">findTheDifference</code>.</p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 7.3 — Predict Counter operations</h4>
+  <p>Recall: <code class="inline">Counter("aabbc")</code> is roughly <code class="inline">{'a':2, 'b':2, 'c':1}</code>. Counter arithmetic keeps only positive counts.</p>
+  <p><code class="inline">Counter("abcd")["a"]</code> &rarr; <input class="zb-blank" data-answer="1" size="3" /></p>
+  <p><code class="inline">Counter("aabbc")["c"]</code> &rarr; <input class="zb-blank" data-answer="1" size="3" /></p>
+  <p><code class="inline">Counter("aabbc")["z"]</code> &rarr; <input class="zb-blank" data-answer="0" size="3" /></p>
+  <p><code class="inline">sum((Counter("abcde") - Counter("abcd")).values())</code> &rarr; <input class="zb-blank" data-answer="1" size="3" /></p>
+  <p><code class="inline">(Counter("aabb") - Counter("ab"))</code> equals <input class="zb-blank" data-answer="Counter({'a': 1, 'b': 1})" data-equiv="Counter({&apos;a&apos;:1,&apos;b&apos;:1})|Counter({a:1,b:1})|{'a':1,'b':1}" size="30" /></p>
+  <p class="zb-hint">Missing keys silently return 0 — no KeyError. That's why Counter is friendly for these problems.</p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 7.4 — Fill-in: findTheDifference (XOR version)</h4>
+<pre><code>def findTheDifference(s, t):
+    xor_val = 0
+    for ch in s:
+        xor_val ^= <input class="zb-blank" data-answer="ord(ch)" size="8" />
+    for ch in t:
+        xor_val <input class="zb-blank" data-answer="^=" size="3" /> ord(ch)
+    return <input class="zb-blank" data-answer="chr(xor_val)" size="14" />
+</code></pre>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 7.5 — Fill-in: findTheDifference (Counter version)</h4>
+<pre><code>from collections import Counter
+
+def findTheDifference(s, t):
+    diff = Counter(<input class="zb-blank" data-answer="t" size="3" />) - Counter(<input class="zb-blank" data-answer="s" size="3" />)
+    return next(iter(diff))
+</code></pre>
+  <p class="zb-hint">Order matters: <code class="inline">Counter(t) - Counter(s)</code> gives what's <em>extra</em> in t. The other way around gives nothing (empty Counter), because Counter subtraction can't go negative.</p>
+</div>
+
+<div class="zb-multi" data-multi="m-p7" data-quiz="m-p7">
+  <h4>PA 7.6 — When does XOR work?</h4>
+  <div class="q">XOR cancels values that appear an EVEN number of times. For which of these problems can you use XOR (alone) to get the answer?</div>
+  <div class="choices">
+    <label class="choice"><input type="checkbox" data-correct> Find the one number in a list where every other number appears exactly twice</label>
+    <label class="choice"><input type="checkbox" data-correct> Find the one extra char in t (where t is s + one extra)</label>
+    <label class="choice"><input type="checkbox"> Find any two numbers that appear in odd count (XOR conflates them into one garbage value)</label>
+    <label class="choice"><input type="checkbox"> Find the most frequent character (need a Counter)</label>
+    <label class="choice"><input type="checkbox" data-correct> Find the missing number in a list of [0..n] with exactly one missing (XOR with [0..n])</label>
+    <label class="choice"><input type="checkbox"> Detect if a string is an anagram of another (a Counter is the clean tool)</label>
+  </div>
+  <div class="run-row" style="margin-top:8px;">
+    <button class="ghost" onclick="checkMulti('m-p7')">Check all</button>
+  </div>
+  <div class="reveal">
+    XOR shines when there is <em>exactly one outlier</em> and everything else pairs up. For frequency, multiple outliers, or anagrams, reach for Counter.
+  </div>
+</div>
+
+<h3>Challenge</h3>
+<div class="zb-challenge" data-id="ch-p7" data-quiz="ch-p7"></div>
+
+<h3>Quiz</h3>
+<div class="quiz" data-quiz="q11">
+  <div class="q">Q11. <code class="inline">ord('A') ^ ord('a')</code> equals 32. What does that tell us?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="q11" value="a"> Letters are random in ASCII.</label>
+    <label class="choice"><input type="radio" name="q11" value="b" data-correct="1"> Uppercase and lowercase letters differ by exactly one bit — bit 5 (value 32). XOR is sensitive to that bit only.</label>
+    <label class="choice"><input type="radio" name="q11" value="c"> 32 is the XOR identity.</label>
+    <label class="choice"><input type="radio" name="q11" value="d"> Python's ord is broken.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('q11')">Check</button>
+  <div class="reveal">
+    Classic trick: <code class="inline">ch ^ 32</code> flips upper ↔ lower for ASCII letters. <em>Don't</em> use this in real code — use <code class="inline">.lower()</code>. But knowing why it works deepens your understanding of bits.
+  </div>
+</div>
+
+<div class="quiz" data-quiz="q12">
+  <div class="q">Q12. Suppose the problem changed: t now has TWO extra letters compared to s. Does the XOR trick still work?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="q12" value="a"> Yes, returns one of them.</label>
+    <label class="choice"><input type="radio" name="q12" value="b" data-correct="1"> No — XOR returns the bit-by-bit XOR of both, which is usually not a useful character.</label>
+    <label class="choice"><input type="radio" name="q12" value="c"> Yes, returns their concatenation.</label>
+    <label class="choice"><input type="radio" name="q12" value="d"> It returns null.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('q12')">Check</button>
+  <div class="reveal">
+    XOR cancels <em>identical</em> values. Two distinct extras don't cancel; they combine into a garbage byte. Switch to <code class="inline">Counter</code> for the general case.
+  </div>
+</div>
+</section>
+
+<!-- =============================================================== -->
+<!-- PATTERN 8 - BUGS -->
+<section id="p8">
+<h2>11. Pattern 8 — Index-driven iteration <span class="tag bug">bug walkthrough</span></h2>
+<p class="lang">From <code class="inline">1768_merge_strings_alternatively.py</code></p>
+
+<h3>The intended pattern</h3>
+<p>Two strings of possibly different lengths. Pick one char from each, alternating, until both are exhausted. Conceptually simple — index by <code class="inline">i</code> from 0 to <code class="inline">max(len(a), len(b))</code> and conditionally append each character if that string still has one at that index.</p>
+
+<h3>Your current code</h3>
+<pre><code>class Solution:
+    def mergeAlternately(self, word1, word2):
+        word3 = ""
+
+        for i in range(max(len(word1), len(word2))):
+            if i &lt; len(word1):
+
+                word3 += word1[i]
+            if i &lt; len(word2):
+                word3 += word2[i]
+            else:
+                print("Error: word2 is longer than word1")
+            return word3</code></pre>
+
+<div class="callout bad">
+  <strong>There are three bugs in this file.</strong> Let's find them together before showing the fix.
+</div>
+
+<details>
+  <summary>Bug 1 — indentation</summary>
+  <p><code class="inline">return word3</code> is indented inside the <code class="inline">for</code> loop. The function returns after the <strong>first</strong> iteration, so you only ever merge one character of each word.</p>
+</details>
+
+<details>
+  <summary>Bug 2 — wrong <code class="inline">else</code> branch</summary>
+  <p>The <code class="inline">else</code> is attached to <code class="inline">if i &lt; len(word2)</code>. So the message "word2 is longer than word1" actually triggers when <strong>word2 ran out</strong>, which is the opposite of what it claims. The message should not be there at all — this is a normal, expected condition, not an error.</p>
+</details>
+
+<details>
+  <summary>Bug 3 — concatenation strategy (style/perf)</summary>
+  <p>Building a string with <code class="inline">+=</code> in a loop works but isn't ideal — each <code class="inline">+=</code> on a string conceptually creates a new string. Idiomatic Python: build a list of pieces, then <code class="inline">"".join(pieces)</code>. CPython usually optimizes this case, but you should still build the habit because it's portable and faster on JVM/.NET-style runtimes.</p>
+</details>
+
+<h3>The corrected version</h3>
+<pre><code>class Solution:
+    def mergeAlternately(self, word1, word2):
+        out = []
+        for i in range(max(len(word1), len(word2))):
+            if i &lt; len(word1):
+                out.append(word1[i])
+            if i &lt; len(word2):
+                out.append(word2[i])
+        return "".join(out)</code></pre>
+
+<h3>Bonus: a one-line version using zip_longest</h3>
+<pre><code>from itertools import zip_longest
+
+def mergeAlternately(word1, word2):
+    return "".join(a + b for a, b in zip_longest(word1, word2, fillvalue=""))</code></pre>
+
+<div class="callout">
+  <strong>Why this works:</strong> <code class="inline">zip_longest</code> pairs up the strings, filling the shorter one with <code class="inline">""</code>. Each pair contributes "a then b" to the output. Don't write the one-liner version until you can write the explicit one in your sleep — clever code that you don't deeply understand is technical debt.
+</div>
+
+<div class="pattern-id">
+  <h4>How to recognize this pattern</h4>
+  <ul>
+    <li>You're iterating <strong>by index</strong>, not by element — because you need to coordinate <strong>two or more sequences</strong> in lockstep.</li>
+    <li>Sequences may have <strong>different lengths</strong>; you handle the leftover after the shorter one runs out.</li>
+    <li>Common helpers: <code class="inline">range(max(len(a), len(b)))</code>, <code class="inline">zip</code> (truncates), <code class="inline">zip_longest</code> (fills).</li>
+    <li>Keyword cues: "<em>merge alternately</em>", "<em>interleave</em>", "<em>combine row-wise</em>", "<em>process in parallel</em>", "<em>shuffle two arrays together</em>".</li>
+  </ul>
+</div>
+
+<div class="reps-header">Practice reps <small>— pattern 8 (index-driven iteration)</small></div>
+
+<div class="zb-multi" data-multi="m-p8" data-quiz="m-p8">
+  <h4>PA 8.1 — Find every bug in your original</h4>
+  <div class="q">Which of these statements about your original <code class="inline">mergeAlternately</code> are TRUE?</div>
+  <div class="choices">
+    <label class="choice"><input type="checkbox" data-correct> The <code class="inline">return word3</code> statement is indented inside the for-loop, so the function returns after the first iteration.</label>
+    <label class="choice"><input type="checkbox" data-correct> The <code class="inline">else</code> attached to <code class="inline">if i &lt; len(word2)</code> fires when word2 has run out, not when word2 is longer — the error message is the opposite of what it claims.</label>
+    <label class="choice"><input type="checkbox" data-correct> Using <code class="inline">word3 += ...</code> in a loop is non-ideal Python style; <code class="inline">"".join(list)</code> is faster and idiomatic.</label>
+    <label class="choice"><input type="checkbox"> The <code class="inline">max(len(word1), len(word2))</code> loop bound is wrong — it should be <code class="inline">min(...)</code>.</label>
+    <label class="choice"><input type="checkbox"> The <code class="inline">if i &lt; len(word1)</code> check is unnecessary.</label>
+  </div>
+  <div class="run-row" style="margin-top:8px;">
+    <button class="ghost" onclick="checkMulti('m-p8')">Check all</button>
+  </div>
+  <div class="reveal">
+    The first three are the three actual bugs. The bottom two are <em>not</em> bugs — using max() and the if-checks are exactly right for handling uneven lengths.
+  </div>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 8.2 — Predict output of the BUGGY version</h4>
+  <p>Recall: the bug returns after i=0. Predict what it actually produces.</p>
+  <p>buggy <code class="inline">mergeAlternately("abc", "xyz")</code> &rarr; <input class="zb-blank" data-answer="ax" data-equiv='"ax"' size="8" /></p>
+  <p>buggy <code class="inline">mergeAlternately("a", "")</code> &rarr; <input class="zb-blank" data-answer="a" data-equiv='"a"' size="8" /></p>
+  <p>buggy <code class="inline">mergeAlternately("", "z")</code> &rarr; <input class="zb-blank" data-answer="z" data-equiv='"z"' size="8" /></p>
+  <p class="zb-hint">After fixing the indentation: <code class="inline">mergeAlternately("abc","xyz") == "axbycz"</code>. The bug is silent for short inputs but corrupts everything beyond the first character.</p>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 8.3 — Build the corrected version</h4>
+<pre><code>def mergeAlternately(word1, word2):
+    out = []
+    for i in range(<input class="zb-blank" data-answer="max(len(word1), len(word2))" data-equiv="max(len(word1),len(word2))" size="28" />):
+        if i &lt; len(word1):
+            out.<input class="zb-blank" data-answer="append" size="8" />(word1[i])
+        if i &lt; len(word2):
+            out.append(word2[<input class="zb-blank" data-answer="i" size="3" />])
+    return <input class="zb-blank" data-answer='""' data-equiv='""|empty string' size="8" />.join(out)
+</code></pre>
+</div>
+
+<div class="zb-pa">
+  <h4>PA 8.4 — Predict the corrected output</h4>
+  <p><code class="inline">mergeAlternately("abc", "pqr")</code> &rarr; <input class="zb-blank" data-answer="apbqcr" data-equiv='"apbqcr"' size="12" /></p>
+  <p><code class="inline">mergeAlternately("ab", "pqrs")</code> &rarr; <input class="zb-blank" data-answer="apbqrs" data-equiv='"apbqrs"' size="12" /></p>
+  <p><code class="inline">mergeAlternately("abcd", "pq")</code> &rarr; <input class="zb-blank" data-answer="apbqcd" data-equiv='"apbqcd"' size="12" /></p>
+  <p><code class="inline">mergeAlternately("", "xyz")</code> &rarr; <input class="zb-blank" data-answer="xyz" data-equiv='"xyz"' size="10" /></p>
+  <p><code class="inline">mergeAlternately("abc", "")</code> &rarr; <input class="zb-blank" data-answer="abc" data-equiv='"abc"' size="10" /></p>
+</div>
+
+<h3>Trace on <code class="inline">"abc", "pqrst"</code></h3>
+<table style="width:100%;font-size:13.5px;border-collapse:collapse;">
+  <thead><tr style="border-bottom:1px solid var(--line);text-align:left;">
+    <th>i</th><th>w1[i]?</th><th>w2[i]?</th><th>appended</th><th>out so far</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>0</td><td>a</td><td>p</td><td>a, p</td><td>"ap"</td></tr>
+    <tr><td>1</td><td>b</td><td>q</td><td>b, q</td><td>"apbq"</td></tr>
+    <tr><td>2</td><td>c</td><td>r</td><td>c, r</td><td>"apbqcr"</td></tr>
+    <tr><td>3</td><td>—</td><td>s</td><td>s</td><td>"apbqcrs"</td></tr>
+    <tr><td>4</td><td>—</td><td>t</td><td>t</td><td>"apbqcrst"</td></tr>
+  </tbody>
+</table>
+
+<h3>Challenge</h3>
+<p>Rewrite <code class="inline">mergeAlternately</code> correctly from a blank slate. All five tests must pass.</p>
+
+<div class="zb-challenge" data-id="ch-p8" data-quiz="ch-p8"></div>
+
+<h3>Quiz</h3>
+<div class="quiz" data-quiz="q13">
+  <div class="q">Q13. In the buggy version, what does <code class="inline">mergeAlternately("abc","xyz")</code> return?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="q13" value="a"> "axbycz"</label>
+    <label class="choice"><input type="radio" name="q13" value="b" data-correct="1"> "ax"</label>
+    <label class="choice"><input type="radio" name="q13" value="c"> "abcxyz"</label>
+    <label class="choice"><input type="radio" name="q13" value="d"> Empty string</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('q13')">Check</button>
+  <div class="reveal">
+    The early <code class="inline">return word3</code> inside the loop kicks in at i=0. By then, word3 has accumulated "a" then "x". So "ax".
+  </div>
+</div>
+
+<div class="quiz" data-quiz="q14">
+  <div class="q">Q14. Why is <code class="inline">"".join(list_of_strings)</code> generally preferred to <code class="inline">+=</code> in a loop?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="q14" value="a"> It uses less RAM in all languages.</label>
+    <label class="choice"><input type="radio" name="q14" value="b" data-correct="1"> It avoids creating an intermediate string per iteration, which can be quadratic in the worst case.</label>
+    <label class="choice"><input type="radio" name="q14" value="c"> It's the only way to join strings.</label>
+    <label class="choice"><input type="radio" name="q14" value="d"> += silently fails on unicode.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('q14')">Check</button>
+  <div class="reveal">
+    <code class="inline">join</code> walks the list once, computes total length, allocates a single buffer, and copies. <code class="inline">+=</code> can allocate fresh each time.
+  </div>
+</div>
+</section>
+
+<!-- =============================================================== -->
+<section id="cheatsheet">
+<h2>12. Pattern recognition cheat sheet</h2>
+<div class="card">
+  <p>When you read a new problem (OA or live interview), ask these <em>in this order</em> — say them out loud in interviews:</p>
+  <ol>
+    <li><strong>What is the input shape?</strong> Array? Two arrays? String? Sorted? Grid? Graph?</li>
+    <li><strong>What am I asked to return?</strong> A number? A new structure? Modify in place? True/False?</li>
+    <li><strong>Does sorted-ness or sortability matter?</strong> Sorted unlocks two-pointer convergence and binary search.</li>
+    <li><strong>Can I solve it with one pass?</strong> Usually yes for arrays. Two pointers? Running state? Hash map?</li>
+    <li><strong>What's my expected complexity?</strong> State brute force + target before coding.</li>
+  </ol>
+
+  <h4>Reverse-index by clue (foundation patterns)</h4>
+  <table style="width:100%;font-size:13.5px;border-collapse:collapse;">
+    <thead><tr style="border-bottom:1px solid var(--line);text-align:left;">
+      <th>If the problem says…</th><th>Reach for…</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>"longest / shortest run"</td><td>Running state (Pattern 2)</td></tr>
+      <tr><td>"palindrome / symmetric"</td><td>Converging two pointers (Pattern 3)</td></tr>
+      <tr><td>"sorted" + "pair with sum X"</td><td>Converging two pointers</td></tr>
+      <tr><td>"in-place" + "move/remove"</td><td>Same-direction two pointers (Pattern 4)</td></tr>
+      <tr><td>"is X a subsequence of Y"</td><td>Same-direction two pointers</td></tr>
+      <tr><td>"how many / which is missing or extra"</td><td>Counter / XOR (Pattern 7)</td></tr>
+      <tr><td>"convert N to alternate representation"</td><td>Greedy with table (Pattern 5)</td></tr>
+      <tr><td>"common prefix / suffix"</td><td>Horizontal/vertical scan (Pattern 6)</td></tr>
+      <tr><td>"per-row computation, then aggregate"</td><td>Map &amp; reduce (Pattern 1)</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin-top:18px;">Amazon-frequency upgrades (post-OA loop)</h4>
+  <table style="width:100%;font-size:13.5px;border-collapse:collapse;">
+    <thead><tr style="border-bottom:1px solid var(--line);text-align:left;">
+      <th>If the problem says…</th><th>Reach for…</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>"complement / seen before / group by"</td><td>Hash map / set (Two Sum family)</td></tr>
+      <tr><td>"longest substring with constraint"</td><td>Sliding window</td></tr>
+      <tr><td>"shortest path / islands / connected"</td><td>BFS (unweighted) or DFS (components)</td></tr>
+      <tr><td>"top K / next closest / merge K"</td><td>Heap / priority queue</td></tr>
+      <tr><td>"minimum capacity / earliest day that works"</td><td>Binary search on answer</td></tr>
+      <tr><td>"non-overlapping / merge ranges"</td><td>Sort + greedy intervals</td></tr>
+      <tr><td>"matching brackets / next warmer"</td><td>Stack</td></tr>
+      <tr><td>"warehouse / parcels / servers" story text</td><td>Strip story → classify pattern in 2 min</td></tr>
+    </tbody>
+  </table>
+  <div class="callout good" style="margin-top:14px;">
+    <strong>Interview line to memorize:</strong> "I'll clarify constraints, state a brute force, then give the target complexity and the invariant before I touch the keyboard."
+  </div>
+</div>
+</section>
+
+<!-- =============================================================== -->
+<section id="cumulative">
+<h2>13. Cumulative test</h2>
+<p>10 questions across everything above. Pure pattern recognition — don't write code, just identify which pattern applies and why. Aim for 9+.</p>
+
+<div class="quiz" data-quiz="c1">
+  <div class="q">C1. "Given a list of integers, return the smallest difference between any two elements." Best approach?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="c1" value="a"> Nested loop, compare every pair.</label>
+    <label class="choice"><input type="radio" name="c1" value="b" data-correct="1"> Sort, then single pass comparing adjacent pairs.</label>
+    <label class="choice"><input type="radio" name="c1" value="c"> XOR all of them.</label>
+    <label class="choice"><input type="radio" name="c1" value="d"> Build a Counter.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('c1')">Check</button>
+  <div class="reveal">
+    After sorting, the minimum difference is always between two adjacent elements. O(n log n) sort + O(n) scan beats O(n²).
+  </div>
+</div>
+
+<div class="quiz" data-quiz="c2">
+  <div class="q">C2. "Reverse the words of a sentence in place." Which pattern is most useful?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="c2" value="a" data-correct="1"> Converging two pointers (reverse the whole string, then reverse each word).</label>
+    <label class="choice"><input type="radio" name="c2" value="b"> Running state.</label>
+    <label class="choice"><input type="radio" name="c2" value="c"> XOR.</label>
+    <label class="choice"><input type="radio" name="c2" value="d"> Greedy.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('c2')">Check</button>
+  <div class="reveal">
+    Two-pointer reverse, twice. Classic Pattern 3 cousin.
+  </div>
+</div>
+
+<div class="quiz" data-quiz="c3">
+  <div class="q">C3. "Return true if a string has all unique characters." Best approach?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="c3" value="a"> Nested loop.</label>
+    <label class="choice"><input type="radio" name="c3" value="b"> Sort, then compare neighbors.</label>
+    <label class="choice"><input type="radio" name="c3" value="c" data-correct="1"> Build a set, check len.</label>
+    <label class="choice"><input type="radio" name="c3" value="d"> Greedy.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('c3')">Check</button>
+  <div class="reveal">
+    <code class="inline">len(set(s)) == len(s)</code>. O(n) time, O(n) space. Sometimes the most Pythonic answer is also the best.
+  </div>
+</div>
+
+<div class="quiz" data-quiz="c4">
+  <div class="q">C4. "Find the only number that appears an odd number of times in a list where every other number appears an even number of times."</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="c4" value="a"> Sort and look for clusters.</label>
+    <label class="choice"><input type="radio" name="c4" value="b" data-correct="1"> XOR everything — duplicates cancel.</label>
+    <label class="choice"><input type="radio" name="c4" value="c"> Running max.</label>
+    <label class="choice"><input type="radio" name="c4" value="d"> Two pointers.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('c4')">Check</button>
+  <div class="reveal">
+    Pattern 7 in its purest form. Even copies cancel, the odd one survives.
+  </div>
+</div>
+
+<div class="quiz" data-quiz="c5">
+  <div class="q">C5. You have a sorted array. Find two numbers that add up to a target. Best approach?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="c5" value="a"> Hash all numbers, then look up complements.</label>
+    <label class="choice"><input type="radio" name="c5" value="b" data-correct="1"> Two pointers, one at each end. Move left up if sum is too small, right down if too big.</label>
+    <label class="choice"><input type="radio" name="c5" value="c"> Sort it again (just in case).</label>
+    <label class="choice"><input type="radio" name="c5" value="d"> Greedy.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('c5')">Check</button>
+  <div class="reveal">
+    Converging two pointers exploits sortedness for O(n) time and O(1) extra space.
+  </div>
+</div>
+
+<div class="quiz" data-quiz="c6">
+  <div class="q">C6. "Largest sum of any contiguous subarray." (LeetCode 53, "Maximum Subarray.")</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="c6" value="a" data-correct="1"> Running state: at each i, track best-ending-here and best-overall.</label>
+    <label class="choice"><input type="radio" name="c6" value="b"> Sort, then take last k.</label>
+    <label class="choice"><input type="radio" name="c6" value="c"> Two pointers converging.</label>
+    <label class="choice"><input type="radio" name="c6" value="d"> XOR.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('c6')">Check</button>
+  <div class="reveal">
+    Pattern 2, slightly enriched. This is Kadane's algorithm — but it <em>is</em> exactly your running-state pattern with one wrinkle: reset current to 0 if it ever goes negative.
+  </div>
+</div>
+
+<div class="quiz" data-quiz="c7">
+  <div class="q">C7. "Remove duplicates from a sorted linked list, in place."</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="c7" value="a" data-correct="1"> Same-direction two pointers (writer skips equal neighbors).</label>
+    <label class="choice"><input type="radio" name="c7" value="b"> Convert to a set.</label>
+    <label class="choice"><input type="radio" name="c7" value="c"> Sort first.</label>
+    <label class="choice"><input type="radio" name="c7" value="d"> XOR.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('c7')">Check</button>
+  <div class="reveal">
+    "In place" + "sorted" = same-direction two pointers, every time.
+  </div>
+</div>
+
+<div class="quiz" data-quiz="c8">
+  <div class="q">C8. "Convert a binary number string to its decimal value." Greedy?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="c8" value="a"> Yes — take the biggest power of two each time.</label>
+    <label class="choice"><input type="radio" name="c8" value="b"> No — sort the bits.</label>
+    <label class="choice"><input type="radio" name="c8" value="c" data-correct="1"> Single pass, accumulator: <code class="inline">result = result * 2 + bit</code>.</label>
+    <label class="choice"><input type="radio" name="c8" value="d"> Two pointers.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('c8')">Check</button>
+  <div class="reveal">
+    Running state, accumulator-style. Same family as Pattern 2.
+  </div>
+</div>
+
+<div class="quiz" data-quiz="c9">
+  <div class="q">C9. Looking at a brand new problem, your VERY FIRST question should be:</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="c9" value="a"> What is the trick?</label>
+    <label class="choice"><input type="radio" name="c9" value="b" data-correct="1"> What is the input shape and what am I returning?</label>
+    <label class="choice"><input type="radio" name="c9" value="c"> Can I use recursion?</label>
+    <label class="choice"><input type="radio" name="c9" value="d"> Is there a library function?</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('c9')">Check</button>
+  <div class="reveal">
+    Pattern recognition starts with shape recognition. Everything else flows from that.
+  </div>
+</div>
+
+<div class="quiz" data-quiz="c10">
+  <div class="q">C10. You have an O(n²) solution that passes all tests. The interviewer asks for better. Where should you look first?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="c10" value="a" data-correct="1"> Can I trade space for time? (Hash maps often turn O(n²) into O(n).)</label>
+    <label class="choice"><input type="radio" name="c10" value="b"> Use threading.</label>
+    <label class="choice"><input type="radio" name="c10" value="c"> Switch languages.</label>
+    <label class="choice"><input type="radio" name="c10" value="d"> Memoize randomly.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('c10')">Check</button>
+  <div class="reveal">
+    A hash map / set turns "did I see this before?" into O(1). It's the single most reliable upgrade from quadratic to linear.
+  </div>
+</div>
+
+<div class="card" style="margin-top:18px;">
+  <strong>Your score: </strong><span id="cumulative-score">—</span>
+</div>
+</section>
+
+<!-- =============================================================== -->
+<section id="amazon-now">
+<h2>14. Amazon — start here today</h2>
+<div class="callout warn">
+  <strong>If you are prepping for Amazon right now, skip the foundation tour and work this block.</strong>
+  Patterns 1–8 teach shape recognition. This block is what the OA / phone / loop actually grade.
+</div>
+
+<div class="card checklist" id="today-checklist">
+  <h4>Today’s 2-hour block (do this before anything else)</h4>
+  <label><input type="checkbox" data-today> Start Amazon Lab: <code class="inline">cd amazon_lab && python serve.py</code> — roadmap → Contains Duplicate</label>
+  <label><input type="checkbox" data-today> Or Python ladder: <code class="inline">hash_pattern_lab.py</code> L0 then L1</label>
+  <label><input type="checkbox" data-today> Draft <strong>2 STAR stories</strong> (Ownership + Dive Deep) with a metric each — 20 min</label>
+  <label><input type="checkbox" data-today> Log misses in <code class="inline">interview_prep/logs/mistake_log_template.csv</code></label>
+  <p style="margin-top:10px;font-size:14px;">Today progress: <strong id="today-count">0</strong> / 4</p>
+</div>
+
+<div class="callout good">
+  <strong>Primary trainer (NeetCode / LeetCode-style):</strong>
+  <code class="inline">cd SummerPractice/python/practice/amazon_lab && python serve.py</code> —
+  roadmap by pattern, bridges, editor, Submit tests, 35-min timer, expandable top-100 bank.
+  Python ladder backup: <code class="inline">hash_pattern_lab.py</code>. Details: <code class="inline">PROBLEM_BANK.md</code>
+</div>
+
+<div class="card">
+  <h4>Amazon process (what you’re training for)</h4>
+  <table style="width:100%;font-size:13.5px;border-collapse:collapse;">
+    <thead><tr style="border-bottom:1px solid var(--line);text-align:left;">
+      <th>Stage</th><th>Length</th><th>What they grade</th><th>Your prep artifact</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><strong>OA</strong></td><td>~70–90m coding</td><td>Correctness under timer; story wrappers</td><td><code class="inline">amazon_oa_week/coding/</code></td></tr>
+      <tr><td><strong>Phone screen</strong></td><td>45–60m</td><td>1 medium live + 10–15m LPs</td><td>phone script + 4 core STAR stories</td></tr>
+      <tr><td><strong>Loop</strong></td><td>4–5 × 45–60m</td><td>Coding + LP every round; Bar Raiser veto</td><td>Problem bank + STAR bank + mocks</td></tr>
+      <tr><td><strong>Hiring committee</strong></td><td>async</td><td>Written evidence across LPs + bar</td><td>Stories with metrics, not vibes</td></tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<!-- =============================================================== -->
+<section id="amazon-problems">
+<h2>15. Amazon problem bank (solve these)</h2>
+<p>Use the <strong>LeetCode-style lab</strong> first. Patterns stack, tests run in-browser, and the interview protocol is one click away.</p>
+
+<div class="card">
+  <h4>Primary — Amazon Lab (<code class="inline">amazon_lab/</code>)</h4>
+  <pre style="font-size:13px;background:var(--code-bg,#0b0d12);padding:10px;border-radius:8px;overflow:auto;">cd SummerPractice/python/practice/amazon_lab
+python serve.py</pre>
+  <ul>
+    <li>NeetCode-ordered roadmap (Arrays &amp; Hashing → Graphs → DP…)</li>
+    <li>YOU ALREADY KNOW / WHAT'S NEW / TRACE on every problem</li>
+    <li>Editor + Submit tests (Pyodide) · 35-min timer · protocol modal</li>
+    <li>Data-driven bank — grow toward top 100 via <code class="inline">seed_problems.py</code></li>
+  </ul>
+  <p style="margin-top:8px;">Wait for “Python ready,” then clear Arrays &amp; Hashing in order.</p>
+</div>
+
+<div class="card">
+  <h4>Hash Pattern Lab (Python backup) — <code class="inline">hash_pattern_lab.py</code></h4>
+  <p>Each lesson upgrades the previous one:</p>
+  <table style="width:100%;font-size:13.5px;border-collapse:collapse;">
+    <thead><tr style="border-bottom:1px solid var(--line);text-align:left;">
+      <th>Lesson</th><th>Problem</th><th>What upgrades</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>L0</td><td>set + dict demos</td><td>The two tools</td></tr>
+      <tr><td>L1</td><td>Contains Duplicate</td><td>set: have I seen this value?</td></tr>
+      <tr><td>L2</td><td>Two Sum</td><td>same scan + complement + index dict</td></tr>
+      <tr><td>C03 / L4</td><td>Top K Frequent</td><td>count then rank (not L3 sorting)</td></tr>
+      <tr><td>L5</td><td>Subarray Sum = K</td><td>Two Sum on prefix sums</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h4>Common mixed drills (after lab) — <code class="inline">07_amazon_common_problems.py</code></h4>
+  <table style="width:100%;font-size:13.5px;border-collapse:collapse;">
+    <thead><tr style="border-bottom:1px solid var(--line);text-align:left;">
+      <th>#</th><th>Problem</th><th>Pattern</th><th>Timer</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>C01</td><td>Two Sum</td><td>Hash map</td><td>25m</td></tr>
+      <tr><td>C02</td><td>Group Anagrams</td><td>Hash signature</td><td>30m</td></tr>
+      <tr><td>C03</td><td>Top K Frequent</td><td>Hash + heap/bucket</td><td>30m</td></tr>
+      <tr><td>C04</td><td>Longest Substring No Repeat</td><td>Sliding window</td><td>35m</td></tr>
+      <tr><td>C05</td><td>Min Size Subarray Sum</td><td>Sliding window</td><td>30m</td></tr>
+      <tr><td>C06</td><td>Merge Intervals</td><td>Sort + greedy</td><td>30m</td></tr>
+      <tr><td>C07</td><td>Number of Islands</td><td>DFS/BFS grid</td><td>35m</td></tr>
+      <tr><td>C08</td><td>Rotting Oranges</td><td>Multi-source BFS</td><td>35m</td></tr>
+      <tr><td>C09</td><td>Valid Parentheses</td><td>Stack</td><td>20m</td></tr>
+      <tr><td>C10</td><td>Best Time Buy/Sell Stock</td><td>Running state</td><td>20m</td></tr>
+      <tr><td>C11</td><td>Subarray Sum Equals K</td><td>Prefix + hash</td><td>35m</td></tr>
+      <tr><td>C12</td><td>Course Schedule</td><td>Graph cycle / topo</td><td>35m</td></tr>
+    </tbody>
+  </table>
+  <pre style="margin-top:12px;"><code>python interview_prep/amazon_oa_week/coding/07_amazon_common_problems.py C01</code></pre>
+</div>
+
+<div class="card">
+  <h4>Harder (7) — <code class="inline">08_amazon_hard_problems.py</code></h4>
+  <table style="width:100%;font-size:13.5px;border-collapse:collapse;">
+    <thead><tr style="border-bottom:1px solid var(--line);text-align:left;">
+      <th>#</th><th>Problem</th><th>Pattern</th><th>Timer</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>H01</td><td>LRU Cache</td><td>Hash + doubly linked list</td><td>45m</td></tr>
+      <tr><td>H02</td><td>Word Ladder</td><td>BFS on word graph</td><td>45m</td></tr>
+      <tr><td>H03</td><td>Merge K Sorted Lists</td><td>Heap</td><td>40m</td></tr>
+      <tr><td>H04</td><td>Trapping Rain Water</td><td>Two pointers / stack</td><td>45m</td></tr>
+      <tr><td>H05</td><td>Koko Eating Bananas</td><td>Binary search on answer</td><td>35m</td></tr>
+      <tr><td>H06</td><td>Word Break</td><td>DP + hash set</td><td>40m</td></tr>
+      <tr><td>H07</td><td>Top K Keywords (Amazon story)</td><td>Counter + tie-break sort</td><td>25m</td></tr>
+    </tbody>
+  </table>
+  <pre style="margin-top:12px;"><code>python interview_prep/amazon_oa_week/coding/08_amazon_hard_problems.py</code></pre>
+  <p style="color:var(--ink-dim);font-size:14px;margin-top:8px;">Suggested hard order: H07 → H05 → H01 → H03 → H06 → H02 → H04.</p>
+</div>
+
+<div class="callout">
+  <strong>Order:</strong> Clear C01–C12 before grinding all hard problems. After each pass, cold re-solve within 3 days.
+</div>
+</section>
+
+<!-- =============================================================== -->
+<section id="amazon-hitlist">
+<h2>16. Amazon coding hit list (quick reference)</h2>
+<p>Same problems as the bank above — use this when picking today’s LC number on the site. Full prompts live in the <code class="inline">.py</code> files.</p>
+
+<div class="card">
+  <h4>Tier A — must be automatic (this week)</h4>
+  <table style="width:100%;font-size:13.5px;border-collapse:collapse;">
+    <thead><tr style="border-bottom:1px solid var(--line);text-align:left;">
+      <th>LC</th><th>Problem</th><th>Pattern</th><th>Say this invariant</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Two Sum</td><td>Hash map</td><td>map stores value→index of what I’ve scanned</td></tr>
+      <tr><td>49</td><td>Group Anagrams</td><td>Hash + key</td><td>sorted chars (or count tuple) is the group key</td></tr>
+      <tr><td>242</td><td>Valid Anagram</td><td>Counter</td><td>same multiset of chars</td></tr>
+      <tr><td>347</td><td>Top K Frequent</td><td>Hash + heap/bucket</td><td>freq map first, then select top k</td></tr>
+      <tr><td>3</td><td>Longest Substring No Repeat</td><td>Sliding window</td><td>[L,R] has unique chars; shrink L on duplicate</td></tr>
+      <tr><td>209</td><td>Min Size Subarray Sum</td><td>Sliding window</td><td>grow R until sum≥target, shrink L while valid</td></tr>
+      <tr><td>56</td><td>Merge Intervals</td><td>Sort + greedy</td><td>sort by start; merge when next.start ≤ cur.end</td></tr>
+      <tr><td>200</td><td>Number of Islands</td><td>DFS/BFS grid</td><td>each flood fill marks one component</td></tr>
+      <tr><td>994</td><td>Rotting Oranges</td><td>Multi-source BFS</td><td>queue starts with all rotten; time = layers</td></tr>
+      <tr><td>20</td><td>Valid Parentheses</td><td>Stack</td><td>stack holds unmatched opens</td></tr>
+      <tr><td>121</td><td>Best Time Buy/Sell Stock</td><td>Running state</td><td>track min_price so far; best = price − min</td></tr>
+      <tr><td>238</td><td>Product Except Self</td><td>Prefix/suffix</td><td>left products × right products</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h4>Tier B — phone / loop mediums (next)</h4>
+  <table style="width:100%;font-size:13.5px;border-collapse:collapse;">
+    <thead><tr style="border-bottom:1px solid var(--line);text-align:left;">
+      <th>LC</th><th>Problem</th><th>Pattern</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>15</td><td>3Sum</td><td>Sort + two pointers</td></tr>
+      <tr><td>11</td><td>Container With Most Water</td><td>Two pointers</td></tr>
+      <tr><td>560</td><td>Subarray Sum Equals K</td><td>Prefix sum + hash</td></tr>
+      <tr><td>146</td><td>LRU Cache</td><td>Hash + doubly linked list</td></tr>
+      <tr><td>215</td><td>Kth Largest Element</td><td>Heap / Quickselect</td></tr>
+      <tr><td>23</td><td>Merge K Sorted Lists</td><td>Heap</td></tr>
+      <tr><td>875</td><td>Koko Eating Bananas</td><td>Binary search on answer</td></tr>
+      <tr><td>1011</td><td>Capacity To Ship Packages</td><td>Binary search on answer</td></tr>
+      <tr><td>207</td><td>Course Schedule</td><td>Graph + topo / cycle detect</td></tr>
+      <tr><td>210</td><td>Course Schedule II</td><td>Topo sort</td></tr>
+      <tr><td>127</td><td>Word Ladder</td><td>BFS on implicit graph</td></tr>
+      <tr><td>322</td><td>Coin Change</td><td>1D DP</td></tr>
+      <tr><td>139</td><td>Word Break</td><td>DP + hash set</td></tr>
+      <tr><td>54</td><td>Spiral Matrix</td><td>Simulation / boundaries</td></tr>
+      <tr><td>48</td><td>Rotate Image</td><td>In-place matrix</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h4>How to practice each problem (Amazon grade)</h4>
+  <ol>
+    <li>Read → clarify constraints aloud (even alone).</li>
+    <li>≤2 min: name pattern + brute force + target Big-O.</li>
+    <li>Code timed. No autocomplete for at least half of Tier A.</li>
+    <li>Trace empty / single / duplicates before “done.”</li>
+    <li>Close tab. Re-solve cold in ≤25 min within 3 days.</li>
+  </ol>
+</div>
+
+<div class="quiz" data-quiz="a1">
+  <div class="q">A1. Highest-leverage next solve if hashing is still shaky?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="a1" value="a"> Jump to Coin Change DP.</label>
+    <label class="choice"><input type="radio" name="a1" value="b" data-correct="1"> Finish LC 1, 49, 560 — then your hashing drill file.</label>
+    <label class="choice"><input type="radio" name="a1" value="c"> Only do hard graph problems.</label>
+    <label class="choice"><input type="radio" name="a1" value="d"> Memorize Dijkstra pseudocode tonight.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('a1')">Check</button>
+  <div class="reveal">
+    Amazon OA + early screens are hashing-heavy. Lock Two Sum / group / prefix-sum-hash before chasing hard DP.
+  </div>
+</div>
+</section>
+
+<!-- =============================================================== -->
+<section id="amazon-story">
+<h2>17. Amazon story problems (OA → loop)</h2>
+<p>Amazon wraps standard patterns in warehouse / package / server wording. Strip nouns → classify → solve.</p>
+
+<div class="card">
+  <h4>Cheat translation table</h4>
+  <table style="width:100%;font-size:13.5px;border-collapse:collapse;">
+    <thead><tr style="border-bottom:1px solid var(--line);text-align:left;">
+      <th>Story they give you</th><th>Real problem</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>Rank error codes by frequency; ties by name</td><td>Counter + sort (LC 347 cousin)</td></tr>
+      <tr><td>Assign parcels to trucks under capacity</td><td>Greedy / BS-on-answer (LC 1011)</td></tr>
+      <tr><td>Longest stretch of valid inventory days</td><td>Sliding window</td></tr>
+      <tr><td>Count connected fulfillment zones</td><td>Number of islands (LC 200)</td></tr>
+      <tr><td>Shortest path in warehouse grid</td><td>BFS (LC 1091 cousin)</td></tr>
+      <tr><td>Process next urgent order</td><td>Heap / priority queue</td></tr>
+      <tr><td>Merge overlapping delivery windows</td><td>Merge intervals (LC 56)</td></tr>
+      <tr><td>Cache of recent product pages</td><td>LRU Cache (LC 146)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<details>
+  <summary>Worked example — “Most common keywords in support tickets”</summary>
+  <p><strong>Prompt shape:</strong> Given a list of keywords from tickets, return the top k most frequent. If ties, prefer lexicographically smaller.</p>
+<pre><code>from collections import Counter
+
+def top_k_keywords(keywords, k):
+    freq = Counter(keywords)
+    # sort: higher freq first, then name ascending
+    ranked = sorted(freq.keys(), key=lambda w: (-freq[w], w))
+    return ranked[:k]
+
+# assert top_k_keywords(["a","b","a","c","b","a"], 2) == ["a","b"]
+</code></pre>
+  <p><strong>Interview narration:</strong> “Hash count first O(n). Then sort unique keys by (−freq, word) O(u log u). Prefer heap only if k ≪ u and we care about k-log-u.”</p>
+</details>
+
+<details>
+  <summary>Worked example — “Minimum drone speed to finish deliveries in H hours”</summary>
+  <p><strong>Real pattern:</strong> binary search on answer (Koko / ship packages).</p>
+<pre><code>import math
+
+def min_speed(weights, hours):
+    def feasible(speed):
+        return sum(math.ceil(w / speed) for w in weights) &lt;= hours
+    lo, hi = 1, max(weights)
+    while lo &lt; hi:
+        mid = (lo + hi) // 2
+        if feasible(mid):
+            hi = mid
+        else:
+            lo = mid + 1
+    return lo
+</code></pre>
+  <p><strong>Must say:</strong> “<code class="inline">feasible(speed)</code> is monotonic — once true for mid, true for all larger speeds.”</p>
+</details>
+
+<details>
+  <summary>Worked example — “Count blocked storage rooms forming islands”</summary>
+<pre><code>def count_islands(grid):
+    if not grid: return 0
+    rows, cols = len(grid), len(grid[0])
+    def dfs(r, c):
+        if r &lt; 0 or c &lt; 0 or r &gt;= rows or c &gt;= cols or grid[r][c] != "1":
+            return
+        grid[r][c] = "0"
+        for dr, dc in ((1,0),(-1,0),(0,1),(0,-1)):
+            dfs(r+dr, c+dc)
+    islands = 0
+    for r in range(rows):
+        for c in range(cols):
+            if grid[r][c] == "1":
+                islands += 1
+                dfs(r, c)
+    return islands
+</code></pre>
+</details>
+
+<div class="zb-pa">
+  <h4>PA — classify in under 30 seconds</h4>
+  <p>“Merge overlapping package delivery time ranges.” → <input class="zb-blank" data-answer="intervals" data-equiv="merge intervals|greedy|sort + greedy" size="20" /></p>
+  <p>“Return top 3 SKUs by units sold; ties by SKU string.” → <input class="zb-blank" data-answer="hashing" data-equiv="hash|counter|heap|top k" size="20" /></p>
+  <p>“Can all courses finish given prereq pairs?” → <input class="zb-blank" data-answer="graph" data-equiv="topo|topological|cycle detection|dfs" size="20" /></p>
+  <p>“Longest period inventory stayed ≤ K.” → <input class="zb-blank" data-answer="sliding window" data-equiv="window|two pointers" size="20" /></p>
+</div>
+
+<p>More variants: <code class="inline">interview_prep/amazon_oa_week/coding/06_amazon_style_story_variants.py</code></p>
+</section>
+
+<!-- =============================================================== -->
+<section id="live-coding">
+<h2>18. Live coding + phone screen script</h2>
+<p>Phone screens are ~45–60 min: <strong>coding + Leadership Principles in the same call.</strong> Practice the sandwich.</p>
+
+<div class="card">
+  <h4>Phone screen minute map</h4>
+  <div class="script-block"><div class="t">0:00–3:00 · Warm + LP</div>
+    “Tell me about yourself” (60–90s) → often 1 LP already (“time you owned something end-to-end”).
+  </div>
+  <div class="script-block"><div class="t">3:00–8:00 · Clarify the coding prompt</div>
+    Restate. Ask: n up to? duplicates? mutate? empty? return indices or values?
+  </div>
+  <div class="script-block"><div class="t">8:00–12:00 · Plan out loud</div>
+    Pattern · brute force · target O(·) · invariant · 2 edge cases.
+  </div>
+  <div class="script-block"><div class="t">12:00–35:00 · Code</div>
+    Narrate. If stuck &gt;3 min: say it, simplify, ask for a hint collaboratively.
+  </div>
+  <div class="script-block"><div class="t">35:00–42:00 · Trace + complexity</div>
+    Dry-run + Big-O + one tradeoff.
+  </div>
+  <div class="script-block"><div class="t">42:00–55:00 · More LPs</div>
+    Expect Ownership / Dive Deep / Bias for Action / Customer Obsession.
+  </div>
+  <div class="script-block"><div class="t">55:00–60:00 · Your questions</div>
+    Ask about the team’s current hard problem, on-call, what “bar” means on this team.
+  </div>
+</div>
+
+<div class="card">
+  <h4>Open with this (copy into muscle memory)</h4>
+  <div class="script-block">
+    “I’ll restate the problem to confirm. Then I’ll ask a few constraint questions.
+    After that I’ll outline a brute force and a better approach with complexity,
+    name the invariant, then code. At the end I’ll walk a couple edge cases.”
+  </div>
+  <h4>Sentences that score</h4>
+  <ul>
+    <li>“n can be 10⁵, so O(n²) times out — I’ll use a hash map for O(n) time / O(n) space.”</li>
+    <li>“Invariant: everything in [left, right] is unique.”</li>
+    <li>“I’ll test empty input, one element, and all duplicates.”</li>
+    <li>“I’m unsure about the neighbor mark — I’ll BFS a 1×1 case, then expand.”</li>
+  </ul>
+  <div class="callout bad">
+    <strong>Silent AC = weak hire signal.</strong> They need evidence of Dive Deep + communication for the write-up.
+  </div>
+</div>
+
+<div class="quiz" data-quiz="a2">
+  <div class="q">A2. Interviewer says n ≤ 10⁵ and you sketched O(n²). Best move?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="a2" value="a"> Code O(n²) quietly and hope tests are small.</label>
+    <label class="choice"><input type="radio" name="a2" value="b" data-correct="1"> Call out the timeout; propose hash/window/sort upgrade before coding.</label>
+    <label class="choice"><input type="radio" name="a2" value="c"> Ask to change languages.</label>
+    <label class="choice"><input type="radio" name="a2" value="d"> Start optimizing without saying anything.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('a2')">Check</button>
+  <div class="reveal">Constraints are a gift. Show you mapped 10⁵ → O(n) / O(n log n), then implement.</div>
+</div>
+
+<div class="quiz" data-quiz="a3">
+  <div class="q">A3. First thing after reading the coding prompt?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="a3" value="a"> Type the function and start looping.</label>
+    <label class="choice"><input type="radio" name="a3" value="b" data-correct="1"> Restate the goal and ask clarifying questions.</label>
+    <label class="choice"><input type="radio" name="a3" value="c"> Ask for Python version only.</label>
+    <label class="choice"><input type="radio" name="a3" value="d"> Cite merge-sort complexity.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('a3')">Check</button>
+  <div class="reveal">Clarifying = Customer Obsession + Earn Trust before a single line of code.</div>
+</div>
+</section>
+
+<!-- =============================================================== -->
+<section id="lps">
+<h2>19. Leadership Principles — STAR bank (prep for real)</h2>
+<p>Every Amazon round can spend 10–20 minutes on LPs. Bar raisers go deep. You need <strong>8–12 stories</strong>, each reusable across 2–3 LPs, each with a metric.</p>
+
+<div class="card">
+  <h4>Most-probed LPs in SDE loops (prep these first)</h4>
+  <ol>
+    <li><strong>Ownership</strong> — fixed something outside your JD</li>
+    <li><strong>Dive Deep</strong> — found root cause with data</li>
+    <li><strong>Customer Obsession</strong> — chose user outcome over internal ease</li>
+    <li><strong>Bias for Action</strong> — decided with incomplete info</li>
+    <li><strong>Deliver Results</strong> — hit a hard deadline with a number</li>
+    <li><strong>Earn Trust</strong> — owned a miss + repaired process</li>
+    <li><strong>Insist on Highest Standards</strong> — blocked a bad ship</li>
+    <li><strong>Have Backbone; Disagree &amp; Commit</strong> — disagreed with data, then committed</li>
+  </ol>
+</div>
+
+<div class="card">
+  <h4>Exact prompts they ask (rehearse answers)</h4>
+  <ul>
+    <li>“Tell me about a time you owned something end-to-end that wasn’t your job.”</li>
+    <li>“Walk me through a time you disagreed with your manager / teammate.”</li>
+    <li>“Tell me about a time you were wrong. What did you change?”</li>
+    <li>“Describe a time you had to dive deep to root-cause a bug or outage.”</li>
+    <li>“Tell me about a time you sacrificed short-term speed for the customer.”</li>
+    <li>“Describe a time you made a decision with incomplete information.”</li>
+    <li>“Tell me about your hardest deadline.”</li>
+    <li>“When did you refuse to ship something that wasn’t ready?”</li>
+    <li>“Tell me about a time you simplified a complex process or design.”</li>
+    <li>“Give an example of mentoring or raising someone else’s bar.”</li>
+  </ul>
+</div>
+
+<details open>
+  <summary>STAR template you fill tonight (90 seconds max)</summary>
+  <div class="script-block">
+    <strong>S</strong> — Context in 1–2 lines (team, stake).<br>
+    <strong>T</strong> — YOUR ownership sentence.<br>
+    <strong>A</strong> — 3–5 concrete actions (verbs + tradeoffs).<br>
+    <strong>R</strong> — Metric + learning + “what I’d repeat.”
+  </div>
+  <pre style="white-space:pre-wrap;font-size:13px;"><code>STORY TITLE: ________________________________
+PRIMARY LP: _____________  ALSO MAPS TO: _____________ / _____________
+
+S: _______________________________________________________________
+T: _______________________________________________________________
+A1: ______________________________________________________________
+A2: ______________________________________________________________
+A3: ______________________________________________________________
+R (metric): _______________________________________________________
+Follow-up bullets (they WILL ask):
+  - What would you do differently?
+  - What did the customer / teammate say?
+  - What data convinced you?
+</code></pre>
+</details>
+
+<div class="card" style="margin-top:14px;">
+  <h4>Map YOUR resume projects → LPs (Amazon cares about YOUR evidence)</h4>
+  <p style="color:var(--ink-dim);font-size:14px;">Pull from AGMS / CST milestones, internships, recon-tool, SummerPractice systems, class projects, jobs.</p>
+  <table style="width:100%;font-size:13.5px;border-collapse:collapse;">
+    <thead><tr style="border-bottom:1px solid var(--line);text-align:left;">
+      <th>Your project / situation</th><th>Good LP fits</th><th>Metric idea</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>Debugged a production-like failure / schema / JWT / SQL bug</td><td>Dive Deep, Ownership</td><td>time-to-fix, # failing tests → 0</td></tr>
+      <tr><td>Shipped a feature under a hard course / internship deadline</td><td>Deliver Results, Bias for Action</td><td>days early/late, demos passed</td></tr>
+      <tr><td>Reworked UX / API because users were confused</td><td>Customer Obsession, Invent &amp; Simplify</td><td>support tickets, time-on-task</td></tr>
+      <tr><td>Caught a security / data issue before release</td><td>Highest Standards, Earn Trust</td><td>vulns blocked, rollback avoided</td></tr>
+      <tr><td>Disagreed on design / stack, then committed</td><td>Backbone; Disagree &amp; Commit</td><td>decision outcome, post-mortem</td></tr>
+      <tr><td>Learned Django / cloud / new stack to unblock</td><td>Learn &amp; Be Curious</td><td>shipped X after Y days of learning</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="lp-grid" style="margin-top:14px;">
+  <div class="lp-card">
+    <h4>Customer Obsession</h4>
+    <p>Customer outcome &gt; internal convenience.</p>
+    <div class="prompt">“Sacrificed short-term speed for the customer.”</div>
+  </div>
+  <div class="lp-card">
+    <h4>Ownership</h4>
+    <p>Acted outside the JD; didn’t wait.</p>
+    <div class="prompt">“Owned something end-to-end that wasn’t yours.”</div>
+  </div>
+  <div class="lp-card">
+    <h4>Dive Deep</h4>
+    <p>Root cause with evidence.</p>
+    <div class="prompt">“Went deeper than peers to find the real bug.”</div>
+  </div>
+  <div class="lp-card">
+    <h4>Bias for Action</h4>
+    <p>70% info + reversible decision.</p>
+    <div class="prompt">“Decided with incomplete data.”</div>
+  </div>
+</div>
+
+<div class="quiz" data-quiz="a4">
+  <div class="q">A4. Strongest Result line for Amazon?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="a4" value="a"> “It went well and the team was happy.”</label>
+    <label class="choice"><input type="radio" name="a4" value="b" data-correct="1"> “Cut p95 latency 900ms → 220ms; related tickets dropped ~40% that week.”</label>
+    <label class="choice"><input type="radio" name="a4" value="c"> “We refactored a lot.”</label>
+    <label class="choice"><input type="radio" name="a4" value="d"> “I learned so much.”</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('a4')">Check</button>
+  <div class="reveal">Metrics survive the hiring committee write-up. Soft endings get drilled until you fabricate numbers live — prep them now.</div>
+</div>
+</section>
+
+<!-- =============================================================== -->
+<section id="bar-raiser">
+<h2>20. Bar raiser &amp; follow-ups</h2>
+<div class="card">
+  <p>The Bar Raiser is usually <strong>not</strong> on the hiring team. They optimize for long-term Amazon bar and LP depth. They ask “why / how do you know / what would you do differently” until the story cracks.</p>
+  <h4>Follow-ups to prep for EVERY story</h4>
+  <ul>
+    <li>What was YOUR specific contribution vs the team?</li>
+    <li>What alternatives did you consider?</li>
+    <li>What data / signal changed your mind?</li>
+    <li>Who disagreed? How did you handle it?</li>
+    <li>What failed? What did you learn?</li>
+    <li>If you redid it next quarter, what changes?</li>
+    <li>How did this help the customer / business?</li>
+  </ul>
+  <div class="callout">
+    <strong>During coding,</strong> Bar Raisers also grade: Do you clarify? Do you catch your own bugs? Do you take feedback without ego? Do you state complexity honestly?
+  </div>
+</div>
+
+<div class="card">
+  <h4>OOD / design lite (often shows up for SDE)</h4>
+  <p>Be ready to design a small object model in 20–25 minutes:</p>
+  <ul>
+    <li>Parking lot / elevator / library</li>
+    <li>Amazon: package tracking, shopping cart, flash sale inventory, rate limiter</li>
+  </ul>
+  <p>Script: requirements → entities → relationships → core APIs → edge cases (concurrency, failure). Not full distributed design unless you’re interviewing L5+.</p>
+</div>
+
+<div class="quiz" data-quiz="a7">
+  <div class="q">A7. Bar Raiser asks “what would you do differently?” Best answer shape?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="a7" value="a"> “Nothing — I’d do it the same.”</label>
+    <label class="choice"><input type="radio" name="a7" value="b" data-correct="1"> Name 1–2 concrete changes + why (process, test, metric, communication).</label>
+    <label class="choice"><input type="radio" name="a7" value="c"> Blame the teammate again.</label>
+    <label class="choice"><input type="radio" name="a7" value="d"> Say you weren’t in charge.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('a7')">Check</button>
+  <div class="reveal">Learn &amp; Be Curious / Earn Trust. Perfect stories with zero growth signal are a yellow flag.</div>
+</div>
+</section>
+
+<!-- =============================================================== -->
+<section id="gap-patterns">
+<h2>21. Drill map (use your files — don’t wander)</h2>
+<div class="grid">
+  <div class="tile todo">
+    <span class="tag todo">NOW</span>
+    <h4>Hashing bootcamp</h4>
+    <p><code class="inline">00_hashing_bootcamp_drills.py</code> — finish two_sum_disjoint_pairs + subarray_sum_equals_k (you still have empty / <code class="inline">pass</code> bodies).</p>
+  </div>
+  <div class="tile todo">
+    <span class="tag todo">DAY 1–2</span>
+    <h4>Hashing variants</h4>
+    <p><code class="inline">01_hashing_variants.py</code> + LC 1, 49, 242, 347</p>
+  </div>
+  <div class="tile todo">
+    <span class="tag todo">DAY 3</span>
+    <h4>Sliding window</h4>
+    <p><code class="inline">02_sliding_window_variants.py</code> + LC 3, 209</p>
+  </div>
+  <div class="tile todo">
+    <span class="tag todo">DAY 4</span>
+    <h4>Intervals</h4>
+    <p><code class="inline">03_intervals_greedy_variants.py</code> + LC 56</p>
+  </div>
+  <div class="tile todo">
+    <span class="tag todo">DAY 5</span>
+    <h4>Graphs / grids</h4>
+    <p><code class="inline">04_graph_grid_variants.py</code> + LC 200, 994</p>
+  </div>
+  <div class="tile todo">
+    <span class="tag todo">DAY 6</span>
+    <h4>Heap + BS answer</h4>
+    <p><code class="inline">05_heap_binary_search_variants.py</code> + LC 215, 875</p>
+  </div>
+  <div class="tile todo">
+    <span class="tag todo">DAY 7</span>
+    <h4>Story wrappers + mock</h4>
+    <p><code class="inline">06_amazon_style_story_variants.py</code> + scorecard mock</p>
+  </div>
+</div>
+<pre><code>python interview_prep/amazon_oa_week/coding/run_amazon_oa_week.py</code></pre>
+
+<div class="quiz" data-quiz="a5">
+  <div class="q">A5. “Minimum eating speed to finish bananas in H hours” is…</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="a5" value="a"> Sliding window</label>
+    <label class="choice"><input type="radio" name="a5" value="b" data-correct="1"> Binary search on answer</label>
+    <label class="choice"><input type="radio" name="a5" value="c"> XOR</label>
+    <label class="choice"><input type="radio" name="a5" value="d"> Two pointers only</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('a5')">Check</button>
+  <div class="reveal">LC 875. Monotonic <code class="inline">feasible(speed)</code> over [1, max(pile)].</div>
+</div>
+</section>
+
+<!-- =============================================================== -->
+<section id="post-oa-plan">
+<h2>22. 14-day schedule + readiness gate</h2>
+<div class="card">
+  <h4>Week 1 — coding gaps</h4>
+  <div class="phase-row"><div class="phase-n">D1</div><div>Finish hashing bootcamp + LC 1 timed. Start Ownership STAR.</div></div>
+  <div class="phase-row"><div class="phase-n">D2</div><div><code class="inline">01_hashing_variants.py</code> + LC 49/347. Dive Deep STAR.</div></div>
+  <div class="phase-row"><div class="phase-n">D3</div><div>Window pack + LC 3 with full phone script out loud.</div></div>
+  <div class="phase-row"><div class="phase-n">D4</div><div>Intervals pack + LC 56. Customer Obsession STAR.</div></div>
+  <div class="phase-row"><div class="phase-n">D5</div><div>Graph pack + LC 200/994. Bias for Action STAR.</div></div>
+  <div class="phase-row"><div class="phase-n">D6</div><div>Heap/BS pack + LC 875/215. Deliver Results STAR.</div></div>
+  <div class="phase-row"><div class="phase-n">D7</div><div>Mock #1 (2×35m) + scorecard. Record 4 STAR stories.</div></div>
+</div>
+<div class="card">
+  <h4>Week 2 — perform like Amazon</h4>
+  <div class="phase-row"><div class="phase-n">D8</div><div>Story wrappers file. 2-min classify rule every prompt.</div></div>
+  <div class="phase-row"><div class="phase-n">D9</div><div>Mixed 3 mediums (no same pattern back-to-back).</div></div>
+  <div class="phase-row"><div class="phase-n">D10</div><div>Mock #2 with LP sandwich. Comm score ≥4/5.</div></div>
+  <div class="phase-row"><div class="phase-n">D11</div><div>LP sprint: 8 stories × 90s + bar-raiser follow-ups.</div></div>
+  <div class="phase-row"><div class="phase-n">D12</div><div>Only misses from mistake log / review_scheduler.</div></div>
+  <div class="phase-row"><div class="phase-n">D13</div><div>Final mock #3. Optional OOD: shopping cart or LRU.</div></div>
+  <div class="phase-row"><div class="phase-n">D14</div><div>Light: trigger cards + 4 LPs. Sleep. No new hards.</div></div>
+</div>
+
+<div class="card checklist" id="readiness">
+  <h4>Readiness gate</h4>
+  <label><input type="checkbox" data-ready> Tier A hit list cold-re-solved this week</label>
+  <label><input type="checkbox" data-ready> Can classify Amazon story prompts in ≤2 minutes</label>
+  <label><input type="checkbox" data-ready> Phone script memorized (clarify → plan → code → edges → LP)</label>
+  <label><input type="checkbox" data-ready> 8 STAR stories with metrics + follow-up bullets</label>
+  <label><input type="checkbox" data-ready> Ownership, Dive Deep, Bias for Action, Customer Obsession each covered</label>
+  <label><input type="checkbox" data-ready> Mock communication average ≥4/5</label>
+  <label><input type="checkbox" data-ready> Hashing drill file fully green (including subarray sum k)</label>
+  <p style="margin-top:10px;font-size:14px;">Checked: <strong id="ready-count">0</strong> / 7</p>
+</div>
+
+<div class="quiz" data-quiz="a6">
+  <div class="q">A6. Loop tomorrow — best last 3 hours?</div>
+  <div class="choices">
+    <label class="choice"><input type="radio" name="a6" value="a"> 8 new hard problems.</label>
+    <label class="choice"><input type="radio" name="a6" value="b" data-correct="1"> Light review: triggers, 4 LPs out loud, sleep.</label>
+    <label class="choice"><input type="radio" name="a6" value="c"> Learn DP from zero.</label>
+    <label class="choice"><input type="radio" name="a6" value="d"> Switch languages.</label>
+  </div>
+  <button class="ghost" onclick="checkQuiz('a6')">Check</button>
+  <div class="reveal">Fatigue fails interviews. Consolidate and rest.</div>
+</div>
+</section>
+
+
+<!-- =============================================================== -->
+<section id="playground">
+<h2>23. Python playground</h2>
+<div class="card">
+  <p>Dry-run Amazon-style snippets the same way you will in a shared editor.</p>
+  <p style="color:var(--ink-dim);font-size:13px;">If Pyodide is blocked, use local Python.</p>
+
+  <textarea id="py-code" spellcheck="false">from collections import Counter
+
+def top_k_keywords(keywords, k):
+    freq = Counter(keywords)
+    ranked = sorted(freq.keys(), key=lambda w: (-freq[w], w))
+    return ranked[:k]
+
+print(top_k_keywords(["a","b","a","c","b","a"], 2))  # ['a', 'b']
+</textarea>
+  <div class="run-row">
+    <button class="primary" id="py-run">Run</button>
+    <button class="ghost" id="py-clear">Clear output</button>
+    <span id="py-status">Interpreter not loaded yet.</span>
+  </div>
+  <div id="py-output" aria-live="polite"></div>
+</div>
+</section>
+
+<footer>
+  Built for your Amazon loop — patterns from your code, protocol for the interview. Update this file as you learn.
+</footer>
+
+</div>
+
+<!-- Pyodide -->
+<script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+<script>
+/* ========== Theme toggle ========== */
+const themeToggle = document.getElementById('theme-toggle');
+const savedTheme = localStorage.getItem('learn-theme') || 'dark';
+if (savedTheme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+themeToggle.addEventListener('click', () => {
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  if (isLight) {
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('learn-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('learn-theme', 'light');
+  }
+});
+
+/* ========== Quiz logic ========== */
+const QUIZ_STORE = 'learn-quiz-state-v1';
+const quizState = JSON.parse(localStorage.getItem(QUIZ_STORE) || '{}');
+
+function saveQuiz() {
+  localStorage.setItem(QUIZ_STORE, JSON.stringify(quizState));
+  updateProgress();
+}
+
+function checkQuiz(id) {
+  const container = document.querySelector(`[data-quiz="${id}"]`);
+  if (!container) return;
+  const reveal = container.querySelector('.reveal');
+  const choices = container.querySelectorAll('.choice');
+  choices.forEach(c => c.classList.remove('correct', 'wrong'));
+
+  const selected = container.querySelector(`input[name="${id}"]:checked`);
+  if (!selected) {
+    reveal.classList.add('show');
+    reveal.innerHTML = '<em>Pick an option first.</em> ' + reveal.dataset.html;
+    return;
+  }
+  const isCorrect = selected.hasAttribute('data-correct');
+  const label = selected.closest('.choice');
+  label.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    container.querySelector('input[data-correct]').closest('.choice').classList.add('correct');
+  }
+  reveal.classList.add('show');
+
+  quizState[id] = isCorrect ? 'correct' : 'wrong';
+  saveQuiz();
+}
+
+/* Restore previous answers visually */
+function restoreQuizzes() {
+  document.querySelectorAll('[data-quiz]').forEach(container => {
+    const id = container.getAttribute('data-quiz');
+    const reveal = container.querySelector('.reveal');
+    if (reveal) reveal.dataset.html = reveal.innerHTML;
+    if (quizState[id]) {
+      if (reveal) reveal.classList.add('show');
+      const correct = container.querySelector('input[data-correct]');
+      if (correct) correct.closest('.choice').classList.add('correct');
+    }
+  });
+}
+
+function updateProgress() {
+  const total = document.querySelectorAll('[data-quiz]').length;
+  const done = Object.values(quizState).length;
+  const correct = Object.values(quizState).filter(v => v === 'correct').length;
+  const pct = Math.round((correct / total) * 100) || 0;
+  const bar = document.getElementById('overall-bar');
+  const lbl = document.getElementById('overall-pct');
+  if (bar) bar.style.width = pct + '%';
+  if (lbl) lbl.textContent = pct + '%';
+
+  /* cumulative score breakdown */
+  const cumIds = ['c1','c2','c3','c4','c5','c6','c7','c8','c9','c10'];
+  const cumCorrect = cumIds.filter(id => quizState[id] === 'correct').length;
+  const cumAttempted = cumIds.filter(id => quizState[id]).length;
+  const scoreEl = document.getElementById('cumulative-score');
+  if (scoreEl) {
+    scoreEl.textContent = cumAttempted === 0
+      ? '—'
+      : `${cumCorrect} / ${cumIds.length} correct (${cumAttempted} attempted)`;
+  }
+}
+
+/* ========== Amazon checklist persistence ========== */
+const READY_STORE = 'learn-amazon-ready-v1';
+const TODAY_STORE = 'learn-amazon-today-v1';
+
+function wireChecklist(rootSel, boxSel, countId, storeKey) {
+  const boxes = document.querySelectorAll(`${rootSel} ${boxSel}`);
+  const saved = JSON.parse(localStorage.getItem(storeKey) || '[]');
+  const sync = () => {
+    const n = [...boxes].filter(b => b.checked).length;
+    const el = document.getElementById(countId);
+    if (el) el.textContent = String(n);
+    localStorage.setItem(storeKey, JSON.stringify([...boxes].map(b => b.checked)));
+  };
+  boxes.forEach((b, i) => {
+    if (saved[i]) b.checked = true;
+    b.addEventListener('change', sync);
+  });
+  sync();
+}
+wireChecklist('#readiness', 'input[data-ready]', 'ready-count', READY_STORE);
+wireChecklist('#today-checklist', 'input[data-today]', 'today-count', TODAY_STORE);
+
+document.getElementById('reset-btn').addEventListener('click', () => {
+  if (!confirm('Reset all quiz progress?')) return;
+  localStorage.removeItem(QUIZ_STORE);
+  localStorage.removeItem(READY_STORE);
+  localStorage.removeItem(TODAY_STORE);
+  location.reload();
+});
+
+restoreQuizzes();
+updateProgress();
+window.checkQuiz = checkQuiz;
+
+/* ========== Pyodide playground ========== */
+let pyodide = null;
+let loadingPromise = null;
+const runBtn = document.getElementById('py-run');
+const clearBtn = document.getElementById('py-clear');
+const output = document.getElementById('py-output');
+const statusEl = document.getElementById('py-status');
+
+function appendOutput(s) {
+  output.textContent += s;
+}
+
+async function ensurePyodide() {
+  if (pyodide) return pyodide;
+  if (loadingPromise) return loadingPromise;
+  statusEl.textContent = 'Loading Python interpreter…';
+  runBtn.disabled = true;
+  loadingPromise = (async () => {
+    pyodide = await loadPyodide({
+      indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.26.4/full/',
+    });
+    pyodide.setStdout({ batched: (s) => appendOutput(s + '\n') });
+    pyodide.setStderr({ batched: (s) => appendOutput('[stderr] ' + s + '\n') });
+    statusEl.textContent = 'Python ready.';
+    runBtn.disabled = false;
+    return pyodide;
+  })();
+  return loadingPromise;
+}
+
+runBtn.addEventListener('click', async () => {
+  output.textContent = '';
+  try {
+    const py = await ensurePyodide();
+    const code = document.getElementById('py-code').value;
+    runBtn.disabled = true;
+    statusEl.textContent = 'Running…';
+    await py.runPythonAsync(code);
+    statusEl.textContent = 'Done.';
+  } catch (e) {
+    appendOutput('Error: ' + (e && e.message ? e.message : String(e)) + '\n');
+    statusEl.textContent = 'Error.';
+  } finally {
+    runBtn.disabled = false;
+  }
+});
+
+clearBtn.addEventListener('click', () => {
+  output.textContent = '';
+});
+
+/* ========== zyBook-style fill-in-the-blank ========== */
+function canonBlank(s) {
+  return String(s).replace(/['"\s]/g, '').toLowerCase();
+}
+function validateBlank(input) {
+  const v = input.value;
+  if (v.trim() === '') {
+    input.classList.remove('correct', 'wrong');
+    return;
+  }
+  const answer = input.dataset.answer || '';
+  const equivs = (input.dataset.equiv || '').split('|').map(x => x.trim()).filter(Boolean);
+  const candidates = [answer, ...equivs];
+  const got = canonBlank(v);
+  const ok = candidates.some(c => canonBlank(c) === got);
+  input.classList.remove('correct', 'wrong');
+  input.classList.add(ok ? 'correct' : 'wrong');
+}
+document.querySelectorAll('.zb-blank').forEach(b => {
+  b.addEventListener('blur', () => validateBlank(b));
+  b.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === 'Tab') validateBlank(b);
+  });
+  b.addEventListener('input', () => {
+    if (b.classList.contains('correct') || b.classList.contains('wrong')) {
+      b.classList.remove('correct', 'wrong');
+    }
+  });
+});
+
+/* ========== Generic stepper factory ========== */
+function createStepper(rootId, config) {
+  const root = document.getElementById(rootId);
+  if (!root) return;
+  const steps = config.steps;
+  let idx = -1;
+  const stage = root.querySelector('.zb-stage');
+  const narr = root.querySelector('.zb-narration');
+  const state = root.querySelector('.zb-state-vars');
+  const counter = root.querySelector('.zb-step-count');
+
+  function render() {
+    const s = idx === -1 ? config.initial : steps[idx];
+    stage.innerHTML = s.stage;
+    state.innerHTML = s.vars || '';
+    narr.textContent = s.narration || '';
+    counter.textContent = idx === -1
+      ? `Step 0 / ${steps.length}`
+      : `Step ${idx + 1} / ${steps.length}${idx === steps.length - 1 ? '  ✓ done' : ''}`;
+  }
+
+  root.querySelector('.btn-next').addEventListener('click', () => {
+    if (idx < steps.length - 1) { idx++; render(); }
+  });
+  root.querySelector('.btn-prev').addEventListener('click', () => {
+    if (idx > -1) { idx--; render(); }
+  });
+  root.querySelector('.btn-reset').addEventListener('click', () => {
+    idx = -1; render();
+  });
+  render();
+}
+
+/* helpers for stepper HTML */
+function cellsHTML(arr, hiIdx, opts = {}) {
+  return arr.map((v, i) => {
+    let cls = 'cell';
+    if (i === hiIdx) cls += ' hi-l';
+    if (opts.kept && opts.kept.includes(i)) cls += ' kept';
+    if (opts.dim && opts.dim.includes(i)) cls += ' dim';
+    return `<div class="${cls}">${v}</div>`;
+  }).join('');
+}
+function varsHTML(pairs) {
+  return pairs.map(([name, val]) => `<div class="zb-var"><b>${name}</b> = ${val}</div>`).join('');
+}
+
+/* Pattern 2 stepper */
+createStepper('p2-stepper', {
+  initial: {
+    stage: [1,1,0,1,1,1].map(v => `<div class="cell dim">${v}</div>`).join(''),
+    vars: varsHTML([['current', 0], ['best', 0]]),
+    narration: 'Click "Next ▶" to begin. We walk through one element at a time.',
+  },
+  steps: [
+    { stage: cellsHTML([1,1,0,1,1,1], 0), vars: varsHTML([['current',1],['best',1]]), narration: 'nums[0]=1 → current += 1 (now 1) → best = max(0,1) = 1' },
+    { stage: cellsHTML([1,1,0,1,1,1], 1), vars: varsHTML([['current',2],['best',2]]), narration: 'nums[1]=1 → current += 1 (now 2) → best = max(1,2) = 2' },
+    { stage: cellsHTML([1,1,0,1,1,1], 2), vars: varsHTML([['current',0],['best',2]]), narration: 'nums[2]=0 → reset current to 0. best stays at 2.' },
+    { stage: cellsHTML([1,1,0,1,1,1], 3), vars: varsHTML([['current',1],['best',2]]), narration: 'nums[3]=1 → current += 1 (now 1) → best = max(2,1) = 2' },
+    { stage: cellsHTML([1,1,0,1,1,1], 4), vars: varsHTML([['current',2],['best',2]]), narration: 'nums[4]=1 → current += 1 (now 2) → best = max(2,2) = 2' },
+    { stage: cellsHTML([1,1,0,1,1,1], 5), vars: varsHTML([['current',3],['best',3]]), narration: 'nums[5]=1 → current += 1 (now 3) → best = max(2,3) = 3 ← final answer' },
+  ],
+});
+
+/* Pattern 3 stepper (palindrome converging two pointers) */
+(function p3() {
+  const arr = ['r','a','c','e','c','a','r'];
+  function st(L, R, extra = '') {
+    return arr.map((v, i) => {
+      let cls = 'cell';
+      if (i === L) cls += ' hi-l';
+      else if (i === R) cls += ' hi-r';
+      return `<div class="${cls}">${v}</div>`;
+    }).join('') + (extra ? `<div style="margin-left:12px;align-self:center;color:var(--ink-dim);font-size:12px;">${extra}</div>` : '');
+  }
+  createStepper('p3-stepper', {
+    initial: {
+      stage: arr.map(v => `<div class="cell dim">${v}</div>`).join(''),
+      vars: varsHTML([['left', 0], ['right', 6]]),
+      narration: 'Comparing "racecar". Press Next.',
+    },
+    steps: [
+      { stage: st(0, 6), vars: varsHTML([['left',0],['right',6]]), narration: 's[0]="r", s[6]="r" → match, advance both' },
+      { stage: st(1, 5), vars: varsHTML([['left',1],['right',5]]), narration: 's[1]="a", s[5]="a" → match, advance both' },
+      { stage: st(2, 4), vars: varsHTML([['left',2],['right',4]]), narration: 's[2]="c", s[4]="c" → match, advance both' },
+      { stage: st(3, 3), vars: varsHTML([['left',3],['right',3]]), narration: 'left == right → loop exits. Return True ✓' },
+    ],
+  });
+})();
+
+/* Pattern 4 stepper (move zeros same-direction two pointers) */
+(function p4() {
+  const states = [
+    { arr: [0,1,0,3,12],   left: 0, right: 0, narr: 'Start. left=writer, right=scanner, both at 0.' },
+    { arr: [0,1,0,3,12],   left: 0, right: 0, narr: 'nums[right]=0 → skip. left stays.' },
+    { arr: [1,0,0,3,12],   left: 1, right: 1, narr: 'right=1, nums[right]=1 ≠ 0 → swap(0,1). Advance left.' },
+    { arr: [1,0,0,3,12],   left: 1, right: 2, narr: 'right=2, nums[right]=0 → skip.' },
+    { arr: [1,3,0,0,12],   left: 2, right: 3, narr: 'right=3, nums[right]=3 ≠ 0 → swap(1,3). Advance left.' },
+    { arr: [1,3,12,0,0],   left: 3, right: 4, narr: 'right=4, nums[right]=12 ≠ 0 → swap(2,4). Advance left. Done!' },
+  ];
+  function st(s) {
+    return s.arr.map((v, i) => {
+      let cls = 'cell';
+      if (i === s.left && i === s.right) cls += ' hi-l';
+      else if (i === s.left) cls += ' hi-l';
+      else if (i === s.right) cls += ' hi-r';
+      return `<div class="${cls}">${v}</div>`;
+    }).join('');
+  }
+  createStepper('p4-stepper', {
+    initial: {
+      stage: states[0].arr.map(v => `<div class="cell dim">${v}</div>`).join(''),
+      vars: varsHTML([['left', 0], ['right', 0]]),
+      narration: 'Same-direction two pointers. Blue=writer (left), purple=scanner (right). Press Next.',
+    },
+    steps: states.map(s => ({
+      stage: st(s),
+      vars: varsHTML([['left (writer)', s.left], ['right (scanner)', s.right]]),
+      narration: s.narr,
+    })),
+  });
+})();
+
+/* Pattern 5 stepper (Roman numerals on 1994) */
+(function p5() {
+  const table = [[1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],[100,'C'],[90,'XC'],[50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']];
+  function tableHTML(activeVal) {
+    return `<div style="display:flex;flex-wrap:wrap;gap:4px;font-family:var(--mono);font-size:12px;">` +
+      table.map(([v, s]) => {
+        const isActive = v === activeVal;
+        const bg = isActive ? 'background:rgba(110,168,255,0.18);border-color:var(--accent);' : '';
+        return `<span style="padding:3px 7px;border:1px solid var(--line);border-radius:4px;${bg}">${v}→${s}</span>`;
+      }).join('') + `</div>`;
+  }
+  createStepper('p5-stepper', {
+    initial: {
+      stage: tableHTML(null),
+      vars: varsHTML([['num', 1994], ['result', '""']]),
+      narration: 'Greedy: at each step, take the biggest pair whose value ≤ num. Press Next.',
+    },
+    steps: [
+      { stage: tableHTML(1000), vars: varsHTML([['num',994],['result','"M"']]),       narration: '1000 fits → append "M". num = 1994 - 1000 = 994.' },
+      { stage: tableHTML(900),  vars: varsHTML([['num',94], ['result','"MCM"']]),     narration: '900 fits → append "CM". num = 994 - 900 = 94.' },
+      { stage: tableHTML(90),   vars: varsHTML([['num',4],  ['result','"MCMXC"']]),   narration: '90 fits → append "XC". num = 94 - 90 = 4.' },
+      { stage: tableHTML(4),    vars: varsHTML([['num',0],  ['result','"MCMXCIV"']]), narration: '4 fits → append "IV". num = 4 - 4 = 0. Done!' },
+    ],
+  });
+})();
+
+/* ========== Multi-select grader ========== */
+function checkMulti(id) {
+  const wrap = document.querySelector(`[data-multi="${id}"]`);
+  if (!wrap) return;
+  const labels = wrap.querySelectorAll('label.choice');
+  labels.forEach(l => l.classList.remove('correct', 'wrong', 'missed'));
+  const inputs = wrap.querySelectorAll('input[type="checkbox"]');
+  let perfect = true;
+  inputs.forEach(input => {
+    const isCorrect = input.hasAttribute('data-correct');
+    const isChecked = input.checked;
+    const label = input.closest('label');
+    if (isChecked && isCorrect)        label.classList.add('correct');
+    else if (isChecked && !isCorrect) { label.classList.add('wrong');  perfect = false; }
+    else if (!isChecked && isCorrect) { label.classList.add('missed'); perfect = false; }
+  });
+  const reveal = wrap.querySelector('.reveal');
+  if (reveal) reveal.classList.add('show');
+  if (wrap.hasAttribute('data-quiz')) {
+    quizState[wrap.getAttribute('data-quiz')] = perfect ? 'correct' : 'wrong';
+    saveQuiz();
+  }
+}
+window.checkMulti = checkMulti;
+
+/* ========== Auto-graded coding challenges ========== */
+const challenges = {
+  'ch-p2': {
+    title: 'Challenge 2.1 — Implement findMaxConsecutiveOnes',
+    prompt: 'Write the function from scratch. The pattern: track <code class="inline">current</code> and <code class="inline">best</code> in a single pass.',
+    starter:
+`def findMaxConsecutiveOnes(nums):
+    # your code here
+    pass
+`,
+    tests: [
+      { desc: 'Basic mixed input → 3',          code: 'assert findMaxConsecutiveOnes([1,1,0,1,1,1]) == 3' },
+      { desc: 'All zeros → 0',                   code: 'assert findMaxConsecutiveOnes([0,0,0]) == 0' },
+      { desc: 'All ones (end-of-array edge) → 4',code: 'assert findMaxConsecutiveOnes([1,1,1,1]) == 4' },
+      { desc: 'Single zero → 0',                 code: 'assert findMaxConsecutiveOnes([0]) == 0' },
+      { desc: 'Single one → 1',                  code: 'assert findMaxConsecutiveOnes([1]) == 1' },
+      { desc: 'Alternating → 1',                 code: 'assert findMaxConsecutiveOnes([0,1,0,1,0,1]) == 1' },
+      { desc: 'Run at start → 3',                code: 'assert findMaxConsecutiveOnes([1,1,1,0,1,1]) == 3' },
+    ],
+    solution:
+`def findMaxConsecutiveOnes(nums):
+    current = 0
+    best = 0
+    for n in nums:
+        if n == 1:
+            current += 1
+            best = max(best, current)
+        else:
+            current = 0
+    return best
+`,
+  },
+  'ch-p4': {
+    title: 'Challenge 4.1 — Remove duplicates from a sorted list, in place',
+    prompt: 'Return the new length k. The first k elements of <code class="inline">nums</code> must contain the unique values in order.',
+    starter:
+`def remove_duplicates_sorted(nums):
+    # modify nums in place and return the new length
+    pass
+`,
+    tests: [
+      { desc: 'Standard input',
+        code: 'nums = [1,1,2]\nk = remove_duplicates_sorted(nums)\nassert k == 2, f"expected length 2, got {k}"\nassert nums[:k] == [1,2], f"expected [1,2], got {nums[:k]}"' },
+      { desc: 'Longer with multiple dupes',
+        code: 'nums = [0,0,1,1,1,2,2,3,3,4]\nk = remove_duplicates_sorted(nums)\nassert k == 5\nassert nums[:k] == [0,1,2,3,4]' },
+      { desc: 'No duplicates',
+        code: 'nums = [1,2,3,4]\nk = remove_duplicates_sorted(nums)\nassert k == 4\nassert nums[:k] == [1,2,3,4]' },
+      { desc: 'All same value',
+        code: 'nums = [5,5,5,5]\nk = remove_duplicates_sorted(nums)\nassert k == 1\nassert nums[:k] == [5]' },
+      { desc: 'Empty list',
+        code: 'nums = []\nk = remove_duplicates_sorted(nums)\nassert k == 0' },
+      { desc: 'Single element',
+        code: 'nums = [7]\nk = remove_duplicates_sorted(nums)\nassert k == 1\nassert nums[:k] == [7]' },
+    ],
+    solution:
+`def remove_duplicates_sorted(nums):
+    if not nums:
+        return 0
+    left = 1
+    for right in range(1, len(nums)):
+        if nums[right] != nums[right - 1]:
+            nums[left] = nums[right]
+            left += 1
+    return left
+`,
+  },
+  'ch-p3': {
+    title: 'Challenge 3.1 — Valid palindrome (LeetCode 125)',
+    prompt: 'Ignore non-alphanumerics and treat upper/lower case as equal. Use the converging two-pointer skeleton.',
+    starter:
+`def isPalindrome(s):
+    pass
+`,
+    tests: [
+      { desc: 'Classic mixed-case + punctuation', code: 'assert isPalindrome("A man, a plan, a canal: Panama") == True' },
+      { desc: 'Negative case',                    code: 'assert isPalindrome("race a car") == False' },
+      { desc: 'Only whitespace → True',           code: 'assert isPalindrome(" ") == True' },
+      { desc: 'Digit vs letter ("0P") → False',   code: 'assert isPalindrome("0P") == False' },
+      { desc: 'Single char',                       code: 'assert isPalindrome("a") == True' },
+      { desc: 'Two same chars',                    code: 'assert isPalindrome("aa") == True' },
+      { desc: 'All punctuation → True',            code: 'assert isPalindrome(".,!?") == True' },
+      { desc: '"No \\"x\\" in Nixon"',             code: 'assert isPalindrome("No \\"x\\" in Nixon") == True' },
+    ],
+    solution:
+`def isPalindrome(s):
+    left, right = 0, len(s) - 1
+    while left < right:
+        while left < right and not s[left].isalnum():
+            left += 1
+        while left < right and not s[right].isalnum():
+            right -= 1
+        if s[left].lower() != s[right].lower():
+            return False
+        left += 1
+        right -= 1
+    return True
+`,
+  },
+  'ch-p2b': {
+    title: 'Challenge 2.2 — Maximum subarray sum (Kadane\'s algorithm)',
+    prompt: 'Return the largest sum of any contiguous (non-empty) subarray. Same running-state shape — but instead of incrementing, you decide each step: extend the current run or restart from this element.',
+    starter:
+`def maxSubArray(nums):
+    # return the largest sum of any contiguous subarray
+    pass
+`,
+    tests: [
+      { desc: 'Classic LC53 example → 6',         code: 'assert maxSubArray([-2,1,-3,4,-1,2,1,-5,4]) == 6' },
+      { desc: 'All positive → sum all',            code: 'assert maxSubArray([1,2,3,4]) == 10' },
+      { desc: 'All negative → least negative',     code: 'assert maxSubArray([-1,-2,-3]) == -1' },
+      { desc: 'Single element',                    code: 'assert maxSubArray([5]) == 5' },
+      { desc: 'Single negative element',           code: 'assert maxSubArray([-3]) == -3' },
+      { desc: 'Mixed signs',                       code: 'assert maxSubArray([3,-1,4,-1,2,-5,4]) == 7' },
+    ],
+    solution:
+`def maxSubArray(nums):
+    current = nums[0]
+    best = nums[0]
+    for n in nums[1:]:
+        current = max(n, current + n)
+        best = max(best, current)
+    return best
+`,
+  },
+  'ch-p4b': {
+    title: 'Challenge 4.2 — Remove element (LeetCode 27)',
+    prompt: 'Given a list and a value <code class="inline">val</code>, remove all instances of val in place and return the new length k. The first k elements of nums must not contain val (order of remaining elements doesn\'t matter).',
+    starter:
+`def remove_element(nums, val):
+    # modify nums in place; return new length k
+    pass
+`,
+    tests: [
+      { desc: 'Basic',
+        code: 'nums = [3,2,2,3]\nk = remove_element(nums, 3)\nassert k == 2\nassert sorted(nums[:k]) == [2,2]' },
+      { desc: 'Multiple values to remove',
+        code: 'nums = [0,1,2,2,3,0,4,2]\nk = remove_element(nums, 2)\nassert k == 5\nassert sorted(nums[:k]) == [0,0,1,3,4]' },
+      { desc: 'Nothing to remove',
+        code: 'nums = [1,2,3]\nk = remove_element(nums, 9)\nassert k == 3\nassert sorted(nums[:k]) == [1,2,3]' },
+      { desc: 'Remove everything',
+        code: 'nums = [5,5,5]\nk = remove_element(nums, 5)\nassert k == 0' },
+      { desc: 'Empty list',
+        code: 'nums = []\nk = remove_element(nums, 1)\nassert k == 0' },
+    ],
+    solution:
+`def remove_element(nums, val):
+    left = 0
+    for right in range(len(nums)):
+        if nums[right] != val:
+            nums[left] = nums[right]
+            left += 1
+    return left
+`,
+  },
+  'ch-p5': {
+    title: 'Challenge 5.1 — Roman to integer',
+    prompt: 'Convert a valid Roman numeral string back to an integer. Hint: walk left-to-right; if the current symbol is smaller than the next, SUBTRACT it; otherwise ADD it.',
+    starter:
+`def romanToInt(s):
+    pass
+`,
+    tests: [
+      { desc: 'III → 3',         code: 'assert romanToInt("III") == 3' },
+      { desc: 'IV → 4',           code: 'assert romanToInt("IV") == 4' },
+      { desc: 'IX → 9',           code: 'assert romanToInt("IX") == 9' },
+      { desc: 'LVIII → 58',       code: 'assert romanToInt("LVIII") == 58' },
+      { desc: 'MCMXCIV → 1994',   code: 'assert romanToInt("MCMXCIV") == 1994' },
+      { desc: 'MMXXIV → 2024',    code: 'assert romanToInt("MMXXIV") == 2024' },
+    ],
+    solution:
+`def romanToInt(s):
+    values = {"I":1,"V":5,"X":10,"L":50,"C":100,"D":500,"M":1000}
+    total = 0
+    for i, ch in enumerate(s):
+        v = values[ch]
+        if i + 1 < len(s) and v < values[s[i+1]]:
+            total -= v
+        else:
+            total += v
+    return total
+`,
+  },
+  'ch-p6': {
+    title: 'Challenge 6.1 — Longest common prefix',
+    prompt: 'Return the longest string that is a prefix of every string in <code class="inline">strs</code>. Empty list → empty string. Horizontal scan: tentative answer = strs[0], shrink as needed.',
+    starter:
+`def longestCommonPrefix(strs):
+    pass
+`,
+    tests: [
+      { desc: 'Classic flower/flow/flight → "fl"', code: 'assert longestCommonPrefix(["flower","flow","flight"]) == "fl"' },
+      { desc: 'No common prefix → ""',              code: 'assert longestCommonPrefix(["dog","racecar","car"]) == ""' },
+      { desc: 'Empty list → ""',                    code: 'assert longestCommonPrefix([]) == ""' },
+      { desc: 'Single string returns itself',       code: 'assert longestCommonPrefix(["alone"]) == "alone"' },
+      { desc: 'List contains empty string → ""',    code: 'assert longestCommonPrefix(["", "abc"]) == ""' },
+      { desc: 'All equal',                          code: 'assert longestCommonPrefix(["abc","abc","abc"]) == "abc"' },
+      { desc: 'Prefix equals first whole string',   code: 'assert longestCommonPrefix(["ab","abc","abcd"]) == "ab"' },
+    ],
+    solution:
+`def longestCommonPrefix(strs):
+    if not strs:
+        return ""
+    prefix = strs[0]
+    for s in strs[1:]:
+        while not s.startswith(prefix):
+            prefix = prefix[:-1]
+            if prefix == "":
+                return ""
+    return prefix
+`,
+  },
+  'ch-p7': {
+    title: 'Challenge 7.1 — Find the extra character',
+    prompt: 't is s with one extra letter (after a shuffle). Return that extra letter. Either XOR or Counter works — pick whichever clicks.',
+    starter:
+`def findTheDifference(s, t):
+    pass
+`,
+    tests: [
+      { desc: '"abcd" + "e" → "e"',     code: 'assert findTheDifference("abcd","abcde") == "e"' },
+      { desc: '"a" + "a" → "a"',         code: 'assert findTheDifference("a","aa") == "a"' },
+      { desc: 'Empty s + "y" → "y"',     code: 'assert findTheDifference("","y") == "y"' },
+      { desc: 'Shuffled then added',     code: 'assert findTheDifference("ae","aea") == "a"' },
+      { desc: 'Single shared char',      code: 'assert findTheDifference("z","zx") == "x"' },
+      { desc: 'Longer shuffled',         code: 'assert findTheDifference("abcde","edcbaf") == "f"' },
+    ],
+    solution:
+`def findTheDifference(s, t):
+    xor_val = 0
+    for ch in s + t:
+        xor_val ^= ord(ch)
+    return chr(xor_val)
+`,
+  },
+  'ch-p8': {
+    title: 'Challenge 8.1 — Implement mergeAlternately correctly',
+    prompt: 'Three bugs in your original code. Rewrite it from scratch — handle unequal lengths.',
+    starter:
+`def mergeAlternately(word1, word2):
+    # interleave: pick from word1, then word2, then word1, ...
+    # when one runs out, append the rest of the other
+    pass
+`,
+    tests: [
+      { desc: 'Equal lengths',      code: 'assert mergeAlternately("abc","xyz") == "axbycz"' },
+      { desc: 'word2 longer',        code: 'assert mergeAlternately("ab","pqrs") == "apbqrs"' },
+      { desc: 'word1 longer',        code: 'assert mergeAlternately("abcd","pq") == "apbqcd"' },
+      { desc: 'word1 empty',         code: 'assert mergeAlternately("","xyz") == "xyz"' },
+      { desc: 'word2 empty',         code: 'assert mergeAlternately("abc","") == "abc"' },
+      { desc: 'Both empty',          code: 'assert mergeAlternately("","") == ""' },
+      { desc: 'Single char each',    code: 'assert mergeAlternately("a","b") == "ab"' },
+    ],
+    solution:
+`def mergeAlternately(word1, word2):
+    out = []
+    for i in range(max(len(word1), len(word2))):
+        if i < len(word1):
+            out.append(word1[i])
+        if i < len(word2):
+            out.append(word2[i])
+    return "".join(out)
+`,
+  },
+};
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
+function mountChallenge(div) {
+  const id = div.dataset.id;
+  const c = challenges[id];
+  if (!c) return;
+  div.innerHTML = `
+    <h4>${c.title}</h4>
+    <p>${c.prompt}</p>
+    <textarea spellcheck="false">${escapeHtml(c.starter)}</textarea>
+    <div class="run-row">
+      <button class="primary btn-run">Run tests</button>
+      <button class="ghost btn-reset">Reset code</button>
+      <button class="ghost btn-solution">Show one valid solution</button>
+    </div>
+    <div class="zb-test-results"></div>
+  `;
+  const ta = div.querySelector('textarea');
+  div.querySelector('.btn-run').addEventListener('click', () => runChallenge(div));
+  div.querySelector('.btn-reset').addEventListener('click', () => {
+    ta.value = c.starter;
+    div.querySelector('.zb-test-results').innerHTML = '';
+  });
+  div.querySelector('.btn-solution').addEventListener('click', () => {
+    if (confirm('Replace your current code with one valid solution?')) {
+      ta.value = c.solution;
+    }
+  });
+}
+
+async function runChallenge(div) {
+  const id = div.dataset.id;
+  const c = challenges[id];
+  if (!c) return;
+  const results = div.querySelector('.zb-test-results');
+  const userCode = div.querySelector('textarea').value;
+  results.innerHTML = '<div class="zb-test-summary">Loading Python and running tests…</div>';
+  try {
+    const py = await ensurePyodide();
+    try {
+      await py.runPythonAsync(userCode);
+    } catch (defErr) {
+      results.innerHTML = `<div class="zb-test-row fail"><span class="tstatus">ERROR</span><span>Your code failed to define: <span class="tmsg">${escapeHtml(String(defErr.message || defErr).split('\n').slice(-3).join(' '))}</span></span></div>`;
+      quizState[id] = 'wrong';
+      saveQuiz();
+      return;
+    }
+    let pass = 0;
+    const rows = [];
+    for (const t of c.tests) {
+      try {
+        await py.runPythonAsync(t.code);
+        pass++;
+        rows.push(`<div class="zb-test-row pass"><span class="tstatus">PASS</span><span>${escapeHtml(t.desc)}</span></div>`);
+      } catch (e) {
+        const raw = String(e.message || e);
+        const msg = raw.split('\n').filter(l => l.trim() && !l.startsWith('  File')).slice(-2).join(' | ');
+        rows.push(`<div class="zb-test-row fail"><span class="tstatus">FAIL</span><span>${escapeHtml(t.desc)} <span class="tmsg">${escapeHtml(msg)}</span></span></div>`);
+      }
+    }
+    const allPass = pass === c.tests.length;
+    const summary = `<div class="zb-test-summary ${allPass ? 'good' : ''}">${pass} / ${c.tests.length} tests passed${allPass ? ' — nice work.' : ''}</div>`;
+    results.innerHTML = rows.join('') + summary;
+    quizState[id] = allPass ? 'correct' : 'wrong';
+    saveQuiz();
+  } catch (e) {
+    results.innerHTML = `<div class="zb-test-row fail"><span class="tstatus">ERR</span><span class="tmsg">${escapeHtml(String(e.message || e))}</span></div>`;
+  }
+}
+
+document.querySelectorAll('.zb-challenge').forEach(mountChallenge);
+</script>
+</body>
+</html>
